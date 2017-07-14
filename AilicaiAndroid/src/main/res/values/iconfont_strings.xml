@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="agent_call">&#xe60f;</string>
+    <string name="fold">&#xe9e6;</string>
+    <string name="info_nointernet">&#xe641;</string>
+    <string name="question_mark">&#xe600;</string>
+    <string name="accountagent">&#xe601;</string>
+    <string name="bag2">&#xe607;</string>
+    <string name="checkboxes2">&#xe608;</string>
+    <string name="arrowright">&#xe621;</string>
+    <string name="area">&#xe622;</string>
+    <string name="detail_arrowright">&#xe645;</string>
+    <string name="check">&#xe634;</string>
+    <string name="delete">&#xe61a;</string>
+    <string name="homepage_arrow_left">&#xe620;</string>
+    <string name="dropdown_arrow">&#xe619;</string>
+    <string name="succeed">&#xe64a;</string>
+    <string name="play">&#xe63b;</string>
+    <string name="search_no_result">&#xe640;</string>
+    <string name="radio">&#xe632;</string>
+    <string name="setup">&#xe634;</string>
+
+    <string name="changeagent_area">&#xe60e;</string>
+    <string name="changeagent_phone">&#xe610;</string>
+
+    <!-- 订单相关 -->
+    <string name="scan_camera">&#xe61b;</string>
+    <string name="arrow_right">&#xe621;</string>
+    <string name="help_ic">&#xe619;</string>
+
+    <!-- 消息相关 -->
+    <string name="schedule">&#xe606;</string>
+    <string name="commisson_key">&#xe602;</string>
+    <string name="detelebin">&#xe611;</string>
+    <string name="bill">&#xe616;</string>
+    <string name="complaint_photo">&#xe633;</string>
+
+    <!--我的图标-->
+    <string name="mine_financing">&#xe695;</string>
+    <string name="account_setting">&#xe60d;</string>
+    <!--<string name="mine_orders">&#xe97e;</string>-->
+    <string name="mine_orders">&#xe617;</string>
+    <string name="mine_coupon">&#xe68e;</string>
+    <string name="mine_feedback">&#xe691;</string>
+    <string name="mine_wikipedia">&#xe692;</string>
+    <string name="mine_delegations">&#xe693;</string>
+    <string name="mine_complain">&#xe62a;</string>
+    <string name="house_empty">&#xe982;</string>
+    <!--我的关注小区列表更多按钮-->
+    <string name="attention_more">&#xe618;</string>
+
+    <string name="close">&#xe615;</string>
+    <string name="detail_tab_follow">&#xe67d;</string>
+    <string name="detail_unfollow">&#xe61d;</string>
+    <string name="detail_following">&#xe61e;</string>
+    <string name="detail_forward">&#xe61c;</string>
+    <string name="switch_triangle">&#xe61f;</string>
+    <string name="wo_yao_kan_fang">&#xe9d2;</string>
+
+    <string name="feature_instruction">&#xe624;</string>
+    <string name="diamond">&#xe98d;</string>
+    <string name="detail_calculator">&#xe630;</string>
+
+    <string name="message_complaints">&#xe628;</string>
+    <string name="select_checkbox_pre">&#xe626;</string>
+    <string name="tab_financial">&#xe63e;</string>
+    <string name="current_pay">&#xe63b;</string>
+    <string name="account_bankcard">&#xe638;</string>
+    <string name="account_password">&#xe639;</string>
+    <string name="account_add">&#xe63f;</string>
+
+    <string name="player_pause">&#xe642;</string>
+    <string name="player_play">&#xe643;</string>
+    <string name="player_replay">&#xe644;</string>
+    <string name="alart2">&#xe63c;</string>
+
+    <string name="setup_nodisturb">&#xe69a;</string>
+    <string name="account_evaluate">&#xe603;</string>
+    <string name="arrow_down">&#xe620;</string>
+    <string name="arrow_up">&#xe622;</string>
+
+
+    <string name="tab_switch">&#xe64b;</string>
+    <string name="gengduo">&#xe64e;</string>
+
+    <string name="ailicai_slogan">&#xe656;</string>
+    <string name="help_payquestion">&#xe631;</string>
+    <string name="message_red_package">&#xe650;</string>
+    <string name="im_message">&#xe663;</string>
+    <string name="message_lite">&#xe676;</string>
+    <string name="add_house">&#xe665;</string>
+    <string name="chevous_down">&#xe66f;</string>
+    <string name="chevous_up">&#xe670;</string>
+    <string name="protect_save">&#xe672;</string>
+    <string name="attention_empty_icon">&#xe673;</string>
+    <string name="platefrom_notice">&#xe675;</string>
+    <string name="arrow_price">&#xe679;</string>
+
+    <!-- 大首页的搜索图标 -->
+    <string name="index_main_search">&#xe674;</string>
+
+
+    <!-- IM部分的icon -->
+    <string name="add_location">&#xe671;</string>
+    <string name="chat_addition">&#xe66a;</string>
+    <string name="chat_keybroad">&#xe66c;</string>
+    <string name="chat_voice"> &#xe669;</string>
+    <string name="chat_expressionn">&#xe66b;</string>
+    <string name="agent_call_right">&#xe664;</string>
+    <string name="chat_message_resend">&#xe667;</string>
+    <string name="chat_nodisturb">&#xe689;</string>
+    <string name="chat_agent">&#xe684;</string>
+    <string name="people">&#xe9e5;</string>
+    <string name="im_callapply">&#xe694;</string>
+    <string name="mobile_arrow_r">&#xe9db;</string>
+    <string name="list_switch">&#xe67b;</string>
+    <string name="map_switch">&#xe67c;</string>
+    <string name="apply_for_call">&#xe68a;</string>
+    <string name="chat_nav_call">&#xe68d;</string>
+
+    <!-- 约看-->
+    <string name="appoint_change_time">&#xe66d;</string>
+    <string name="add_consult">&#xe67a;</string>
+    <string name="housedetail_nav_message">&#xe676;</string>
+    <string name="home_nav_message_solid">&#xe678;</string>
+    <string name="detail_schedule">&#xe97d;</string>
+    <string name="detail_schedule_solid">&#xe97c;</string>
+
+    <!-- 看房顾问黑名单-->
+
+
+    <string name="detail_cart">&#xe677;</string>
+    <string name="detail_cart_solid">&#xe637;</string>
+    <string name="setting_emptycache">&#xe687;</string>
+
+    <string name="subway">&#xe65a;</string>
+    <string name="fab_school">&#xe649;</string>
+    <string name="filter_empty">&#xe680;</string>
+    <string name="safe">&#xe63a;</string>
+
+    <!--预约-->
+    <string name="reservation_fill">&#xe65e;</string>
+    <string name="complaint_picture_detele">&#xe632;</string>
+
+    <!--QRCode-->
+    <string name="scan_qrcode">&#xe681;</string>
+    <string name="fang_soild_border">&#xe655;</string>
+
+    <string name="notice_trade">&#xe64c;</string>
+    <string name="mine_schedule">&#xe697;</string>
+    <string name="mine_list">&#xe698;</string>
+
+    <string name="nearby_life">&#xe68c;</string>
+    <string name="nearby_hospital">&#xe68b;</string>
+    <string name="failured">&#xe688;</string>
+    <string name="waiting">&#xe696;</string>
+    <string name="time_processing">&#xe69c;</string>
+    <string name="zhuan_soild_border">&#xe699;</string>
+    <string name="rmb_process">&#xe6a0;</string>
+
+
+    <string name="login_message">&#xe69d;</string>
+    <string name="login_phonenumber">&#xe69e;</string>
+    <string name="remind_default">&#xe69f;</string>
+    <string name="home_notice_trumpet">&#xe6a1;</string>
+    <string name="icon_rmb_process">&#xe6a0;</string>
+    <string name="icon_profit">&#xe6a2;</string>
+    <string name="eyes_closed">&#xe6a5;</string>
+    <string name="eyes_opening">&#xe6a6;</string>
+    <string name="triangle_arrow">&#xe6a7;</string>
+
+    <string name="notice_evaluation">&#xe6a8;</string>
+    <string name="yuekan">&#xe6a4;</string>
+    <string name="album_video">&#xe6a3;</string>
+
+    <string name="personal_financing">&#xe605;</string>
+    <string name="mine_piggybank">&#xea09;</string>
+    <string name="personal_wallet">&#xe609;</string>
+    <string name="personal_card">&#xe638;</string>
+    <string name="personal_ticket">&#xe68e;</string>
+    <string name="videohuxing">&#xe604;</string>
+
+    <string name="closeic">&#xe60c;</string>
+    <string name="mine_ticket">&#xe68e;</string>
+    <string name="house_list_sort_type">&#xe979;</string>
+
+    <string name="tabbar_rent">&#xe635;</string>
+    <string name="tabbar_sale">&#xe636;</string>
+    <string name="detail_agent_call">&#xe629;</string>
+    <string name="fyi_info">&#xe66e;</string>
+
+    <string name="subway_for_zone">&#xe992;</string>
+    <string name="camera_street_view">&#xe996;</string>
+    <string name="zone_photo_album">&#xe9c6;</string>
+    <string name="geography_for_zone">&#xe997;</string>
+    <string name="nearby_bus">&#xe7aa;</string>
+    <string name="nearby_restaurant">&#xe7ac;</string>
+    <string name="nearby_shop">&#xe7ae;</string>
+    <string name="recommend">&#xe9b7;</string>
+    <string name="quote_left">&#xe9b9;</string>
+    <string name="quote_right">&#xe9bd;</string>
+    <string name="gongyu_discount">&#xe9c8;</string>
+
+
+    <string name="coin_sack_border">&#xe9c7;</string>
+    <string name="make_appointment">&#xe9d5;</string>
+    
+    <string name="double_arrow_down">&#xe64d;</string>
+    <string name="thunder">&#xe9e7;</string>
+    <string name="schedule_edit">&#xe9f7;</string>
+
+    <string name="order_back">&#xe978;</string>
+    <string name="order_close">&#xe977;</string>
+
+    <!-- 开户流程第一步第二步 -->
+    <string name="open_account_step01">&#xe9f5;</string>
+    <string name="open_account_step02">&#xe9f6;</string>
+    <string name="open_account_step_not_current">&#xe9f8;</string>
+
+</resources>

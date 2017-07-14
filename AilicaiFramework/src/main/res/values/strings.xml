@@ -1,0 +1,5 @@
+<resources>
+    <string name="check_location_title">定位失败</string>
+    <string name="check_location_message">请开启您的定位服务</string>
+    <string name="check_location_button">设置</string>
+</resources>

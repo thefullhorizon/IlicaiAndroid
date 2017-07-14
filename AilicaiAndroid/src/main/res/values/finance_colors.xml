@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_top_deep_color">#292929</color>
+    <color name="user_info_edit_top_color">#919db0</color>
+    <color name="house_detail_top_deep_color">#616161</color>
+    <color name="main_top_deep_line_color">#1c1c1c</color>
+    <color name="regular_top_primary">#d53628</color>
+    <color name="regular_top_secondary">#c92f22</color>
+
+    <color name="main_red_color_30_alpha">#4DE84A01</color>
+
+    <color name="colorBankDefault">#CC5D6BD4</color>
+    <color name="colorBankDefaultClick">#4D5D6BD4</color>
+    <color name="colorBankZhaoShang">#F98C8C</color>
+    <color name="colorBankZhaoShangClick">#4DF98C8C</color>
+    <color name="colorBankShangHai">#293C8F</color>
+    <color name="colorBankShangHaiClick">#4D293C8F</color>
+    <color name="colorBankPingAn">#DE540F</color>
+    <color name="colorBankPingAnClick">#4DDE540F</color>
+    <color name="colorBankMinSheng">#3396FF</color>
+    <color name="colorBankMinShengClick">#4D3396FF</color>
+    <color name="colorBankYouZheng">#007E3E</color>
+    <color name="colorBankYouZhengClick">#4D007E3E</color>
+    <color name="colorBankEErDuoSi">#D01B00</color>
+    <color name="colorBankEErDuoSiClick">#4DD01B00</color>
+    <color name="colorBankNingBo">#EFA56B</color>
+    <color name="colorBankNingBoClick">#4DEFA56B</color>
+    <color name="colorBankGuangFa">#E50020</color>
+    <color name="colorBankGuangFaClick">#4DE50020</color>
+    <color name="colorBankGongShang">#D0021B</color>
+    <color name="colorBankGongShangClick">#4DD0021B</color>
+    <color name="colorBankNongYe">#009174</color>
+    <color name="colorBankNongYeClick">#4D009174</color>
+    <color name="colorBankHuaXia">#E23020</color>
+    <color name="colorBankHuaXiaClick">#4DE23020</color>
+    <color name="colorBankZhongGuo">#A71E32</color>
+    <color name="colorBankZhongGuoClick">#4DA71E32</color>
+    <color name="colorBankJiaoTong">#1D2087</color>
+    <color name="colorBankJiaoTongClick">#4D1D2087</color>
+    <color name="colorBankPuFa">#002F82</color>
+    <color name="colorBankPuFaClick">#4D002F82</color>
+    <color name="colorBankJianShe">#0066B3</color>
+    <color name="colorBankJianSheClick">#4D0066B3</color>
+    <color name="colorBankXingYe">#004286</color>
+    <color name="colorBankXingYeClick">#4D004286</color>
+    <color name="colorBankZhongXin">#E50113</color>
+    <color name="colorBankZhongXinClick">#4DE50113</color>
+    <color name="colorBankShangHaiNongShang">#0354A3</color>
+    <color name="colorBankShangHaiNongShangClick">#4D0354A3</color>
+    <color name="colorBankDaLian">#D11A22</color>
+    <color name="colorBankDaLianClick">#4DD11A22</color>
+    <color name="colorBankJiangSu">#D5AB45</color>
+    <color name="colorBankJiangSuClick">#4DD5AB45</color>
+
+    <drawable name="color_ffeee6">#ffeee6</drawable>
+</resources>

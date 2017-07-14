@@ -1,0 +1,25 @@
+<resources>
+
+    <style name="btnBorderlessStyle">
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="btnBorderStyle">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="imgBtnBorderlessStyle" parent="@android:style/Widget.Material.ImageButton">
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="SeekbarCompatStyle" parent="@android:style/Widget.Material.SeekBar"></style>
+
+    <style name="BottomNavigationContainerBg">
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="ActionBtnBg">
+        <item name="android:background">@drawable/abc_action_bar_item_background_material</item>
+    </style>
+
+</resources>

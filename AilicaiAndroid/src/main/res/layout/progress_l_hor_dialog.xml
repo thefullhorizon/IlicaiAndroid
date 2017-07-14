@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <include
+            android:id="@+id/progress"
+            layout="@layout/comm_progress_l"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginRight="12dip"/>
+
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="加载中"/>
+    </LinearLayout>
+</FrameLayout>

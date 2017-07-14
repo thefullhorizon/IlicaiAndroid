@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LProgressWheel">
+        <attr name="matProg_progressIndeterminate" format="boolean" />
+        <attr name="matProg_barColor" format="color" />
+        <attr name="matProg_rimColor" format="color" />
+        <attr name="matProg_rimWidth" format="dimension" />
+        <attr name="matProg_spinSpeed" format="float" />
+        <attr name="matProg_barSpinCycleTime" format="integer" />
+        <attr name="matProg_circleRadius" format="dimension" />
+        <attr name="matProg_fillRadius" format="boolean" />
+        <attr name="matProg_barWidth" format="dimension" />
+        <attr name="matProg_linearProgress" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="ManyiEditText">
+        <attr name="edit_cover_visiable" format="boolean" />
+        <attr name="edit_left_tips" format="string" />
+        <!-- Hint text to display for edittext. -->
+        <attr name="edit_hint_value" format="string" />
+        <!-- Text appearance to display for edittext. -->
+        <attr name="edit_appearance" format="integer" />
+        <!-- Set an input filter to constrain the text length to the specified number. -->
+        <attr name="edit_maxLength" format="integer" />
+        <!-- A drawable to use as the background. This can be either a reference to a full drawable resource (such as a PNG image, 9-patch, XML state list description, etc), or a solid color such as "#ff000000" (black). -->
+        <attr name="edit_background" format="integer" />
+
+        <attr name="edit_ground" format="boolean" />
+        <attr name="editText_paddingLeft" format="integer" />
+        <!-- The type of data being placed in a text field, used to help an input method decide how to let the user enter text. Generally you can select a single value, though some can be combined together as indicated. Setting this attribute to anything besides <var>none</var> also implies that the text is editable. -->
+        <attr name="edit_inputType">
+            <flag name="none" value="0x00000000" />
+            <!-- Just plain old text. Corresponds to {@link android.text.InputType#TYPE_CLASS_TEXT} | {@link android.text.InputType#TYPE_TEXT_VARIATION_NORMAL}. -->
+            <flag name="text" value="0x00000001" />
+            <!-- Can be combined with <var>text</var> and its variations to allow multiple lines of text in the field. If this flag is not set, the text field will be constrained to a single line. Corresponds to {@link android.text.InputType#TYPE_TEXT_FLAG_MULTI_LINE}. -->
+            <flag name="textMultiLine" value="0x00020001" />
+            <!-- Can be combined with <var>text</var> and its variations to allow multiple lines of text in the field. If this flag is not set, the text field will be constrained to a single line. Corresponds to {@link android.text.InputType#TYPE_TEXT_FLAG_MULTI_LINE}. -->
+            <flag name="textEmailAddress" value="0x00020021" />
+            <!-- Text that is a password. Corresponds to {@link android.text.InputType#TYPE_CLASS_TEXT} | {@link android.text.InputType#TYPE_TEXT_VARIATION_PASSWORD}. -->
+            <flag name="textPassword" value="0x00000081" />
+            <!-- A numeric only field. Corresponds to {@link android.text.InputType#TYPE_CLASS_NUMBER} | {@link android.text.InputType#TYPE_NUMBER_VARIATION_NORMAL}. -->
+            <flag name="number" value="0x00000002" />
+            <!-- A numeric password field. Corresponds to {@link android.text.InputType#TYPE_CLASS_NUMBER} | {@link android.text.InputType#TYPE_NUMBER_VARIATION_PASSWORD}. -->
+            <flag name="numberPassword" value="0x00000012" />
+            <!-- For entering a phone number. Corresponds to {@link android.text.InputType#TYPE_CLASS_PHONE}. -->
+            <flag name="phone" value="0x00000003" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CustomerRationgBar">
+        <attr name="rating" format="float" />
+        <attr name="ratingNum" format="integer" />
+        <attr name="space" format="dimension" />
+        <attr name="starSize" format="dimension" />
+        <attr name="normal" format="reference" />
+        <attr name="selected" format="reference" />
+        <attr name="half" format="reference" />
+        <attr name="touchChange" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="ManyiTextView">
+
+        <!-- The drawable to be drawn. -->
+        <attr name="text_drawable_src" format="reference" />
+        <!-- The direction of the drawable to be drawn. -->
+        <attr name="text_drawable_direction">
+
+            <!-- The drawable to be drawn to the left of the text. -->
+            <enum name="left" value="0" />
+            <!-- The drawable to be drawn above the text. -->
+            <enum name="top" value="1" />
+            <!-- The drawable to be drawn to the right of the text. -->
+            <enum name="right" value="2" />
+            <!-- The drawable to be drawn below the text. -->
+            <enum name="bottom" value="3" />
+        </attr>
+        <!-- The width of the drawable to be drawn. -->
+        <attr name="text_drawable_width" format="dimension" />
+        <!-- The height of the drawable to be drawn. -->
+        <attr name="text_drawable_height" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="IWInfoBar">
+
+        <!-- Text to display for title. -->
+        <attr name="infobar_title_text" format="string" localization="suggested" />
+        <!-- Text appearance to display for title. -->
+        <attr name="infobar_title_text_appearance" format="integer" />
+        <!-- Text to display for value. -->
+        <attr name="infobar_value_text" format="string" localization="suggested" />
+        <!-- Text appearance to display for value. -->
+        <attr name="infobar_value_text_appearance" format="integer" />
+        <!-- Hint text to display for value. -->
+        <attr name="infobar_value_hint" format="string" localization="suggested" />
+        <!-- Text color to display for value hint. -->
+        <attr name="infobar_value_hint_color" format="integer" />
+        <!-- Drawable to be drawn to the left of title. -->
+        <attr name="infobar_drawable" format="reference" />
+        <!-- The padding between the drawables and the title text. -->
+        <attr name="infobar_drawable_padding" format="dimension" />
+        <!-- Drawable to be drawn as arrow to the right of value. -->
+        <attr name="infobar_arrow" format="reference" />
+        <attr name="infobar_focusable" format="boolean" />
+        <attr name="infobar_clickable" format="boolean" />
+        <!-- The direction to be drawn for the arrow drawable. -->
+        <attr name="arrow_direction">
+
+            <!-- Drawable to be drawn to right direction. -->
+            <enum name="right" value="0" />
+            <!-- Drawable to be drawn to bottom direction. -->
+            <enum name="bottom" value="1" />
+        </attr>
+        <!-- When true, show mandatory flag("*") with title text. -->
+        <attr name="isMandatory" format="boolean" />
+        <!-- When true, show arrow drawable. -->
+        <attr name="hasArrow" format="boolean" />
+        <!-- When true, show logo drawable. -->
+        <attr name="hasDrawable" format="boolean" />
+        <!-- The width of the drawable to be drawn. -->
+        <attr name="infobar_icon_width" format="dimension" />
+        <!-- The height of the drawable to be drawn. -->
+        <attr name="infobar_icon_height" format="dimension" />
+        <attr name="infobar_date_common_appearance" format="integer" />
+        <attr name="infobar_date_highlight_appearance" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="IWTopTitleView">
+
+        <!-- Text to display for title. -->
+        <attr name="titleview_title_text" format="string" localization="suggested" />
+        <attr name="bg_color" format="reference|color" />
+        <attr name="back_btn_bg" format="reference" />
+        <attr name="hasLeft" format="boolean" />
+        <attr name="hasCancel" format="boolean" />
+        <attr name="hasDivider" format="boolean" />
+        <attr name="isDark" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="PullToRefreshView">
+
+        <!-- The class to use as a View's View Delegate. Can be relative path from app's package name -->
+        <attr name="ptrViewDelegateClass" format="reference|string" />
+
+    </declare-styleable>
+
+    <!-- The attribute to set in your Application/Activity theme to reference your custom theme -->
+    <attr name="ptrHeaderStyle" format="reference" />
+
+    <declare-styleable name="PullToRefreshHeader">
+
+        <!-- A drawable to use as the background of the Header View -->
+        <attr name="ptrHeaderBg" format="reference|color" />
+
+        <!-- The height of the Header View -->
+        <attr name="ptrHeaderHeight" format="reference|dimension" />
+
+        <!-- The Text Appearance of the Header View's Title text -->
+        <attr name="ptrHeaderTitleTextAppearance" format="reference" />
+
+        <!-- The color that the Progress Bar should be tinted with -->
+        <attr name="ptrProgressBarColor" format="reference|color" />
+
+        <!-- The style of the Progress Bar -->
+        <attr name="ptrProgressBarStyle">
+            <flag name="inside" value="0x0" />
+            <flag name="outside" value="0x1" />
+        </attr>
+
+        <!-- The height of the Progress Bar -->
+        <attr name="ptrProgressBarHeight" format="reference|dimension" />
+
+        <!-- Text to show to prompt the user is pull (or keep pulling) -->
+        <attr name="ptrPullText" format="reference|string" />
+
+        <!-- Text to show to tell the user that a refresh is currently in progress -->
+        <attr name="ptrRefreshingText" format="reference|string" />
+
+        <!-- Text to show to tell the user has scrolled enough to refresh -->
+        <attr name="ptrReleaseText" format="reference|string" />
+
+        <!--indeterminate progressbar style-->
+        <attr name="ptrSmoothProgressBarStyle" format="reference" />
+
+    </declare-styleable>
+
+    <declare-styleable name="SmoothProgressBar">
+        <attr name="spbStyle" format="reference" />
+        <attr name="spb_color" format="color" />
+        <attr name="spb_stroke_width" format="dimension" />
+        <attr name="spb_stroke_separator_length" format="dimension" />
+        <attr name="spb_sections_count" format="integer" />
+        <attr name="spb_speed" format="float" />
+        <attr name="spb_progressiveStart_speed" format="float" />
+        <attr name="spb_progressiveStop_speed" format="float" />
+        <attr name="spb_interpolator" format="enum">
+            <enum name="spb_interpolator_accelerate" value="0" />
+            <enum name="spb_interpolator_linear" value="1" />
+            <enum name="spb_interpolator_acceleratedecelerate" value="2" />
+            <enum name="spb_interpolator_decelerate" value="3" />
+        </attr>
+        <attr name="spb_reversed" format="boolean" />
+        <attr name="spb_mirror_mode" format="boolean" />
+        <attr name="spb_colors" format="reference" />
+        <attr name="spb_progressiveStart_activated" format="boolean" />
+        <attr name="spb_background" format="reference" />
+        <attr name="spb_generate_background_with_colors" format="boolean" />
+        <attr name="spb_gradients" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomRefreshListView">
+
+        <!-- Show split line at bottom of the listview. -->
+        <attr name="show_bottom_line" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="NumberProgressBar">
+        <attr name="progress" format="integer" />
+        <attr name="max" format="integer" />
+
+        <attr name="progress_unreached_color" format="color" />
+        <attr name="progress_reached_color" format="color" />
+
+        <attr name="progress_reached_bar_height" format="dimension" />
+        <attr name="progress_unreached_bar_height" format="dimension" />
+
+        <attr name="progress_text_size" format="dimension" />
+        <attr name="progress_text_color" format="color" />
+
+        <attr name="progress_text_offset" format="dimension" />
+
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="Themes">
+        <attr name="numberProgressBarStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RangeSeekBar">
+        <attr name="absoluteMinValue" format="integer|float" />
+        <attr name="absoluteMaxValue" format="integer|float" />
+        <attr name="singleThumb" format="boolean" />
+        <attr name="smallTextSize" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="SeekBarContanier">
+        <attr name="filterTitleText" format="string" />
+        <attr name="filterTitleTextUnit" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ChartAttrs">
+
+        <attr name="chart_axisThickness" format="dimension" />
+        <attr name="chart_axisColor" format="reference|color" />
+        <attr name="chart_axisBorderSpacing" format="dimension" />
+        <attr name="chart_axisTopSpacing" format="dimension" />
+
+        <attr name="chart_labels" format="boolean" />
+        <attr name="chart_labelColor" format="reference|color" />
+        <attr name="chart_fontSize" format="dimension" />
+        <attr name="chart_typeface" format="string" />
+
+        <attr name="chart_shadowColor" format="reference|color" />
+        <attr name="chart_shadowDx" format="dimension" />
+        <attr name="chart_shadowDy" format="dimension" />
+        <attr name="chart_shadowRadius" format="dimension" />
+
+    </declare-styleable>
+
+    <declare-styleable name="BarChartAttrs">
+        <attr name="chart_barSpacing" format="dimension" />
+        <attr name="chart_setSpacing" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ShadowView">
+        <attr name="shadow_radius" format="dimension" />
+        <attr name="radius_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TimeHMSTextCounter">
+        <attr name="counter_background" format="reference|color" />
+        <attr name="counter_textColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="MoreTextView">
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="defaultTextLine" format="integer" />
+        <attr name="text" format="string" />
+    </declare-styleable>
+
+    <!-- pull zoom style -->
+    <declare-styleable name="IWPullToZoomView">
+        <attr name="headerView" format="reference" />
+        <attr name="contentView" format="reference" />
+        <attr name="zoomView" format="reference" />
+        <attr name="isHeaderParallax" format="boolean" />
+    </declare-styleable>
+    <!-- pull zoom end -->
+    <declare-styleable name="RoundedImageView">
+        <attr name="riv_corner_radius" format="dimension" />
+        <attr name="riv_corner_radius_top_left" format="dimension" />
+        <attr name="riv_corner_radius_top_right" format="dimension" />
+        <attr name="riv_corner_radius_bottom_left" format="dimension" />
+        <attr name="riv_corner_radius_bottom_right" format="dimension" />
+        <attr name="riv_border_width" format="dimension" />
+        <attr name="riv_border_color" format="color" />
+        <attr name="riv_mutate_background" format="boolean" />
+        <attr name="riv_oval" format="boolean" />
+        <attr name="android:scaleType" />
+        <attr name="riv_tile_mode">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+        <attr name="riv_tile_mode_x">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+        <attr name="riv_tile_mode_y">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="TimeZHTextCounter">
+        <attr name="time_text_color" format="color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="ColorArcProgressBar">
+        <attr name="back_color" format="color"/>
+        <attr name="front_color1" format="color"/>
+        <attr name="front_color2" format="color"/>
+        <attr name="front_color3" format="color"/>
+        <attr name="back_width" format="dimension"/>
+        <attr name="front_width" format="dimension"/>
+        <attr name="is_need_title" format="boolean"/>
+        <attr name="is_need_content" format="boolean"/>
+        <attr name="is_need_dial" format="boolean"/>
+        <attr name="string_title" format="string"/>
+        <attr name="total_engle" format="integer"/>
+        <attr name="current_value" format="float"/>
+        <attr name="max_value" format="float"/>
+    </declare-styleable>
+
+    <!-- 自定义圆角ImageView -->
+    <declare-styleable name="SelectableRoundedImageView">
+        <attr name="sriv_left_top_corner_radius" format="dimension"/>
+        <attr name="sriv_right_top_corner_radius" format="dimension"/>
+        <attr name="sriv_left_bottom_corner_radius" format="dimension"/>
+        <attr name="sriv_right_bottom_corner_radius" format="dimension"/>
+        <attr name="sriv_border_width" format="dimension"/>
+        <attr name="sriv_border_color" format="color"/>
+        <attr name="sriv_oval" format="boolean"/>
+        <attr name="android:scaleType"/>
+    </declare-styleable>
+
+    <!-- 地图页面  上拖显示的页面-->
+    <declare-styleable name="ScrollLayout">
+        <attr name="minOffset" format="dimension" />
+        <attr name="maxOffset" format="dimension" />
+        <attr name="exitOffset" format="dimension" />
+        <attr name="mode">
+            <flag name="open" value="0x0" />
+            <flag name="close" value="0x1" />
+            <flag name="exit" value="0x2" />
+        </attr>
+        <attr name="allowHorizontalScroll" format="boolean"/>
+        <attr name="isSupportExit" format="boolean"/>
+    </declare-styleable>
+
+    <!-- 主页底部的Tab-->
+    <declare-styleable name="AHBottomNavigationBehavior_Params">
+        <attr name="tabLayoutId" format="reference" />
+        <attr name="selectedBackgroundVisible" format="boolean" />
+        <attr name="translucentNavigationEnabled" format="boolean" />
+    </declare-styleable>
+
+    <!--委托tabbar-->
+    <declare-styleable name="EntrustTabbar">
+        <attr name="entrust_title" format="string|reference" />
+        <attr name="entrust_desc" format="string|reference" />
+        <attr name="entrust_icon" format="reference" />
+    </declare-styleable>
+
+    <!--带单位的编辑框 unit 单位名称-->
+    <declare-styleable name="UnitEditText">
+        <attr name="unit" format="string|reference" />
+        <attr name="hint" format="string|reference"/>
+    </declare-styleable>
+    <declare-styleable name="GetVeryifyCodeButton">
+        <attr name="normalTip" format="string|reference" />
+        <attr name="countDownTip" format="string|reference"/>
+        <attr name="cancelCountDownTip" format="string|reference"/>
+    </declare-styleable>
+    <declare-styleable name="RatingStarView">
+        <!-- Text to display for title. -->
+        <attr name="starTitle" format="reference|string" />
+        <attr name="defaultStar" format="integer" />
+    </declare-styleable>
+</resources>

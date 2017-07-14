@@ -1,0 +1,27 @@
+<resources>
+
+    <style name="cell_divider_hor">
+        <item name="android:background">#dddddd</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+    </style>
+
+    <style name="ActionBtnBg">
+        <item name="android:background">@drawable/bg_black_a10_selector_round</item>
+    </style>
+
+    <style name="AppCompatDialog" parent="Theme.AppCompat.Light.Dialog.Alert" />
+
+    <!-- 圆角按钮样式,项目常用的通用样式,颜色为橘红色 -->
+    <style name="RoundCornerBtnBg">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/round_corner_btn_bg</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/btn_text_white_color</item>
+    </style>
+
+
+</resources>

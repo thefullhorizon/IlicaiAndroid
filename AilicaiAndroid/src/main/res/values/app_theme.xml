@@ -1,0 +1,164 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="AppBaseAppCompatTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/main_red_color</item>
+        <item name="colorPrimaryDark">@color/main_red_color_dark</item>
+        <item name="colorAccent">@color/main_red_color</item>
+        <item name="android:windowAnimationStyle">@style/Window.Animation</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:clipToPadding">true</item>
+        <item name="popupMenuStyle">@style/PopupMenuStyle</item>
+        <item name="android:buttonStyle">?android:attr/borderlessButtonStyle</item>
+    </style>
+
+    <!-- ******************************************************************************* -->
+
+    <style name="AppAppCompatTheme" parent="AppBaseAppCompatTheme">
+        <item name="android:windowBackground">@color/base_theme_window_bg_color</item>
+    </style>
+
+    <style name="AppAppCompatTheme.fullscreen" parent="AppAppCompatTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppAppCompatTheme.TranslucentNavigation"></style>
+
+    <style name="AppAppCompatTheme.transparent">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/Window.Animation.alpha</item>
+    </style>
+
+    <style name="AppAppCompatTheme.WelcomeTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/app_loading</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="AppAppCompatTheme.AnimL">
+        <item name="android:windowAnimationStyle">@style/Window.Animation.Lollipop</item>
+    </style>
+
+
+    <style name="PopupMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">true</item>
+        <item name="android:dropDownHorizontalOffset">-4dp</item>
+        <item name="android:dropDownVerticalOffset">4dp</item>
+    </style>
+
+    <style name="Window.Animation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/anim_fragment_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_fragment_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/anim_fragment_close_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_fragment_close_out</item>
+    </style>
+
+    <style name="Window.Animation.alpha">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+    </style>
+
+    <style name="Window.Animation.Lollipop">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_lollipop_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_lollipop_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_lollipop_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_lollipop_close_exit</item>
+    </style>
+
+    <style name="Theme_Base_Dialog_Fragment_1" parent="AppBaseTheme">
+        <item name="android:windowBackground">@drawable/dialog_bg_shape</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@style/SubMenuPanel</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme_Base_Dialog_Fragment_2" parent="AppBaseTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@style/SubMenuPanel</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme_Base_Dialog_Fragment_3" parent="AppBaseTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Toast</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme_Base_Dialog_Fragment_4" parent="AppBaseTheme">
+        <!-- <item name="android:windowBackground">@drawable/publish_dialog_bg</item> -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <!-- <item name="android:windowAnimationStyle">@android:style/Animation.Toast</item> -->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme_Base_Dialog_Fragment_5" parent="AppBaseTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@style/SubMenuPanel2</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme_Base_Dialog_Fragment_6" parent="AppBaseTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Toast</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="SubMenuPanel">
+        <item name="android:windowEnterAnimation">@anim/submenu_enter</item>
+        <item name="android:windowExitAnimation">@anim/submenu_exit</item>
+    </style>
+
+    <style name="SubMenuPanel2">
+        <item name="android:windowEnterAnimation">@anim/detail_view_appear_from_top</item>
+        <item name="android:windowExitAnimation">@anim/detail_view_exit_from_bottom</item>
+    </style>
+</resources>

@@ -1,0 +1,63 @@
+<resources>
+
+    <style name="AppAppCompatTheme" parent="AppBaseAppCompatTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowBackground">@color/base_theme_window_bg_color</item>
+    </style>
+
+    <style name="AppAppCompatTheme.fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="AppAppCompatTheme.TranslucentNavigation">
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:clipToPadding">true</item>
+    </style>
+
+    <style name="AppAppCompatTheme.WelcomeTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/app_loading</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <!-- translucent system bars -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="AppDesign.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="btnBorderlessStyle">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="btnBorderStyle">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="listItemBorderStyle">
+        <item name="android:listSelector">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="imgBtnBorderlessStyle" parent="@android:style/Widget.ImageButton">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="MaterialBgStyle">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="MaterialListBgStyle">
+        <item name="android:listSelector">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Transparent" parent="AppAppCompatTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+</resources>

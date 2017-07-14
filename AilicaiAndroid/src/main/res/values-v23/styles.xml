@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="ActionBtnBg">
+        <item name="android:background">?android:attr/actionBarItemBackground</item>
+    </style>
+
+    <style name="SingleBtnBgStyle">
+        <item name="android:background">?android:attr/actionBarItemBackground</item>
+    </style>
+
+</resources>

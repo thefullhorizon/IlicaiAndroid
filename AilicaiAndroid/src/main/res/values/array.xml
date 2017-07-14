@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="NetworkErrors">
+        <item>@string/timeout_Error</item>
+        <item>@string/no_connection_error</item>
+        <item>@string/network_exception</item>
+    </string-array>
+
+</resources>
