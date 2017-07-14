@@ -12,6 +12,7 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.ToastUtil;
+import com.ailicai.app.ui.login.LoginManager;
 import com.huoqiu.framework.util.CheckDoubleClick;
 
 import java.util.Arrays;
@@ -189,7 +190,7 @@ public class BaseActivityPresenter implements View.OnClickListener, ILayoutLoadL
     }
 
     public void goLogin() {
-//        LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_CHECK);
+        LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_CHECK);
     }
 
     /**

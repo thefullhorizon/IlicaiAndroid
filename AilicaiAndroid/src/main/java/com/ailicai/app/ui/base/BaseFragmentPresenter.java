@@ -13,6 +13,7 @@ import android.widget.ViewSwitcher;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
 import com.ailicai.app.common.utils.ToastUtil;
+import com.ailicai.app.ui.login.LoginManager;
 import com.huoqiu.framework.app.SuperFragment;
 import com.huoqiu.framework.util.CheckDoubleClick;
 import com.huoqiu.framework.util.LogUtil;
@@ -186,7 +187,7 @@ public class BaseFragmentPresenter implements View.OnClickListener, ILayoutLoadL
     }
 
     public void goLogin() {
-//        LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_CHECK);
+        LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_CHECK);
     }
 
     /**

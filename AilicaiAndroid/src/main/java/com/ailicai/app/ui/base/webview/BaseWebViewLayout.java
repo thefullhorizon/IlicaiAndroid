@@ -38,7 +38,9 @@ import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.utils.UrlDecoder;
 import com.ailicai.app.common.version.VersionUtil;
+import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.ui.base.BaseActivity;
+import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.alibaba.fastjson.JSON;
 import com.huoqiu.framework.exception.RestException;
@@ -1259,31 +1261,24 @@ public class BaseWebViewLayout extends LinearLayout {
         }
     }
 
-//    public String getUserInfo() {
-//        HashMap map = new HashMap();
-//        map.put("userid", UserInfo.getInstance().getUserId());
-//        map.put("name", UserInfo.getInstance().getmName());
-//        map.put("phonenum", UserInfo.getInstance().getUserMobile());
-//        map.put("istestuser", UserInfo.getInstance().getIsTestuser());
-//        map.put("ucode",UserInfo.getInstance().getUticket());
-//        return JSON.toJSONString(map);
-//    }
-//
-//
-//    public String getBaseInfo() {
-//        HashMap map = new HashMap();
-//        map.put("cityid", CityManager.getInstance().getCurrentCity().getCityId());
-//        return JSON.toJSONString(map);
-//    }
+    public String getUserInfo() {
+        HashMap map = new HashMap();
+        map.put("userid", UserInfo.getInstance().getUserId());
+        map.put("name", UserInfo.getInstance().getmName());
+        map.put("phonenum", UserInfo.getInstance().getUserMobile());
+        map.put("istestuser", UserInfo.getInstance().getIsTestuser());
+        map.put("ucode", UserInfo.getInstance().getUticket());
+        return JSON.toJSONString(map);
+    }
 
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void handleLoginEvent(LoginEvent event) {
-//        if (event.isLoginSuccess()) {
-//            if (!TextUtils.isEmpty(getLoginCallBack())) {
-//                loadJs("javascript:" + getLoginCallBack() + "(" + getUserInfo() + ")");
-//            }
-//        }
-//    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleLoginEvent(LoginEvent event) {
+        if (event.isLoginSuccess()) {
+            if (!TextUtils.isEmpty(getLoginCallBack())) {
+                loadJs("javascript:" + getLoginCallBack() + "(" + getUserInfo() + ")");
+            }
+        }
+    }
 
     @Override
     protected void onDetachedFromWindow() {
