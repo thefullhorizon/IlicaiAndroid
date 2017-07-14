@@ -7,8 +7,8 @@ public enum Configuration {
      */
     IWJW_RELEASE("https", "payapp.iwjw.com", 443, ""),
     IWJW_BETA("https", "poros.iwlicaibeta.com", 8638, ""),
-    IWJW_TEST("http", "poros.iwlicaitest.com", 1319, ""),
-    IWJW_TEST2("http", "192.168.1.213", 8080, ""),
+    IWJW_TEST("http", "192.168.1.44", 1319, ""),
+    IWJW_TEST2("http", "poros.iwlicaitest.com", 1319, ""),
     IWJW_TEST3("http", "192.168.1.183", 8080, ""),
 
     /**
