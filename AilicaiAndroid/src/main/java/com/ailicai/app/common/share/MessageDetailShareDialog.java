@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.utils.DeviceUtil;
-import com.ailicai.app.widget.dialog.MyBaseDialog;
+import com.ailicai.app.ui.dialog.MyBaseDialog;
 
 
 /**

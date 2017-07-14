@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background">
+
+    <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
+        android:id="@+id/my_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/personal_root_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="130dp"-->
+                <!--android:orientation="horizontal" />-->
+
+            <include
+                layout="@layout/personal_opertion_item_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/overlay_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="130dp"-->
+        <!--android:background="#919db0"-->
+        <!--android:clickable="true"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="130dp"-->
+            <!--android:background="@drawable/mine_top_view_bg"-->
+            <!--android:orientation="vertical" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/personal_layout_login_info_phone"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="130dp"-->
+        <!--android:layout_gravity="top"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<FrameLayout-->
+            <!--android:id="@+id/personal_layout_login_phone"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="52dp"-->
+            <!--android:layout_gravity="bottom|left"-->
+            <!--android:layout_marginBottom="20dp"-->
+            <!--android:layout_marginLeft="92dp"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<FrameLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginTop="13dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/user_phone"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="14sp" />-->
+            <!--</FrameLayout>-->
+        <!--</FrameLayout>-->
+    <!--</FrameLayout>-->
+
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/personal_layout_login_info_name"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="130dp"-->
+        <!--android:layout_gravity="top"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<FrameLayout-->
+            <!--android:id="@+id/personal_layout_login_name"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="52dp"-->
+            <!--android:layout_gravity="bottom|left"-->
+            <!--android:layout_marginBottom="20dp"-->
+            <!--android:layout_marginLeft="92dp"-->
+            <!--android:layout_marginRight="90dp"-->
+            <!--android:orientation="vertical"-->
+            <!--android:visibility="gone">-->
+
+            <!--<FrameLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginBottom="13dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/user_name"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginRight="13dp"-->
+                    <!--android:ellipsize="end"-->
+                    <!--android:singleLine="true"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="20sp" />-->
+
+                <!--<com.manyi.lovehouse.widget.tfwidget.TextViewTF-->
+                    <!--android:id="@+id/user_name_arrow"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="right|center_vertical"-->
+                    <!--android:text="@string/arrow_right"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="10sp" />-->
+            <!--</FrameLayout>-->
+
+        <!--</FrameLayout>-->
+    <!--</FrameLayout>-->
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/personal_layout_no_login_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="130dp"-->
+        <!--android:layout_gravity="top"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<FrameLayout-->
+            <!--android:id="@+id/personal_layout_no_login"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="52dp"-->
+            <!--android:layout_gravity="bottom|left"-->
+            <!--android:layout_marginBottom="20dp"-->
+            <!--android:layout_marginLeft="92dp"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/mine_login_btn_alpha"-->
+                <!--style="@style/text_14_ffffff"-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="32dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:background="@drawable/bg_transparent_solid_corner_2dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/mine_login_btn_text"-->
+                <!--android:visibility="visible" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/mine_login_btn"-->
+                <!--style="@style/text_14_ffffff"-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="32dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/mine_login_btn_text"-->
+                <!--android:visibility="visible" />-->
+        <!--</FrameLayout>-->
+    <!--</FrameLayout>-->
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/mine_agent_photo_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="130dp"-->
+        <!--android:layout_gravity="top"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<com.manyi.lovehouse.widget.CircleImageView-->
+            <!--android:id="@+id/mine_agent_photo"-->
+            <!--android:layout_width="54dp"-->
+            <!--android:layout_height="54dp"-->
+            <!--android:layout_gravity="bottom|left"-->
+            <!--android:layout_margin="20dp"-->
+            <!--android:src="@drawable/avatar_default" />-->
+    <!--</FrameLayout>-->
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/mine_top_bar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="top"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="48dp"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:layout_gravity="right|center_vertical">-->
+
+            <!--<com.manyi.lovehouse.widget.tfwidget.TextViewTF-->
+                <!--android:id="@+id/mine_setting_btn"-->
+                <!--style="@style/SingleBtnBgStyle"-->
+                <!--android:layout_width="48dp"-->
+                <!--android:layout_height="48dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/account_setting"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="18sp" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tvRedPoint"-->
+                <!--android:layout_width="8dp"-->
+                <!--android:layout_height="8dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:background="@drawable/notification_background"-->
+                <!--android:gravity="center"-->
+                <!--android:visibility="gone" />-->
+
+        <!--</RelativeLayout>-->
+
+    <!--</FrameLayout>-->
+
+    <View
+        android:id="@+id/statusBarBg"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:background="#181e34"/>
+
+</RelativeLayout>

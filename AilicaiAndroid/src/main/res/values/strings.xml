@@ -21,4 +21,37 @@
     <string name="tab_nvg_invest">投资</string>
     <string name="tab_nvg_me">我的</string>
 
+    <!-- Login -->
+    <string name="login_auto_text">登录中...</string>
+    <string name="auth_code">验证码</string>
+    <string name="to_login_text">登录</string>
+    <string name="phone_number">手机号码</string>
+    <string name="phone_number1">请输入你的手机号</string>
+    <string name="validate_phone_auth_code">发送验证码</string>
+    <string name="validate_phone_auth_code_retry">重新发送</string>
+    <string name="validate_auth_code_hint">输入验证码</string>
+    <string name="validate_auth_code_hint2">验证码</string>
+    <string name="validate_voice_auth_code">没收到?</string>
+    <string name="auth_code_time_num">还剩%1$d秒</string>
+    <string name="permit_agreement_text"><![CDATA[<font color="#999999">温馨提示：<br/>未注册爱屋吉屋账号的手机号，登录时将自动注册，且代表您已同意</font><font color="#747e89">《爱屋吉屋用户协议》</font>]]></string>
+    <string name="permit_agreement_title_text">《爱屋吉屋用户协议》</string>
+
+    <!-- Mine -->
+    <string name="mine_login_btn_text">立即登录</string>
+    <string name="mine_order_title">我的订单</string>
+    <string name="mine_password_manage_title">交易密码</string>
+    <string name="mine_change_agent">经纪人</string>
+    <string name="mine_complaint_text">我的投诉</string>
+    <string name="mine_owner_text">我的委托</string>
+    <string name="mine_purchase_notice">购房须知</string>
+    <string name="mine_bank_card">银行卡</string>
+    <string name="mine_encyclopedias">购房攻略</string>
+    <string name="mine_help_center">帮助与反馈</string>
+    <string name="mine_service_tell_txt"><![CDATA[<font color="#212121">客服电话:</font><font color="#4a90e2">%s</font>]]></string>
+    <string name="mine_current_version">V%1$s%2$s%3$s</string>
+    <string name="mine_current_version_default">版本</string>
+    <string name="brand_department_appointment_record">品牌公寓约看记录</string>
+    <string name="my_password_manage_tips_txt">用于理财购买 / 转出</string>
+
+
 </resources>

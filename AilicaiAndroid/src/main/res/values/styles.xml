@@ -23,5 +23,33 @@
         <item name="android:textColor">@color/btn_text_white_color</item>
     </style>
 
+    <!-- 圆角边框有颜色按钮样式,项目常用的通用样式,颜色为橘红色 -->
+    <style name="RoundCornerBorderBtnBg">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/round_corner_border_btn_bg</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/btn_text_orange_color</item>
+    </style>
+
+    <style name="LoginGetAutoCodeBg">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/login_get_auto_code_btn_bg</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/btn_text_orange_color</item>
+    </style>
+
+    <style name="LoginRetryGetAutoCodeBg">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/login_retry_get_code_btn_bg</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#757575</item>
+    </style>
+
 
 </resources>

@@ -1,4 +1,4 @@
-package com.ailicai.app.widget.dialog;
+package com.ailicai.app.ui.dialog;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;

@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlHead"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_gravity="top"
+        android:background="@drawable/personal_head_bg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true">
+
+            <com.ailicai.app.widget.TextViewTF
+                android:id="@+id/mine_setting_btn"
+                style="@style/SingleBtnBgStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:text="@string/account_setting"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvRedPoint"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/notification_background"
+                android:gravity="center"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <com.ailicai.app.widget.CircleImageView
+            android:id="@+id/ivUserPhoto"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:src="@drawable/avatar_default" />
+
+        <RelativeLayout
+            android:id="@+id/rlUserInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_alignBottom="@+id/ivUserPhoto"
+            android:layout_toRightOf="@+id/ivUserPhoto"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/llUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:singleLine="true"
+                    android:text="姓名"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/user_name_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/arrow_right"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivAuthIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llUserName"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/personal_auth_pic"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llNotLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_alignBottom="@+id/ivUserPhoto"
+            android:layout_toRightOf="@+id/ivUserPhoto"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvLogin"
+                style="@style/text_14_ffffff"
+                android:layout_width="100dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_transparent_solid_corner_2dp"
+                android:gravity="center"
+                android:text="@string/mine_login_btn_text"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_close_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_to_pressed_selector"
+        android:paddingBottom="18dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="18dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="钱包"
+                android:textColor="#757575"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvWalletSum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="#212121"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/account_arrow_selector" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_new_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/ll_total_balance"
+            android:paddingBottom="@dimen/_12"
+            android:paddingLeft="@dimen/_16"
+            android:paddingRight="@dimen/_16"
+            android:paddingTop="@dimen/_12"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的资产(元)"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/tv_eyes_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/_8"
+                    android:paddingRight="@dimen/_16"
+                    android:text="@string/eyes_opening"
+                    android:textColor="#bdbdbd"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_total_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:textColor="#212121"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+
+        <View
+            android:id="@+id/line_balance"
+            style="@style/cell_divider_hor"
+            android:layout_below="@+id/ll_total_balance" />
+
+        <LinearLayout
+            android:id="@+id/llBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line_balance"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_wallet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/white_to_pressed_selector"
+                android:padding="@dimen/_16">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/tvWalletIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mine_piggybank"
+                    android:textColor="#5dc3f3"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_wallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/tvWalletIcon"
+                    android:text="活期宝"
+                    android:textColor="#212121"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_wallet_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_wallet"
+                    android:layout_below="@+id/tv_wallet"
+                    android:layout_marginTop="@dimen/_6"
+                    android:text="0.00"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#e6e6e6" />
+
+            <RelativeLayout
+                android:id="@+id/rl_deposit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/white_to_pressed_selector"
+                android:padding="@dimen/_16">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/tvFinancingIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="@string/personal_financing"
+                    android:textColor="#f7683f"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/tv_deposit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/tvFinancingIcon"
+                    android:text="爱理财"
+                    android:textColor="#212121"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_deposit_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_deposit"
+                    android:layout_below="@+id/tv_deposit"
+                    android:layout_marginTop="@dimen/_6"
+                    android:text="预计年化超7%-9%"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/lineCard"
+            style="@style/cell_divider_hor"
+            android:layout_below="@+id/llBalance" />
+
+        <LinearLayout
+            android:id="@+id/llCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lineCard"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/mineCardCouponst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/white_to_pressed_selector"
+                android:padding="@dimen/_16">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/tvCardTicketIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/personal_ticket"
+                    android:textColor="#fec331"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvCardTicket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/tvCardTicketIcon"
+                    android:text="卡券"
+                    android:textColor="#212121"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/ticket_red_dot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_toRightOf="@+id/tvCardTicket"
+                    android:src="@drawable/follow_new_point" />
+
+                <TextView
+                    android:id="@+id/tvCardCouponsCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tvCardTicket"
+                    android:layout_below="@+id/tvCardTicket"
+                    android:layout_marginTop="@dimen/_6"
+                    android:text="0张"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#e6e6e6" />
+
+            <RelativeLayout
+                android:id="@+id/rl_bank_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/white_to_pressed_selector"
+                android:padding="@dimen/_16">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/tvBankCardIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/personal_card"
+                    android:textColor="#44d287"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvBankCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/tvBankCardIcon"
+                    android:text="银行卡"
+                    android:textColor="#212121"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvBankCardCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tvBankCard"
+                    android:layout_below="@+id/tvBankCard"
+                    android:layout_marginTop="@dimen/_6"
+                    android:text="0张"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/lineCardEnd"
+            style="@style/cell_divider_hor"
+            android:layout_below="@+id/llCard" />
+
+    </RelativeLayout>
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_yue_kan_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:gravity="center|left">
+
+            <LinearLayout
+                android:id="@+id/llYuekan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/yue_kan_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mine_list"
+                    android:textColor="#616161"
+                    android:textSize="26sp" />
+
+                <TextView
+                    style="@style/text_12_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/yue_kan_icon"
+                    android:layout_marginTop="8dp"
+                    android:text="约看清单" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_yue_kan_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/llYuekan"
+                android:layout_alignTop="@+id/llYuekan"
+                android:layout_marginRight="-6dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/msg_new_more"
+                android:gravity="center"
+                android:text="99+"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_kan_fang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/llKanfang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/kan_fang_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mine_schedule"
+                    android:textColor="#616161"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    style="@style/text_12_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/yue_kan_icon"
+                    android:layout_marginTop="8dp"
+                    android:text="看房日程" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_kan_fang_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/llKanfang"
+                android:layout_alignTop="@+id/llKanfang"
+                android:layout_marginRight="-12dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_red_solid_corner_10dp"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="2dp"
+                android:text="待评价"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlAgent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/tvAgent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accountagent"
+                    android:textColor="#616161"
+                    android:textSize="26sp" />
+
+                <TextView
+                    style="@style/text_12_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvAgent"
+                    android:layout_marginTop="8dp"
+                    android:text=" 经纪人" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/mine_my_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:gravity="center">
+
+
+            <LinearLayout
+                android:id="@+id/llOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/tvOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mine_orders"
+                    android:textColor="#616161"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/text_12_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvOrder"
+                    android:layout_marginTop="8dp"
+                    android:text="合同订单" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/order_state_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/llOrder"
+                android:layout_alignTop="@+id/llOrder"
+                android:layout_marginRight="-12dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_red_solid_corner_10dp"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="2dp"
+                android:text="新账单"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/house_brower"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:gravity="center|right">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/house_empty"
+                    android:textColor="#616161"
+                    android:textSize="26sp" />
+
+                <TextView
+                    style="@style/text_12_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="浏览历史" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginBottom="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View style="@style/cell_divider_hor" />
+
+        <RelativeLayout
+            android:id="@+id/mine_entrust_manage_list"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/mine_owner_text"
+                android:textColor="#de212121"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvOwnerCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@+id/owner_arrow_order"
+                android:text=""
+                android:textColor="#de757575" />
+
+            <View
+                android:id="@+id/owner_arrow_order"
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+        <View style="@style/cell_divider_hor" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginBottom="8dp" />
+
+    <!--品牌公寓约看记录-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View style="@style/cell_divider_hor" />
+
+        <RelativeLayout
+            android:id="@+id/rl_brand_department_appointment_record"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/brand_department_appointment_record"
+                android:textColor="#de212121"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+        <View style="@style/cell_divider_hor" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <View style="@style/cell_divider_hor" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/mine_complaint"
+                android:layout_width="match_parent"
+                android:layout_height="48dip"
+                android:background="@drawable/white_to_pressed_selector"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/complaint_label_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/mine_complaint_text"
+                    android:textColor="#de212121"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/account_arrow_selector" />
+
+                <TextView
+                    android:id="@+id/complaint_state_text"
+                    style="@style/text_16_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/complaint_label_text" />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/cell_divider_hor"
+                android:layout_marginLeft="16dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/mine_help"
+                android:layout_width="match_parent"
+                android:layout_height="48dip"
+                android:background="@drawable/white_to_pressed_selector"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/mine_help_center"
+                    android:textColor="#de212121"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/account_arrow_selector" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <View
+                style="@style/cell_divider_hor"
+                android:layout_marginLeft="16dp" />
+
+            <RelativeLayout
+                android:id="@+id/mine_encyclopedias"
+                android:layout_width="match_parent"
+                android:layout_height="48dip"
+                android:background="@drawable/white_to_pressed_selector"
+                android:clickable="true"
+                android:paddingRight="16dip">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/encyclopedias_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="@string/checkboxes2"
+                    android:textColor="#757575"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/text_16_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/encyclopedias_icon"
+                    android:text="@string/mine_encyclopedias" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/account_arrow_selector" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/purchase_notice_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <View
+                style="@style/cell_divider_hor"
+                android:layout_marginLeft="16dp" />
+
+            <RelativeLayout
+                android:id="@+id/mine_purchase_notice"
+                android:layout_width="match_parent"
+                android:layout_height="48dip"
+                android:background="@drawable/white_to_pressed_selector"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/mine_purchase_notice"
+                    android:textColor="#de212121"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/account_arrow_selector" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View style="@style/cell_divider_hor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mine_finance_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View style="@style/cell_divider_hor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="0.5dip"
+                    android:background="#ffffff" />
+
+                <View style="@style/cell_divider_hor" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mine_password_manage_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="0.5dip"
+                    android:background="#ffffff" />
+
+                <View style="@style/cell_divider_hor" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/mine_password_manage"
+                android:layout_width="match_parent"
+                android:layout_height="48dip"
+                android:background="@drawable/white_to_pressed_selector"
+                android:clickable="true"
+                android:paddingRight="16dip">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/password_manage_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="@string/account_password"
+                    android:textColor="#757575"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/text_16_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/password_manage_icon"
+                    android:text="@string/mine_password_manage_title" />
+
+                <View
+                    android:id="@+id/password_manage_arrow_order"
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/account_arrow_selector" />
+
+                <TextView
+                    style="@style/text_16_cccccc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/password_manage_arrow_order"
+                    android:text="@string/my_password_manage_tips_txt" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View style="@style/cell_divider_hor" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/mine_servicetel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_black_a10_selector"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/mine_service_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="客服"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>
