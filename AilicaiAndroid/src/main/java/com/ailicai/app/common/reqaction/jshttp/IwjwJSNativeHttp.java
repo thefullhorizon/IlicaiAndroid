@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class IwjwJSNativeHttp {
 
-    public final static String CENTER_URL = "/ihouse";
+    public final static String CENTER_URL = "";
     public static String ROOT_URL = Configuration.DEFAULT.protocol + "://" + Configuration.DEFAULT.hostname + ":" + Configuration.DEFAULT.port;// 生产环境
     private static RequestQueue mQueue;
     private static IwjwJSNativeHttp instance;
