@@ -19,6 +19,7 @@ import com.ailicai.app.model.response.Iwjwh5UrlResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.index.adapter.NavigationPagerAdapter;
+import com.ailicai.app.ui.mine.MineFragment;
 import com.ailicai.app.widget.NoScrollViewPager;
 import com.ailicai.app.widget.ahbottomnavigation.AHBottomNavigation;
 import com.ailicai.app.widget.ahbottomnavigation.AHBottomNavigationItem;
@@ -75,7 +76,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         Bundle followsBundle = getIntent().getExtras();
         nvgPagerAdapter.addNvgItem(new AHBottomNavigationItem(R.string.tab_nvg_invest, tabiconss[1][1], tabiconss[1][0], android.R.color.white), IndexFragment.class, followsBundle);
         Bundle msgBundle = new Bundle();
-        nvgPagerAdapter.addNvgItem(new AHBottomNavigationItem(R.string.tab_nvg_me, tabiconss[2][1], tabiconss[2][0], android.R.color.white), IndexFragment.class, msgBundle);
+        nvgPagerAdapter.addNvgItem(new AHBottomNavigationItem(R.string.tab_nvg_me, tabiconss[2][1], tabiconss[2][0], android.R.color.white), MineFragment.class, msgBundle);
         bottomNavigation.addItems(nvgPagerAdapter.getBottomNavigationItems());
         bottomNavigation.setTranslucentNavigationEnabled(true);
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);

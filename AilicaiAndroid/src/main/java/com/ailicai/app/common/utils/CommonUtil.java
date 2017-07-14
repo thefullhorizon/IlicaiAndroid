@@ -303,8 +303,7 @@ public class CommonUtil {
     public static String getPhoneNumber(Context mContext) {
         String phoneNumber = "";
         if (null != mContext) {
-            TelephonyManager mTelephonyMgr;
-            mTelephonyMgr = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager mTelephonyMgr = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
             phoneNumber = mTelephonyMgr.getLine1Number();
         }
         return phoneNumber;

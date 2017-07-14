@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/login_back"
                 style="@style/SingleBtnBgStyle"
                 android:layout_width="45dp"
@@ -30,7 +30,7 @@
                 android:textSize="20sp"
                 android:visibility="gone" />
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/close_button"
                 style="@style/SingleBtnBgStyle"
                 android:layout_width="45dp"
@@ -68,7 +68,7 @@
                 android:orientation="vertical"
                 android:padding="32dp">
 
-                <com.manyi.lovehouse.widget.ManyiEditText
+                <com.ailicai.app.widget.ManyiEditText
                     android:id="@+id/phone_edit"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"

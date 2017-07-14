@@ -23,7 +23,7 @@ android {
     defaultConfig {
         applicationId "com.ailicai.app"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 19
         versionCode 100
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -158,8 +158,8 @@ def appendQuotes(tag) {
 }
 
 dependencies {
-    compile project(':AilicaiFramework')
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':AilicaiFramework')
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.jungly:gridPasswordView:0.3'
@@ -172,7 +172,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    //compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.growingio.android:vds-android-agent:0.9.102@aar'
     //AVLoadingIndicatorView
     compile 'com.wang.avi:library:2.1.3'
@@ -180,6 +180,8 @@ dependencies {
     compile 'com.facebook.rebound:rebound:0.3.8'
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
+
+    compile(name: 'gridpasswordview', ext: 'aar')
 }
 
 afterEvaluate {

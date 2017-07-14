@@ -59,7 +59,7 @@ import com.huoqiu.framework.exception.RestException;
 import com.huoqiu.framework.rest.Response;
 import com.huoqiu.framework.util.ManyiUtils;
 import com.huoqiu.framework.util.NetworkUtil;
-import com.jungly.gridpasswordview.GridPasswordView;
+import com.jungly.gridpasswordviewext.GridPasswordView;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.greenrobot.eventbus.EventBus;

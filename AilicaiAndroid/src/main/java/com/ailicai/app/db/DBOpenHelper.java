@@ -15,15 +15,10 @@ import java.sql.SQLException;
 
 public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
     // 数据库名称
-    public static final String DATABASE_NAME = "MyCollectHouseInfo2.db";
+    public static final String DATABASE_NAME = "AilicaiInfo.db";
     // 数据库[APP]-[DB]
-    // 1.8-3 2.0-4 2.2-5 2.3-6 2.4-7
-    // 2.5-8,3.0-9,3.2.1-10,3.3-11,
-    // 4.0-12,4.1-13,4.2-14,4.3-15,
-    // 5.0-16,5.1-17,5.2-18,5.5-19
-    // 5.7-20,5.8-22,6.0-24,6.2-25
-    // 6.9-26
-    public static final int DATABASE_VERSION = 26;
+    // 1.0-1
+    public static final int DATABASE_VERSION = 1;
 
     private static final String TAG = "DBOpenHelper";
 
