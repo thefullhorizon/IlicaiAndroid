@@ -22,7 +22,6 @@ import com.ailicai.app.common.constants.CommonTag;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
-import com.ailicai.app.common.utils.DeviceUtil;
 import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
@@ -40,8 +39,6 @@ import com.ailicai.app.model.response.HousePartResponse;
 import com.ailicai.app.model.response.Order;
 import com.ailicai.app.model.response.OrderListResponse;
 import com.ailicai.app.model.response.UserInfoResponse;
-import com.ailicai.app.setting.AppInfo;
-import com.ailicai.app.setting.DeBugLogActivity;
 import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.login.LoginManager;
@@ -63,11 +60,9 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.ref.SoftReference;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import butterknife.OnLongClick;
 
 public class MineFragment extends BaseBindFragment implements ObservableScrollViewCallbacks {
 
@@ -92,15 +87,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.ivUserPhoto:
-                case R.id.rlUserInfo:
+                case R.id.userPhoto:
                     //MyIntent.startActivity(getActivity(), UserInfoEditActivity.class, getDataMap());
                     break;
             }
         }
     };
-    @Bind(R.id.statusBarBg)
-    View statusBarBg;
+    @Bind(R.id.title_root)
+    RelativeLayout titleRoot;
     @Bind(R.id.my_scroll_view)
     ObservableScrollView mScrollView;
     @Bind(R.id.complaint_state_text)
@@ -131,51 +125,24 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     //可滚动区域容器
     @Bind(R.id.personal_root_view)
     LinearLayout mAllView;
-    //    @Bind(R.id.mine_top_bar)
-//    FrameLayout mineTopBar;
-//
-//    @Bind(R.id.overlay_layout)
-//    LinearLayout overlayLayout;
-//
-//    @Bind(R.id.personal_layout_login_info_name)
-//    FrameLayout personalLayoutLoginInfoName;
-//
-//    @Bind(R.id.personal_layout_login_name)
-//    FrameLayout personalLayoutLoginName;
-//
-//    @Bind(R.id.personal_layout_login_info_phone)
-//    FrameLayout personalLayoutLoginInfoPhone;
-//
-//    @Bind(R.id.personal_layout_login_phone)
-//    FrameLayout personalLayoutLoginPhone;
-//
-//    @Bind(R.id.personal_layout_no_login_layout)
-//    FrameLayout personalNoLoginLayout;
-//
-//    @Bind(R.id.personal_layout_no_login)
-//    FrameLayout personalLayoutNoLogin;
-//
-//    @Bind(R.id.mine_login_btn_alpha)
-//    TextView mineLoginBtnAlpha;
-//
-//    @Bind(R.id.rlHead)
-//    FrameLayout mineAgentPhotoLayout;
-    @Bind(R.id.tvRedPoint)
-    TextView tvRedPoint;
-    @Bind(R.id.llNotLogin)
-    LinearLayout llNotLogin;
+    @Bind(R.id.mine_top_head)
+    LinearLayout mineTopHead;
+    @Bind(R.id.mine_top_head_bg)
+    LinearLayout mineTopHeadBg;
+    @Bind(R.id.mine_not_login)
+    LinearLayout mineNotLogin;
+    @Bind(R.id.mine_login)
+    LinearLayout mineLogin;
+    @Bind(R.id.mine_top_margin)
+    LinearLayout mineTopMargin;
+    @Bind(R.id.mine_top_margin_bg)
+    LinearLayout mineTopMarginBg;
+    @Bind(R.id.mine_top_margin_bg_scroll)
+    LinearLayout mineTopMarginScroll;
     @Bind(R.id.tvLogin)
     TextView tvLogin;
-    @Bind(R.id.rlUserInfo)
-    RelativeLayout rlUserInfo;
-    @Bind(R.id.ivUserPhoto)
+    @Bind(R.id.userPhoto)
     ImageView userPhoto;
-    @Bind(R.id.tvUserName)
-    TextView userName;
-    @Bind(R.id.ivAuthIcon)
-    ImageView ivAuthIcon;
-    @Bind(R.id.user_name_arrow)
-    TextView userNameArrow;
     @Bind(R.id.tvBankCardCount)
     TextView tvBankCardCount;
     @Bind(R.id.tv_kan_fang_num)
@@ -194,7 +161,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     RelativeLayout rlCloseWallet;
     @Bind(R.id.rl_new_balance)
     RelativeLayout rlNewBalance;
-    private AtomicBoolean mIsFirstLoad;
     //MVP Presenter对象
     private MinePresenter mPresenter;
     //登录成功后头像来个动画效果，其他情况不执行动画
@@ -237,8 +203,11 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             mPresenter = new MinePresenter();
         }
         EventBus.getDefault().register(this);
-        mIsFirstLoad = new AtomicBoolean();
-        mIsFirstLoad.set(true);
+
+        mineTopMargin.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
+        mineTopMarginScroll.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
+        mineTopMarginBg.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
+        ((RelativeLayout.LayoutParams) titleRoot.getLayoutParams()).setMargins(0, CommonUtil.getStatusBarHeight(getWRActivity()), 0, 0);
 
         //添加顶部用户信息区域布局文件(动画效果)
         CommonUtil.addAnimForView(mAllView);
@@ -254,13 +223,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                 //onScrollChanged(0, false, false);
             }
         });
+
         eyeOpen = MyPreference.getInstance().read("eyeOpen", false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        CommonUtil.uiSystemBarTintNoTitle(getActivity(), view.findViewById(R.id.rlHead));
+        //CommonUtil.uiSystemBarTintNoTitle(getActivity(), view.findViewById(R.id.title_root_layout));
     }
 
     @Override
@@ -400,88 +370,24 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 //    }
     @Override
     public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
-        int mFlexibleSpaceImageHeight = DeviceUtil.getPixelFromDip(getActivity(), 130);
-        int mStatusBarHeight = DeviceUtil.getPixelFromDip(getActivity(), 24);
+        int mFlexibleSpaceImageHeight = mineTopHead.getMeasuredHeight();
         int scrollViewMeasuredHeight = mScrollView.getChildAt(0).getMeasuredHeight();
         int height = mScrollView.getHeight();
         if ((scrollViewMeasuredHeight - height) >= mFlexibleSpaceImageHeight) {
             onScrollDisplay(scrollY);
-            if (scrollY >= (mFlexibleSpaceImageHeight - mStatusBarHeight)) {
-                statusBarBg.setVisibility(View.VISIBLE);
-            } else {
-                statusBarBg.setVisibility(View.GONE);
-            }
         } else {
-            statusBarBg.setVisibility(View.GONE);
             //顶部不滚动
         }
-
     }
 
     public void onScrollDisplay(int scrollY) {
-        //各个元素Y坐标微调值
-//        int mFlexibleSpaceImageHeight = DeviceUtil.getPixelFromDip(getActivity(), 130);
-//        int mActionBarSize = mineTopBar.getHeight() + DeviceUtil.getPixelFromDip(getActivity(), 2);
-//        int loginBtnOffsetY = DeviceUtil.getPixelFromDip(getActivity(), 22);
-//        int userPhotoOffsetY = DeviceUtil.getPixelFromDip(getActivity(), 31);
-//        int userNameOffsetY = DeviceUtil.getPixelFromDip(getActivity(), 35);
-//        int userPhoneOffsetY = DeviceUtil.getPixelFromDip(getActivity(), 8);
-//
-//        int minOverlayTransitionY = mActionBarSize - mFlexibleSpaceImageHeight;
-//        int minPhotoTransitionY = mActionBarSize + userPhotoOffsetY - mFlexibleSpaceImageHeight;
-//        int minLoginBtnTransitionY = mActionBarSize + loginBtnOffsetY - mFlexibleSpaceImageHeight;
-//        int minNameTransitionY = mActionBarSize + userNameOffsetY - mFlexibleSpaceImageHeight;
-//        int minPhoneTransitionY = mActionBarSize + userPhoneOffsetY - mFlexibleSpaceImageHeight;
-//
-//        overlayLayout.setTranslationY(ScrollUtils.getFloat(-scrollY / 2, minOverlayTransitionY, 0));
-//        mineAgentPhotoLayout.setTranslationY(ScrollUtils.getFloat(-scrollY / 2, minPhotoTransitionY, 0));
-//        personalNoLoginLayout.setTranslationY(ScrollUtils.getFloat(-scrollY / 2, minLoginBtnTransitionY, 0));
-//        personalLayoutLoginInfoName.setTranslationY(ScrollUtils.getFloat(-scrollY / 2, minNameTransitionY, 0));
-//        personalLayoutLoginInfoPhone.setTranslationY(ScrollUtils.getFloat(-scrollY / 2, minPhoneTransitionY, 0));
-//
-//        //头像缩小至0.7f
-//        float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;
-//        float scale = 0.7f + ScrollUtils.getFloat((flexibleRange - scrollY) / flexibleRange, 0, MAX_TEXT_SCALE_DELTA);
-//        userPhoto.setPivotX(0);
-//        userPhoto.setPivotY(0);
-//        userPhoto.setScaleX(scale);
-//        userPhoto.setScaleY(scale);
-//
-//        //各个元素X坐标微调值
-//        int loginInfoOffsetX = (int) (userPhoto.getWidth() * scale) + DeviceUtil.getPixelFromDip(getActivity(), 2);
-//        int loginBtnOffsetX = (int) (userPhoto.getWidth() * scale) + DeviceUtil.getPixelFromDip(getActivity(), 2);
-//        int userPhotoOffsetX = DeviceUtil.getPixelFromDip(getActivity(), 13);
-//
-//        mineAgentPhotoLayout.setTranslationX(ScrollUtils.getFloat(-scrollY / 2, -userPhotoOffsetX, 0));
-//        personalNoLoginLayout.setTranslationX(ScrollUtils.getFloat(-scrollY / 2, -loginBtnOffsetX, 0));
-//        personalLayoutLoginInfoName.setTranslationX(ScrollUtils.getFloat(-scrollY / 2, -loginInfoOffsetX, 0));
-//        personalLayoutLoginInfoPhone.setTranslationX(ScrollUtils.getFloat(-scrollY / 2, -loginInfoOffsetX, 0));
-//
-//        //渐变相关元素
-//        if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
-//            // Change alpha of overlay
-//            userPhone.setAlpha(1 - ScrollUtils.getFloat((float) scrollY / 2 / flexibleRange, 0, 1));
-//        } else {
-//            mineLoginBtnAlpha.setAlpha(1 - ScrollUtils.getFloat((float) scrollY / 2 / flexibleRange, 0, 1));
-//        }
-//
-//        //用户名放大缩小
-//        float offset = ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0);
-//        maxOffset = -minOverlayTransitionY;
-//        float expandedPercentage = 1 - (-offset / maxOffset);
-//        float userNameCollapsedTextSize = getResources().getDimensionPixelSize(R.dimen.default_username_collapsed_text_size);
-//        float userNameExpandedTextSize = getResources().getDimensionPixelSize(R.dimen.default_username_expanded_text_size);
-//        float arrowCollapsedTextSize = getResources().getDimensionPixelSize(R.dimen.default_arrow_collapsed_text_size);
-//        float arrowExpandedTextSize = getResources().getDimensionPixelSize(R.dimen.default_arrow_expanded_text_size);
-//        float phoneCollapsedTextSize = getResources().getDimensionPixelSize(R.dimen.default_phone_collapsed_text_size);
-//        float phoneExpandedTextSize = getResources().getDimensionPixelSize(R.dimen.default_phone_expanded_text_size);
-//
-//        float userNameTextSize = userNameCollapsedTextSize + (userNameExpandedTextSize - userNameCollapsedTextSize) * expandedPercentage;
-//        float arrowTextSize = arrowCollapsedTextSize + (arrowExpandedTextSize - arrowCollapsedTextSize) * expandedPercentage;
-//        float phoneTextSize = phoneCollapsedTextSize + (phoneExpandedTextSize - phoneCollapsedTextSize) * expandedPercentage;
-//        userName.setTextSize(TypedValue.COMPLEX_UNIT_PX, userNameTextSize);
-//        userNameArrow.setTextSize(TypedValue.COMPLEX_UNIT_PX, arrowTextSize);
-//        userPhone.setTextSize(TypedValue.COMPLEX_UNIT_PX, phoneTextSize);
+        float flexibleRange = mineTopHead.getMeasuredHeight() - CommonUtil.getTitleHeight(getWRActivity()) - CommonUtil.getStatusBarHeight(getWRActivity());
+        float alpha = ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1);
+        mineNotLogin.setAlpha(1 - alpha);
+        mineLogin.setAlpha(1 - alpha);
+        int minOverlayTransitionY = CommonUtil.getTitleHeight(getWRActivity()) - mineTopHead.getMeasuredHeight();
+        mineTopHeadBg.setTranslationY(ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
+        mineTopHead.setTranslationY(-scrollY);
     }
 
     @Override
@@ -800,9 +706,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     private void setAuthIcon() {
         if (housePartResponse != null) {
             if (housePartResponse.getHasCommission() > 0) {
-                ivAuthIcon.setVisibility(View.VISIBLE);
+                //ivAuthIcon.setVisibility(View.VISIBLE);
             } else {
-                ivAuthIcon.setVisibility(View.GONE);
+                //ivAuthIcon.setVisibility(View.GONE);
             }
         }
     }
@@ -832,17 +738,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         return version;
     }
 
-    /**
-     * 有新版本更新时设置按钮上面显示红点引导提示
-     */
-    public void refreshUpdateTab() {
-        if (tvRedPoint == null) return;
-        if (AppInfo.getInstance().isHaveUpdate()) {
-            tvRedPoint.setVisibility(View.VISIBLE);
-        } else {
-            tvRedPoint.setVisibility(View.GONE);
-        }
-    }
 
     public void setUIData() {
         if (!MineFragment.this.isVisible() || !MineFragment.this.isAdded()) {
@@ -850,29 +745,24 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         }
         setHousePartData();
         setAilicaiPartData();
-        refreshUpdateTab();
         //客服电话设置
         String serverNumber = UserInfo.getInstance().getServicePhoneNumber();
         serviceTel.setText(Html.fromHtml(getActivity().getResources().getString(R.string.mine_service_tell_txt, serverNumber)));
 
         //根据登录或未登录显示用户头像等相关信息
         if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
-            llNotLogin.setVisibility(View.VISIBLE);
+            mineNotLogin.setVisibility(View.VISIBLE);
+            mineLogin.setVisibility(View.GONE);
             //登录按钮点击
             tvLogin.setOnClickListener(mOnClickListener);
             userPhoto.setClickable(false);
             userPhoto.setOnClickListener(null);
-            rlUserInfo.setVisibility(View.GONE);
-            rlUserInfo.setClickable(false);
             ticket_red_dot.setVisibility(View.INVISIBLE);
-            rlUserInfo.setOnClickListener(null);
         } else if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
-            llNotLogin.setVisibility(View.GONE);
+            mineNotLogin.setVisibility(View.GONE);
+            mineLogin.setVisibility(View.VISIBLE);
             userPhoto.setClickable(true);
             userPhoto.setOnClickListener(userLayoutOnClickListener);
-            rlUserInfo.setVisibility(View.VISIBLE);
-            rlUserInfo.setClickable(true);
-            rlUserInfo.setOnClickListener(userLayoutOnClickListener);
             //根据登录的手机号获取已保存的用户信息
             long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
             UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
@@ -890,11 +780,10 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                 }
                  */
                 String realname = TextUtils.isEmpty(infoBase.getRealName()) ? StringUtil.formatMobileSub(infoBase.getMobile()) : infoBase.getRealName();
-                userName.setText(realname);
                 if (!"".equals(realname)) {
-                    userNameArrow.setVisibility(View.VISIBLE);
+                    //userNameArrow.setVisibility(View.VISIBLE);
                 } else {
-                    userNameArrow.setVisibility(View.GONE);
+                    //userNameArrow.setVisibility(View.GONE);
                 }
 
 
@@ -1178,21 +1067,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 //        Intent intent = new Intent(getActivity(), RegularFinancingDetailActivity.class);
 //        intent.putExtra(RegularFinancingDetailActivity.PROD_ID, "20160601161423S60004");
 //        startActivity(intent);
-    }
-
-    @OnClick(R.id.mine_setting_btn)
-    void onClickSettings() {
-        mPresenter.gotoSettings(getActivity());
-        //EventLog.upEventLog("220", "set");
-    }
-
-    @OnLongClick(R.id.mine_setting_btn)
-    boolean onLongClickSettings() {
-        if (!DeBugLogActivity.isRelease()) {
-//            Intent m = new Intent(getActivity(), AgentDetailActivity.class);
-//            getActivity().startActivity(m);
-        }
-        return true;
     }
 
     @OnClick(R.id.mine_servicetel)

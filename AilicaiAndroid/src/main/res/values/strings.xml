@@ -37,7 +37,7 @@
     <string name="permit_agreement_title_text">《爱屋吉屋用户协议》</string>
 
     <!-- Mine -->
-    <string name="mine_login_btn_text">立即登录</string>
+    <string name="mine_login_btn_text">登录/注册</string>
     <string name="mine_order_title">我的订单</string>
     <string name="mine_password_manage_title">交易密码</string>
     <string name="mine_change_agent">经纪人</string>
