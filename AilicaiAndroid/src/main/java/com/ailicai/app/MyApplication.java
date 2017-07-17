@@ -10,6 +10,7 @@ import com.ailicai.app.common.constants.AILICAIBuildConfig;
 import com.ailicai.app.common.utils.SystemUtil;
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.huoqiu.framework.app.AppConfig;
+import com.squareup.leakcanary.LeakCanary;
 
 public class MyApplication extends MultiDexApplication {
     private final static String fontPath = "fonts/iconfont.ttf";
@@ -106,7 +107,7 @@ public class MyApplication extends MultiDexApplication {
             AppConfig.application = getInstance();
             appPresenter = ApplicationPresenter.getInstance(application);
             if (AILICAIBuildConfig.isDebug()) {
-//                 LeakCanary.install(this);
+                 LeakCanary.install(this);
 //                  BlockCanary.install(this, new AppBlockCanaryContext()).start();
             }
         }
