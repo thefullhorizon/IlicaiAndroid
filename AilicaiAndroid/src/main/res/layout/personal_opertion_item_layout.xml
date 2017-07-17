@@ -2,119 +2,209 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/global_background"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/rlHead"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_gravity="top"
-        android:background="@drawable/personal_head_bg"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentRight="true">
+        <LinearLayout
+            android:id="@+id/mine_top_margin_bg_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
 
-            <com.ailicai.app.widget.TextViewTF
-                android:id="@+id/mine_setting_btn"
-                style="@style/SingleBtnBgStyle"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:gravity="center"
-                android:text="@string/account_setting"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:gravity="center"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="13dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="13dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvRedPoint"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/notification_background"
-                android:gravity="center"
-                android:visibility="gone" />
-
-        </RelativeLayout>
-
-        <com.ailicai.app.widget.CircleImageView
-            android:id="@+id/ivUserPhoto"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="20dp"
-            android:src="@drawable/avatar_default" />
-
-        <RelativeLayout
-            android:id="@+id/rlUserInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="54dp"
-            android:layout_alignBottom="@+id/ivUserPhoto"
-            android:layout_toRightOf="@+id/ivUserPhoto"
-            android:gravity="center">
-
-            <LinearLayout
-                android:id="@+id/llUserName"
+                style="@style/text_12_212121"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="账户可用余额 (元)" />
+
+            <TextView
+                style="@style/text_16_212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="0.00" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_account_balance_get_cash"
+                android:layout_width="72dp"
+                android:layout_height="30dp"
+                android:background="@drawable/outer_f75a14_radius_100_bg"
+                android:gravity="center"
+                android:text="提现"
+                android:textColor="#f75a14"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_account_balance_charge"
+                android:layout_width="72dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/fill_f75a14_radius_100_bg"
+                android:gravity="center"
+                android:text="充值"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View style="@style/cell_divider_hor" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                style="@style/text_14_757575"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="2笔共190000.00元" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvUserName"
+                    style="@style/text_14_757575"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="6dp"
-                    android:singleLine="true"
-                    android:text="姓名"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:layout_centerVertical="true"
+                    android:text="申购中" />
 
-                <com.ailicai.app.widget.TextViewTF
-                    android:id="@+id/user_name_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/arrow_right"
-                    android:textColor="@color/white"
-                    android:textSize="10sp" />
-
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/account_arrow_selector" />
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/ivAuthIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/llUserName"
-                android:layout_marginTop="6dp"
-                android:src="@drawable/personal_auth_pic"
-                android:visibility="visible" />
 
         </RelativeLayout>
 
+
+    </LinearLayout>
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginBottom="8dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:background="@drawable/white_to_pressed_selector"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
         <LinearLayout
-            android:id="@+id/llNotLogin"
             android:layout_width="wrap_content"
-            android:layout_height="54dp"
-            android:layout_alignBottom="@+id/ivUserPhoto"
-            android:layout_toRightOf="@+id/ivUserPhoto"
-            android:visibility="gone">
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mine_gift" />
 
             <TextView
-                android:id="@+id/tvLogin"
-                style="@style/text_14_ffffff"
-                android:layout_width="100dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_transparent_solid_corner_2dp"
-                android:gravity="center"
-                android:text="@string/mine_login_btn_text"
-                android:visibility="visible" />
-
+                android:id="@+id/textView"
+                style="@style/text_14_212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="邀请奖励" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_14_757575"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="待发收益12.80元" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/account_arrow_selector" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginBottom="8dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:background="@drawable/white_to_pressed_selector"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
     </RelativeLayout>
 
@@ -126,7 +216,7 @@
         android:paddingBottom="18dp"
         android:paddingLeft="16dp"
         android:paddingTop="18dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -171,13 +261,14 @@
 
         <LinearLayout
             android:id="@+id/ll_total_balance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingBottom="@dimen/_12"
             android:paddingLeft="@dimen/_16"
             android:paddingRight="@dimen/_16"
-            android:paddingTop="@dimen/_12"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:paddingTop="@dimen/_12">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -191,16 +282,7 @@
                     android:textColor="#757575"
                     android:textSize="12sp" />
 
-                <com.ailicai.app.widget.TextViewTF
-                    android:id="@+id/tv_eyes_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:paddingLeft="@dimen/_8"
-                    android:paddingRight="@dimen/_16"
-                    android:text="@string/eyes_opening"
-                    android:textColor="#bdbdbd"
-                    android:textSize="20sp" />
+
             </LinearLayout>
 
             <TextView
@@ -211,7 +293,6 @@
                 android:textColor="#212121"
                 android:textSize="18sp" />
         </LinearLayout>
-
 
 
         <View

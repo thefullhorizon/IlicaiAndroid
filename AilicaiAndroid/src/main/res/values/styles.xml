@@ -1,7 +1,7 @@
 <resources>
 
     <style name="cell_divider_hor">
-        <item name="android:background">#dddddd</item>
+        <item name="android:background">#e6e6e6</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
     </style>

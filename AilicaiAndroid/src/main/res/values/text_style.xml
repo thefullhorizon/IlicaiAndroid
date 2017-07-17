@@ -375,6 +375,11 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
+    <style name="text_16_f15a4c">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#f15a4c</item>
+    </style>
+
     <style name="text_16_ffffff_center">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#ffffff</item>
