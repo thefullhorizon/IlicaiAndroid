@@ -22,6 +22,8 @@ import com.ailicai.app.model.response.TimeResponse;
 import com.ailicai.app.setting.DeBugLogActivity;
 import com.ailicai.app.setting.ServerIPManger;
 import com.ailicai.app.setting.ServerIPModel;
+import com.ailicai.app.ui.login.LoginManager;
+import com.ailicai.app.ui.login.UserInfo;
 import com.android.volley.VolleyError;
 import com.huoqiu.framework.analysis.ManyiAnalysis;
 import com.huoqiu.framework.app.AppConfig;
@@ -34,6 +36,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.L;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.common.SocializeConstants;
 
 /**
@@ -114,19 +117,10 @@ public class ApplicationPresenter {
 
     }
 
-    /**
-     * 初始化Cookies设置
-     */
-/*    private static void initConnCookies() {
-        System.setProperty("http.keepAlive", "false");
-        System.setProperty("apache.commons.httpclient.cookiespec", "COMPATIBILITY");
-        System.setProperty("HTTPClient.cookies.save", "true");
-        System.setProperty("HTTPClient.cookies.jar", "/home/misha/.httpclient_cookies");
-    }*/
     public static void clearUserInfo() {
-//        if (TextUtils.isEmpty(UserInfo.getInstance().getUticket())) {
-//            UserInfo.getInstance().loginOut();
-//        }
+        if (TextUtils.isEmpty(UserInfo.getInstance().getUticket())) {
+            UserInfo.getInstance().loginOut();
+        }
     }
 
     public static void updatePhoneInfo(Context mActivity) {
@@ -236,14 +230,14 @@ public class ApplicationPresenter {
      * @param msg
      */
     public static void appLogout(Activity activity, String msg) {
-//        if (UserInfo.isLogin()) {
-//            //重复登录等相关错误信息提示语
-//            ToastUtil.showInCenter(msg);
-//        }
-//        if (UserInfo.isLogin()) {
-//            LoginManager.loginOut(activity);
-//            LoginManager.goLogin(activity, LoginManager.LOGIN_FROM_MINE);
-//        }
+        if (UserInfo.isLogin()) {
+            //重复登录等相关错误信息提示语
+            ToastUtil.showInCenter(msg);
+        }
+        if (UserInfo.isLogin()) {
+            LoginManager.loginOut(activity);
+            LoginManager.goLogin(activity, LoginManager.LOGIN_FROM_MINE);
+        }
     }
 
 //    /**
@@ -401,10 +395,14 @@ public class ApplicationPresenter {
     */
     private void initUmeng() {
         ShareUtil.initWXConfig();//初始化微信相关ID
-        /**初始化友盟账号，BETA环境与生产环境分开统计，测试账号jervisshe@superjia.com*/
-        SocializeConstants.APPKEY = AILICAIBuildConfig.isProduction() ? "53f32c59fd98c5b29400338d" : "58072c4467e58ec2e6000e31";
-        ManyiAnalysis.getInstance().initSelf(myApplication, SocializeConstants.APPKEY, getChannelNo());
-        //MobclickAgent.setDebugMode(IWBuildConfig.isDebug());
+
+        // 生产环境才会进行友盟统计
+        if(AILICAIBuildConfig.isProduction()) {
+            /**初始化友盟账号，BETA环境与生产环境分开统计，测试账号jervisshe@superjia.com*/
+            SocializeConstants.APPKEY = "5968a0394544cb6d3b001d73";
+            ManyiAnalysis.getInstance().initSelf(myApplication, SocializeConstants.APPKEY, getChannelNo());
+            MobclickAgent.setDebugMode(AILICAIBuildConfig.isDebug());
+        }
     }
 
 
@@ -431,9 +429,9 @@ public class ApplicationPresenter {
                         updatePhoneInfo(myApplication);
                     }
                 });
-//                if (UserInfo.isLogin()) {
-//                    LoginManager.updateUserInfoData();
-//                }
+                if (UserInfo.isLogin()) {
+                    LoginManager.updateUserInfoData();
+                }
             }
         });
     }
@@ -448,7 +446,7 @@ public class ApplicationPresenter {
                 AppConfig.platform = "IWJW";
                 /**初始化城市ID信息到Header*/
 //                AppConfig.cityId = CityManager.getInstance().getCurrentCity().getProvinceId() + "";
-//                AppConfig.uticket = UserInfo.getInstance().getUticket();
+                AppConfig.uticket = UserInfo.getInstance().getUticket();
                 /** 初始化版本信息*/
                 try {
                     PackageInfo pi = myApplication.getPackageManager().getPackageInfo(myApplication.getPackageName(), 0);
@@ -485,8 +483,19 @@ public class ApplicationPresenter {
             }
         } else if (AILICAIBuildConfig.isBeta()) {
             /**Beta版本*/
+            String ip = MyPreference.getInstance().read(CommonTag.SERVER_IP, "");
+            if (!TextUtils.isEmpty(ip)) {
+                Configuration.IWJW_BETA.hostname = ip;
+            }
+            int port = MyPreference.getInstance().read(CommonTag.SERVER_PORT, 0);
+
+            if (port != 0) {
+                Configuration.IWJW_BETA.port = port;
+            }
+            Configuration.IWJW_BETA.path = "";
             Configuration.DEFAULT = Configuration.IWJW_BETA;
             Configuration.DEFAULTIMG = Configuration.IWJW_BETA_IMG;
+
         } else {
             /**不是生产版本 也不是beta版本，就是测试版本(包括开发和调试版本)*/
             String ip = MyPreference.getInstance().read(CommonTag.SERVER_IP, "");
@@ -502,8 +511,6 @@ public class ApplicationPresenter {
             Configuration.DEFAULT = Configuration.IWJW_TEST;
             Configuration.DEFAULTIMG = Configuration.IWJW_TEST_IMG;
         }
-        //ToastUtil.show(this, "程序初始化版本为"+ "当前IP地址为"+Configuration.DEFAULT.hostname+Configuration.DEFAULT.port);
-        //LogUtil.e("当前IP地址为" + Configuration.DEFAULT.hostname + Configuration.DEFAULT.port);
     }
 
     public void setUpDialog(boolean upDialog) {

@@ -74,64 +74,6 @@ public class Version implements DownloadListener {
         executeUpdateResult();
     }
 
-
-    /*
-    public void checkUpdate(Fragment fragment) {
-
-        activityWeakReference = new WeakReference<>((Activity) fragment.getActivity());
-
-        UpdateInfoRequest request = new UpdateInfoRequest();
-        request.setType(1);
-        request.setChannel(AppConfig.channelNo);
-
-        ServiceSender.exec(fragment, request, new IwjwRespListener<UpdateInfoResponse>() {
-            @Override
-            public void onStart() {
-                Fragment frag = getWRFragment();
-                if (frag == null) return;
-
-                VersionInterface version = reference.get();
-                if (version == null) return;
-
-                version.checkStart();
-            }
-
-            @Override
-            public void onJsonSuccess(UpdateInfoResponse response) {
-                Fragment frag = getWRFragment();
-                if (frag == null) return;
-
-                VersionInterface version = reference.get();
-                if (version == null) return;
-
-                version.checkSuccess();
-
-                int responseCode = response.getErrorCode();
-                if (responseCode == 0 || responseCode == RestException.VERSION_UPDATE_STRONG) {
-                    AppInfo.getInstance().setAppInfo(response);
-                    executeUpdateResult();
-                } else {
-                    version.checkFailed(response.getMessage());
-                }
-            }
-
-
-            @Override
-            public void onFailInfo(String errorInfo) {
-                super.onFailInfo(errorInfo);
-                Fragment frag = getWRFragment();
-                if (frag == null) return;
-
-                VersionInterface version = reference.get();
-                if (version == null) return;
-
-                version.checkFailed(errorInfo);
-            }
-        });
-
-    }
-    */
-
     public void checkUpdate(Activity activity) {
 
         activityWeakReference = new WeakReference<>(activity);
@@ -332,11 +274,6 @@ public class Version implements DownloadListener {
         return !TextUtils.isEmpty(patchDownLoadUrl);
     }
 
-    private boolean isHotFixValid() {
-        String hotfixUrl = AppConfig.hotfix_url;
-        return !TextUtils.isEmpty(hotfixUrl);
-    }
-
     private void downloadFromPatchUrl() {
         DownloadProgressDialogManger.getInstance().setMessage("正在下载");
         String patchDownLoadUrl = AppInfo.getInstance().getPatchDownloadURL();
@@ -456,7 +393,7 @@ public class Version implements DownloadListener {
 
     private String getMergedFileName() {
         return Environment.getExternalStorageDirectory()
-                + File.separator + "IWJW" + File.separator
+                + File.separator + "ILICAI" + File.separator
                 + AppConfig.versionName + File.separator
                 + "download" + File.separator + "merged-" + AppInfo.getInstance().getAPP_VERSION() + ".apk";
     }

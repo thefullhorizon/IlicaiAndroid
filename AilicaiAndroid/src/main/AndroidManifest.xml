@@ -62,6 +62,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppAppCompatTheme">
 
+        <!-- 友盟渠道标识-->
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
@@ -109,6 +110,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppAppCompatTheme.TranslucentNavigation" />
+
+        <activity
+            android:name=".setting.DebugActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>

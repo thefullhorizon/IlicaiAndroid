@@ -39,9 +39,9 @@ import butterknife.Bind;
 public class IndexActivity extends BaseBindActivity implements VersionInterface {
 
     private final static int[][] tabiconss = new int[][]{
-            {R.drawable.bighome_tabbar_home_nor, R.drawable.bighome_tabbar_home_pre},
-            {R.drawable.bighome_tabbar_follow_nor, R.drawable.bighome_tabbar_follow_pre},
-            {R.drawable.bighome_tabbar_mine_nor, R.drawable.bighome_tabbar_mine_pre}};
+            {R.drawable.tabbar_homepage_inactive, R.drawable.tabbar_homepage_active},
+            {R.drawable.tabbar_investment_inactive, R.drawable.tabbar_investment_active},
+            {R.drawable.tabbar_mine_inactive, R.drawable.tabbar_mine_active}};
 
 
     @Bind(R.id.fragment_pager)
