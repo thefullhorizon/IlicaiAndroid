@@ -17,6 +17,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 public class DebugActivity extends BaseBindActivity {
+
     @Bind(R.id.debug_top_title)
     IWTopTitleView debugTopTitle;
 
@@ -66,8 +67,5 @@ public class DebugActivity extends BaseBindActivity {
                 return true;
             }
         });
-//        String[] mItems = getResources().getStringArray(R.array.version_name);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mItems);
     }
-
 }
