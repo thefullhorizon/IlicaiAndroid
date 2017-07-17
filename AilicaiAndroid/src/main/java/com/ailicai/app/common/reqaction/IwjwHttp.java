@@ -59,6 +59,11 @@ public class IwjwHttp {
         mQueue = null;
     }
 
+    // 在开发和beta点保存 ip立马生效
+    public static void updateRootUrlByConfig() {
+        ROOT_URL = Configuration.DEFAULT.protocol + "://" + Configuration.DEFAULT.hostname + ":" + Configuration.DEFAULT.port;
+    }
+
     private static String reqUrlForRest(String path) {
         if (path.contains("http://")) {
             return path;

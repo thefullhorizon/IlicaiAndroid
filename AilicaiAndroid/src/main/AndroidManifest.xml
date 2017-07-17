@@ -111,5 +111,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppAppCompatTheme.TranslucentNavigation" />
 
+        <activity
+            android:name=".setting.DebugActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>

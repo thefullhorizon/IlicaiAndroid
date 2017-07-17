@@ -483,8 +483,19 @@ public class ApplicationPresenter {
             }
         } else if (AILICAIBuildConfig.isBeta()) {
             /**Beta版本*/
+            String ip = MyPreference.getInstance().read(CommonTag.SERVER_IP, "");
+            if (!TextUtils.isEmpty(ip)) {
+                Configuration.IWJW_BETA.hostname = ip;
+            }
+            int port = MyPreference.getInstance().read(CommonTag.SERVER_PORT, 0);
+
+            if (port != 0) {
+                Configuration.IWJW_BETA.port = port;
+            }
+            Configuration.IWJW_BETA.path = "";
             Configuration.DEFAULT = Configuration.IWJW_BETA;
             Configuration.DEFAULTIMG = Configuration.IWJW_BETA_IMG;
+
         } else {
             /**不是生产版本 也不是beta版本，就是测试版本(包括开发和调试版本)*/
             String ip = MyPreference.getInstance().read(CommonTag.SERVER_IP, "");
@@ -500,8 +511,6 @@ public class ApplicationPresenter {
             Configuration.DEFAULT = Configuration.IWJW_TEST;
             Configuration.DEFAULTIMG = Configuration.IWJW_TEST_IMG;
         }
-        //ToastUtil.show(this, "程序初始化版本为"+ "当前IP地址为"+Configuration.DEFAULT.hostname+Configuration.DEFAULT.port);
-        //LogUtil.e("当前IP地址为" + Configuration.DEFAULT.hostname + Configuration.DEFAULT.port);
     }
 
     public void setUpDialog(boolean upDialog) {
