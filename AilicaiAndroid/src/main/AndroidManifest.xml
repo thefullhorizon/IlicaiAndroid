@@ -62,6 +62,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppAppCompatTheme">
 
+        <!-- 友盟渠道标识-->
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
