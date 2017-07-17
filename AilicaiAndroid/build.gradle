@@ -182,6 +182,7 @@ dependencies {
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
 
     compile(name: 'gridpasswordview', ext: 'aar')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 
 afterEvaluate {

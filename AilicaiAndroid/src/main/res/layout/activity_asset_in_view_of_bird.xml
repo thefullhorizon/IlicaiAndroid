@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ailicai.app.ui.view.AssetInViewOfBirdActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff">
+
+        <com.ailicai.app.widget.AssetPie
+            android:id="@+id/asset_pie"
+            android:layout_width="match_parent"
+            android:layout_height="248dp"
+            android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:orientation="vertical">
+
+            //可用余额
+            <RelativeLayout
+                android:id="@+id/available_balance_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:paddingLeft="102dp"
+                android:paddingRight="102dp">
+
+                <TextView
+                    android:id="@+id/available_balance_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#212121"
+                    android:layout_alignParentLeft="true"
+                    android:text="账户可用余额"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true">
+
+                    <TextView
+                        android:id="@+id/available_balance_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#212121"
+                        android:text="0.00(元)"/>
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            //网贷
+            <RelativeLayout
+                android:id="@+id/net_loan_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:paddingLeft="102dp"
+                android:paddingRight="102dp">
+
+                <TextView
+                    android:id="@+id/net_loan_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#212121"
+                    android:text="网贷资产"
+                    android:layout_alignParentLeft="true"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true">
+
+                    <TextView
+                        android:id="@+id/net_loan_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#212121"
+                        android:text="0.00(元)"/>
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            //申购款
+            <RelativeLayout
+                android:id="@+id/apply_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:paddingLeft="102dp"
+                android:paddingRight="102dp">
+
+                <TextView
+                    android:id="@+id/apply_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#212121"
+                    android:text="申购款"
+                    android:layout_alignParentLeft="true"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true">
+
+                    <TextView
+                        android:id="@+id/apply_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#212121"
+                        android:text="0.00(元)"/>
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            //货币基金
+            <RelativeLayout
+                android:id="@+id/money_fund_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="64dp"
+                android:paddingLeft="102dp"
+                android:paddingRight="102dp">
+
+                <TextView
+                    android:id="@+id/money_fund_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#212121"
+                    android:text="货币基金"
+                    android:layout_alignParentLeft="true"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true">
+
+                    <TextView
+                        android:id="@+id/money_fund_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#212121"
+                        android:text="0.00(元)"/>
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#e6e6e6"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="20dp"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"
+                android:text="累积收益"/>
+
+            <TextView
+                android:id="@+id/earnings_accumulated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#f75a14"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:text="0.00"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e6e6e6"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#212121"
+                    android:text="网贷收益"/>
+
+                <TextView
+                    android:id="@+id/earnings_net_loan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#757575"
+                    android:layout_marginTop="4dp"
+                    android:text="0.00"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="48dp"
+                android:background="#e6e6e6"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#212121"
+                    android:text="货基收益"/>
+
+                <TextView
+                    android:id="@+id/earnings_money_fund"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#757575"
+                    android:layout_marginTop="4dp"
+                    android:text="0.00"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e6e6e6"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#212121"
+                android:text="体验金"/>
+
+            <TextView
+                android:id="@+id/earnings_tiyan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#757575"
+                android:layout_marginTop="4dp"
+                android:text="0.00"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
