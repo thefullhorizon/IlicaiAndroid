@@ -273,11 +273,10 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         int scrollViewMeasuredHeight = mScrollView.getChildAt(0).getMeasuredHeight();
         int height = mScrollView.getHeight();
         if ((scrollViewMeasuredHeight - height) >= mFlexibleSpaceImageHeight) {
-            onScrollDisplay(scrollY);
+            //onScrollDisplay(scrollY);
         } else {
             //顶部不滚动
         }
-
         onScrollDisplay(scrollY);
     }
 
