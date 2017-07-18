@@ -53,5 +53,13 @@
     <string name="brand_department_appointment_record">品牌公寓约看记录</string>
     <string name="my_password_manage_tips_txt">用于理财购买 / 转出</string>
 
+    <string name="personal_gender_cancel">取消</string>
+    <string name="capital_order_date">预约时间</string>
+    <string name="capital_order_deadline">预约期限</string>
+    <string name="ok">确定</string>
+
+    <string name="finance_system_fixing">当前系统正在升级维护中，维护期间暂停爱理财相关服务（转入、转出、购买、转让等），%s。望提前知晓，给你带来不便，还请谅解。</string>
+    <string name="title_activity_buy_rebate_voucher">在线支付</string>
+
 
 </resources>

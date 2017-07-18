@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/top_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:bg_color="@color/main_top_deep_color"
+        manyi:hasLeft="false"
+        manyi:isDark="true"
+        manyi:titleview_title_text="结果" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="#f7f7f7"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View style="@style/cell_divider_hor" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/image_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_48"
+                android:gravity="center"
+                android:text="@string/succeed"
+                android:textColor="#41974d"
+                android:textSize="72sp" />
+
+            <TextView
+                android:id="@+id/mesg_result_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="转出成功"
+                android:textColor="#de000000"
+                android:textSize="18sp" />
+
+            <!--<View-->
+            <!--style="@style/cell_divider_hor"-->
+            <!--android:layout_marginBottom="16dp"-->
+            <!--android:layout_marginTop="16dp" />-->
+
+            <TextView
+                android:id="@+id/roll_out_tips_mesg"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_32"
+                android:layout_marginRight="@dimen/_32"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="0元预计在xxxx到账安全卡"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/roll_out_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="资金将分多笔到账，请注意银行账户余额"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="top"
+        android:orientation="vertical">
+
+        <!--<View style="@style/cell_divider_hor" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp">
+
+            <Button
+                android:id="@+id/confirm_repay"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_complete_bg_selector"
+                android:enabled="true"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="#212121"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/confirm_success"
+                style="@style/RoundCornerBtnBg"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:enabled="true"
+                android:text="完成"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

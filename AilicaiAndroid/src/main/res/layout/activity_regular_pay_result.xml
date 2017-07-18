@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/top_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:bg_color="@color/main_top_deep_color"
+        manyi:hasLeft="false"
+        manyi:isDark="true"
+        manyi:titleview_title_text="结果" />
+
+    <LinearLayout
+        android:id="@+id/ll_result_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_8"
+            android:background="#e5e5e5" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/_24"
+            android:paddingLeft="@dimen/_32"
+            android:paddingRight="@dimen/_32"
+            android:paddingTop="@dimen/_24">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/tv_regular_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_16"
+                    android:layout_toRightOf="@+id/tv_icon_regular_result"
+                    android:text="您的申购已提交"
+                    android:textStyle="bold"
+                    android:textColor="#3aa78f"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_regular_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_regular_submit"
+                    android:layout_below="@+id/tv_regular_submit"
+                    android:layout_marginTop="8dp"
+                    android:text="钱包中100,000元已变成申购款"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_profit_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_regular_submit"
+                    android:layout_below="@+id/tv_regular_label"
+                    android:layout_marginTop="4dp"
+                    android:text="申购期间仍享预计年化3%的钱包收益"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_regular_process"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_regular_submit"
+
+                    android:layout_below="@+id/tv_profit_label"
+                    android:layout_marginTop="@dimen/_24"
+                    android:text="募集完成，等待审核"
+                    android:textColor="#212121"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_regular_process_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_regular_submit"
+                    android:layout_below="@+id/tv_regular_process"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingExtra="4dp"
+                    android:text="申购将于2016/07/26结束
+若募集完成, 将于2016/07/27(含)前起息
+若募集不满, 申购款将自动返回可用余额"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                    android:id="@+id/tv_icon_regular_result"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:layout_alignTop="@+id/tv_regular_submit"
+                    android:layout_alignBottom="@+id/tv_regular_submit"
+                    android:text="@string/select_checkbox_pre"
+                    android:textColor="#3aa78f"
+                    android:textSize="20sp" />
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                    android:id="@+id/tv_icon_regular_process"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:layout_alignTop="@+id/tv_regular_process"
+                    android:layout_alignBottom="@+id/tv_regular_process"
+                    android:text="@string/time_processing"
+                    android:textColor="#d2d5db"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tv_icon_regular_process"
+                    android:layout_below="@+id/tv_icon_regular_result"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="-6dp"
+                    android:layout_marginBottom="-6dp"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.0"
+                        android:background="#3aa78f"></View>
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.0"
+                        android:background="#d2d5db"></View>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e5e5e5" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_result_not_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/_32"
+        android:paddingRight="@dimen/_32"
+        android:paddingTop="@dimen/_48"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/pay_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/failured"
+                android:textSize="72sp" />
+
+            <TextView
+                android:id="@+id/pay_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="购买失败"
+                android:textColor="#212121"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/pay_tips_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/pay_detail_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <View
+                    style="@style/cell_divider_hor"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="12dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="理财产品："
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/product_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="购买金额："
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/money_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="理财期限："
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/period_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="年化利率："
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/rate_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/ll_activity_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_8"
+            android:layout_marginLeft="@dimen/_32"
+            android:layout_marginRight="@dimen/_32"
+            android:layout_marginTop="@dimen/_8"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="募集成功后您将获得一张"
+                android:textColor="#757575"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_activity_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="爱理财50元现金券"
+                android:textColor="@color/main_red_color"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/ll_activity_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/_16"
+            android:paddingLeft="@dimen/_32"
+            android:paddingRight="@dimen/_32"
+            android:paddingTop="@dimen/_16">
+
+            <Button
+                android:id="@+id/confirm_success"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_complete_bg_selector"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="完成"
+                android:textColor="#212121"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/confirm_repay"
+                style="@style/RoundCornerBtnBg"
+                android:layout_width="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="查看详情"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+
+        //Banner
+        <LinearLayout
+            android:id="@+id/layout_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@color/transparent"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#bdbdbd"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_12_bdbdbd"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="活动"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#bdbdbd"/>
+
+            </LinearLayout>
+
+            //ViewPager
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="116dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/color_e6e6e6" />
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpager_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/color_e6e6e6" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_indicators_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dip"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="12dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

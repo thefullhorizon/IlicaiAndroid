@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:manyi="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/title_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:hasDivider="false"
+        manyi:isDark="true"
+        manyi:titleview_title_text="@string/tiyanbao_titile"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/tiyanbao_swipe"
+        android:layout_below="@+id/title_back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.manyi.lovehouse.ui.agenda.view.BottomRefreshListView
+            android:id="@+id/tiyanbao_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/global_background"
+            android:divider="@null"
+            android:listSelector="@color/transparent"
+            android:scrollbars="vertical"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

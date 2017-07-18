@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/top_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:bg_color="@color/main_top_deep_line_color"
+        manyi:hasDivider="false"
+        manyi:isDark="true"
+        manyi:titleview_title_text="转入" />
+
+    <com.manyi.lovehouse.ui.indexmain.widget.RollHotTopicView
+        android:id="@+id/index_hot_topic_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <!--<TextView-->
+    <!--android:id="@+id/bank_card_name"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:paddingBottom="@dimen/_8"-->
+    <!--android:paddingLeft="16dp"-->
+    <!--android:paddingRight="@dimen/_16"-->
+    <!--android:paddingTop="@dimen/_8"-->
+    <!--android:text="银行卡()转入 钱包账户"-->
+    <!--android:textColor="#757575"-->
+    <!--android:textSize="14sp" />-->
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginTop="8dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <RelativeLayout
+            android:id="@+id/input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_8"
+            android:paddingTop="@dimen/_8">
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/price_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/input_price_edit"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:text="@string/help_payquestion"
+                android:textColor="#212121"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/input_price_edit_lable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/price_title"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/price_title"
+                android:background="@color/transparent"
+                android:textColor="#bdbdbd"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/input_price_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/price_title"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:inputType="numberDecimal"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:textColor="#212121"
+                android:textCursorDrawable="@null"
+                android:textSize="36sp" />
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/price_del"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/complaint_picture_detele"
+                android:textColor="#cccccc"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <View style="@style/cell_divider_hor" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/input_error_tips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="#e84a01"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/roll_in_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="活期宝余额 0 元"
+                android:textColor="#757575"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View style="@style/cell_divider_hor" />
+
+    <TextView
+        style="@style/text_12_757575"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="选择支付方式" />
+
+    <View style="@style/cell_divider_hor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/bank_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:id="@+id/bank_icon_img"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/bank_card" />
+
+            <CheckBox
+                android:id="@+id/bank_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/checkbox_bg"
+                android:button="@null" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_toLeftOf="@+id/bank_check_box"
+                android:layout_toRightOf="@+id/bank_icon_img"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/bank_name_text"
+                    style="@style/text_16_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="招商银行 (2723)" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View style="@style/cell_divider_hor" />
+
+        <RelativeLayout
+            android:id="@+id/account_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:id="@+id/account_icon_img"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/account_money" />
+
+            <CheckBox
+                android:id="@+id/account_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/checkbox_bg"
+                android:button="@null" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_toLeftOf="@+id/account_check_box"
+                android:layout_toRightOf="@+id/account_icon_img"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/account_name_text"
+                    style="@style/text_16_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="账户余额" />
+
+                <TextView
+                    android:id="@+id/account_desc_text"
+                    style="@style/text_12_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="当前可用余额2000.00元" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/open_net_bank_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f9f9f9"
+        android:paddingBottom="12dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/open_net_bank"
+            style="@style/text_12_757575"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical"
+            android:text="详情 >"
+            android:textColor="#005ebd"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <View style="@style/cell_divider_hor" />
+
+    <LinearLayout
+        android:id="@+id/activity_layout_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View style="@style/cell_divider_hor" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/hd_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="活动"
+                android:textColor="#757575"
+                android:textSize="14sp" />
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/activity_help_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@+id/hd_title"
+                android:background="@drawable/bg_black_a10_selector_round"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/help_ic"
+                android:textColor="#757575"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/activity_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColor="#212121"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <View style="@style/cell_divider_hor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/roll_in_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:text="预计起息，次日可查看收益"
+            android:textColor="#757575"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/confirm_btn"
+            style="@style/RoundCornerBtnBg"
+            android:layout_marginTop="@dimen/_12"
+            android:background="@drawable/finace_btn_positive_bg_selector"
+            android:enabled="true"
+            android:text="确认" />
+
+        <LinearLayout
+            android:id="@+id/agreement_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/agreement_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:checked="true"
+                android:drawableLeft="@drawable/agreement_box_bg"
+                android:drawablePadding="4dp"
+                android:text="我已阅读并同意"
+                android:textColor="@color/black_54_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/user_agreement_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="《用户协议》"
+                android:textColor="#005ebd"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

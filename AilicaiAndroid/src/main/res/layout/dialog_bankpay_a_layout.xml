@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_corners_dialog_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/titleview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="输入交易密码"
+            android:textColor="@color/black_80_color"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            android:id="@+id/close_button"
+            android:layout_width="@dimen/_24"
+            android:layout_height="@dimen/_24"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/_12"
+            android:background="@drawable/bg_black_a10_selector_round"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@string/delete"
+            android:textColor="#757575"
+            android:textSize="14dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/black_20_color" />
+
+    <ViewSwitcher
+        android:id="@+id/msg_viewswitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inAnimation="@anim/activity_lollipop_open_right_enter"
+        android:outAnimation="@anim/activity_lollipop_open_left_exit">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/pwd_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/moneyout_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/_12"
+                    android:layout_marginRight="@dimen/_12"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text=""
+                    android:textColor="@color/color_757575"
+                    android:textSize="14dp" />
+
+
+                <TextView
+                    android:id="@+id/money_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/dialog_money_color"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:id="@+id/pwdView_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp">
+
+                    <com.jungly.gridpasswordview.GridPasswordView
+                        android:id="@+id/gpv_view"
+                        android:layout_width="269dp"
+                        android:layout_height="44dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/gridpassword_bg"
+                        app:gpvLineColor="#DDDDDD"
+                        app:gpvLineWidth="1dp"
+                        app:gpvTextColor="@android:color/black"
+                        app:gpvTextSize="16dp" />
+                </FrameLayout>
+
+                <View
+                    android:id="@+id/change_pay_type_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/black_20_color" />
+
+                <RelativeLayout
+                    android:id="@+id/change_pay_type_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/frompay_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="2dp"
+                        android:text=""
+                        android:textColor="@color/black_50_color"
+                        android:textSize="14dp" />
+
+
+                    <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                        android:id="@+id/money_pay_ico"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="4dp"
+                        android:layout_toLeftOf="@+id/frompay_view"
+                        android:gravity="center"
+                        android:text="@string/account_bankcard"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14dp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/pwd_progress_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/pwd_layout"
+                android:layout_alignTop="@+id/pwd_layout"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+                <include
+                    layout="@layout/comm_progress_l"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/msgcode_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/message_content_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="4dp"
+                    android:text="短信验证码已发送到"
+                    android:textColor="@color/black_50_color"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/phone_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text=""
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_16"
+                    android:layout_marginLeft="@dimen/_24"
+                    android:layout_marginRight="@dimen/_24"
+                    android:layout_marginTop="@dimen/_16">
+
+                    <EditText
+                        android:id="@+id/message_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_48"
+                        android:background="@drawable/shape_white_corners_bg"
+                        android:ems="12"
+                        android:hint="@string/pay_pwd_verify_code"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:maxLines="1"
+                        android:paddingEnd="@dimen/_96"
+                        android:paddingLeft="@dimen/_8"
+                        android:paddingRight="@dimen/_8"
+                        android:text=""
+                        android:textSize="18dp" />
+
+                    <Button
+                        android:id="@+id/msg_resend_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_32"
+                        android:layout_alignRight="@+id/message_edit"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_8"
+                        android:layout_marginRight="@dimen/_8"
+                        android:background="@drawable/btn_getmsg_60s_selector"
+                        android:ems="7"
+                        android:gravity="center"
+                        android:text="重新获取"
+                        android:textColor="@color/pay_send_code_btn_color_selector"
+                        android:textSize="16dp" />
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="@dimen/_32"
+                        android:layout_alignLeft="@id/msg_resend_btn"
+                        android:layout_centerVertical="true"
+                        android:background="@color/black_20_color"
+                        android:visibility="gone" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/black_20_color" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/message_cancel_btn"
+                        style="@style/btnBorderStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_48"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:text="取消"
+                        android:textSize="16dp" />
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:background="@color/black_20_color" />
+
+                    <Button
+                        android:id="@+id/message_done_btn"
+                        style="@style/btnBorderStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_48"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:text="确定"
+                        android:textSize="16dp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/msgcode_progress_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/msgcode_layout"
+                android:layout_alignTop="@+id/msgcode_layout"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+                <include
+                    layout="@layout/comm_progress_l"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </ViewSwitcher>
+
+
+</LinearLayout>

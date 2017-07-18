@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background">
+
+    <LinearLayout
+        android:id="@+id/layout_top_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="2px"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.manyi.lovehouse.widget.IWTopTitleView
+                android:id="@+id/webview_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                manyi:isDark="true" />
+
+            <LinearLayout
+                android:id="@+id/transaction_filter_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center|bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/transaction_type_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:alpha="0.87"
+                    android:gravity="center"
+                    android:text="全部交易"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                    android:id="@+id/text_filter_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="center"
+                    android:text="@string/chevous_down"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_filter_start_date"
+                    style="@style/text_14_333333_e84a01"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_transaction_filter_selector"
+                    android:gravity="center"
+                    android:text="2015-12-01" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:text="至"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/text_filter_end_date"
+                    style="@style/text_14_333333_e84a01"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_transaction_filter_selector"
+                    android:gravity="center"
+                    android:text="2015-12-30" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_query"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="@dimen/_16"
+                android:layout_marginRight="@dimen/_16"
+                android:layout_weight="3.0"
+                android:background="@drawable/bg_transaction_query"
+                android:gravity="center"
+                android:text="查询"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="8dip"
+            android:layout_marginTop="8dip"
+            android:background="#e8e8e8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/_10"
+            android:paddingLeft="@dimen/_16"
+            android:paddingRight="@dimen/_16">
+
+            <CheckBox
+                android:id="@+id/check_filter_last_week"
+                style="@style/text_14_333333_e84a01"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/transaction_filter_month_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="近一周"
+                android:textColor="@drawable/button_text_color_selector" />
+
+            <CheckBox
+                android:id="@+id/check_filter_last_month"
+                style="@style/text_14_333333_e84a01"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="@dimen/_16"
+                android:layout_weight="1"
+                android:background="@drawable/transaction_filter_month_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="近一月"
+                android:textColor="@drawable/button_text_color_selector" />
+
+            <CheckBox
+                android:id="@+id/check_filter_three_month"
+                style="@style/text_14_333333_e84a01"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="@dimen/_16"
+                android:layout_weight="1"
+                android:background="@drawable/transaction_filter_month_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="近三月"
+                android:textColor="@drawable/button_text_color_selector" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#e8e8e8" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_top_info">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.manyi.lovehouse.ui.agenda.view.BottomRefreshListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#E5E5E5"
+                android:dividerHeight="0.5dip" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/empty_data" />
+
+            <TextView
+                android:id="@+id/noData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16"
+                android:gravity="center"
+                android:text="当前没有交易记录"
+                android:textColor="#757575"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/filter_shade_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_a40"
+            android:clickable="false"
+            android:visibility="gone" />
+
+    </FrameLayout>
+</RelativeLayout>

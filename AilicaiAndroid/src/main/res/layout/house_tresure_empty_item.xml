@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/treasure_empty_tiyanbao_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_e5e5e5"/>
+
+        <TextView
+            android:id="@+id/tiyanbao_number_tips"
+            style="@style/text_12_757575"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:text="到期体验宝共计"/>
+
+        <TextView
+            android:id="@+id/treasure_empty_tiyanbao_number"
+            style="@style/text_12_212121"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@+id/tiyanbao_number_tips"/>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/account_arrow_selector"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/treasure_empty_action_layout"
+        android:layout_below="@+id/tiyanbao_number_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/empty_data"/>
+
+
+        <TextView
+            android:id="@+id/treasure_empty_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:text="暂无回款的项目"
+            android:textColor="@color/pinkish_grey"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/treasure_empty_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:background="@drawable/common_red_btn_bg_nor"
+            android:gravity="center"
+            android:paddingBottom="7dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="7dp"
+            android:text="去申购"
+            android:textColor="#ffffff"
+            android:textSize="14sp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/network_error_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/error_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:scaleType="center"
+            android:src="@drawable/no_internet"/>
+
+        <TextView
+            android:id="@+id/error_text"
+            style="@style/text_14_8a000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.5"
+            android:maxLines="1"
+            android:text="加载失败"/>
+
+        <Button
+            android:id="@+id/error_btn"
+            style="@style/RoundCornerBtnBg"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:stateListAnimator="@null"
+            android:text="重新加载"
+            android:textSize="13sp"
+            android:textStyle="normal"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/treasure_empty_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dip"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

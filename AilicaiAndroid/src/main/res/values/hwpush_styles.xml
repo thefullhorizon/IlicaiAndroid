@@ -16,4 +16,9 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="CustomPopAnimOnLeft">
+        <item name="android:windowEnterAnimation">@anim/anim_pop_start_top_left</item>
+        <item name="android:windowExitAnimation">@anim/anim_pop_end_top_left</item>
+    </style>
+
 </resources>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/_16"
+    android:paddingTop="@dimen/_16"
+    android:paddingBottom="@dimen/_16">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_16">
+
+        <TextView
+            android:id="@+id/text_transaction_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:text="aaaaa"
+            android:textStyle="bold"
+            android:textColor="@color/color_black"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/text_transaction_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/text_transaction_amount"
+            android:layout_marginRight="5dip"
+            android:layout_centerVertical="true"
+            android:gravity="left"
+            android:text="bbbbb"
+            android:singleLine="true"
+            android:textColor="@color/color_black"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_16"
+        android:layout_marginTop="4dip">
+
+        <TextView
+            android:id="@+id/text_transaction_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="left"
+            android:text="dddd"
+            android:textColor="#ADB4BE"
+            android:textSize="12sp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_transaction_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_transaction_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ADB4BE"
+                android:text="结果"
+                android:textSize="12sp"/>
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/text_result_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:gravity="center"
+                android:text="@string/homepage_arrow_left"
+                android:textColor="#ADB4BE"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_reason_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="8dip"
+            android:layout_marginTop="8dip"
+            android:background="#E5E5E5"/>
+
+        <TextView
+            android:id="@+id/text_reason_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dip"
+            android:gravity="left"
+            android:textColor="@color/color_e84a01"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

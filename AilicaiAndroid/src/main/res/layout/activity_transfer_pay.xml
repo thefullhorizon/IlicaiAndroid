@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/top_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:bg_color="@color/main_top_deep_color"
+        manyi:isDark="true"
+        manyi:titleview_title_text="转让" />
+
+    <TextView
+        android:id="@+id/tv_last_money_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff6bf"
+        android:paddingBottom="@dimen/_8"
+        android:paddingLeft="@dimen/_16"
+        android:paddingRight="@dimen/_16"
+        android:paddingTop="@dimen/_8"
+        android:text="提示：您持有的本金不足1000元，需全额转让。"
+        android:textColor="#fa6700"
+        android:textSize="13sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_leave_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_8"
+        android:paddingLeft="@dimen/_16"
+        android:paddingRight="@dimen/_16"
+        android:paddingTop="@dimen/_8"
+        android:textColor="#757575"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_alignParentTop="true" />
+
+        <RelativeLayout
+            android:id="@+id/input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_8"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="@dimen/_8">
+
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/price_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/input_price_edit"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:text="@string/help_payquestion"
+                android:textColor="#212121"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/input_price_edit_lable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/price_title"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/price_title"
+                android:background="@color/transparent"
+                android:textColor="#bdbdbd"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/input_price_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/price_title"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:inputType="numberDecimal"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:textColor="#212121"
+                android:textCursorDrawable="@null"
+                android:textSize="36sp" />
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/tv_clear"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/complaint_picture_detele"
+                android:textColor="#cccccc"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/edit_line"
+            style="@style/cell_divider_hor"
+            android:layout_below="@+id/input_layout"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
+
+        <TextView
+            android:id="@+id/input_error_tips"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/edit_line"
+            android:layout_marginLeft="16dp"
+            android:gravity="center_vertical"
+            android:textColor="#e84a01"
+            android:textSize="14sp"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:id="@+id/rl_my_account"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/edit_line"
+            android:layout_marginLeft="16dp">
+
+            <TextView
+                android:id="@+id/regular_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="可转本金 0 元"
+                android:textColor="#757575"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_all_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_16"
+                android:padding="4dp"
+                android:text="全额转让"
+                android:textColor="#005ebd"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_below="@+id/rl_my_account" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View style="@style/cell_divider_hor" />
+
+        <RelativeLayout
+            android:id="@+id/rl_select_voucher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_12"
+            android:paddingLeft="@dimen/_16"
+            android:paddingRight="@dimen/_16"
+            android:paddingTop="@dimen/_12">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.87"
+                android:text="转让价格"
+                android:textColor="#212121"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_ticket_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_8"
+                android:text="0.00元"
+                android:textColor="#212121"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/line_activity"
+                style="@style/cell_divider_hor"
+                android:layout_marginLeft="@dimen/_16" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line_activity"
+                android:paddingBottom="@dimen/_12"
+                android:paddingLeft="@dimen/_16"
+                android:paddingRight="@dimen/_16"
+                android:paddingTop="@dimen/_12">
+
+                <RelativeLayout
+                    android:id="@+id/rl_activity_click"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_activity_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.87"
+                        android:text="手续费"
+                        android:textColor="#212121"
+                        android:textSize="14sp" />
+
+                    <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="6dp"
+                        android:layout_toRightOf="@+id/tv_activity_label"
+                        android:background="@drawable/bg_black_a10_selector_round"
+                        android:gravity="center"
+                        android:text="@string/help_ic"
+                        android:textColor="#212121"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_fee_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_8"
+                        android:text="0.00元"
+                        android:textColor="#212121"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_profit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_16"
+        android:layout_marginRight="@dimen/_16"
+        android:layout_marginTop="12dp"
+        android:textColor="#757575"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/confirm_btn"
+        style="@style/RoundCornerBtnBg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/_16"
+        android:layout_marginRight="@dimen/_16"
+        android:layout_marginTop="@dimen/_12"
+        android:enabled="true"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="确认转让"
+        android:textColor="@color/finace_btn_positive_text_color"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

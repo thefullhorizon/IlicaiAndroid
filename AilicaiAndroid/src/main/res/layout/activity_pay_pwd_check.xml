@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.manyi.lovehouse.widget.IWTopTitleView
+            android:id="@+id/order_detail_top_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            manyi:hasLeft="true"
+            manyi:titleview_title_text="@string/pay_pwd_check" />
+
+        <TextView
+            android:id="@+id/tvCancel"
+            style="@style/imgBtnBorderlessStyle"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignBottom="@+id/order_detail_top_title"
+            android:gravity="center"
+            android:scaleType="center"
+            android:text="取消"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <include android:id="@+id/openaccountStepContainer" layout="@layout/layout_open_account_step01" android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvPayPwdHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/pay_pwd_verify"
+            android:textColor="@color/color_757575"
+            android:textSize="14sp" />
+
+        <com.jungly.gridpasswordview.GridPasswordView
+            android:id="@+id/gpv_custom"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dip"
+            android:layout_marginRight="16dip"
+            android:background="@drawable/gridpassword_bg"
+            app:gpvLineColor="@color/global_background"
+            app:gpvLineWidth="3dp"
+            app:gpvTextColor="@android:color/black"
+            app:gpvTextSize="25sp" />
+
+    </LinearLayout>
+</LinearLayout>

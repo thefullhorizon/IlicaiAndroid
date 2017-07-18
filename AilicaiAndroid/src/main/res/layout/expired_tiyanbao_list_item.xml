@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/tiyanbao_item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dip"
+        android:background="@drawable/white_corner_2_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dip"
+            android:layout_marginRight="16dip"
+            android:layout_marginTop="12dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                    android:id="@+id/product_left_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fang_soild_border"
+                    android:textColor="#e84a01"
+                    android:textSize="16sp"/>
+
+
+                <TextView
+                    android:id="@+id/tiyanbao_name"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:singleLine="true"
+                    android:text="字TH150709号"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dip"
+            android:layout_marginLeft="16dip"
+            android:layout_marginRight="16dip"
+            android:layout_marginTop="10dip"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tiyanbao_label_left"
+                    style="@style/text_13_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="回款(元)"/>
+
+                <TextView
+                    android:id="@+id/tiyanbao_value_left"
+                    style="@style/text_16_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dip"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tiyanbao_label_right"
+                    style="@style/text_13_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="回款日期"/>
+
+                <TextView
+                    android:id="@+id/tiyanbao_value_right"
+                    style="@style/text_16_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dip"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tiyanbao_yearinterestrate"
+            style="@style/text_12_757575"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="预计年化7.9% | 期限 180天 "/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/house_treasure_list_shadow"/>
+
+</LinearLayout>

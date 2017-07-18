@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        manyi:titleview_title_text="@string/pay_pwd_reset" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16"
+        android:orientation="vertical">
+
+        <View style="@style/cell_divider_hor" />
+
+        <RelativeLayout
+            android:id="@+id/rlPayPwdModify"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="@dimen/_16">
+
+            <TextView
+                android:id="@+id/tvPayPwdNameExplain"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/pay_pwd_name"
+                android:textColor="@color/color_757575"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etPayPwdName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/idCardScan"
+                android:layout_toRightOf="@+id/tvPayPwdNameExplain"
+                android:background="@null"
+                android:hint="@string/pay_pwd_name_value"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/idCardScan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/scan_ceram_outline"
+                android:gravity="center"
+                android:text="@string/scan_camera"
+                android:textColor="@color/login_close_btn_iconfont_color"
+                android:textSize="19sp" />
+
+        </RelativeLayout>
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="@dimen/_16" />
+
+        <RelativeLayout
+            android:id="@+id/rlPayPwdReset"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="@dimen/_16"
+            android:paddingRight="@dimen/_16">
+
+            <TextView
+                android:id="@+id/tvPayPwdIdCardExplain"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/pay_pwd_id_card"
+                android:textColor="@color/color_757575"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etPayPwdIdCard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/tvPayPwdIdCardExplain"
+                android:background="@null"
+                android:digits="0123456789xX"
+                android:hint="@string/pay_pwd_id_card_number"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <View style="@style/cell_divider_hor" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btPayPwdNext"
+        style="@style/RoundCornerBtnBg"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"
+        android:layout_marginTop="16dip"
+        android:enabled="false"
+        android:text="下一步" />
+
+</LinearLayout>

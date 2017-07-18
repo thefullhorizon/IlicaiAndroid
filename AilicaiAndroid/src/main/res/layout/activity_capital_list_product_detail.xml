@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:manyi="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/global_background"
+              android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/iw_title_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:hasDivider="false"
+        manyi:isDark="true"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff"
+            android:paddingBottom="24dp"
+            android:paddingTop="24dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/product_detail_label_left"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申购金额(元)"/>
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                    android:id="@+id/product_detail_value_left"
+                    style="@style/text_22_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_e6e6e6"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/product_detail_label_right"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申购进度"/>
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                    android:id="@+id/product_detail_value_right"
+                    style="@style/text_22_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <com.manyi.lovehouse.widget.CapitalProductProgressBar
+            android:id="@+id/time_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="@color/color_ffffff"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/color_e6e6e6"/>
+
+            <LinearLayout
+                android:id="@+id/apply_time_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/apply_time_title"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申购时间"/>
+
+                <TextView
+                    android:id="@+id/apply_time"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/investment_deadline_title"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="投资期限"/>
+
+                <TextView
+                    android:id="@+id/investment_deadline"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/hold_capital_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="9dp">
+
+                <TextView
+                    android:id="@+id/hold_capital_title"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="持有金额"/>
+
+                <TextView
+                    android:id="@+id/hold_capital"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/transfer_price_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="转让价格"/>
+
+                <TextView
+                    android:id="@+id/transfer_price"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/expect_year_rate_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/expect_year_rate_title"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="预计年化"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/expect_year_rate"
+                        style="@style/text_14_757575"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/add_rate_explain"
+                        style="@style/text_12_757575"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/expect_income_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/expect_income_title"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="预计收益"/>
+
+                <TextView
+                    android:id="@+id/expect_income"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/old_regular_detail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_e6e6e6"/>
+
+            <TextView
+                style="@style/text_16_de212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="13dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="13dp"
+                android:text="原房产宝详情"/>
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/account_arrow_selector"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/agreement_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_ffffff"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                style="@style/text_16_de212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="13dp"
+                android:text="借款协议"/>
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/transfer_agreement_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_ffffff"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/text_16_de212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="13dp"
+                android:text="债权转让协议"/>
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/transfer_capital_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_ffffff"
+            android:paddingBottom="13dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="13dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/has_transfer_capital"
+                style="@style/text_16_de212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="已转让 6000元"/>
+
+            <TextView
+                android:id="@+id/transfering_capital"
+                style="@style/text_16_26b095"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@+id/transfer_right"
+                android:text="1000元转让中"/>
+
+            <View
+                android:id="@+id/transfer_right"
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/chevrons"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/compenstate_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/compenstate_tips"
+                style="@style/text_14_757575"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/compenstate_total"
+                style="@style/text_14_757575"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tiyanbao_tips"
+            style="@style/text_14_757575"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:id="@+id/reason_cannot_transfer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/color_ffffff"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/text_16_de212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="13dp"
+                android:text="不可转让"/>
+
+            <TextView
+                android:id="@+id/reason_cannot_transfer_text"
+                style="@style/text_14_757575"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/to_transfer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/color_ffffff"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/text_16_de212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="13dp"
+                android:text="发起转让"/>
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/common_tips"
+            style="@style/text_14_757575"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

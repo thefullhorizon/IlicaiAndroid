@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="roll_out_time_text"><![CDATA[<font color="#8a000000">预计</font><font color="#e84a01"> %1$s </font><font color="#8a000000">到账</font>]]></string>
+    <string name="roll_out_tips_text"><![CDATA[<font color="#8a000000">%1$s元预计在%2$s到账安全卡</font>]]></string>
+    <string name="roll_in_time_text"><![CDATA[<font color="#757575">钱包预计</font><font color="#e84a01"> %1$s </font><font color="#757575">起息，次日可查看收益</font>]]></string>
+    <string name="roll_in_amount_text">成功转入%1$s元</string>
+    <string name="topup_amount_text">成功充值%1$s元</string>
+    <string name="reaular_pay_amount_text">购买金额须为%1$s的整数倍</string>
+    <string name="reaular_pay_small_amount_text">购买金额小于起购金额</string>
+    <string name="roll_out_bank_card_text"><![CDATA[<font color="#757575">钱包账户 转出 %1$s卡(尾号%2$s)</font>]]></string>
+    <string name="account_withdraw_bank_card_text"><![CDATA[<font color="#757575">账户余额 提现 %1$s卡(尾号%2$s)</font>]]></string>
+    <string name="roll_in_bank_card_text"><![CDATA[<font color="#8a000000">%1$s卡(尾号%2$s) 转入 钱包账户</font>]]></string>
+
+
+    <string name="rollin_fail_tips_txt"><![CDATA[<font color="#8a000000">如已扣款，资金将在%1$s个工作日内退回到<br>安全卡%2$s</font>]]></string>
+
+    <string name="capital_regular_help_tips_title">历史平均收益率</string>
+    <string name="capital_regular_help_tips_content">历史平均收益率 = 曾持有的所有产品收益率的加权平均,其中加权权重 = 单个产品持有本金 / 总投资额</string>
+    <string name="i_know">我知道了</string>
+    <string name="capital_regular_order_tips_title">提示</string>
+    <string name="capital_regular_order_tips_content">预约功能正在开发中</string>
+    <string name="capital_regular_transfer_tips">资产持有超过30天才能转让，再等等吧！</string>
+
+    <!--Pay Password Manage-->
+    <string name="pay_pwd_manage">交易密码管理</string>
+    <string name="pay_pwd_modify">修改交易密码</string>
+    <string name="pay_pwd_check">验证交易密码</string>
+    <string name="pay_pwd_reset">重置交易密码</string>
+    <string name="pay_pwd_verify_phone">验证手机号</string>
+    <string name="pay_pwd_verify_phone_hint">验证码已发送至以下手机，请查收</string>
+    <string name="pay_pwd_verify_code">填写验证码</string>
+    <string name="pay_pwd_name">姓名</string>
+    <string name="pay_pwd_name_value">请输入您的姓名</string>
+    <string name="pay_pwd_id_card">身份证</string>
+    <string name="pay_pwd_id_card_number">请输入正确的身份证</string>
+    <string name="pay_pwd_hint">为了您的账户安全，请设置交易密码</string>
+    <string name="pay_pwd_show">显示密码</string>
+    <string name="pay_pwd_differ">两次密码输入不一致</string>
+    <string name="pay_pwd_verify">请输入交易密码，以验证身份</string>
+    <!--Pay Password Manage-->
+
+    <string name="regular_annual_rate_and_term">预计年化%1$s％,投资期限%2$d天</string>
+    <string name="regular_detail_remaining_day">剩余  %1$d天</string>
+
+    <!-- OpenAccount开户 START -->
+    <string name="support_cards">支持银行</string>
+    <string name="open_account">开户</string>
+    <!-- OpenAccount开户 End -->
+
+    <string name="phone_help">银行预留手机号是办理该银行卡时所填写的手机号。若没有预留、忘记或已停用，请联系银行客服更新处理</string>
+
+    <string name="transfer_tips_not_enough">提示：您持有的本金不足%1$s元，需全额转让。</string>
+    <string name="transfer_most">可转额度%1$s元(持有本金)</string>
+    <string name="can_not_transfer">不可转让</string>
+    <string name="stop_transfer">暂不转让</string>
+    <string name="friendly_reminder">友情提示</string>
+    <string name="continue_transfer">继续</string>
+    <string name="transfer">转让</string>
+    <string name="transfer_pay_amount_text">请输入%1$s的整数倍</string>
+    <string name="tiyanbao_titile">体验宝</string>
+    <string name="purchase_money_format">%1$d笔共%2$s元</string>
+</resources>

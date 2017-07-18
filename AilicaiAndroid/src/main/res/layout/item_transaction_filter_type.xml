@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cityNameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_16"
+    android:paddingTop="@dimen/_14"
+    android:paddingBottom="@dimen/_14">
+
+    <TextView
+        android:id="@+id/text_type_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:duplicateParentState="true"
+        android:gravity="center"
+        android:text="上海市"
+        android:textColor="@color/radiobutton_text_color_normal"
+        android:textSize="16dp" />
+
+    <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+        android:id="@+id/text_type_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:text="@string/check"
+        android:textColor="@color/main_red_color"
+        android:textSize="18sp" />
+</RelativeLayout>

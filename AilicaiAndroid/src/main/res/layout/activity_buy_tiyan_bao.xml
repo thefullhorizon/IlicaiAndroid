@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/top_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:bg_color="@color/main_top_deep_color"
+        manyi:isDark="true"
+        manyi:titleview_title_text="购买" />
+
+    <TextView
+        android:id="@+id/tv_ti_yan_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_8"
+        android:paddingLeft="@dimen/_16"
+        android:paddingRight="@dimen/_16"
+        android:paddingTop="@dimen/_8"
+        android:text="体验宝(年化12.88% 5天)"
+        android:textColor="#757575"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View style="@style/cell_divider_hor"></View>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_8"
+            android:paddingLeft="@dimen/_16"
+            android:paddingRight="@dimen/_16"
+            android:paddingTop="@dimen/_8">
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/price_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_money_count"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:text="@string/help_payquestion"
+                android:textColor="#212121"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_money_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/price_title"
+                android:text="0"
+                android:textColor="#9b9b9b"
+                android:textSize="36sp" />
+        </RelativeLayout>
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="@dimen/_16"></View>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:text="金额不可修改"
+            android:textColor="#757575"
+            android:textSize="13sp" />
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginTop="10dp"></View>
+
+
+    </LinearLayout>
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginTop="8dp"></View>
+
+    <RelativeLayout
+        android:id="@+id/rl_coupon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/_10"
+        android:paddingLeft="@dimen/_16"
+        android:paddingRight="@dimen/_16"
+        android:paddingTop="@dimen/_10">
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="卡券"
+            android:textColor="#212121"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_ti_yan_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/icon_arrow"
+            android:layout_toRightOf="@+id/tv_text"
+            android:gravity="right"
+            android:text="暂无体验金"
+            android:textColor="#212121"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/icon_arrow"
+            android:layout_width="7dp"
+            android:layout_height="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_6"
+            android:background="@drawable/account_arrow_selector"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <View style="@style/cell_divider_hor"></View>
+
+    <TextView
+        android:id="@+id/tv_profit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_16"
+        android:layout_marginRight="@dimen/_16"
+        android:layout_marginTop="@dimen/_12"
+        android:text="预计收益 12.22 元，收益回款后请于7月29日前提现转出，逾期将清零。"
+        android:textColor="#757575"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/btn_confirm"
+        style="@style/RoundCornerBtnBg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/_16"
+        android:layout_marginRight="@dimen/_16"
+        android:layout_marginTop="@dimen/_12"
+        android:enabled="false"
+        android:gravity="center"
+        android:text="确认"
+        android:textColor="@color/finace_btn_positive_text_color"
+        android:textSize="18sp" />
+</LinearLayout>

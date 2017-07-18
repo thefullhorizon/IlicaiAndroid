@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/capital_header_bg"
+            android:orientation="horizontal"
+            android:paddingBottom="18dp"
+            android:paddingTop="18dp">
+
+            <LinearLayout
+                android:id="@+id/capital_help"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="36"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView
+                        style="@style/text_14_ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="持有本金(元)"/>
+                    <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+
+                        style="@style/text_14_ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/help_ic"/>
+                </LinearLayout>
+
+
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                    android:id="@+id/capital_total"
+                    style="@style/text_20_ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_ffffff"
+                />
+            <LinearLayout
+                android:id="@+id/preProfit_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="32"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    style="@style/text_14_ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="待收收益(元)"/>
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                    android:id="@+id/pre_profit"
+                    style="@style/text_20_ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_ffffff"
+                />
+
+            <LinearLayout
+                android:id="@+id/accumulated_income_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="32"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    style="@style/text_14_ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="累计收益(元)"/>
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                    android:id="@+id/accumulated_income"
+                    style="@style/text_20_ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/capital_regular_layout"
+            android:layout_width="match_parent"
+            android:layout_height="44dip"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/capital_regular_apply"
+                style="@style/text_14_c0c0c0_c20c0c"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/text_underline_bg_selector"
+                android:gravity="center"
+                android:text="申购"/>
+
+
+            <TextView
+                android:id="@+id/capital_regular_hold"
+                style="@style/text_14_c0c0c0_c20c0c"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/text_underline_bg_selector"
+                android:gravity="center"
+                android:text="持有"/>
+
+
+            <TextView
+                android:id="@+id/capital_regular_expired"
+                style="@style/text_14_c0c0c0_c20c0c"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/text_underline_bg_selector"
+                android:gravity="center"
+                android:text="到期"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

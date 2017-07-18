@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/dialog_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/global_background"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tvCancelBooking"
+                style="@style/text_16_212121"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/user_gender_cancel_btn_bg"
+                android:gravity="center"
+                android:paddingBottom="14dp"
+                android:paddingTop="14dp"
+                android:text="取消预约" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCancel"
+            style="@style/text_16_212121"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/user_gender_cancel_btn_bg"
+            android:gravity="center"
+            android:paddingBottom="14dp"
+            android:paddingTop="14dp"
+            android:text="@string/personal_gender_cancel" />
+    </LinearLayout>
+</LinearLayout>

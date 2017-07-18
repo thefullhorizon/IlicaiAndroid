@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/top_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:bg_color="@color/main_top_deep_color"
+        manyi:isDark="true"
+        manyi:titleview_title_text="提现" />
+
+    <com.manyi.lovehouse.ui.indexmain.widget.RollHotTopicView
+        android:id="@+id/index_hot_topic_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/bank_card_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/_8"
+        android:paddingLeft="16dp"
+        android:paddingRight="@dimen/_16"
+        android:paddingTop="@dimen/_8"
+        android:text="账户余额 提现 银行卡()"
+        android:textColor="#757575"
+        android:textSize="14sp" />
+
+    <View style="@style/cell_divider_hor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <RelativeLayout
+            android:id="@+id/input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_8"
+            android:paddingTop="@dimen/_8">
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/price_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/input_price_edit"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:text="@string/help_payquestion"
+                android:textColor="#212121"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/input_price_edit_lable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/price_title"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/price_title"
+                android:background="@color/transparent"
+                android:textColor="#bdbdbd"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/input_price_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/price_title"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:inputType="numberDecimal"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:textColor="#212121"
+                android:textCursorDrawable="@null"
+                android:textSize="36sp" />
+
+            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                android:id="@+id/price_del"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/complaint_picture_detele"
+                android:textColor="#cccccc"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <View style="@style/cell_divider_hor" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/input_error_tips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="#e84a01"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/current_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="账户可用余额 0 元"
+                android:textColor="#757575"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <View style="@style/cell_divider_hor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/roll_out_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:text="预计到账"
+            android:textColor="@color/black_54_color"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/confirm_btn"
+            style="@style/RoundCornerBtnBg"
+            android:enabled="true"
+            android:text="确认" />
+
+    </LinearLayout>
+</LinearLayout>

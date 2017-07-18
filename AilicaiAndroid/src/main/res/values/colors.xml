@@ -95,4 +95,25 @@
     <color name="color_757575">#757575</color>
     <color name="color_BDBDBD">#bdbdbd</color>
 
+    <!--转出、转入图标颜色-->
+    <color name="color_succeed">#41974d</color>
+    <color name="color_failed">#9d9d9d</color>
+    <color name="color_waiting">#e84a01</color>
+
+    <color name="color_e84a01">#e84a01</color>
+    <!-- 对话框颜色 -->
+    <color name="radiobutton_text_color_normal">#333333</color>
+    <color name="dialog_blue">#265DB6</color>
+    <color name="color_e6e6e6">#e6e6e6</color>
+
+    <color name="color_265db6">#265db6</color>
+    <color name="color_area_metro_selected">#F9F9F9</color>
+
+    <color name="color_f15a4c">#f15a4c</color>
+
+    <color name="color_e5e5e5">#e5e5e5</color>
+    <color name="color_26b095">#26b095</color>
+    <color name="color_005ebd">#005ebd</color>
+
+
 </resources>

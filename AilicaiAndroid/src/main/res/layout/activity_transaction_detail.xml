@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        manyi:isDark="true"
+        manyi:titleview_title_text="交易详情"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/global_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_status_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16"
+                    android:layout_marginLeft="@dimen/_16"
+                    android:gravity="center"
+                    android:textColor="#212121"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/text_transaction_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16"
+                    android:layout_marginLeft="@dimen/_16"
+                    android:gravity="center"
+                    android:textColor="#212121"
+                    android:textSize="32sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e8e8e8"
+                    android:layout_marginTop="32dip"
+                    android:layout_marginBottom="5dip"/>
+
+                <LinearLayout
+                    android:id="@+id/layout_item_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/_16"
+                    android:paddingRight="@dimen/_16"
+                    android:paddingTop="@dimen/_8"
+                    android:paddingBottom="@dimen/_8"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_10"
+                        android:layout_weight="3.0"
+                        android:text="        原因"
+                        android:textColor="@color/color_757575"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/text_reason_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="center_vertical|left"
+                        android:textColor="#212121"
+                        android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view_split_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="16dp"
+                    android:background="#eaeaea"
+                    android:layout_marginBottom="5dip"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/_16"
+                    android:paddingRight="@dimen/_16"
+                    android:paddingTop="@dimen/_8"
+                    android:paddingBottom="@dimen/_8"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_10"
+                        android:layout_weight="3.0"
+                        android:text="交易名称"
+                        android:textColor="@color/color_757575"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/text_transaction_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="center_vertical|left"
+                        android:textColor="#212121"
+                        android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="16dp"
+                    android:background="#eaeaea"
+                    android:layout_marginBottom="5dip"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/_16"
+                    android:paddingRight="@dimen/_16"
+                    android:paddingTop="@dimen/_8"
+                    android:paddingBottom="@dimen/_8"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/text_transaction_account_tip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_10"
+                        android:layout_weight="3.0"
+                        android:text="付款账户"
+                        android:textColor="@color/color_757575"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/text_transaction_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="center_vertical|left"
+                        android:textColor="#212121"
+                        android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="16dp"
+                    android:background="#eaeaea"
+                    android:layout_marginBottom="5dip"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/_16"
+                    android:paddingRight="@dimen/_16"
+                    android:paddingTop="@dimen/_8"
+                    android:paddingBottom="@dimen/_8"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_10"
+                        android:layout_weight="3.0"
+                        android:text="交易时间"
+                        android:textColor="@color/color_757575"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/text_transaction_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="center_vertical|left"
+                        android:textColor="#212121"
+                        android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="16dp"
+                    android:background="#eaeaea"
+                    android:layout_marginBottom="5dip"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/_16"
+                    android:paddingRight="@dimen/_16"
+                    android:paddingTop="@dimen/_8"
+                    android:paddingBottom="@dimen/_8"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_10"
+                        android:layout_weight="3.0"
+                        android:text="交易号"
+                        android:textColor="@color/color_757575"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/text_transaction_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="center_vertical|left"
+                        android:textColor="#212121"
+                        android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:background="#e8e8e8"
+                    android:layout_marginBottom="5dip"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

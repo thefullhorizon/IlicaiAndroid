@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/top_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:bg_color="@color/main_top_deep_color"
+        manyi:hasLeft="false"
+        manyi:isDark="true"
+        manyi:titleview_title_text="结果" />
+
+    <LinearLayout
+        android:id="@+id/ll_result_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_8"
+            android:background="#e5e5e5" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/_24"
+            android:paddingLeft="@dimen/_32"
+            android:paddingRight="@dimen/_32"
+            android:paddingTop="@dimen/_24">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/tv_transfer_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_16"
+                    android:layout_toRightOf="@+id/tv_icon_transfer_submit"
+                    android:text="已提交，开始转让"
+                    android:textColor="#3aa78f"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_transfer_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_transfer_submit"
+                    android:layout_below="@+id/tv_transfer_submit"
+                    android:layout_marginTop="8dp"
+                    android:text="转让产品 房字TH20168898号"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_transfer_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_transfer_submit"
+                    android:layout_below="@+id/tv_transfer_product"
+                    android:layout_marginTop="4dp"
+                    android:text="转让价格 100,003.98 元"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_transfer_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_transfer_submit"
+                    android:layout_below="@+id/tv_transfer_price"
+                    android:layout_marginTop="@dimen/_24"
+                    android:text="等待转让"
+                    android:textColor="#212121"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_regular_status_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_transfer_submit"
+                    android:layout_below="@+id/tv_transfer_status"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingExtra="@dimen/_5"
+                    android:text="转让申请提交后，如在2016年8月17日前未能转让成功，您将继续持有剩余的本金。"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                    android:id="@+id/tv_icon_transfer_submit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBottom="@+id/tv_transfer_submit"
+                    android:layout_alignTop="@+id/tv_transfer_submit"
+                    android:gravity="center"
+                    android:text="@string/select_checkbox_pre"
+                    android:textColor="#3aa78f"
+                    android:textSize="20sp" />
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                    android:id="@+id/tv_icon_transfer_status"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBottom="@+id/tv_transfer_status"
+                    android:layout_alignTop="@+id/tv_transfer_status"
+                    android:gravity="center"
+                    android:text="@string/time_processing"
+                    android:textColor="#d2d5db"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tv_icon_transfer_status"
+                    android:layout_below="@+id/tv_icon_transfer_submit"
+                    android:layout_marginBottom="-6dp"
+                    android:layout_marginTop="-6dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.0"
+                        android:background="#3aa78f"></View>
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.0"
+                        android:background="#d2d5db"></View>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e5e5e5" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/_16"
+        android:paddingLeft="@dimen/_32"
+        android:paddingRight="@dimen/_32"
+        android:paddingTop="@dimen/_16">
+
+        <Button
+            android:id="@+id/btn_finish"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/finace_btn_positive_bg_selector"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="完成"
+            android:textColor="@color/finace_btn_positive_text_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

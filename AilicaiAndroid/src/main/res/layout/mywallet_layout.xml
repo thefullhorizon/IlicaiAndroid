@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/wallet_bottom_layout">
+
+        <com.manyi.lovehouse.widget.CustomScrollView
+            android:id="@+id/wallet_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:background="#f15a4c"
+                    android:visibility="visible">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/wallet_pic_bg">
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:id="@+id/wallet_yesterday_income_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="6dp"
+                                android:text="昨日收益 (元)"
+                                android:textColor="#ffffff"
+                                android:textSize="14sp" />
+
+                            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:text="@string/detail_arrowright"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/wallet_yesterday_income"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="0.00"
+                            android:textColor="#ffffff"
+                            android:textSize="40sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="84dp"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="余额 (元)"
+                                android:textColor="#ffffff"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/wallet_available"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:gravity="center"
+                                android:text="0.00"
+                                android:textColor="#ffffff"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="#ffffff" />
+
+                        <LinearLayout
+                            android:id="@+id/wallet_frozen_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="累计收益 (元)  "
+                                android:textColor="#ffffff"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/wallet_frozen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="0.00"
+                                android:textColor="#ffffff"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <View
+                    style="@style/cell_divider_hor"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp" />
+
+                <View style="@style/cell_divider_hor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:id="@+id/mywallet_raise_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/mywallet_yesterday_rate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/color_757575"
+                            android:textSize="12sp" />
+
+                        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                            android:id="@+id/wallet_rise_text_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/arrow_right"
+                            android:textColor="@color/main_red_color"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/wallet_rise_text_arrow"
+                            android:text="提升收益"
+                            android:textColor="@color/main_red_color"
+                            android:textSize="12sp" />
+
+                    </RelativeLayout>
+
+                    <View style="@style/cell_divider_hor" />
+
+                    <TextView
+                        android:id="@+id/wallet_unitIncome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12sp" />
+
+                    <com.manyi.lovehouse.widget.mpchart.charts.LineChart
+                        android:id="@+id/mywallet_line_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginRight="11dp"
+                        android:background="@android:color/white"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="10dp"
+                        android:text="以上数据由汇添富基金提供"
+                        android:textColor="#bdbdbd"
+                        android:textSize="10sp" />
+
+                    <View style="@style/cell_divider_hor" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <View
+                        style="@style/cell_divider_hor"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp" />
+
+                    <View style="@style/cell_divider_hor" />
+
+                    <RelativeLayout
+                        android:id="@+id/wallet_transaction_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="交易记录"
+                            android:textColor="#212121"
+                            android:textSize="16sp" />
+
+                        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                            android:id="@+id/wallet_transacton_text_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/arrow_right"
+                            android:textColor="@color/color_BDBDBD"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/wallet_transacton_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/wallet_transacton_text_arrow"
+                            android:text=""
+                            android:textColor="#757575"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+                    <View style="@style/cell_divider_hor" />
+
+                    <RelativeLayout
+                        android:id="@+id/wallet_reserve_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="预约记录"
+                            android:textColor="#212121"
+                            android:textSize="16sp" />
+
+                        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                            android:id="@+id/wallet_reserve_text_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/arrow_right"
+                            android:textColor="@color/color_BDBDBD"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/wallet_reserve_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/wallet_reserve_text_arrow"
+                            android:text="房产宝预约记录"
+                            android:textColor="#757575"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+                    <View style="@style/cell_divider_hor" />
+
+                    <RelativeLayout
+                        android:id="@+id/wallet_password_manager"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingRight="16dp"
+                        android:visibility="gone">
+
+                        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/arrow_right"
+                            android:textColor="@color/color_BDBDBD"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="交易密码"
+                            android:textColor="#212121"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <View style="@style/cell_divider_hor" />
+
+                    <TextView
+                        style="@style/text_14_212121"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="16dp"
+                        android:text="产品介绍" />
+
+                    <View style="@style/cell_divider_hor" />
+
+                    <TextView
+                        style="@style/text_12_757575"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="@dimen/_6"
+                        android:paddingBottom="12dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingTop="12dp"
+                        android:text="本产品是爱理财为用户提供的一款货币基金理财产品。资金买入后即购买新浪支付和汇添富提供的理财增值服务“存钱罐”，相当于购买汇添富提供的货币基金，每天可获得稳健的收益。每天收益计入本金，享受复利收益，资金随存随取，灵活方便。" />
+
+                    <View style="@style/cell_divider_hor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <View style="@style/cell_divider_hor" />
+
+                    <TextView
+                        style="@style/text_14_212121"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="16dp"
+                        android:text="如何用活期宝的资金购买理财产品" />
+
+                    <View style="@style/cell_divider_hor" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/list_step" />
+
+                    <View style="@style/cell_divider_hor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <View style="@style/cell_divider_hor" />
+
+                    <TextView
+                        style="@style/text_14_212121"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="16dp"
+                        android:text="交易规则" />
+
+                    <View style="@style/cell_divider_hor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="16dp">
+
+                        <TextView
+                            style="@style/text_12_212121"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="转入：" />
+
+                        <TextView
+                            style="@style/text_12_757575"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="1分钱起，实时到账，每天不限次数" />
+
+                        <TextView
+                            style="@style/text_12_212121"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="转出：" />
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/list" />
+
+                    <TextView
+                        style="@style/text_12_757575"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="每日限转出10次，每次限额5万" />
+
+                    <View style="@style/cell_divider_hor" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/mywallet_more_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dip"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/white_to_pressed_selector"
+                    android:clickable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:text="更多详情"
+                        android:textColor="#de212121"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/account_arrow_selector" />
+
+                    <View
+                        style="@style/cell_divider_hor"
+                        android:layout_alignParentTop="true" />
+
+                    <View
+                        style="@style/cell_divider_hor"
+                        android:layout_alignParentBottom="true" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+            </LinearLayout>
+
+        </com.manyi.lovehouse.widget.CustomScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/mywallet_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:bg_color="@color/color_f15a4c"
+        app:hasDivider="false"
+        app:isDark="true"
+        app:titleview_title_text="活期宝" />
+
+    <LinearLayout
+        android:id="@+id/wallet_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View style="@style/cell_divider_hor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/wallet_roll_out"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:paddingBottom="16dip"
+                android:paddingTop="16dip"
+                android:text="转出"
+                android:textColor="@color/main_red_color"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="#e6e6e6" />
+
+            <TextView
+                android:id="@+id/wallet_roll_in"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:paddingBottom="16dip"
+                android:paddingTop="16dip"
+                android:text="转入"
+                android:textColor="@color/main_red_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

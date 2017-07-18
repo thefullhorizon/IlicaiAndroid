@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/_24"
+    android:paddingRight="@dimen/_24"
+    android:paddingTop="@dimen/_20"
+    android:paddingBottom="@dimen/_20"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="4dp"
+        android:text="购买金额：指债权本金；"
+        android:textColor="#212121"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="4dp"
+        android:text="实际支付金额＝债权本金＋垫付已产生利息；"
+        android:textColor="#212121"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_real_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:lineSpacingExtra="4dp"
+        android:text="1000.20＝19000+19000x9%x30/360"
+        android:textColor="#212121"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="4dp"
+        android:text="预计收益：根据债权本金获得整期房产收益。"
+        android:textColor="#212121"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_profit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:lineSpacingExtra="4dp"
+        android:text="251.89＝19000x9%x120/360"
+        android:textColor="#212121"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="4dp"
+        android:text="注：整期房产宝，指原房产宝借款期限。"
+        android:textColor="#212121"
+        android:textSize="14sp" />
+
+</LinearLayout>

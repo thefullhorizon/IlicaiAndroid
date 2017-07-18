@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.manyi.lovehouse.widget.IWTopTitleView
+            android:id="@+id/order_detail_top_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            manyi:hasLeft="true"
+            manyi:titleview_title_text="@string/pay_pwd_verify_phone" />
+
+        <TextView
+            android:id="@+id/tvCancel"
+            style="@style/imgBtnBorderlessStyle"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignBottom="@+id/order_detail_top_title"
+            android:gravity="center"
+            android:scaleType="center"
+            android:text="取消"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dip"
+            android:layout_marginTop="24dip"
+            android:gravity="center"
+            android:text="@string/pay_pwd_verify_phone_hint"
+            android:textColor="@color/color_757575"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"
+            android:gravity="center"
+            android:textColor="@color/color_757575"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingLeft="16dip">
+
+            <EditText
+                android:id="@+id/etVerifyCode"
+                style="@style/text_16_000000"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:background="@null"
+                android:hint="@string/pay_pwd_verify_code"
+                android:inputType="number"
+                android:maxLength="6"
+                android:maxLines="1" />
+
+            <Button
+                android:id="@+id/btnPayPwdGetAgain"
+                style="@style/btnBorderStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:minHeight="0dp"
+                android:paddingLeft="@dimen/_16"
+                android:paddingRight="@dimen/_16"
+                android:text="重新获取"
+                android:textColor="@color/pay_send_code_btn_color_selector"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btPayPwdNext"
+            style="@style/RoundCornerBtnBg"
+            android:layout_marginLeft="16dip"
+            android:layout_marginRight="16dip"
+            android:layout_marginTop="24dip"
+            android:enabled="false"
+            android:text="下一步" />
+
+    </LinearLayout>
+</LinearLayout>

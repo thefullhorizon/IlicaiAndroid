@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:manyi="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/global_background"
+              android:orientation="vertical">
+
+    <com.manyi.lovehouse.widget.IWTopTitleView
+        android:id="@+id/iw_title_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:hasDivider="false"
+        manyi:isDark="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff"
+            android:paddingBottom="24dp"
+            android:paddingTop="24dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/coin_sack_title_left"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申购金额(元)"/>
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                    android:id="@+id/coin_sack_value_left"
+                    style="@style/text_22_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_e6e6e6"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/coin_sack_title_right"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申购进度"/>
+
+                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                    android:id="@+id/coin_sack_value_right"
+                    style="@style/text_22_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <com.manyi.lovehouse.widget.CapitalProductProgressBar
+            android:id="@+id/purchase_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="@color/color_ffffff"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/color_e6e6e6"/>
+
+            <LinearLayout
+                android:id="@+id/apply_time_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/apply_time_title"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申购时间"/>
+
+                <TextView
+                    android:id="@+id/apply_time_value"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/investment_deadline_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/investment_deadline_title"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="投资期限"/>
+
+                <TextView
+                    android:id="@+id/investment_deadline_value"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hold_capital_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="9dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/hold_capital_title"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="持有金额"/>
+
+                <TextView
+                    android:id="@+id/hold_capital_value"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/predict_year_rate_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/predict_year_rate_title"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="预计年化"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/predict_year_rate_value"
+                        style="@style/text_14_757575"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/add_rate_explain"
+                        style="@style/text_12_757575"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/predict_income_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/predict_income_title"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="预计收益"/>
+
+                <TextView
+                    android:id="@+id/predict_income_value"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/previous_coin_sack_detail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_e6e6e6"/>
+
+            <TextView
+                style="@style/text_16_de212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="13dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="13dp"
+                android:text="原小钱袋详情"/>
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/account_arrow_selector"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/coin_sack_product_list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_ffffff"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/text_16_de212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="小钱袋产品列表"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true">
+
+                <TextView
+                    android:id="@+id/product_coin_value"
+                    style="@style/text_14_de212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="8dp"
+                    android:text=""/>
+
+                <View
+                    android:id="@+id/v_arrow"
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/account_arrow_selector"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_coin_feature"
+            style="@style/text_14_bdbdbd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="该项目暂不支持转让"/>
+
+    </LinearLayout>
+
+</LinearLayout>
