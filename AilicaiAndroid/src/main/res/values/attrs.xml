@@ -396,4 +396,10 @@
         <attr name="starTitle" format="reference|string" />
         <attr name="defaultStar" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="MessageTypeItemView">
+        <!-- Text to display for title. -->
+        <attr name="name" format="reference|string" />
+        <attr name="head" format="reference" />
+    </declare-styleable>
 </resources>

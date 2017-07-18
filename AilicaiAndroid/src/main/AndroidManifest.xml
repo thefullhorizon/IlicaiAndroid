@@ -54,6 +54,17 @@
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
 
+    <permission
+        android:name="com.ailicai.app.permission.MIPUSH_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <!-- jpush  -->
+    <permission
+        android:name="com.ailicai.app.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.ailicai.app.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -111,12 +122,40 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppAppCompatTheme.TranslucentNavigation" />
 
-        <activity android:name=".ui.view.AssetInViewOfBirdActivity"></activity>
+        <activity android:name=".ui.view.AssetInViewOfBirdActivity"/>
+
+        <activity
+            android:name=".ui.message.MessageActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.message.MessageDetailWebViewActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
 
         <activity
             android:name=".setting.DebugActivity"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
+
+        <!--todo host需要改变-->
+        <activity
+            android:name=".common.push.ui.PushUiDispatcherActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="iwjw_push"
+                    android:host="com.manyi.lovehouse"
+                    android:path="/push_detail"/>
+            </intent-filter>
+
+        </activity>
 
         <!-- MQTT service -->
         <service android:name="com.manyi.inthingsq.android.service.MqttService" />

@@ -165,6 +165,7 @@ dependencies {
     compile 'com.jungly:gridPasswordView:0.3'
     compile(name: 'UmengSocialSDK-6.0.3', ext: 'aar')
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+    betaCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'

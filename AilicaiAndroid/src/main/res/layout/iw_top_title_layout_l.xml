@@ -33,7 +33,7 @@
                 android:visibility="visible" />
 
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/title_left_close_icon"
                 android:layout_width="48dp"
                 android:layout_height="48dp"

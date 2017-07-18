@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/white_to_pressed_selector">
 
-    <com.manyi.lovehouse.widget.CircleImageView
+    <com.ailicai.app.widget.CircleImageView
         android:id="@+id/civ_head"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -28,8 +28,8 @@
             android:textColor="@color/color_212121"
             android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/tv_agent_store"
+        <!--<TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/tv_name"
@@ -38,7 +38,7 @@
             android:layout_toRightOf="@+id/tv_name"
             android:singleLine="true"
             android:textColor="@color/color_212121"
-            android:textSize="15sp" />
+            android:textSize="15sp" />-->
 
         <TextView
             android:id="@+id/tv_num"
@@ -51,7 +51,7 @@
             android:textSize="12sp"
             android:visibility="invisible" />
 
-        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+        <com.ailicai.app.widget.TextViewTF
             android:id="@+id/tv_no_disturb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,5 +92,5 @@
         android:layout_below="@+id/civ_head"
         android:layout_marginLeft="@dimen/_16"
         android:layout_marginTop="@dimen/_10"
-        android:background="#e6e6e6"></View>
+        android:background="#e6e6e6"/>
 </RelativeLayout>
