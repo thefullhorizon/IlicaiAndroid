@@ -13,7 +13,7 @@
         android:orientation="horizontal">
 
 
-        <com.manyi.lovehouse.widget.ProgressWheel
+        <com.ailicai.app.widget.ProgressWheel
             android:id="@+id/load_more_progressBar"
             android:layout_width="14dp"
             android:layout_height="14dp"

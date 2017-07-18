@@ -32,11 +32,4 @@
         android:layout_height="wrap_content"
         manyi:head="@drawable/message_remind"
         manyi:name="提醒"/>
-    <ListView
-        android:id="@+id/lv_message_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:divider="@null"
-        android:visibility="gone"/>
 </LinearLayout>
