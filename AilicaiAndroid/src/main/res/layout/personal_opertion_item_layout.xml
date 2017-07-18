@@ -143,6 +143,7 @@
         android:layout_marginBottom="8dp" />
 
     <RelativeLayout
+        android:id="@+id/rewards"
         android:layout_width="match_parent"
         android:layout_height="48dip"
         android:background="@drawable/white_to_pressed_selector"

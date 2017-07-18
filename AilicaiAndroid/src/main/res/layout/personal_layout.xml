@@ -224,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="14dp">
+                android:layout_marginRight="10dp">
 
                 <com.ailicai.app.widget.TextViewTF
                     android:id="@+id/msgIcon"
@@ -232,11 +232,12 @@
                     android:layout_height="wrap_content"
                     android:text="@string/message_lite"
                     android:textColor="#ffffff"
+                    android:layout_marginRight="4dp"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
                     android:layout_gravity="top|right"
                     android:background="@drawable/red_point_bg_stroke" />
             </FrameLayout>

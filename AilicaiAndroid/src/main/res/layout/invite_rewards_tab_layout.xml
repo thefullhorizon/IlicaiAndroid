@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/sale_house_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:id="@+id/plot_house_list_group"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/plot_sale_house_rb"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rewards_tabs_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="邀请奖励"
+                android:textColor="@drawable/rewards_tabs_text_color"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/plot_rent_house_rb"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rewards_tabs_selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="奖励记录"
+                android:textColor="@drawable/rewards_tabs_text_color"
+                android:textSize="14sp" />
+        </RadioGroup>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_gravity="bottom">
+
+            <LinearLayout
+                android:id="@+id/house_thumb_view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_weight="1"
+                    android:background="#f75a14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:background="#e6e6e6"
+                android:orientation="horizontal" />
+        </FrameLayout>
+
+
+    </FrameLayout>
+
+</LinearLayout>

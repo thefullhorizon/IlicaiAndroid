@@ -34,7 +34,8 @@
 
 
     <!--1.8.1 颜色主调-->
-    <color name="main_red_color">#e84a01</color>
+    <color name="main_red_color">#f75a14</color>
+    <color name="rewards_item_bg">#f9f9f9</color>
     <color name="attention_cancel_red_color">#e74c3c</color>
     <color name="main_green_color">#26af34</color>
     <color name="main_red_color_dark">#e83701</color>

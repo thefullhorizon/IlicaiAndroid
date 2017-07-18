@@ -18,6 +18,7 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
+import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.StringUtil;
 import com.ailicai.app.common.utils.SystemUtil;
@@ -393,6 +394,11 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             tvEyesStatus.setText(R.string.eyes_closed);
         }
 
+    }
+
+    @OnClick(R.id.rewards)
+    void goRewards() {
+        MyIntent.startActivity(getWRActivity(), InviteRewardsActivity.class, null);
     }
 
 
