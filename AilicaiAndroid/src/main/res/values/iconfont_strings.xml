@@ -217,4 +217,11 @@
     <string name="open_account_step02">&#xe9f6;</string>
     <string name="open_account_step_not_current">&#xe9f8;</string>
 
+    <!--我的页面相关-->
+    <string name="asset_ticket">&#xe9fc;</string>
+    <string name="asset_bankcard">&#xe9fd;</string>
+    <string name="asset_record">&#xe9fb;</string>
+    <string name="asset_subscribe">&#xea08;</string>
+    <string name="mine_us">&#xea28;</string>
+
 </resources>
