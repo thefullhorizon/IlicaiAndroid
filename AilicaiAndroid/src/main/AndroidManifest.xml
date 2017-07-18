@@ -124,6 +124,24 @@
 
         <activity android:name=".ui.view.AssetInViewOfBirdActivity"/>
 
+        <activity android:name=".ui.base.webview.WebViewActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:screenOrientation="portrait"/>
+        
+        <activity android:name=".ui.account.OpenAccountWebViewActivity"
+            android:screenOrientation="portrait"/>
+        
+        <activity android:name=".ui.account.BankCardScanActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name=".ui.account.BankCardResultActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
         <activity
             android:name=".ui.message.MessageActivity"
             android:configChanges="orientation|keyboardHidden|locale"

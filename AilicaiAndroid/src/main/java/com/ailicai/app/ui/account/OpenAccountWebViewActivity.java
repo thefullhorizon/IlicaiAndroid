@@ -1,4 +1,4 @@
-package com.ailicai.app.ui.base.webview;
+package com.ailicai.app.ui.account;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,14 +8,17 @@ import android.webkit.WebSettings;
 
 import com.ailicai.app.common.utils.HashMapUtil;
 import com.ailicai.app.common.utils.MyIntent;
-import com.ailicai.app.ui.account.BankCardScanActivity;
+import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
+import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
+import com.ailicai.app.ui.base.webview.WebJumpUiAction;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class WebViewActivity extends BaseWebViewActivity {
+public class OpenAccountWebViewActivity extends BaseWebViewActivity {
 
-    private static final int RC_TO_SCAN_PAGE = 0;
+    private static final int RC_TO_SCAN_PAGE = 1;
+    private static final int RC_TO_DATA_BACK = 2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class WebViewActivity extends BaseWebViewActivity {
         addJumpUiActions(new WebJumpUiAction("scancard") {
             @Override
             public void jumpUi(HashMap<String, String> params) {
-                Intent intent = new Intent(WebViewActivity.this, BankCardScanActivity.class);
+                Intent intent = new Intent(OpenAccountWebViewActivity.this, BankCardScanActivity.class);
                 startActivityForResult(intent, RC_TO_SCAN_PAGE);
             }
         });
@@ -86,7 +89,17 @@ public class WebViewActivity extends BaseWebViewActivity {
         if(resultCode != RESULT_OK) return;
 
         if(requestCode == RC_TO_SCAN_PAGE) {
-//            callJSToTellCardNumber();
+            Intent intent = new Intent(this, BankCardResultActivity.class);
+            if (data != null) {
+                Bundle extras = data.getExtras();
+                intent.putExtras(extras);
+            }
+            startActivityForResult(intent, RC_TO_DATA_BACK);
+        } else if(requestCode == RC_TO_DATA_BACK) {
+            if (data != null) {
+                Bundle extras = data.getExtras();
+                callJSToTellCardNumber(extras.getString("bankCardNumber"));
+            }
         }
     }
 }

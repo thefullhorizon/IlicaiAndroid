@@ -3,7 +3,7 @@ package com.ailicai.app.ui.login;
 import android.text.TextUtils;
 
 import com.ailicai.app.common.utils.MyPreference;
-import com.ailicai.app.model.response.AccountResponse;
+import com.ailicai.app.model.response.account.AccountResponse;
 
 /**
  * 存储开户信息.

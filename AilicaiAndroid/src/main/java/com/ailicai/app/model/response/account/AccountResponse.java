@@ -1,4 +1,4 @@
-package com.ailicai.app.model.response;
+package com.ailicai.app.model.response.account;
 
 import com.huoqiu.framework.rest.Response;
 

@@ -39,7 +39,9 @@ import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.utils.UrlDecoder;
 import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.eventbus.LoginEvent;
+import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.base.BaseActivity;
+import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.alibaba.fastjson.JSON;
@@ -526,68 +528,26 @@ public class BaseWebViewLayout extends LinearLayout {
             }
         });
 
-        addJumpUiActions(new WebJumpUiAction("coupon") {
+        addJumpUiActions(new WebJumpUiAction("openaccounprocess") {
             @Override
             public void jumpUi(HashMap<String, String> params) {
-//                CouponWebViewActivity.goCoupon(getWRContext());
-            }
-        });
 
-        addJumpUiActions(new WebJumpUiAction("rentpay") {
-            @Override
-            public void jumpUi(HashMap<String, String> params) {
-                if (null != getWRContext()) {
-//                    H5PayRentActivity.gotoThisPage(getWRContext());
+                if (params.containsKey("url")) {
+                    String url = String.valueOf(params.get("url"));
+                    Map<String, String> dataMap = ObjectUtil.newHashMap();
+                    dataMap.put(BaseWebViewActivity.URL, url);
+                    dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+                    dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, String.valueOf(isDark));
+                    MyIntent.startActivity(getWRContext(), OpenAccountWebViewActivity.class, dataMap);
                 }
             }
         });
 
-        addJumpUiActions(new WebJumpUiAction("housedetail") {
-            @Override
-            public void jumpUi(HashMap<String, String> params) {
-//                String houseId = params.get("houseid");
-//                String houseType = params.get("housetype");
-//                if (!TextUtils.isEmpty(houseId) && !TextUtils.isEmpty(houseType)) {
-//                    if (null != getWRContext()) {
-//                        switch (houseType) {
-//                            case "1":
-//                                break;
-//                            case "2":
-//                                break;
-//                            case "3":
-//                                Intent intent = new Intent(getWRContext(), NewHouseDetailActivity.class);
-//                                intent.putExtra(CommonTag.PROPERTY_ID, Long.valueOf(houseId));
-//                                getWRContext().startActivity(intent);
-//                                break;
-//                        }
-//
-//                    }
-//                }
-            }
-        });
 
-        addJumpUiActions(new WebJumpUiAction("caichanshuo") {
+        addJumpUiActions(new WebJumpUiAction("coupon") {
             @Override
             public void jumpUi(HashMap<String, String> params) {
-//                if (params.containsKey("url")) {
-//                    Intent intent = new Intent(getWRContext(), TalkOfPropertyActivity.class);
-//                    intent.putExtra(BaseWebViewActivity.URL, params.get("url"));
-//                }
-            }
-        });
-
-        addJumpUiActions(new WebJumpUiAction("hothousedetail") {
-            @Override
-            public void jumpUi(HashMap<String, String> params) {
-//                    Intent intent = new Intent(getWRContext(), HouseDetailActivity.class);
-//                    if (params.containsKey("houseid")) {
-//                        intent.putExtra(CommonTag.HOUSE_ID, Long.valueOf(params.get("houseid")));
-//                    }
-//                    if (params.containsKey("estateid")){
-//                        intent.putExtra(CommonTag.ESATE_ID, Integer.valueOf(params.get("estateid")));
-//                    }
-//                    intent.putExtra(CommonTag.RENT_OR_SELL, 1);
-//                    getWRContext().startActivity(intent);
+//                CouponWebViewActivity.goCoupon(getWRContext());
             }
         });
 
@@ -774,21 +734,20 @@ public class BaseWebViewLayout extends LinearLayout {
         addPathActions(new WebPathAction("/loginwithui") {
             @Override
             public void action(String url) {
-//
-//                String callbackName = "callback";
-//                final String callBack = UrlDecoder.parseValue(url, callbackName);
-//
-//                if (!TextUtils.isEmpty(callBack)) {
-//                    setLoginCallBack(callBack);
-//                    if (!UserInfo.isLogin()) {
-//                        if (null != getWRContext()) {
-//                            LoginManager.goLogin(getWRContext(), LoginManager.LOGIN_FROM_H5_WEB);
-//                        }
-//                    } else {
-//                        final StringBuilder js = new StringBuilder("javascript:");
-//                        loadJs(js + getLoginCallBack() + "(" + getUserInfo() + ")");
-//                    }
-//                }
+                String callbackName = "callback";
+                final String callBack = UrlDecoder.parseValue(url, callbackName);
+
+                if (!TextUtils.isEmpty(callBack)) {
+                    setLoginCallBack(callBack);
+                    if (!UserInfo.isLogin()) {
+                        if (null != getWRContext()) {
+                            LoginManager.goLogin(getWRContext(), LoginManager.LOGIN_FROM_H5_WEB);
+                        }
+                    } else {
+                        final StringBuilder js = new StringBuilder("javascript:");
+                        loadJs(js + getLoginCallBack() + "(" + getUserInfo() + ")");
+                    }
+                }
             }
         });
 
@@ -806,20 +765,11 @@ public class BaseWebViewLayout extends LinearLayout {
         addMethodCallAction(new WebMethodCallAction("getloginstate") {
             @Override
             public Object call(HashMap params) {
-//                if (UserInfo.isLogin()) {
-//                    return getUserInfo();
-//                } else {
-//                    return false;
-//                }
-                return null;
-            }
-        });
-
-        addMethodCallAction(new WebMethodCallAction("getinfo") {
-            @Override
-            public Object call(HashMap params) {
-                return null;
-//                return getBaseInfo();
+                if (UserInfo.isLogin()) {
+                    return getUserInfo();
+                } else {
+                    return false;
+                }
             }
         });
 
@@ -847,41 +797,41 @@ public class BaseWebViewLayout extends LinearLayout {
             @Override
             public Boolean call(HashMap params) {
 
-//                if (params.containsKey("close") && !TextUtils.isEmpty(String.valueOf(params.get
-//                        ("close"))) && String.valueOf(params.get("close")).equals("1")) {
-//                    shouldShowShare(false);
-//                } else {
-//                    addTitleRightText(R.string.detail_forward, isDark
-//                            ? R.style.text_18_ffffff :
-//                            R.style.text_18_00000000, new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            if (CheckDoubleClick.isFastDoubleClick()) return;
-//                            showShareDialog();
-//                        }
-//                    });
-//
-//                    shouldShowShare(true);
-//                    getWebViewShareBean().init();
-//                    if (params.containsKey("desc") && !TextUtils.isEmpty(String.valueOf(params.get
-//                            ("desc")))) {
-//                        getWebViewShareBean().setShareContent(String.valueOf(params.get("desc")));
-//                    }
-//                    if (params.containsKey("title") && !TextUtils.isEmpty(String.valueOf(params.get
-//                            ("title")))) {
-//                        getWebViewShareBean().setShareTitle(String.valueOf(params.get("title")));
-//                    }
-//                    if (params.containsKey("link") && !TextUtils.isEmpty(String.valueOf(params.get
-//                            ("link")))) {
-//                        getWebViewShareBean().setShareUrl(String.valueOf(params.get("link")));
-//                    }
-//                    if (params.containsKey("imgUrl") && !TextUtils.isEmpty(String.valueOf(params.get
-//                            ("imgUrl")))) {
-//                        getWebViewShareBean().setShareImageUrl(String.valueOf(params.get
-//                                ("imgUrl")));
-//                    }
-//                }
-//
+                if (params.containsKey("close") && !TextUtils.isEmpty(String.valueOf(params.get
+                        ("close"))) && String.valueOf(params.get("close")).equals("1")) {
+                    shouldShowShare(false);
+                } else {
+                    addTitleRightText(R.string.detail_forward, isDark
+                            ? R.style.text_18_ffffff :
+                            R.style.text_18_00000000, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (CheckDoubleClick.isFastDoubleClick()) return;
+                            showShareDialog();
+                        }
+                    });
+
+                    shouldShowShare(true);
+                    getWebViewShareBean().init();
+                    if (params.containsKey("desc") && !TextUtils.isEmpty(String.valueOf(params.get
+                            ("desc")))) {
+                        getWebViewShareBean().setShareContent(String.valueOf(params.get("desc")));
+                    }
+                    if (params.containsKey("title") && !TextUtils.isEmpty(String.valueOf(params.get
+                            ("title")))) {
+                        getWebViewShareBean().setShareTitle(String.valueOf(params.get("title")));
+                    }
+                    if (params.containsKey("link") && !TextUtils.isEmpty(String.valueOf(params.get
+                            ("link")))) {
+                        getWebViewShareBean().setShareUrl(String.valueOf(params.get("link")));
+                    }
+                    if (params.containsKey("imgUrl") && !TextUtils.isEmpty(String.valueOf(params.get
+                            ("imgUrl")))) {
+                        getWebViewShareBean().setShareImageUrl(String.valueOf(params.get
+                                ("imgUrl")));
+                    }
+                }
+
                 return true;
             }
         });
