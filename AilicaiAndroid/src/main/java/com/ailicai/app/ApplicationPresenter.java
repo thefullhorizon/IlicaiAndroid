@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import com.ailicai.app.common.constants.AILICAIBuildConfig;
 import com.ailicai.app.common.constants.CommonTag;
+import com.ailicai.app.common.push.PushUtil;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.share.ShareUtil;
@@ -268,7 +269,7 @@ public class ApplicationPresenter {
         DeviceUtil.initScreenParams(myApplication.getResources());
         initServerIP();
         initImageLoader(myApplication);
-//        initMqtt();
+        initMqtt();
         initTime();
 //        initBaiduMap();
 //        initEngineManager(myApplication);
@@ -406,13 +407,13 @@ public class ApplicationPresenter {
     }
 
 
-//    private void initMqtt() {
-//        try {
-//            PushUtil.startMqttService(myApplication);
-//        } catch (Exception e) {
-//            LogUtil.i(e.toString());
-//        }
-//    }
+    private void initMqtt() {
+        try {
+            PushUtil.startMqttService(myApplication);
+        } catch (Exception e) {
+            LogUtil.i(e.toString());
+        }
+    }
 
     public void initTime() {
         syncTime(new IwjwRespListener() {

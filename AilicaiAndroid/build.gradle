@@ -168,7 +168,10 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-
+    compile('com.manyi.inthingsq.clients:android-connector:1.7-SNAPSHOT') {
+        exclude group: 'android.support', module: 'compatibility-v4'
+        exclude group: 'com.alibaba', module: 'fastjson'
+    }
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

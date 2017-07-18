@@ -1,5 +1,7 @@
 package com.ailicai.app.ui.index;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -53,6 +55,10 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     NavigationPagerAdapter nvgPagerAdapter;
 
     private boolean hasCheckNewVersion = false;
+    /**
+     * 控制首页初始化只用加载一次通知数据
+     */
+    int notifLoadCount = 0;
 
     @Override
     public int getLayout() {
@@ -87,6 +93,17 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         bottomNavigation.setDefaultBackgroundColor(getResources().getColor(R.color.color_f7f7f7));
         bottomNavigation.setUseElevation(true);
         mViewPager.setCurrentItem(0);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        if (intent != null && intent.hasExtra("settabIndex")) {
+            int settabitem = intent.getIntExtra("settabIndex", -1);
+            setCurrentItem(settabitem);
+        }
+//        IndexActivityPresenter.parseIntent(this, mViewPager);
     }
 
 
@@ -141,6 +158,12 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         bottomNavigation.setCurrentItem(index);
     }
 
+    public static void startIndexActivityToTab(Activity activity, int settabIndex) {
+        Intent mIntent = new Intent(activity, IndexActivity.class);
+        mIntent.putExtra("settabIndex", settabIndex);
+        activity.startActivity(mIntent);
+    }
+
     /**
      * Set the notification number
      *
@@ -189,6 +212,15 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     }
 
     private long LastBackTime;
+
+    public int getNotifLoadCount() {
+        return notifLoadCount;
+    }
+
+    public void initOneceNum() {
+        notifLoadCount = 1;
+    }
+
     Toast toast;
     @Override
     public void onBackPressed() {
