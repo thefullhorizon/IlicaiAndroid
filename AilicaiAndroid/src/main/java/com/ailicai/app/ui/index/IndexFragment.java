@@ -1,9 +1,14 @@
 package com.ailicai.app.ui.index;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
+import com.ailicai.app.ui.base.webview.WebJumpUiAction;
+import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
+
+import java.util.HashMap;
 
 /**
  * name: IndexFragment <BR>
@@ -12,7 +17,7 @@ import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
  *
  * @author: IWJW Zhou Xuan
  */
-public class IndexFragment extends BaseWebViewFragment{
+public class IndexFragment extends BaseWebViewFragment {
 
 
     @Override
@@ -43,6 +48,7 @@ public class IndexFragment extends BaseWebViewFragment{
 
 //        loadUrl("http://mtest.iwlicai.com/alcapp/licai");
 //        loadUrl("http://10.7.249.203:6088/licai/list ");
+        addAction();
         loadUrl("http://192.168.1.44:2323/licai");
     }
 
@@ -51,5 +57,16 @@ public class IndexFragment extends BaseWebViewFragment{
     }
 
     private void addAction() {
+        addJumpUiActions(new WebJumpUiAction("regulardetail") {
+            @Override
+            public void jumpUi(HashMap<String, String> params) {
+                if (params.containsKey("url")) {
+                    String url = params.get("url");
+                    Intent intent = new Intent(getActivity(), RegularFinanceDetailH5Activity.class);
+                    intent.putExtra(RegularFinanceDetailH5Activity.EXTRA_URL, url);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

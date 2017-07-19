@@ -551,6 +551,7 @@ public class BaseWebViewLayout extends LinearLayout {
             }
         });
 
+
         addJumpUiActions(new WebJumpUiAction("useActivityName") {
             @Override
             public void jumpUi(HashMap<String, String> params) {

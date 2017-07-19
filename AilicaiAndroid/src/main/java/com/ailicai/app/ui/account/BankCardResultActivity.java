@@ -252,6 +252,11 @@ public class BankCardResultActivity extends BaseBindActivity {
             return;
         }
 
+        // 把银行卡号传回刚才输入的地方
+        Intent intent = new Intent();
+        intent.putExtra("bankCardNumber",cardNo);
+        setResult(RESULT_OK,intent);
+
         queryCardBin(cardNo);
 
         EventLog.getInstance().init();

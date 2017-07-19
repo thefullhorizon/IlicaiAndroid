@@ -8,9 +8,16 @@ import android.webkit.WebSettings;
 
 import com.ailicai.app.common.utils.HashMapUtil;
 import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.eventbus.OpenAccountFinishEvent;
 import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
+import com.ailicai.app.ui.base.webview.WebMethodCallAction;
+import com.ailicai.app.ui.login.LoginManager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -65,7 +72,16 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
             }
 
             addAction();
+
+            EventBus.getDefault().register(this);
         }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void addAction() {
@@ -74,6 +90,15 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
             public void jumpUi(HashMap<String, String> params) {
                 Intent intent = new Intent(OpenAccountWebViewActivity.this, BankCardScanActivity.class);
                 startActivityForResult(intent, RC_TO_SCAN_PAGE);
+            }
+        });
+
+        addMethodCallAction(new WebMethodCallAction("openaccountfinish") {
+            @Override
+            public Boolean call(HashMap params) {
+                EventBus.getDefault().post(new OpenAccountFinishEvent());
+                LoginManager.updateUserInfoData();
+                return false;
             }
         });
     }
@@ -101,5 +126,10 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
                 callJSToTellCardNumber(extras.getString("bankCardNumber"));
             }
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleOpenAccountFinshEvent(OpenAccountFinishEvent finishEvent) {
+        finish();
     }
 }

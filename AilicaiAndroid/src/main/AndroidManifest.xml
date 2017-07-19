@@ -127,7 +127,11 @@
         <activity android:name=".ui.base.webview.WebViewActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:screenOrientation="portrait"/>
-        
+
+        <activity android:name=".ui.view.RegularFinanceDetailH5Activity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".ui.account.OpenAccountWebViewActivity"
             android:screenOrientation="portrait"/>
         
