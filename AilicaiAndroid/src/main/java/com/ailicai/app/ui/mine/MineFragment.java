@@ -323,6 +323,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             return;
         }
         if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            ticket_red_dot.setVisibility(View.GONE);
             mineNotLogin.setVisibility(View.VISIBLE);
             mineLogin.setVisibility(View.GONE);
             tvLogin.setOnClickListener(mOnClickListener);
@@ -473,19 +474,19 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
             @Override
             public void onStart() {
-                showLoadTranstView();
+                //showLoadTranstView();
             }
 
             @Override
             public void onJsonSuccess(AssetInfoNewResponse jsonObject) {
-                showContentView();
+                //showContentView();
                 assetInfoNewResponse = jsonObject;
                 setUIData();
             }
 
             @Override
             public void onFailInfo(String errorInfo) {
-                showContentView();
+                //showContentView();
                 ToastUtil.showInCenter(errorInfo);
             }
         });
