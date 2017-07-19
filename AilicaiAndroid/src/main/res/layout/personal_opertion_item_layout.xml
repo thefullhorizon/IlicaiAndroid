@@ -314,6 +314,7 @@
         android:layout_marginLeft="16dp" />
 
     <RelativeLayout
+        android:id="@+id/gotoTransactionList"
         android:layout_width="match_parent"
         android:layout_height="48dip"
         android:background="@drawable/white_to_pressed_selector"
@@ -359,6 +360,7 @@
         android:layout_marginLeft="16dp" />
 
     <RelativeLayout
+        android:id="@+id/gotoReserveRecordList"
         android:layout_width="match_parent"
         android:layout_height="48dip"
         android:background="@drawable/white_to_pressed_selector"
@@ -447,7 +449,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp" />
+        android:layout_height="60dp" />
 
 
 </LinearLayout>

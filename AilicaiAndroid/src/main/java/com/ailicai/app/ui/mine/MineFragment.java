@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,7 +31,9 @@ import com.ailicai.app.model.request.AssetInfoNewRequest;
 import com.ailicai.app.model.request.UserInfoRequest;
 import com.ailicai.app.model.response.AssetInfoNewResponse;
 import com.ailicai.app.model.response.UserInfoResponse;
+import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.BaseBindFragment;
+import com.ailicai.app.ui.buy.NoSetSafeCardHint;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.login.UserInfoBase;
@@ -39,6 +42,7 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
+import com.huoqiu.framework.util.CheckDoubleClick;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
@@ -53,6 +57,10 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.OnClick;
 
+import static com.ailicai.app.ui.mine.JumpProcessActivity.ACTION_KEY;
+import static com.ailicai.app.ui.mine.JumpProcessActivity.ACTION_VAL_CHARGE;
+import static com.ailicai.app.ui.mine.JumpProcessActivity.ACTION_VAL_GET_CASH;
+
 public class MineFragment extends BaseBindFragment implements ObservableScrollViewCallbacks {
 
     /**
@@ -62,6 +70,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
+                case R.id.fl_msg_container:
+                    //消息点击
+                    break;
                 case R.id.userPhoto:
                     MyIntent.startActivity(getActivity(), SettingsActivity.class, getDataMap());
                     break;
@@ -94,6 +105,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     TextView tvLogin;
     @Bind(R.id.userPhoto)
     ImageView userPhoto;
+    @Bind(R.id.fl_msg_container)
+    FrameLayout flMsgContainer;
     @Bind(R.id.tv_eyes_status)
     TextView tvEyesStatus;
     @Bind(R.id.totalAsset)
@@ -218,6 +231,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleLoginEvent(LoginEvent event) {
         if (event.isLoginSuccess()) {
+            setUIData();
             refreshMyDataFromServer();
         } else {
             loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
@@ -234,10 +248,19 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     public void jumpToMenuTarget(LoginManager.LoginAction action) {
         if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_BANK_CARD.getActionIndex())) {
             //银行卡
-            mPresenter.gotoMyBankCrad(getActivity());
+            mPresenter.gotoMyBankCrad(getWRActivity());
         } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_CARD_COUPONST.getActionIndex())) {
             //卡券
-            mPresenter.gotoCardCoupon(getActivity());
+            mPresenter.gotoCardCoupon(getWRActivity());
+        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_TRANSACTION_LIST.getActionIndex())) {
+            //交易记录
+            mPresenter.gotoTransactionList(getWRActivity());
+        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_RESERVERECORD_LIST.getActionIndex())) {
+            //预约记录
+            mPresenter.gotoReserveRecordList(getWRActivity());
+        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_REWARDS_LIST.getActionIndex())) {
+            //邀请奖励
+            mPresenter.goRewards(getWRActivity());
         }
         loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
     }
@@ -300,15 +323,29 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             return;
         }
         if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            ticket_red_dot.setVisibility(View.GONE);
             mineNotLogin.setVisibility(View.VISIBLE);
             mineLogin.setVisibility(View.GONE);
             tvLogin.setOnClickListener(mOnClickListener);
+            userPhoto.setVisibility(View.GONE);
             userPhoto.setClickable(false);
             userPhoto.setOnClickListener(null);
+
+            flMsgContainer.setVisibility(View.GONE);
+            flMsgContainer.setClickable(false);
+            flMsgContainer.setOnClickListener(null);
+
             accountbalanceLayout.setVisibility(View.GONE);
+            purchaseView.setVisibility(View.GONE);
         } else if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
             mineNotLogin.setVisibility(View.GONE);
             mineLogin.setVisibility(View.VISIBLE);
+
+            flMsgContainer.setVisibility(View.VISIBLE);
+            flMsgContainer.setClickable(true);
+            flMsgContainer.setOnClickListener(userLayoutOnClickListener);
+
+            userPhoto.setVisibility(View.VISIBLE);
             userPhoto.setClickable(true);
             userPhoto.setOnClickListener(userLayoutOnClickListener);
             accountbalanceLayout.setVisibility(View.VISIBLE);
@@ -395,11 +432,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     }
 
-    @OnClick(R.id.rewards)
-    void goRewards() {
-        MyIntent.startActivity(getWRActivity(), InviteRewardsActivity.class, null);
-    }
-
     @OnClick(R.id.about_us)
     void goAboutUs() {
         MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
@@ -442,17 +474,19 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
             @Override
             public void onStart() {
-                super.onStart();
+                //showLoadTranstView();
             }
 
             @Override
             public void onJsonSuccess(AssetInfoNewResponse jsonObject) {
+                //showContentView();
                 assetInfoNewResponse = jsonObject;
                 setUIData();
             }
 
             @Override
             public void onFailInfo(String errorInfo) {
+                //showContentView();
                 ToastUtil.showInCenter(errorInfo);
             }
         });
@@ -501,6 +535,66 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         } else {
             jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_BANK_CARD);
         }
+    }
+
+    /**
+     * 交易记录
+     */
+    @OnClick(R.id.gotoTransactionList)
+    void gotoTransactionList() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_TRANSACTION_LIST;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+        } else {
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_TRANSACTION_LIST);
+        }
+    }
+
+    /**
+     * 预约记录
+     */
+    @OnClick(R.id.gotoReserveRecordList)
+    void gotoReserveRecordList() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_RESERVERECORD_LIST;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+        } else {
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_RESERVERECORD_LIST);
+        }
+    }
+
+    @OnClick(R.id.rewards)
+    void goRewards() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_REWARDS_LIST;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+        } else {
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_REWARDS_LIST);
+        }
+    }
+
+    //提现
+    @OnClick(R.id.tv_account_balance_get_cash)
+    void accountBalanceGetCashClick() {
+        if (CheckDoubleClick.isFastDoubleClick()) return;
+        if (!NoSetSafeCardHint.isShowHintDialog((BaseBindActivity) getWRActivity())) {
+            Map<String, String> dataMap = ObjectUtil.newHashMap();
+            dataMap.put(ACTION_KEY, ACTION_VAL_GET_CASH);
+            MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
+        }
+
+
+    }
+
+    //充值
+    @OnClick(R.id.tv_account_balance_charge)
+    void accountBalanceChargeClick() {
+        if (!NoSetSafeCardHint.isShowHintDialog((BaseBindActivity) getWRActivity())) {
+            Map<String, String> dataMap = ObjectUtil.newHashMap();
+            dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
+            MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
+        }
+
     }
 
     /**
