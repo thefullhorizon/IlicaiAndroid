@@ -6,28 +6,28 @@ import com.huoqiu.framework.rest.Response;
  * Created by nanshan on 7/19/2017.
  */
 
-public class AssetInfoNewResponse extends Response{
+public class AssetInfoNewResponse extends Response {
 
-    private String            totalAsset;                                                     // 总资产
-    private String            yestodayIncome;                                                 // 昨日收益
-    private String            totalIncome;                                                    // 累计收益
-    private String            currentDepositBalance="";                                     // 房产宝余额
-    private String            timeDepositBalance="";                                     // 货币基金
-    private String            smallPurleBalance="";                                        //小钱袋余额
-    private String            netLoanBalance= "";                                     //网贷资产
-    private String            accountBalance="";                                           //账户可用余额
+    private String totalAsset;                                                     // 总资产
+    private String yestodayIncome;                                                 // 昨日收益
+    private String totalIncome;                                                    // 累计收益
+    private String currentDepositBalance = "";                                     // 房产宝余额
+    private String timeDepositBalance = "";                                     // 货币基金
+    private String smallPurleBalance = "";                                        //小钱袋余额
+    private String netLoanBalance = "";                                     //网贷资产
+    private String accountBalance = "";                                           //账户可用余额
 
-    private int               voucherRedPoint;                                          //卡券小红点：1有红点 0没有红点
-    private String            holdTotalBalance="";                 //持有总额
+    private int voucherRedPoint;                                          //卡券小红点：1有红点 0没有红点
+    private String holdTotalBalance = "";                 //持有总额
 
-    private int               purchaseCount; // 申购数量，如果0就不显示
-    private String            purchaseAmount=""; // 申购金额
+    private int purchaseCount; // 申购数量，如果0就不显示
+    private String purchaseAmount = ""; // 申购金额
 
-    private String            depositIncome; //货币基金收益
+    private String depositIncome; //货币基金收益
 
-    private String            netLoanIncome;//网贷收益
+    private String netLoanIncome;//网贷收益
 
-    private String            experienceIncome;//体验宝收益
+    private String experienceIncome;//体验宝收益
 
     public String getTotalAsset() {
         return totalAsset;

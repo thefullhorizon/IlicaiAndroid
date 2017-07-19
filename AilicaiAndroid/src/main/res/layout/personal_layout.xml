@@ -51,10 +51,10 @@
         android:id="@+id/mine_top_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:orientation="vertical"
         android:layout_alignParentTop="true"
-        android:orientation="vertical">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:id="@+id/mine_top_margin"
@@ -127,11 +127,12 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/totalAsset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="820075.08"
                     android:textColor="#ffffff"
+                    android:text="0.00"
                     android:textSize="40sp" />
 
                 <LinearLayout
@@ -155,11 +156,12 @@
                             android:text="昨日收益 (元)" />
 
                         <TextView
+                            android:id="@+id/yestodayIncome"
                             style="@style/text_16_ffffff"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="12.08" />
+                            android:text="0.00" />
 
                     </LinearLayout>
 
@@ -182,11 +184,12 @@
                             android:text="累计收益 (元)" />
 
                         <TextView
+                            android:id="@+id/totalIncome"
                             style="@style/text_16_ffffff"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="12.08" />
+                            android:text="0.00" />
                     </LinearLayout>
 
                 </LinearLayout>

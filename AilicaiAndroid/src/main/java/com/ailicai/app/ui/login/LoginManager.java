@@ -14,12 +14,12 @@ import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.ShowRefreshNotifEvent;
-import com.ailicai.app.model.request.account.AccountRequest;
 import com.ailicai.app.model.request.FreshMsgDataRequest;
 import com.ailicai.app.model.request.UserInfoRequest;
-import com.ailicai.app.model.response.account.AccountResponse;
+import com.ailicai.app.model.request.account.AccountRequest;
 import com.ailicai.app.model.response.RreshDataResponse;
 import com.ailicai.app.model.response.UserInfoResponse;
+import com.ailicai.app.model.response.account.AccountResponse;
 import com.ailicai.app.ui.base.FragmentHelper;
 import com.ailicai.app.ui.dialog.LoginDialog;
 import com.umeng.analytics.MobclickAgent;
@@ -502,57 +502,14 @@ public class LoginManager {
 
     public enum LoginAction {
         /**
-         * 我的订单
+         * 卡券
          */
-        ACTION_INDEX_ORDER(0),
-        /**
-         * 我的投诉
-         */
-        ACTION_INDEX_COMPLAIN(1),
-
+        ACTION_INDEX_CARD_COUPONST(0),
         /**
          * 银行卡
          */
-        ACTION_INDEX_BANK_CARD(2),
+        ACTION_INDEX_BANK_CARD(1),
 
-        /**
-         * 交易密码
-         */
-        ACTION_INDEX_PASSWORD(3),
-
-        /**
-         * 我的经纪人
-         */
-        ACTION_INDEX_AGENT(4),
-        /**
-         * 我委托的房源
-         */
-        ACTION_INDEX_OWNER(5),
-        /**
-         * 卡券
-         */
-        ACTION_INDEX_CARD_COUPONST(6),
-        /**
-         * 约看清单
-         */
-        ACTION_INDEX_YUE_KAN_LIST(7),
-        /**
-         * 看房日程
-         */
-        ACTION_INDEX_KAN_FANG_LIST(8),
-        /**
-         * 我的房产宝
-         */
-        ACTION_INDEX_MY_REGULAR(9),
-
-        /**
-         * 品牌公寓约看记录
-         */
-        ACTION_INDEX_SEE_RECORD(10),
-        /***
-         * 我的资产
-         */
-        ACTION_INDEX_MY_ASSETS(11),
 
         ACTION_INDEX_NORMAL(-1);
 

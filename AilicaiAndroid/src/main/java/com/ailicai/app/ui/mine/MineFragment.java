@@ -1,11 +1,9 @@
 package com.ailicai.app.ui.mine;
 
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -16,23 +14,21 @@ import android.widget.TextView;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
+import com.ailicai.app.common.push.model.PushMessage;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
-import com.ailicai.app.common.utils.StringUtil;
 import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.eventbus.ExitEvent;
 import com.ailicai.app.eventbus.LoginEvent;
-import com.ailicai.app.model.request.OrderListRequest;
+import com.ailicai.app.eventbus.RefreshPushEvent;
+import com.ailicai.app.model.request.AssetInfoNewRequest;
 import com.ailicai.app.model.request.UserInfoRequest;
-import com.ailicai.app.model.response.AilicaiPartResponse;
-import com.ailicai.app.model.response.HousePartResponse;
-import com.ailicai.app.model.response.Order;
-import com.ailicai.app.model.response.OrderListResponse;
+import com.ailicai.app.model.response.AssetInfoNewResponse;
 import com.ailicai.app.model.response.UserInfoResponse;
 import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.login.LoginManager;
@@ -43,7 +39,6 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
-import com.huoqiu.framework.analysis.ManyiAnalysis;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
@@ -101,12 +96,26 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     ImageView userPhoto;
     @Bind(R.id.tv_eyes_status)
     TextView tvEyesStatus;
+    @Bind(R.id.totalAsset)
+    TextView totalAsset;
+    @Bind(R.id.yestodayIncome)
+    TextView yestodayIncome;
+    @Bind(R.id.totalIncome)
+    TextView totalIncome;
+    @Bind(R.id.accountBalance)
+    TextView accountBalance;
+    @Bind(R.id.rewards_money)
+    TextView rewardsMoney;
+    @Bind(R.id.accountbalance_layout)
+    RelativeLayout accountbalanceLayout;
+    @Bind(R.id.purchase_view)
+    LinearLayout purchaseView;
+    @Bind(R.id.purchaseAmount)
+    TextView purchaseAmount;
     private MinePresenter mPresenter;
     private boolean eyeOpen = false;
-    private AilicaiPartResponse ailicaiPartResponse;
+    private AssetInfoNewResponse assetInfoNewResponse;
 
-    //  private MineBannerDialog mMineBannerDialog;
-    private HousePartResponse housePartResponse;
     private LoginManager.LoginAction loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
     private OnClickListener mOnClickListener = new OnClickListener() {
 
@@ -115,8 +124,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             switch (view.getId()) {
                 case R.id.tvLogin:
                     LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
-                    //EventLog.upEventLog("200", "1");
-                    ManyiAnalysis.getInstance().onEvent("mine_mine_login");
                     break;
                 default:
                     break;
@@ -211,18 +218,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleLoginEvent(LoginEvent event) {
         if (event.isLoginSuccess()) {
-            if (LoginManager.loginPageLocation.isLastLoginInThisPage(LoginManager.LoginLocation.MY) && event.getFromPageCode() == LoginManager.LOGIN_FROM_MINE) {
-                //123 EventLog.upEventLog("2017050801", whereClick,"my");
-            }
             refreshMyDataFromServer();
-            // 未登录，点击订单登录，如果一个账单跳转账单列表 ①
-            if (loginAction != LoginManager.LoginAction.ACTION_INDEX_ORDER) {
-                jumpToMenuTarget(loginAction);
-            }
         } else {
             loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
-            housePartResponse = null;
-            ailicaiPartResponse = null;
             setUIData();
         }
         mScrollView.smoothScrollTo(0, 0);
@@ -234,63 +232,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
      * @param action
      */
     public void jumpToMenuTarget(LoginManager.LoginAction action) {
-        if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_ORDER.getActionIndex())) {
-            //我的订单,这里把原来直接跳转到订单列表的Fragment改成跳转至Activity。
-            //解决我的页面首次登陆显示引导页出错的问题。
-            //startDefaultTransition(OrderListFragment.class, null);
-            if (housePartResponse != null && housePartResponse.getOrderId() > 0) {
-                gotoBillDetail();
-            } else {
-//                Intent intent = new Intent(getActivity(), H5OrderListActivity.class);
-//                intent.putExtra(H5OrderListActivity.URL_TYPE, H5OrderListActivity.TYPE_ORDER);
-//                startActivity(intent);
-                // startActivity(new Intent(getActivity(), OrderListActivity.class));
-            }
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_COMPLAIN.getActionIndex())) {
-            //我的投诉
-            mPresenter.gotoMyComplain(getActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_BANK_CARD.getActionIndex())) {
+        if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_BANK_CARD.getActionIndex())) {
             //银行卡
             mPresenter.gotoMyBankCrad(getActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_PASSWORD.getActionIndex())) {
-            //交易密码
-            mPresenter.gotoPassWordManage(getActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_AGENT.getActionIndex())) {
-            //我的经纪人
-            mPresenter.gotoMyConsultantList(getActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_OWNER.getActionIndex())) {
-            //委托的房源
-            mPresenter.gotoEntrustManageList(getActivity());
         } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_CARD_COUPONST.getActionIndex())) {
             //卡券
             mPresenter.gotoCardCoupon(getActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_YUE_KAN_LIST.getActionIndex())) {
-            //约看清单
-            mPresenter.gotoCartList(getActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_KAN_FANG_LIST.getActionIndex())) {
-            //看房日程
-            mPresenter.gotoAgendaList(getActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_MY_REGULAR.getActionIndex())) {
-            //我的房产宝
-            mPresenter.gotoMyRegular(getActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_SEE_RECORD.getActionIndex())) {
-            //我的品牌公寓约看记录
-            mPresenter.gotoSeeRecord(getActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_MY_ASSETS.getActionIndex())) {
-            //我的资产
-            mPresenter.gotoMyAssets(getActivity());
         }
         loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
-    }
-
-    /**
-     * 订单个数为1，直接跳转订单详情页
-     */
-    private void gotoBillDetail() {
-        OrderListRequest request = new OrderListRequest();
-        request.setOffSet(0);
-        request.setPageSize(20);
-        ServiceSender.exec(this, request, new OrderListResponseIwjwRespListener(this));
     }
 
     @Override
@@ -350,40 +299,25 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         if (!MineFragment.this.isVisible() || !MineFragment.this.isAdded()) {
             return;
         }
-
-        //根据登录或未登录显示用户头像等相关信息
         if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
             mineNotLogin.setVisibility(View.VISIBLE);
             mineLogin.setVisibility(View.GONE);
-            //登录按钮点击
             tvLogin.setOnClickListener(mOnClickListener);
-            userPhoto.setClickable(true);
-            userPhoto.setOnClickListener(userLayoutOnClickListener);
-            ticket_red_dot.setVisibility(View.INVISIBLE);
+            userPhoto.setClickable(false);
+            userPhoto.setOnClickListener(null);
+            accountbalanceLayout.setVisibility(View.GONE);
         } else if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
             mineNotLogin.setVisibility(View.GONE);
             mineLogin.setVisibility(View.VISIBLE);
             userPhoto.setClickable(true);
             userPhoto.setOnClickListener(userLayoutOnClickListener);
+            accountbalanceLayout.setVisibility(View.VISIBLE);
+            purchaseView.setVisibility(View.GONE);
+
             //根据登录的手机号获取已保存的用户信息
             long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
             UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
-
-            int gender = 0;
             int resID = R.drawable.avatar_default;
-            if (infoBase != null) {
-                gender = infoBase.getGender();
-                String realname = TextUtils.isEmpty(infoBase.getRealName()) ? StringUtil.formatMobileSub(infoBase.getMobile()) : infoBase.getRealName();
-                if (!"".equals(realname)) {
-                    //userNameArrow.setVisibility(View.VISIBLE);
-                } else {
-                    //userNameArrow.setVisibility(View.GONE);
-                }
-            }
-            //不男不女
-            if (gender != 0) {
-                resID = gender == 1 ? R.drawable.avatar_default : R.drawable.avatar_default;
-            }
             DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder();
             builder.cacheInMemory(true)// 是否缓存都內存中
                     .cacheOnDisk(true)// 是否缓存到sd卡上
@@ -394,13 +328,51 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                     .showImageOnFail(resID)
                     .showImageOnLoading(resID)
                     .displayer(new SimpleBitmapDisplayer());
-        }
 
-        // 卡券小红点
-        if (isShowVoucherRedDotState()) {
-            ticket_red_dot.setVisibility(View.VISIBLE);
+
+            if (assetInfoNewResponse != null) {
+                setDataInfo();
+                //卡券红点
+                setVoucherRedDotState(assetInfoNewResponse.getVoucherRedPoint() > 0);
+            }
+
+            // 卡券小红点
+            if (isShowVoucherRedDotState()) {
+                ticket_red_dot.setVisibility(View.VISIBLE);
+            } else {
+                ticket_red_dot.setVisibility(View.INVISIBLE);
+            }
+
+            //自动跳转至目标页面
+            jumpToMenuTarget(loginAction);
+        }
+    }
+
+    public void setDataInfo() {
+        totalAsset.setText(assetInfoNewResponse.getTotalAsset());
+        yestodayIncome.setText(assetInfoNewResponse.getYestodayIncome());
+        totalIncome.setText(assetInfoNewResponse.getTotalIncome());
+        accountBalance.setText(assetInfoNewResponse.getAccountBalance());
+        rewardsMoney.setText("待发收益" + 0.00 + "元");
+        if (assetInfoNewResponse.getPurchaseCount() > 0) {
+            purchaseView.setVisibility(View.VISIBLE);
+            purchaseAmount.setText(assetInfoNewResponse.getPurchaseCount() + "笔共" + assetInfoNewResponse.getPurchaseAmount());
         } else {
-            ticket_red_dot.setVisibility(View.INVISIBLE);
+            purchaseView.setVisibility(View.GONE);
+        }
+    }
+
+    public void setDataInfo(String eyes) {
+        totalAsset.setText(eyes);
+        yestodayIncome.setText(eyes);
+        totalIncome.setText(eyes);
+        accountBalance.setText(eyes);
+        rewardsMoney.setText("待发收益" + eyes + "元");
+        if (assetInfoNewResponse.getPurchaseCount() > 0) {
+            purchaseView.setVisibility(View.VISIBLE);
+            purchaseAmount.setText("*" + "笔共" + eyes + "元");
+        } else {
+            purchaseView.setVisibility(View.GONE);
         }
     }
 
@@ -414,9 +386,11 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         if (!eyeOpen) {
             //显示明文
             tvEyesStatus.setText(R.string.eyes_opening);
+            setDataInfo();
         } else {
             //显示密文
             tvEyesStatus.setText(R.string.eyes_closed);
+            setDataInfo("****");
         }
 
     }
@@ -454,12 +428,34 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
      */
     void refreshMyDataFromServer() {
         if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
-            housePartResponse = null;
-            ailicaiPartResponse = null;
             setUIData();
             return;
         }
-        getUserInfo();
+        getAssetInfo();
+        //getUserInfo();
+    }
+
+    public void getAssetInfo() {
+        AssetInfoNewRequest request = new AssetInfoNewRequest();
+        request.setUserId(UserInfo.getInstance().getUserId());
+        ServiceSender.exec(this, request, new IwjwRespListener<AssetInfoNewResponse>(this) {
+
+            @Override
+            public void onStart() {
+                super.onStart();
+            }
+
+            @Override
+            public void onJsonSuccess(AssetInfoNewResponse jsonObject) {
+                assetInfoNewResponse = jsonObject;
+                setUIData();
+            }
+
+            @Override
+            public void onFailInfo(String errorInfo) {
+                ToastUtil.showInCenter(errorInfo);
+            }
+        });
     }
 
     /**
@@ -479,6 +475,47 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         refreshMyDataFromServer();
     }
 
+    /**
+     * 卡券
+     */
+    @OnClick(R.id.mineCardCouponst)
+    void onClickRedEnvelopes() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_CARD_COUPONST;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+        } else {
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_CARD_COUPONST);
+            // 点击后卡券后，本地小红点状态改为false
+            setVoucherRedDotState(false);
+        }
+    }
+
+    /**
+     * 银行卡
+     */
+    @OnClick(R.id.rl_bank_card)
+    void onClickBankCard() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_BANK_CARD;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+        } else {
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_BANK_CARD);
+        }
+    }
+
+    /**
+     * 卡券上小红点
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleRefreshPushEvent(RefreshPushEvent event) {
+        if (event.getMsgType() == PushMessage.REMINDTYPENEWVOUCHER || event.getMsgType() ==
+                PushMessage.REMINDTYPECOUPONBANNER || event.getMsgType() == PushMessage.REMINDTYPETIYANJI || event.getMsgType() == PushMessage.REMINDTYPEFANLISHENHE) {
+            setVoucherRedDotState(true);
+        }
+    }
+
     private void setVoucherRedDotState(boolean isShow) {
         if (isShow) {
             ticket_red_dot.setVisibility(View.VISIBLE);
@@ -496,65 +533,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     public boolean isShowVoucherRedDotState() {
         long userId = UserManager.getInstance(getWRActivity()).getUserInfoBase().getUserId();
         return MyPreference.getInstance().read(userId + "VoucherRedDotIsShow", false);
-    }
-
-    private static class OrderListResponseIwjwRespListener extends IwjwRespListener<OrderListResponse> {
-
-        private SoftReference<MineFragment> personalCenterFragmentSoftReference;
-
-        OrderListResponseIwjwRespListener(MineFragment personalCenterFragment) {
-            this.personalCenterFragmentSoftReference = new SoftReference<>(personalCenterFragment);
-        }
-
-        @Override
-        public void onStart() {
-            if (null != personalCenterFragmentSoftReference.get()) {
-                personalCenterFragmentSoftReference.get().showLoadTranstView();
-            }
-        }
-
-        @Override
-        public void onFinish() {
-            super.onFinish();
-            if (null != personalCenterFragmentSoftReference.get()) {
-                MineFragment personalCenterFragment = personalCenterFragmentSoftReference.get();
-                personalCenterFragment.showContentView();
-            }
-        }
-
-        @Override
-        public void onJsonSuccess(OrderListResponse response) {
-            if (null != personalCenterFragmentSoftReference.get()) {
-                MineFragment personalCenterFragment = personalCenterFragmentSoftReference.get();
-                if (response != null && response.getOrderList().size() > 0) {
-                    Order order = response.getOrderList().get(0);
-                    if (order != null) {
-                        Intent intent;
-                        switch (order.getType()) {
-//                            case 1://普租
-//                                intent = new Intent(personalCenterFragment.getActivity(), H5OrderListActivity.class);
-//                                intent.putExtra(H5OrderListActivity.ORDER_ID, order.getOrderId());
-//                                intent.putExtra(H5OrderListActivity.TYPE, order.getType());
-//                                intent.putExtra(H5OrderListActivity.URL_TYPE, H5OrderListActivity.TYPE_RENT_ORDER_DETAIL);
-//                                break;
-//                            case 3://二手房
-//                                intent = new Intent(personalCenterFragment.getActivity(), H5OrderListActivity.class);
-//                                intent.putExtra(H5OrderListActivity.ORDER_ID, order.getOrderId());
-//                                intent.putExtra(H5OrderListActivity.TYPE, order.getType());
-//                                intent.putExtra(H5OrderListActivity.URL_TYPE, H5OrderListActivity.TYPE_DETAIL);
-//                                break;
-//                            case 2://极爱宅
-//                            default:
-//                                intent = new Intent(personalCenterFragment.getActivity(), OrderDetailActivity.class);
-//                                intent.putExtra(OrderDetailActivity.ORDER_ID, order.getOrderId());
-//                                intent.putExtra(OrderDetailActivity.TYPE, order.getType());
-//                                break;
-                        }
-                        //personalCenterFragment.getActivity().startActivity(intent);
-                    }
-                }
-            }
-        }
     }
 
     private static class UserInfoResponseIwjwRespListener extends IwjwRespListener<UserInfoResponse> {
