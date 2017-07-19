@@ -103,8 +103,6 @@ public class MessageFragment extends BaseBindFragment{
 
     /**
      * 请求失败
-     *
-     * @param errorInfo
      */
     public void requestFail(String errorInfo) {
         showMyToast(errorInfo);

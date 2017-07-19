@@ -14,6 +14,7 @@ import android.view.View;
 import com.ailicai.app.ApplicationPresenter;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
+import com.ailicai.app.common.push.constant.CommonTags;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.ui.index.IndexActivity;
 import com.huoqiu.framework.analysis.ManyiAnalysis;
@@ -64,8 +65,8 @@ public class WelcomeActivity extends BackOpFragmentActivity {
         }
         Uri data = getIntent().getData();
         if (null != data) {
-            // TODO PUSH跳转
-//            mIntent.putExtra(CommonTags.URIDATA, data);
+            //短信会有此值
+            mIntent.putExtra(CommonTags.URIDATA, data);
         }
         startActivity(mIntent);
         finish();

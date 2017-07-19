@@ -23,3 +23,29 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#----------------------xiaomi push----------------------
+-keep class com.xiaomi.** {*;}
+-dontwarn com.manyi.inthingsq.**
+-keep class com.manyi.inthingsq.** {*;}
+-keep class org.eclipse.paho.** {*;}
+-keep class com.xiaomi.mipush.sdk.PushMessageReceiver {*;}
+-keep public class * extends com.xiaomi.mipush.sdk.PushMessageReceiver
+
+#----------------------huawei push----------------------
+-dontwarn com.ailicai.app.common.push.bridge.**
+-keep class com.ailicai.app.common.push.bridge.** {*;}
+-keep public class * extends com.huawei.android.pushagent.api.PushMessageReceiver
+
+-keep class com.huawei.android.pushagent.**{*;}
+-keep class com.huawei.android.pushselfshow.**{*;}
+-keep class com.huawei.android.microkernel.**{*;}
+
+#-------------------------jpush----------------------
+-dontoptimize
+-dontpreverify
+-dontwarn cn.jpush.**
+-keep class cn.jpush.** { *; }
+-keep class * extends cn.jpush.android.helpers.JPushMessageReceiver { *; }
+-dontwarn cn.jiguang.**
+-keep class cn.jiguang.** { *; }

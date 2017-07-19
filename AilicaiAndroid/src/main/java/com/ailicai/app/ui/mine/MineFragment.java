@@ -1,5 +1,6 @@
 package com.ailicai.app.ui.mine;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -26,6 +27,7 @@ import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.eventbus.ExitEvent;
 import com.ailicai.app.eventbus.LoginEvent;
+import com.ailicai.app.eventbus.NewNotifMsgEvent;
 import com.ailicai.app.eventbus.RefreshPushEvent;
 import com.ailicai.app.model.request.AssetInfoNewRequest;
 import com.ailicai.app.model.request.UserInfoRequest;
@@ -38,6 +40,8 @@ import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.login.UserInfoBase;
 import com.ailicai.app.ui.login.UserManager;
+import com.ailicai.app.ui.message.MessageActivity;
+import com.ailicai.app.ui.message.MsgLiteView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -72,6 +76,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             switch (v.getId()) {
                 case R.id.fl_msg_container:
                     //消息点击
+                    Intent intent = new Intent(getWRActivity(), MessageActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.userPhoto:
                     MyIntent.startActivity(getActivity(), SettingsActivity.class, getDataMap());
@@ -81,6 +87,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     };
     @Bind(R.id.title_root)
     RelativeLayout titleRoot;
+    @Bind(R.id.tv_new_msg_point)
+    TextView mTvNewMsgPoint;
     @Bind(R.id.my_scroll_view)
     ObservableScrollView mScrollView;
     @Bind(R.id.ticket_red_dot)
@@ -200,6 +208,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         });
 
         eyeOpen = MyPreference.getInstance().read("eyeOpen", false);
+        MsgLiteView.refreshNoticeNums(null);
     }
 
     @Override
@@ -454,6 +463,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         }
     }
 
+    /**
+     * 顶部消息红点是否展示
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handlefinal(final NewNotifMsgEvent event) {
+        mTvNewMsgPoint.setVisibility(event.notifNum > 0 ? View.VISIBLE : View.GONE);
+    }
+
 
     /**
      * 获取我的页面相关信息
@@ -605,7 +622,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleRefreshPushEvent(RefreshPushEvent event) {
         if (event.getMsgType() == PushMessage.REMINDTYPENEWVOUCHER || event.getMsgType() ==
-                PushMessage.REMINDTYPECOUPONBANNER || event.getMsgType() == PushMessage.REMINDTYPETIYANJI || event.getMsgType() == PushMessage.REMINDTYPEFANLISHENHE) {
+                PushMessage.REMINDTYPECOUPONBANNER || event.getMsgType() == PushMessage.REMINDTYPETIYANJI) {
             setVoucherRedDotState(true);
         }
     }

@@ -36,9 +36,7 @@ public class JPushBridgeService extends PushBrigdgeService {
     public CloudBridgeService start() throws Exception {
         super.start();
         JPushInterface.setDebugMode(!AILICAIBuildConfig.isProduction());
-//        if(JPushInterface.isPushStopped(context)) {
-            JPushInterface.init(context);
-//        }else{
+        JPushInterface.init(context);
         if(JPushInterface.isPushStopped(context)) {
             JPushInterface.resumePush(context);
         }
@@ -68,7 +66,9 @@ public class JPushBridgeService extends PushBrigdgeService {
         JPushInterface.stopPush(context);
     }
 
-
-
-
+    @Override
+    public CloudBridgeService clearAllArrivedMessages() {
+        JPushInterface.clearAllNotifications(context);
+        return super.clearAllArrivedMessages();
+    }
 }

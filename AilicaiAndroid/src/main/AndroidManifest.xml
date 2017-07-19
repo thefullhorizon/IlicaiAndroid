@@ -40,7 +40,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="com.manyi.lovehouse.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="com.ailicai.app.permission.MIPUSH_RECEIVE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <!-- IM -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -62,7 +62,6 @@
     <permission
         android:name="com.ailicai.app.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
-
     <uses-permission android:name="com.ailicai.app.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
 
@@ -379,7 +378,6 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
 
-        <!--todo host需要改变-->
         <activity
             android:name=".common.push.ui.PushUiDispatcherActivity"
             android:configChanges="orientation|keyboardHidden|locale"
@@ -387,12 +385,11 @@
             android:launchMode="singleInstance"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="com.manyi.lovehouse"
-                    android:path="/push_detail"
-                    android:scheme="iwjw_push" />
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="ailicai_push"
+                    android:host="com.ailicai.app"
+                    android:path="/push_detail"/>
             </intent-filter>
 
         </activity>
@@ -405,7 +402,7 @@
             android:exported="false"
             android:label="PushService">
             <intent-filter>
-                <action android:name="com.manyi.lovehouse.common.push.PushBootService" />
+                <action android:name="com.ailicai.app.common.push.PushBootService" />
             </intent-filter>
         </service>
 
@@ -513,7 +510,7 @@
         <!-- PushSDK:Push服务 -->
         <service
             android:name="com.huawei.android.pushagent.PushService"
-            android:process=":pushservice"></service>
+            android:process=":pushservice"/>
 
         <activity
             android:name="com.huawei.android.pushselfshow.permission.RequestPermissionsActivity"
@@ -521,15 +518,15 @@
             android:exported="false"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"></activity>
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"/>
         <!--huawei push end-->
 
         <!--jpush start-->
         <!-- Rich push 核心功能 since 2.0.6-->
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"
-            android:exported="false"
-            android:theme="@style/MyDialogStyle"></activity>
+            android:theme="@style/MyDialogStyle"
+            android:exported="false"/>
 
         <!-- SDK核心功能-->
         <activity
@@ -539,9 +536,8 @@
             android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.manyi.lovehouse" />
+                <category android:name="com.ailicai.app" />
             </intent-filter>
         </activity>
 
@@ -567,7 +563,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
-                <category android:name="com.manyi.lovehouse" />
+                <category android:name="com.ailicai.app" />
             </intent-filter>
 
         </service>
@@ -579,7 +575,7 @@
             android:exported="false">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
-                <category android:name="com.manyi.lovehouse" />
+                <category android:name="com.ailicai.app" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -600,7 +596,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
-                <category android:name="com.manyi.lovehouse" />
+                <category android:name="com.ailicai.app" />
             </intent-filter>
         </receiver>
 
@@ -609,13 +605,8 @@
             android:name="cn.jpush.android.service.AlarmReceiver"
             android:exported="false" />
         <!-- Required  . Enable it you can get statistics data with channel -->
-        <meta-data
-            android:name="JPUSH_CHANNEL"
-            android:value="default" />
-        <!---todo 修改id-->
-        <meta-data
-            android:name="JPUSH_APPKEY"
-            android:value="689e2cb8976581f4d8f1801e" /> <!--  </>值来自开发者平台取得的AppKey-->
+        <meta-data android:name="JPUSH_CHANNEL" android:value="default"/>
+        <meta-data android:name="JPUSH_APPKEY" android:value="0294dd53755c83cfc7082ea2" /> <!--  </>值来自开发者平台取得的AppKey-->
 
     </application>
 

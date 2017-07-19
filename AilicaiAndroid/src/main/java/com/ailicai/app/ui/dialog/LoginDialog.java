@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
+import com.ailicai.app.common.push.MqttManager;
+import com.ailicai.app.common.push.PushUtil;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
@@ -667,8 +669,7 @@ public class LoginDialog extends MyBaseDialog implements GridPasswordView.OnPass
         loginRequest.setSystemVer(DeviceUtil.getSystemVersion());
         loginRequest.setNetType(NetworkUtil.getNetWorkTypeStr(MyApplication.getInstance()));
         loginRequest.setSupport(DeviceUtil.getOperators(MyApplication.getInstance()));
-        //TODO:NEW APP
-        //loginRequest.setClientId(MqttManager.getClientIdByMobile(mPhoneNumber));
+        loginRequest.setClientId(MqttManager.getClientIdByMobile(mPhoneNumber));
 
         ServiceSender.exec(this, loginRequest, new IwjwRespListener<UserLoginResponse>() {
 
@@ -687,7 +688,7 @@ public class LoginDialog extends MyBaseDialog implements GridPasswordView.OnPass
                             //统计登录
                             loginOKEventForNum();
 
-                            //123 PushUtil.resetMqttService(getWRActivity());
+                            PushUtil.resetMqttService(getWRActivity());
 
                             //if (jsonObject.getFirstLogin() == 0) { //0-首次 1-否
                                 //123 setInatllAgentTask();

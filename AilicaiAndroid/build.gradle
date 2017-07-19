@@ -169,6 +169,7 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    androidTestCompile 'com.google.code.findbugs:jsr305:3.0.0'
     compile('com.manyi.inthingsq.clients:android-connector:1.7-SNAPSHOT') {
         exclude group: 'android.support', module: 'compatibility-v4'
         exclude group: 'com.alibaba', module: 'fastjson'
