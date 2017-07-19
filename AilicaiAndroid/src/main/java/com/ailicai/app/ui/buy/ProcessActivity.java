@@ -9,11 +9,15 @@ import android.view.View;
 import com.ailicai.app.R;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
+import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.model.request.account.AccountRequest;
 import com.ailicai.app.model.response.account.AccountResponse;
+import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
@@ -22,6 +26,8 @@ import com.ailicai.app.widget.DialogBuilder;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.Map;
 
 /**
  * Created by David on 16/1/14.
@@ -38,11 +44,14 @@ public class ProcessActivity extends BaseBindActivity {
     State state;
 
     View mProcess;
+    private String openAccountUrl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
+
+        openAccountUrl = getIntent().getStringExtra("openAccountUrl");
         mProcess = this.findViewById(R.id.processing);
         firstLoad = true;
         state = new State();
@@ -119,7 +128,7 @@ public class ProcessActivity extends BaseBindActivity {
                     case REQUEST_FOR_PWD_CHECK:
                     case REQUEST_FOR_PWD_SET:
                         firstLoad = true;
-                        //TODO nanshan 开户相关
+                        // 开户相关-3
 //                        OpenAccountActivity.gotoOpenAccount(this, OpenAccountFeature.openAccount());
                         break;
                 }
@@ -152,7 +161,7 @@ public class ProcessActivity extends BaseBindActivity {
             showOpeningAccountDialog();
         } else {
             //未开户
-            //TODO nanshan 开户相关
+            // 开户相关-1
 //            if (AccountInfo.isSetPayPwd()) {
 //                Intent intent = new Intent(this, PayPwdCheckActivity.class);
 //                intent.putExtra("ISDARK", true);
@@ -162,7 +171,21 @@ public class ProcessActivity extends BaseBindActivity {
 //                Intent intent = new Intent(this, PayPwdResetAndModifyActivity.class);
 //                startActivityForResult(intent, REQUEST_FOR_PWD_SET);
 //            }
+            referOpenAccount();
         }
+    }
+
+    /**
+     * 独立APP的开户使用H5来做
+     */
+    private void referOpenAccount() {
+        if (openAccountUrl != null) {
+            Map<String, String> dataMap = ObjectUtil.newHashMap();
+            dataMap.put(BaseWebViewActivity.URL, openAccountUrl);
+            dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+            MyIntent.startActivity(this, OpenAccountWebViewActivity.class, dataMap);
+        }
+        finish();
     }
 
     static class AccountCallback extends IwjwRespListener<AccountResponse> {
@@ -197,7 +220,7 @@ public class ProcessActivity extends BaseBindActivity {
                 //是否要关闭当前界面(因为dialog默认是点击就关闭了,导致startActivity接收不到回调)
                 isFinish = false;
                 // 重新校验交易密码，然后开户
-                //TODO nanshan 开户相关
+                // 开户相关-2
 //                if (AccountInfo.isSetPayPwd()) {
 //                    Intent intent = new Intent(ProcessActivity.this, PayPwdCheckActivity.class);
 //                    intent.putExtra("ISDARK", true);
@@ -207,6 +230,7 @@ public class ProcessActivity extends BaseBindActivity {
 //                    Intent intent = new Intent(ProcessActivity.this, PayPwdResetAndModifyActivity.class);
 //                    startActivityForResult(intent, REQUEST_FOR_PWD_SET);
 //                }
+                referOpenAccount();
             }
         });
         show.setOnDismissListener(new DialogInterface.OnDismissListener() {

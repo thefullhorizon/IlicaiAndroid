@@ -1,5 +1,6 @@
 package com.ailicai.app.ui.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -105,17 +106,23 @@ public class AssetInViewOfBirdActivity extends BaseBindActivity {
 
     @OnClick(R.id.net_loan_layout)
     public void netLoanClick(View v) {
-        //TODO nanshan
+        Intent intent = new Intent(this, CapitalActivity.class);
+        intent.putExtra(CapitalActivity.TAB, CapitalActivity.HOLD);
+        startActivity(intent);
 
     }
     @OnClick(R.id.apply_layout)
     public void applyClick(View v) {
-        //TODO nanshan
+        Intent intent = new Intent(this, CapitalActivity.class);
+        startActivity(intent);
 
     }
     @OnClick(R.id.money_fund_layout)
     public void moneyFundClick(View v) {
-        //TODO nanshan
+
+        //TODO nanshan 跳至活期宝
+//        Intent intent = new Intent(this, CapitalActivity.class);
+//        startActivity(intent);
 
     }
 

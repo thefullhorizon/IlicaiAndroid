@@ -92,9 +92,10 @@ public class RegularFinanceDetailH5Activity extends BaseWebViewActivity {
                     //之前版本的逻辑(普通和转让)
                     buyRegularFinance(params);
                 }else if ("2".equals(type)) {
-                    //小钱
+                    //小钱袋
                     isSmallCoin = true;
-                    buyCoin(params);
+                    //走跟房产宝相同的逻辑
+                    buyRegularFinance(params);
                 }
                 return false;
             }
@@ -195,26 +196,10 @@ public class RegularFinanceDetailH5Activity extends BaseWebViewActivity {
             //进入统一处理页面
             if (!NoSetSafeCardHint.isShowHintDialog(RegularFinanceDetailH5Activity.this)) {
                 Intent intent = new Intent(RegularFinanceDetailH5Activity.this, ProcessActivity.class);
-                startActivityForResult(intent, REQUEST_FOR_PROCESS_BUY);
-            }
-        }
-    }
-
-    /**
-     *
-     * @param params
-     */
-    private void buyCoin(HashMap params) {
-
-        prodId = (String) params.get("prodId");
-        LogUtil.e("nanshan", "prodId=" + prodId);
-        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
-            //去登录页面
-            LoginManager.goLogin(this, LoginManager.LOGIN_FROM_AILICAI);
-        } else {
-            //进入统一处理页面
-            if (!NoSetSafeCardHint.isShowHintDialog(RegularFinanceDetailH5Activity.this)) {
-                Intent intent = new Intent(RegularFinanceDetailH5Activity.this, ProcessActivity.class);
+                if (params.containsKey("openAccountUrl")){
+                    String openAccountUrl = (String) params.get("openAccountUrl");
+                    intent.putExtra("openAccountUrl",openAccountUrl);
+                }
                 startActivityForResult(intent, REQUEST_FOR_PROCESS_BUY);
             }
         }

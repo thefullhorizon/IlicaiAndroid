@@ -20,6 +20,8 @@ import com.ailicai.app.ui.view.transaction.TransactionListActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.text.DecimalFormat;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -81,14 +83,15 @@ public class AccountTransactionResultActivity extends BaseBindActivity {
                 mImageIcon.setText(R.string.succeed);
 
                 if (TOPUP.equals(transactionType)){
-                    mResultStatus.setText(getResources().getString(R.string.topup_amount_text, topUpResponse.getAmount()+""));
+                    DecimalFormat df = new DecimalFormat("######0.00");
+                    mResultStatus.setText(getResources().getString(R.string.topup_amount_text, df.format(topUpResponse.getAmount())+""));
                     mResultStatusDetail.setVisibility(View.GONE);
                     mConfirmLeft.setText("完成");
                     mConfirmRight.setText("继续转入");
                 }else if (WITHDRAW.equals(transactionType)){
                     mResultStatus.setText("提现成功");
                     mResultStatusDetail.setVisibility(View.VISIBLE);
-                    mResultStatusDetail.setText(Html.fromHtml(getResources().getString(R.string.roll_out_tips_text, withdrawResponse.getAmount(), withdrawResponse.getGiveDate())));
+                    mResultStatusDetail.setText(Html.fromHtml(getResources().getString(R.string.roll_out_tips_text, withdrawResponse.getAmount()+"", withdrawResponse.getGiveDate())));
                     mConfirmLeft.setVisibility(View.GONE);
                     mConfirmRight.setText("完成");
                 }
