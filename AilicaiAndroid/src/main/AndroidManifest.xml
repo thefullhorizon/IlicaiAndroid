@@ -202,13 +202,6 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
-            android:name="com.ailicai.app.ui.view.RegularFinanceDetailH5Activity"
-            android:configChanges="orientation|keyboardHidden|locale"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppAppCompatTheme.transparent"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-
-        <activity
             android:name="com.ailicai.app.ui.view.AccountTopupActivity"
             android:configChanges="orientation|keyboardHidden|locale"
             android:screenOrientation="portrait"
@@ -237,12 +230,6 @@
             android:theme="@style/AppAppCompatTheme.transparent"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
-        <activity
-            android:name="com.ailicai.app.ui.view.CurrentRollInActivity"
-            android:configChanges="orientation|keyboardHidden|locale"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppAppCompatTheme.transparent"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
             android:name="com.ailicai.app.ui.view.CurrentRollInResultActivity"
@@ -331,13 +318,6 @@
 
         <activity
             android:name="com.ailicai.app.ui.view.TransferSubmitSuccessActivity"
-            android:configChanges="orientation|keyboardHidden|locale"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppAppCompatTheme.transparent"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-
-        <activity
-            android:name="com.ailicai.app.ui.view.CapitalActivity"
             android:configChanges="orientation|keyboardHidden|locale"
             android:screenOrientation="portrait"
             android:theme="@style/AppAppCompatTheme.transparent"
