@@ -689,17 +689,19 @@ public class LoginDialog extends MyBaseDialog implements GridPasswordView.OnPass
 
                             //123 PushUtil.resetMqttService(getWRActivity());
 
-                            if (jsonObject.getFirstLogin() == 0) { //0-首次 1-否
+                            //if (jsonObject.getFirstLogin() == 0) { //0-首次 1-否
                                 //123 setInatllAgentTask();
-                            } else {
-                                appointmentId = jsonObject.getAppointmentId();
-                                appointBizType = jsonObject.getAppointBizType();
-                                if (jsonObject.getAppointmentId() > 0) {
+                            //} else {
+                                //appointmentId = jsonObject.getAppointmentId();
+                                //appointBizType = jsonObject.getAppointBizType();
+                                //if (jsonObject.getAppointmentId() > 0) {
                                     //123 appraiseAgentTask();
-                                } else {
-                                    continueLogin();
-                                }
-                            }
+                                //} else {
+                                 //   continueLogin();
+                                //}
+                            //}
+
+                            continueLogin();
                         } else {
                             showMyToast("认证失败，请重试！");
                             onLoginFail();
