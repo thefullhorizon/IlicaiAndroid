@@ -2,7 +2,6 @@ package com.ailicai.app.common.logCollect;
 
 
 import com.ailicai.app.common.push.model.PushMessage;
-import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MyPreference;
 
 import java.util.HashMap;
@@ -76,7 +75,7 @@ public class PVIDHandler {
         int lastPVID = PVIDHandler.getPVID();
         PVIDHandler.setPVID(++lastPVID);
         EventLog.upEventLctLog(className,lastPVID+"",PVIDHandler.getPageType(className));
-        LogUtil.d("nanshan","："+className+"--"+PVIDHandler.getPVID()+""+PVIDHandler.getPageType(className));
+//        LogUtil.d("nanshan","："+className+"--"+PVIDHandler.getPVID()+""+PVIDHandler.getPageType(className));
     }
 
     /**
