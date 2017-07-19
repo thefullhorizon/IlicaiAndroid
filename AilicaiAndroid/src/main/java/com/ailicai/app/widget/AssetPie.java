@@ -146,12 +146,14 @@ public class AssetPie extends View{
             float currentAngle = 0.0f;
             for (int i = 0 ; i < data.size(); i++){
                 int num = (int)data.get(i).getAmount();
-                float needDrawAngle = num * 1.0f / (int)Double.parseDouble(totalAsset) * 360;
-                if (Math.min(needDrawAngle, animatedValue - currentAngle) >= 0) {
-                    mPaint.setColor(Color.parseColor(colorData.get(i)));
-                    mCanvas.drawArc(oval, currentAngle, Math.min(needDrawAngle - dp2px(1), animatedValue - currentAngle), true, mPaint);
+                if(num != 0){
+                    float needDrawAngle = num * 1.0f / (int)Double.parseDouble(totalAsset) * 360;
+                    if (Math.min(needDrawAngle, animatedValue - currentAngle) >= 0) {
+                        mPaint.setColor(Color.parseColor(data.get(i).getColor()));
+                        mCanvas.drawArc(oval, currentAngle, Math.min(needDrawAngle - dp2px(1), animatedValue - currentAngle), true, mPaint);
+                    }
+                    currentAngle = currentAngle + needDrawAngle;
                 }
-                currentAngle = currentAngle + needDrawAngle;
             }
         }else {
             mPaint.setColor(Color.parseColor(defaultColor));
@@ -183,14 +185,14 @@ public class AssetPie extends View{
     }
 
     public void startDraw() {
-        if (data != null && colorData != null && totalAsset != null) {
+        if (data != null && totalAsset != null) {
             initAnimator();
         }
     }
 
     private void initAnimator() {
         ValueAnimator anim = ValueAnimator.ofFloat(0, 360);
-        anim.setDuration(2000);
+        anim.setDuration(1000);
         anim.setInterpolator(new AccelerateDecelerateInterpolator());
         anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 

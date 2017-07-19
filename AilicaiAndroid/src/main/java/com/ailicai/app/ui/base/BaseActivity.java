@@ -42,6 +42,7 @@ public class BaseActivity extends BackOpFragmentActivity {
         mFragmentHelper = new FragmentHelper(getSupportFragmentManager());
         baseActivityPresenter = new BaseActivityPresenter(this);
         CommonUtil.initSystemBar(this);
+        LogUtil.d("nanshan","："+this.getClass().getSimpleName());
     }
 
     public int titleViewHeight = -1;

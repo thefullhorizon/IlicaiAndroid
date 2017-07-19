@@ -92,6 +92,8 @@ public class AssetInViewOfBirdActivity extends BaseBindActivity {
         data.add(new AssetPieBean("货币基金","#007afa",Double.parseDouble(jsonObject.getTimeDepositBalance())));
         mAssetPie.setData(data);
         mAssetPie.setTotalAsset(jsonObject.getTotalAsset());
+        mAssetPie.startDraw();
+
         mAvailableBalanceValue.setText(jsonObject.getAccountBalance());
         mNetLoanValue.setText(jsonObject.getNetLoanBalance());
         mApplyValue.setText(jsonObject.getPurchaseAmount());
