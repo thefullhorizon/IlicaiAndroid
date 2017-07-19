@@ -286,16 +286,14 @@ public class BankCardResultActivity extends BaseBindActivity {
                 } else {
                     if (response.getValid() == 1) {
 
-                        // TODO
-//                        Intent intent = new Intent(BankCardResultActivity.this, BankCardInfoActivity.class);
-//                        intent.putExtra("bankcardNo", cardNo);
-//                        intent.putExtra("bankCode", response.getBankCode());
-//                        intent.putExtra("bankName", response.getBankName());
-//                        intent.putExtra("cardType", response.getCardType());
-//                        intent.putExtra("payMax",response.getPayMax());
-//                        intent.putExtra("remark",response.getRemark());
-//                        intent.putExtra("bankMobile",response.getBankMobile());
-//                        startActivityForResult(intent, RC_PAGE_BACK);
+//                        已实名： /account/bank-info-add?cardNo=${cardNo}&bankCode=${bankCode}&bankName=${encodeURIComponent(bankName)}
+//
+//                        未实名： /account/bank-info?cardNo=${cardNo}&bankCode=${bankCode}&bankName=${encodeURIComponent(bankName)}
+
+
+                        if(AccountInfo.isRealNameVerify()) {
+                        }
+
                     } else {
                         switch (response.getCardType()) {
                             case 0:// 0则卡bin失败

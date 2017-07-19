@@ -1,16 +1,12 @@
 package com.ailicai.app.ui.base.webview;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.webkit.WebSettings;
 
-
 import com.ailicai.app.common.utils.HashMapUtil;
 import com.ailicai.app.common.utils.MyIntent;
-import com.ailicai.app.ui.account.BankCardScanActivity;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class WebViewActivity extends BaseWebViewActivity {
@@ -60,33 +56,6 @@ public class WebViewActivity extends BaseWebViewActivity {
                     }
                 });
             }
-
-            addAction();
-        }
-    }
-
-    private void addAction() {
-        addJumpUiActions(new WebJumpUiAction("scancard") {
-            @Override
-            public void jumpUi(HashMap<String, String> params) {
-                Intent intent = new Intent(WebViewActivity.this, BankCardScanActivity.class);
-                startActivityForResult(intent, RC_TO_SCAN_PAGE);
-            }
-        });
-    }
-
-    private void callJSToTellCardNumber(String cardNumber) {
-        loadJs("javascript:callJs('getcardno'," + cardNumber + ")");
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode != RESULT_OK) return;
-
-        if(requestCode == RC_TO_SCAN_PAGE) {
-//            callJSToTellCardNumber();
         }
     }
 }

@@ -528,7 +528,7 @@ public class BaseWebViewLayout extends LinearLayout {
             }
         });
 
-        addJumpUiActions(new WebJumpUiAction("openaccounprocess") {
+        addJumpUiActions(new WebJumpUiAction("openaccountprocess") {
             @Override
             public void jumpUi(HashMap<String, String> params) {
 
