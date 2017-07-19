@@ -15,11 +15,13 @@ import android.widget.TextView;
 
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
+import com.ailicai.app.common.constants.CommonTag;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
+import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.StringUtil;
 import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
@@ -51,6 +53,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.ref.SoftReference;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -65,7 +68,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.userPhoto:
-                    //MyIntent.startActivity(getActivity(), UserInfoEditActivity.class, getDataMap());
+                    MyIntent.startActivity(getActivity(), SettingsActivity.class, getDataMap());
                     break;
             }
         }
@@ -120,6 +123,28 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             }
         }
     };
+
+    /**
+     * 获取页面传参的数据Map
+     *
+     * @return
+     */
+    public Map<String, Object> getDataMap() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
+            long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
+            UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
+            Map<String, Object> dataMap = ObjectUtil.newHashMap();
+            dataMap.put(CommonTag.PERSONAL_USER_ID, infoBase.getUserId());
+            dataMap.put(CommonTag.PERSONAL_USER_NAME, infoBase.getRealName());
+            dataMap.put(CommonTag.PERSONAL_USER_R_NAME, infoBase.getrName());
+            dataMap.put(CommonTag.PERSONAL_USER_SEX, infoBase.getGender());
+            dataMap.put(CommonTag.PERSONAL_USER_PHONE, infoBase.getMobile());
+            dataMap.put(CommonTag.PERSONAL_USER_ISREALNAMEVERIFY, infoBase.getIsRealNameVerify());
+            dataMap.put(CommonTag.PERSONAL_USER_IDCARDNUMBER, infoBase.getIdCardNo());
+            return dataMap;
+        }
+        return ObjectUtil.newHashMap();
+    }
 
     @Override
     public int getLayout() {
