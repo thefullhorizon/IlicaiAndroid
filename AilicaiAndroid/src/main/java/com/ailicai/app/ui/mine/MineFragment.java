@@ -377,7 +377,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
 
             if (assetInfoNewResponse != null) {
-                setDataInfo();
+                handlerEyesStatus();
                 //卡券红点
                 setVoucherRedDotState(assetInfoNewResponse.getVoucherRedPoint() > 0);
             }

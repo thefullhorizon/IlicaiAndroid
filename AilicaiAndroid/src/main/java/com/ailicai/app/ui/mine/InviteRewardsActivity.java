@@ -37,7 +37,7 @@ import butterknife.Bind;
  * Created by Gerry on 2017/7/18.
  */
 
-public class InviteRewardsActivity extends BaseBindActivity implements BottomRefreshListViewCallbacks {
+public class InviteRewardsActivity extends BaseBindActivity implements BottomRefreshListViewCallbacks, BottomRefreshListView.OnLoadMoreListener {
     public SpannableUtil spanUtil;
     @Bind(R.id.content_view)
     FrameLayout mAllView;
@@ -76,6 +76,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         spanUtil = new SpannableUtil(mContext);
         CommonUtil.addAnimForView(mAllView);
         mRewardsList.setScrollViewCallbacks(this);
+        mRewardsList.setOnLoadMoreListener(this);
         rewardTopHead.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -107,13 +108,13 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         tView.setVisibility(View.VISIBLE);
     }
 
-    public void changeFirstTabsName(){
+    public void changeFirstTabsName() {
         tt1.setText("邀请好友");
         tt2.setText("受邀时间");
         tt3.setText("投资状态");
     }
 
-    public void changeSecondTabsName(){
+    public void changeSecondTabsName() {
         tt1.setText("奖励时间");
         tt2.setText("奖励状态");
         tt3.setText("奖励金额(元)");
@@ -203,6 +204,11 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
 
     @Override
     public void onUpOrCancelMotionEvent(BottomRefreshListViewScrollState scrollState) {
+
+    }
+
+    @Override
+    public void onLoadMore() {
 
     }
 }
