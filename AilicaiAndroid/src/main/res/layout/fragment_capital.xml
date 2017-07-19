@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         manyi:hasDivider="false"
         manyi:isDark="true"
-        manyi:titleview_title_text="我的资产"/>
+        manyi:titleview_title_text="网贷资产"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_below="@+id/capital_back"

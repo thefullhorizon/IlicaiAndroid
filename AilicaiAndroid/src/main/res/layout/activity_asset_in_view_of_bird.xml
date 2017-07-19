@@ -12,11 +12,18 @@
         android:orientation="vertical"
         android:background="#ffffff">
 
+        <com.ailicai.app.widget.IWTopTitleView
+            android:id="@+id/iw_title_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleview_title_text="资产总览"
+            app:hasDivider="true"/>
+
         <com.ailicai.app.widget.AssetPie
             android:id="@+id/asset_pie"
             android:layout_width="match_parent"
             android:layout_height="248dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="64dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
