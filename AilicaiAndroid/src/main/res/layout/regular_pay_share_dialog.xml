@@ -35,7 +35,7 @@
                 manyi:riv_corner_radius_top_right="2dp" />
 
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/close_button"
                 android:layout_width="35dp"
                 android:layout_height="35dp"

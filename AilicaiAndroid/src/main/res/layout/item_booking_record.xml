@@ -128,7 +128,7 @@
             android:textSize="14sp" />
 
 
-        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+        <com.ailicai.app.widget.TextViewTF
             android:id="@+id/tfMore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
                 android:textColor="#005ebd"
                 android:textSize="14sp" />
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/tfArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

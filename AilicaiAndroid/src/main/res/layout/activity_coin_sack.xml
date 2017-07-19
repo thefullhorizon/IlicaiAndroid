@@ -6,7 +6,7 @@
               android:background="@color/global_background"
               android:orientation="vertical">
 
-    <com.manyi.lovehouse.widget.IWTopTitleView
+    <com.ailicai.app.widget.IWTopTitleView
         android:id="@+id/iw_title_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:text="申购金额(元)"/>
 
-                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                <com.ailicai.app.widget.TextViewDinFont
                     android:id="@+id/coin_sack_value_left"
                     style="@style/text_22_212121"
                     android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:text="申购进度"/>
 
-                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                <com.ailicai.app.widget.TextViewDinFont
                     android:id="@+id/coin_sack_value_right"
                     style="@style/text_22_212121"
                     android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
         </LinearLayout>
 
 
-        <com.manyi.lovehouse.widget.CapitalProductProgressBar
+        <com.ailicai.app.widget.CapitalProductProgressBar
             android:id="@+id/purchase_progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

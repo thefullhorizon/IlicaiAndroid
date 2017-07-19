@@ -6,7 +6,7 @@
     android:background="@color/global_background"
     android:orientation="vertical">
 
-    <com.manyi.lovehouse.widget.IWTopTitleView
+    <com.ailicai.app.widget.IWTopTitleView
         android:id="@+id/top_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             android:paddingTop="@dimen/_8">
 
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/price_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                 android:textCursorDrawable="@null"
                 android:textSize="36sp" />
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/tv_clear"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -237,7 +237,7 @@
                         android:textColor="#212121"
                         android:textSize="14sp" />
 
-                    <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                    <com.ailicai.app.widget.TextViewTF
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"

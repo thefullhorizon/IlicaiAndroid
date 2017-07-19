@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/global_background">
 
-    <com.manyi.lovehouse.widget.IWTopTitleView
+    <com.ailicai.app.widget.IWTopTitleView
         android:id="@+id/title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/title_view">
 
-        <com.manyi.lovehouse.ui.agenda.view.BottomRefreshListView
+        <com.ailicai.app.widget.BottomRefreshListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -78,7 +78,7 @@
                 android:text="结果"
                 android:textSize="12sp"/>
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/text_result_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

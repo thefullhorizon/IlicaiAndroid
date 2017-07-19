@@ -6,7 +6,7 @@
     android:background="@color/global_background"
     android:orientation="vertical">
 
-    <com.manyi.lovehouse.widget.IWTopTitleView
+    <com.ailicai.app.widget.IWTopTitleView
         android:id="@+id/top_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:visibility="gone"
         android:orientation="vertical">
 
-        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+        <com.ailicai.app.widget.TextViewTF
             android:id="@+id/pay_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
                 android:textColor="#757575"
                 android:textSize="14sp" />
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/tv_icon_success_text"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -155,7 +155,7 @@
                 android:textColor="#d2d5db"
                 android:textSize="20sp" />
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/tv_icon_profit_text"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -166,7 +166,7 @@
                 android:textColor="#3aa78f"
                 android:textSize="20sp" />
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/tv_icon_profit_dao_text"
                 android:layout_width="20dp"
                 android:layout_height="20dp"

@@ -6,7 +6,7 @@
     android:background="@color/global_background"
     android:orientation="vertical">
 
-    <com.manyi.lovehouse.widget.IWTopTitleView
+    <com.ailicai.app.widget.IWTopTitleView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         manyi:titleview_title_text="@string/pay_pwd_manage" />

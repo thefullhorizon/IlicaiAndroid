@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.manyi.lovehouse.widget.IWTopTitleView
+        <com.ailicai.app.widget.IWTopTitleView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             manyi:isDark="true"/>
@@ -34,7 +34,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/tvIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

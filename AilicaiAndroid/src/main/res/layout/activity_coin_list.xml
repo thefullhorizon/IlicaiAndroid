@@ -6,7 +6,7 @@
     android:background="@color/global_background"
     android:orientation="vertical">
 
-    <com.manyi.lovehouse.widget.IWTopTitleView
+    <com.ailicai.app.widget.IWTopTitleView
         android:id="@+id/iw_title_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1">
 
-                <com.manyi.lovehouse.ui.agenda.view.BottomRefreshListView
+                <com.ailicai.app.widget.BottomRefreshListView
                     android:id="@+id/coin_list_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

@@ -56,7 +56,7 @@
                                 android:textColor="#ffffff"
                                 android:textSize="14sp" />
 
-                            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                            <com.ailicai.app.widget.TextViewTF
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="4dp"
@@ -179,7 +179,7 @@
                             android:textColor="@color/color_757575"
                             android:textSize="12sp" />
 
-                        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                        <com.ailicai.app.widget.TextViewTF
                             android:id="@+id/wallet_rise_text_arrow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -271,7 +271,7 @@
                             android:textColor="#212121"
                             android:textSize="16sp" />
 
-                        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                        <com.ailicai.app.widget.TextViewTF
                             android:id="@+id/wallet_transacton_text_arrow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -315,7 +315,7 @@
                             android:textColor="#212121"
                             android:textSize="16sp" />
 
-                        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                        <com.ailicai.app.widget.TextViewTF
                             android:id="@+id/wallet_reserve_text_arrow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -350,7 +350,7 @@
                         android:paddingRight="16dp"
                         android:visibility="gone">
 
-                        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                        <com.ailicai.app.widget.TextViewTF
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -559,7 +559,7 @@
         </com.manyi.lovehouse.widget.CustomScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <com.manyi.lovehouse.widget.IWTopTitleView
+    <com.ailicai.app.widget.IWTopTitleView
         android:id="@+id/mywallet_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

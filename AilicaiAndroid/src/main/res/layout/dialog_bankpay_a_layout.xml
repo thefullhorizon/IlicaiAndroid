@@ -22,7 +22,7 @@
             android:textStyle="bold" />
 
 
-        <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+        <com.ailicai.app.widget.TextViewTF
             android:id="@+id/close_button"
             android:layout_width="@dimen/_24"
             android:layout_height="@dimen/_24"
@@ -130,7 +130,7 @@
                         android:textSize="14dp" />
 
 
-                    <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                    <com.ailicai.app.widget.TextViewTF
                         android:id="@+id/money_pay_ico"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

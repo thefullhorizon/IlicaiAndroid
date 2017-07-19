@@ -6,7 +6,7 @@
     android:background="@color/global_background"
     android:orientation="vertical">
 
-    <com.manyi.lovehouse.widget.IWTopTitleView
+    <com.ailicai.app.widget.IWTopTitleView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         manyi:titleview_title_text="@string/pay_pwd_reset" />
@@ -47,7 +47,7 @@
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
-            <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+            <com.ailicai.app.widget.TextViewTF
                 android:id="@+id/idCardScan"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

@@ -33,7 +33,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="持有本金(元)"/>
-                    <com.manyi.lovehouse.widget.tfwidget.TextViewTF
+                    <com.ailicai.app.widget.TextViewTF
 
                         style="@style/text_14_ffffff"
                         android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
 
 
 
-                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                <com.ailicai.app.widget.TextViewDinFont
                     android:id="@+id/capital_total"
                     style="@style/text_20_ffffff"
                     android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:text="待收收益(元)"/>
 
-                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                <com.ailicai.app.widget.TextViewDinFont
                     android:id="@+id/pre_profit"
                     style="@style/text_20_ffffff"
                     android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:text="累计收益(元)"/>
 
-                <com.manyi.lovehouse.widget.tfwidget.TextViewDinFont
+                <com.ailicai.app.widget.TextViewDinFont
                     android:id="@+id/accumulated_income"
                     style="@style/text_20_ffffff"
                     android:layout_width="wrap_content"

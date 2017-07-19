@@ -193,6 +193,157 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        // cashier desk
+        <activity
+            android:name="com.ailicai.app.ui.buy.ProcessActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.RegularFinanceDetailH5Activity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.AccountTopupActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+
+        <activity
+            android:name="com.ailicai.app.ui.view.AccountWithdrawActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.AccountTransactionResultActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.CurrentRollInActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.CurrentRollInActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.CurrentRollInResultActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.CurrentRollOutActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.CurrentRollOutResultActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+
+        <activity
+            android:name="com.ailicai.app.ui.view.BuyTiYanBaoActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.BuyTiYanBaoResultActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.BuyTransferPayActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.BuyTransferPayResultActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.CapitalActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.RegularPayActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.RegularPayResultActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.TransferPayActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.TransferRecordH5Activity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.TransferSubmitSuccessActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.ailicai.app.ui.view.CapitalActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+
         <!--todo host需要改变-->
         <activity
             android:name=".common.push.ui.PushUiDispatcherActivity"
