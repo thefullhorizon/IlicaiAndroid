@@ -307,7 +307,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#212121"
-                android:text="体验金"/>
+                android:text="体验金收益"/>
 
             <TextView
                 android:id="@+id/earnings_tiyan"

@@ -43,10 +43,6 @@ public class AssetPie extends View{
         this.data = data;
     }
 
-    public void setColorData(List<String> colorData) {
-        this.colorData = colorData;
-    }
-
     public int getmRadius() {
         return mRadius;
     }
@@ -150,7 +146,7 @@ public class AssetPie extends View{
             float currentAngle = 0.0f;
             for (int i = 0 ; i < data.size(); i++){
                 int num = (int)data.get(i).getAmount();
-                float needDrawAngle = num * 1.0f / 100 * 360;
+                float needDrawAngle = num * 1.0f / (int)Double.parseDouble(totalAsset) * 360;
                 if (Math.min(needDrawAngle, animatedValue - currentAngle) >= 0) {
                     mPaint.setColor(Color.parseColor(colorData.get(i)));
                     mCanvas.drawArc(oval, currentAngle, Math.min(needDrawAngle - dp2px(1), animatedValue - currentAngle), true, mPaint);
