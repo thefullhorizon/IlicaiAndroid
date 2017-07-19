@@ -52,7 +52,7 @@ public class SpannableUtil {
     }
 
     /**
-     * 功能描述:TODO(用于对三段string设置不同的style 并返回SpannableStringBuilder)
+     * 功能描述:(用于对三段string设置不同的style 并返回SpannableStringBuilder)
      * <p/>
      * <pre>
      *     w_xiong:   2013-6-7      新建

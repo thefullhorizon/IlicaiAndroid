@@ -15,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="125dp"
+        android:layout_marginBottom="100dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="64dp"
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:src="@drawable/wechat_share_to_other" />
+            android:src="@drawable/wechat_ailicaiwx" />
 
         <FrameLayout
             android:layout_width="match_parent"

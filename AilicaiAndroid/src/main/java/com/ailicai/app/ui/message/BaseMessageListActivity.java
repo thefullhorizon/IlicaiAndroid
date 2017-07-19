@@ -1,6 +1,6 @@
 package com.ailicai.app.ui.message;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +12,7 @@ import android.widget.AbsListView;
 import android.widget.TextView;
 
 import com.ailicai.app.R;
+import com.ailicai.app.common.logCollect.PVIDHandler;
 import com.ailicai.app.common.push.model.PushMessage;
 import com.ailicai.app.eventbus.RefreshPushEvent;
 import com.ailicai.app.message.Notice;
@@ -60,7 +61,13 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
     private int messageListtype = 0;
     private int mTotal;
 
-    public static void goActivity(Context context,int type){
+    public static void goActivity(Activity context, PushMessage message){
+        Intent intent = new Intent();
+        intent.setClass(context, BaseMessageListActivity.class);
+        intent.putExtra(PushMessage.PUSHMESSAGE,message);
+        context.startActivity(intent);
+    }
+    public static void goActivity(Activity context, int type){
         Intent intent = new Intent();
         intent.setClass(context, BaseMessageListActivity.class);
         intent.putExtra(BaseMessageListActivity.MESSAGELISTTYPE,
@@ -84,38 +91,6 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
                         (PushMessage.PUSHMESSAGE);
                 messageListtype = pushMessage.getMsgType();
 
-                if(messageListtype == PushMessage.REMINDTYPE){
-                    if(pushMessage.getOptional().getType() == PushMessage.REMINDTYPEDOWNPRICELIST) {
-                        Intent intent = new Intent(this, MessageDetailWebViewActivity.class);
-                        intent.putExtra(MessageDetailWebViewActivity.URL, pushMessage.getOptional()
-                                .getUrl());
-                        startActivity(intent);
-                    }
-                }
-                if ((pushMessage.getMsgType() == PushMessage.INFOTYPE ||
-                        pushMessage.getMsgType() == PushMessage.ACTIVITYTYPE)) {
-                    if(pushMessage.getOptional().getType() == PushMessage.NOTICETYPETOWEBVIEW) {
-                        Intent intent = new Intent(this, MessageDetailWebViewActivity.class);
-                        intent.putExtra(MessageDetailWebViewActivity.URL, pushMessage.getOptional()
-                                .getUrl());
-                        startActivity(intent);
-                    }
-                }
-                /*if (pushMessage.getMsgType() == PushMessage.INFOTYPE ) {
-                    if (pushMessage.getOptional().getType() == PushMessage.NOTICETYPEHOUSEDETAIL) {
-                        int rentOrSale = pushMessage.getOptional().getRentOrSell();
-                        if (rentOrSale == 2) {
-                            Intent intent = new Intent(this, NewHouseDetailActivity.class);
-                            intent.putExtra(CommonTag.PROPERTY_ID, pushMessage.getOptional().getHouseId());
-                            startActivity(intent);
-                        } else if (rentOrSale == 1 || rentOrSale == 0) {
-                            Intent intent = new Intent(this, HouseDetailActivity.class);
-                            intent.putExtra(CommonTag.HOUSE_ID, pushMessage.getOptional().getHouseId());
-                            intent.putExtra(CommonTag.RENT_OR_SELL, rentOrSale);
-                            startActivity(intent);
-                        }
-                    }
-                }*/
             } else {
                 messageListtype = getIntent().getIntExtra(MESSAGELISTTYPE, messageListtype);
             }
@@ -155,7 +130,7 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
     @Override
     public void onResume() {
         //TODO 统计
-//        PVIDHandler.uploadPVIDLogical(this.getClass().getSimpleName() + messageListtype);
+        PVIDHandler.uploadPVIDLogical(this.getClass().getSimpleName() + messageListtype);
         super.onResume();
     }
 

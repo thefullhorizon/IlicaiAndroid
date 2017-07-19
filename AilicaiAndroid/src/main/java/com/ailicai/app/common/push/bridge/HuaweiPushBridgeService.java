@@ -36,7 +36,9 @@ public class HuaweiPushBridgeService extends PushBrigdgeService {
         PushManager.deregisterToken(context,regID);
     }
 
-
-
-
+    @Override
+    public CloudBridgeService clearAllArrivedMessages() {
+        //huawei 未提供清除通知栏的api
+        return super.clearAllArrivedMessages();
+    }
 }

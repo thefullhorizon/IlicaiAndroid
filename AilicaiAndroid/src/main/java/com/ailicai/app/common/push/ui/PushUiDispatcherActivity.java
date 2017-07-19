@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 
 import com.ailicai.app.R;
+import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.push.constant.CommonTags;
 import com.ailicai.app.common.push.model.PushMessage;
 import com.ailicai.app.common.push.utils.DeathChecker;
@@ -51,6 +52,7 @@ public class PushUiDispatcherActivity extends BaseBindActivity {
             boolean isAppAlive = intent.getBooleanExtra(DeathChecker.ISALIVE, false);
             String from = intent.getStringExtra(CommonTags.FROM);
             if (TextUtils.isEmpty(from)) {
+                //默认来源为推送
                 from = CommonTags.PUSH;
             }
             getPushMessage(intent);
@@ -99,13 +101,11 @@ public class PushUiDispatcherActivity extends BaseBindActivity {
 
     private void upEventLog(PushMessage pushMessage){
         //TODO 统计
-       /* try {
-            EventLog.upEventLog("500", pushMessage.getPayload());
-        } catch (Exception e){
-            e.printStackTrace();
-        }*/
+        EventLog.upEventLog("500", pushMessage.getPayload());
+
     }
 
+    //应用第一次启动时，会发送此事件
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handlePushMessage(PushMessage event) {
         upEventLog(pushMessage);
@@ -116,37 +116,17 @@ public class PushUiDispatcherActivity extends BaseBindActivity {
         LogUtil.i(TAG,"goPushDirect" + pushMessage.toString());
 
         switch (pushMessage.getMsgType()) {
-            case PushMessage.DYNAMICTYPE:
-                goPushIndexHome(pushMessage);
-                break;
             case PushMessage.REMINDTYPE:
                 switch (pushMessage.getOptional().getType()){
                     case  PushMessage.REMINDTYPECOUPONBANNER:
-                        goCouponBanner(pushMessage);
+                        finishDelay();
                         break;
-                    case PushMessage.REMINDTYPECUSTOMPUSH:
-                        goPushIndexHomeNotClear(pushMessage);
-                        break;
-                    /*case PushMessage.REMINDTYPEAGENTPINGJIA:
-                        AppraiseAgentActivity.gotoAppraise(this, pushMessage.getOptional().getAppointmentId2Long(), "", pushMessage.getOptional().getBizType2Int());
-                        break;
-                    case PushMessage.REMINDTYPEAGENDAAPPRAISE:
-                        AppraiseAgentActivity.gotoAppraise(this,pushMessage.getOptional().getAgentId2Int(),pushMessage.getOptional().getAppraiseTitle());
-                        break;*/
                     default:
                         goMessageList(pushMessage);
                         break;
                 }
-
                 break;
             case PushMessage.INFOTYPE:
-                if (pushMessage.getOptional().getType() == PushMessage
-                        .NOTICETYPETOFINANCE) {
-                    goPushIndexHome(pushMessage);
-                } else {
-                    goMessageList(pushMessage);
-                }
-                break;
             case PushMessage.ACTIVITYTYPE:
                 if (pushMessage.getOptional().getType() == PushMessage
                         .NOTICETYPETOFINANCE) {
@@ -159,10 +139,7 @@ public class PushUiDispatcherActivity extends BaseBindActivity {
     }
 
     private void goMessageList(PushMessage pushMessage){
-        Intent intent = new Intent();
-        intent.setClass(this, BaseMessageListActivity.class);
-        intent.putExtra(PushMessage.PUSHMESSAGE, pushMessage);
-        startActivity(intent);
+        BaseMessageListActivity.goActivity(this,pushMessage);
         finishDelay();
     }
 
@@ -186,17 +163,6 @@ public class PushUiDispatcherActivity extends BaseBindActivity {
             startActivity(intent);
             finishDelay();
         }
-
-
-    }
-
-    private void goPushIndexHomeNotClear(PushMessage pushMessage){
-        LogUtil.i(TAG,"goIndexHome" + pushMessage.toString());
-        Intent intent=new Intent(this,IndexActivity.class);
-        intent.putExtra(PushMessage.PUSHMESSAGE, pushMessage);
-        intent.putExtra(CommonTags.FROM,CommonTags.PUSH);
-        startActivity(intent);
-        finishDelay();
     }
 
     private void goPushIndexHome(PushMessage pushMessage){
@@ -209,11 +175,6 @@ public class PushUiDispatcherActivity extends BaseBindActivity {
         finishDelay();
     }
 
-    private void goCouponBanner(PushMessage pushMessage){
-     //   FinanceAdActivity.showAdFullDialog(this);
-        finishDelay();
-    }
-
     public void finishDelay(){
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -221,14 +182,6 @@ public class PushUiDispatcherActivity extends BaseBindActivity {
                 finish();
             }
         },1000);
-    }
-
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        LogUtil.i(TAG,"onNewIntent");
-
     }
 
     @Override

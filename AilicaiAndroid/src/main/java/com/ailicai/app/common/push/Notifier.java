@@ -9,10 +9,10 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.util.EventLog;
 
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
+import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.push.constant.CommonTags;
 import com.ailicai.app.common.push.model.PushMessage;
 import com.ailicai.app.common.push.ui.PushUiDispatcherActivity;
@@ -107,11 +107,7 @@ public class Notifier {
         MsgLiteView.refreshNoticeNums(null);
 
         //TODO 统计EventLog
-        /*try {
-            EventLog.upEventLog("501", pushMessage.getPayload());
-        } catch (Exception e) {
-
-        }*/
+        EventLog.upEventLog("501", pushMessage.getPayload());
 
     }
 }

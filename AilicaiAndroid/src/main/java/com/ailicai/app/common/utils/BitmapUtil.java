@@ -310,7 +310,6 @@ public class BitmapUtil {
                 bitmap.recycle();
                 bitmap = null;
             } catch (Exception e) {
-                // TODO: handle exception
             }
         }
     }

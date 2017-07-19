@@ -36,13 +36,13 @@ import java.util.concurrent.TimeUnit;
 public abstract class PushBrigdgeService implements CloudBridgeService {
 
     private final String TAG = "PushBrigdgeService";
-    private static final String SERVICE_NAME = "com.manyi.lovehouse.common.push.bridge.PushBrigdgeService";/*PushBrigdgeService.class.getPackage().getName() + "."+ PushBrigdgeService.class.getSimpleName();*/
+    private static final String SERVICE_NAME = "com.ailicai.app.common.push.bridge.PushBrigdgeService";/*PushBrigdgeService.class.getPackage().getName() + "."+ PushBrigdgeService.class.getSimpleName();*/
     public static final String INTERNAL_ACTION_BRIDGED_MESSAGE_ARRIVED = SERVICE_NAME+".INTERNAL_ACTION_BRIDGED_MESSAGE_ARRIVED";
     public static final String INTERNAL_KEY_BRIDGED_MESSAGE_ARRIVED = SERVICE_NAME+".INTERNAL_KEY_BRIDGED_MESSAGE_ARRIVED";
     public static final String INTERNAL_ACTION_BRIDGED_REGISTER_TOKEN = SERVICE_NAME+".INTERNAL_ACTION_BRIDGED_REGISTER_TOKEN";
     public static final String INTERNAL_KEY_BRIDGED_REGISTER_TOKEN = SERVICE_NAME+".INTERNAL_KEY_BRIDGED_REGISTER_TOKEN";
 
-    public static final String SCHEDULER_ACTION = "com.manyi.lovehouce.common.push.PushBridgeService.ACTION_SCHEDULER";
+    public static final String SCHEDULER_ACTION = "com.ailicai.app.common.push.bridge.PushBridgeService.ACTION_SCHEDULER";
 
     protected final Context context;
     protected final String clientID;

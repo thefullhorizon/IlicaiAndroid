@@ -23,4 +23,10 @@ public class PushUtil {
         stopMqttService(context);
         startMqttService(context);
     }
+
+    public static void clearAllNofity(Context context){
+        Intent intent = PushBootService.getIntent();
+        intent.putExtra(PushBootService.CLEAR_NOTIFICATION,1);
+        context.startService(intent);
+    }
 }

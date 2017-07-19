@@ -2514,7 +2514,8 @@ public class DateUtil {
         Date d = new Date();
         try {
             d = bartDateFormat.parse(datestr);
-        } catch (ParseException e) {// TODO 自动生成 catch 块                e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
         String dstr = DateUtil.date2string(d, desFormat);
         return dstr;

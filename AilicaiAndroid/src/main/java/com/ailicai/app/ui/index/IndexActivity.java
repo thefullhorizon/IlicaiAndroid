@@ -16,17 +16,21 @@ import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.version.VersionInterface;
+import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.model.request.HtmlUrlRequest;
 import com.ailicai.app.model.response.Iwjwh5UrlResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.index.adapter.NavigationPagerAdapter;
+import com.ailicai.app.ui.message.MessageTypeProcessUtils;
 import com.ailicai.app.ui.mine.MineFragment;
 import com.ailicai.app.widget.NoScrollViewPager;
 import com.ailicai.app.widget.ahbottomnavigation.AHBottomNavigation;
 import com.ailicai.app.widget.ahbottomnavigation.AHBottomNavigationItem;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.Bind;
 
@@ -68,7 +72,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-//        EventBus.getDefault().register(this);
+        EventBus.getDefault().register(this);
         setViewPageData();
         htmlUrlUpdate();
     }
@@ -93,6 +97,8 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         bottomNavigation.setDefaultBackgroundColor(getResources().getColor(R.color.color_f7f7f7));
         bottomNavigation.setUseElevation(true);
         mViewPager.setCurrentItem(0);
+
+        MessageTypeProcessUtils.parseIntent(this,mViewPager);
     }
 
     @Override
@@ -103,7 +109,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
             int settabitem = intent.getIntExtra("settabIndex", -1);
             setCurrentItem(settabitem);
         }
-//        IndexActivityPresenter.parseIntent(this, mViewPager);
+        MessageTypeProcessUtils.parseIntent(this,mViewPager);
     }
 
 
@@ -219,6 +225,28 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
 
     public void initOneceNum() {
         notifLoadCount = 1;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleLoginEvent(LoginEvent event) {
+        //TODO 只添加了推送或短信消息类型处理
+//        refreshGlobalData(this);
+        if (event.isLoginSuccess()) {
+            MessageTypeProcessUtils.parseIntent(this, mViewPager);
+        } else {
+            setIntent(new Intent());
+        }
+
+        if (event.isCancelLogin()) {
+            setIntent(new Intent());
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     Toast toast;

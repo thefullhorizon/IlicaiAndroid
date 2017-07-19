@@ -9,6 +9,8 @@ import com.ailicai.app.common.push.Notifier;
 import com.ailicai.app.common.push.PushConstants;
 import com.ailicai.app.common.push.model.PushCleanMessage;
 import com.ailicai.app.common.push.model.PushMessage;
+import com.ailicai.app.ui.login.LoginManager;
+import com.ailicai.app.ui.login.UserInfo;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.Feature;
 import com.huoqiu.framework.util.LogUtil;
@@ -35,10 +37,9 @@ public final class NotificationReceiver extends BroadcastReceiver {
                 if (!pushCleanMessage.getClientId().equals(MqttManager.getClientIdByMobile
                         (MqttManager.getMobile()))) {
 
-                    //TODO  退出登陆
-                   /* if (UserInfo.isLogin()){
+                    if (UserInfo.isLogin()){
                         LoginManager.loginOut(context);
-                    }*/
+                    }
                 }
 
             } else {
@@ -47,10 +48,10 @@ public final class NotificationReceiver extends BroadcastReceiver {
                             Feature.IgnoreNotMatch, Feature.AllowISO8601DateFormat);
 
                     pushMessage.setPayload(new String(payload));
-                    LogUtil.i(MqttManager.TAG, "receive push message" + pushMessage);
+                    LogUtil.i(MqttManager.TAG, "receive push message " + pushMessage);
                     notifier.notify(pushMessage);
                 } catch (Exception e) {
-                    LogUtil.i(MqttManager.TAG, "fail to parseObject" + payload, e);
+                    LogUtil.i(MqttManager.TAG, "fail to parseObject " + new String(payload), e);
                 }
             }
         }

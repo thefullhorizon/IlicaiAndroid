@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 import com.ailicai.app.MyApplication;
+import com.ailicai.app.common.push.PushUtil;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.MyPreference;
@@ -23,6 +24,7 @@ import com.ailicai.app.model.response.account.AccountResponse;
 import com.ailicai.app.ui.base.FragmentHelper;
 import com.ailicai.app.ui.dialog.LoginDialog;
 import com.umeng.analytics.MobclickAgent;
+import com.xiaomi.mipush.sdk.MiPushClient;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -253,12 +255,9 @@ public class LoginManager {
         //退出登录清除用户的通知。
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancelAll();
-        /*
-        TODO:NEW APP
-        MiPushClient.clearNotification(context);
-        EaseUI.getInstance().getNotifier().reset();
+//        EaseUI.getInstance().getNotifier().reset();
+        PushUtil.clearAllNofity(context);
         PushUtil.resetMqttService(context);
-        */
 
         LoginEvent loginEvent = new LoginEvent();
         loginEvent.setLoginSuccess(false);

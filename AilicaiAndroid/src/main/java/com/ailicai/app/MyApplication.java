@@ -7,6 +7,7 @@ import android.os.HandlerThread;
 import android.support.multidex.MultiDexApplication;
 
 import com.ailicai.app.common.constants.AILICAIBuildConfig;
+import com.ailicai.app.common.push.utils.DeathChecker;
 import com.ailicai.app.common.utils.SystemUtil;
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.huoqiu.framework.app.AppConfig;
@@ -102,7 +103,7 @@ public class MyApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         if (getPackageName().equalsIgnoreCase(SystemUtil.getCurProcessName(this))) {
-//            DeathChecker.registerLife(this);
+            DeathChecker.registerLife(this);
             application = this;
             AppConfig.application = getInstance();
             appPresenter = ApplicationPresenter.getInstance(application);

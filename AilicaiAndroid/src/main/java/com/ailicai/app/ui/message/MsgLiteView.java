@@ -141,7 +141,6 @@ public class MsgLiteView extends FrameLayout implements View.OnClickListener {
                 newNotifMsgEvent.notifNum = sum;
                 newNotifMsgEvent.remindNum = n.getRemindNum(); // MessageFragment中提醒单独用
                 newNotifMsgEvent.hasPopActive = n.getHasPopActive();
-                newNotifMsgEvent.sigRentContRemindCount = n.getSigRentContRemindCount();
                 //         LogUtil.d("debuglog", "post 消息");
                 EventBus.getDefault().post(newNotifMsgEvent);
             }

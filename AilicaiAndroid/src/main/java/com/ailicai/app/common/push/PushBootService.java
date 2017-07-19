@@ -38,9 +38,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class PushBootService extends Service {
 
-    public static final String TAG = "com.manyi.loveHouse.PushBootService";
+    public static final String TAG = "com.ailicai.app.PushBootService";
 
     public static final String SERVICE_NAME = PushBootService.class.getName();
+    public static final String CLEAR_NOTIFICATION = "clearNotification";
 
     private TelephonyManager telephonyManager;
 
@@ -88,6 +89,16 @@ public class PushBootService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if(intent.getIntExtra(CLEAR_NOTIFICATION,0) == 1){
+            if(pushBridgeService != null){
+                //应用小米的实现类在jar包中，无法修改，需要单独修改
+                if(pushBridgeService instanceof MiPushBridgeService){
+                    MiPushClient.clearNotification(getApplicationContext());
+                }else{
+                    pushBridgeService.clearAllArrivedMessages();
+                }
+            }
+        }
         return START_STICKY;
     }
 

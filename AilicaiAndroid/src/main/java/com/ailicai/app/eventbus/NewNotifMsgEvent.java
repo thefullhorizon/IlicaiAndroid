@@ -5,7 +5,5 @@ public class NewNotifMsgEvent {
     public int remindNum;
     public String from;
     public int hasPopActive;
-    public int sigRentContRemindCount;
-
 
 }

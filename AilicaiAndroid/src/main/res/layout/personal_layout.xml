@@ -240,6 +240,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_new_msg_point"
                     android:layout_width="8dp"
                     android:layout_height="8dp"
                     android:layout_gravity="top|right"
