@@ -16,7 +16,9 @@ import com.ailicai.app.common.utils.StringUtil;
 import com.ailicai.app.eventbus.ExitEvent;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.login.UserInfo;
+import com.ailicai.app.ui.paypassword.PayPwdManageActivity;
 import com.ailicai.app.widget.DialogBuilder;
+import com.huoqiu.framework.util.CheckDoubleClick;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -77,6 +79,18 @@ public class SettingsActivity extends BaseBindActivity {
             //TODO:未实名
         }
 
+    }
+
+    @OnClick(R.id.change_transaction_password)
+    void changePassword() {
+        if (!CheckDoubleClick.isFastDoubleClick()) {
+            MyIntent.startActivity(mContext, PayPwdManageActivity.class, "");
+        }
+    }
+
+    @OnClick(R.id.change_phone)
+    void changePhone() {
+        MyIntent.startActivity(mContext, UserPhoneValidateActivity.class, dataMap);
     }
 
     public void setUserInfo(Map<String, Object> dataMap) {

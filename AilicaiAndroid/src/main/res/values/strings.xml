@@ -37,6 +37,15 @@
     <string name="permit_agreement_title_text">《爱屋吉屋用户协议》</string>
 
     <!-- Mine -->
+    <string name="personal_phone_modify_success">手机号更换成功</string>
+    <string name="personal_new_phone_modify">新手机号</string>
+    <string name="personal_phone_modify_title">变更电话</string>
+    <string name="personal_phone_modify_tips_1">需要验证您原有电话 %s</string>
+    <string name="personal_phone_modify_tips_2">新号码将作为您以后的登录号码</string>
+    <string name="personal_phone_modify_next">下一步</string>
+    <string name="personal_phone_modify_ok">完成</string>
+    <string name="personal_phone_validate_success">验证成功</string>
+    <string name="personal_phone_validate_title">变更电话</string>
     <string name="loginout_tips_text">您确定要退出登录吗？</string>
     <string name="mine_login_btn_text">登录/注册</string>
     <string name="mine_order_title">我的订单</string>

@@ -357,8 +357,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             mineLogin.setVisibility(View.GONE);
             //登录按钮点击
             tvLogin.setOnClickListener(mOnClickListener);
-            userPhoto.setClickable(false);
-            userPhoto.setOnClickListener(null);
+            userPhoto.setClickable(true);
+            userPhoto.setOnClickListener(userLayoutOnClickListener);
             ticket_red_dot.setVisibility(View.INVISIBLE);
         } else if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
             mineNotLogin.setVisibility(View.GONE);

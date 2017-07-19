@@ -21,6 +21,7 @@
         <View style="@style/cell_divider_hor" />
 
         <RelativeLayout
+            android:id="@+id/change_phone"
             android:layout_width="match_parent"
             android:layout_height="45dip"
             android:background="@drawable/white_to_pressed_selector"
@@ -113,6 +114,7 @@
             android:layout_marginLeft="16dp" />
 
         <RelativeLayout
+            android:id="@+id/change_transaction_password"
             android:layout_width="match_parent"
             android:layout_height="45dip"
             android:background="@drawable/white_to_pressed_selector"

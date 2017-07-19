@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <com.ailicai.app.widget.IWTopTitleView
+        android:id="@+id/user_edit_top_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:titleview_title_text="@string/personal_phone_modify_title" />
+
+    <TextView
+        android:id="@+id/validate_phone_tips_text"
+        style="@style/text_14_212121"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/personal_phone_modify_tips_2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <com.ailicai.app.widget.ManyiEditText
+            android:id="@+id/new_phone_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            app:edit_appearance="@style/text_16_26000000"
+            app:edit_hint_value="@string/personal_new_phone_modify"
+            app:edit_inputType="number"
+            app:edit_maxLength="18" />
+
+        <Button
+            android:id="@+id/get_auth_code"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/user_phone_code_bg_selector"
+            android:gravity="center"
+            android:minWidth="80dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/validate_phone_auth_code"
+            android:textColor="@color/user_phone_edit_code_btn_text_color_selector"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <View style="@style/cell_divider_hor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/color_white"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <com.ailicai.app.widget.ManyiEditText
+            android:id="@+id/auth_code_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            app:edit_appearance="@style/text_16_26000000"
+            app:edit_hint_value="@string/validate_auth_code_hint2"
+            app:edit_inputType="number"
+            app:edit_maxLength="4" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/edit_modify_submit"
+        style="@style/RoundCornerBtnBg"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dip"
+        android:text="@string/personal_phone_modify_ok" />
+
+</LinearLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/edit_text_hint_color" android:state_enabled="false" android:state_pressed="true" />
+    <item android:color="@color/edit_text_hint_color" android:state_enabled="false" />
+    <item android:color="@color/user_auto_code" />
+</selector>
