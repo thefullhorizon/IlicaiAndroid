@@ -59,6 +59,12 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     RadioGroup aroundHouseGroup;
     @Bind(R.id.house_thumb_view)
     View thumb;
+    @Bind(R.id.tt1)
+    TextView tt1;
+    @Bind(R.id.tt2)
+    TextView tt2;
+    @Bind(R.id.tt3)
+    TextView tt3;
 
     @Override
     public int getLayout() {
@@ -101,16 +107,30 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         tView.setVisibility(View.VISIBLE);
     }
 
+    public void changeFirstTabsName(){
+        tt1.setText("邀请好友");
+        tt2.setText("受邀时间");
+        tt3.setText("投资状态");
+    }
+
+    public void changeSecondTabsName(){
+        tt1.setText("奖励时间");
+        tt2.setText("奖励状态");
+        tt3.setText("奖励金额(元)");
+    }
+
     public void setTabsCheckAction() {
         aroundHouseGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.plot_sale_house_rb:
+                        changeFirstTabsName();
                         setThumbAnimation(thumb, 0, -DeviceUtil.getScreenWidth() / 2);
                         //setHouseListData(true, response, onClickListener);
                         break;
                     case R.id.plot_rent_house_rb:
+                        changeSecondTabsName();
                         setThumbAnimation(thumb, -DeviceUtil.getScreenWidth() / 2, 0);
                         //setHouseListData(false, response, onClickListener);
                         break;
