@@ -12,5 +12,141 @@
         manyi:hasLeft="true"
         manyi:titleview_title_text="关于我们" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            style="@style/text_18_212121"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="爱理财" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <View style="@style/cell_divider_hor" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+
+            <TextView
+                style="@style/text_16_212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="了解爱理财" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/contact_us"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+
+            <TextView
+                style="@style/text_16_212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="联系我们" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/mine_love_app"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+
+            <TextView
+                style="@style/text_16_212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="给我们点赞" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+        <View style="@style/cell_divider_hor" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="32dp">
+
+        <TextView
+            android:id="@+id/app_version"
+            style="@style/text_12_bdbdbd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
 
 </LinearLayout>

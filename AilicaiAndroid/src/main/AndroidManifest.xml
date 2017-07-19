@@ -164,6 +164,11 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
 
         <activity
+            android:name="com.ailicai.app.ui.mine.ContactUsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+
+        <activity
             android:name=".setting.DebugActivity"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
