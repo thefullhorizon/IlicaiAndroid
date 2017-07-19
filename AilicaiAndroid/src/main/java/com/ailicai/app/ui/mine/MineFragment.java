@@ -401,6 +401,11 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         MyIntent.startActivity(getWRActivity(), InviteRewardsActivity.class, null);
     }
 
+    @OnClick(R.id.about_us)
+    void goAboutUs() {
+        MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
+    }
+
 
     /**
      * 点击版本更新时，强制更新退出客户端
