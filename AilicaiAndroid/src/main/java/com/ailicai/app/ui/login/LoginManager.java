@@ -510,6 +510,21 @@ public class LoginManager {
          */
         ACTION_INDEX_BANK_CARD(1),
 
+        /**
+         * 交易记录
+         */
+        ACTION_INDEX_TRANSACTION_LIST(2),
+
+        /**
+         * 预约记录
+         */
+        ACTION_INDEX_RESERVERECORD_LIST(3),
+
+        /**
+         * 邀请奖励
+         */
+        ACTION_INDEX_REWARDS_LIST(4),
+
 
         ACTION_INDEX_NORMAL(-1);
 

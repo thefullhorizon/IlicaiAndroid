@@ -225,6 +225,7 @@
                 android:id="@+id/fl_msg_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_black_a10_selector_round"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp">
