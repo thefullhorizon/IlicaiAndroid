@@ -30,7 +30,6 @@ import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.view.detail.ExpiredTiyanbaoListActivity;
-import com.ailicai.app.ui.view.detail.FinanceHomeActivity;
 import com.ailicai.app.ui.view.detail.IncomeDetailActivity;
 import com.ailicai.app.ui.view.detail.SmallCoinSackActivity;
 import com.ailicai.app.widget.BottomRefreshListView;
