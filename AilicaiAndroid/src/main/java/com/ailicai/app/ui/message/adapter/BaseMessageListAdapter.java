@@ -2,9 +2,6 @@ package com.ailicai.app.ui.message.adapter;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,30 +13,19 @@ import android.widget.TextView;
 
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
-import com.ailicai.app.common.constants.EventStr;
 import com.ailicai.app.common.imageloader.ImageLoaderClient;
-import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.push.model.PushMessage;
 import com.ailicai.app.common.utils.DeviceUtil;
 import com.ailicai.app.common.utils.StringUtil;
-import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.message.Notice;
-import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
-import com.ailicai.app.ui.html5.SupportUrl;
-import com.ailicai.app.ui.index.IndexActivity;
-import com.ailicai.app.ui.message.MessageDetailWebViewActivity;
-import com.ailicai.app.ui.voucher.CouponWebViewActivity;
+import com.ailicai.app.ui.message.MessageTypeProcessUtils;
 import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.TextViewTF;
-import com.alibaba.fastjson.JSON;
-import com.huoqiu.framework.analysis.ManyiAnalysis;
 import com.huoqiu.framework.imageloader.core.LoadParam;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -74,10 +60,20 @@ public class BaseMessageListAdapter extends BaseAdapter {
 
     }
 
-    public void setListData(List<Notice> data) {
-        if (null != data) {
-            this.data = data;
+    public void setListData(List<Notice> data,boolean reload) {
+        if(data == null){
+            return;
         }
+        if(reload){
+            this.data = data;
+        }else{
+            this.data.addAll(data);
+        }
+        notifyDataSetChanged();
+    }
+    public void deleteListData(int pos){
+        data.remove(pos);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -95,16 +91,13 @@ public class BaseMessageListAdapter extends BaseAdapter {
         return position;
     }
 
-    public int getMessageType() {
-        return messageType;
-    }
-
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final Notice notice = data.get(position);
-        final int remindType = notice.getRemindType();
         if (null != getContext()) {
-            switch (getMessageType()) {
+            Notice notice = data.get(position);
+            int remindType = notice.getRemindType();
+
+            switch (messageType) {
                 case PushMessage.REMINDTYPE:
                     final ViewHolderRemind viewHolderRemind;
                     if (null == convertView) {
@@ -114,20 +107,8 @@ public class BaseMessageListAdapter extends BaseAdapter {
                     } else {
                         viewHolderRemind = (ViewHolderRemind) convertView.getTag();
                     }
+                    viewHolderRemind.setPosition(position);
 
-                    viewHolderRemind.messageDel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            DialogBuilder.showSimpleDialog(getContext(), "您确定要删除吗？", null, "取消", null, "确定", new
-                                    DialogInterface
-                                            .OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            OndeleteListener.onDeleteItem(position);
-                                        }
-                                    });
-                        }
-                    });
                     showRemindView(viewHolderRemind, remindType, notice);
                     break;
 
@@ -143,21 +124,9 @@ public class BaseMessageListAdapter extends BaseAdapter {
                         viewHolderInfo = (ViewHolderInfo) convertView.getTag();
                     }
 
-                    viewHolderInfo.messageDel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            DialogBuilder.showSimpleDialog(getContext(), "您确定要删除吗？", null, "取消", null, "确定", new
-                                    DialogInterface
-                                            .OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            OndeleteListener.onDeleteItem(position);
-                                        }
-                                    });
-                        }
-                    });
+                    viewHolderInfo.setPosition(position);
 
-                    showInfoView(viewHolderInfo, remindType, notice);
+                    showInfoView(viewHolderInfo, notice);
                     break;
             }
         }
@@ -166,8 +135,7 @@ public class BaseMessageListAdapter extends BaseAdapter {
     }
 
 
-    private void showRemindView(ViewHolderRemind viewHolderRemind, final int remindType, final
-    Notice notice) {
+    private void showRemindView(ViewHolderRemind viewHolderRemind, int remindType,Notice notice) {
 
         if (!TextUtils.isEmpty(notice.getTitle())) {
             viewHolderRemind.messageTitle.setText(notice.getTitle());
@@ -185,55 +153,21 @@ public class BaseMessageListAdapter extends BaseAdapter {
             }
         }
 
+        if (!TextUtils.isEmpty(notice.getContent())) {
+            viewHolderRemind.messageRemindContent.setVisibility(View.VISIBLE);
+            viewHolderRemind.messageRemindContent.setText(notice.getContent());
+            viewHolderRemind.messageRemindSch.setVisibility(View.GONE);
+        }
+        viewHolderRemind.messageViewDetail.setVisibility(View.VISIBLE);
+        viewHolderRemind.messageViewDetailText.setText("查看详情");
          if (remindType == PushMessage.REMINDTYPENEWVOUCHER
                 || remindType == PushMessage.REMINDTYPECOUPONBANNER
                 || remindType == PushMessage.REMINDTYPETIYANJI) {
             //新的现金券通知
             viewHolderRemind.iconLeft.setText(R.string.mine_ticket);
-            if (!TextUtils.isEmpty(notice.getContent())) {
-                viewHolderRemind.messageRemindContent.setVisibility(View.VISIBLE);
-                viewHolderRemind.messageRemindContent.setText(notice.getContent());
-                viewHolderRemind.messageRemindSch.setVisibility(View.GONE);
-            }
-            viewHolderRemind.messageViewDetailText.setText("查看详情");
-            viewHolderRemind.messageViewDetail.setVisibility(View.VISIBLE);
-
-            viewHolderRemind.getView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sendEventLog(notice);
-                    if (remindType == PushMessage.REMINDTYPECOUPONBANNER) {
-                        Intent intent = new Intent(getContext(), MessageDetailWebViewActivity.class);
-                        intent.putExtra(BaseWebViewActivity.URL, SupportUrl.getTradeEnsureCardUrl());
-                        getContext().startActivity(intent);
-                    } else {
-                        Intent intent = new Intent(getContext(), CouponWebViewActivity.class);
-                        getContext().startActivity(intent);
-                    }
-                }
-            });
-
         }else if (remindType == PushMessage.REMINDTYPERESERVESUCCESS) {
 
             viewHolderRemind.iconLeft.setText(R.string.tab_financial);
-            viewHolderRemind.messageViewDetailText.setText("查看详情");
-            viewHolderRemind.messageViewDetail.setVisibility(View.VISIBLE);
-
-            if (!TextUtils.isEmpty(notice.getContent())) {
-                viewHolderRemind.messageRemindContent.setVisibility(View.VISIBLE);
-                viewHolderRemind.messageRemindContent.setText(notice.getContent());
-                viewHolderRemind.messageRemindSch.setVisibility(View.GONE);
-            }
-            viewHolderRemind.getView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sendEventLog(notice);
-                    //todo 预约记录
-                    /*Intent intent = new Intent(getContext(), ReserveRecordListActivity.class);
-                    getContext().startActivity(intent);*/
-                }
-            });
-
         } else if (remindType == PushMessage.REMINDTYPERESERVEFAIL ||
                 remindType == PushMessage.REMINDTYPELIUBIAO) {
 
@@ -243,116 +177,20 @@ public class BaseMessageListAdapter extends BaseAdapter {
             } else {
                 viewHolderRemind.messageViewDetailText.setText("查看其它产品");
             }
-            viewHolderRemind.messageViewDetail.setVisibility(View.VISIBLE);
-
-            if (!TextUtils.isEmpty(notice.getContent())) {
-                viewHolderRemind.messageRemindContent.setVisibility(View.VISIBLE);
-                viewHolderRemind.messageRemindContent.setText(notice.getContent());
-                viewHolderRemind.messageRemindSch.setVisibility(View.GONE);
-            }
-
-            viewHolderRemind.getView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sendEventLog(notice);
-                    IndexActivity.startIndexActivityToTab(getContext(),1);
-                    /*Intent intent = new Intent(getContext(), FinanceHomeActivity.class);
-                    getContext().startActivity(intent);*/
-                }
-            });
-
         }else if (remindType == PushMessage.REMINDTYPEHUANKUAN
                 ||remindType == PushMessage.REMINDTYPEZHUANRANG
                 || remindType == PushMessage.REMINDTYPEMUZIJIXI) {
             viewHolderRemind.iconLeft.setText(R.string.tab_financial);
-            viewHolderRemind.messageViewDetailText.setText("查看详情");
-            viewHolderRemind.messageViewDetail.setVisibility(View.VISIBLE);
-
-            if (!TextUtils.isEmpty(notice.getContent())) {
-                viewHolderRemind.messageRemindContent.setVisibility(View.VISIBLE);
-                viewHolderRemind.messageRemindContent.setText(notice.getContent());
-                viewHolderRemind.messageRemindSch.setVisibility(View.GONE);
-            }
-
-            viewHolderRemind.getView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sendEventLog(notice);
-                    //todo 网贷资产
-                    /*Intent intent = new Intent(getContext(), CapitalActivity.class);
-                    intent.putExtra(CapitalActivity.TAB, remindType == PushMessage.REMINDTYPEHUANKUAN
-                            ? CapitalActivity.EXPIRED : CapitalActivity.HOLD);
-                    getContext().startActivity(intent);*/
-                }
-            });
         } else if (remindType == PushMessage.REMINDTYPETYJTOFIHOME) {
-
             viewHolderRemind.iconLeft.setText(R.string.mine_ticket);
-            viewHolderRemind.messageViewDetailText.setText("查看详情");
-            viewHolderRemind.messageViewDetail.setVisibility(View.VISIBLE);
-
-            if (!TextUtils.isEmpty(notice.getContent())) {
-                viewHolderRemind.messageRemindContent.setVisibility(View.VISIBLE);
-                viewHolderRemind.messageRemindContent.setText(notice.getContent());
-                viewHolderRemind.messageRemindSch.setVisibility(View.GONE);
-            }
-
-            viewHolderRemind.getView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sendEventLog(notice);
-                    IndexActivity.startIndexActivityToTab(getContext(),1);
-                    /*Intent intent = new Intent(getContext(), FinanceHomeActivity.class);
-                    getContext().startActivity(intent);*/
-                }
-            });
         }else if (remindType == PushMessage.REMINDTYPEBANKRECEIPTFAIL) {
             viewHolderRemind.iconLeft.setText(R.string.personal_wallet);
-            viewHolderRemind.messageViewDetailText.setText("查看详情");
-            viewHolderRemind.messageViewDetail.setVisibility(View.VISIBLE);
-
-            if (!TextUtils.isEmpty(notice.getContent())) {
-                viewHolderRemind.messageRemindContent.setVisibility(View.VISIBLE);
-                viewHolderRemind.messageRemindContent.setText(notice.getContent());
-                viewHolderRemind.messageRemindSch.setVisibility(View.GONE);
-            }
-            viewHolderRemind.getView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sendEventLog(notice);
-                    // todo 活期宝
-//                    MyWalletActivity.goMywallet(getContext());
-                }
-            });
         } else {
             viewHolderRemind.iconLeft.setText(R.string.remind_default);
-            viewHolderRemind.messageViewDetailText.setText("查看详情");
-            viewHolderRemind.messageViewDetail.setVisibility(View.VISIBLE);
-
-            if (!TextUtils.isEmpty(notice.getContent())) {
-                viewHolderRemind.messageRemindContent.setVisibility(View.VISIBLE);
-                viewHolderRemind.messageRemindContent.setText(notice.getContent());
-                viewHolderRemind.messageRemindSch.setVisibility(View.GONE);
-            }
-
-            viewHolderRemind.getView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DialogBuilder.showSimpleDialog(getContext(), "更新最新版app，可查看更多内容", null, "取消", null, "确定", new
-                            DialogInterface
-                                    .OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    VersionUtil.check(getContext());
-                                }
-                            });
-                }
-            });
-
         }
     }
 
-    private void showInfoView(ViewHolderInfo viewHolderInfo, final int remindType, final Notice
+    private void showInfoView(ViewHolderInfo viewHolderInfo,Notice
             notice) {
 
         if (!TextUtils.isEmpty(notice.getTitle())) {
@@ -369,11 +207,8 @@ public class BaseMessageListAdapter extends BaseAdapter {
                 viewHolderInfo.messageTimeNormal.setVisibility(View.VISIBLE);
                 viewHolderInfo.messageTimeNormal.setText(notice.getCreateDate());
             }
-
         }
-
-        if (TextUtils.isEmpty(notice.getContent())) {
-        } else {
+        if (!TextUtils.isEmpty(notice.getContent())) {
             viewHolderInfo.messageContent.setText(StringUtil.ToDBC(notice.getContent()));
         }
 
@@ -385,118 +220,42 @@ public class BaseMessageListAdapter extends BaseAdapter {
             ImageLoaderClient.display(getContext(), viewHolderInfo.messageImg, loadParam);
         }
 
-        switch (remindType) {
-            case PushMessage.NOTICETYPETOFINANCE:
-                viewHolderInfo.messageViewDetail.setVisibility(View.VISIBLE);
-                viewHolderInfo.getView().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        sendEventLog(notice);
-                        IndexActivity.startIndexActivityToTab(getContext(),1);
-                        /*Intent intent = new Intent(getContext(), FinanceHomeActivity.class);
-                        getContext().startActivity(intent);*/
-                    }
-                });
-                break;
-            default:
-                viewHolderInfo.messageViewDetail.setVisibility(View.VISIBLE);
-                viewHolderInfo.getView().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DialogBuilder.showSimpleDialog(getContext(), "更新最新版app，可查看更多内容", null, "取消", null, "确定", new
-                                DialogInterface
-                                        .OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        VersionUtil.check(getContext());
-                                    }
-                                });
-                    }
-                });
-                break;
-        }
+        viewHolderInfo.messageViewDetail.setVisibility(View.VISIBLE);
     }
-
-
-    private void sendEventLog(Notice notice){
-        // todo 统计
-        if(notice != null) {
-            Map<String, String> map = new HashMap<>();
-            map.put("noticeId", notice.getId() + "");
-            map.put("title", notice.getTitle());
-            EventLog.upEventLog("164", JSON.toJSONString(map));
-        }
-    }
-
 
     //提醒类型的消息
-    class ViewHolderRemind {
+    class ViewHolderRemind extends BaseViewHolder{
         @Bind(R.id.message_icon)
         TextViewTF iconLeft;
-        @Bind(R.id.message_title)
-        TextView messageTitle;
-        @Bind(R.id.message_delete)
-        TextViewTF messageDel;
         @Bind(R.id.message_date)
         TextView messageDate;
         @Bind(R.id.message_position)
         TextView messagePosition;
         @Bind(R.id.message_remind_content)
         TextView messageRemindContent;
-        @Bind(R.id.message_time)
-        TextView messageTimeNormal;
-        @Bind(R.id.message_time_new)
-        TextView messageTimeNew;
-        @Bind(R.id.message_time_new_layout)
-        LinearLayout messageTimeNewLayout;
-        @Bind(R.id.message_view_detail)
-        View messageViewDetail;
+
         @Bind(R.id.message_remind_schedule)
         View messageRemindSch;
         @Bind(R.id.message_view_detail_text)
         TextView messageViewDetailText;
 
-        public View view;
-
         ViewHolderRemind(View view) {
-            ButterKnife.bind(this, view);
-            this.view = view;
+            super(view);
         }
 
-        public View getView() {
-            return view;
-        }
     }
 
     //资讯类型的消息
-    class ViewHolderInfo {
+    class ViewHolderInfo extends BaseViewHolder{
+
         @Bind(R.id.message_content_image)
         ImageView messageImg;
-        @Bind(R.id.message_title)
-        TextView messageTitle;
-        @Bind(R.id.message_delete)
-        TextViewTF messageDel;
+
         @Bind(R.id.message_content)
         TextView messageContent;
-        @Bind(R.id.message_time)
-        TextView messageTimeNormal;
-        @Bind(R.id.message_time_new)
-        TextView messageTimeNew;
-        @Bind(R.id.message_time_new_layout)
-        LinearLayout messageTimeNewLayout;
-        @Bind(R.id.message_view_detail)
-        View messageViewDetail;
-
-        View view;
-
-        public View getView() {
-            return view;
-        }
 
         ViewHolderInfo(View view) {
-
-            ButterKnife.bind(this, view);
-            this.view = view;
+            super(view);
 
             int nScreenWidth = DeviceUtil.getScreenSize()[0];
             LinearLayout.LayoutParams relativeLayout = (LinearLayout.LayoutParams) messageImg
@@ -506,19 +265,16 @@ public class BaseMessageListAdapter extends BaseAdapter {
             double imgHight = 0.4 * width;
             relativeLayout.height = (int) imgHight;
             messageImg.setLayoutParams(relativeLayout);
+
         }
     }
 
-    //活动类型的消息
-    class ViewHolderActivity {
-        @Bind(R.id.message_content_image)
-        ImageView messageImg;
+    class BaseViewHolder implements View.OnClickListener{
+
         @Bind(R.id.message_title)
         TextView messageTitle;
         @Bind(R.id.message_delete)
         TextViewTF messageDel;
-        @Bind(R.id.message_content)
-        TextView messageContent;
         @Bind(R.id.message_time)
         TextView messageTimeNormal;
         @Bind(R.id.message_time_new)
@@ -527,26 +283,44 @@ public class BaseMessageListAdapter extends BaseAdapter {
         LinearLayout messageTimeNewLayout;
         @Bind(R.id.message_view_detail)
         View messageViewDetail;
-
         View view;
+        int position;
 
         public View getView() {
             return view;
         }
 
-        ViewHolderActivity(View view) {
+        public void setPosition(int position){
+            this.position = position;
+        }
 
-            ButterKnife.bind(this, view);
+        private BaseViewHolder(View view) {
             this.view = view;
+            ButterKnife.bind(this, view);
 
-            int nScreenWidth = DeviceUtil.getScreenSize()[0];
-            LinearLayout.LayoutParams relativeLayout = (LinearLayout.LayoutParams) messageImg
-                    .getLayoutParams();
-            int width = nScreenWidth - MyApplication.getInstance().getResources()
-                    .getDimensionPixelOffset(R.dimen._16) * 2;
-            double imgHight = 0.4 * width;
-            relativeLayout.height = (int) imgHight;
-            messageImg.setLayoutParams(relativeLayout);
+            messageDel.setOnClickListener(this);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            int vId = v.getId();
+            switch (vId){
+                case R.id.message_delete:
+                    DialogBuilder.showSimpleDialog(getContext(), "您确定要删除吗？", null, "取消", null, "确定", new
+                            DialogInterface
+                                    .OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    OndeleteListener.onDeleteItem(position);
+                                }
+                            });
+                    break;
+                default:
+                    MessageTypeProcessUtils.processMessageListActivityItemClick(getContext(),messageType,getItem(position));
+                    break;
+            }
         }
     }
 

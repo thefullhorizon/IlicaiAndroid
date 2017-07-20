@@ -13,6 +13,7 @@ import com.ailicai.app.ui.base.webview.WebJumpUiAction;
 import com.ailicai.app.ui.base.webview.WebMethodCallAction;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
+import com.ailicai.app.ui.view.MyWalletActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -77,8 +78,7 @@ public class CouponDetailWebViewActivity extends BaseWebViewActivity {
             @Override
             public void jumpUi(HashMap<String, String> params) {
                 //我的钱包
-                // todo 活期宝
-//                MyWalletActivity.goMywallet(CouponDetailWebViewActivity.this);
+                MyWalletActivity.goMywallet(CouponDetailWebViewActivity.this);
             }
         });
 

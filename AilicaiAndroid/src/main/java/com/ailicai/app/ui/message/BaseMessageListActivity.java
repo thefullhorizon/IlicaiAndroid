@@ -3,8 +3,6 @@ package com.ailicai.app.ui.message;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.View;
@@ -17,9 +15,9 @@ import com.ailicai.app.common.push.model.PushMessage;
 import com.ailicai.app.eventbus.RefreshPushEvent;
 import com.ailicai.app.message.Notice;
 import com.ailicai.app.message.NoticeListResponse;
-import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.BaseMvpActivity;
 import com.ailicai.app.ui.message.adapter.BaseMessageListAdapter;
-import com.ailicai.app.ui.message.presenter.BaseMessageListActivityPresenter;
+import com.ailicai.app.ui.message.presenter.BaseMessageActivityPresenter;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -28,35 +26,24 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.Bind;
 
 /**
  * Created by duo.chen on 2015/8/7.
  */
-public class BaseMessageListActivity extends BaseBindActivity implements BaseMessageListAdapter.OndeleteListener, OnRefreshListener {
+public class BaseMessageListActivity extends BaseMvpActivity<BaseMessageActivityPresenter.BaseMessageView,BaseMessageActivityPresenter>
+        implements BaseMessageListAdapter.OndeleteListener, OnRefreshListener,BaseMessageActivityPresenter.BaseMessageView{
 
     public final static String MESSAGELISTTYPE = "messagelisttype";
-
-    public final static int INITMESSAGE = 1000;
-    public final static int MESSAGE_DELSUCCESS = INITMESSAGE + 1;
-    public final static int MESSAGE_LOADDATA = INITMESSAGE + 2;
-    public final static int REQUEST_ERRORORFAILED = INITMESSAGE + 3;
 
     @Bind(R.id.message_top_title)
     IWTopTitleView topTitleView;
     @Bind(R.id.message_base_fragment_list)
     BottomRefreshListView listView;
-
     @Bind(R.id.swipe_container)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     private BaseMessageListAdapter baseMessageListAdapter;
-    private BaseMessageListActivityPresenter baseMessageListActivityPresenter;
-
-    private List<Notice> data;
 
     private int messageListtype = 0;
     private int mTotal;
@@ -81,6 +68,11 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
     }
 
     @Override
+    public BaseMessageActivityPresenter initPresenter() {
+        return new BaseMessageActivityPresenter();
+    }
+
+    @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         EventBus.getDefault().register(this);
@@ -95,6 +87,7 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
                 messageListtype = getIntent().getIntExtra(MESSAGELISTTYPE, messageListtype);
             }
         }
+        mPresenter.setMsgType(messageListtype);
 
 
         switch (messageListtype) {
@@ -110,10 +103,6 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
         }
 
         baseMessageListAdapter = new BaseMessageListAdapter(this, messageListtype);
-        baseMessageListActivityPresenter = new BaseMessageListActivityPresenter(this, handler,
-                messageListtype);
-        data = new ArrayList<>();
-        baseMessageListAdapter.setListData(data);
         baseMessageListAdapter.setOndeleteListener(this);
         listView.setAdapter(baseMessageListAdapter);
         listView.setOnScrollListener(onScrollListener);
@@ -121,10 +110,8 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.main_red_color);
+
         loadData(true);
-        if (data.size() == 0) {
-            showLoadView();
-        }
     }
 
     @Override
@@ -140,33 +127,27 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
         EventBus.getDefault().unregister(this);
     }
 
+
     public void loadData(boolean reload) {
 
-        int mOffset = 0;
+        int offset = 0;
         if (reload) {
             listView.resetAll();
-            mOffset = 0;
             listView.smoothScrollToPosition(0);
         } else {
             int size = baseMessageListAdapter.getCount();
             if (size > 0 && mTotal > size) {
-                mOffset = size;
+                offset = size;
             }
         }
-        baseMessageListActivityPresenter.loadData(mOffset, reload);
+        mPresenter.loadData(messageListtype,offset,reload);
     }
 
     @Override
     public void onDeleteItem(int position) {
-        delMessage(position);
-        data.remove(position);
-        baseMessageListAdapter.setListData(data);
-        baseMessageListAdapter.notifyDataSetChanged();
-    }
-
-    public void delMessage(int position) {
-        if (null != data && null != data.get(position)) {
-            baseMessageListActivityPresenter.delMessage(data.get(position).getId());
+        Notice notice = baseMessageListAdapter.getItem(position);
+        if (notice != null) {
+            mPresenter.deleteMsgById(messageListtype,position,notice.getId());
         }
     }
 
@@ -204,7 +185,7 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
             };
 
     private boolean loadMore() {
-        int size = data.size();
+        int size = baseMessageListAdapter.getCount();
         if (size > 0 && mTotal > size) {
             loadData(false);//加载更多
             return true;
@@ -212,63 +193,10 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
         return false;
     }
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case MESSAGE_DELSUCCESS:
-                    //del message success
-                    break;
-                case MESSAGE_LOADDATA:
-                    //load message data
-                    setSwipeRefresh(false);
-                    NoticeListResponse noticeListResponse = (NoticeListResponse) msg.obj;
-                    mTotal = noticeListResponse.getTotalNum();
-                    if (mTotal == 0) {
-                        View nodataView = View.inflate(BaseMessageListActivity.this, R.layout
-                                .list_nodataview_layout, null);
-                        TextView textView = (TextView) nodataView.findViewById(R.id.nodata_text);
-                        switch (messageListtype) {
-                            case PushMessage.REMINDTYPE:
-                                textView.setText("暂无提醒");
-                                break;
-                            case PushMessage.INFOTYPE:
-                                textView.setText("暂无资讯");
-                                break;
-                            case PushMessage.ACTIVITYTYPE:
-                                textView.setText("暂无活动");
-                                break;
-                        }
-                        showNoDataView(nodataView);
-                    } else {
-                        if (msg.arg1 == 1) {
-                            data.clear();
-                            MsgLiteView.refreshNoticeNums(null);
-                        }
-                        data.addAll(noticeListResponse.getNoticeList());
-                        baseMessageListAdapter.notifyDataSetChanged();
-                        listView.onLoadMoreComplete();
-                        showContentView();
-                    }
-                    break;
-                case REQUEST_ERRORORFAILED:
-                    //exception or error
-                    String error = (String) msg.obj;
-                    showErrorView(error);
-                    break;
-            }
-        }
-    };
 
-    @Override
+   @Override
     public void reloadData() {
         if (null != listView) {
-            if (data.size() == 0) {
-                showLoadView();
-            } else {
-                showLoadTranstView();
-            }
-            data.clear();
             loadData(true);
         }
     }
@@ -281,10 +209,7 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
 
     @Override
     public void onRefresh() {
-        if (null != listView) {
-            data.clear();
-            loadData(true);
-        }
+        reloadData();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -292,5 +217,57 @@ public class BaseMessageListActivity extends BaseBindActivity implements BaseMes
         if (event.getMsgType() == messageListtype) {
             reloadData();
         }
+    }
+
+    @Override
+    public void showLoading() {
+        showLoadView();
+    }
+
+    @Override
+    public void hideLoading() {
+        setSwipeRefresh(false);
+        listView.onLoadMoreComplete();
+    }
+
+    @Override
+    public void processSuccessView(NoticeListResponse response,boolean reload) {
+        showLoadTranstView();
+        mTotal = response.getTotalNum();
+        if (reload) {
+            MsgLiteView.refreshNoticeNums(null);
+        }
+        baseMessageListAdapter.setListData(response.getNoticeList(),reload);
+
+        showContentView();
+    }
+
+    @Override
+    public void showNoData() {
+        View nodataView = View.inflate(BaseMessageListActivity.this, R.layout
+                .list_nodataview_layout, null);
+        TextView textView = (TextView) nodataView.findViewById(R.id.nodata_text);
+        switch (messageListtype) {
+            case PushMessage.REMINDTYPE:
+                textView.setText("暂无提醒");
+                break;
+            case PushMessage.INFOTYPE:
+                textView.setText("暂无资讯");
+                break;
+            case PushMessage.ACTIVITYTYPE:
+                textView.setText("暂无活动");
+                break;
+        }
+        showNoDataView(nodataView);
+    }
+
+    @Override
+    public void onFail(String msg) {
+        showErrorView(msg);
+    }
+
+    @Override
+    public void deleteMsgSuccess(int pos) {
+        baseMessageListAdapter.deleteListData(pos);
     }
 }

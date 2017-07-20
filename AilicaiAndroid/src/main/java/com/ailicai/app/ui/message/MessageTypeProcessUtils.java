@@ -1,11 +1,14 @@
 package com.ailicai.app.ui.message;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.push.constant.CommonTags;
@@ -13,12 +16,23 @@ import com.ailicai.app.common.push.model.PushMessage;
 import com.ailicai.app.common.support.SupportFinance;
 import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MyPreference;
+import com.ailicai.app.common.version.VersionUtil;
+import com.ailicai.app.message.Notice;
+import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
+import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.index.IndexActivity;
+import com.ailicai.app.ui.view.CapitalActivity;
+import com.ailicai.app.ui.view.MyWalletActivity;
+import com.ailicai.app.ui.view.reserveredrecord.ReserveRecordListActivity;
 import com.ailicai.app.ui.voucher.CouponWebViewActivity;
+import com.ailicai.app.widget.DialogBuilder;
+import com.alibaba.fastjson.JSON;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by jeme on 2017/7/18.
@@ -146,5 +160,90 @@ public class MessageTypeProcessUtils {
 
     private static String getParaDescForUri(Uri data) {
         return data.toString().substring(data.toString().indexOf("?"),data.toString().length());
+    }
+
+    public static void processMessageListActivityItemClick(Activity context, int msgType, Notice notice){
+        if(notice == null){
+            return;
+        }
+        if(msgType == PushMessage.REMINDTYPE){//提醒的消息
+            processRemindMessageClick(context,notice);
+        }else{//活动和资讯消息
+            switch (notice.getRemindType()){
+                case PushMessage.NOTICETYPETOFINANCE:
+                    sendEventLog(notice);
+                    IndexActivity.startIndexActivityToTab(context,1);
+                    break;
+                default:
+                    showNewVersionDialog(context);
+                    break;
+            }
+        }
+    }
+
+    /***
+     * 处理消息详情列表页的item点击事件
+     */
+    private static void processRemindMessageClick(Activity activity,Notice notice){
+        Intent intent;
+        int remindType = notice.getRemindType();
+        switch (remindType){
+            case PushMessage.REMINDTYPENEWVOUCHER:
+            case PushMessage.REMINDTYPETIYANJI:
+                intent = new Intent(activity, CouponWebViewActivity.class);
+                activity.startActivity(intent);
+                break;
+            case PushMessage.REMINDTYPECOUPONBANNER:
+                intent = new Intent(activity, MessageDetailWebViewActivity.class);
+                intent.putExtra(BaseWebViewActivity.URL, SupportUrl.getTradeEnsureCardUrl());
+                activity.startActivity(intent);
+                break;
+            case PushMessage.REMINDTYPERESERVESUCCESS:
+                sendEventLog(notice);
+                intent = new Intent(activity, ReserveRecordListActivity.class);
+                activity.startActivity(intent);
+                break;
+            case PushMessage.REMINDTYPERESERVEFAIL:
+            case PushMessage.REMINDTYPELIUBIAO:
+            case PushMessage.REMINDTYPETYJTOFIHOME:
+                sendEventLog(notice);
+                IndexActivity.startIndexActivityToTab(activity,1);
+                break;
+            case PushMessage.REMINDTYPEHUANKUAN:
+            case PushMessage.REMINDTYPEZHUANRANG:
+            case PushMessage.REMINDTYPEMUZIJIXI:
+                sendEventLog(notice);
+                intent = new Intent(activity, CapitalActivity.class);
+                intent.putExtra(CapitalActivity.TAB, remindType == PushMessage.REMINDTYPEHUANKUAN
+                        ? CapitalActivity.EXPIRED : CapitalActivity.HOLD);
+                activity.startActivity(intent);
+                break;
+            case PushMessage.REMINDTYPEBANKRECEIPTFAIL:
+                sendEventLog(notice);
+                MyWalletActivity.goMywallet(activity);
+                break;
+            default:
+                showNewVersionDialog(activity);
+                break;
+        }
+    }
+    private static void showNewVersionDialog(final Activity activity){
+        DialogBuilder.showSimpleDialog(activity, "更新最新版app，可查看更多内容", null, "取消", null, "确定", new
+                DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        VersionUtil.check(activity);
+                    }
+                });
+    }
+
+    private static void sendEventLog(Notice notice){
+        // todo 统计
+        if(notice != null) {
+            Map<String, String> map = new HashMap<>();
+            map.put("noticeId", notice.getId() + "");
+            map.put("title", notice.getTitle());
+            EventLog.upEventLog("164", JSON.toJSONString(map));
+        }
     }
 }

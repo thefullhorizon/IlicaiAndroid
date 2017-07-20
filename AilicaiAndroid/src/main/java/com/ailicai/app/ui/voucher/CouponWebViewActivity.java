@@ -18,6 +18,7 @@ import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
+import com.ailicai.app.ui.view.MyWalletActivity;
 import com.huoqiu.framework.util.CheckDoubleClick;
 
 import org.greenrobot.eventbus.EventBus;
@@ -124,8 +125,7 @@ public class CouponWebViewActivity extends BaseWebViewActivity {
             @Override
             public void jumpUi(HashMap<String, String> params) {
                 //我的钱包
-                // todo 活期宝
-//                MyWalletActivity.goMywallet(CouponWebViewActivity.this);
+                MyWalletActivity.goMywallet(CouponWebViewActivity.this);
             }
         });
 

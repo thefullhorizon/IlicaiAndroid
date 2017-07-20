@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:manyi="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f7f7f7"
-    android:orientation="vertical">
+    android:background="#f7f7f7">
 
     <com.ailicai.app.widget.IWTopTitleView
         android:id="@+id/message_top_title"
@@ -18,18 +17,21 @@
         android:id="@+id/mtiv_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/message_top_title"
         manyi:head="@drawable/message_activity"
         manyi:name="活动"/>
     <com.ailicai.app.widget.MessageTypeItemView
         android:id="@+id/mtiv_information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/mtiv_activity"
         manyi:head="@drawable/message_information"
         manyi:name="资讯"/>
     <com.ailicai.app.widget.MessageTypeItemView
         android:id="@+id/mtiv_remind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/mtiv_information"
         manyi:head="@drawable/message_remind"
         manyi:name="提醒"/>
-</LinearLayout>
+</RelativeLayout>
