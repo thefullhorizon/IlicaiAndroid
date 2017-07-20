@@ -26,7 +26,7 @@
             <!--android:layout_marginTop="4dp"-->
             <!--android:scaleType="fitXY" />-->
 
-            <com.manyi.lovehouse.widget.RoundedImageView.RoundedImageView
+            <com.ailicai.app.widget.RoundedImageView.RoundedImageView
                 android:id="@+id/banner_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

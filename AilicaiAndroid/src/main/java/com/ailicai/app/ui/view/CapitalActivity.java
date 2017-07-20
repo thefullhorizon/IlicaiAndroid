@@ -25,11 +25,11 @@ import com.ailicai.app.ui.asset.FinanceUpgradePresenter;
 import com.ailicai.app.ui.asset.HouseTreasureAdapter;
 import com.ailicai.app.ui.asset.treasure.ProductCategory;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.index.IndexActivity;
 import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.view.detail.ExpiredTiyanbaoListActivity;
-import com.ailicai.app.ui.view.detail.FinanceHomeActivity;
 import com.ailicai.app.ui.view.detail.IncomeDetailActivity;
 import com.ailicai.app.ui.view.detail.SmallCoinSackActivity;
 import com.ailicai.app.widget.BottomRefreshListView;
@@ -259,9 +259,7 @@ public class CapitalActivity extends BaseBindActivity implements
 
     @Override
     public void toFinanceRegular() {
-        Intent intent = new Intent(this, FinanceHomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        IndexActivity.goToInvestTab(this,1);
     }
 
     private void toRegularIncome() {

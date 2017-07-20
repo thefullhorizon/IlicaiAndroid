@@ -48,7 +48,7 @@ public class OpenAccountFeature {
         feature.tvCancelVisible = View.VISIBLE;
         feature.tvCancelText = "是否放弃开户";
         feature.titleText = "开户";
-        feature.supportCardsUrl = SupportUrl.getSupportcardsByAllUrl() + "?channel=2";
+        feature.supportCardsUrl = SupportUrl.getSupportUrlsResponse().getSupportcardsByAllUrl() + "?channel=2";
         feature.boundTitleText = "请绑定账户本人的卡，作为";
         feature.nameTitleTv = "开户人";
         feature.safeCardHelpVisible = View.VISIBLE;

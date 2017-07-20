@@ -20,11 +20,11 @@ import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
 import com.ailicai.app.ui.buy.ProcessActivity;
+import com.ailicai.app.ui.index.IndexActivity;
 import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.paypassword.PayPwdManageActivity;
-import com.ailicai.app.ui.view.detail.FinanceHomeActivity;
 import com.ailicai.app.ui.view.detail.IncomeDetailActivity;
 import com.ailicai.app.ui.view.reserveredrecord.ReserveRecordListActivity;
 import com.ailicai.app.ui.view.transaction.TransactionListActivity;
@@ -222,8 +222,7 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
 
     @OnClick(R.id.mywallet_raise_income)
     void clickRaiseIncome() {
-        Intent intent = new Intent(this, FinanceHomeActivity.class);
-        startActivity(intent);
+        IndexActivity.goToInvestTab(this,1);
 //        EventLog.upEventLog("354", "more_money_product", 4);
     }
 

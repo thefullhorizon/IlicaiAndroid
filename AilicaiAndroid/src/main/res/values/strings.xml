@@ -71,5 +71,26 @@
     <string name="finance_system_fixing">当前系统正在升级维护中，维护期间暂停爱理财相关服务（转入、转出、购买、转让等），%s。望提前知晓，给你带来不便，还请谅解。</string>
     <string name="title_activity_buy_rebate_voucher">在线支付</string>
 
+    <string name="input_text">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890</string>
+
+    <string name="reserve_pre_buy_time">预约成功后，%1s将为您申购以上房产宝</string>
+
+
+    <string name="common_question_title_1">1.什么是房产宝？</string>
+    <string name="common_question_title_2">2.房产宝支持赎回吗？</string>
+    <string name="common_question_title_3">3.房产宝购买有什么要求？</string>
+    <string name="common_question_title_4">4.房产宝怎么计算收益？</string>
+    <string name="common_question_title_5">5.房产宝产品抢购失败，购买资金如何处理？</string>
+    <string name="common_question_title_6">6.房产宝的抢购时间？</string>
+    <string name="common_question_title_7">7.如何联系我们？</string>
+    <string name="common_question_answer_1">答：爱理财房产宝项目均来自爱屋吉屋平台下真实的房地产交易，资金主要用于借款人赎楼、付尾款等短期周转，借款信息真实可信，还款来源可靠有保障，有专业团队对全流程进行风险把控。</string>
+    <string name="common_question_answer_2">答：目前暂时不支持赎回功能，敬请期待。</string>
+    <string name="common_question_answer_3">答：购买房产宝起投金额为1000元的整数倍，并且只能通过钱包资金来购买。</string>
+    <string name="common_question_answer_4">答：在申购期内，您的投资金额会锁定在钱包内，继续享受钱包收益，申购完成后下个工作日会统一转入所投资的房产宝项目内，开始按照预计的房产宝利率计算收益，项目到期后下个工作日会将本金和利息同时转入钱包中。由于存在借款人提前还款的情况，具体借款期限以实际还款日期为准。</string>
+    <string name="common_question_answer_5">答：用于申购房产宝产品的钱包资金在成功购买前只是作冻结处理并非直接扣减，冻结的钱包资金正常享受钱包收益。若抢购失败此部分冻结资金自动解冻。</string>
+    <string name="common_question_answer_6">答：房产宝产品的固定开售时间为每个工作日早上10:30，其余时间不定时发售。</string>
+    <string name="common_question_answer_7">答：如有问题联系我们，祝您抢购成功！</string>
+    <string name="cancel">取消</string>
+
 
 </resources>

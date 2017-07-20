@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ailicai.app.widget.drag.DragDownScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drag_down_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/global_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_prepare_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp">
+
+            <com.ailicai.app.widget.TextViewTF
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/safe"
+                android:textColor="#757575"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_prepare_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:textColor="#757575"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e8e8e8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp">
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_16"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="预计年化收益"
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/financing_detail_yearinterestrate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9.8%"
+                            android:textColor="@color/main_red_color"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:id="@+id/tv_interest_voucher"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:background="@drawable/interest_voucher_bg"
+                            android:padding="4dp"
+                            android:text="用券+1.5%"
+                            android:textColor="@color/main_red_color"
+                            android:textSize="11sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:alpha="0.15"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="21dp"
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="投资期限"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/financing_detail_horizon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="89"
+                        android:textColor="#333333"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="天"
+                        android:textColor="#333333"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e8e8e8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="14dp"
+            android:paddingTop="14dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="本期额度(元)"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/financing_detail_applyamount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="10000"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:alpha="0.15"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="剩余额度(元)"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/financing_detail_biddablemount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="00000"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:alpha="0.15"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="购买截止至"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/financing_detail_endbuytimestr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="1000"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e8e8e8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="申购进度"
+                    android:textColor="@color/main_red_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/financing_detail_protext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/main_red_color"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/financing_detail_progressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/financing_progressbar_drawable" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/_16"
+                android:background="#e8e8e8" />
+        </LinearLayout>
+
+        <com.manyi.lovefinance.uiview.financing.view.MoreTextView
+            android:id="@+id/mtv_buy_demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/_10"
+            android:paddingLeft="@dimen/_16"
+            android:paddingRight="@dimen/_16"
+            android:paddingTop="@dimen/_10"
+            manyi:defaultTextLine="1"
+            manyi:textColor="#757575"
+            manyi:textSize="14sp"></com.manyi.lovefinance.uiview.financing.view.MoreTextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp">
+
+                <TextView
+                    android:id="@+id/financing_detail_productname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="产品说明"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#e8e8e8" />
+
+            <RelativeLayout
+                android:id="@+id/rl_map"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:background="@color/white"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_16"
+                    android:src="@drawable/home_icon_for_map" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/mapmask_for_alicai_layer"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/_16">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="交易房产地址"
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_house_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8"
+                        android:text="上海陆家嘴"
+                        android:textColor="#333333"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/financing_detail_product_demo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:lineSpacingMultiplier="1.5"
+                android:paddingBottom="14dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp"
+                android:textColor="#757575"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_special_introduction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16"
+            android:layout_marginRight="@dimen/_16"
+            android:layout_marginTop="@dimen/_8"
+            android:lineSpacingMultiplier="1.5"
+            android:textColor="#757575"
+            android:text="特别说明：本次借款人为爱屋吉屋优质借款人，之前已经有两次借款记录，无逾期记录。"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="33dp"
+                android:layout_weight="1"
+                android:background="#d2d2d2" />
+
+            <TextView
+                android:id="@+id/tv_drag_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_16"
+                android:layout_marginRight="@dimen/_16"
+                android:text="向上拖动，查看更多"
+                android:textColor="@color/color_212121"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginRight="33dp"
+                android:layout_weight="1"
+                android:background="#d2d2d2" />
+        </LinearLayout>
+    </LinearLayout>
+</com.ailicai.app.widget.drag.DragDownScrollView>

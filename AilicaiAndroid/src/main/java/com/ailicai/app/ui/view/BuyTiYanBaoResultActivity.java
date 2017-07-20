@@ -17,9 +17,9 @@ import com.ailicai.app.common.utils.SpannableUtil;
 import com.ailicai.app.eventbus.RegularPayEvent;
 import com.ailicai.app.eventbus.RegularPayH5ActivityFinishEvent;
 import com.ailicai.app.model.response.BuyTiyanbaoResponse;
+import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
-import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.AccountInfo;
 import com.alibaba.fastjson.JSON;
 
@@ -164,10 +164,8 @@ public class BuyTiYanBaoResultActivity extends BaseBindActivity {
             finish();
         } else {
             //未开户--马上开户
-            Intent intent = new Intent(this, ProcessActivity.class);
-            startActivityForResult(intent, REQUEST_CODE_OPEN_ACCOUNT);
-            //TODO nanshan 开户相关
-//            OpenAccountFeature.isOpeningAccount = true;
+            //开户相关
+            OpenAccountWebViewActivity.goToOpenAccount(this);
             HashMap<String, String> params = new HashMap<>();
             params.put("name", "mskh");
             params.put("action", "click");
@@ -190,10 +188,6 @@ public class BuyTiYanBaoResultActivity extends BaseBindActivity {
             switch (requestCode) {
                 case REQUEST_CODE_OPEN_ACCOUNT:
                     //开户成功
-                    //TODO nanshan 开户相关
-//                    OpenAccountFeature.isOpeningAccount = false;
-//                    response.setIsOpen(AccountInfo.getIsOpenAccount());
-//                    initData(false);
                     break;
             }
         }

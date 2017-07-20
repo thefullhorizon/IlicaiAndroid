@@ -72,6 +72,12 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         activity.startActivity(mIntent);
     }
 
+    public static void goToInvestTab(Activity activity, int indexWantedInInvest) {
+        Intent mIntent = new Intent(activity, IndexActivity.class);
+        mIntent.putExtra("settabIndex", 1);
+        activity.startActivity(mIntent);
+    }
+
     @Override
     public int getLayout() {
         return R.layout.activity_index_main;
@@ -105,8 +111,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         bottomNavigation.setDefaultBackgroundColor(getResources().getColor(R.color.color_f7f7f7));
         bottomNavigation.setUseElevation(true);
         mViewPager.setCurrentItem(0);
-
-        MessageTypeProcessUtils.parseIntent(this, mViewPager);
+        MessageTypeProcessUtils.parseIntent(this);
     }
 
     @Override
@@ -117,15 +122,18 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
             int settabitem = intent.getIntExtra("settabIndex", -1);
             setCurrentItem(settabitem);
         }
-        MessageTypeProcessUtils.parseIntent(this, mViewPager);
+        MessageTypeProcessUtils.parseIntent(this);
     }
+
+
+    //EventBUS 刷新Tab 数字
 
     private void htmlUrlUpdate() {
         HtmlUrlRequest request = new HtmlUrlRequest();
         ServiceSender.exec(this, request, new IwjwRespListener<Iwjwh5UrlResponse>() {
             @Override
             public void onJsonSuccess(Iwjwh5UrlResponse jsonObject) {
-                SupportUrl.setUrls(jsonObject);
+                SupportUrl.saveUrls(jsonObject);
             }
         });
     }
@@ -134,9 +142,6 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     public void remindPoint() {
         setRedNotification(3);
     }
-
-
-    //EventBUS 刷新Tab 数字
 
     @Override
     public void checkStart() {
@@ -236,7 +241,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         //TODO 只添加了推送或短信消息类型处理
 //        refreshGlobalData(this);
         if (event.isLoginSuccess()) {
-            MessageTypeProcessUtils.parseIntent(this, mViewPager);
+            MessageTypeProcessUtils.parseIntent(this);
         } else {
             setIntent(new Intent());
         }

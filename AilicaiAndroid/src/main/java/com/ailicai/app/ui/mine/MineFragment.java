@@ -628,8 +628,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleRefreshPushEvent(RefreshPushEvent event) {
-        if (event.getMsgType() == PushMessage.REMINDTYPENEWVOUCHER || event.getMsgType() ==
-                PushMessage.REMINDTYPECOUPONBANNER || event.getMsgType() == PushMessage.REMINDTYPETIYANJI) {
+        if (event.getMsgType() == PushMessage.REMINDTYPENEWVOUCHER || event.getMsgType() == PushMessage.REMINDTYPETIYANJI) {
             setVoucherRedDotState(true);
         }
     }

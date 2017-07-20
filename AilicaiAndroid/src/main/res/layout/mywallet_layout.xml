@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/wallet_bottom_layout">
 
-        <com.manyi.lovehouse.widget.CustomScrollView
+        <com.ailicai.app.widget.CustomScrollView
             android:id="@+id/wallet_scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -214,7 +214,7 @@
                         android:layout_marginTop="10dp"
                         android:textSize="12sp" />
 
-                    <com.manyi.lovehouse.widget.mpchart.charts.LineChart
+                    <com.ailicai.app.widget.mpchart.charts.LineChart
                         android:id="@+id/mywallet_line_chart"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
@@ -556,7 +556,7 @@
                     android:layout_height="30dp" />
             </LinearLayout>
 
-        </com.manyi.lovehouse.widget.CustomScrollView>
+        </com.ailicai.app.widget.CustomScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <com.ailicai.app.widget.IWTopTitleView

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ailicai.app.widget.drag.DragUpScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#e8e8e8"></View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16"
+                android:text="收益规则"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#e8e8e8"></View>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16"
+                android:lineSpacingMultiplier="1.5"
+                android:text="申购期内投资金额暂时锁定在钱包内，仍然享受钱包收益，申购完成后下个工作日开始以房产宝利率计算，项目到期后本息将在1个工作日内转入钱包。"
+                android:textColor="@color/color_757575"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#e8e8e8"></View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16"
+                android:text="常见问题"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#e8e8e8"></View>
+
+            <com.manyi.lovefinance.uiview.financing.view.FoldingTextLayout
+                android:id="@+id/fl_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/_16"
+                android:background="#e8e8e8"></View>
+
+            <com.manyi.lovefinance.uiview.financing.view.FoldingTextLayout
+                android:id="@+id/fl_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/_16"
+                android:background="#e8e8e8"></View>
+
+
+            <com.manyi.lovefinance.uiview.financing.view.FoldingTextLayout
+                android:id="@+id/fl_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/_16"
+                android:background="#e8e8e8"></View>
+
+            <com.manyi.lovefinance.uiview.financing.view.FoldingTextLayout
+                android:id="@+id/fl_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/_16"
+                android:background="#e8e8e8"></View>
+
+            <com.manyi.lovefinance.uiview.financing.view.FoldingTextLayout
+                android:id="@+id/fl_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/_16"
+                android:background="#e8e8e8"></View>
+
+            <com.manyi.lovefinance.uiview.financing.view.FoldingTextLayout
+                android:id="@+id/fl_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/_16"
+                android:background="#e8e8e8"></View>
+
+            <com.manyi.lovefinance.uiview.financing.view.FoldingTextLayout
+                android:id="@+id/fl_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/_24"
+            android:layout_marginTop="@dimen/_8"
+            android:text="投资有风险，理财需谨慎"
+            android:textColor="#c7c7c7" />
+    </LinearLayout>
+</com.ailicai.app.widget.drag.DragUpScrollView>

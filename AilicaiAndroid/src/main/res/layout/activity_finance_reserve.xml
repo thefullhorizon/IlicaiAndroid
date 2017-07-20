@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background">
+
+    <com.ailicai.app.widget.IWTopTitleView
+        android:id="@+id/reserve_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:hasLeft="true"
+        manyi:isDark="true"
+        manyi:titleview_title_text="预约购买" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/reserve_footer"
+        android:layout_below="@+id/reserve_title">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_24">
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:paddingLeft="@dimen/_16"
+                    android:paddingRight="@dimen/_16"
+                    android:paddingBottom="@dimen/_16"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginTop="@dimen/_16"
+                        android:textSize="14sp"
+                        android:textColor="#757575"
+                        android:text="请选择您要预约的产品期限"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <com.ailicai.app.ui.reserve.DayTagLayout
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_12"
+                        android:id="@+id/day_tag_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </com.ailicai.app.ui.reserve.DayTagLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e8e8e8" />
+
+                <com.ailicai.app.ui.reserve.YearRateLayoutContainer
+                    android:id="@+id/year_rate_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.ailicai.app.ui.reserve.YearRateLayoutContainer>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e8e8e8" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#e8e8e8" />
+
+                    <LinearLayout
+                        android:id="@+id/llProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_to_pressed_selector"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="14dip"
+                        android:paddingLeft="16dip"
+                        android:paddingRight="16dip"
+                        android:paddingTop="14dip"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="0.87"
+                            android:text="预约记录"
+                            android:textColor="#212121"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/tvProductCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#757575"
+                            android:textSize="14sp" />
+
+                        <com.ailicai.app.widget.TextViewTF
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginLeft="4dp"
+                            android:text="@string/arrow_right"
+                            android:textColor="#bdbdbd"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="16dp"
+                        android:background="#e8e8e8" />
+
+                    <LinearLayout
+                        android:id="@+id/reserve_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_to_pressed_selector"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="14dip"
+                        android:paddingLeft="16dip"
+                        android:paddingRight="16dip"
+                        android:paddingTop="14dip"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="0.87"
+                            android:text="预约说明"
+                            android:textColor="#212121"
+                            android:textSize="16sp" />
+
+                        <com.ailicai.app.widget.TextViewTF
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:text="@string/arrow_right"
+                            android:textColor="#bdbdbd"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_reserve_command"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible">
+
+                        <View
+                            android:id="@+id/line"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="#e8e8e8" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/line"
+                            android:background="@drawable/white_to_pressed_selector"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="14dip"
+                            android:paddingLeft="16dip"
+                            android:paddingRight="16dip"
+                            android:paddingTop="14dip">
+
+                            <TextView
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:alpha="0.87"
+                                android:text="口令入口"
+                                android:textColor="#212121"
+                                android:textSize="16sp" />
+
+                            <com.ailicai.app.widget.TextViewTF
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:text="@string/arrow_right"
+                                android:textColor="#bdbdbd"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#e8e8e8" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/reserve_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/agent_top_view_bg" />
+
+        <TextView
+            android:id="@+id/reserve_bid_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:text="额度10000元"
+            android:textColor="#2962ff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/reserve_confirmed"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#2962ff"
+            android:gravity="center"
+            android:text="立即预约"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <com.ailicai.app.ui.reserve.TimeZHTextCounter
+            android:id="@+id/reserve_count_down"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:alpha="0.4"
+            android:background="#2962ff"
+            android:gravity="center"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_root_reserve_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/reserve_title"
+        android:background="@color/color_757575"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/ll_reserve_pwd_content"
+            layout="@layout/view_reserve_pwd" />
+
+        <View
+            android:id="@+id/view_reserve_pwd_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll_reserve_pwd_content" />
+    </RelativeLayout>
+
+</RelativeLayout>

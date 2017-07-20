@@ -49,7 +49,7 @@ public class RegularFinanceDetailH5Activity extends BaseWebViewActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        setTopTheme(true);
+        setTopTheme(false);
         setLoadingStyle(BaseWebViewLayout.LoadingStyle.WHEEL);
         shouldShowLoading(true);
         setIWebListener(new BaseWebViewLayout.IWebListener() {

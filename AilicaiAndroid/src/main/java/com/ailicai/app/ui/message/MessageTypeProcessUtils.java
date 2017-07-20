@@ -1,34 +1,27 @@
 package com.ailicai.app.ui.message;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.view.View;
 
 import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.push.constant.CommonTags;
 import com.ailicai.app.common.push.model.PushMessage;
-import com.ailicai.app.common.support.SupportFinance;
-import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.message.Notice;
-import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
-import com.ailicai.app.ui.html5.SupportUrl;
+import com.ailicai.app.model.response.Iwjwh5UrlResponse;
 import com.ailicai.app.ui.index.IndexActivity;
 import com.ailicai.app.ui.view.CapitalActivity;
 import com.ailicai.app.ui.view.MyWalletActivity;
+import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
 import com.ailicai.app.ui.view.reserveredrecord.ReserveRecordListActivity;
 import com.ailicai.app.ui.voucher.CouponWebViewActivity;
 import com.ailicai.app.widget.DialogBuilder;
 import com.alibaba.fastjson.JSON;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -42,11 +35,8 @@ public class MessageTypeProcessUtils {
 
     /**
      * 主页各种跳转的逻辑处理
-     *
-     * @param mActivity
-     * @param mViewPager
      */
-    public static void parseIntent(final IndexActivity mActivity, ViewPager mViewPager) {
+    public static void parseIntent(final IndexActivity mActivity) {
         Intent intent = mActivity.getIntent();
         if (null != intent) {
             String from = intent.getStringExtra(CommonTags.FROM);
@@ -70,17 +60,10 @@ public class MessageTypeProcessUtils {
         Intent intentGo = new Intent();
         switch (pushMessage.getMsgType()) {
             case PushMessage.REMINDTYPE:
-                switch (pushMessage.getOptional().getType()) {
-                    case PushMessage.REMINDTYPECOUPONBANNER:
-                        //  FinanceAdActivity.showAdFullDialog(mActivity);
-                        break;
-                    default:
-                        intentGo.setClass(activity, BaseMessageListActivity.class);
-                        intentGo.putExtra(BaseMessageListActivity.MESSAGELISTTYPE,
-                                PushMessage.REMINDTYPE);
-                        activity.startActivity(intentGo);
-                        break;
-                }
+                intentGo.setClass(activity, BaseMessageListActivity.class);
+                intentGo.putExtra(BaseMessageListActivity.MESSAGELISTTYPE,
+                        PushMessage.REMINDTYPE);
+                activity.startActivity(intentGo);
                 break;
             case PushMessage.INFOTYPE:
             case PushMessage.ACTIVITYTYPE:
@@ -96,11 +79,7 @@ public class MessageTypeProcessUtils {
     private static void processSmsMessage(Activity activity,Intent intent){
         Uri data = intent.getParcelableExtra(CommonTags.URIDATA);
         if (null != data) {
-            try {
-                EventLog.upEventLog("684", URLEncoder.encode(data.toString()));
-            } catch (Exception e) {
-                LogUtil.i(e.toString());
-            }
+            EventLog.upEventLog("684", URLEncoder.encode(data.toString()));
 
             String smsType = data.getPath();
             switch (smsType) {
@@ -118,30 +97,27 @@ public class MessageTypeProcessUtils {
                     String tab = data.getQueryParameter(CommonTags.TABINDEX);
                     switch (tab) {
                         case CommonTags.HOLDLIST:
-                            //todo
-                            /*Bundle fcbBundle = new Bundle();
+                            Bundle fcbBundle = new Bundle();
                             fcbBundle.putString(CapitalActivity.TAB,CapitalActivity.HOLD);
                             if (!CapitalActivity.goCapital(activity,fcbBundle)) {
                                 activity.setIntent(intent);
                             } else {
                                 activity.setIntent(new Intent());
-                            }*/
+                            }
                             break;
                         default:
                             break;
                     }
                     break;
                 case CommonTags.TIYANBAO:
-                    //todo
-                    /*Intent tiYanBaoIntent = new Intent();
-                    tiYanBaoIntent.putExtra(RegularFinanceDetailH5Activity.EXTRA_URL,getTiYanBaoUrlByBrowser(data));
-                    IndexChoiceBusinessView.toFinanceHome(mActivity,tiYanBaoIntent);*/
+                    intent = new Intent(activity, RegularFinanceDetailH5Activity.class);
+                    intent.putExtra(RegularFinanceDetailH5Activity.EXTRA_URL, getTiYanBaoUrlByBrowser(data));
+                    activity.startActivity(intent);
                     break;
                 case CommonTags.FANGCHANBAO:
-                    //todo
-                    /*Intent fangchanbaoIntent = new Intent();
-                    fangchanbaoIntent.putExtra(RegularFinanceDetailH5Activity.EXTRA_URL,getFangChanBaoUrlByBrowser(data));
-                    IndexChoiceBusinessView.toFinanceHome(mActivity,fangchanbaoIntent);*/
+                    intent = new Intent(activity, RegularFinanceDetailH5Activity.class);
+                    intent.putExtra(RegularFinanceDetailH5Activity.EXTRA_URL, getFangChanBaoUrlByBrowser(data));
+                    activity.startActivity(intent);
                     break;
 
             }
@@ -149,19 +125,22 @@ public class MessageTypeProcessUtils {
     }
 
     private static String getTiYanBaoUrlByBrowser(Uri data) {
-        SupportFinance supportFinance = MyPreference.getInstance().read(SupportFinance.class);
-        return supportFinance != null ? supportFinance.getTiyanbaoDetailUrl()+getParaDescForUri(data) : "";
+        Iwjwh5UrlResponse response = MyPreference.getInstance().read(Iwjwh5UrlResponse.class);
+        return response != null ? response.getTiyanbaoDetailUrl()+getParaDescForUri(data) : "";
     }
 
     private static String getFangChanBaoUrlByBrowser(Uri data) {
-        SupportFinance supportFinance = MyPreference.getInstance().read(SupportFinance.class);
-        return supportFinance != null ? supportFinance.getProductDetailUrl()+getParaDescForUri(data) : "";
+        Iwjwh5UrlResponse response = MyPreference.getInstance().read(Iwjwh5UrlResponse.class);
+        return response != null ? response.getProductDetailUrl()+getParaDescForUri(data) : "";
     }
 
     private static String getParaDescForUri(Uri data) {
         return data.toString().substring(data.toString().indexOf("?"),data.toString().length());
     }
 
+    /***
+     * 消息列表各个item点击事件处理
+     */
     public static void processMessageListActivityItemClick(Activity context, int msgType, Notice notice){
         if(notice == null){
             return;
@@ -182,7 +161,7 @@ public class MessageTypeProcessUtils {
     }
 
     /***
-     * 处理消息详情列表页的item点击事件
+     * 处理提醒消息详情列表页的item点击事件
      */
     private static void processRemindMessageClick(Activity activity,Notice notice){
         Intent intent;
@@ -191,11 +170,6 @@ public class MessageTypeProcessUtils {
             case PushMessage.REMINDTYPENEWVOUCHER:
             case PushMessage.REMINDTYPETIYANJI:
                 intent = new Intent(activity, CouponWebViewActivity.class);
-                activity.startActivity(intent);
-                break;
-            case PushMessage.REMINDTYPECOUPONBANNER:
-                intent = new Intent(activity, MessageDetailWebViewActivity.class);
-                intent.putExtra(BaseWebViewActivity.URL, SupportUrl.getTradeEnsureCardUrl());
                 activity.startActivity(intent);
                 break;
             case PushMessage.REMINDTYPERESERVESUCCESS:
