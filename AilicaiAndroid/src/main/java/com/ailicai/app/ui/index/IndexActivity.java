@@ -172,6 +172,12 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         activity.startActivity(mIntent);
     }
 
+    public static void goToInvestTab(Activity activity, int indexWantedInInvest) {
+        Intent mIntent = new Intent(activity, IndexActivity.class);
+        mIntent.putExtra("settabIndex", 1);
+        activity.startActivity(mIntent);
+    }
+
     /**
      * Set the notification number
      *
