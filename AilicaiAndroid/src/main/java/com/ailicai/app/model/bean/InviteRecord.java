@@ -2,12 +2,12 @@ package com.ailicai.app.model.bean;
 
 import java.io.Serializable;
 
-/**
- * 邀请记录
- */
-public class InviteRewards implements Serializable {
+public class InviteRecord implements Serializable {
+
     private String mobile = "";//手机号 隐藏中间七位
+
     private String inviteTime = "";//邀请时间
+
     private int status = 0;//0:未投资，1：投资中 ， 2：失效
 
     public String getMobile() {

@@ -1,6 +1,8 @@
 package com.ailicai.app.ui.mine;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +17,7 @@ import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.StringUtil;
 import com.ailicai.app.eventbus.ExitEvent;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.paypassword.PayPwdManageActivity;
 import com.ailicai.app.widget.DialogBuilder;
@@ -32,6 +35,7 @@ import butterknife.OnClick;
  */
 
 public class SettingsActivity extends BaseBindActivity {
+    private final static int REQUEST_CODE_OPEN_ACCOUNT = 10001;
     @Bind(R.id.user_phone_tag)
     TextView mPhoneTag;
     @Bind(R.id.real_name)
@@ -77,8 +81,23 @@ public class SettingsActivity extends BaseBindActivity {
             MyIntent.startActivity(mContext, RealUserInfoActivity.class, dataMap);
         } else {
             //TODO:未实名
+            Intent intent = new Intent(this, ProcessActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_OPEN_ACCOUNT);
         }
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_CODE_OPEN_ACCOUNT:
+                    //开户成功
+                    MyIntent.startActivity(mContext, RealUserInfoActivity.class, dataMap);
+                    break;
+            }
+        }
     }
 
     @OnClick(R.id.change_transaction_password)
