@@ -726,7 +726,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             // 本地计算的实际需要支付的值大于可用余额 // TODO 需要check其他else
             else if (getRealPayDouble() > infoResponse.getAvailableBalance()) {
                 double offset = getRealPayDouble() - infoResponse.getAvailableBalance();
-                mConfirmBtn.setText("钱包余额不足，需转入" + MathUtil.saveTwoDecimalHalfUp(offset) + "元");
+                mConfirmBtn.setText("账户余额不足，需转入" + MathUtil.saveTwoDecimalHalfUp(offset) + "元");
                 return true;
             }
         }
@@ -765,7 +765,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             // 最后一笔余额不足直接显示需要转入
             if (getRealPayDouble() > infoResponse.getAvailableBalance()) {
                 double offset = getRealPayDouble() - infoResponse.getAvailableBalance();
-                mConfirmBtn.setText("钱包余额不足，需转入" + MathUtil.saveTwoDecimalHalfUp(offset) + "元");
+                mConfirmBtn.setText("账户余额不足，需转入" + MathUtil.saveTwoDecimalHalfUp(offset) + "元");
             }
         } else {
             ManyiUtils.showKeyBoard(this, mInputPriceEdit);

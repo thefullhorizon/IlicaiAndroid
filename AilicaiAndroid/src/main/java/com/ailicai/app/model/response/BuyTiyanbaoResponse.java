@@ -14,6 +14,8 @@ public class BuyTiyanbaoResponse extends Response {
     private int hasValidLimit;//是否有有效天数限制
     private int couponId;//卡券id   用于跳转到详情
 
+    private String h5AccountUrl = "";//用于跳转到H5开户地址
+
     public int getRemainingCnt() {
         return remainingCnt;
     }
@@ -60,5 +62,13 @@ public class BuyTiyanbaoResponse extends Response {
 
     public void setCouponId(int couponId) {
         this.couponId = couponId;
+    }
+
+    public String getH5AccountUrl() {
+        return h5AccountUrl;
+    }
+
+    public void setH5AccountUrl(String h5AccountUrl) {
+        this.h5AccountUrl = h5AccountUrl;
     }
 }

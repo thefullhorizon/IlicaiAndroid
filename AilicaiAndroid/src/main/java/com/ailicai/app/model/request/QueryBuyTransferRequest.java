@@ -5,7 +5,7 @@ import com.ailicai.app.common.reqaction.RequestPath;
 
 /**
  * Created by Gerry on 16/11/22.
- * 钱包余额直接购买5次轮询接口
+ * 账户余额直接购买5次轮询接口
  */
 @RequestPath("/ailicai/queryBuyTransfer.rest")
 public class QueryBuyTransferRequest extends Request {

@@ -192,8 +192,8 @@ public class BuyTiYanBaoResultActivity extends BaseBindActivity {
                     //开户成功
                     //TODO nanshan 开户相关
 //                    OpenAccountFeature.isOpeningAccount = false;
-                    response.setIsOpen(AccountInfo.getIsOpenAccount());
-                    initData(false);
+//                    response.setIsOpen(AccountInfo.getIsOpenAccount());
+//                    initData(false);
                     break;
             }
         }

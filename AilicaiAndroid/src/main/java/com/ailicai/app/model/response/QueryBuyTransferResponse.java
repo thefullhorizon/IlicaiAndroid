@@ -4,7 +4,7 @@ import com.huoqiu.framework.rest.Response;
 
 /**
  * Created by Gerry on 16/11/22.
- * 钱包余额直接购买5次轮询接口
+ * 账户余额直接购买5次轮询接口
  */
 public class QueryBuyTransferResponse extends Response {
     private String productId = ""; // 产品Id
