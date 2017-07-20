@@ -97,6 +97,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <!--todo 需要修改-->
                 <data
                     android:host="www.iwjw.com"
                     android:scheme="iwjw" />

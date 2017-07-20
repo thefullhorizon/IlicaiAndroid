@@ -53,11 +53,6 @@ public class BaseMessageListAdapter extends BaseAdapter {
         this.context = new WeakReference<>(context);
         this.messageType = messageType;
         loadParam = new LoadParam();
-        //TODO  默认图片设置
-//        loadParam.setEmptyPicId(R.drawable.img_message_no);
-//        loadParam.setFailPicId(R.drawable.img_message_no);
-//        loadParam.setLoadingPicId(R.drawable.img_message_no);
-
     }
 
     public void setListData(List<Notice> data,boolean reload) {
@@ -161,7 +156,6 @@ public class BaseMessageListAdapter extends BaseAdapter {
         viewHolderRemind.messageViewDetail.setVisibility(View.VISIBLE);
         viewHolderRemind.messageViewDetailText.setText("查看详情");
          if (remindType == PushMessage.REMINDTYPENEWVOUCHER
-                || remindType == PushMessage.REMINDTYPECOUPONBANNER
                 || remindType == PushMessage.REMINDTYPETIYANJI) {
             //新的现金券通知
             viewHolderRemind.iconLeft.setText(R.string.mine_ticket);

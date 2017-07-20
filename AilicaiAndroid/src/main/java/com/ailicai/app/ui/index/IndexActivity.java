@@ -100,7 +100,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         bottomNavigation.setUseElevation(true);
         mViewPager.setCurrentItem(0);
 
-        MessageTypeProcessUtils.parseIntent(this,mViewPager);
+        MessageTypeProcessUtils.parseIntent(this);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
             int settabitem = intent.getIntExtra("settabIndex", -1);
             setCurrentItem(settabitem);
         }
-        MessageTypeProcessUtils.parseIntent(this,mViewPager);
+        MessageTypeProcessUtils.parseIntent(this);
     }
 
 
@@ -247,7 +247,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         //TODO 只添加了推送或短信消息类型处理
 //        refreshGlobalData(this);
         if (event.isLoginSuccess()) {
-            MessageTypeProcessUtils.parseIntent(this, mViewPager);
+            MessageTypeProcessUtils.parseIntent(this);
         } else {
             setIntent(new Intent());
         }
