@@ -44,14 +44,12 @@ public class ProcessActivity extends BaseBindActivity {
     State state;
 
     View mProcess;
-    private String openAccountUrl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
 
-        openAccountUrl = getIntent().getStringExtra("openAccountUrl");
         mProcess = this.findViewById(R.id.processing);
         firstLoad = true;
         state = new State();
@@ -179,12 +177,7 @@ public class ProcessActivity extends BaseBindActivity {
      * 独立APP的开户使用H5来做
      */
     private void referOpenAccount() {
-        if (openAccountUrl != null) {
-            Map<String, String> dataMap = ObjectUtil.newHashMap();
-            dataMap.put(BaseWebViewActivity.URL, openAccountUrl);
-            dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
-            MyIntent.startActivity(this, OpenAccountWebViewActivity.class, dataMap);
-        }
+        OpenAccountWebViewActivity.goToOpenAccount(mContext);
         finish();
     }
 

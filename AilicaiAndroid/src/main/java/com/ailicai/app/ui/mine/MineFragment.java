@@ -612,7 +612,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             startActivity(intent);
         }
 
-
     }
 
     //充值

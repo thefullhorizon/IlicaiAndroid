@@ -31,9 +31,11 @@ public class JumpProcessActivity extends BaseBindActivity {
         if (dataMap.get(ACTION_KEY).equals(ACTION_VAL_GET_CASH)) {
             Intent intent = new Intent(this, ProcessActivity.class);
             startActivityForResult(intent, REQUEST_FOR_GET_CASH);
+            finish();
         } else {
             Intent intent = new Intent(this, ProcessActivity.class);
             startActivityForResult(intent, REQUEST_FOR_CHARGE);
+            finish();
         }
     }
 
