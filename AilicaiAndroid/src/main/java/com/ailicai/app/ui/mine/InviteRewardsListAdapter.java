@@ -32,7 +32,7 @@ public class InviteRewardsListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return inviteRewards.size();
+        return (inviteRewards.size() == 0) ? 1 : inviteRewards.size();
     }
 
     @Override
@@ -47,15 +47,21 @@ public class InviteRewardsListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ItemView itemView;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.invite_rewards_adapter, null);
-            itemView = new ItemView(convertView);
-            convertView.setTag(itemView);
+        if (inviteRewards.size() == 0) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.reward_record_adapter_empty, null);
+            TextView noData = (TextView)convertView.findViewById(R.id.no_record);
+            noData.setText("暂无邀请记录");
         } else {
-            itemView = (ItemView) convertView.getTag();
+            ItemView itemView;
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.invite_rewards_adapter, null);
+                itemView = new ItemView(convertView);
+                convertView.setTag(itemView);
+            } else {
+                itemView = (ItemView) convertView.getTag();
+            }
+            itemView.bindData((InviteRecord) getItem(position), position);
         }
-        itemView.bindData((InviteRecord) getItem(position), position);
         return convertView;
     }
 

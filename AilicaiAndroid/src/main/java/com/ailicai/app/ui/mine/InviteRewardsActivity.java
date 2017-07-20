@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
@@ -70,8 +71,6 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     TextView tt2;
     @Bind(R.id.tt3)
     TextView tt3;
-    @Bind(R.id.no_record)
-    TextView noRecord;
 
     List<InviteRecord> inviteRecordList = ObjectUtil.newArrayList();
     List<InviteRecord> inviteRecordListCallBack = ObjectUtil.newArrayList();
@@ -216,13 +215,6 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         inviteRecordList.addAll(InviteRecordListTemp);
         InviteRewardsListAdapter listAdapter = new InviteRewardsListAdapter(this, inviteRecordList);
         mSwipeListView.setAdapter(listAdapter);
-
-        if (inviteRecordList.size() == 0) {
-            noRecord.setVisibility(View.VISIBLE);
-            noRecord.setText("暂无邀请记录");
-        } else {
-            noRecord.setVisibility(View.GONE);
-        }
     }
 
     /**
@@ -264,12 +256,6 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         rewardRecordList.addAll(rewardRecordListTemp);
         RewardRecordListAdapter listAdapter = new RewardRecordListAdapter(this, rewardRecordList);
         mSwipeListView.setAdapter(listAdapter);
-        if (rewardRecordList.size() == 0) {
-            noRecord.setVisibility(View.VISIBLE);
-            noRecord.setText("暂无奖励记录");
-        } else {
-            noRecord.setVisibility(View.GONE);
-        }
     }
 
 

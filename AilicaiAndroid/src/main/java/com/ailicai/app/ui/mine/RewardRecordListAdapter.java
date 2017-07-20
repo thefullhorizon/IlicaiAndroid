@@ -32,7 +32,7 @@ public class RewardRecordListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return rewardRecordList.size();
+        return (rewardRecordList.size() == 0) ? 1 : rewardRecordList.size();
     }
 
     @Override
@@ -47,15 +47,21 @@ public class RewardRecordListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ItemView itemView;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.reward_record_adapter, null);
-            itemView = new ItemView(convertView);
-            convertView.setTag(itemView);
-        } else {
-            itemView = (ItemView) convertView.getTag();
+        if(rewardRecordList.size() == 0){
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.reward_record_adapter_empty, null);
+            TextView noData = (TextView)convertView.findViewById(R.id.no_record);
+            noData.setText("暂无奖励记录");
+        }else{
+            ItemView itemView;
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.reward_record_adapter, null);
+                itemView = new ItemView(convertView);
+                convertView.setTag(itemView);
+            } else {
+                itemView = (ItemView) convertView.getTag();
+            }
+            itemView.bindData((RewardRecord) getItem(position), position);
         }
-        itemView.bindData((RewardRecord) getItem(position), position);
         return convertView;
     }
 
