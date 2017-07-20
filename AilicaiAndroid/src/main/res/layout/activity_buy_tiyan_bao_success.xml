@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/tv_success_text"
                 android:layout_below="@+id/tv_profit_dao_text"
-                android:text="预计2016-08-16回款至钱包余额"
+                android:text="预计2016-08-16回款至账户余额"
                 android:textColor="#757575"
                 android:textSize="14sp" />
 

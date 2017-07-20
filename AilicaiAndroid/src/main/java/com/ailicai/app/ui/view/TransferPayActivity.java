@@ -303,7 +303,7 @@ public class TransferPayActivity extends BaseBindActivity {
 
 
     /**
-     * 钱包余额充足,直接购买房产宝
+     * 账户余额充足,直接购买房产宝
      *
      * @param money
      */
