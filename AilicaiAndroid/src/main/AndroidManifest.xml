@@ -377,6 +377,13 @@
             android:theme="@style/AppAppCompatTheme.transparent"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
+        <activity
+            android:name="com.ailicai.app.ui.view.MyWalletActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
 
         <activity
             android:name=".common.push.ui.PushUiDispatcherActivity"
