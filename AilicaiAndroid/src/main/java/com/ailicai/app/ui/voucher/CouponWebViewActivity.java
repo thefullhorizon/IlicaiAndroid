@@ -38,7 +38,7 @@ public class CouponWebViewActivity extends BaseWebViewActivity {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        loadUrl(SupportUrl.getCardUrl());
+        loadUrl(SupportUrl.getSupportUrlsResponse().getCardUrl());
 
 
         addMethodCallAction(new WebMethodCallAction("setnavigation") {

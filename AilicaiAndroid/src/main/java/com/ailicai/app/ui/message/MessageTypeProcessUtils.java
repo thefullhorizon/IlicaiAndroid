@@ -18,6 +18,7 @@ import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.message.Notice;
+import com.ailicai.app.model.response.Iwjwh5UrlResponse;
 import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.index.IndexActivity;
@@ -149,13 +150,13 @@ public class MessageTypeProcessUtils {
     }
 
     private static String getTiYanBaoUrlByBrowser(Uri data) {
-        SupportFinance supportFinance = MyPreference.getInstance().read(SupportFinance.class);
-        return supportFinance != null ? supportFinance.getTiyanbaoDetailUrl()+getParaDescForUri(data) : "";
+        Iwjwh5UrlResponse response = MyPreference.getInstance().read(Iwjwh5UrlResponse.class);
+        return response != null ? response.getTiyanbaoDetailUrl()+getParaDescForUri(data) : "";
     }
 
     private static String getFangChanBaoUrlByBrowser(Uri data) {
-        SupportFinance supportFinance = MyPreference.getInstance().read(SupportFinance.class);
-        return supportFinance != null ? supportFinance.getProductDetailUrl()+getParaDescForUri(data) : "";
+        Iwjwh5UrlResponse response = MyPreference.getInstance().read(Iwjwh5UrlResponse.class);
+        return response != null ? response.getProductDetailUrl()+getParaDescForUri(data) : "";
     }
 
     private static String getParaDescForUri(Uri data) {

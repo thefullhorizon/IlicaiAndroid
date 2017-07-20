@@ -120,7 +120,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         ServiceSender.exec(this, request, new IwjwRespListener<Iwjwh5UrlResponse>() {
             @Override
             public void onJsonSuccess(Iwjwh5UrlResponse jsonObject) {
-                SupportUrl.setUrls(jsonObject);
+                SupportUrl.saveUrls(jsonObject);
             }
         });
     }
