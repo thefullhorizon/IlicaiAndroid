@@ -219,7 +219,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
-                android:src="@drawable/avatar_default" />
+                android:src="@drawable/head_portrait" />
 
             <FrameLayout
                 android:id="@+id/fl_msg_container"
