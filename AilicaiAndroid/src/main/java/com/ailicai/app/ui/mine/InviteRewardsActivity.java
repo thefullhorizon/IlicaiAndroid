@@ -74,10 +74,11 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     TextView noRecord;
 
     List<InviteRecord> inviteRecordList = ObjectUtil.newArrayList();
+    List<InviteRecord> inviteRecordListCallBack = ObjectUtil.newArrayList();
     List<RewardRecord> rewardRecordList = ObjectUtil.newArrayList();
+    List<RewardRecord> rewardRecordListCallBack = ObjectUtil.newArrayList();
     private int offSet = 0;//数据偏移量(请求记录数之和)
     private int pageSize = 10;//每页记录数
-    private boolean hasNextPage = false; // 是否有分页
 
     @Override
     public int getLayout() {
@@ -195,8 +196,8 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
             @Override
             public void onJsonSuccess(InviteRecordResponse jsonObject) {
                 //showContentView();
-                List<InviteRecord> InviteRecordListTemp = (jsonObject.getInviteRecordList() != null) ? jsonObject.getInviteRecordList() : ObjectUtil.<InviteRecord>newArrayList();
-                setInviteRecordData(InviteRecordListTemp);
+                inviteRecordListCallBack = (jsonObject.getInviteRecordList() != null) ? jsonObject.getInviteRecordList() : ObjectUtil.<InviteRecord>newArrayList();
+                setInviteRecordData(inviteRecordListCallBack);
             }
 
             @Override
@@ -212,7 +213,6 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
      * 设置邀请记录数据
      */
     public void setInviteRecordData(List<InviteRecord> InviteRecordListTemp) {
-        inviteRecordList.clear();
         inviteRecordList.addAll(InviteRecordListTemp);
         InviteRewardsListAdapter listAdapter = new InviteRewardsListAdapter(this, inviteRecordList);
         mSwipeListView.setAdapter(listAdapter);
@@ -243,8 +243,8 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
             @Override
             public void onJsonSuccess(RewardRecordResponse jsonObject) {
                 //showContentView();
-                List<RewardRecord> rewardRecordListTemp = (jsonObject.getRewardRecordList() != null) ? jsonObject.getRewardRecordList() : ObjectUtil.<RewardRecord>newArrayList();
-                setRewardRecordData(rewardRecordListTemp);
+                rewardRecordListCallBack = (jsonObject.getRewardRecordList() != null) ? jsonObject.getRewardRecordList() : ObjectUtil.<RewardRecord>newArrayList();
+                setRewardRecordData(rewardRecordListCallBack);
 
             }
 
@@ -261,7 +261,6 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
      * 奖励记录数据
      */
     public void setRewardRecordData(List<RewardRecord> rewardRecordListTemp) {
-        rewardRecordList.clear();
         rewardRecordList.addAll(rewardRecordListTemp);
         RewardRecordListAdapter listAdapter = new RewardRecordListAdapter(this, rewardRecordList);
         mSwipeListView.setAdapter(listAdapter);
@@ -305,17 +304,12 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     }
 
     @Override
-    public void reloadData() {
-        loadData(false);
-    }
-
-    @Override
     public void onLoadMore() {
         //上拉刷新加载数据
         boolean loadMore = false;
         switch (aroundHouseGroup.getCheckedRadioButtonId()) {
             case R.id.invite_record_rb:
-                if (inviteRecordList.size() < pageSize) {
+                if (inviteRecordListCallBack.size() < pageSize) {
                     //if (!hasNextPage || totalNum <= mDatas.size() || mDatas.size() < PAGE_SIZE) {
                     //if (!hasNextPage) {
                     loadMore = false;
@@ -324,7 +318,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
                 }
                 break;
             case R.id.reward_record_rb:
-                if (rewardRecordList.size() < pageSize) {
+                if (rewardRecordListCallBack.size() < pageSize) {
                     //if (!hasNextPage || totalNum <= mDatas.size() || mDatas.size() < PAGE_SIZE) {
                     //if (!hasNextPage) {
                     loadMore = false;
@@ -354,7 +348,8 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     public void loadData(boolean loadMore) {
         if (!loadMore) {
             offSet = 0;
-            hasNextPage = false;
+            inviteRecordList.clear();
+            rewardRecordList.clear();
             mSwipeListView.resetAll();
             mSwipeListView.smoothScrollToPosition(0);
         } else {
