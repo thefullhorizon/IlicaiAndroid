@@ -13,6 +13,7 @@ import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.setting.DeBugLogActivity;
+import com.ailicai.app.widget.DialogBuilder;
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
@@ -193,6 +194,19 @@ public abstract class IwjwRespListener<T> extends JsonHttpResponseListener<T> im
                 case 99:
                 case -1:
                 default:
+
+                    // 非正常码都dialog出来
+                   try {
+                       if(getWRContext() != null) {
+                           DialogBuilder.showSimpleDialog(responseTo.getMessage(),(Context) getWRContext());
+                       } else if(getWRFragment() != null) {
+                           DialogBuilder.showSimpleDialog(responseTo.getMessage(),((Fragment)getWRFragment()).getContext());
+                       }
+                   } catch (Exception e) {
+                       e.printStackTrace();
+                   }
+
+
                     onFailInfo(responseTo, responseTo.getMessage());
                     getReportRequest().setLogLevel("warn");
                     getReportRequest().setErrorCode("" + errorCode);

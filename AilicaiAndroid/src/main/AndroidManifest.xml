@@ -429,13 +429,6 @@
             android:theme="@style/AppAppCompatTheme.transparent"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
-        <activity
-            android:name="com.ailicai.app.ui.view.RegularFinancingDetailActivity"
-            android:configChanges="orientation|keyboardHidden|locale"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppAppCompatTheme.transparent"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-
         // cashier desk end
 
         <activity

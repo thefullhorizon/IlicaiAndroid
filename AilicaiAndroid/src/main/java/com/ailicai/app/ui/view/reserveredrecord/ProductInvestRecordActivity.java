@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import com.ailicai.app.R;
 import com.ailicai.app.ui.base.BaseBindActivity;
-import com.ailicai.app.ui.view.RegularFinancingDetailActivity;
 import com.huoqiu.framework.backstack.Op;
 
 /**
@@ -14,6 +13,8 @@ import com.huoqiu.framework.backstack.Op;
  */
 
 public class ProductInvestRecordActivity extends BaseBindActivity {
+
+    public static final String PROD_ID = "prod_id";
 
     ProductInvestRecordFragment fragment;
     private boolean inited;
@@ -43,7 +44,7 @@ public class ProductInvestRecordActivity extends BaseBindActivity {
 
     public static void startActivity(Activity activity, String id) {
         Intent intent = new Intent(activity,ProductInvestRecordActivity.class);
-        intent.putExtra(RegularFinancingDetailActivity.PROD_ID, id);
+        intent.putExtra(PROD_ID, id);
         intent.putExtra("isReserve", true);
         activity.startActivity(intent);
     }

@@ -3,6 +3,7 @@ package com.ailicai.app.ui.buy;
 import android.content.DialogInterface;
 
 import com.ailicai.app.MyApplication;
+import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.UserManager;
@@ -48,9 +49,6 @@ public class NoSetSafeCardHint {
 
     // 显示支付密码验证输入
     private static void showPayPwdCheckDialog(final BaseBindActivity activity) {
-
-        //TODO nanshan
-        /**
         SetSafeBankPwdCheckDialog checkDialog = new SetSafeBankPwdCheckDialog(activity, new IwPwdPayResultListener() {
             @Override
             public void onPayPwdTryAgain() {
@@ -59,8 +57,7 @@ public class NoSetSafeCardHint {
 
             @Override
             public void onPayComplete(Object object) {
-                //TODO nanshan
-//                HttpForDebitCardList.httpFordebitCardList(activity);
+                OpenAccountWebViewActivity.goToOpenAccount(activity);
             }
 
             @Override
@@ -74,6 +71,5 @@ public class NoSetSafeCardHint {
             }
         });
         checkDialog.show();
-         */
     }
 }

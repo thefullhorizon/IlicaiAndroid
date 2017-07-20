@@ -9,7 +9,6 @@ import com.ailicai.app.R;
 import com.ailicai.app.model.bean.ProductInvestRecord;
 import com.ailicai.app.model.response.ProductInvestRecordListResponse;
 import com.ailicai.app.ui.base.BaseBindFragment;
-import com.ailicai.app.ui.view.RegularFinancingDetailActivity;
 import com.ailicai.app.widget.drag.DragUpListView;
 
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class ProductInvestRecordFragment extends BaseBindFragment implements Dra
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        id = getArguments().getString(RegularFinancingDetailActivity.PROD_ID);
+        id = getArguments().getString(ProductInvestRecordActivity.PROD_ID);
         isReserve = getArguments().getBoolean("isReserve");
         addHeaderView();
         initAdapter();

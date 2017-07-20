@@ -16,6 +16,7 @@ import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
 import com.ailicai.app.ui.base.webview.WebMethodCallAction;
 import com.ailicai.app.ui.html5.SupportUrl;
+import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.LoginManager;
 
 import org.greenrobot.eventbus.EventBus;
