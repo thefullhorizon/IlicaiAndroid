@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f6f6f6"
+        android:lineSpacingMultiplier="1.5"
+        android:paddingBottom="@dimen/_20"
+        android:paddingLeft="@dimen/_16"
+        android:paddingRight="@dimen/_16"
+        android:paddingTop="@dimen/_20"
+        android:text="口令用户享以下特权: (1)预约优先排队；(2)预约额度已满时，享受插队特权。" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.15"
+        android:background="@color/black"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_16"
+        android:paddingRight="@dimen/_16">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/et_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/reserve_command_edit_bg"
+                android:digits="@string/input_text"
+                android:gravity="center_vertical"
+                android:hint="请输入口令"
+                android:maxLength="12"
+                android:paddingLeft="@dimen/_10"
+                android:paddingRight="@dimen/_28"
+                android:textColor="#4a4a4a"
+                android:textColorHint="#9b9b9b"
+                android:textSize="16sp" />
+
+            <com.ailicai.app.widget.TextViewTF
+                android:id="@+id/tv_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_12"
+                android:text="@string/radio"
+                android:textColor="@color/color_757575"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/btn_use"
+            android:layout_width="112dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/_16"
+            android:background="@drawable/reserve_command_use_selector"
+            android:text="使用"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8"
+        android:layout_marginLeft="@dimen/_16"
+        android:layout_marginTop="@dimen/_8"
+        android:textColor="@color/main_red_color"
+        android:textSize="12sp"
+        android:visibility="invisible" />
+</LinearLayout>
+

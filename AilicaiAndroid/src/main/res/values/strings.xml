@@ -71,5 +71,9 @@
     <string name="finance_system_fixing">当前系统正在升级维护中，维护期间暂停爱理财相关服务（转入、转出、购买、转让等），%s。望提前知晓，给你带来不便，还请谅解。</string>
     <string name="title_activity_buy_rebate_voucher">在线支付</string>
 
+    <string name="input_text">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890</string>
+
+    <string name="reserve_pre_buy_time">预约成功后，%1s将为您申购以上房产宝</string>
+
 
 </resources>

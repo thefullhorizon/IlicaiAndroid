@@ -43,6 +43,8 @@ import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.base.BaseActivity;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
+import com.ailicai.app.ui.view.AssetInViewOfBirdActivity;
+import com.ailicai.app.ui.voucher.CouponWebViewActivity;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.alibaba.fastjson.JSON;
 import com.huoqiu.framework.exception.RestException;
@@ -511,20 +513,14 @@ public class BaseWebViewLayout extends LinearLayout {
 //                MyWalletActivity.goMywallet(getWRContext());
             }
         });
+
         addJumpUiActions(new WebJumpUiAction("12") {
             @Override
             public void jumpUi(HashMap<String, String> params) {
-//                if (null != getWRContext()) {
-//                    Intent intent = new Intent(getWRContext(), CapitalActivity.class);
-//                    if (params.containsKey("tab")) {
-//                        switch (params.get("tab")) {
-//                            case "2":
-//                                intent.putExtra(CapitalActivity.TAB, CapitalActivity.HOLD);
-//                                break;
-//                        }
-//                    }
-//                    getWRContext().startActivity(intent);
-//                }
+                if (null != getWRContext()) {
+                    Intent intent = new Intent(getWRContext(), AssetInViewOfBirdActivity.class);
+                    getWRContext().startActivity(intent);
+                }
             }
         });
 
@@ -547,7 +543,7 @@ public class BaseWebViewLayout extends LinearLayout {
         addJumpUiActions(new WebJumpUiAction("coupon") {
             @Override
             public void jumpUi(HashMap<String, String> params) {
-//                CouponWebViewActivity.goCoupon(getWRContext());
+                CouponWebViewActivity.goCoupon(getWRContext());
             }
         });
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_marginRight="12dp"
+        android:id="@+id/tv_reserve_term"
+        android:gravity="center"
+        android:background="@drawable/day_tag_bg_selector"
+        android:layout_width="88dp"
+        android:textSize="14sp"
+        android:text="60天内"
+        android:textColor="@color/day_tag_text_color_selector"
+        android:layout_height="28dp"/>
+</FrameLayout>

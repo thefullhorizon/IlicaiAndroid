@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ailicai.app.widget.IWTopTitleView
+        android:id="@+id/reserve_result_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:hasLeft="false"
+        manyi:isDark="true"
+        manyi:titleview_title_text="结果" />
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/_32"
+        android:layout_marginRight="@dimen/_32"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reserve_result_title"
+        android:orientation="vertical">
+        <com.ailicai.app.widget.TextViewTF
+            android:layout_marginTop="@dimen/_48"
+            android:textSize="72sp"
+            android:text="@string/failured"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="预约失败"
+            android:layout_marginTop="@dimen/_16"
+            android:textColor="@color/color_212121"
+            android:textSize="17sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/color_757575"
+            android:id="@+id/tv_message"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            style="@style/RoundCornerBtnBg"
+            android:layout_marginTop="@dimen/_16"
+            android:id="@+id/btn_complete"
+            android:text="完成"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -187,6 +187,10 @@ dependencies {
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
     compile(name: 'gridpasswordview', ext: 'aar')
     compile files('libs/realm-android-0.87.5.jar')
+
+    compile('com.google.android:flexbox:0.2.6') {
+        exclude group: 'com.android.support'
+    }
 }
 
 afterEvaluate {
