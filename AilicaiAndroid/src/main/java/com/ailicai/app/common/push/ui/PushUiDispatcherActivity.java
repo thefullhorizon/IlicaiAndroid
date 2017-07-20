@@ -117,14 +117,7 @@ public class PushUiDispatcherActivity extends BaseBindActivity {
 
         switch (pushMessage.getMsgType()) {
             case PushMessage.REMINDTYPE:
-                switch (pushMessage.getOptional().getType()){
-                    case  PushMessage.REMINDTYPECOUPONBANNER:
-                        finishDelay();
-                        break;
-                    default:
-                        goMessageList(pushMessage);
-                        break;
-                }
+                goMessageList(pushMessage);
                 break;
             case PushMessage.INFOTYPE:
             case PushMessage.ACTIVITYTYPE:

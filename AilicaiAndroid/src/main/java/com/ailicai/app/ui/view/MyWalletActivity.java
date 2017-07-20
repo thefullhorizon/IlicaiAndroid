@@ -25,7 +25,6 @@ import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.paypassword.PayPwdManageActivity;
-import com.ailicai.app.ui.view.detail.FinanceHomeActivity;
 import com.ailicai.app.ui.view.detail.IncomeDetailActivity;
 import com.ailicai.app.ui.view.reserveredrecord.ReserveRecordListActivity;
 import com.ailicai.app.ui.view.transaction.TransactionListActivity;
