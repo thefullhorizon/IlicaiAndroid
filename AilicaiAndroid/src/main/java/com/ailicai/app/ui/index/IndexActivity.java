@@ -17,6 +17,8 @@ import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.eventbus.LoginEvent;
+import com.ailicai.app.eventbus.MineShowRedPointEvent;
+import com.ailicai.app.eventbus.ShowRefreshNotifEvent;
 import com.ailicai.app.model.request.HtmlUrlRequest;
 import com.ailicai.app.model.response.Iwjwh5UrlResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
@@ -180,6 +182,13 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         if (null != bottomNavigation) {
             bottomNavigation.setNotification(nbNotification, itemPosition);
         }
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleShowRefreshNotifEvent(MineShowRedPointEvent showPoint) {
+        //我的红点
+        setRedNotification(2);
     }
 
     /**

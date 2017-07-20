@@ -27,6 +27,7 @@ import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.eventbus.ExitEvent;
 import com.ailicai.app.eventbus.LoginEvent;
+import com.ailicai.app.eventbus.MineShowRedPointEvent;
 import com.ailicai.app.eventbus.NewNotifMsgEvent;
 import com.ailicai.app.eventbus.RefreshPushEvent;
 import com.ailicai.app.model.request.AssetInfoNewRequest;
@@ -67,6 +68,10 @@ import static com.ailicai.app.ui.mine.JumpProcessActivity.ACTION_VAL_GET_CASH;
 
 public class MineFragment extends BaseBindFragment implements ObservableScrollViewCallbacks {
 
+    @Bind(R.id.title_root)
+    RelativeLayout titleRoot;
+    @Bind(R.id.tv_new_msg_point)
+    TextView mTvNewMsgPoint;
     /**
      * 点击头像区域跳转至个人信息编辑页面
      */
@@ -76,6 +81,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             switch (v.getId()) {
                 case R.id.fl_msg_container:
                     //消息点击
+                    mTvNewMsgPoint.setVisibility(View.GONE);
                     Intent intent = new Intent(getWRActivity(), MessageActivity.class);
                     startActivity(intent);
                     break;
@@ -85,10 +91,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             }
         }
     };
-    @Bind(R.id.title_root)
-    RelativeLayout titleRoot;
-    @Bind(R.id.tv_new_msg_point)
-    TextView mTvNewMsgPoint;
     @Bind(R.id.my_scroll_view)
     ObservableScrollView mScrollView;
     @Bind(R.id.ticket_red_dot)
@@ -384,9 +386,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
             // 卡券小红点
             if (isShowVoucherRedDotState()) {
-                ticket_red_dot.setVisibility(View.VISIBLE);
+                setVoucherRedDotState(true);
             } else {
-                ticket_red_dot.setVisibility(View.INVISIBLE);
+                setVoucherRedDotState(false);
             }
 
             //自动跳转至目标页面
@@ -469,6 +471,10 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handlefinal(final NewNotifMsgEvent event) {
         mTvNewMsgPoint.setVisibility(event.notifNum > 0 ? View.VISIBLE : View.GONE);
+        if (event.notifNum > 0) {
+            MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
+            EventBus.getDefault().post(showEvent);
+        }
     }
 
 
@@ -629,6 +635,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     private void setVoucherRedDotState(boolean isShow) {
         if (isShow) {
+            MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
+            EventBus.getDefault().post(showEvent);
             ticket_red_dot.setVisibility(View.VISIBLE);
         } else {
             ticket_red_dot.setVisibility(View.INVISIBLE);
