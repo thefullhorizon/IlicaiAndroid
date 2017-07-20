@@ -18,7 +18,6 @@ import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.MineShowRedPointEvent;
-import com.ailicai.app.eventbus.ShowRefreshNotifEvent;
 import com.ailicai.app.model.request.HtmlUrlRequest;
 import com.ailicai.app.model.response.Iwjwh5UrlResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
@@ -59,12 +58,19 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     @Bind(R.id.bottom_line_view)
     View bottomLineView;
     NavigationPagerAdapter nvgPagerAdapter;
-
-    private boolean hasCheckNewVersion = false;
     /**
      * 控制首页初始化只用加载一次通知数据
      */
     int notifLoadCount = 0;
+    Toast toast;
+    private boolean hasCheckNewVersion = false;
+    private long LastBackTime;
+
+    public static void startIndexActivityToTab(Activity activity, int settabIndex) {
+        Intent mIntent = new Intent(activity, IndexActivity.class);
+        mIntent.putExtra("settabIndex", settabIndex);
+        activity.startActivity(mIntent);
+    }
 
     @Override
     public int getLayout() {
@@ -86,7 +92,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         Bundle indexBundle = new Bundle();
         nvgPagerAdapter.addNvgItem(new AHBottomNavigationItem(R.string.tab_nvg_index, tabiconss[0][1], tabiconss[0][0], android.R.color.white), IndexFragment.class, indexBundle);
         Bundle followsBundle = getIntent().getExtras();
-        nvgPagerAdapter.addNvgItem(new AHBottomNavigationItem(R.string.tab_nvg_invest, tabiconss[1][1], tabiconss[1][0], android.R.color.white), IndexFragment.class, followsBundle);
+        nvgPagerAdapter.addNvgItem(new AHBottomNavigationItem(R.string.tab_nvg_invest, tabiconss[1][1], tabiconss[1][0], android.R.color.white), InvestmentMainFragment.class, followsBundle);
         Bundle msgBundle = new Bundle();
         nvgPagerAdapter.addNvgItem(new AHBottomNavigationItem(R.string.tab_nvg_me, tabiconss[2][1], tabiconss[2][0], android.R.color.white), MineFragment.class, msgBundle);
         bottomNavigation.addItems(nvgPagerAdapter.getBottomNavigationItems());
@@ -100,7 +106,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         bottomNavigation.setUseElevation(true);
         mViewPager.setCurrentItem(0);
 
-        MessageTypeProcessUtils.parseIntent(this,mViewPager);
+        MessageTypeProcessUtils.parseIntent(this, mViewPager);
     }
 
     @Override
@@ -111,9 +117,8 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
             int settabitem = intent.getIntExtra("settabIndex", -1);
             setCurrentItem(settabitem);
         }
-        MessageTypeProcessUtils.parseIntent(this,mViewPager);
+        MessageTypeProcessUtils.parseIntent(this, mViewPager);
     }
-
 
     private void htmlUrlUpdate() {
         HtmlUrlRequest request = new HtmlUrlRequest();
@@ -125,11 +130,13 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         });
     }
 
-
     @Override
     public void remindPoint() {
         setRedNotification(3);
     }
+
+
+    //EventBUS 刷新Tab 数字
 
     @Override
     public void checkStart() {
@@ -148,9 +155,6 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         //检查没通过
     }
 
-
-    //EventBUS 刷新Tab 数字
-
     @Override
     public void checkLatest(String version) {
         //检查通过并没有更新
@@ -166,12 +170,6 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         bottomNavigation.setCurrentItem(index);
     }
 
-    public static void startIndexActivityToTab(Activity activity, int settabIndex) {
-        Intent mIntent = new Intent(activity, IndexActivity.class);
-        mIntent.putExtra("settabIndex", settabIndex);
-        activity.startActivity(mIntent);
-    }
-
     /**
      * Set the notification number
      *
@@ -183,7 +181,6 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
             bottomNavigation.setNotification(nbNotification, itemPosition);
         }
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleShowRefreshNotifEvent(MineShowRedPointEvent showPoint) {
@@ -226,8 +223,6 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         return bottomNavigation.getItemsCount();
     }
 
-    private long LastBackTime;
-
     public int getNotifLoadCount() {
         return notifLoadCount;
     }
@@ -251,14 +246,12 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         }
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 
-    Toast toast;
     @Override
     public void onBackPressed() {
         if (System.currentTimeMillis() - LastBackTime > 2500) {

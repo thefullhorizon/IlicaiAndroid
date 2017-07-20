@@ -510,6 +510,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             @Override
             public void onFailInfo(String errorInfo) {
                 //showContentView();
+                setUIData();
                 ToastUtil.showInCenter(errorInfo);
             }
         });

@@ -447,45 +447,9 @@ public class CommonUtil {
         return m.replaceAll("").trim();
     }
 
-    // 判断一个字符串是否都为数字
-    public boolean isDigit(String strNum) {
-        Pattern pattern = Pattern.compile("[0-9]{1,}");
-        Matcher matcher = pattern.matcher(strNum);
-        return matcher.matches();
-        //return strNum.matches("[0-9]{1,}");
-    }
-
-    //截取数字
-    public String getNumbers(String content) {
-        Pattern pattern = Pattern.compile("\\d+");
-        Matcher matcher = pattern.matcher(content);
-        while (matcher.find()) {
-            return matcher.group(0);
-        }
-        return "";
-    }
-
-    // 截取非数字
-    public String splitNotNumber(String content) {
-        Pattern pattern = Pattern.compile("\\D+");
-        Matcher matcher = pattern.matcher(content);
-        while (matcher.find()) {
-            return matcher.group(0);
-        }
-        return "";
-    }
-
-
     public static boolean isAboveLOLLIPOP() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
-    }
-
-
-    public interface OnDoubleClickListener {
-        void OnSingleClick(View v);
-
-        void OnDoubleClick(View v);
     }
 
     /**
@@ -537,17 +501,51 @@ public class CommonUtil {
     /***
      * 获取properies的文件内容
      */
-    public static Map<String,String> getProperties(Context context, String assetsName) {
-        Map<String,String> propertiesMap = new HashMap<>();
+    public static Map<String, String> getProperties(Context context, String assetsName) {
+        Map<String, String> propertiesMap = new HashMap<>();
         Properties properties = new Properties();
         try {
-            properties.load(new InputStreamReader(context.getAssets().open(assetsName),"UTF-8"));
-            for(String key : properties.stringPropertyNames()){
-                propertiesMap.put(key,properties.getProperty(key));
+            properties.load(new InputStreamReader(context.getAssets().open(assetsName), "UTF-8"));
+            for (String key : properties.stringPropertyNames()) {
+                propertiesMap.put(key, properties.getProperty(key));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return propertiesMap;
+    }
+
+    // 判断一个字符串是否都为数字
+    public boolean isDigit(String strNum) {
+        Pattern pattern = Pattern.compile("[0-9]{1,}");
+        Matcher matcher = pattern.matcher(strNum);
+        return matcher.matches();
+        //return strNum.matches("[0-9]{1,}");
+    }
+
+    //截取数字
+    public String getNumbers(String content) {
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(content);
+        while (matcher.find()) {
+            return matcher.group(0);
+        }
+        return "";
+    }
+
+    // 截取非数字
+    public String splitNotNumber(String content) {
+        Pattern pattern = Pattern.compile("\\D+");
+        Matcher matcher = pattern.matcher(content);
+        while (matcher.find()) {
+            return matcher.group(0);
+        }
+        return "";
+    }
+
+    public interface OnDoubleClickListener {
+        void OnSingleClick(View v);
+
+        void OnDoubleClick(View v);
     }
 }
