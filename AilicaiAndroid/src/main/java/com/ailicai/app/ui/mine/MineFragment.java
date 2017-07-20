@@ -43,6 +43,8 @@ import com.ailicai.app.ui.login.UserInfoBase;
 import com.ailicai.app.ui.login.UserManager;
 import com.ailicai.app.ui.message.MessageActivity;
 import com.ailicai.app.ui.message.MsgLiteView;
+import com.ailicai.app.ui.view.AccountTopupActivity;
+import com.ailicai.app.ui.view.AccountWithdrawActivity;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -605,6 +607,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Map<String, String> dataMap = ObjectUtil.newHashMap();
             dataMap.put(ACTION_KEY, ACTION_VAL_GET_CASH);
             MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
+        } else {
+            Intent intent = new Intent(getWRActivity(), AccountWithdrawActivity.class);
+            startActivity(intent);
         }
 
 
@@ -617,6 +622,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Map<String, String> dataMap = ObjectUtil.newHashMap();
             dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
             MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
+        } else {
+            Intent intent1 = new Intent(getWRActivity(), AccountTopupActivity.class);
+            startActivity(intent1);
         }
 
     }

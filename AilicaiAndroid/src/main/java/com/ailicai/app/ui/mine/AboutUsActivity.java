@@ -15,12 +15,19 @@ import com.ailicai.app.common.constants.IWBuildConfig;
 import com.ailicai.app.common.hybrid.HybridEngine;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
+import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.common.version.VersionUtil;
+import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
+import com.ailicai.app.ui.html5.SupportUrl;
 import com.huoqiu.framework.analysis.ManyiAnalysis;
 import com.huoqiu.framework.util.CheckDoubleClick;
+
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -93,6 +100,17 @@ public class AboutUsActivity extends BaseBindActivity implements VersionInterfac
     @OnClick(R.id.contact_us)
     void onClickContactUs() {
         MyIntent.startActivity(mContext, ContactUsActivity.class, null);
+    }
+
+    @OnClick(R.id.understand_ailicai)
+    void goUnderstandPage() {
+        Map<String, String> dataMap = ObjectUtil.newHashMap();
+        //dataMap.put(WebViewActivity.TITLE,  "");
+        //dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getAboutAiLiCaiUrl());
+        dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+        dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
+        MyIntent.startActivity(mContext, WebViewActivity.class, dataMap);
     }
 
     @Override

@@ -41,6 +41,7 @@
         <View style="@style/cell_divider_hor" />
 
         <RelativeLayout
+            android:id="@+id/understand_ailicai"
             android:layout_width="match_parent"
             android:layout_height="45dip"
             android:background="@drawable/white_to_pressed_selector"
