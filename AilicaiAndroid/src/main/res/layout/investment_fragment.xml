@@ -13,13 +13,15 @@
             android:id="@+id/tabs_head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <com.ailicai.app.widget.slidingtab.SlidingTabLayout
                 android:id="@+id/sliding_tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white" />
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp" />
 
             <View style="@style/cell_divider_hor" />
         </LinearLayout>

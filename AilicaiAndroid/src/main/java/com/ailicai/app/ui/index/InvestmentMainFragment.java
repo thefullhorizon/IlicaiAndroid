@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.widget.FrameLayout;
 
 import com.ailicai.app.R;
 import com.ailicai.app.ui.base.BaseBindFragment;
