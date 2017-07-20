@@ -44,6 +44,7 @@ import com.ailicai.app.ui.base.BaseActivity;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.view.AssetInViewOfBirdActivity;
+import com.ailicai.app.ui.view.MyWalletActivity;
 import com.ailicai.app.ui.voucher.CouponWebViewActivity;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.alibaba.fastjson.JSON;
@@ -510,7 +511,7 @@ public class BaseWebViewLayout extends LinearLayout {
         addJumpUiActions(new WebJumpUiAction("11") {
             @Override
             public void jumpUi(HashMap<String, String> params) {
-//                MyWalletActivity.goMywallet(getWRContext());
+                MyWalletActivity.goMywallet(getWRContext());
             }
         });
 
