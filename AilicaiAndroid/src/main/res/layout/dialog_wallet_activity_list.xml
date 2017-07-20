@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <com.manyi.lovehouse.widget.MyListView
+                    <com.ailicai.app.widget.MyListView
                         android:id="@+id/activity_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

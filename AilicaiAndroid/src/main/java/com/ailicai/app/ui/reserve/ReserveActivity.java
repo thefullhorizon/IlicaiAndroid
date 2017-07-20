@@ -29,6 +29,7 @@ import com.ailicai.app.model.response.ReserveDetailResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
+import com.ailicai.app.ui.view.reserveredrecord.ProductInvestRecordActivity;
 import com.ailicai.app.ui.view.reserveredrecord.ReserveRecordListActivity;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.TextViewTF;
@@ -371,7 +372,7 @@ TextView mConfirm;
      */
     @OnClick(R.id.llProduct)
     public void onProductClick() {
-//        ProductInvestRecordActivity.startActivity(ReserveActivity.this,reserveResponse.getProduct().getProductId());
+        ProductInvestRecordActivity.startActivity(ReserveActivity.this,reserveResponse.getProduct().getProductId());
     }
 
     /**

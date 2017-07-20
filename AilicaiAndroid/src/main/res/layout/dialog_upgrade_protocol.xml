@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.manyi.lovehouse.widget.RoundedImageView.RoundedImageView
+            <com.ailicai.app.widget.RoundedImageView.RoundedImageView
                 android:id="@+id/iv_top_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
