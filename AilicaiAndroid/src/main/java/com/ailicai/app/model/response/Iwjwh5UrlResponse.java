@@ -23,6 +23,15 @@ public class Iwjwh5UrlResponse extends Response {
     private String tiyanbaoDetailUrl; // 体验宝详情URL
     private String productDetailUrl; //房产宝详情ur
 
+    // 独立app新增 首页(porosWebUrl)，银行卡(bankCardUrl) ，推荐(recommondUrl)，货币基金（monetaryFundUrl）  网贷(netLoanUrl)，转让(transferUrl) 关于爱理财（aboutAiLiCaiUrl）,开户（openAccountUrl）
+    private String porosWebUrl; // 首页
+    private String recommondUrl; // 首页 投资中 四个tab之一推荐
+    private String monetaryFundUrl; // 首页 投资中 四个tab之一货基
+    private String netLoanUrl; // 首页 投资中 四个tab之一网贷
+    private String transferUrl; // 首页 投资中 四个tab之一转让
+    private String aboutAiLiCaiUrl;// "我的"里面 关于爱理财
+    private String openAccountUrl;// 开户
+
     public String getHelpCenterUrl() {
         return helpCenterUrl;
     }
@@ -133,5 +142,61 @@ public class Iwjwh5UrlResponse extends Response {
 
     public void setProductDetailUrl(String productDetailUrl) {
         this.productDetailUrl = productDetailUrl;
+    }
+
+    public String getPorosWebUrl() {
+        return porosWebUrl;
+    }
+
+    public void setPorosWebUrl(String porosWebUrl) {
+        this.porosWebUrl = porosWebUrl;
+    }
+
+    public String getRecommondUrl() {
+        return recommondUrl;
+    }
+
+    public void setRecommondUrl(String recommondUrl) {
+        this.recommondUrl = recommondUrl;
+    }
+
+    public String getMonetaryFundUrl() {
+        return monetaryFundUrl;
+    }
+
+    public void setMonetaryFundUrl(String monetaryFundUrl) {
+        this.monetaryFundUrl = monetaryFundUrl;
+    }
+
+    public String getNetLoanUrl() {
+        return netLoanUrl;
+    }
+
+    public void setNetLoanUrl(String netLoanUrl) {
+        this.netLoanUrl = netLoanUrl;
+    }
+
+    public String getTransferUrl() {
+        return transferUrl;
+    }
+
+    public void setTransferUrl(String transferUrl) {
+        this.transferUrl = transferUrl;
+    }
+
+    public String getAboutAiLiCaiUrl() {
+        return aboutAiLiCaiUrl;
+    }
+
+    public void setAboutAiLiCaiUrl(String aboutAiLiCaiUrl) {
+        this.aboutAiLiCaiUrl = aboutAiLiCaiUrl;
+    }
+
+    public String getOpenAccountUrl() {
+        return openAccountUrl;
+    }
+
+    public void setOpenAccountUrl(String openAccountUrl) {
+        this.openAccountUrl = openAccountUrl;
     }
 }

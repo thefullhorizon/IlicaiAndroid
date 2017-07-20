@@ -18,11 +18,14 @@ import com.ailicai.app.common.utils.DeviceUtil;
 import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ToastUtil;
+import com.ailicai.app.model.request.HtmlUrlRequest;
 import com.ailicai.app.model.request.ServerTimeRequest;
+import com.ailicai.app.model.response.Iwjwh5UrlResponse;
 import com.ailicai.app.model.response.TimeResponse;
 import com.ailicai.app.setting.DeBugLogActivity;
 import com.ailicai.app.setting.ServerIPManger;
 import com.ailicai.app.setting.ServerIPModel;
+import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.android.volley.VolleyError;
@@ -115,7 +118,6 @@ public class ApplicationPresenter {
             L.writeDebugLogs(true);
             L.writeLogs(true);
         }
-
     }
 
     public static void clearUserInfo() {
@@ -271,6 +273,7 @@ public class ApplicationPresenter {
         initImageLoader(myApplication);
         initMqtt();
         initTime();
+        htmlUrlUpdate();
 //        initBaiduMap();
 //        initEngineManager(myApplication);
 //        initIM();
@@ -433,6 +436,16 @@ public class ApplicationPresenter {
                 if (UserInfo.isLogin()) {
                     LoginManager.updateUserInfoData();
                 }
+            }
+        });
+    }
+
+    private void htmlUrlUpdate() {
+        HtmlUrlRequest request = new HtmlUrlRequest();
+        ServiceSender.exec(MyApplication.getInstance(), request, new IwjwRespListener<Iwjwh5UrlResponse>() {
+            @Override
+            public void onJsonSuccess(Iwjwh5UrlResponse jsonObject) {
+                SupportUrl.saveUrls(jsonObject);
             }
         });
     }
