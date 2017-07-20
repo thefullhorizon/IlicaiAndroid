@@ -263,13 +263,13 @@ public class AccountWithdrawActivity extends BaseBindActivity {
             //ToastUtil.show("请输入正确的金额");
             return false;
         } else if (infoResponse.getWithdrawBalance() >= 0 && Double.parseDouble(money) > infoResponse.getWithdrawBalance()) {
-            showError("您最多可转" + CommonUtil.numberFormat(infoResponse.getWithdrawBalance()) + "元");
+            showError("您最多可转" + CommonUtil.numberFormatWithTwoDigital(infoResponse.getWithdrawBalance()) + "元");
             return false;
         } else if (Double.parseDouble(money) > infoResponse.getLimit()) {
             if (infoResponse.getLimit() % 10000 == 0) {
-                showError("每笔最多可转出" + CommonUtil.numberFormat(infoResponse.getLimit() / 10000) + "万");
+                showError("每笔最多可转出" + CommonUtil.numberFormatWithTwoDigital(infoResponse.getLimit() / 10000) + "万");
             } else {
-                showError("每笔最多可转出" + CommonUtil.numberFormat(infoResponse.getLimit()));
+                showError("每笔最多可转出" + CommonUtil.numberFormatWithTwoDigital(infoResponse.getLimit()));
             }
             return false;
         }

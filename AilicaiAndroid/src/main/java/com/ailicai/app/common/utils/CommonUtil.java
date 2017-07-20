@@ -429,6 +429,11 @@ public class CommonUtil {
         return nf.format(value);
     }
 
+    public static String numberFormatWithTwoDigital(double value) {
+        DecimalFormat df = new DecimalFormat("######0.00");
+        return df.format(value);
+    }
+
     /**
      * 获取字符串中的所有数字
      *
