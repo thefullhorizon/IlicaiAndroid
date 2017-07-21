@@ -640,11 +640,18 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     //资产预览
     @OnClick(R.id.assets_total)
     void goAssetsTotal() {
-        if (!NoSetSafeCardHint.isShowHintDialog((BaseBindActivity) getWRActivity())) {
-            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
-            startActivity(intent);
-        } else {
+        // TODO 振华
+//        if (!NoSetSafeCardHint.isShowHintDialog((BaseBindActivity) getWRActivity())) {
+//            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
+//            startActivity(intent);
+//        } else {
+//            MyIntent.startActivity(getWRActivity(), AssetInViewOfBirdActivity.class, null);
+//        }
+
+        if(UserInfo.isLogin()) {
             MyIntent.startActivity(getWRActivity(), AssetInViewOfBirdActivity.class, null);
+        } else {
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
         }
     }
 

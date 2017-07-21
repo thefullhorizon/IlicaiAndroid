@@ -530,7 +530,12 @@ public class BaseWebViewLayout extends LinearLayout {
             public void jumpUi(HashMap<String, String> params) {
 
                 if (params.containsKey("url")) {
-                    OpenAccountWebViewActivity.goToOpenAccount(getWRContext());
+                    String url = String.valueOf(params.get("url"));
+                    Map<String, String> dataMap = ObjectUtil.newHashMap();
+                    dataMap.put(BaseWebViewActivity.URL, url);
+                    dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+                    dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, String.valueOf(isDark));
+                    MyIntent.startActivity(getWRContext(), OpenAccountWebViewActivity.class, dataMap);
                 }
             }
         });
