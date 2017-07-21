@@ -39,6 +39,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
 
     private void inittabView() {
         //设置TabLayout标签的显示方式
+        mTabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         //循环注入标签
         for (String tab : pageTitles) {

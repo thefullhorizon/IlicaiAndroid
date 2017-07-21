@@ -21,11 +21,9 @@
                 android:id="@+id/tab_layou"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
                 app:tabIndicatorColor="@color/main_red_color"
                 app:tabSelectedTextColor="@color/main_red_color"
-                app:tabTextColor="#212121" />
+                app:tabTextColor="@color/color_757575" />
 
             <View style="@style/cell_divider_hor" />
         </LinearLayout>
