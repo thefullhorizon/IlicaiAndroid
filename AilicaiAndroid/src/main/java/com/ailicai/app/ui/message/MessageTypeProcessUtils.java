@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 消息跳转处理的工具类
  * Created by jeme on 2017/7/18.
  */
 
