@@ -109,26 +109,21 @@ public class UnbindPwdCheckDialog extends BaseBuyFinancePay {
                 }
 
                 if (response.getCheckFlag() == 1) {
-                    if (UserInfo.getInstance().isTestuser()) {
-                        //内测用户走新浪支付流程
-                        if (TextUtils.isEmpty(response.mobile)) {
-                            disLoadProgress();
-                            clearPassword();
-                            ToastUtil.showInCenter("获取不到手机号");
-                        } else if (TextUtils.isEmpty(response.advanceVoucherNo)) {
-                            //如果没有推进号，就走老流程
-                            onDialogDismiss();
-                            iwPayResultListener.onPayComplete(response);
+                    //内测用户走新浪支付流程
+                    if (TextUtils.isEmpty(response.mobile)) {
+                        disLoadProgress();
+                        clearPassword();
+                        ToastUtil.showInCenter("获取不到手机号");
+                    } else if (TextUtils.isEmpty(response.advanceVoucherNo)) {
+                        //如果没有推进号，就走老流程
+                        onDialogDismiss();
+                        iwPayResultListener.onPayComplete(response);
                   /*          disLoadProgress();
                             clearPassword();
                             ToastUtil.showInCenter("获取支付数据有误");*/
-                        } else {
-                            advanceVoucherNo = response.advanceVoucherNo;
-                            showMsgCodeLayout(response.mobile);
-                        }
                     } else {
-                        onDialogDismiss();
-                        iwPayResultListener.onPayComplete(response);
+                        advanceVoucherNo = response.advanceVoucherNo;
+                        showMsgCodeLayout(response.mobile);
                     }
                 } else {
                     disLoadProgress();

@@ -272,7 +272,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     public void onBackPressed() {
         if (System.currentTimeMillis() - LastBackTime > 2500) {
             LastBackTime = System.currentTimeMillis();
-            toast = ToastUtil.showInBottom(getApplication(), "再按一次返回退出爱屋吉屋");
+            toast = ToastUtil.showInBottom(getApplication(), "再按一次返回退出爱理财");
         } else {
             if (toast != null) {
                 toast.cancel();

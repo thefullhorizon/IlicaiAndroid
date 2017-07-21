@@ -103,6 +103,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
             Fragment fragment = Fragment.instantiate(mContext, clss.getName(), args);
             baseFragmentArrayList.add(fragment);
             labStrs.add(labStr);
+            notifyDataSetChanged();
         }
 
         @Override

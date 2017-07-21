@@ -20,7 +20,6 @@
 
     <style name="AppAppCompatTheme.WelcomeTheme">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/app_loading</item>
         <item name="android:windowAnimationStyle">@null</item>
         <!-- translucent system bars -->
         <item name="android:windowTranslucentStatus">true</item>

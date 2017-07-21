@@ -15,6 +15,7 @@ import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
 import com.ailicai.app.ui.base.webview.WebMethodCallAction;
 import com.ailicai.app.ui.login.LoginManager;
+import com.ailicai.app.ui.paypassword.PayPwdResetActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -35,6 +36,7 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
         Map<String, String> dataMap = ObjectUtil.newHashMap();
 //        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getOpenAccountUrl());
         dataMap.put(BaseWebViewActivity.URL, "http://192.168.1.44:2323/account/password-all");
+//        dataMap.put(BaseWebViewActivity.URL, "http://10.7.249.203:6088/account/password-all");
         dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
         dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
         MyIntent.startActivity(context, OpenAccountWebViewActivity.class, dataMap);
@@ -116,6 +118,14 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
                 EventBus.getDefault().post(new OpenAccountFinishEvent());
                 LoginManager.updateUserInfoData();
                 return false;
+            }
+        });
+
+        addJumpUiActions(new WebJumpUiAction("forgotpassword") {
+            @Override
+            public void jumpUi(HashMap<String, String> params) {
+                Intent intent = new Intent(OpenAccountWebViewActivity.this, PayPwdResetActivity.class);
+                startActivityForResult(intent, 22);
             }
         });
     }

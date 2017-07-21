@@ -50,7 +50,8 @@ public class InvestmentTransferFragment extends BaseWebViewFragment {
         });
 
         addAction();
-        loadUrl(SupportUrl.getSupportUrlsResponse().getTransferUrl());
+//        loadUrl(SupportUrl.getSupportUrlsResponse().getTransferUrl());
+        loadUrl("http://192.168.1.44:2323/licai/transfer");
     }
 
     private void startOrStopAutoRefresh(boolean should) {

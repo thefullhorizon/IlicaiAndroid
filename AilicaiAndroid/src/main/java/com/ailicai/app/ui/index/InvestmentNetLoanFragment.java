@@ -49,7 +49,8 @@ public class InvestmentNetLoanFragment extends BaseWebViewFragment {
             }
         });
         addAction();
-        loadUrl(SupportUrl.getSupportUrlsResponse().getNetLoanUrl());
+//        loadUrl(SupportUrl.getSupportUrlsResponse().getNetLoanUrl());
+        loadUrl("http://192.168.1.44:2323/licai/loan");
     }
 
     private void startOrStopAutoRefresh(boolean should) {

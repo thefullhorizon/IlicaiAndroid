@@ -50,7 +50,8 @@ public class InvestmentRecommendFragment extends BaseWebViewFragment {
         });
 
         addAction();
-        loadUrl(SupportUrl.getSupportUrlsResponse().getRecommondUrl());
+//        loadUrl(SupportUrl.getSupportUrlsResponse().getRecommondUrl());
+        loadUrl("http://192.168.1.44:2323/licai/recommend");
     }
 
     private void startOrStopAutoRefresh(boolean should) {
