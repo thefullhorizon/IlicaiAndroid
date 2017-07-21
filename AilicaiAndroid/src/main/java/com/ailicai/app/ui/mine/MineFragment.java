@@ -51,7 +51,6 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
-import com.huoqiu.framework.util.CheckDoubleClick;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
@@ -65,10 +64,6 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-
-import static com.ailicai.app.ui.mine.JumpProcessActivity.ACTION_KEY;
-import static com.ailicai.app.ui.mine.JumpProcessActivity.ACTION_VAL_CHARGE;
-import static com.ailicai.app.ui.mine.JumpProcessActivity.ACTION_VAL_GET_CASH;
 
 public class MineFragment extends BaseBindFragment implements ObservableScrollViewCallbacks {
 
@@ -452,12 +447,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
     }
 
-    @OnClick(R.id.assets_total)
-    void goAssetsTotal() {
-        MyIntent.startActivity(getWRActivity(), AssetInViewOfBirdActivity.class, null);
-    }
-
-
     /**
      * 点击版本更新时，强制更新退出客户端
      *
@@ -630,7 +619,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             //Map<String, String> dataMap = ObjectUtil.newHashMap();
             //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
             //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
-            
+
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else {
@@ -639,6 +628,19 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         }
 
     }
+
+
+    //资产预览
+    @OnClick(R.id.assets_total)
+    void goAssetsTotal() {
+        if (!NoSetSafeCardHint.isShowHintDialog((BaseBindActivity) getWRActivity())) {
+            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
+            startActivity(intent);
+        } else {
+            MyIntent.startActivity(getWRActivity(), AssetInViewOfBirdActivity.class, null);
+        }
+    }
+
 
     /**
      * 卡券上小红点
