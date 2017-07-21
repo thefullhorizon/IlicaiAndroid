@@ -41,11 +41,9 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
         //设置TabLayout标签的显示方式
         mTabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
-        //循环注入标签
         for (String tab : pageTitles) {
             mTabLayout.addTab(mTabLayout.newTab().setText(tab));
         }
-        //设置TabLayout点击事件
         mTabLayout.setOnTabSelectedListener(this);
 
         mViewPagerAdapter = new OurViewPagerAdapter(getActivity(), getChildFragmentManager());
