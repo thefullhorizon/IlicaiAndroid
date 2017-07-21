@@ -6,10 +6,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 
 import com.ailicai.app.R;
 import com.ailicai.app.ui.base.BaseBindFragment;
-import com.ailicai.app.widget.NoScrollViewPager;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
     @Bind(R.id.tab_layou)
     TabLayout mTabLayout;
     @Bind(R.id.view_pager)
-    NoScrollViewPager mViewPager;
+    ViewPager mViewPager;
 
     private OurViewPagerAdapter mViewPagerAdapter;
     private String[] pageTitles = new String[]{"推荐", "网贷", "货基", "转让"};
@@ -62,7 +62,6 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
         mViewPagerAdapter.addNvgItem(pageTitles[3], InvestmentTransferFragment.class, bundleZR);
 
         mViewPager.setAdapter(mViewPagerAdapter);
-        mViewPager.setCanScroll(true);
         mViewPager.setOffscreenPageLimit(4);
         mViewPager.setCurrentItem(0);
         mTabLayout.setupWithViewPager(mViewPager);
@@ -74,7 +73,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
+        mViewPager.setCurrentItem(tab.getPosition());
     }
 
     @Override

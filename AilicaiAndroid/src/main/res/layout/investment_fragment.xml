@@ -1,39 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/top_title_contentview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/global_background">
 
-    <RelativeLayout
-        android:id="@+id/top_title_contentview"
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layou"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/main_red_color"
+        app:tabSelectedTextColor="@color/main_red_color"
+        app:tabTextColor="@color/color_757575" />
 
-        <LinearLayout
-            android:id="@+id/tabs_head"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="vertical">
+    <!--<View style="@style/cell_divider_hor" />-->
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab_layou"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabIndicatorColor="@color/main_red_color"
-                app:tabSelectedTextColor="@color/main_red_color"
-                app:tabTextColor="@color/color_757575" />
-
-            <View style="@style/cell_divider_hor" />
-        </LinearLayout>
-
-        <com.ailicai.app.widget.NoScrollViewPager
-            android:id="@+id/view_pager"
-            android:background="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tabs_head" />
-    </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tab_layou"
+        android:background="@color/black" />
 
 </RelativeLayout>
