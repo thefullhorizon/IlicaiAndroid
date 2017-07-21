@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:background="@drawable/bankcard_add_radius"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <com.ailicai.app.widget.TextViewTF
+            android:layout_marginTop="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account_add"
+            android:textColor="#a5a5a5"
+            android:textSize="28sp" />
+
+        <TextView
+            android:layout_marginBottom="23dp"
+            android:text="添加银行卡"
+            android:textSize="18sp"
+            android:textColor="#8C000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>

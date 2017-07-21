@@ -35,7 +35,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements ViewPage
 
     @Override
     public void init(Bundle savedInstanceState) {
-        //CommonUtil.uiSystemBarTint(getWRActivity());
+//        CommonUtil.uiSystemBarTint(getWRActivity());
         inittabView();
     }
 
@@ -66,6 +66,10 @@ public class InvestmentMainFragment extends BaseBindFragment implements ViewPage
         mSlidingTabLayout.setViewPager(mViewPager);
         mSlidingTabLayout.setOnPageChangeListener(this);
         mViewPager.setCurrentItem(0);
+    }
+
+    public void setCurrentItem(int index) {
+        mViewPager.setCurrentItem(index);
     }
 
     @Override

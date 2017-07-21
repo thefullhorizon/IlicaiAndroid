@@ -75,6 +75,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     public static void goToInvestTab(Activity activity, int indexWantedInInvest) {
         Intent mIntent = new Intent(activity, IndexActivity.class);
         mIntent.putExtra("settabIndex", 1);
+        mIntent.putExtra("investTabIndex", indexWantedInInvest);
         activity.startActivity(mIntent);
     }
 
@@ -118,9 +119,19 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        if (intent != null && intent.hasExtra("settabIndex")) {
-            int settabitem = intent.getIntExtra("settabIndex", -1);
-            setCurrentItem(settabitem);
+        if (intent != null) {
+            if (intent.hasExtra("settabIndex")) {
+                int settabitem = intent.getIntExtra("settabIndex", -1);
+                setCurrentItem(settabitem);
+            }
+
+            if (intent.hasExtra("investTabIndex")) {
+                int investTabIndex = intent.getIntExtra("investTabIndex", -1);
+                InvestmentMainFragment fragment = (InvestmentMainFragment) nvgPagerAdapter.getItem(1);
+                if(fragment != null) {
+                    fragment.setCurrentItem(investTabIndex);
+                }
+            }
         }
         MessageTypeProcessUtils.parseIntent(this);
     }

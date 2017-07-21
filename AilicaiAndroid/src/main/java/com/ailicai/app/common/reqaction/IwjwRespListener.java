@@ -194,19 +194,6 @@ public abstract class IwjwRespListener<T> extends JsonHttpResponseListener<T> im
                 case 99:
                 case -1:
                 default:
-
-                    // 非正常码都dialog出来
-                   try {
-                       if(getWRContext() != null) {
-                           DialogBuilder.showSimpleDialog(responseTo.getMessage(),(Context) getWRContext());
-                       } else if(getWRFragment() != null) {
-                           DialogBuilder.showSimpleDialog(responseTo.getMessage(),((Fragment)getWRFragment()).getContext());
-                       }
-                   } catch (Exception e) {
-                       e.printStackTrace();
-                   }
-
-
                     onFailInfo(responseTo, responseTo.getMessage());
                     getReportRequest().setLogLevel("warn");
                     getReportRequest().setErrorCode("" + errorCode);

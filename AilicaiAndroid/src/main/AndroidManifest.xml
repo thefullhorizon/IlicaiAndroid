@@ -429,6 +429,27 @@
             android:theme="@style/AppAppCompatTheme.transparent"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
+        <activity
+            android:name=".ui.bankcard.BankCardListActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name=".ui.bankcard.BankCardSafeDetailActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name=".ui.bankcard.ExSafeCardValidBiggerThanChangeLimitActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
         // cashier desk end
 
         <activity

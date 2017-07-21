@@ -55,8 +55,6 @@ public class IndexFragment extends BaseWebViewFragment {
             }
         });
 
-//        loadUrl("http://mtest.iwlicai.com/alcapp/licai");
-//        loadUrl("http://10.7.249.203:6088/licai/list ");
         addAction();
         loadUrl("http://192.168.1.44:2323/licai");
     }
@@ -93,6 +91,13 @@ public class IndexFragment extends BaseWebViewFragment {
             @Override
             public void jumpUi(HashMap<String, String> params) {
                 goReserve();
+            }
+        });
+
+        addJumpUiActions(new WebJumpUiAction("indexmore") {
+            @Override
+            public void jumpUi(HashMap<String, String> params) {
+               IndexActivity.goToInvestTab(getWRActivity(),1);
             }
         });
     }

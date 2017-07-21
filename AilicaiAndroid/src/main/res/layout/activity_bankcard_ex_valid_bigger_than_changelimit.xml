@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:manyi="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.ailicai.app.widget.IWTopTitleView
+        android:id="@+id/topTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        manyi:hasLeft="true"
+        manyi:titleview_title_text="更换安全卡须知" />
+
+    <View
+        android:layout_marginTop="16dp"
+        android:background="#E8E8E8"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:paddingTop="24dp"
+            android:paddingBottom="16dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:background="@drawable/bankcard_smile_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="更换须知"
+                android:layout_marginTop="8dp"
+                android:textColor="#D9000000"
+                android:textSize="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvDescTitle"
+                android:text="您的资产余额超过1000元，为保证您的账户安全，请完成以下操作后再次更换安全卡："
+                android:layout_marginTop="8dp"
+                android:textColor="#8C000000"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="1.等待当前持有房产宝到期，本息返回至账户余额"
+                android:textColor="#8C000000"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvDesc02"
+                android:text="2.将活期宝金额转出至账户余额或安全卡"
+                android:textColor="#8C000000"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvDesc03"
+                android:text="3.将账户余额提现至低于1000元"
+                android:layout_marginTop="8dp"
+                android:textColor="#8C000000"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <View
+            android:background="#E8E8E8"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <View
+            android:layout_marginTop="16dp"
+            android:background="#E8E8E8"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutProperty"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="当前资产余额"
+                android:textSize="16sp"
+                android:textColor="#D9000000"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewProperty"
+                android:text="220,198.76"
+                android:layout_toLeftOf="@+id/arrowRight"
+                android:textSize="14sp"
+                android:textColor="#D9000000"
+                android:layout_marginRight="16dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.ailicai.app.widget.TextViewTF
+                android:id="@+id/arrowRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/arrow_right"
+                android:textColor="#c7c7cc"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            android:background="#E8E8E8"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+    </LinearLayout>
+
+    <TextView
+        android:text="资产余额 = 账户余额+房产宝总资产+小钱袋总资产+活期宝总资产"
+        android:layout_toLeftOf="@+id/arrowRight"
+        android:textSize="14sp"
+        android:textColor="#8c000000"
+        android:gravity="left"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

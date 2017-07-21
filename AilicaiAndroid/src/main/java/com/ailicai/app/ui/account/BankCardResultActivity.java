@@ -30,6 +30,7 @@ import com.ailicai.app.common.utils.UIUtils;
 import com.ailicai.app.model.request.account.QueryCardBinRequest;
 import com.ailicai.app.model.response.account.QueryCardBinResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.widget.IWTopTitleView;
@@ -59,8 +60,11 @@ public class BankCardResultActivity extends BaseBindActivity {
 
     private List<EditText> mEditTexts = new ArrayList<>();
     private Bitmap mBitmap;
+    private String cardBinNextUrl;
 
-    /** 开户流程步数**/
+    /**
+     * 开户流程步数
+     **/
     @Bind(R.id.openaccountStepContainer)
     View openaccountStepContainer;
     @Bind(R.id.tfStep01)
@@ -81,7 +85,9 @@ public class BankCardResultActivity extends BaseBindActivity {
     TextView tvOpenAccountBonus;
     @Bind(R.id.tvLastProcessName)
     TextView tvLastProcessName;
-    /** 开户流程步数**/
+    /**
+     * 开户流程步数
+     **/
 
     OpenAccountFeature openAccountFeature = OpenAccountFeature.openAccountUseNewBankCard();
 
@@ -98,11 +104,11 @@ public class BankCardResultActivity extends BaseBindActivity {
         topTitleView.addRightText("支持银行", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if (AccountInfo.isRealNameVerify()) {
-                        EventLog.upEventLog("683", "supercard", "setcard");
-                    } else {
-                        EventLog.upEventLog("682", "supercard", "setcard");
-                    }
+                if (AccountInfo.isRealNameVerify()) {
+                    EventLog.upEventLog("683", "supercard", "setcard");
+                } else {
+                    EventLog.upEventLog("682", "supercard", "setcard");
+                }
                 Map<String, String> dataMap = ObjectUtil.newHashMap();
                 dataMap.put(WebViewActivity.TITLE, "支持银行");
                 dataMap.put(WebViewActivity.NEED_REFRESH, "0");
@@ -117,6 +123,7 @@ public class BankCardResultActivity extends BaseBindActivity {
             byte buff[] = extras.getByteArray("cardIdshots");
             mBitmap = BitmapFactory.decodeByteArray(buff, 0, buff.length);
             idShotsIv.setImageBitmap(mBitmap);
+            cardBinNextUrl = extras.getString("url");
 
             initCardContainer((String) extras.get("bankCardNumber"));
         }
@@ -214,20 +221,20 @@ public class BankCardResultActivity extends BaseBindActivity {
 
         openaccountStepContainer.setVisibility(View.VISIBLE);
 
-        tfStep01.setTextAppearance(this,R.style.textview_openaccount_already_pass_step_left);
-        tfStep01.setPadding(UIUtils.dipToPx(this,24),0,0,0);
+        tfStep01.setTextAppearance(this, R.style.textview_openaccount_already_pass_step_left);
+        tfStep01.setPadding(UIUtils.dipToPx(this, 24), 0, 0, 0);
 
         lineStep01Whith02.setBackgroundColor(Color.parseColor("#f75a14"));
 
-        tfStep02.setTextAppearance(this,R.style.textview_openaccount_current_step_center);
+        tfStep02.setTextAppearance(this, R.style.textview_openaccount_current_step_center);
         tfStep02.setText(getResources().getString(R.string.open_account_step02));
-        tfStep03.setTextAppearance(this,R.style.textview_openaccount_not_reach_step_right);
+        tfStep03.setTextAppearance(this, R.style.textview_openaccount_not_reach_step_right);
         int processNameLength = AccountInfo.getOpenAccountLastProcessName().length();
-        tfStep03.setPadding(0,0,UIUtils.dipToPx(this,(processNameLength*14/2)-4),0);
+        tfStep03.setPadding(0, 0, UIUtils.dipToPx(this, (processNameLength * 14 / 2) - 4), 0);
 
         lineStep02Whith03.setBackgroundColor(Color.parseColor("#e6e6e6"));
-        if(!TextUtils.isEmpty(AccountInfo.getOpenAccountActivityMemo())) {
-            tvOpenAccountBonus.setText("获得"+AccountInfo.getOpenAccountActivityMemo());
+        if (!TextUtils.isEmpty(AccountInfo.getOpenAccountActivityMemo())) {
+            tvOpenAccountBonus.setText("获得" + AccountInfo.getOpenAccountActivityMemo());
         } else {
             tvOpenAccountBonus.setText(AccountInfo.getOpenAccountActivityMemo());
         }
@@ -242,7 +249,7 @@ public class BankCardResultActivity extends BaseBindActivity {
             return;
         }
 
-         //开户流程中点击下一步添加埋点
+        //开户流程中点击下一步添加埋点
         EventLog.upEventLog("682", "next", "setcard");
 
         String cardNo = getBankCardNumber();
@@ -254,8 +261,8 @@ public class BankCardResultActivity extends BaseBindActivity {
 
         // 把银行卡号传回刚才输入的地方
         Intent intent = new Intent();
-        intent.putExtra("bankCardNumber",cardNo);
-        setResult(RESULT_OK,intent);
+        intent.putExtra("bankCardNumber", cardNo);
+        setResult(RESULT_OK, intent);
 
         queryCardBin(cardNo);
 
@@ -285,15 +292,12 @@ public class BankCardResultActivity extends BaseBindActivity {
                     showSolutionDialog(response.getMessage());
                 } else {
                     if (response.getValid() == 1) {
-
-//                        已实名： /account/bank-info-add?cardNo=${cardNo}&bankCode=${bankCode}&bankName=${encodeURIComponent(bankName)}
-//
-//                        未实名： /account/bank-info?cardNo=${cardNo}&bankCode=${bankCode}&bankName=${encodeURIComponent(bankName)}
-
-
-                        if(AccountInfo.isRealNameVerify()) {
-                        }
-
+                        Map<String, String> dataMap = ObjectUtil.newHashMap();
+                        dataMap.put(BaseWebViewActivity.URL, cardBinNextUrl + "bankCardNo=" + cardNo);
+                        dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+                        dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
+                        MyIntent.startActivity(BankCardResultActivity.this, OpenAccountWebViewActivity.class, dataMap);
+                        finish();
                     } else {
                         switch (response.getCardType()) {
                             case 0:// 0则卡bin失败
