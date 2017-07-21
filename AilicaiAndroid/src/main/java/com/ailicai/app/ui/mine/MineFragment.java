@@ -47,6 +47,7 @@ import com.ailicai.app.ui.message.MsgLiteView;
 import com.ailicai.app.ui.view.AccountTopupActivity;
 import com.ailicai.app.ui.view.AccountWithdrawActivity;
 import com.ailicai.app.ui.view.AssetInViewOfBirdActivity;
+import com.ailicai.app.ui.view.CapitalActivity;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -593,6 +594,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         } else {
             jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_REWARDS_LIST);
         }
+    }
+
+    @OnClick(R.id.purchase_view_click)
+    void goPurchase() {
+        //TODO:跳转至申购页面
+        MyIntent.startActivity(getWRActivity(), CapitalActivity.class, null);
     }
 
     //提现

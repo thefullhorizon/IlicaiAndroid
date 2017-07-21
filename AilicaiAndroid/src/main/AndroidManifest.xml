@@ -449,6 +449,13 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
+            android:name="com.ailicai.app.ui.view.detail.SmallCoinSackActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
             android:name=".ui.view.VoucherListActivity"
             android:configChanges="orientation|keyboardHidden|locale"
             android:screenOrientation="portrait"

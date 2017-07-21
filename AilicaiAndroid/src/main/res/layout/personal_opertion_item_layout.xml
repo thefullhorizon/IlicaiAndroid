@@ -98,6 +98,7 @@
         <View style="@style/cell_divider_hor" />
 
         <RelativeLayout
+            android:id="@+id/purchase_view_click"
             android:layout_width="match_parent"
             android:layout_height="48dip"
             android:background="@drawable/white_to_pressed_selector"
