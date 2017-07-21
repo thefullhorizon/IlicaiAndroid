@@ -45,6 +45,7 @@ import com.ailicai.app.ui.message.MessageActivity;
 import com.ailicai.app.ui.message.MsgLiteView;
 import com.ailicai.app.ui.view.AccountTopupActivity;
 import com.ailicai.app.ui.view.AccountWithdrawActivity;
+import com.ailicai.app.ui.view.AssetInViewOfBirdActivity;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -448,6 +449,11 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.about_us)
     void goAboutUs() {
         MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
+    }
+
+    @OnClick(R.id.assets_total)
+    void goAssetsTotal() {
+        MyIntent.startActivity(getWRActivity(), AssetInViewOfBirdActivity.class, null);
     }
 
 

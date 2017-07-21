@@ -51,10 +51,10 @@
         android:id="@+id/mine_top_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/mine_top_margin"
@@ -105,35 +105,46 @@
                 android:paddingBottom="20dp">
 
                 <LinearLayout
+                    android:id="@+id/assets_total"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/text_14_ffffff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="总资产 (元)" />
+
+                        <com.ailicai.app.widget.TextViewTF
+                            android:id="@+id/tv_eyes_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_8"
+                            android:text="@string/eyes_opening"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
 
                     <TextView
-                        style="@style/text_14_ffffff"
+                        android:id="@+id/totalAsset"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="总资产 (元)" />
-
-                    <com.ailicai.app.widget.TextViewTF
-                        android:id="@+id/tv_eyes_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_8"
-                        android:text="@string/eyes_opening"
+                        android:layout_marginTop="8dp"
+                        android:text="0.00"
                         android:textColor="#ffffff"
-                        android:textSize="20sp" />
+                        android:textSize="40sp" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/totalAsset"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textColor="#ffffff"
-                    android:text="0.00"
-                    android:textSize="40sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -225,18 +236,18 @@
                 android:id="@+id/fl_msg_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_black_a10_selector_round"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_black_a10_selector_round">
 
                 <com.ailicai.app.widget.TextViewTF
                     android:id="@+id/msgIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
                     android:text="@string/message_lite"
                     android:textColor="#ffffff"
-                    android:layout_marginRight="4dp"
                     android:textSize="20sp" />
 
                 <TextView
