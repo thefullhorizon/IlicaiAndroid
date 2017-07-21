@@ -49,16 +49,16 @@ public class InvestmentMainFragment extends BaseBindFragment implements ViewPage
     private void iniTab() {
         mViewPagerAdapter = new OurViewPagerAdapter(getActivity(), getChildFragmentManager());
         Bundle bundleTJ = new Bundle();
-        mViewPagerAdapter.addNvgItem("推荐", InvestmentChildFragment.class, bundleTJ);
+        mViewPagerAdapter.addNvgItem("推荐", InvestmentRecommendFragment.class, bundleTJ);
 
         Bundle bundleWD = new Bundle();
-        mViewPagerAdapter.addNvgItem("网贷", InvestmentChildFragment.class, bundleWD);
+        mViewPagerAdapter.addNvgItem("网贷", InvestmentNetLoanFragment.class, bundleWD);
 
         Bundle bundleHJ = new Bundle();
-        mViewPagerAdapter.addNvgItem("货基", InvestmentChildFragment.class, bundleHJ);
+        mViewPagerAdapter.addNvgItem("货基", InvestmentMoneyFundFragment.class, bundleHJ);
 
         Bundle bundleZR = new Bundle();
-        mViewPagerAdapter.addNvgItem("转让", InvestmentChildFragment.class, bundleZR);
+        mViewPagerAdapter.addNvgItem("转让", InvestmentTransferFragment.class, bundleZR);
 
         mViewPager.setAdapter(mViewPagerAdapter);
         mViewPager.setCanScroll(true);

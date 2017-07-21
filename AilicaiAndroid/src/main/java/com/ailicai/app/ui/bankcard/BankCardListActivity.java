@@ -1,7 +1,6 @@
 package com.ailicai.app.ui.bankcard;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -11,9 +10,6 @@ import com.ailicai.app.model.bean.BankcardModel;
 import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.bankcard.presenter.BankCardListPresenter;
 import com.ailicai.app.ui.base.BaseBindActivity;
-import com.ailicai.app.ui.login.AccountInfo;
-import com.ailicai.app.ui.paypassword.PayPwdCheckActivity;
-import com.ailicai.app.ui.paypassword.PayPwdResetAndModifyActivity;
 
 import java.util.ArrayList;
 import java.util.List;

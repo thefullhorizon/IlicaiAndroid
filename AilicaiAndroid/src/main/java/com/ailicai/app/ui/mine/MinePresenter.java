@@ -3,6 +3,7 @@ package com.ailicai.app.ui.mine;
 import android.content.Context;
 
 import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.ui.bankcard.BankCardListActivity;
 import com.ailicai.app.ui.view.reserveredrecord.ReserveRecordListActivity;
 import com.ailicai.app.ui.view.transaction.TransactionListActivity;
 import com.ailicai.app.ui.voucher.CouponWebViewActivity;
@@ -21,7 +22,7 @@ public class MinePresenter {
     public void gotoMyBankCrad(Context context) {
         if (!CheckDoubleClick.isFastDoubleClick()) {
             if (null != context) {
-                //MyIntent.startActivity(context, BankCardListActivity.class, "");
+                MyIntent.startActivity(context, BankCardListActivity.class, "");
             }
         }
     }

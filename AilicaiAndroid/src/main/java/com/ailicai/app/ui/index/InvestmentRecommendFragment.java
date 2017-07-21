@@ -8,6 +8,7 @@ import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
+import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -17,9 +18,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.HashMap;
 
 /**
- * 投资子页面
+ * 投资-推荐
  */
-public class InvestmentChildFragment extends BaseWebViewFragment {
+public class InvestmentRecommendFragment extends BaseWebViewFragment {
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -48,10 +49,8 @@ public class InvestmentChildFragment extends BaseWebViewFragment {
             }
         });
 
-//        loadUrl("http://mtest.iwlicai.com/alcapp/licai");
-//        loadUrl("http://10.7.249.203:6088/licai/list ");
         addAction();
-        loadUrl("http://192.168.1.44:2323/licai");
+        loadUrl(SupportUrl.getSupportUrlsResponse().getRecommondUrl());
     }
 
     private void startOrStopAutoRefresh(boolean should) {

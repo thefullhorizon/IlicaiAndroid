@@ -170,6 +170,9 @@ public class BankCardSafeDetailActivity extends BaseBindActivity {
 
                 setHasNoSafeCard();
                 goToChangeSafeCard();
+
+                BankCardListActivity.NEED_MANUAL_REFRESH_LIST = true;
+                finish();
             }
 
             @Override

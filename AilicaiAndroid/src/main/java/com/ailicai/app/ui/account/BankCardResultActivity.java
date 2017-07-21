@@ -293,7 +293,7 @@ public class BankCardResultActivity extends BaseBindActivity {
                 } else {
                     if (response.getValid() == 1) {
                         Map<String, String> dataMap = ObjectUtil.newHashMap();
-                        dataMap.put(BaseWebViewActivity.URL, cardBinNextUrl + "bankCardNo=" + cardNo);
+                        dataMap.put(BaseWebViewActivity.URL, cardBinNextUrl + "?cardNo=" + cardNo);
                         dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
                         dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
                         MyIntent.startActivity(BankCardResultActivity.this, OpenAccountWebViewActivity.class, dataMap);
