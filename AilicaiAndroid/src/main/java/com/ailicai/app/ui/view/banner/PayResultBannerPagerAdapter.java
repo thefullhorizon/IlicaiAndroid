@@ -10,7 +10,10 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.imageloader.ImageLoaderClient;
 import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.utils.DeviceUtil;
+import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.model.bean.Banner;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.alibaba.fastjson.JSON;
 import com.huoqiu.framework.imageloader.core.LoadParam;
 
@@ -76,15 +79,17 @@ public class PayResultBannerPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View view) {
 
-                //TODO nanshan Banner埋点的上传
+                //MainIntentUtil.processBannerClickOnPayResult(mActivity, banner);
+                Map<String, String> dataMap = ObjectUtil.newHashMap();
+                dataMap.put(WebViewActivity.URL, banner.getDetailUrl());
+                dataMap.put(WebViewActivity.USEWEBTITLE, "true");
+                MyIntent.startActivity(mActivity, WebViewActivity.class, dataMap);
 
-//                MainIntentUtil.processBannerClickOnPayResult(mActivity, banner);
                 // 上报点击量埋点
                 Map logMap = new HashMap();
                 logMap.put("banner_id", banner.getBannerId());
                 logMap.put("banner_l", bannerLocation);
                 EventLog.upEventLog("20170519002", JSON.toJSONString(logMap));
-
             }
         });
         container.addView(imageView);

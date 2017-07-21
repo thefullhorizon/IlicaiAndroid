@@ -1,11 +1,9 @@
 package com.ailicai.app.ui.buy;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
 import com.ailicai.app.widget.DialogBuilder;
-import com.ailicai.app.wxapi.WXPayEntryActivity;
 
 import java.io.Serializable;
 
@@ -23,27 +21,27 @@ public class PayPresenter implements Serializable {
 
     private static AlertDialog progressDialog;
 
-    public static void showResultDialog(final Activity mActivity, String msgInfo) {
-        final AlertDialog dialog = DialogBuilder.showSimpleDialog(mActivity, msgInfo,null, null, null, "确定", null);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setCancelable(true);
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                if (mActivity instanceof WXPayEntryActivity) {
-                    mActivity.finish();
-                }
-            }
-        });
-        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                if (mActivity instanceof WXPayEntryActivity) {
-                    mActivity.finish();
-                }
-            }
-        });
-    }
+//    public static void showResultDialog(final Activity mActivity, String msgInfo) {
+//        final AlertDialog dialog = DialogBuilder.showSimpleDialog(mActivity, msgInfo,null, null, null, "确定", null);
+//        dialog.setCanceledOnTouchOutside(false);
+//        dialog.setCancelable(true);
+//        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//            @Override
+//            public void onDismiss(DialogInterface dialog) {
+//                if (mActivity instanceof WXPayEntryActivity) {
+//                    mActivity.finish();
+//                }
+//            }
+//        });
+//        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//            @Override
+//            public void onCancel(DialogInterface dialog) {
+//                if (mActivity instanceof WXPayEntryActivity) {
+//                    mActivity.finish();
+//                }
+//            }
+//        });
+//    }
 
     public static void dismissProgressDialog() {
         if (progressDialog != null && progressDialog.isShowing()) {
