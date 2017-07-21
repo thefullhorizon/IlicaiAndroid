@@ -69,7 +69,7 @@ public class MessageTypeProcessUtils {
             case PushMessage.ACTIVITYTYPE:
                 switch (pushMessage.getOptional().getType()) {
                     case PushMessage.NOTICETYPETOFINANCE:
-                        IndexActivity.startIndexActivityToTab(activity,1);
+                        IndexActivity.goToInvestTab(activity,1);
                         break;
                 }
                 break;
@@ -91,7 +91,7 @@ public class MessageTypeProcessUtils {
                     }
                     break;
                 case CommonTags.FINANCE:
-                    IndexActivity.startIndexActivityToTab(activity,1);
+                    IndexActivity.goToInvestTab(activity,1);
                     break;
                 case CommonTags.MYFCB:
                     String tab = data.getQueryParameter(CommonTags.TABINDEX);
@@ -151,7 +151,7 @@ public class MessageTypeProcessUtils {
             switch (notice.getRemindType()){
                 case PushMessage.NOTICETYPETOFINANCE:
                     sendEventLog(notice);
-                    IndexActivity.startIndexActivityToTab(context,1);
+                    IndexActivity.goToInvestTab(context,1);
                     break;
                 default:
                     showNewVersionDialog(context);
@@ -181,7 +181,7 @@ public class MessageTypeProcessUtils {
             case PushMessage.REMINDTYPELIUBIAO:
             case PushMessage.REMINDTYPETYJTOFIHOME:
                 sendEventLog(notice);
-                IndexActivity.startIndexActivityToTab(activity,1);
+                IndexActivity.goToInvestTab(activity,1);
                 break;
             case PushMessage.REMINDTYPEHUANKUAN:
             case PushMessage.REMINDTYPEZHUANRANG:
