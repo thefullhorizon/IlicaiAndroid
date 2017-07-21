@@ -399,7 +399,7 @@ public class ReservePay extends BaseBuyFinancePay {
 
     @NonNull
     private String getProductName() {
-        return payInfo.isEnough() ? payInfo.getProductName() : "转入并" + payInfo.getProductName();
+        return payInfo.isEnough() ? payInfo.getProductName() : "充值并" + payInfo.getProductName();
     }
 
     @NonNull
