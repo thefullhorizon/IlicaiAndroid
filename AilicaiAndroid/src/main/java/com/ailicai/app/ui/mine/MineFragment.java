@@ -37,6 +37,7 @@ import com.ailicai.app.model.response.UserInfoResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
+import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.login.UserInfoBase;
@@ -608,11 +609,13 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     //提现
     @OnClick(R.id.tv_account_balance_get_cash)
     void accountBalanceGetCashClick() {
-        if (CheckDoubleClick.isFastDoubleClick()) return;
         if (!NoSetSafeCardHint.isShowHintDialog((BaseBindActivity) getWRActivity())) {
-            Map<String, String> dataMap = ObjectUtil.newHashMap();
-            dataMap.put(ACTION_KEY, ACTION_VAL_GET_CASH);
-            MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
+            //Map<String, String> dataMap = ObjectUtil.newHashMap();
+            //dataMap.put(ACTION_KEY, ACTION_VAL_GET_CASH);
+            //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
+
+            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
+            startActivity(intent);
         } else {
             Intent intent = new Intent(getWRActivity(), AccountWithdrawActivity.class);
             startActivity(intent);
@@ -624,9 +627,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.tv_account_balance_charge)
     void accountBalanceChargeClick() {
         if (!NoSetSafeCardHint.isShowHintDialog((BaseBindActivity) getWRActivity())) {
-            Map<String, String> dataMap = ObjectUtil.newHashMap();
-            dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
-            MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
+            //Map<String, String> dataMap = ObjectUtil.newHashMap();
+            //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
+            //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
+            
+            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
+            startActivity(intent);
         } else {
             Intent intent1 = new Intent(getWRActivity(), AccountTopupActivity.class);
             startActivity(intent1);

@@ -2,16 +2,14 @@ package com.ailicai.app.ui.index;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 
 import com.ailicai.app.R;
 import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.widget.NoScrollViewPager;
-import com.ailicai.app.widget.slidingtab.SlidingTabLayout;
 
 import java.util.ArrayList;
 
@@ -20,13 +18,14 @@ import butterknife.Bind;
 /**
  * 投资主页面
  */
-public class InvestmentMainFragment extends BaseBindFragment implements ViewPager.OnPageChangeListener {
-    @Bind(R.id.sliding_tabs)
-    SlidingTabLayout mSlidingTabLayout;
+public class InvestmentMainFragment extends BaseBindFragment implements TabLayout.OnTabSelectedListener {
+    @Bind(R.id.tab_layou)
+    TabLayout mTabLayout;
     @Bind(R.id.view_pager)
     NoScrollViewPager mViewPager;
 
     private OurViewPagerAdapter mViewPagerAdapter;
+    private String[] pageTitles = new String[]{"推荐", "网贷", "货基", "转让"};
 
     @Override
     public int getLayout() {
@@ -35,37 +34,37 @@ public class InvestmentMainFragment extends BaseBindFragment implements ViewPage
 
     @Override
     public void init(Bundle savedInstanceState) {
-//        CommonUtil.uiSystemBarTint(getWRActivity());
         inittabView();
     }
 
-    public void inittabView() {
-        mSlidingTabLayout.setCustomTabView(R.layout.tab_indicator2, android.R.id.text1);
-        mSlidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(getWRActivity(), R.color.main_red_color));// 设置下面的线颜色
-        mSlidingTabLayout.setDistributeEvenly(true);
-        iniTab();
-    }
+    private void inittabView() {
+        //设置TabLayout标签的显示方式
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        //循环注入标签
+        for (String tab : pageTitles) {
+            mTabLayout.addTab(mTabLayout.newTab().setText(tab));
+        }
+        //设置TabLayout点击事件
+        mTabLayout.setOnTabSelectedListener(this);
 
-    private void iniTab() {
         mViewPagerAdapter = new OurViewPagerAdapter(getActivity(), getChildFragmentManager());
         Bundle bundleTJ = new Bundle();
-        mViewPagerAdapter.addNvgItem("推荐", InvestmentRecommendFragment.class, bundleTJ);
+        mViewPagerAdapter.addNvgItem(pageTitles[0], InvestmentRecommendFragment.class, bundleTJ);
 
         Bundle bundleWD = new Bundle();
-        mViewPagerAdapter.addNvgItem("网贷", InvestmentNetLoanFragment.class, bundleWD);
+        mViewPagerAdapter.addNvgItem(pageTitles[1], InvestmentNetLoanFragment.class, bundleWD);
 
         Bundle bundleHJ = new Bundle();
-        mViewPagerAdapter.addNvgItem("货基", InvestmentMoneyFundFragment.class, bundleHJ);
+        mViewPagerAdapter.addNvgItem(pageTitles[2], InvestmentMoneyFundFragment.class, bundleHJ);
 
         Bundle bundleZR = new Bundle();
-        mViewPagerAdapter.addNvgItem("转让", InvestmentTransferFragment.class, bundleZR);
+        mViewPagerAdapter.addNvgItem(pageTitles[3], InvestmentTransferFragment.class, bundleZR);
 
         mViewPager.setAdapter(mViewPagerAdapter);
         mViewPager.setCanScroll(true);
         mViewPager.setOffscreenPageLimit(4);
-        mSlidingTabLayout.setViewPager(mViewPager);
-        mSlidingTabLayout.setOnPageChangeListener(this);
         mViewPager.setCurrentItem(0);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     public void setCurrentItem(int index) {
@@ -73,17 +72,17 @@ public class InvestmentMainFragment extends BaseBindFragment implements ViewPage
     }
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    public void onTabSelected(TabLayout.Tab tab) {
 
     }
 
     @Override
-    public void onPageSelected(int position) {
+    public void onTabUnselected(TabLayout.Tab tab) {
 
     }
 
     @Override
-    public void onPageScrollStateChanged(int state) {
+    public void onTabReselected(TabLayout.Tab tab) {
 
     }
 
