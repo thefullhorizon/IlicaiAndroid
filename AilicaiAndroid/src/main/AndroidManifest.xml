@@ -444,6 +444,13 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
+            android:name=".ui.view.VoucherListActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
             android:name=".ui.bankcard.ExSafeCardValidBiggerThanChangeLimitActivity"
             android:configChanges="orientation|keyboardHidden|locale"
             android:screenOrientation="portrait"

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#eaeaea"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginRight="16dip"
+        android:layout_marginTop="16dip"
+        android:layout_marginLeft="16dip">
+
+
+        <TextView
+            android:id="@+id/income_date"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.87"
+            android:text="2015-12-12"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/income_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.87"
+            android:text="+100.98"
+            android:textColor="#E84A01"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/income_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.54"
+        android:text="房产宝HD151623"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:layout_marginLeft="16dip"
+        android:layout_marginTop="4dip"
+        android:layout_marginRight="16dip"
+        android:layout_marginBottom="16dip"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#eaeaea"/>
+
+</LinearLayout>

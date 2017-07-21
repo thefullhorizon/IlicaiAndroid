@@ -22,6 +22,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 
+/**
+ * 资产总览
+ */
 public class AssetInViewOfBirdActivity extends BaseBindActivity {
 
     @Bind(R.id.asset_pie)

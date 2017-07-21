@@ -8,11 +8,15 @@ import android.widget.ImageView;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.imageloader.ImageLoaderClient;
+import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.utils.DeviceUtil;
 import com.ailicai.app.model.bean.Banner;
+import com.alibaba.fastjson.JSON;
 import com.huoqiu.framework.imageloader.core.LoadParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by nanshan on 5/22/2017.
@@ -73,14 +77,14 @@ public class PayResultBannerPagerAdapter extends PagerAdapter {
             public void onClick(View view) {
 
                 //TODO nanshan Banner埋点的上传
-                /**
-                MainIntentUtil.processBannerClickOnPayResult(mActivity, banner);
+
+//                MainIntentUtil.processBannerClickOnPayResult(mActivity, banner);
                 // 上报点击量埋点
                 Map logMap = new HashMap();
                 logMap.put("banner_id", banner.getBannerId());
                 logMap.put("banner_l", bannerLocation);
                 EventLog.upEventLog("20170519002", JSON.toJSONString(logMap));
-                */
+
             }
         });
         container.addView(imageView);

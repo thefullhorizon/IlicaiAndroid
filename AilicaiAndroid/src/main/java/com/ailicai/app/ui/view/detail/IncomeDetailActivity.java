@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.ailicai.app.R;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.view.IncomeDetailParentFragment;
+import com.ailicai.app.ui.view.IncomeDetailWalletFragment;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.pop.CustomPopWindow;
 import com.ailicai.app.widget.pop.CustomPopWindowBean;
@@ -91,8 +93,7 @@ public class IncomeDetailActivity extends BaseBindActivity implements CustomPopW
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(String.valueOf(typeValue));
         if (fragment == null) {
             switch (typeValue) {
-                //TODO 收入详情页 暂时不做
-                /**
+
                 case WALLET:
                     fragment = new IncomeDetailWalletFragment();
                     break;
@@ -105,7 +106,7 @@ public class IncomeDetailActivity extends BaseBindActivity implements CustomPopW
                     break;
                 default:
                     break;
-                 */
+
             }
         }
         return fragment;

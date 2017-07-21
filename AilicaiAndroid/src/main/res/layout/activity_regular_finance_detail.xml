@@ -65,7 +65,7 @@
                 android:id="@+id/tv_balance_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="账户余额不足1000元 马上转入"
+                android:text="账户余额不足1000元 马上充值"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
 

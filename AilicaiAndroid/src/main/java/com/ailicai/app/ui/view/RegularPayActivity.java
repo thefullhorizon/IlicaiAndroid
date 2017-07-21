@@ -375,12 +375,12 @@ public class RegularPayActivity extends BaseBindActivity {
     public void onSelectVoucher() {
         //选择卡券页面
         //TODO nanshan 选择卡券
-        /**
+
         Intent intent = new Intent(this, VoucherListActivity.class);
         intent.putExtra(VoucherListActivity.EXTRA_PRODUCT_ID, productId);
         startActivityForResult(intent, REQUEST_CODE_SELECT_VOUCHER);
         ManyiUtils.closeKeyBoard(this, mInputPriceEdit);
-         */
+
     }
 
     @OnClick(R.id.input_price_edit)

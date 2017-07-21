@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.ailicai.app.R;
 import com.ailicai.app.common.utils.DeviceUtil;
 import com.ailicai.app.common.utils.UIUtils;
+import com.ailicai.app.ui.index.IndexActivity;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -78,12 +79,11 @@ public class SystemMaintenanceDialog extends MyBaseDialog{
 
     @OnClick(R.id.tvIKown)
     void onIKnow() {
-
         dismiss();
-        //TODO nanshan 系统维护
-//        if(getActivity() instanceof FinanceHomeActivity) {
-//            IndexMainActivity.startIndexActivityToTab(getActivity(),0);
-//        }
+        if(getActivity() instanceof IndexActivity) {
+            //TODO nanshan 暂时先去掉（2017-07-21）
+//            IndexActivity.startIndexActivityToTab(getActivity(),0);
+        }
         getActivity().finish();
     }
 }

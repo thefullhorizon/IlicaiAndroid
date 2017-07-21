@@ -14,6 +14,7 @@ import com.ailicai.app.common.rsa.RSAEncrypt;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.model.request.PayPwdResetRequest;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.view.security.IDCardScanActivity;
 import com.huoqiu.framework.rest.Response;
 import com.huoqiu.framework.util.CheckDoubleClick;
 
@@ -102,9 +103,8 @@ public class PayPwdResetActivity extends BaseBindActivity {
         if (CheckDoubleClick.isFastDoubleClick(1000)) {
             return;
         }
-        //TODO nanshan 扫描身份证 暂时隐藏
-//        Intent intent = new Intent(this, IDCardScanActivity.class);
-//        startActivityForResult(intent, 17);
+        Intent intent = new Intent(this, IDCardScanActivity.class);
+        startActivityForResult(intent, 17);
     }
 
     private void requestForNext() {
