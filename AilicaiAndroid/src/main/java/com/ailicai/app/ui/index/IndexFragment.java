@@ -3,6 +3,7 @@ package com.ailicai.app.ui.index;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.OpenAccountFinishEvent;
 import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
@@ -115,6 +116,11 @@ public class IndexFragment extends BaseWebViewFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleOpenAccountFinshEvent(OpenAccountFinishEvent finishEvent) {
+        callJsRefresh();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleOpenAccountFinshEvent(LoginEvent loginEvent) {
         callJsRefresh();
     }
 }
