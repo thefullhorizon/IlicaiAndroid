@@ -41,7 +41,7 @@ public class RealUserInfoActivity extends BaseBindActivity {
 
     public void setUserInfo(Map<String, Object> dataMap) {
         tvIdName.setText(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_R_NAME));
-        tvIdCardNumber.setText("身份证号：" + MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_IDCARDNUMBER));
+        tvIdCardNumber.setText(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_IDCARDNUMBER));
 
     }
 

@@ -24,7 +24,7 @@
                 android:background="@drawable/rewards_tabs_selector"
                 android:button="@null"
                 android:gravity="center"
-                android:text="邀请奖励"
+                android:text="邀请记录"
                 android:textColor="@drawable/rewards_tabs_text_color"
                 android:textSize="14sp" />
 

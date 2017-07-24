@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
@@ -63,6 +62,10 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     TextView investAmount;
     @Bind(R.id.plot_house_list_group)
     RadioGroup aroundHouseGroup;
+    @Bind(R.id.second_title_view)
+    LinearLayout secondTitleView;
+    @Bind(R.id.list_bg)
+    FrameLayout listBg;
     @Bind(R.id.house_thumb_view)
     View thumb;
     @Bind(R.id.tt1)
@@ -215,6 +218,21 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         inviteRecordList.addAll(InviteRecordListTemp);
         InviteRewardsListAdapter listAdapter = new InviteRewardsListAdapter(this, inviteRecordList);
         mSwipeListView.setAdapter(listAdapter);
+        if (inviteRecordList.size() == 0) {
+            setSecondTitleShow(false);
+        } else {
+            setSecondTitleShow(true);
+        }
+    }
+
+    public void setSecondTitleShow(boolean show) {
+        if (!show) {
+            secondTitleView.setVisibility(View.INVISIBLE);
+            listBg.setBackgroundResource(R.drawable.rewards_record_bg1);
+        } else {
+            secondTitleView.setVisibility(View.VISIBLE);
+            listBg.setBackgroundResource(R.drawable.rewards_record_bg);
+        }
     }
 
     /**
@@ -256,6 +274,11 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         rewardRecordList.addAll(rewardRecordListTemp);
         RewardRecordListAdapter listAdapter = new RewardRecordListAdapter(this, rewardRecordList);
         mSwipeListView.setAdapter(listAdapter);
+        if (rewardRecordList.size() == 0) {
+            setSecondTitleShow(false);
+        } else {
+            setSecondTitleShow(true);
+        }
     }
 
 

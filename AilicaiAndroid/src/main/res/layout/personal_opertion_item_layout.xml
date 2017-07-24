@@ -49,14 +49,30 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
-                <TextView
+                <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="别让你的钱睡大觉zZ"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="10dp"
+                        android:text="别让你的钱睡大觉"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|right"
+                        android:text="z"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/tvLogin"
@@ -78,7 +94,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center|bottom"
                 android:orientation="vertical"
-                android:paddingBottom="20dp">
+                android:paddingBottom="20dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/assets_total"
@@ -309,65 +326,73 @@
 
     </LinearLayout>
 
-    <View
-        style="@style/cell_divider_hor"
-        android:layout_marginBottom="8dp" />
-
-    <RelativeLayout
-        android:id="@+id/rewards"
+    <LinearLayout
+        android:id="@+id/rewards_view"
         android:layout_width="match_parent"
-        android:layout_height="48dip"
-        android:background="@drawable/white_to_pressed_selector"
-        android:clickable="true"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginBottom="8dp" />
 
-            <ImageView
+        <RelativeLayout
+            android:id="@+id/rewards"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mine_gift" />
-
-            <TextView
-                android:id="@+id/textView"
-                style="@style/text_14_212121"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="邀请奖励" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/rewards_money"
-                style="@style/text_14_757575"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:text="待发收益0.00元" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <View
-                android:layout_width="8dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/account_arrow_selector" />
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_gift" />
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/text_14_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="邀请奖励" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/rewards_money"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="待发收益0.00元" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/account_arrow_selector" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
 
     <View
         style="@style/cell_divider_hor"

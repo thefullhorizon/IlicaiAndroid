@@ -160,14 +160,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:visibility="visible">
 
                 <LinearLayout
+                    android:id="@+id/second_title_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="20dp"
+                    android:visibility="visible"
                     android:background="@drawable/rewards_record_bg"
                     android:padding="1dp">
 

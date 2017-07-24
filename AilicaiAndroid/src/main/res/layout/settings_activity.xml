@@ -113,35 +113,43 @@
             style="@style/cell_divider_hor"
             android:layout_marginLeft="16dp" />
 
-        <RelativeLayout
-            android:id="@+id/change_transaction_password"
+        <LinearLayout
+            android:id="@+id/mine_password_manage_container"
             android:layout_width="match_parent"
-            android:layout_height="45dip"
-            android:background="@drawable/white_to_pressed_selector"
-            android:clickable="true"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/change_transaction_password"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:background="@drawable/white_to_pressed_selector"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
 
-            <TextView
-                style="@style/text_16_212121"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="修改交易密码" />
+                <TextView
+                    style="@style/text_16_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="修改交易密码" />
 
-            <View
-                android:layout_width="8dp"
-                android:layout_height="16dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/account_arrow_selector" />
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/account_arrow_selector" />
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-        <View style="@style/cell_divider_hor" />
+            <View style="@style/cell_divider_hor" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

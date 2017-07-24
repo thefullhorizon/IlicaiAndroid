@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
@@ -71,6 +72,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     RelativeLayout titleRoot;
     @Bind(R.id.tv_new_msg_point)
     TextView mTvNewMsgPoint;
+
+    boolean isMessageClick = false;
+    boolean isCardClick = false;
     /**
      * 点击头像区域跳转至个人信息编辑页面
      */
@@ -81,6 +85,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                 case R.id.fl_msg_container:
                     //消息点击
                     mTvNewMsgPoint.setVisibility(View.GONE);
+                    isMessageClick = true;
+                    if (isCardClick) {
+                        MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
+                        showEvent.setShowRedPoint(false);
+                        EventBus.getDefault().post(showEvent);
+                    }
                     Intent intent = new Intent(getWRActivity(), MessageActivity.class);
                     startActivity(intent);
                     break;
@@ -136,6 +146,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     LinearLayout purchaseView;
     @Bind(R.id.purchaseAmount)
     TextView purchaseAmount;
+    @Bind(R.id.rewards_view)
+    LinearLayout rewardsView;
     @Bind(R.id.swipe)
     SwipeRefreshLayout mSwipeLayout;
     private MinePresenter mPresenter;
@@ -366,6 +378,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
             accountbalanceLayout.setVisibility(View.GONE);
             purchaseView.setVisibility(View.GONE);
+            rewardsView.setVisibility(View.GONE);
         } else if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
             mineNotLogin.setVisibility(View.GONE);
             mineLogin.setVisibility(View.VISIBLE);
@@ -379,6 +392,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             userPhoto.setOnClickListener(userLayoutOnClickListener);
             accountbalanceLayout.setVisibility(View.VISIBLE);
             purchaseView.setVisibility(View.GONE);
+            rewardsView.setVisibility(View.GONE);
 
             //根据登录的手机号获取已保存的用户信息
             long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
@@ -420,6 +434,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         totalIncome.setText(assetInfoNewResponse.getTotalIncome());
         accountBalance.setText(assetInfoNewResponse.getAccountBalance());
         rewardsMoney.setText("待发收益" + assetInfoNewResponse.getInviteReward() + "元");
+        if (TextUtils.isEmpty(assetInfoNewResponse.getInviteReward()) ||
+                "0.00".equals(assetInfoNewResponse.getInviteReward()) ||
+                "0".equals(assetInfoNewResponse.getInviteReward()) ||
+                "0.0".equals(assetInfoNewResponse.getInviteReward())) {
+            rewardsView.setVisibility(View.GONE);
+        } else {
+            rewardsView.setVisibility(View.VISIBLE);
+        }
         if (assetInfoNewResponse.getPurchaseCount() > 0) {
             purchaseView.setVisibility(View.VISIBLE);
             purchaseAmount.setText(assetInfoNewResponse.getPurchaseCount() + "笔共" + assetInfoNewResponse.getPurchaseAmount());
@@ -434,6 +456,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         totalIncome.setText(eyes);
         accountBalance.setText(eyes);
         rewardsMoney.setText("待发收益" + eyes + "元");
+        if (TextUtils.isEmpty(assetInfoNewResponse.getInviteReward()) ||
+                "0.00".equals(assetInfoNewResponse.getInviteReward()) ||
+                "0".equals(assetInfoNewResponse.getInviteReward()) ||
+                "0.0".equals(assetInfoNewResponse.getInviteReward())) {
+            rewardsView.setVisibility(View.GONE);
+        } else {
+            rewardsView.setVisibility(View.VISIBLE);
+        }
         if (assetInfoNewResponse.getPurchaseCount() > 0) {
             purchaseView.setVisibility(View.VISIBLE);
             purchaseAmount.setText("*" + "笔共" + eyes + "元");
@@ -490,6 +520,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         mTvNewMsgPoint.setVisibility(event.notifNum > 0 ? View.VISIBLE : View.GONE);
         if (event.notifNum > 0) {
             MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
+            showEvent.setShowRedPoint(true);
             EventBus.getDefault().post(showEvent);
         }
     }
@@ -500,6 +531,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
      */
     void refreshMyDataFromServer() {
         if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            mSwipeLayout.setRefreshing(false);
             assetInfoNewResponse = new AssetInfoNewResponse();
             setUIData();
             return;
@@ -711,9 +743,16 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     private void setVoucherRedDotState(boolean isShow) {
         if (isShow) {
             MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
+            showEvent.setShowRedPoint(true);
             EventBus.getDefault().post(showEvent);
             ticket_red_dot.setVisibility(View.VISIBLE);
         } else {
+            isCardClick = true;
+            if (isMessageClick) {
+                MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
+                showEvent.setShowRedPoint(false);
+                EventBus.getDefault().post(showEvent);
+            }
             ticket_red_dot.setVisibility(View.INVISIBLE);
         }
         saveVoucherRedDotStateByUser(isShow);

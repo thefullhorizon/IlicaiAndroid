@@ -17,7 +17,6 @@ import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ToastUtil;
-import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.MineShowRedPointEvent;
 import com.ailicai.app.model.request.HtmlUrlRequest;
@@ -25,6 +24,7 @@ import com.ailicai.app.model.response.Iwjwh5UrlResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.index.adapter.NavigationPagerAdapter;
+import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.message.MessageTypeProcessUtils;
 import com.ailicai.app.ui.mine.MineFragment;
 import com.ailicai.app.widget.NoScrollViewPager;
@@ -45,7 +45,7 @@ import butterknife.Bind;
  *
  * @author: IWJW Zhou Xuan
  */
-public class IndexActivity extends BaseBindActivity implements VersionInterface {
+public class IndexActivity extends BaseBindActivity /*implements VersionInterface*/ {
 
     private final static int[][] tabiconss = new int[][]{
             {R.drawable.tabbar_homepage_inactive, R.drawable.tabbar_homepage_active},
@@ -92,7 +92,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         EventBus.getDefault().register(this);
         setViewPageData();
         htmlUrlUpdate();
-        MyPreference.getInstance().write(CommonTag.IS_FIREST_START,false);
+        MyPreference.getInstance().write(CommonTag.IS_FIREST_START, false);
     }
 
     private void setViewPageData() {
@@ -131,7 +131,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
             if (intent.hasExtra("investTabIndex")) {
                 int investTabIndex = intent.getIntExtra("investTabIndex", -1);
                 InvestmentMainFragment fragment = (InvestmentMainFragment) nvgPagerAdapter.getItem(1);
-                if(fragment != null) {
+                if (fragment != null) {
                     fragment.setCurrentItem(investTabIndex);
                 }
             }
@@ -152,37 +152,37 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         });
     }
 
-    @Override
-    public void remindPoint() {
-        setRedNotification(3);
-    }
-
-    @Override
-    public void checkStart() {
-
-    }
-
-    @Override
-    public void checkSuccess() {
-        //检查通过
-        this.hasCheckNewVersion = true;
-        //MyPreference.getInstance().write(HASCHECKNEWVERSION, true);
-    }
-
-    @Override
-    public void checkFailed(String message) {
-        //检查没通过
-    }
-
-    @Override
-    public void checkLatest(String version) {
-        //检查通过并没有更新
-    }
-
-    @Override
-    public boolean ignorePop() {
-        return false;
-    }
+//    @Override
+//    public void remindPoint() {
+//        setRedNotification(2);
+//    }
+//
+//    @Override
+//    public void checkStart() {
+//
+//    }
+//
+//    @Override
+//    public void checkSuccess() {
+//        //检查通过
+//        this.hasCheckNewVersion = true;
+//        //MyPreference.getInstance().write(HASCHECKNEWVERSION, true);
+//    }
+//
+//    @Override
+//    public void checkFailed(String message) {
+//        //检查没通过
+//    }
+//
+//    @Override
+//    public void checkLatest(String version) {
+//        //检查通过并没有更新
+//    }
+//
+//    @Override
+//    public boolean ignorePop() {
+//        return false;
+//    }
 
     public void setCurrentItem(int index) {
         //   mViewPager.setCurrentItem(index);
@@ -203,8 +203,25 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleShowRefreshNotifEvent(MineShowRedPointEvent showPoint) {
-        //我的红点
-        setRedNotification(2);
+        if (UserInfo.isLogin()) {
+            if (showPoint.isShowRedPoint()) {
+                //我的红点
+                setRedNotification(2);
+            } else {
+                //去掉我的红点
+                refreshNotification(0, 2);
+            }
+
+        }
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleShowRefreshNotifEvent(LoginEvent event) {
+        if (!event.isLoginSuccess()) {
+            //去掉我的红点
+            refreshNotification(0, 2);
+        }
     }
 
     /**

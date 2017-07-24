@@ -47,6 +47,8 @@ public class SettingsActivity extends BaseBindActivity {
     TextView mRealName;
     @Bind(R.id.login_out)
     LinearLayout mLoginOut;
+    @Bind(R.id.mine_password_manage_container)
+    LinearLayout mPasswordManage;
     Handler mBackHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -156,6 +158,14 @@ public class SettingsActivity extends BaseBindActivity {
             mRealName.setText("已实名");
         } else {
             mRealName.setText("");
+        }
+
+        // 判断是否设置支付密码 0:否，1:是
+        boolean isSetPayPwd = UserManager.getInstance(MyApplication.getInstance()).isSetPayPwd();
+        if (isSetPayPwd) {
+            mPasswordManage.setVisibility(View.VISIBLE);
+        } else {
+            mPasswordManage.setVisibility(View.GONE);
         }
 
         setUIData();
