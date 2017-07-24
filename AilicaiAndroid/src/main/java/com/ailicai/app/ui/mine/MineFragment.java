@@ -75,6 +75,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     boolean isMessageClick = false;
     boolean isCardClick = false;
+    boolean isMessagePointShow = false;
+    boolean isCardPointShow = false;
     /**
      * 点击头像区域跳转至个人信息编辑页面
      */
@@ -86,7 +88,13 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                     //消息点击
                     mTvNewMsgPoint.setVisibility(View.GONE);
                     isMessageClick = true;
-                    if (isCardClick) {
+                    if (isCardPointShow) {
+                        if (isCardClick) {
+                            MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
+                            showEvent.setShowRedPoint(false);
+                            EventBus.getDefault().post(showEvent);
+                        }
+                    } else {
                         MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
                         showEvent.setShowRedPoint(false);
                         EventBus.getDefault().post(showEvent);
@@ -519,6 +527,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     public void handlefinal(final NewNotifMsgEvent event) {
         mTvNewMsgPoint.setVisibility(event.notifNum > 0 ? View.VISIBLE : View.GONE);
         if (event.notifNum > 0) {
+            isMessagePointShow = true;
             MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
             showEvent.setShowRedPoint(true);
             EventBus.getDefault().post(showEvent);
@@ -746,13 +755,22 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             showEvent.setShowRedPoint(true);
             EventBus.getDefault().post(showEvent);
             ticket_red_dot.setVisibility(View.VISIBLE);
+            isCardPointShow = true;
         } else {
+            isCardPointShow = false;
             isCardClick = true;
-            if (isMessageClick) {
+            if (isMessagePointShow) {
+                if (isMessageClick) {
+                    MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
+                    showEvent.setShowRedPoint(false);
+                    EventBus.getDefault().post(showEvent);
+                }
+            } else {
                 MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
                 showEvent.setShowRedPoint(false);
                 EventBus.getDefault().post(showEvent);
             }
+
             ticket_red_dot.setVisibility(View.INVISIBLE);
         }
         saveVoucherRedDotStateByUser(isShow);
