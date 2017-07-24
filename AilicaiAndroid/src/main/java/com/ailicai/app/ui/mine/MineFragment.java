@@ -48,6 +48,7 @@ import com.ailicai.app.ui.view.AccountTopupActivity;
 import com.ailicai.app.ui.view.AccountWithdrawActivity;
 import com.ailicai.app.ui.view.AssetInViewOfBirdActivity;
 import com.ailicai.app.ui.view.CapitalActivity;
+import com.ailicai.app.ui.view.detail.IncomeDetailActivity;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -598,23 +599,24 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     @OnClick(R.id.purchase_view_click)
     void goPurchase() {
-        //TODO:跳转至申购页面
         MyIntent.startActivity(getWRActivity(), CapitalActivity.class, null);
     }
 
     //提现
     @OnClick(R.id.tv_account_balance_get_cash)
     void accountBalanceGetCashClick() {
-        if (!NoSetSafeCardHint.isShowHintDialog((BaseBindActivity) getWRActivity())) {
+        if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
+            return;
+        } else if (!NoSetSafeCardHint.isOpenAccount()) {
             //Map<String, String> dataMap = ObjectUtil.newHashMap();
-            //dataMap.put(ACTION_KEY, ACTION_VAL_GET_CASH);
+            //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
             //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
 
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else {
-            Intent intent = new Intent(getWRActivity(), AccountWithdrawActivity.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(getWRActivity(), AccountWithdrawActivity.class);
+            startActivity(intent1);
         }
 
     }
@@ -622,7 +624,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     //充值
     @OnClick(R.id.tv_account_balance_charge)
     void accountBalanceChargeClick() {
-        if (!NoSetSafeCardHint.isShowHintDialog((BaseBindActivity) getWRActivity())) {
+        if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
+            return;
+        } else if (!NoSetSafeCardHint.isOpenAccount()) {
             //Map<String, String> dataMap = ObjectUtil.newHashMap();
             //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
             //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
@@ -640,18 +644,33 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     //资产预览
     @OnClick(R.id.assets_total)
     void goAssetsTotal() {
-        // TODO 振华
-//        if (!NoSetSafeCardHint.isShowHintDialog((BaseBindActivity) getWRActivity())) {
-//            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
-//            startActivity(intent);
-//        } else {
-//            MyIntent.startActivity(getWRActivity(), AssetInViewOfBirdActivity.class, null);
-//        }
-
-        if(UserInfo.isLogin()) {
-            MyIntent.startActivity(getWRActivity(), AssetInViewOfBirdActivity.class, null);
+        if (!NoSetSafeCardHint.isOpenAccount()) {
+            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
+            startActivity(intent);
         } else {
-            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+            MyIntent.startActivity(getWRActivity(), AssetInViewOfBirdActivity.class, null);
+        }
+    }
+
+    //累计收益
+    @OnClick(R.id.total_money)
+    void goIncomeDetailByTotal() {
+        if (!NoSetSafeCardHint.isOpenAccount()) {
+            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
+            startActivity(intent);
+        } else {
+            MyIntent.startActivity(getWRActivity(), IncomeDetailActivity.class, null);
+        }
+    }
+
+    //昨日收益
+    @OnClick(R.id.yestoday_money)
+    void goIncomeDetailByYestoday() {
+        if (!NoSetSafeCardHint.isOpenAccount()) {
+            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
+            startActivity(intent);
+        } else {
+            MyIntent.startActivity(getWRActivity(), IncomeDetailActivity.class, null);
         }
     }
 
