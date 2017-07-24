@@ -259,7 +259,7 @@ public class CapitalActivity extends BaseBindActivity implements
 
     @Override
     public void toFinanceRegular() {
-        IndexActivity.goToInvestTab(this,1);
+        IndexActivity.startIndexActivityToTab(this,1);
     }
 
     private void toRegularIncome() {
