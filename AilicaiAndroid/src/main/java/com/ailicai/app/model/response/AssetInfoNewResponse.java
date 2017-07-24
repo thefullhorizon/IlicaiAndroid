@@ -7,15 +7,15 @@ import com.huoqiu.framework.rest.Response;
  */
 
 public class AssetInfoNewResponse extends Response {
-
-    private String totalAsset;                                                     // 总资产
-    private String yestodayIncome;                                                 // 昨日收益
-    private String totalIncome;                                                    // 累计收益
-    private String currentDepositBalance = "";                                     // 房产宝余额
-    private String timeDepositBalance = "";                                     // 货币基金
-    private String smallPurleBalance = "";                                        //小钱袋余额
-    private String netLoanBalance = "";                                     //网贷资产
-    private String accountBalance = "";                                           //账户可用余额
+    private String totalAsset = "0.00";                                                     // 总资产
+    private String yestodayIncome= "0.00";                                                 // 昨日收益
+    private String totalIncome= "0.00";                                                    // 累计收益
+    private String currentDepositBalance = "0.00";                                      // 房产宝余额
+    private String timeDepositBalance = "0.00";                                      // 货币基金
+    private String smallPurleBalance = "0.00";                                       //小钱袋余额
+    private String netLoanBalance = "0.00";                                     //网贷资产
+    private String accountBalance = "0.00";                                            //账户可用余额
+    private String inviteReward = "0.00";                                            //账户可用余额
 
     private int voucherRedPoint;                                          //卡券小红点：1有红点 0没有红点
     private String holdTotalBalance = "";                 //持有总额
@@ -91,6 +91,14 @@ public class AssetInfoNewResponse extends Response {
 
     public void setAccountBalance(String accountBalance) {
         this.accountBalance = accountBalance;
+    }
+
+    public String getInviteReward() {
+        return inviteReward;
+    }
+
+    public void setInviteReward(String inviteReward) {
+        this.inviteReward = inviteReward;
     }
 
     public int getVoucherRedPoint() {

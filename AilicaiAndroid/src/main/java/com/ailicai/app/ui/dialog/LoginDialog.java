@@ -447,6 +447,8 @@ public class LoginDialog extends MyBaseDialog implements GridPasswordView.OnPass
 
     public void slideInFirstView() {
         loginFirstView.setVisibility(View.VISIBLE);
+        mPhoneEditText.showClearButton(true);
+        mPhoneEditText.getmEditText().setEnabled(true);
         //Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.login_view_left_in);
         //anim.setFillAfter(true);
         //loginFirstView.startAnimation(anim);

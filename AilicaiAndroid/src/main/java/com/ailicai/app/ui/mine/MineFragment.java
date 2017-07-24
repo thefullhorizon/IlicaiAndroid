@@ -32,9 +32,7 @@ import com.ailicai.app.eventbus.MineShowRedPointEvent;
 import com.ailicai.app.eventbus.NewNotifMsgEvent;
 import com.ailicai.app.eventbus.RefreshPushEvent;
 import com.ailicai.app.model.request.AssetInfoNewRequest;
-import com.ailicai.app.model.request.UserInfoRequest;
 import com.ailicai.app.model.response.AssetInfoNewResponse;
-import com.ailicai.app.model.response.UserInfoResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
@@ -62,7 +60,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.lang.ref.SoftReference;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -258,10 +255,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleLoginEvent(LoginEvent event) {
         if (event.isLoginSuccess()) {
+            assetInfoNewResponse = new AssetInfoNewResponse();
             setUIData();
             refreshMyDataFromServer();
         } else {
             loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
+            assetInfoNewResponse = new AssetInfoNewResponse();
             setUIData();
         }
         mScrollView.smoothScrollTo(0, 0);
@@ -420,7 +419,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         yestodayIncome.setText(assetInfoNewResponse.getYestodayIncome());
         totalIncome.setText(assetInfoNewResponse.getTotalIncome());
         accountBalance.setText(assetInfoNewResponse.getAccountBalance());
-        rewardsMoney.setText("待发收益" + 0.00 + "元");
+        rewardsMoney.setText("待发收益" + assetInfoNewResponse.getInviteReward() + "元");
         if (assetInfoNewResponse.getPurchaseCount() > 0) {
             purchaseView.setVisibility(View.VISIBLE);
             purchaseAmount.setText(assetInfoNewResponse.getPurchaseCount() + "笔共" + assetInfoNewResponse.getPurchaseAmount());
@@ -501,6 +500,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
      */
     void refreshMyDataFromServer() {
         if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            assetInfoNewResponse = new AssetInfoNewResponse();
             setUIData();
             return;
         }
@@ -530,6 +530,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             public void onFailInfo(String errorInfo) {
                 //showContentView();
                 mSwipeLayout.setRefreshing(false);
+                assetInfoNewResponse = new AssetInfoNewResponse();
                 setUIData();
                 ToastUtil.showInCenter(errorInfo);
             }
@@ -540,9 +541,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
      * 获取用户信息
      */
     public void getUserInfo() {
-        UserInfoRequest request = new UserInfoRequest();
-        request.setUserId((int) UserInfo.getInstance().getUserId());
-        ServiceSender.exec(this, request, new UserInfoResponseIwjwRespListener(this));
+        //UserInfoRequest request = new UserInfoRequest();
+        //request.setUserId((int) UserInfo.getInstance().getUserId());
+        //ServiceSender.exec(this, request, new UserInfoResponseIwjwRespListener(this));
     }
 
     @Override
@@ -728,6 +729,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         return MyPreference.getInstance().read(userId + "VoucherRedDotIsShow", false);
     }
 
+    /*
     private static class UserInfoResponseIwjwRespListener extends IwjwRespListener<UserInfoResponse> {
 
         private SoftReference<MineFragment> personalCenterFragmentSoftReference;
@@ -753,6 +755,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             ToastUtil.showInCenter(errorInfo);
         }
     }
+    */
 
 
 }

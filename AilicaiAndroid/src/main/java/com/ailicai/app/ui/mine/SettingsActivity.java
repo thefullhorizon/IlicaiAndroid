@@ -10,15 +10,20 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
 import com.ailicai.app.common.utils.MapUtil;
 import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.common.utils.MyPreference;
+import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.StringUtil;
 import com.ailicai.app.eventbus.ExitEvent;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.UserInfo;
+import com.ailicai.app.ui.login.UserInfoBase;
+import com.ailicai.app.ui.login.UserManager;
 import com.ailicai.app.ui.paypassword.PayPwdManageActivity;
 import com.ailicai.app.widget.DialogBuilder;
 import com.huoqiu.framework.util.CheckDoubleClick;
@@ -64,6 +69,39 @@ public class SettingsActivity extends BaseBindActivity {
         } else if (savedInstanceState != null) {
             dataMap = MyIntent.getData(savedInstanceState);
             setUserInfo(dataMap);
+        }
+    }
+
+    /**
+     * 获取页面传参的数据Map
+     *
+     * @return
+     */
+    public Map<String, Object> getDataMap() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
+            long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
+            UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
+            Map<String, Object> dataMap = ObjectUtil.newHashMap();
+            dataMap.put(CommonTag.PERSONAL_USER_ID, infoBase.getUserId());
+            dataMap.put(CommonTag.PERSONAL_USER_NAME, infoBase.getRealName());
+            dataMap.put(CommonTag.PERSONAL_USER_R_NAME, infoBase.getrName());
+            dataMap.put(CommonTag.PERSONAL_USER_SEX, infoBase.getGender());
+            dataMap.put(CommonTag.PERSONAL_USER_PHONE, infoBase.getMobile());
+            dataMap.put(CommonTag.PERSONAL_USER_ISREALNAMEVERIFY, infoBase.getIsRealNameVerify());
+            dataMap.put(CommonTag.PERSONAL_USER_IDCARDNUMBER, infoBase.getIdCardNo());
+            return dataMap;
+        }
+        return ObjectUtil.newHashMap();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Map<String, Object> dataMap = getDataMap();
+        if (MapUtil.getInt(dataMap, CommonTag.PERSONAL_USER_ISREALNAMEVERIFY) == 1) {
+            mRealName.setText("已实名");
+        } else {
+            mRealName.setText("");
         }
     }
 
