@@ -89,7 +89,7 @@ public class PushBootService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(intent.getIntExtra(CLEAR_NOTIFICATION,0) == 1){
+        if(intent != null && intent.getIntExtra(CLEAR_NOTIFICATION,0) == 1){
             if(pushBridgeService != null){
                 //应用小米的实现类在jar包中，无法修改，需要单独修改
                 if(pushBridgeService instanceof MiPushBridgeService){
