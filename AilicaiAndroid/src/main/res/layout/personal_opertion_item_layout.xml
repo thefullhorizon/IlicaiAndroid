@@ -5,23 +5,189 @@
     android:background="@color/global_background"
     android:orientation="vertical">
 
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/mine_top_margin_bg_scroll"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical" />-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="170dp"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical" />-->
+
+    <!--</LinearLayout>-->
+
     <LinearLayout
+        android:id="@+id/mine_top_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/mine_top_margin_bg_scroll"
+            android:id="@+id/mine_top_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#f15a4c"
             android:orientation="vertical" />
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:gravity="center"
-            android:orientation="vertical" />
+            android:background="#f15a4c">
 
+
+            <LinearLayout
+                android:id="@+id/mine_not_login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="别让你的钱睡大觉zZ"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvLogin"
+                    style="@style/text_16_f15a4c"
+                    android:layout_width="132dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_transparent_solid_corner_2dp"
+                    android:gravity="center"
+                    android:text="@string/mine_login_btn_text"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/mine_login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|bottom"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <LinearLayout
+                    android:id="@+id/assets_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/text_14_ffffff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="总资产 (元)" />
+
+                        <com.ailicai.app.widget.TextViewTF
+                            android:id="@+id/tv_eyes_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_8"
+                            android:text="@string/eyes_opening"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/totalAsset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="0.00"
+                        android:textColor="#ffffff"
+                        android:textSize="40sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/yestoday_money"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/text_12_ffffff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="昨日收益 (元)" />
+
+                        <TextView
+                            android:id="@+id/yestodayIncome"
+                            style="@style/text_16_ffffff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="0.00" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/_1"
+                        android:layout_height="36dp"
+                        android:background="#ff9090" />
+
+                    <LinearLayout
+                        android:id="@+id/total_money"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/text_12_ffffff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="累计收益 (元)" />
+
+                        <TextView
+                            android:id="@+id/totalIncome"
+                            style="@style/text_16_ffffff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="0.00" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </FrameLayout>
     </LinearLayout>
 
 

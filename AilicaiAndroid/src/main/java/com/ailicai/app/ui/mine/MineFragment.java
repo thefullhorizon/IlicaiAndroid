@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
@@ -67,7 +68,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MineFragment extends BaseBindFragment implements ObservableScrollViewCallbacks {
+public class MineFragment extends BaseBindFragment implements ObservableScrollViewCallbacks, SwipeRefreshLayout.OnRefreshListener {
 
     @Bind(R.id.title_root)
     RelativeLayout titleRoot;
@@ -100,18 +101,20 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     LinearLayout mAllView;
     @Bind(R.id.mine_top_head)
     LinearLayout mineTopHead;
-    @Bind(R.id.mine_top_head_bg)
-    LinearLayout mineTopHeadBg;
+    //@Bind(R.id.mine_top_head_bg)
+    //LinearLayout mineTopHeadBg;
     @Bind(R.id.mine_not_login)
     LinearLayout mineNotLogin;
     @Bind(R.id.mine_login)
     LinearLayout mineLogin;
     @Bind(R.id.mine_top_margin)
     LinearLayout mineTopMargin;
-    @Bind(R.id.mine_top_margin_bg)
-    LinearLayout mineTopMarginBg;
-    @Bind(R.id.mine_top_margin_bg_scroll)
-    LinearLayout mineTopMarginScroll;
+    @Bind(R.id.title_bg)
+    FrameLayout titleBg;
+    //@Bind(R.id.mine_top_margin_bg)
+    //LinearLayout mineTopMarginBg;
+    //@Bind(R.id.mine_top_margin_bg_scroll)
+    //LinearLayout mineTopMarginScroll;
     @Bind(R.id.tvLogin)
     TextView tvLogin;
     @Bind(R.id.userPhoto)
@@ -136,6 +139,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     LinearLayout purchaseView;
     @Bind(R.id.purchaseAmount)
     TextView purchaseAmount;
+    @Bind(R.id.swipe)
+    SwipeRefreshLayout mSwipeLayout;
     private MinePresenter mPresenter;
     private boolean eyeOpen = false;
     private AssetInfoNewResponse assetInfoNewResponse;
@@ -190,10 +195,15 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         }
         EventBus.getDefault().register(this);
 
+        mSwipeLayout.setOnRefreshListener(this);
+        mSwipeLayout.setColorSchemeResources(R.color.main_red_color);
+
         mineTopMargin.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
-        mineTopMarginScroll.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
-        mineTopMarginBg.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
+        //mineTopMarginScroll.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
+        //mineTopMarginBg.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
         ((RelativeLayout.LayoutParams) titleRoot.getLayoutParams()).setMargins(0, CommonUtil.getStatusBarHeight(getWRActivity()), 0, 0);
+
+        titleBg.setAlpha(0);
 
         //添加顶部用户信息区域布局文件(动画效果)
         CommonUtil.addAnimForView(mAllView);
@@ -212,6 +222,11 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
         eyeOpen = MyPreference.getInstance().read("eyeOpen", false);
         MsgLiteView.refreshNoticeNums(null);
+    }
+
+    @Override
+    public void onRefresh() {
+        refreshMyDataFromServer();
     }
 
     @Override
@@ -279,25 +294,28 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     @Override
     public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
-        int mFlexibleSpaceImageHeight = mineTopHead.getMeasuredHeight();
-        int scrollViewMeasuredHeight = mScrollView.getChildAt(0).getMeasuredHeight();
-        int height = mScrollView.getHeight();
-        if ((scrollViewMeasuredHeight - height) >= mFlexibleSpaceImageHeight) {
-            //onScrollDisplay(scrollY);
-        } else {
-            //顶部不滚动
-        }
         onScrollDisplay(scrollY);
     }
 
     public void onScrollDisplay(int scrollY) {
+        int mFlexibleSpaceImageHeight = mineTopHead.getMeasuredHeight();
+        int scrollViewMeasuredHeight = mScrollView.getChildAt(0).getMeasuredHeight();
+        int height = mScrollView.getHeight();
+
         float flexibleRange = mineTopHead.getMeasuredHeight() - CommonUtil.getTitleHeight(getWRActivity()) - CommonUtil.getStatusBarHeight(getWRActivity());
         float alpha = ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1);
+
+        if ((scrollViewMeasuredHeight - height) >= mFlexibleSpaceImageHeight) {
+            titleBg.setAlpha(alpha);
+        } else {
+            titleBg.setAlpha(0);
+        }
+
         mineNotLogin.setAlpha(1 - alpha);
         mineLogin.setAlpha(1 - alpha);
-        int minOverlayTransitionY = CommonUtil.getTitleHeight(getWRActivity()) - mineTopHead.getMeasuredHeight();
-        mineTopHeadBg.setTranslationY(ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
-        mineTopHead.setTranslationY(-scrollY);
+        //int minOverlayTransitionY = CommonUtil.getTitleHeight(getWRActivity()) - mineTopHead.getMeasuredHeight();
+        //mineTopHeadBg.setTranslationY(ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
+        //mineTopHead.setTranslationY(-scrollY);
     }
 
     @Override
@@ -504,12 +522,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             public void onJsonSuccess(AssetInfoNewResponse jsonObject) {
                 //showContentView();
                 assetInfoNewResponse = jsonObject;
+                mSwipeLayout.setRefreshing(false);
                 setUIData();
             }
 
             @Override
             public void onFailInfo(String errorInfo) {
                 //showContentView();
+                mSwipeLayout.setRefreshing(false);
                 setUIData();
                 ToastUtil.showInCenter(errorInfo);
             }
