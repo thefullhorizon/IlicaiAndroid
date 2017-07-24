@@ -147,7 +147,7 @@ public class AssetPie extends View{
             for (int i = 0 ; i < data.size(); i++){
                 int num = (int)data.get(i).getAmount();
                 if(num != 0){
-                    float needDrawAngle = num * 1.0f / (int)Double.parseDouble(totalAsset) * 360;
+                    float needDrawAngle = num * 1.0f / (int)Double.parseDouble(totalAsset.replace(",","")) * 360;
                     if (Math.min(needDrawAngle, animatedValue - currentAngle) >= 0) {
                         mPaint.setColor(Color.parseColor(data.get(i).getColor()));
                         mCanvas.drawArc(oval, currentAngle, Math.min(needDrawAngle - dp2px(1), animatedValue - currentAngle), true, mPaint);
