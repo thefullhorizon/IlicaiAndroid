@@ -95,7 +95,7 @@ public class ReserveCancelPwdCheckDialog extends BaseBuyFinancePay {
     @Override
     BuyDialogShowInfo getDispalyInfo() {
         return new BuyDialogShowInfo.BankPayBuild()
-                .setPayTypFrom("取消成功后，预约金将在钱包解冻")
+                .setPayTypFrom("取消成功后，预约金将在账户余额解冻")
                 .setAmount(mInterface.showAmount())
                 .setMoneyOutStr(mInterface.showMoneyOutStr())
                 .create();

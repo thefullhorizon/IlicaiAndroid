@@ -31,6 +31,7 @@ public class Iwjwh5UrlResponse extends Response {
     private String transferUrl; // 首页 投资中 四个tab之一转让
     private String aboutAiLiCaiUrl;// "我的"里面 关于爱理财
     private String openAccountUrl;// 开户
+    private String bindNewOpenAccountUrl; // 重新绑定安全卡
 
     public String getHelpCenterUrl() {
         return helpCenterUrl;
@@ -198,5 +199,13 @@ public class Iwjwh5UrlResponse extends Response {
 
     public void setOpenAccountUrl(String openAccountUrl) {
         this.openAccountUrl = openAccountUrl;
+    }
+
+    public String getBindNewOpenAccountUrl() {
+        return bindNewOpenAccountUrl;
+    }
+
+    public void setBindNewOpenAccountUrl(String bindNewOpenAccountUrl) {
+        this.bindNewOpenAccountUrl = bindNewOpenAccountUrl;
     }
 }

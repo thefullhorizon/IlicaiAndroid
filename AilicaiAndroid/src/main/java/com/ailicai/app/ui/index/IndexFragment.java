@@ -98,7 +98,7 @@ public class IndexFragment extends BaseWebViewFragment {
         addJumpUiActions(new WebJumpUiAction("indexmore") {
             @Override
             public void jumpUi(HashMap<String, String> params) {
-               IndexActivity.goToInvestTab(getWRActivity(),1);
+               IndexActivity.goToInvestTab(getWRActivity(),0);
             }
         });
     }

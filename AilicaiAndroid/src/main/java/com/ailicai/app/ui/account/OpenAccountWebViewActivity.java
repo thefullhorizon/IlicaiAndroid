@@ -16,6 +16,7 @@ import com.ailicai.app.ui.base.webview.WebJumpUiAction;
 import com.ailicai.app.ui.base.webview.WebMethodCallAction;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.paypassword.PayPwdResetActivity;
+import com.alibaba.fastjson.JSON;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,8 +27,9 @@ import java.util.Map;
 
 public class OpenAccountWebViewActivity extends BaseWebViewActivity {
 
-    private static final int RC_TO_SCAN_PAGE = 1;
+    private static final int RC_TO_SCAN_BANK_CARD = 1;
     private static final int RC_TO_DATA_BACK = 2;
+    private static final int RC_TO_SCAN_ID_CARD = 3;
 
     // 扫完卡，结果页点下一步，需要打开的url，这个url是去填写银行信息的
     private String cardBinNextUrl = "";
@@ -37,6 +39,15 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
 //        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getOpenAccountUrl());
         dataMap.put(BaseWebViewActivity.URL, "http://192.168.1.44:2323/account/password-all");
 //        dataMap.put(BaseWebViewActivity.URL, "http://10.7.249.203:6088/account/password-all");
+        dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+        dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
+        MyIntent.startActivity(context, OpenAccountWebViewActivity.class, dataMap);
+    }
+
+    public static void goToBindNewSafeCard(Context context) {
+        Map<String, String> dataMap = ObjectUtil.newHashMap();
+//        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getBindNewOpenAccountUrl());
+        dataMap.put(BaseWebViewActivity.URL, "http://192.168.1.44:2323/account/id-binded");
         dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
         dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
         MyIntent.startActivity(context, OpenAccountWebViewActivity.class, dataMap);
@@ -104,11 +115,19 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
             @Override
             public void jumpUi(HashMap<String, String> params) {
 
-                if(params.containsKey("url")) {
+                if (params.containsKey("url")) {
                     cardBinNextUrl = params.get("url");
                     Intent intent = new Intent(OpenAccountWebViewActivity.this, BankCardScanActivity.class);
-                    startActivityForResult(intent, RC_TO_SCAN_PAGE);
+                    startActivityForResult(intent, RC_TO_SCAN_BANK_CARD);
                 }
+            }
+        });
+
+        addJumpUiActions(new WebJumpUiAction("scanid") {
+            @Override
+            public void jumpUi(HashMap<String, String> params) {
+                Intent intent = new Intent(OpenAccountWebViewActivity.this, IDCardScanActivity.class);
+                startActivityForResult(intent, RC_TO_SCAN_ID_CARD);
             }
         });
 
@@ -134,24 +153,38 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
         loadJs("javascript:callJs('getcardno'," + cardNumber + ")");
     }
 
+    private void callJSToTellIdCardInfo(String name, String idNo) {
+        HashMap map = new HashMap();
+        map.put("name", name);
+        map.put("idNo",idNo);
+        loadJs("javascript:callJs('getidentity'," + JSON.toJSONString(map)  + ")");
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode != RESULT_OK) return;
+        if (resultCode != RESULT_OK) return;
 
-        if(requestCode == RC_TO_SCAN_PAGE) {
+        if (requestCode == RC_TO_SCAN_BANK_CARD) {
             Intent intent = new Intent(this, BankCardResultActivity.class);
             if (data != null) {
                 Bundle extras = data.getExtras();
-                extras.putString("url",cardBinNextUrl);
+                extras.putString("url", cardBinNextUrl);
                 intent.putExtras(extras);
             }
             startActivityForResult(intent, RC_TO_DATA_BACK);
-        } else if(requestCode == RC_TO_DATA_BACK) {
+        } else if (requestCode == RC_TO_DATA_BACK) {
             if (data != null) {
                 Bundle extras = data.getExtras();
                 callJSToTellCardNumber(extras.getString("bankCardNumber"));
+            }
+        } else if (requestCode == RC_TO_SCAN_ID_CARD) {
+            if (data != null) {
+                Bundle extras = data.getExtras();
+                String name = extras.getString("cardName");
+                String idCardNo = extras.getString("idCardNumber");
+                callJSToTellIdCardInfo(name, idCardNo);
             }
         }
     }

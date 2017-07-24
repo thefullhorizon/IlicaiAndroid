@@ -201,8 +201,8 @@ public class BankCardSafeDetailActivity extends BaseBindActivity {
     }
 
     private void goToChangeSafeCard() {
-        // 换安全卡就是开户同样页面，让H5自己去判断
-        OpenAccountWebViewActivity.goToOpenAccount(this);
+        // 换安全卡
+        OpenAccountWebViewActivity.goToBindNewSafeCard(this);
     }
 
     private void goToExSafeCardInValid() {

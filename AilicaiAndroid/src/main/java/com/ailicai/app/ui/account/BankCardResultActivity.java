@@ -99,7 +99,7 @@ public class BankCardResultActivity extends BaseBindActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        topTitleView.setDark(openAccountFeature.isDark);
+        topTitleView.setDark(false);
 
         topTitleView.addRightText("支持银行", new View.OnClickListener() {
             @Override
@@ -112,7 +112,6 @@ public class BankCardResultActivity extends BaseBindActivity {
                 Map<String, String> dataMap = ObjectUtil.newHashMap();
                 dataMap.put(WebViewActivity.TITLE, "支持银行");
                 dataMap.put(WebViewActivity.NEED_REFRESH, "0");
-                dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
                 dataMap.put(WebViewActivity.URL, openAccountFeature.supportCardsUrl);
                 MyIntent.startActivity(BankCardResultActivity.this, WebViewActivity.class, dataMap);
             }

@@ -142,10 +142,17 @@
 
         <activity
             android:name=".ui.account.OpenAccountWebViewActivity"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.account.BankCardScanActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name=".ui.account.IDCardScanActivity"
             android:configChanges="orientation|keyboardHidden|locale"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />

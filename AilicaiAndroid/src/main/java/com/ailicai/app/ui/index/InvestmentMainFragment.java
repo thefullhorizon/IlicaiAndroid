@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.ailicai.app.R;
+import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.ui.base.BaseBindFragment;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
 
     @Override
     public void init(Bundle savedInstanceState) {
+        CommonUtil.uiSystemBarTint(getActivity(), mTabLayout, getResources().getDimensionPixelOffset(R.dimen._44));
         inittabView();
     }
 
