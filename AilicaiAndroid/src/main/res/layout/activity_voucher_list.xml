@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         manyi:hasCancel="true"
         manyi:hasLeft="true"
-        manyi:isDark="true"
         manyi:titleview_title_text="选择卡券" />
 
     <android.support.v4.widget.SwipeRefreshLayout

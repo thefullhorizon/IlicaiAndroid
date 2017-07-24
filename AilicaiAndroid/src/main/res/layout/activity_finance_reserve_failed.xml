@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         manyi:hasLeft="false"
-        manyi:isDark="true"
         manyi:titleview_title_text="结果" />
 
     <LinearLayout

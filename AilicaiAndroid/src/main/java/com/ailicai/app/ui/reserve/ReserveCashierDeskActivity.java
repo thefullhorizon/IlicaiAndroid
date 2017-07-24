@@ -247,7 +247,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
             if (amount > reserveResponse.getAvailableBalance()) {
                 isEnough = false;
                 rechargeAmountSum = amount - reserveResponse.getAvailableBalance();
-                btConfirm.setText("钱包余额不足，需转入" + MathUtil.saveTwoDecimal(rechargeAmountSum) + "元");
+                btConfirm.setText("账户可用余额不足，需转入" + MathUtil.saveTwoDecimal(rechargeAmountSum) + "元");
             }
             tvInputErrorHint.setVisibility(View.GONE);
             tvBalance.setVisibility(View.VISIBLE);

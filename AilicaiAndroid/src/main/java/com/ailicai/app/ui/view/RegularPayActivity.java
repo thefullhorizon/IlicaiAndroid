@@ -374,7 +374,6 @@ public class RegularPayActivity extends BaseBindActivity {
     @OnClick(R.id.rl_select_voucher)
     public void onSelectVoucher() {
         //选择卡券页面
-        //TODO nanshan 选择卡券
 
         Intent intent = new Intent(this, VoucherListActivity.class);
         intent.putExtra(VoucherListActivity.EXTRA_PRODUCT_ID, productId);

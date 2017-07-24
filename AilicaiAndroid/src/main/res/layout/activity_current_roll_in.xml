@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         manyi:bg_color="@color/main_top_deep_line_color"
         manyi:hasDivider="false"
-        manyi:isDark="true"
         manyi:titleview_title_text="转入" />
 
     <com.ailicai.app.widget.RollHotTopicView

@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         manyi:hasDivider="false"
-        manyi:isDark="true"
         manyi:titleview_title_text="@string/tiyanbao_titile"/>
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/tiyanbao_swipe"

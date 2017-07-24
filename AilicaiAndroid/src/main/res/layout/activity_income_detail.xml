@@ -13,8 +13,7 @@
 
         <com.ailicai.app.widget.IWTopTitleView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            manyi:isDark="true"/>
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:id="@+id/llTitle"

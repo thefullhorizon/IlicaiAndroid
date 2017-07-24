@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         manyi:bg_color="@color/main_top_deep_color"
-        manyi:isDark="true"
         manyi:titleview_title_text="转出" />
 
     <com.ailicai.app.widget.RollHotTopicView

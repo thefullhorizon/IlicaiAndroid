@@ -7,13 +7,13 @@ package com.ailicai.app.ui.view.transaction;
 public enum TransactionEnum {
     // 交易类型 0：全部，1：转入，2：转出，3：购买，4：回款
     ALL(0, "全部", "全部交易"),
-    TRANSFER_IN(1, "转入", "钱包转入"),
-    TTRANSFER_OUT(2, "转出", "钱包转出"),
+    TRANSFER_IN(1, "转入", "转入"),
+    TTRANSFER_OUT(2, "转出", "转出"),
     BUY(3, "购买", "购买"),
     BACK_FUND(4, "回款", "回款"),
     PAY(5, "支付", "订单支付"),
     TRANSFER(6, "转让", "转让赎回"),
-    BACK_ALL(7, "退款", "退款到钱包");
+    BACK_ALL(7, "退款", "退款");
 
     private int code;
     private String item;
