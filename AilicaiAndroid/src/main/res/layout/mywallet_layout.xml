@@ -566,7 +566,6 @@
         android:layout_alignParentTop="true"
         app:bg_color="@color/color_f15a4c"
         app:hasDivider="false"
-        app:isDark="true"
         app:titleview_title_text="活期宝" />
 
     <LinearLayout

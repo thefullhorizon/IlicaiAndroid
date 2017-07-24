@@ -73,7 +73,7 @@
 
     <string name="input_text">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890</string>
 
-    <string name="reserve_pre_buy_time">预约成功后，%1s将为您申购以上房产宝</string>
+    <string name="reserve_pre_buy_time">预约成功后，%1s将为您提前申购以上房产宝</string>
 
 
     <string name="common_question_title_1">1.什么是房产宝？</string>

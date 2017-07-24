@@ -9,7 +9,6 @@
     <com.ailicai.app.widget.IWTopTitleView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        manyi:isDark="true"
         manyi:titleview_title_text="交易详情"/>
 
     <android.support.v4.widget.SwipeRefreshLayout

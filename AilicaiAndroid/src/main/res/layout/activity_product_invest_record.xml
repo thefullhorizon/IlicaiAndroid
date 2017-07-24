@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         manyi:hasLeft="true"
-        manyi:isDark="true"
         manyi:titleview_title_text="预约记录" />
     <FrameLayout
         android:layout_below="@id/title_view"

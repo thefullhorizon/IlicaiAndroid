@@ -21,8 +21,7 @@
             <com.ailicai.app.widget.IWTopTitleView
                 android:id="@+id/webview_title"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                manyi:isDark="true" />
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:id="@+id/transaction_filter_layout"

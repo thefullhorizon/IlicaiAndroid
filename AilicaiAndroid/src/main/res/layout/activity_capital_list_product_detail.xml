@@ -10,8 +10,7 @@
         android:id="@+id/iw_title_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        manyi:hasDivider="false"
-        manyi:isDark="true"/>
+        manyi:hasDivider="false"/>
 
     <ScrollView
         android:layout_width="match_parent"

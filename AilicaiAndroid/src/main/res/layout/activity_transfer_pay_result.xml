@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         manyi:bg_color="@color/main_top_deep_color"
         manyi:hasLeft="false"
-        manyi:isDark="true"
         manyi:titleview_title_text="结果" />
 
     <!--<LinearLayout-->
