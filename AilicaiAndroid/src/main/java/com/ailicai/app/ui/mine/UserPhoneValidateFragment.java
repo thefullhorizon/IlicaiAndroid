@@ -199,7 +199,7 @@ public class UserPhoneValidateFragment extends BaseBindFragment {
         super.onActivityCreated(savedInstanceState);
         if (getArguments() != null) {
             dataMap = MyIntent.getData(getArguments());
-            String p = StringUtil.formatMobileSub(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_PHONE));
+            String p = StringUtil.formatMobileSubTwo(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_PHONE));
             mValidateTips.setText(getString(R.string.personal_phone_modify_tips_1, p));
         }
         showInputMethod(mAuthCodeEditText.getmEditText());

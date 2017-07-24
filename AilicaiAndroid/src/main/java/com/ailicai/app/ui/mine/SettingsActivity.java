@@ -153,7 +153,7 @@ public class SettingsActivity extends BaseBindActivity {
     }
 
     public void setUserInfo(Map<String, Object> dataMap) {
-        mPhoneTag.setText(StringUtil.formatMobileSub(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_PHONE)));
+        mPhoneTag.setText(StringUtil.formatMobileSubTwo(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_PHONE)));
         if (MapUtil.getInt(dataMap, CommonTag.PERSONAL_USER_ISREALNAMEVERIFY) == 1) {
             mRealName.setText("已实名");
         } else {

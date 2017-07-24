@@ -143,7 +143,6 @@ public class StringUtil {
         return formatStr;
     }
 
-
     private static String getStarSub(String number) {
         String formatStr = "";
         if (number.length() == 11) {
@@ -159,6 +158,38 @@ public class StringUtil {
         }
         return formatStr;
     }
+
+    /**
+     * 只显示前二位+****+后二位
+     *
+     * @param number
+     * @return
+     */
+    public static String formatMobileSubTwo(String number) {
+        if (!ValidateUtil.isValidMobile(number))
+            return number;
+        String num1 = number.substring(0, 2);
+        String num2 = number.substring(number.length() - 2, number.length());
+        String formatStr = num1 + getStarSubTwo(number) + num2;
+        return formatStr;
+    }
+
+    private static String getStarSubTwo(String number) {
+        String formatStr = "";
+        if (number.length() == 11) {
+            formatStr = " ******* ";
+        } else if (number.length() == 12) {
+            formatStr = " ******** ";
+        } else if (number.length() == 13) {
+            formatStr = " ********* ";
+        } else if (number.length() == 14) {
+            formatStr = " ********** ";
+        } else if (number.length() == 15) {
+            formatStr = " **** **** ***";
+        }
+        return formatStr;
+    }
+
 
     /**
      * 将inputStr 根据 encode 编码，补空格
