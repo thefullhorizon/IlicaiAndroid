@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
+import com.ailicai.app.common.constants.CommonTag;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
+import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.eventbus.LoginEvent;
@@ -90,6 +92,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         EventBus.getDefault().register(this);
         setViewPageData();
         htmlUrlUpdate();
+        MyPreference.getInstance().write(CommonTag.IS_FIREST_START,false);
     }
 
     private void setViewPageData() {

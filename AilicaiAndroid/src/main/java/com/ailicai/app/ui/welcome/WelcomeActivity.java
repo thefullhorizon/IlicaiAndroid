@@ -14,8 +14,11 @@ import android.view.View;
 import com.ailicai.app.ApplicationPresenter;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
+import com.ailicai.app.common.constants.CommonTag;
 import com.ailicai.app.common.push.constant.CommonTags;
+import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ToastUtil;
+import com.ailicai.app.ui.guide.GuideActivity;
 import com.ailicai.app.ui.index.IndexActivity;
 import com.huoqiu.framework.analysis.ManyiAnalysis;
 import com.huoqiu.framework.backstack.BackOpFragmentActivity;
@@ -49,7 +52,11 @@ public class WelcomeActivity extends BackOpFragmentActivity {
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case SHOW_GUIDE_OR_HOME:
-                    toHomePage();
+                    if(MyPreference.getInstance().read(CommonTag.IS_FIREST_START,true)){
+                        goGuidePage();
+                    }else{
+                        toHomePage();
+                    }
                     break;
                 case SHOW_GUIDE_VIEW:
             }
@@ -57,19 +64,28 @@ public class WelcomeActivity extends BackOpFragmentActivity {
         }
     });
 
+    private void goGuidePage(){
+        startActivity(getDescIntent(GuideActivity.class));
+        finish();
+    }
+
     public void toHomePage() {
-        Intent mIntent = new Intent(this, IndexActivity.class);
+        startActivity(getDescIntent(IndexActivity.class));
+        finish();
+    }
+
+    private Intent getDescIntent(Class<?> cls){
+        Intent intent = new Intent(this, cls);
         Bundle bundle = getIntent().getExtras();
         if (null != bundle) {
-            mIntent.putExtras(bundle);
+            intent.putExtras(bundle);
         }
         Uri data = getIntent().getData();
         if (null != data) {
             //短信会有此值
-            mIntent.putExtra(CommonTags.URIDATA, data);
+            intent.putExtra(CommonTags.URIDATA, data);
         }
-        startActivity(mIntent);
-        finish();
+        return intent;
     }
 
 

@@ -122,6 +122,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppAppCompatTheme.TranslucentNavigation" />
+        <activity
+            android:name=".ui.guide.GuideActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.TranslucentNavigation" />
 
         <activity android:name=".ui.view.AssetInViewOfBirdActivity" />
 
