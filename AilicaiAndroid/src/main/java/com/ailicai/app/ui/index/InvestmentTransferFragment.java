@@ -54,10 +54,6 @@ public class InvestmentTransferFragment extends BaseWebViewFragment {
         loadUrl("http://192.168.1.44:2323/licai/transfer");
     }
 
-    private void startOrStopAutoRefresh(boolean should) {
-        loadJs("javascript:callJs('setautorefreshstate'," + should + ")");
-    }
-
     private void addAction() {
         addJumpUiActions(new WebJumpUiAction("regulardetail") {
             @Override

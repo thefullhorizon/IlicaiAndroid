@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.WindowManager;
 import android.webkit.WebSettings;
 
 import com.ailicai.app.common.utils.HashMapUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.eventbus.OpenAccountFinishEvent;
+import com.ailicai.app.ui.bankcard.BankCardListActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
@@ -55,7 +57,13 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setShowSystemBarTint(false);
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                        | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         super.onCreate(savedInstanceState);
+
+        rootView.setFitsSystemWindows(true);
         Map<String, String> dataMap = MyIntent.getData(getIntent());
         if (null != dataMap) {
             int needRefresh = HashMapUtil.getInt(dataMap, NEED_REFRESH);
@@ -136,6 +144,7 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
             public Boolean call(HashMap params) {
                 EventBus.getDefault().post(new OpenAccountFinishEvent());
                 LoginManager.updateUserInfoData();
+                BankCardListActivity.NEED_MANUAL_REFRESH_LIST = true;
                 return false;
             }
         });

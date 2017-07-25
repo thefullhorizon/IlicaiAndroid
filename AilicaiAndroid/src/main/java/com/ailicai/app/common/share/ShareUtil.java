@@ -57,8 +57,8 @@ public class ShareUtil {
     /**
      * 微信的相关信息
      */
-    public static final String WEIXIN_APP_ID = "wxb4ebbcc69ee4ba81";
-    public static final String WEIXIN_APP_SECRET = "b46b888a8197aebba04a5d7c9cc33f23";
+    public static final String WEIXIN_APP_ID = "wx5fab06910fc48bdb";
+    public static final String WEIXIN_APP_SECRET = "25d6695bba3788eea636690d5692d856";
     private static final int SUPPORT_FRIEND_LINE_LEVEL = 0x21020001;
     private IWXAPI mApi;
     /**

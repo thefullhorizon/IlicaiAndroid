@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -116,6 +117,24 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
         bottomNavigation.setUseElevation(true);
         mViewPager.setCurrentItem(0);
         MessageTypeProcessUtils.parseIntent(this);
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setChildFragmentAutoRefreshState(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
     }
 
     @Override
@@ -300,6 +319,22 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
             }
             MyApplication.getAppPresenter().onExitApp();
             finish();
+        }
+    }
+
+    public void setChildFragmentAutoRefreshState(int position) {
+        IndexFragment indexFragment  = (IndexFragment) nvgPagerAdapter.getItem(0);
+        InvestmentMainFragment investmentMainFragment = (InvestmentMainFragment) nvgPagerAdapter.getItem(1);
+
+        if(position == 0) {
+            indexFragment.startOrStopAutoRefresh(true);
+            investmentMainFragment.setAllRefreshStateStop();
+        } else  if(position == 1) {
+            indexFragment.startOrStopAutoRefresh(false);
+            investmentMainFragment.setAutoRefreshStateStart();
+        } else {
+            indexFragment.startOrStopAutoRefresh(false);
+            investmentMainFragment.setAllRefreshStateStop();
         }
     }
 }

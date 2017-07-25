@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import com.ailicai.app.R;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.ui.base.BaseBindFragment;
+import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
 
     @Override
     public void init(Bundle savedInstanceState) {
-        CommonUtil.uiSystemBarTint(getActivity(), mTabLayout, getResources().getDimensionPixelOffset(R.dimen._44));
+        CommonUtil.uiSystemBarTintNoTitle(getActivity(), mTabLayout);
         inittabView();
     }
 
@@ -65,6 +66,23 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
         mViewPager.setOffscreenPageLimit(4);
         mViewPager.setCurrentItem(0);
         mTabLayout.setupWithViewPager(mViewPager);
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setAutoRefreshStateStart();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     public void setCurrentItem(int index) {
@@ -121,4 +139,28 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
         }
     }
 
+    public void setAutoRefreshStateStart() {
+        if (mViewPagerAdapter != null) {
+
+            int selectedPosition = mViewPager.getCurrentItem();
+            BaseWebViewFragment selectedFragment = (BaseWebViewFragment) mViewPagerAdapter.getItem(selectedPosition);
+            selectedFragment.startOrStopAutoRefresh(true);
+
+            for (int i = 0; i <= 3; i++) {
+                if (i != selectedPosition) {
+                    BaseWebViewFragment unSelectedFragment = (BaseWebViewFragment) mViewPagerAdapter.getItem(i);
+                    unSelectedFragment.startOrStopAutoRefresh(false);
+                }
+            }
+        }
+    }
+
+    public void setAllRefreshStateStop() {
+        if (mViewPagerAdapter != null) {
+            for (int i = 0; i <= 3; i++) {
+                BaseWebViewFragment unSelectedFragment = (BaseWebViewFragment) mViewPagerAdapter.getItem(i);
+                unSelectedFragment.startOrStopAutoRefresh(false);
+            }
+        }
+    }
 }

@@ -80,6 +80,14 @@
             android:value="${UMENG_CHANNEL_VALUE}" />
 
         <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/AppCompatDialog"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
+        <activity
             android:name=".ui.welcome.WelcomeActivity"
             android:configChanges="orientation|keyboardHidden|locale"
             android:screenOrientation="portrait"
@@ -521,6 +529,14 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         // cashier desk end
+
+        <activity
+            android:name=".common.share.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
 
         <activity
             android:name=".common.push.ui.PushUiDispatcherActivity"

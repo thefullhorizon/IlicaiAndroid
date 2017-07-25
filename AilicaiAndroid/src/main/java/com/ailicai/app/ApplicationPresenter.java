@@ -399,14 +399,10 @@ public class ApplicationPresenter {
     */
     private void initUmeng() {
         ShareUtil.initWXConfig();//初始化微信相关ID
-
-        // 生产环境才会进行友盟统计
-        if(AILICAIBuildConfig.isProduction()) {
-            /**初始化友盟账号，BETA环境与生产环境分开统计，测试账号jervisshe@superjia.com*/
-            SocializeConstants.APPKEY = "5968a0394544cb6d3b001d73";
-            ManyiAnalysis.getInstance().initSelf(myApplication, SocializeConstants.APPKEY, getChannelNo());
-            MobclickAgent.setDebugMode(AILICAIBuildConfig.isDebug());
-        }
+        /**初始化友盟账号，BETA环境与生产环境分开统计，测试账号jervisshe@superjia.com*/
+        SocializeConstants.APPKEY = AILICAIBuildConfig.isProduction() ? "5968a0394544cb6d3b001d73" : "5968a0394544cb6d3b001d73";
+        ManyiAnalysis.getInstance().initSelf(myApplication, SocializeConstants.APPKEY, getChannelNo());
+        MobclickAgent.setDebugMode(AILICAIBuildConfig.isDebug());
     }
 
 

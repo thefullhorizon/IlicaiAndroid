@@ -3,6 +3,7 @@ package com.huoqiu.framework.analysis;
 import android.content.Context;
 
 import com.huoqiu.framework.rest.Configuration;
+import com.huoqiu.framework.util.LogUtil;
 import com.umeng.analytics.MobclickAgent;
 
 public class ManyiAnalysis {
@@ -92,6 +93,8 @@ public class ManyiAnalysis {
         MobclickAgent.setCatchUncaughtExceptions(false);
         MobclickAgent.updateOnlineConfig(context);
         AnalyticsConfig.setAppkey(key);*/
+        LogUtil.e("==============>",key);
+        LogUtil.e("==============>",channelNo);
     }
 
     /**

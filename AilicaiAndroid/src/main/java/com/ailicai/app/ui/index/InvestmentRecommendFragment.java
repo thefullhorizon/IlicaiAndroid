@@ -54,10 +54,6 @@ public class InvestmentRecommendFragment extends BaseWebViewFragment {
         loadUrl("http://192.168.1.44:2323/licai/recommend");
     }
 
-    private void startOrStopAutoRefresh(boolean should) {
-        loadJs("javascript:callJs('setautorefreshstate'," + should + ")");
-    }
-
     private void addAction() {
         addJumpUiActions(new WebJumpUiAction("regulardetail") {
             @Override

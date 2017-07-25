@@ -78,9 +78,9 @@ import butterknife.OnClick;
  * Created by duo.chen on 2016/7/5.17:13
  */
 
-public class BaseWebViewLayout extends LinearLayout {
+public class BaseObservableWebViewLayout extends LinearLayout {
 
-    public static final String TAG = "BaseWebViewActivity";
+    public static final String TAG = "BaseWebViewFragment";
     private static final String UA = " Iwjw_Android_";
 
     private static final String ROUTER_SERVER = "_router=server";
@@ -93,7 +93,7 @@ public class BaseWebViewLayout extends LinearLayout {
     @Bind(R.id.web_view_main_layout)
     View webViewMainLayout;
     @Bind(R.id.web_view)
-    WebView webView;
+    ObservableWebView webView;
     @Bind(R.id.webview_progress_line)
     ProgressBar loadingProgressBar;
     @Bind(R.id.webview_progress_wheel)
@@ -152,19 +152,19 @@ public class BaseWebViewLayout extends LinearLayout {
         }
     };
 
-    public BaseWebViewLayout(BaseActivity context) {
+    public BaseObservableWebViewLayout(BaseActivity context) {
         super(context);
         this.webViewActivitySoftReference = new SoftReference<>(context);
         initWebViews();
     }
 
-    public BaseWebViewLayout(BaseActivity context, AttributeSet attrs) {
+    public BaseObservableWebViewLayout(BaseActivity context, AttributeSet attrs) {
         super(context, attrs);
         this.webViewActivitySoftReference = new SoftReference<>(context);
         initWebViews();
     }
 
-    public BaseWebViewLayout(BaseActivity context, AttributeSet attrs, int defStyleAttr) {
+    public BaseObservableWebViewLayout(BaseActivity context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.webViewActivitySoftReference = new SoftReference<>(context);
         initWebViews();
@@ -213,7 +213,7 @@ public class BaseWebViewLayout extends LinearLayout {
                     handler.sendEmptyMessage(0);
                     LogUtil.i(TAG, "onPageStarted url " + url);
                     if (null != iWebListener) {
-                        iWebListener.onWebLoadStart(BaseWebViewLayout.this);
+                        iWebListener.onWebLoadStart(BaseObservableWebViewLayout.this);
                     }
                 }
 
@@ -223,7 +223,7 @@ public class BaseWebViewLayout extends LinearLayout {
                     setFirstBaseUrl(url);
                     loadFinish = true;
                     if (null != iWebListener) {
-                        iWebListener.onReceivedTitle(view.getTitle(), BaseWebViewLayout.this);
+                        iWebListener.onReceivedTitle(view.getTitle(), BaseObservableWebViewLayout.this);
                     }
                 }
 
@@ -304,7 +304,7 @@ public class BaseWebViewLayout extends LinearLayout {
                     super.onProgressChanged(view, newProgress);
 
                     if (null != iWebListener) {
-                        iWebListener.onProgressChanged(newProgress, BaseWebViewLayout.this);
+                        iWebListener.onProgressChanged(newProgress, BaseObservableWebViewLayout.this);
                     }
                 }
 
@@ -312,7 +312,7 @@ public class BaseWebViewLayout extends LinearLayout {
                 public void onReceivedTitle(WebView view, String title) {
                     super.onReceivedTitle(view, title);
                     if (null != iWebListener) {
-                        iWebListener.onReceivedTitle(title, BaseWebViewLayout.this);
+                        iWebListener.onReceivedTitle(title, BaseObservableWebViewLayout.this);
                     }
                 }
 
@@ -630,7 +630,7 @@ public class BaseWebViewLayout extends LinearLayout {
                 String callApi = isFakeApi ? fakeApi : api;
                 params = parseUrlParams(url, callbackName, apiName, fullApiName);
                 ServiceJsCallSender.exec(getWRContext(), isFakeApi,
-                        callApi, params, new CallapiserviceListener(BaseWebViewLayout.this, callBack));
+                        callApi, params, new CallapiserviceListener(BaseObservableWebViewLayout.this, callBack));
             }
         });
 
@@ -801,7 +801,7 @@ public class BaseWebViewLayout extends LinearLayout {
                 } else {
                     addTitleRightText(R.string.detail_forward, isDark
                             ? R.style.text_18_ffffff :
-                            R.style.text_18_00000000, new View.OnClickListener() {
+                            R.style.text_18_00000000, new OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (CheckDoubleClick.isFastDoubleClick()) return;
@@ -924,29 +924,29 @@ public class BaseWebViewLayout extends LinearLayout {
         swipeRefreshLayout.setEnabled(canRefresh);
     }
 
-    protected void addTitleRightText(int resId, int style, View.OnClickListener event) {
+    protected void addTitleRightText(int resId, int style, OnClickListener event) {
         topTitleView.addRightText(resId, style, event);
         if (isDark) {
             topTitleView.getRightText().setAlpha(1.0f);
         }
     }
 
-    public void addTitleRightText(String text, int style, View.OnClickListener event) {
+    public void addTitleRightText(String text, int style, OnClickListener event) {
         topTitleView.addRightText(text, style, event);
         if (isDark) {
             topTitleView.getRightText().setAlpha(1.0f);
         }
     }
 
-    protected void addTitleCustomView(View view, View.OnClickListener onClickListener) {
+    protected void addTitleCustomView(View view, OnClickListener onClickListener) {
         topTitleView.addMiddleView(view, onClickListener);
     }
 
-    protected void addLeftView(View view, View.OnClickListener onClickListener) {
+    protected void addLeftView(View view, OnClickListener onClickListener) {
         topTitleView.addLeftView(view, onClickListener);
     }
 
-    protected void addRightView(View view, View.OnClickListener onClickListener) {
+    protected void addRightView(View view, OnClickListener onClickListener) {
         topTitleView.addCustomeViewToRightLayout(view, onClickListener);
     }
 
@@ -1261,7 +1261,7 @@ public class BaseWebViewLayout extends LinearLayout {
     }
 
     public int getLayout() {
-        return R.layout.webview_layout;
+        return R.layout.observable_webview_layout;
     }
 
     public WebViewShareBean getWebViewShareBean() {
@@ -1321,11 +1321,11 @@ public class BaseWebViewLayout extends LinearLayout {
     }
 
     public interface IWebListener {
-        void onWebLoadStart(BaseWebViewLayout webViewLayout);
+        void onWebLoadStart(BaseObservableWebViewLayout webViewLayout);
 
-        void onProgressChanged(int newProgress, BaseWebViewLayout webViewLayout);
+        void onProgressChanged(int newProgress, BaseObservableWebViewLayout webViewLayout);
 
-        void onReceivedTitle(String title, BaseWebViewLayout webViewLayout);
+        void onReceivedTitle(String title, BaseObservableWebViewLayout webViewLayout);
     }
 
     public interface ITitleClickListener {
@@ -1339,10 +1339,10 @@ public class BaseWebViewLayout extends LinearLayout {
     private static class CallapiserviceListener extends IwjwRespListener {
 
         final StringBuilder js = new StringBuilder("javascript:");
-        private SoftReference<BaseWebViewLayout> webViewLayotSoftReference;
+        private SoftReference<BaseObservableWebViewLayout> webViewLayotSoftReference;
         private String callBack = "";
 
-        CallapiserviceListener(BaseWebViewLayout webViewLayout, String callBack) {
+        CallapiserviceListener(BaseObservableWebViewLayout webViewLayout, String callBack) {
             this.webViewLayotSoftReference = new SoftReference<>(webViewLayout);
             this.callBack = callBack;
         }
@@ -1410,7 +1410,7 @@ public class BaseWebViewLayout extends LinearLayout {
         }
     }
 
-    private void setScrollChangeListener() {
-        webView.getScrollY();
+    private void setScrollChangeListener(ObservableWebView.OnScrollChangedCallback changedCallback) {
+        webView.setOnScrollChangedCallback(changedCallback);
     }
 }

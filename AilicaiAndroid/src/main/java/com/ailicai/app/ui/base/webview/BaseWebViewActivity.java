@@ -23,7 +23,7 @@ import butterknife.Bind;
 public abstract class BaseWebViewActivity extends BaseBindActivity {
 
     @Bind(R.id.webview_root)
-    LinearLayout rootView;
+    protected LinearLayout rootView;
 
     public static final String TITLE = "title";
     public static final String URL = "url";

@@ -53,6 +53,10 @@ public abstract class BaseWebViewFragment extends BaseBindFragment {
         return R.layout.webview_layout_root;
     }
 
+    public void startOrStopAutoRefresh(boolean should) {
+        loadJs("javascript:callJs('setautorefreshstate'," + should + ")");
+    }
+
     @Override
     public void onBackPressed() {
 
