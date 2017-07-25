@@ -237,7 +237,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             }
         });
 
-        eyeOpen = MyPreference.getInstance().read("eyeOpen", false);
         MsgLiteView.refreshNoticeNums(null);
     }
 
@@ -255,7 +254,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @Override
     public void onDestroy() {
         EventBus.getDefault().unregister(this);
-        MyPreference.getInstance().write("eyeOpen", eyeOpen);
         super.onDestroy();
     }
 
@@ -387,6 +385,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             accountbalanceLayout.setVisibility(View.GONE);
             purchaseView.setVisibility(View.GONE);
             rewardsMoney.setVisibility(View.GONE);
+            long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
+            MyPreference.getInstance().write("eyeOpen_" + userId, eyeOpen);
         } else if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
             mineNotLogin.setVisibility(View.GONE);
             mineLogin.setVisibility(View.VISIBLE);
@@ -419,6 +419,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
 
             if (assetInfoNewResponse != null) {
+                eyeOpen = MyPreference.getInstance().read("eyeOpen_" + userId, false);
                 handlerEyesStatus();
                 //卡券红点
                 setVoucherRedDotState(assetInfoNewResponse.getVoucherRedPoint() > 0);
