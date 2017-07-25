@@ -15,6 +15,7 @@ import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.ShowRefreshNotifEvent;
+import com.ailicai.app.eventbus.UserInfoUpdateEvent;
 import com.ailicai.app.model.request.FreshMsgDataRequest;
 import com.ailicai.app.model.request.UserInfoRequest;
 import com.ailicai.app.model.request.account.AccountRequest;
@@ -24,7 +25,6 @@ import com.ailicai.app.model.response.account.AccountResponse;
 import com.ailicai.app.ui.base.FragmentHelper;
 import com.ailicai.app.ui.dialog.LoginDialog;
 import com.umeng.analytics.MobclickAgent;
-import com.xiaomi.mipush.sdk.MiPushClient;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -396,6 +396,9 @@ public class LoginManager {
         //loginIM(imName, pwd);
         UserManager.getInstance(MyApplication.getInstance()).saveUser(infoBase);
         UserInfo.getInstance().updateUserInfo(userInfo);
+
+        UserInfoUpdateEvent event = new UserInfoUpdateEvent();
+        EventBus.getDefault().post(event);
     }
 
     /*

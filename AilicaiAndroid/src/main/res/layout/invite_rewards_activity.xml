@@ -32,6 +32,17 @@
             android:layout_height="wrap_content"
             android:visibility="visible" />
 
+        <Button
+            android:id="@+id/invite_friend_btn"
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_height="45dp"
+            android:background="@drawable/invite_friend_btn_bg"
+            android:gravity="center"
+            android:text="马上邀请好友"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
     </FrameLayout>
 
 </LinearLayout>

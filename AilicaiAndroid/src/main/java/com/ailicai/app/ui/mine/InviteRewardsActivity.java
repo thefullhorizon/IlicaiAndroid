@@ -16,6 +16,7 @@ import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.DeviceUtil;
+import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.SpannableUtil;
 import com.ailicai.app.common.utils.ToastUtil;
@@ -28,6 +29,9 @@ import com.ailicai.app.model.response.InviteRecordResponse;
 import com.ailicai.app.model.response.InviteRewardResponse;
 import com.ailicai.app.model.response.RewardRecordResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
+import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListView;
 import com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListViewCallbacks;
@@ -35,8 +39,10 @@ import com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListViewScrollS
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by Gerry on 2017/7/18.
@@ -381,6 +387,20 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
                 getRewardRecord();
                 break;
         }
+    }
+
+    /**
+     * 邀请好友
+     */
+    @OnClick(R.id.invite_friend_btn)
+    void inviteFriend() {
+        Map<String, String> dataMap = ObjectUtil.newHashMap();
+        //dataMap.put(WebViewActivity.TITLE,  "");
+        //dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getInviteUrl());
+        dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+        dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
+        MyIntent.startActivity(mContext, WebViewActivity.class, dataMap);
     }
 
 }

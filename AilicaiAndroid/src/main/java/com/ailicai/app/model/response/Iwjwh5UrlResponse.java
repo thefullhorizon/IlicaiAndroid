@@ -30,6 +30,7 @@ public class Iwjwh5UrlResponse extends Response {
     private String netLoanUrl; // 首页 投资中 四个tab之一网贷
     private String transferUrl; // 首页 投资中 四个tab之一转让
     private String aboutAiLiCaiUrl;// "我的"里面 关于爱理财
+    private String inviteUrl;
     private String openAccountUrl;// 开户
     private String bindNewOpenAccountUrl; // 重新绑定安全卡
 
@@ -191,6 +192,14 @@ public class Iwjwh5UrlResponse extends Response {
 
     public void setAboutAiLiCaiUrl(String aboutAiLiCaiUrl) {
         this.aboutAiLiCaiUrl = aboutAiLiCaiUrl;
+    }
+
+    public String getInviteUrl() {
+        return inviteUrl;
+    }
+
+    public void setInviteUrl(String inviteUrl) {
+        this.inviteUrl = inviteUrl;
     }
 
     public String getOpenAccountUrl() {

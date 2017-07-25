@@ -18,7 +18,9 @@ import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.StringUtil;
+import com.ailicai.app.eventbus.EditUserInfoEvent;
 import com.ailicai.app.eventbus.ExitEvent;
+import com.ailicai.app.eventbus.UserInfoUpdateEvent;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.UserInfo;
@@ -29,6 +31,8 @@ import com.ailicai.app.widget.DialogBuilder;
 import com.huoqiu.framework.util.CheckDoubleClick;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Map;
 
@@ -96,15 +100,20 @@ public class SettingsActivity extends BaseBindActivity {
         return ObjectUtil.newHashMap();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Map<String, Object> dataMap = getDataMap();
-        if (MapUtil.getInt(dataMap, CommonTag.PERSONAL_USER_ISREALNAMEVERIFY) == 1) {
-            mRealName.setText("已实名");
-        } else {
-            mRealName.setText("");
-        }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleEditUserInfoEvent(EditUserInfoEvent event) {
+        mPhoneTag.setText(StringUtil.formatMobileSubTwo(event.getMobile()));
+    }
+
+    /**
+     * 用户信息获取接口返回后发送事件
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleUserInfoUpdateEvent(UserInfoUpdateEvent event) {
+        dataMap = getDataMap();
+        setUserInfo(dataMap);
     }
 
     @Override

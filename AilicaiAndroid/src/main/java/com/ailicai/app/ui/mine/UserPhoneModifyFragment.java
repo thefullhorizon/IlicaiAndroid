@@ -30,6 +30,7 @@ import com.ailicai.app.eventbus.SmsCodeEvent;
 import com.ailicai.app.model.request.GetVerifyCodeRequest;
 import com.ailicai.app.model.response.UserInfoResponse;
 import com.ailicai.app.ui.base.BaseBindFragment;
+import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.ManyiEditText;
 import com.huoqiu.framework.analysis.ManyiAnalysis;
@@ -516,6 +517,7 @@ public class UserPhoneModifyFragment extends BaseBindFragment {
         event.setGender(response.getGender());
         event.setMobile(response.getMobile());
         EventBus.getDefault().post(event);
+        LoginManager.updateUserInfoData();
         if (getActivity() != null) {
             getActivity().finish();
         }
