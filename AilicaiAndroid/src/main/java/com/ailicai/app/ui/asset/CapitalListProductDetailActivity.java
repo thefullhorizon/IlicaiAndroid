@@ -35,6 +35,7 @@ import com.ailicai.app.ui.view.CapitalActivity;
 import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
 import com.ailicai.app.ui.view.TransferPayActivity;
 import com.ailicai.app.ui.view.TransferRecordH5Activity;
+import com.ailicai.app.ui.view.reserveredrecord.ReserveRecordListPresenter;
 import com.ailicai.app.widget.CapitalProductProgressBar;
 import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
@@ -568,8 +569,7 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
             @Override
             public void onPayComplete(Object object) {
                 SystemUtil.showOrHideSoftInput(CapitalListProductDetailActivity.this);
-                //TODO nanshan
-//                ReserveRecordListPresenter.requestForBookingCancel(CapitalListProductDetailActivity.this);
+                ReserveRecordListPresenter.requestForBookingCancel(CapitalListProductDetailActivity.this);
             }
 
             @Override

@@ -61,6 +61,7 @@ public class CapitalActivity extends BaseBindActivity implements
 
     private static final int REQUEST_FOR_PROCESS = 0x00;
     public static final String TAB = "TAB";
+    public static final String APPLY = "apply";
     public static final String EXPIRED = "Expired";
     public static final String HOLD = "hold";
 
@@ -180,6 +181,10 @@ public class CapitalActivity extends BaseBindActivity implements
 
         if (null != getIntent() && !TextUtils.isEmpty(getIntent().getStringExtra(TAB))) {
             switch (getIntent().getStringExtra(TAB)) {
+                case APPLY:
+                    tabSpecified = true;
+                    regularApply();
+                    break;
                 case EXPIRED:
                     tabSpecified = true;
                     regularExpired();

@@ -9,6 +9,7 @@ import com.ailicai.app.model.request.ReserveRecordListRequest;
 import com.ailicai.app.model.response.ReserveRecordBuyListResponse;
 import com.ailicai.app.model.response.ReserveRecordListResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.buy.ReserveCancelInterface;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.widget.DialogBuilder;
 import com.huoqiu.framework.rest.Response;

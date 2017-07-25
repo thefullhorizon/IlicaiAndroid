@@ -24,7 +24,6 @@ import java.util.List;
 public class AssetPie extends View{
 
     private List<AssetPieBean> data;
-    private List<String> colorData;
     private String defaultColor = "#e6e6e6";
 
     private Paint mPaint;//饼状画笔
@@ -142,7 +141,7 @@ public class AssetPie extends View{
     private void drawTorus(final Canvas mCanvas) {
 
         //画背景环
-        if (data != null && data.size() > 0){
+        if (!"0.00".equals(totalAsset) && data != null && data.size() > 0){
             float currentAngle = 0.0f;
             for (int i = 0 ; i < data.size(); i++){
                 int num = (int)data.get(i).getAmount();

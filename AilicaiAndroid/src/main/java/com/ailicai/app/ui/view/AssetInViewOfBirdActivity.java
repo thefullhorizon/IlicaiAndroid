@@ -119,6 +119,7 @@ public class AssetInViewOfBirdActivity extends BaseBindActivity {
     @OnClick(R.id.apply_layout)
     public void applyClick(View v) {
         Intent intent = new Intent(this, CapitalActivity.class);
+        intent.putExtra(CapitalActivity.TAB, CapitalActivity.APPLY);
         startActivity(intent);
 
     }

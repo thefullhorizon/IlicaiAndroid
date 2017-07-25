@@ -13,6 +13,7 @@ import com.ailicai.app.model.request.ReserveCancelRequest;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.FragmentHelper;
 import com.ailicai.app.ui.buy.IwPwdPayResultListener;
+import com.ailicai.app.ui.buy.ReserveCancelInterface;
 import com.ailicai.app.ui.buy.ReserveCancelPwdCheckDialog;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.widget.BottomRefreshListView;
