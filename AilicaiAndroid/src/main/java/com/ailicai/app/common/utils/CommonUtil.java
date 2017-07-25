@@ -35,6 +35,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommonUtil {
+
+    private static DecimalFormat df4                = new DecimalFormat("#,##0.00");
+    private static DecimalFormat df5                = new DecimalFormat("#0.00");
+
     @TargetApi(11)
     public static void addAnimForView(View rootView) {
 
@@ -548,4 +552,14 @@ public class CommonUtil {
 
         void OnDoubleClick(View v);
     }
+
+    public static String formatDouble(double amt) {
+
+        if (amt < 1000) {
+            return df5.format(amt);
+        } else {
+            return df4.format(amt);
+        }
+    }
+
 }

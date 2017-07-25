@@ -10,7 +10,6 @@
         android:id="@+id/top_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:bg_color="@color/main_top_deep_color"
         app:hasLeft="false"
         app:titleview_title_text="结果" />
 

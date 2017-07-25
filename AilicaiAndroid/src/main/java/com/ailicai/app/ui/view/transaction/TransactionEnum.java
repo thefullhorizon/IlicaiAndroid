@@ -11,7 +11,7 @@ public enum TransactionEnum {
     TTRANSFER_OUT(2, "转出", "转出"),
     BUY(3, "购买", "购买"),
     BACK_FUND(4, "回款", "回款"),
-    PAY(5, "支付", "订单支付"),
+//    PAY(5, "支付", "订单支付"),
     TRANSFER(6, "转让", "转让赎回"),
     BACK_ALL(7, "退款", "退款");
 

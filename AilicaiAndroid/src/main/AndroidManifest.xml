@@ -514,6 +514,13 @@
             android:theme="@style/AppAppCompatTheme.transparent"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
+        <activity
+            android:name=".ui.view.transaction.TransactionDetailActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAppCompatTheme.transparent"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
         // cashier desk end
 
         <activity

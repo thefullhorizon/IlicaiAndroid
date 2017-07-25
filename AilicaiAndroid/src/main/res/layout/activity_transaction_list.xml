@@ -37,7 +37,7 @@
                     android:alpha="0.87"
                     android:gravity="center"
                     android:text="全部交易"
-                    android:textColor="@color/white"
+                    android:textColor="#de000000"
                     android:textSize="18sp" />
 
                 <com.ailicai.app.widget.TextViewTF
@@ -47,7 +47,7 @@
                     android:layout_marginLeft="2dp"
                     android:gravity="center"
                     android:text="@string/chevous_down"
-                    android:textColor="@color/white"
+                    android:textColor="#de000000"
                     android:textSize="16sp" />
             </LinearLayout>
 

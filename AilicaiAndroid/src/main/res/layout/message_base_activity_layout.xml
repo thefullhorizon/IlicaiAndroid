@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@color/white"
         manyi:hasLeft="true"
         android:translationZ="1dp"
         manyi:titleview_title_text="消息" />

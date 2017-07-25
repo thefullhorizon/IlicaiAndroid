@@ -10,7 +10,6 @@
         android:id="@+id/top_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        manyi:bg_color="@color/main_top_deep_line_color"
         manyi:hasDivider="false"
         manyi:titleview_title_text="充值" />
 

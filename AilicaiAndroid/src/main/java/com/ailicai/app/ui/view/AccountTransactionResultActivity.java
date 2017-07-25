@@ -105,11 +105,11 @@ public class AccountTransactionResultActivity extends BaseBindActivity {
                     mResultFailDetail.setText(Html.fromHtml(getResources().getString(R.string.rollin_fail_tips_txt, "1",
                             topUpResponse.getBankName() + "(" + topUpResponse.getCardNo() + ")")));
                     mConfirmLeft.setText("完成");
-                    mConfirmRight.setText("继续转入");
+                    mConfirmRight.setText("继续充值");
                 }else if (WITHDRAW.equals(transactionType)){
                     mResultStatus.setText("提现失败");
                     mResultStatusDetail.setText(withdrawResponse.getMessage());
-                    mConfirmLeft.setText("继续转出");
+                    mConfirmLeft.setText("继续提现");
                     mConfirmRight.setText("交易记录");
                 }
                 EventLog.upEventLog("201610282", "show", "out_fail");

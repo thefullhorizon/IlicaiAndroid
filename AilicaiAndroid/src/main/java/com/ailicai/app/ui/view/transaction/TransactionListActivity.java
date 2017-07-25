@@ -137,7 +137,7 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.BUY, false));
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.BACK_FUND, false));
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.BACK_ALL, false));
-        mFilterDataList.add(new TransactionTypeModel(TransactionEnum.PAY, false));
+//        mFilterDataList.add(new TransactionTypeModel(TransactionEnum.PAY, false));
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.TRANSFER, false));
         mFilterAdapter = new FilterAdapter();
 

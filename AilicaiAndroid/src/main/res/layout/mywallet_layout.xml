@@ -564,7 +564,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        app:bg_color="@color/color_f15a4c"
         app:hasDivider="false"
         app:titleview_title_text="活期宝" />
 
