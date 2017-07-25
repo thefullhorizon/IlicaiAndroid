@@ -2,7 +2,9 @@ package com.ailicai.app.ui.index;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import com.ailicai.app.R;
 import com.ailicai.app.eventbus.OpenAccountFinishEvent;
 import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
@@ -10,6 +12,7 @@ import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
+import com.ailicai.app.widget.IWTopTitleView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -27,7 +30,8 @@ public class InvestmentMoneyFundFragment extends BaseWebViewFragment {
 
         EventBus.getDefault().register(this);
 
-        setNoTitle();
+        IWTopTitleView topTitleView = (IWTopTitleView) getView().findViewById(R.id.webview_title);
+        topTitleView.setVisibility(View.GONE);
         setLoadingStyle(BaseWebViewLayout.LoadingStyle.WHEEL);
         shouldShowLoading(true);
 

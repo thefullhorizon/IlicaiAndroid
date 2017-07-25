@@ -47,11 +47,11 @@ public class RewardRecordListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(rewardRecordList.size() == 0){
+        if (rewardRecordList.size() == 0) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.reward_record_adapter_empty, null);
-            TextView noData = (TextView)convertView.findViewById(R.id.no_record);
+            TextView noData = (TextView) convertView.findViewById(R.id.no_record);
             noData.setText("暂无奖励记录");
-        }else{
+        } else {
             ItemView itemView;
             if (convertView == null) {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.reward_record_adapter, null);
@@ -92,9 +92,15 @@ public class RewardRecordListAdapter extends BaseAdapter {
             switch (model.getStatus()) {
                 case 0:
                     status.setText("待发放");
+                    reward.setTextAppearance(mContext, R.style.text_14_212121);
+                    rewardTime.setTextAppearance(mContext, R.style.text_14_212121);
+                    status.setTextAppearance(mContext, R.style.text_14_212121);
                     break;
                 case 1:
                     status.setText("已发放");
+                    reward.setTextAppearance(mContext, R.style.text_14_757575);
+                    rewardTime.setTextAppearance(mContext, R.style.text_14_757575);
+                    status.setTextAppearance(mContext, R.style.text_14_757575);
                     break;
             }
         }

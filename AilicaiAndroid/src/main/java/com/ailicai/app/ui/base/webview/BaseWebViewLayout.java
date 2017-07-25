@@ -89,7 +89,7 @@ public class BaseWebViewLayout extends LinearLayout {
     private final static int TIMER_END = 1;
     protected CountDownTimer timer;
     @Bind(R.id.webview_title)
-    IWTopTitleView topTitleView;
+    protected IWTopTitleView topTitleView;
     @Bind(R.id.web_view_main_layout)
     View webViewMainLayout;
     @Bind(R.id.web_view)
