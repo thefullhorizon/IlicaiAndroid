@@ -204,6 +204,8 @@ public class LoginManager {
 
     public static LoginLocation loginPageLocation;
 
+    private static LoginDialog appointAreaTipsDialog;
+
     /**
      * @param activity      发起Activity，一般都是mainActivity
      * @param loginFromCode 发起登录请求的页面code，请参照LoginManager中的code定义
@@ -238,7 +240,11 @@ public class LoginManager {
 
     public static void showLoginDialog(final Activity activity, final Map<String, Object> dataMap) {
         FragmentHelper mFragmentHelper = new FragmentHelper(((FragmentActivity) activity).getSupportFragmentManager());
-        LoginDialog appointAreaTipsDialog = new LoginDialog();
+        if (appointAreaTipsDialog != null) {
+            appointAreaTipsDialog.dismiss();
+            appointAreaTipsDialog = null;
+        }
+        appointAreaTipsDialog = new LoginDialog();
         Bundle mBunndle = new Bundle();
         int fromPage = (int) dataMap.get(LoginManager.LOGIN_FROM);
         mBunndle.putInt(LoginManager.LOGIN_FROM, fromPage);

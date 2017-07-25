@@ -10,6 +10,7 @@
         android:id="@+id/tab_layou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:background="@color/white"
         app:tabIndicatorColor="@color/main_red_color"
         app:tabSelectedTextColor="@color/main_red_color"

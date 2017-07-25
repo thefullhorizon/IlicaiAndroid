@@ -36,7 +36,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
 
     @Override
     public void init(Bundle savedInstanceState) {
-        CommonUtil.uiSystemBarTintNoTitle(getActivity(), mTabLayout);
+        //CommonUtil.uiSystemBarTintNoTitle(getActivity(), mTabLayout);
         inittabView();
     }
 
@@ -51,7 +51,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
 
         mViewPagerAdapter = new OurViewPagerAdapter(getActivity(), getChildFragmentManager());
         Bundle bundleTJ = new Bundle();
-        mViewPagerAdapter.addNvgItem(pageTitles[0], InvestmentRecommendFragment.class, bundleTJ);
+        mViewPagerAdapter.addNvgItem(pageTitles[0], IndexFragment.class, bundleTJ);
 
         Bundle bundleWD = new Bundle();
         mViewPagerAdapter.addNvgItem(pageTitles[1], InvestmentNetLoanFragment.class, bundleWD);
