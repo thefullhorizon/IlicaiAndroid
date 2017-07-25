@@ -668,15 +668,15 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     //提现
     @OnClick(R.id.tv_account_balance_get_cash)
     void accountBalanceGetCashClick() {
-        if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
-            //设置安全卡弹窗
-        } else if (!NoSetSafeCardHint.isOpenAccount()) {
+        if (!NoSetSafeCardHint.isOpenAccount()) {
             //Map<String, String> dataMap = ObjectUtil.newHashMap();
             //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
             //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
 
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
+        } else if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
+            //设置安全卡弹窗
         } else {
             Intent intent1 = new Intent(getWRActivity(), AccountWithdrawActivity.class);
             startActivity(intent1);
@@ -687,15 +687,15 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     //充值
     @OnClick(R.id.tv_account_balance_charge)
     void accountBalanceChargeClick() {
-        if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
-            //设置安全卡弹窗
-        } else if (!NoSetSafeCardHint.isOpenAccount()) {
+        if (!NoSetSafeCardHint.isOpenAccount()) {
             //Map<String, String> dataMap = ObjectUtil.newHashMap();
             //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
             //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
 
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
+        } else if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
+            //设置安全卡弹窗
         } else {
             Intent intent1 = new Intent(getWRActivity(), AccountTopupActivity.class);
             startActivity(intent1);
