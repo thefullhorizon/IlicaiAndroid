@@ -34,12 +34,21 @@ public class AssetPie extends View{
     private RectF oval;
     private String totalAsset;
 
+    private int number = 0;
+    private int index = 0;
+
     public List<AssetPieBean> getData() {
         return data;
     }
 
     public void setData(List<AssetPieBean> data) {
         this.data = data;
+        for (int i = 0 ;i < data.size(); i++){
+            if(data.get(i).getAmount() != 0.0){
+                number ++;
+                index = i;
+            }
+        }
     }
 
     public int getmRadius() {
@@ -143,17 +152,28 @@ public class AssetPie extends View{
         //画背景环
         if (!"0.00".equals(totalAsset) && data != null && data.size() > 0){
             float currentAngle = 0.0f;
-            for (int i = 0 ; i < data.size(); i++){
-                int num = (int)data.get(i).getAmount();
-                if(num != 0){
-                    float needDrawAngle = num * 1.0f / (int)Double.parseDouble(totalAsset.replace(",","")) * 360;
-                    if (Math.min(needDrawAngle, animatedValue - currentAngle) >= 0) {
-                        mPaint.setColor(Color.parseColor(data.get(i).getColor()));
-                        mCanvas.drawArc(oval, currentAngle, Math.min(needDrawAngle - dp2px(1), animatedValue - currentAngle), true, mPaint);
+            if (number == 1) {
+                int num = (int)data.get(index).getAmount();
+                float needDrawAngle = num * 1.0f / (int)Double.parseDouble(totalAsset.replace(",","")) * 360;
+                if (Math.min(needDrawAngle, animatedValue - currentAngle) >= 0) {
+                    mPaint.setColor(Color.parseColor(data.get(index).getColor()));
+                    mCanvas.drawArc(oval, currentAngle, Math.min(needDrawAngle, animatedValue - currentAngle), true, mPaint);
+                }
+                currentAngle = currentAngle + needDrawAngle;
+            }else {
+                for (int i = 0 ; i < data.size(); i++){
+                    int num = (int)data.get(i).getAmount();
+                    if(num != 0){
+                        float needDrawAngle = num * 1.0f / (int)Double.parseDouble(totalAsset.replace(",","")) * 360;
+                        if (Math.min(needDrawAngle, animatedValue - currentAngle) >= 0) {
+                            mPaint.setColor(Color.parseColor(data.get(i).getColor()));
+                            mCanvas.drawArc(oval, currentAngle, Math.min(needDrawAngle - dp2px(1), animatedValue - currentAngle), true, mPaint);
+                        }
+                        currentAngle = currentAngle + needDrawAngle;
                     }
-                    currentAngle = currentAngle + needDrawAngle;
                 }
             }
+
         }else {
             mPaint.setColor(Color.parseColor(defaultColor));
             mCanvas.drawArc(oval, 0, 360, true, mPaint);
