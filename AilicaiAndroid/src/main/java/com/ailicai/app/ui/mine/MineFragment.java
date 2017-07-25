@@ -386,7 +386,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
             accountbalanceLayout.setVisibility(View.GONE);
             purchaseView.setVisibility(View.GONE);
-            rewardsView.setVisibility(View.GONE);
+            rewardsMoney.setVisibility(View.GONE);
         } else if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
             mineNotLogin.setVisibility(View.GONE);
             mineLogin.setVisibility(View.VISIBLE);
@@ -400,7 +400,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             userPhoto.setOnClickListener(userLayoutOnClickListener);
             accountbalanceLayout.setVisibility(View.VISIBLE);
             purchaseView.setVisibility(View.GONE);
-            rewardsView.setVisibility(View.GONE);
+            rewardsMoney.setVisibility(View.GONE);
 
             //根据登录的手机号获取已保存的用户信息
             long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
@@ -446,9 +446,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                 "0.00".equals(assetInfoNewResponse.getInviteReward()) ||
                 "0".equals(assetInfoNewResponse.getInviteReward()) ||
                 "0.0".equals(assetInfoNewResponse.getInviteReward())) {
-            rewardsView.setVisibility(View.GONE);
+            rewardsMoney.setVisibility(View.GONE);
         } else {
-            rewardsView.setVisibility(View.VISIBLE);
+            rewardsMoney.setVisibility(View.VISIBLE);
         }
         if (assetInfoNewResponse.getPurchaseCount() > 0) {
             purchaseView.setVisibility(View.VISIBLE);
@@ -468,9 +468,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                 "0.00".equals(assetInfoNewResponse.getInviteReward()) ||
                 "0".equals(assetInfoNewResponse.getInviteReward()) ||
                 "0.0".equals(assetInfoNewResponse.getInviteReward())) {
-            rewardsView.setVisibility(View.GONE);
+            rewardsMoney.setVisibility(View.GONE);
         } else {
-            rewardsView.setVisibility(View.VISIBLE);
+            rewardsMoney.setVisibility(View.VISIBLE);
         }
         if (assetInfoNewResponse.getPurchaseCount() > 0) {
             purchaseView.setVisibility(View.VISIBLE);

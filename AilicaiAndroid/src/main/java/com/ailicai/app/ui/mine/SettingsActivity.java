@@ -152,7 +152,14 @@ public class SettingsActivity extends BaseBindActivity {
     @OnClick(R.id.change_transaction_password)
     void changePassword() {
         if (!CheckDoubleClick.isFastDoubleClick()) {
-            MyIntent.startActivity(mContext, PayPwdManageActivity.class, "");
+            // 判断是否设置支付密码 0:否，1:是
+            boolean isSetPayPwd = UserManager.getInstance(MyApplication.getInstance()).isSetPayPwd();
+            if (isSetPayPwd) {
+                MyIntent.startActivity(mContext, PayPwdManageActivity.class, "");
+            } else {
+                //开户
+                MyIntent.startActivity(mContext, ProcessActivity.class, "");
+            }
         }
     }
 
@@ -168,15 +175,6 @@ public class SettingsActivity extends BaseBindActivity {
         } else {
             mRealName.setText("");
         }
-
-        // 判断是否设置支付密码 0:否，1:是
-        boolean isSetPayPwd = UserManager.getInstance(MyApplication.getInstance()).isSetPayPwd();
-        if (isSetPayPwd) {
-            mPasswordManage.setVisibility(View.VISIBLE);
-        } else {
-            mPasswordManage.setVisibility(View.GONE);
-        }
-
         setUIData();
     }
 
