@@ -40,6 +40,7 @@ import com.ailicai.app.common.utils.UrlDecoder;
 import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
+import com.ailicai.app.ui.asset.FinanceUpgradePresenter;
 import com.ailicai.app.ui.base.BaseActivity;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
@@ -872,9 +873,21 @@ public class BaseWebViewLayout extends LinearLayout {
             @Override
             public Object call(HashMap params) {
 //                // 请求是否是否维护中
-//                FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
-//                presenter.httpForSystemIsFix(getWRContext());
+                FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
+                presenter.httpForSystemIsFix(getWRContext());
                 return false;
+            }
+        });
+
+        addMethodCallAction(new WebMethodCallAction("getstatusbarheight") {
+            @Override
+            public Object call(HashMap params) {
+                if (getWRContext() != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        return CommonUtil.getStatusBarHeight(getWRContext());
+                    }
+                }
+                return 0;
             }
         });
     }

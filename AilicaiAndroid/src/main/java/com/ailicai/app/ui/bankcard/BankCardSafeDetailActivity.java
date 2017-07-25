@@ -196,11 +196,11 @@ public class BankCardSafeDetailActivity extends BaseBindActivity {
         infoBase.setHasSafeCard(0);
         UserManager.getInstance(MyApplication.getInstance()).saveUser(infoBase);
 
-        //请求用户信息接口更新用户信息
-        LoginManager.updateUserInfoData();
-
         // 设置accountInfo中无安全卡
         AccountInfo.setHasSafeCard(false);
+
+        //请求用户信息接口更新用户信息
+        LoginManager.updateUserInfoData();
     }
 
     private void goToChangeSafeCard() {

@@ -123,7 +123,7 @@ public abstract class IwjwRespListener<T> extends JsonHttpResponseListener<T> im
         //服务器端统计请求情况
         //在parseNetworkResponse已设置过
 //        getReportRequest().setResponseTime("" + (System.currentTimeMillis() - getStartTime()));
-        IwErrorLogSender.sendReport2(getReportRequest());
+//        IwErrorLogSender.sendReport2(getReportRequest());
 
         if (response instanceof Response) {
             Response responseTo = (Response) response;
@@ -275,20 +275,20 @@ public abstract class IwjwRespListener<T> extends JsonHttpResponseListener<T> im
         }
         LogUtil.e("VolleyError", errorlogmsg);
         LogUtil.d("shejianTime", mUrl + ":TimeMs:" + (System.currentTimeMillis() - getStartTime()));
-        if (isNeedReport) {
-            //服务器端统计请求情况
-            getReportRequest().setResponseTime("" + (System.currentTimeMillis() - getStartTime()));
-            getReportRequest().setErrorMessage(volleyError.getMessage());
-            if (volleyError.networkResponse != null) {
-                getReportRequest().setErrorCode(volleyError.networkResponse.statusCode + "");
-            }
-            IwErrorLogSender.sendReport2(getReportRequest());
-            if (!TextUtils.isEmpty(getRequrl())) {
-                String errorUrl = getRequrl().substring(getRequrl().lastIndexOf("/"));
-                getReportRequest().setErrorMessage(errorUrl + "  " + errorlogmsg);
-                IwErrorLogSender.sendReqErrorlogObj(getReportRequest());//基本都是正常数据错误
-            }
-        }
+//        if (isNeedReport) {
+//            //服务器端统计请求情况
+//            getReportRequest().setResponseTime("" + (System.currentTimeMillis() - getStartTime()));
+//            getReportRequest().setErrorMessage(volleyError.getMessage());
+//            if (volleyError.networkResponse != null) {
+//                getReportRequest().setErrorCode(volleyError.networkResponse.statusCode + "");
+//            }
+////            IwErrorLogSender.sendReport2(getReportRequest());
+//            if (!TextUtils.isEmpty(getRequrl())) {
+//                String errorUrl = getRequrl().substring(getRequrl().lastIndexOf("/"));
+//                getReportRequest().setErrorMessage(errorUrl + "  " + errorlogmsg);
+////                IwErrorLogSender.sendReqErrorlogObj(getReportRequest());//基本都是正常数据错误
+//            }
+//        }
         onFailInfo(null, errorInfo);
     }
 

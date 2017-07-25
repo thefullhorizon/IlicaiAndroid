@@ -40,6 +40,18 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
         inittabView();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setAutoRefreshStateStart();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        setAllRefreshStateStop();
+    }
+
     private void inittabView() {
         //设置TabLayout标签的显示方式
         mTabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);

@@ -201,7 +201,7 @@ public class UnbindPwdCheckDialog extends BaseBuyFinancePay {
     @Override
     BuyDialogShowInfo getDispalyInfo() {
         return new BuyDialogShowInfo.BankPayBuild()
-                .setMoneyOutStr(UserInfo.getInstance().isTestuser() ? "输入交易密码，以验证身份" : "验证交易密码后将解绑此卡并前去\n设置新安全卡")
+                .setMoneyOutStr("输入交易密码，以验证身份" )
                 .create();
     }
 

@@ -2,6 +2,7 @@ package com.ailicai.app.ui.base.webview;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.webkit.WebView;
 
 /**
