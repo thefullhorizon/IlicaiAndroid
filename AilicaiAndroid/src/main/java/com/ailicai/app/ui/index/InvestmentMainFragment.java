@@ -51,7 +51,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
 
         mViewPagerAdapter = new OurViewPagerAdapter(getActivity(), getChildFragmentManager());
         Bundle bundleTJ = new Bundle();
-        mViewPagerAdapter.addNvgItem(pageTitles[0], IndexFragment.class, bundleTJ);
+        mViewPagerAdapter.addNvgItem(pageTitles[0], InvestmentRecommendFragment.class, bundleTJ);
 
         Bundle bundleWD = new Bundle();
         mViewPagerAdapter.addNvgItem(pageTitles[1], InvestmentNetLoanFragment.class, bundleWD);
