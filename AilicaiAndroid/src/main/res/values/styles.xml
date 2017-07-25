@@ -55,6 +55,10 @@
         <item name="android:windowAnimationStyle">@style/SubMenuPanel</item>
     </style>
 
+    <style name="AppCompatDialog3" parent="AppCompatDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
     <style name="text_14_333333_e84a01">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/filter_house_text_color_selector</item>

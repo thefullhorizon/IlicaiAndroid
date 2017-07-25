@@ -13,8 +13,8 @@ import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.rsa.RSAEncrypt;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.model.request.PayPwdResetRequest;
+import com.ailicai.app.ui.account.IDCardScanActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
-import com.ailicai.app.ui.view.security.IDCardScanActivity;
 import com.huoqiu.framework.rest.Response;
 import com.huoqiu.framework.util.CheckDoubleClick;
 
