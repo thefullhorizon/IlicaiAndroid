@@ -131,7 +131,7 @@
                             style="@style/text_12_212121"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="累积在投金额" />
+                            android:text="累计在投金额" />
 
                         <TextView
                             android:id="@+id/investAmount"
