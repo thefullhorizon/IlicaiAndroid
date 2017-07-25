@@ -96,13 +96,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!--todo 需要修改-->
                 <data
                     android:host="www.iwjw.com"
-                    android:scheme="iwjw" />
+                    android:scheme="ilicai" />
                 <data
                     android:host="m.iwjw.com"
-                    android:scheme="iwjw" />
+                    android:scheme="ilicai" />
             </intent-filter>
 
             <!-- GrowingIO 启动圈选接口 -->
