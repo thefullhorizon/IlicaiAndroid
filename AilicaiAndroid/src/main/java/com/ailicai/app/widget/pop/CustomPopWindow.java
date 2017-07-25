@@ -37,7 +37,7 @@ public abstract class CustomPopWindow {
         } else {
             setPopupWindowTouchModal(mPopupWindow, false);
         }
-        Drawable dw = context.getResources().getDrawable(R.color.transparent);
+        Drawable dw = context.getResources().getDrawable(R.color.black_50_color);
         mPopupWindow.setBackgroundDrawable(dw);
 
         if (params.getAnimLocation() == 1) {

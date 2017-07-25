@@ -93,7 +93,6 @@ public class IncomeDetailActivity extends BaseBindActivity implements CustomPopW
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(String.valueOf(typeValue));
         if (fragment == null) {
             switch (typeValue) {
-
                 case WALLET:
                     fragment = new IncomeDetailWalletFragment();
                     break;
@@ -106,7 +105,6 @@ public class IncomeDetailActivity extends BaseBindActivity implements CustomPopW
                     break;
                 default:
                     break;
-
             }
         }
         return fragment;
