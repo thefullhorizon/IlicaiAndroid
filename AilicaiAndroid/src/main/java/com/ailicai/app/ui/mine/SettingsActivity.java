@@ -173,7 +173,7 @@ public class SettingsActivity extends BaseBindActivity {
         if (MapUtil.getInt(dataMap, CommonTag.PERSONAL_USER_ISREALNAMEVERIFY) == 1) {
             mRealName.setText("已实名");
         } else {
-            mRealName.setText("");
+            mRealName.setText("未实名");
         }
         setUIData();
     }

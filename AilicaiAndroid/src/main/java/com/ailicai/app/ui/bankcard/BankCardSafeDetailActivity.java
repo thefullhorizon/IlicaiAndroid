@@ -20,6 +20,7 @@ import com.ailicai.app.ui.buy.IwPwdPayResultListener;
 import com.ailicai.app.ui.buy.UnbindPwdCheckDialog;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.login.AccountInfo;
+import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.login.UserInfoBase;
 import com.ailicai.app.ui.login.UserManager;
@@ -43,11 +44,6 @@ import butterknife.OnClick;
  */
 public class BankCardSafeDetailActivity extends BaseBindActivity {
 
-    private BankCardSafeDetailPresenter presenter;
-    private BankCardDetailResponse response;
-    private String bankCardId;
-    private String bankCode;
-
     @Bind(R.id.imageViewBankIcon)
     ImageView imageViewBankIcon;
     @Bind(R.id.textViewBankName)
@@ -58,6 +54,10 @@ public class BankCardSafeDetailActivity extends BaseBindActivity {
     TextView textViewPayMax;
     @Bind(R.id.textViewWhatISafeCard)
     TextView textViewWhatISafeCard;
+    private BankCardSafeDetailPresenter presenter;
+    private BankCardDetailResponse response;
+    private String bankCardId;
+    private String bankCode;
 
     @Override
     public int getLayout() {
@@ -153,7 +153,7 @@ public class BankCardSafeDetailActivity extends BaseBindActivity {
     private void goToPropertyBiggerThanChangeLimit() {
         Intent intent = new Intent(this, ExSafeCardValidBiggerThanChangeLimitActivity.class);
         intent.putExtra("property", response.getTotalAsset());
-        intent.putExtra("changeLimit",response.getChangeLimit());
+        intent.putExtra("changeLimit", response.getChangeLimit());
         startActivity(intent);
     }
 
@@ -195,6 +195,9 @@ public class BankCardSafeDetailActivity extends BaseBindActivity {
         UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
         infoBase.setHasSafeCard(0);
         UserManager.getInstance(MyApplication.getInstance()).saveUser(infoBase);
+
+        //请求用户信息接口更新用户信息
+        LoginManager.updateUserInfoData();
 
         // 设置accountInfo中无安全卡
         AccountInfo.setHasSafeCard(false);

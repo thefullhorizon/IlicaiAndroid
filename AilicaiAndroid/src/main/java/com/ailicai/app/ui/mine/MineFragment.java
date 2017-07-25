@@ -668,7 +668,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.tv_account_balance_get_cash)
     void accountBalanceGetCashClick() {
         if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
-            return;
+            //设置安全卡弹窗
         } else if (!NoSetSafeCardHint.isOpenAccount()) {
             //Map<String, String> dataMap = ObjectUtil.newHashMap();
             //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
@@ -687,7 +687,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.tv_account_balance_charge)
     void accountBalanceChargeClick() {
         if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
-            return;
+            //设置安全卡弹窗
         } else if (!NoSetSafeCardHint.isOpenAccount()) {
             //Map<String, String> dataMap = ObjectUtil.newHashMap();
             //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
