@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
+import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MapUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
@@ -69,6 +70,7 @@ public class SettingsActivity extends BaseBindActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
         if (getIntent() != null) {
             dataMap = MyIntent.getData(getIntent());
             setUserInfo(dataMap);
@@ -76,6 +78,12 @@ public class SettingsActivity extends BaseBindActivity {
             dataMap = MyIntent.getData(savedInstanceState);
             setUserInfo(dataMap);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 
     /**
@@ -102,6 +110,7 @@ public class SettingsActivity extends BaseBindActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleEditUserInfoEvent(EditUserInfoEvent event) {
+        LogUtil.d("=====getMobile====1===" + event.getMobile());
         mPhoneTag.setText(StringUtil.formatMobileSubTwo(event.getMobile()));
     }
 
@@ -113,6 +122,7 @@ public class SettingsActivity extends BaseBindActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleUserInfoUpdateEvent(UserInfoUpdateEvent event) {
         dataMap = getDataMap();
+        LogUtil.d("=====getMobile====2===" + MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_PHONE));
         setUserInfo(dataMap);
     }
 
