@@ -294,6 +294,9 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         if (InviteRecordListTemp.size() < pageSize && inviteListAdapter.getCount() != 0) {
             inviteRecordListView.onAllLoaded();
             inviteRecordListView.setPromptText("没有更多数");
+            if (inviteListAdapter.getCount() == 1) {
+                inviteRecordListView.setPromptText("");
+            }
         }
 
         if (inviteRecordList.size() == 0) {
@@ -362,6 +365,9 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         if (rewardRecordListTemp.size() < pageSize && rewardRecordListAdapter.getCount() != 0) {
             rewardRecordListView.onAllLoaded();
             rewardRecordListView.setPromptText("没有更多数");
+            if (rewardRecordListAdapter.getCount() == 1) {
+                rewardRecordListView.setPromptText("");
+            }
         }
 
         if (rewardRecordList.size() == 0) {
@@ -410,6 +416,9 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
                 if (inviteRecordListCallBack.size() < pageSize) {
                     inviteRecordListView.onAllLoaded();
                     inviteRecordListView.setPromptText("没有更多数据");
+                    if (inviteListAdapter.getCount() == 1) {
+                        inviteRecordListView.setPromptText("");
+                    }
                 } else {
                     inviteRecordListView.setLoadingText("数据加载中");
                     loadData(true);
@@ -419,6 +428,9 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
                 if (rewardRecordListCallBack.size() < pageSize) {
                     rewardRecordListView.onAllLoaded();
                     rewardRecordListView.setPromptText("没有更多数据");
+                    if (rewardRecordListAdapter.getCount() == 1) {
+                        rewardRecordListView.setPromptText("");
+                    }
                 } else {
                     rewardRecordListView.setLoadingText("数据加载中");
                     loadData(true);
