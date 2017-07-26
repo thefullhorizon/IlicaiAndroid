@@ -1,12 +1,16 @@
 package com.ailicai.app.ui.account;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
 
+import com.ailicai.app.R;
+import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.utils.HashMapUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.ObjectUtil;
@@ -16,8 +20,11 @@ import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
 import com.ailicai.app.ui.base.webview.WebMethodCallAction;
+import com.ailicai.app.ui.html5.SupportUrl;
+import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.paypassword.PayPwdResetActivity;
+import com.ailicai.app.widget.IWTopTitleView;
 import com.alibaba.fastjson.JSON;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,6 +36,8 @@ import java.util.Map;
 
 public class OpenAccountWebViewActivity extends BaseWebViewActivity {
 
+    boolean isBackShowQuit = false;
+
     private static final int RC_TO_SCAN_BANK_CARD = 1;
     private static final int RC_TO_DATA_BACK = 2;
     private static final int RC_TO_SCAN_ID_CARD = 3;
@@ -38,9 +47,8 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
 
     public static void goToOpenAccount(Context context) {
         Map<String, String> dataMap = ObjectUtil.newHashMap();
-//        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getOpenAccountUrl());
-        dataMap.put(BaseWebViewActivity.URL, "http://192.168.1.44:2323/account/password-all");
-//        dataMap.put(BaseWebViewActivity.URL, "http://10.7.249.203:6088/account/password-all");
+        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getOpenAccountUrl());
+//        dataMap.put(BaseWebViewActivity.URL, "http://192.168.1.44:2323/account/password-all");
         dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
         dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
         MyIntent.startActivity(context, OpenAccountWebViewActivity.class, dataMap);
@@ -48,8 +56,8 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
 
     public static void goToBindNewSafeCard(Context context) {
         Map<String, String> dataMap = ObjectUtil.newHashMap();
-//        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getBindNewOpenAccountUrl());
-        dataMap.put(BaseWebViewActivity.URL, "http://192.168.1.44:2323/account/id-binded");
+        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getBindNewOpenAccountUrl());
+//        dataMap.put(BaseWebViewActivity.URL, "http://192.168.1.44:2323/account/id-binded");
         dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
         dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
         MyIntent.startActivity(context, OpenAccountWebViewActivity.class, dataMap);
@@ -108,6 +116,7 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
             addAction();
 
             EventBus.getDefault().register(this);
+            setTopBackListener();
         }
     }
 
@@ -145,6 +154,14 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
                 EventBus.getDefault().post(new OpenAccountFinishEvent());
                 LoginManager.updateUserInfoData();
                 BankCardListActivity.NEED_MANUAL_REFRESH_LIST = true;
+                return false;
+            }
+        });
+
+        addMethodCallAction(new WebMethodCallAction("isbackshowquit") {
+            @Override
+            public Boolean call(HashMap params) {
+                isBackShowQuit = (boolean) params.get("isbackshowquit");
                 return false;
             }
         });
@@ -201,5 +218,56 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleOpenAccountFinshEvent(OpenAccountFinishEvent finishEvent) {
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(isBackShowQuit) {
+            showCancelText();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    private void setTopBackListener() {
+        IWTopTitleView topTitleView = (IWTopTitleView) findViewById(R.id.webview_title);
+        topTitleView.setTitleOnClickListener(new IWTopTitleView.TopTitleOnClickListener() {
+            @Override
+            public boolean onBackClick() {
+                if(isBackShowQuit) {
+                    showCancelText();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+    }
+
+    private void showCancelText() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatDialog);
+        builder.setMessage("是否放弃开户");
+        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (AccountInfo.isRealNameVerify()) {
+                    EventLog.upEventLog("683", "abandon", "setcard");
+                } else {
+                    EventLog.upEventLog("682", "abandon", "setcard");
+                }
+                finish();
+            }
+        });
+        builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (AccountInfo.isRealNameVerify()) {
+                    EventLog.upEventLog("683", "unabandon", "setcard");
+                } else {
+                    EventLog.upEventLog("682", "unabandon", "setcard");
+                }
+            }
+        });
+        builder.create().show();
     }
 }

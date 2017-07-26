@@ -10,6 +10,7 @@ import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
+import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
 import com.ailicai.app.widget.IWTopTitleView;
 
@@ -52,8 +53,8 @@ public class InvestmentNetLoanFragment extends BaseWebViewFragment {
             }
         });
         addAction();
-//        loadUrl(SupportUrl.getSupportUrlsResponse().getNetLoanUrl());
-        loadUrl("http://192.168.1.44:2323/licai/loan");
+        loadUrl(SupportUrl.getSupportUrlsResponse().getNetLoanUrl());
+//        loadUrl("http://192.168.1.44:2323/licai/loan");
     }
 
     private void addAction() {

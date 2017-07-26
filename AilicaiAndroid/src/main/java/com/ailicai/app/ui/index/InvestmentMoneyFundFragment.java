@@ -53,8 +53,8 @@ public class InvestmentMoneyFundFragment extends BaseWebViewFragment {
             }
         });
         addAction();
-//        loadUrl(SupportUrl.getSupportUrlsResponse().getMonetaryFundUrl());
-        loadUrl("http://192.168.1.44:2323/licai/fund");
+        loadUrl(SupportUrl.getSupportUrlsResponse().getMonetaryFundUrl());
+//        loadUrl("http://192.168.1.44:2323/licai/fund");
     }
 
     private void addAction() {
