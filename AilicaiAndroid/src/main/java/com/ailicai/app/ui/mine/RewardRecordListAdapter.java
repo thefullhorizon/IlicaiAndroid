@@ -54,13 +54,13 @@ public class RewardRecordListAdapter extends BaseAdapter {
             return emptyView;
         } else {
             ItemView itemView;
-            if (convertView == null) {
+            //if (convertView == null) {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.reward_record_adapter, null);
                 itemView = new ItemView(convertView);
                 convertView.setTag(itemView);
-            } else {
-                itemView = (ItemView) convertView.getTag();
-            }
+            //} else {
+            //    itemView = (ItemView) convertView.getTag();
+            //}
             itemView.bindData((RewardRecord) getItem(position), position);
             return convertView;
         }

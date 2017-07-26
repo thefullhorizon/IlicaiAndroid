@@ -97,6 +97,9 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     private int offSet = 0;//数据偏移量(请求记录数之和)
     private int pageSize = 10;//每页记录数
 
+    private boolean isInviteBtnChecked = false;
+    private boolean isRewardBtnChecked = false;
+
     @Override
     public int getLayout() {
         return R.layout.invite_rewards_activity;
@@ -197,12 +200,22 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
 
     @OnClick(R.id.invite_record_rb)
     void inviteRecord() {
+        if (isInviteBtnChecked) {
+            return;
+        }
         loadInviteRecord();
+        isInviteBtnChecked = true;
+        isRewardBtnChecked = false;
     }
 
     @OnClick(R.id.reward_record_rb)
     void rewardRecord() {
+        if (isRewardBtnChecked) {
+            return;
+        }
         loadRewardRecord();
+        isInviteBtnChecked = false;
+        isRewardBtnChecked = true;
     }
 
 

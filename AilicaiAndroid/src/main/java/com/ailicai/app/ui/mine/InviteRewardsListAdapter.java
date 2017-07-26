@@ -54,13 +54,13 @@ public class InviteRewardsListAdapter extends BaseAdapter {
             return emptyView;
         } else {
             ItemView itemView;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.invite_rewards_adapter, null);
-                itemView = new ItemView(convertView);
-                convertView.setTag(itemView);
-            } else {
-                itemView = (ItemView) convertView.getTag();
-            }
+            //if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.invite_rewards_adapter, null);
+            itemView = new ItemView(convertView);
+            convertView.setTag(itemView);
+            //} else {
+            //   itemView = (ItemView) convertView.getTag();
+            //}
             itemView.bindData((InviteRecord) getItem(position), position);
             return convertView;
         }
