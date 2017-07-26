@@ -58,7 +58,7 @@
     <string name="mine_encyclopedias">购房攻略</string>
     <string name="mine_help_center">帮助与反馈</string>
     <string name="mine_service_tell_txt"><![CDATA[<font color="#212121">客服电话:</font><font color="#4a90e2">%s</font>]]></string>
-    <string name="mine_current_version">V%1$s%2$s%3$s</string>
+    <string name="mine_current_version">%1$s%2$s%3$s</string>
     <string name="mine_current_version_default">版本</string>
     <string name="brand_department_appointment_record">品牌公寓约看记录</string>
     <string name="my_password_manage_tips_txt">用于理财购买 / 转出</string>
