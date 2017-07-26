@@ -11,6 +11,7 @@ import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
 import com.ailicai.app.ui.html5.SupportUrl;
+import com.ailicai.app.ui.reserve.ReserveActivity;
 import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
 import com.ailicai.app.widget.IWTopTitleView;
 
@@ -81,6 +82,18 @@ public class InvestmentRecommendFragment extends BaseWebViewFragment {
                 startActivity(intent);
             }
         });
+
+        addJumpUiActions(new WebJumpUiAction("reserve") {
+            @Override
+            public void jumpUi(HashMap<String, String> params) {
+                goReserve();
+            }
+        });
+    }
+
+    private void goReserve() {
+        Intent intent = new Intent(getActivity(), ReserveActivity.class);
+        startActivity(intent);
     }
 
     @Override

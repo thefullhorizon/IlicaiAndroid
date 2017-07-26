@@ -36,7 +36,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
 
     @Override
     public void init(Bundle savedInstanceState) {
-        //CommonUtil.uiSystemBarTintNoTitle(getActivity(), mTabLayout);
+        CommonUtil.uiSystemBarTintNoTitle(getActivity(), mTabLayout);
         inittabView();
     }
 
