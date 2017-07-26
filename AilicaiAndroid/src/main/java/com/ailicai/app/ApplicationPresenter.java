@@ -55,8 +55,8 @@ public class ApplicationPresenter {
 
     //热晕TrackIO
     //安卓：APPKEY：90263f2940828d77ed70a034d17110ba、TOKEN：F6CDC6C0DE57692937BCC02080CBF3A5
-    private static final String REYUN_IW_USER_APPKEY = "90263f2940828d77ed70a034d17110ba";
-    private static final String REYUN_IW_USER_TOKEN = "F6CDC6C0DE57692937BCC02080CBF3A5";
+    private static final String REYUN_IW_USER_APPKEY = "4d39a4ac6106fec3036fcf81d184afa5";
+    private static final String REYUN_IW_USER_TOKEN = "7FB7DEEEF64E7DAFB23BB15A92F8E011";
     //Talking Data
     //App ID：E273855C7A2647F2873F0EBB1E376406
     private static final String TALKING_DATA_IW_USER_APPKEY = "E273855C7A2647F2873F0EBB1E376406";
@@ -287,8 +287,8 @@ public class ApplicationPresenter {
         registerGrowingIO();
         //热晕SDK
         initReYunTrackingIOSDK();
-        //Talking Data
-        initTalkingDataSDK();
+        //Talking Data 没在用
+        //initTalkingDataSDK();
         //initOneAPM();
         long bb = System.currentTimeMillis() - aaa;
         LogUtil.d("debuglog", "initModule:" + bb);
