@@ -193,14 +193,16 @@ public class PushBootService extends Service {
         if (started) {
             return;
         }
-        registerNotificationReceiver();
-        registerConnectivityReceiver();
-        registerUserPresentReceiver();
+
         taskSubmitter.submit(new Runnable() {
             public void run() {
                 mqttManager.createAndConnect(null, new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken iMqttToken) {
+                        //mqtt服务启动成功后再创建广播，解决由于start标记被置false时，重复创建，造成广播泄漏
+                        registerNotificationReceiver();
+                        registerConnectivityReceiver();
+                        registerUserPresentReceiver();
                         //在推送的PushUiDispatcherActivity页面接收，因为此页面需要上报的数据可能因为mqtt未连接而发送失败
                         EventBus.getDefault().post(new PushMessage());
                         enablePush();
