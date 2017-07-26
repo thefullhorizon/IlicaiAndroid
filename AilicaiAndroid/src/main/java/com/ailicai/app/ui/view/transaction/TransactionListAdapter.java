@@ -108,7 +108,7 @@ public class TransactionListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (model.isExpand() == false) {
-                    viewHolder.mTextResultIcon.setText(R.string.area);
+                    viewHolder.mTextResultIcon.setText(R.string.chevous_up);
                     viewHolder.mLayoutResonDesc.setVisibility(View.VISIBLE);
                     model.setIsExpand(true);
                 } else {

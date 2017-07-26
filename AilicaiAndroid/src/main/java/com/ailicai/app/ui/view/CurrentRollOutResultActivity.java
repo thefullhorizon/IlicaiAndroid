@@ -88,7 +88,7 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
                 break;
             case "P":
                 mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_waiting));
-                mImageIcon.setText(R.string.failured);
+                mImageIcon.setText(R.string.waiting);
                 mConfirmRepay.setText("完成");
                 mConfirmSuccess.setText("交易记录");
                 mMesgResultText.setText("转出进行中");
