@@ -185,24 +185,22 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         loadData(false);
     }
 
-    @OnClick(R.id.invite_record_rb)
-    void inviteRecord() {
-        if (inviteRecordRadioBtn.isChecked()) {
-            return;
-        }
-        loadInviteRecord();
-    }
-
-    @OnClick(R.id.reward_record_rb)
-    void rewardRecord() {
-        if (rewardRecordRadioBtn.isChecked()) {
-            return;
-        }
+    public void loadRewardRecord(){
         changeSecondTabsName();
         setThumbAnimation(thumb, -DeviceUtil.getScreenWidth() / 2, 0);
         inviteRecordListView.setVisibility(View.GONE);
         rewardRecordListView.setVisibility(View.VISIBLE);
         loadData(false);
+    }
+
+    @OnClick(R.id.invite_record_rb)
+    void inviteRecord() {
+        loadInviteRecord();
+    }
+
+    @OnClick(R.id.reward_record_rb)
+    void rewardRecord() {
+        loadRewardRecord();
     }
 
 
