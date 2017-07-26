@@ -30,7 +30,7 @@ public class RequestQueueFactory {
         Context context = MyApplication.getInstance().getApplicationContext();
         RequestQueue requestQueue;
         try {
-            SSLSocketFactory sslSocketFactory = createSSLSocketFactory(context, R.raw.iwjw, "iwjw_android");
+            SSLSocketFactory sslSocketFactory = createSSLSocketFactory(context, R.raw.ilicai, "iwjw_android");
             HurlStack stack = new RequestUrlStack(sslSocketFactory);
             requestQueue = Volley.newRequestQueue(context, stack);
         } catch (KeyStoreException

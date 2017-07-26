@@ -69,14 +69,15 @@
                 android:layout_marginTop="4dp"
                 android:src="@drawable/message_notification"
                 android:textColor="#616161"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/message_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/message_delete"
-                android:layout_toRightOf="@+id/message_icon"
+                android:layout_toRightOf="@id/message_icon"
                 android:textColor="#4A4A4A"
                 android:textSize="16sp" />
 

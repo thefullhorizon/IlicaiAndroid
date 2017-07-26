@@ -158,14 +158,14 @@ public class BaseMessageListAdapter extends BaseAdapter {
          if (remindType == PushMessage.REMINDTYPENEWVOUCHER
                 || remindType == PushMessage.REMINDTYPETIYANJI) {
             //新的现金券通知
-            viewHolderRemind.iconLeft.setText(R.string.mine_ticket);
+//            viewHolderRemind.iconLeft.setText(R.string.mine_ticket);
         }else if (remindType == PushMessage.REMINDTYPERESERVESUCCESS) {
 
-            viewHolderRemind.iconLeft.setText(R.string.tab_financial);
+//            viewHolderRemind.iconLeft.setText(R.string.tab_financial);
         } else if (remindType == PushMessage.REMINDTYPERESERVEFAIL ||
                 remindType == PushMessage.REMINDTYPELIUBIAO) {
 
-            viewHolderRemind.iconLeft.setText(R.string.tab_financial);
+//            viewHolderRemind.iconLeft.setText(R.string.tab_financial);
             if (remindType == PushMessage.REMINDTYPERESERVEFAIL) {
                 viewHolderRemind.messageViewDetailText.setText("重新购买");
             } else {
@@ -174,13 +174,13 @@ public class BaseMessageListAdapter extends BaseAdapter {
         }else if (remindType == PushMessage.REMINDTYPEHUANKUAN
                 ||remindType == PushMessage.REMINDTYPEZHUANRANG
                 || remindType == PushMessage.REMINDTYPEMUZIJIXI) {
-            viewHolderRemind.iconLeft.setText(R.string.tab_financial);
+//            viewHolderRemind.iconLeft.setText(R.string.tab_financial);
         } else if (remindType == PushMessage.REMINDTYPETYJTOFIHOME) {
-            viewHolderRemind.iconLeft.setText(R.string.mine_ticket);
+//            viewHolderRemind.iconLeft.setText(R.string.mine_ticket);
         }else if (remindType == PushMessage.REMINDTYPEBANKRECEIPTFAIL) {
-            viewHolderRemind.iconLeft.setText(R.string.personal_wallet);
+//            viewHolderRemind.iconLeft.setText(R.string.personal_wallet);
         } else {
-            viewHolderRemind.iconLeft.setText(R.string.remind_default);
+//            viewHolderRemind.iconLeft.setText(R.string.remind_default);
         }
     }
 

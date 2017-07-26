@@ -45,6 +45,7 @@ import com.ailicai.app.ui.base.BaseActivity;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.view.AssetInViewOfBirdActivity;
+import com.ailicai.app.ui.view.CapitalActivity;
 import com.ailicai.app.ui.view.MyWalletActivity;
 import com.ailicai.app.ui.voucher.CouponWebViewActivity;
 import com.ailicai.app.widget.IWTopTitleView;
@@ -520,7 +521,7 @@ public class BaseWebViewLayout extends LinearLayout {
             @Override
             public void jumpUi(HashMap<String, String> params) {
                 if (null != getWRContext()) {
-                    Intent intent = new Intent(getWRContext(), AssetInViewOfBirdActivity.class);
+                    Intent intent = new Intent(getWRContext(), CapitalActivity.class);
                     getWRContext().startActivity(intent);
                 }
             }
