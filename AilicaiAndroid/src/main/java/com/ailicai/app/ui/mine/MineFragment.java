@@ -124,8 +124,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     LinearLayout mineLogin;
     @Bind(R.id.mine_top_margin)
     LinearLayout mineTopMargin;
-    @Bind(R.id.title_bg)
-    FrameLayout titleBg;
+    @Bind(R.id.title_root_layout)
+    RelativeLayout titleBg;
     //@Bind(R.id.mine_top_margin_bg)
     //LinearLayout mineTopMarginBg;
     //@Bind(R.id.mine_top_margin_bg_scroll)
@@ -218,7 +218,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         mineTopMargin.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
         //mineTopMarginScroll.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
         //mineTopMarginBg.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
-        ((RelativeLayout.LayoutParams) titleRoot.getLayoutParams()).setMargins(0, CommonUtil.getStatusBarHeight(getWRActivity()), 0, 0);
+        ((FrameLayout.LayoutParams) titleRoot.getLayoutParams()).setMargins(0, CommonUtil.getStatusBarHeight(getWRActivity()), 0, 0);
 
         titleBg.setAlpha(0);
 
@@ -322,8 +322,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         float flexibleRange = mineTopHead.getMeasuredHeight() - CommonUtil.getTitleHeight(getWRActivity()) - CommonUtil.getStatusBarHeight(getWRActivity());
         float alpha = ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1);
 
-        if ((scrollViewMeasuredHeight - height) >= mFlexibleSpaceImageHeight) {
-            titleBg.setAlpha(alpha);
+        if ((scrollViewMeasuredHeight - height) >= mFlexibleSpaceImageHeight / 2) {
+            if (UserInfo.isLogin()) {
+                titleBg.setAlpha(alpha);
+            } else {
+                titleBg.setAlpha(0);
+            }
         } else {
             titleBg.setAlpha(0);
         }
