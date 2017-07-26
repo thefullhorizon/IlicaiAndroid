@@ -522,7 +522,7 @@ public class RegularPayResultActivity extends BaseBindActivity {
         if (response.getBannerList() == null || response.getBannerList().isEmpty()) {
             mLayoutBanner.setVisibility(View.GONE);
         } else {
-            //             上报展示量埋点
+            //上报展示量埋点
             Map logMap = new HashMap();
             logMap.put("banner_id", 0);
             logMap.put("banner_l",BANNER_LOCATION);

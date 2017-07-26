@@ -22,6 +22,7 @@ import com.ailicai.app.common.push.model.PushMessage;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
+import com.ailicai.app.common.utils.DeviceUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
@@ -72,6 +73,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     RelativeLayout titleRoot;
     @Bind(R.id.tv_new_msg_point)
     TextView mTvNewMsgPoint;
+    @Bind(R.id.top_bg)
+    FrameLayout topBg;
 
     boolean isMessageClick = false;
     boolean isCardClick = false;
@@ -161,6 +164,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     private MinePresenter mPresenter;
     private boolean eyeOpen = false;
     private AssetInfoNewResponse assetInfoNewResponse;
+    private int mFlexibleSpaceImageHeight;
 
     private LoginManager.LoginAction loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
     private OnClickListener mOnClickListener = new OnClickListener() {
@@ -212,9 +216,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         }
         EventBus.getDefault().register(this);
 
+        mFlexibleSpaceImageHeight = DeviceUtil.getScreenSize()[0] * 34 / 75;
+
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.main_red_color);
 
+        topBg.getLayoutParams().height = mFlexibleSpaceImageHeight;
         mineTopMargin.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
         //mineTopMarginScroll.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
         //mineTopMarginBg.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
@@ -457,7 +464,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         }
         if (assetInfoNewResponse.getPurchaseCount() > 0) {
             purchaseView.setVisibility(View.VISIBLE);
-            purchaseAmount.setText(assetInfoNewResponse.getPurchaseCount() + "笔共" + assetInfoNewResponse.getPurchaseAmount()+"元");
+            purchaseAmount.setText(assetInfoNewResponse.getPurchaseCount() + "笔共" + assetInfoNewResponse.getPurchaseAmount() + "元");
         } else {
             purchaseView.setVisibility(View.GONE);
         }

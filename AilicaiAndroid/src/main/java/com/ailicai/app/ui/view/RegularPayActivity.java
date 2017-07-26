@@ -734,7 +734,7 @@ public class RegularPayActivity extends BaseBindActivity {
             } else if (isLast && Double.parseDouble(money) > infoResponse.getAvailableBalance()) {
                 //最后一笔,且钱包余额不足
                 double offset = MathUtil.doubleFormatTwoDecimal(Double.parseDouble(money) - infoResponse.getAvailableBalance());
-                mConfirmBtn.setText("账户可用余额不足，需转入" + MathUtil.saveTwoDecimal(offset) + "元");
+                mConfirmBtn.setText("账户可用余额不足，需充值" + MathUtil.saveTwoDecimal(offset) + "元");
                 return true;
             } else if (isLast && Double.parseDouble(money) <= infoResponse.getAvailableBalance()) {
                 //最后一笔,且钱包余额充足
@@ -761,7 +761,7 @@ public class RegularPayActivity extends BaseBindActivity {
             } else if (Double.parseDouble(money) > infoResponse.getAvailableBalance()) {
                 //since 5.3变更去掉
                 double offset = MathUtil.doubleFormatTwoDecimal(Double.parseDouble(money) - infoResponse.getAvailableBalance());
-                mConfirmBtn.setText("账户可用余额不足，需转入" + MathUtil.saveTwoDecimal(offset) + "元");
+                mConfirmBtn.setText("账户可用余额不足，需充值" + MathUtil.saveTwoDecimal(offset) + "元");
                 return true;
                 /**
                  } else if (infoResponse.getBuyLimit() > 0 && Double.parseDouble(money) > infoResponse.getBuyLimit()) {

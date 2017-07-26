@@ -97,10 +97,10 @@ public class AssetInViewOfBirdActivity extends BaseBindActivity {
         mAssetPie.setTotalAsset(jsonObject.getTotalAsset());
         mAssetPie.startDraw();
 
-        mAvailableBalanceValue.setText(jsonObject.getAccountBalance()+"(元)");
-        mNetLoanValue.setText(jsonObject.getNetLoanBalance()+"(元)");
-        mApplyValue.setText(jsonObject.getPurchaseAmount()+"(元)");
-        mMoneyFundValue.setText(jsonObject.getTimeDepositBalance()+"(元)");
+        mAvailableBalanceValue.setText(jsonObject.getAccountBalance());
+        mNetLoanValue.setText(jsonObject.getNetLoanBalance());
+        mApplyValue.setText(jsonObject.getPurchaseAmount());
+        mMoneyFundValue.setText(jsonObject.getTimeDepositBalance());
 
         mEarningsAccumulated.setText(jsonObject.getTotalIncome());
         mEarningsNetLoan.setText(jsonObject.getNetLoanIncome());

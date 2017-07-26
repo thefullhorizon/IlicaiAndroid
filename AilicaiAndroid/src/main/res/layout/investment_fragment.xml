@@ -21,4 +21,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tab_layou" />
 
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_below="@+id/tab_layou" />
+
 </RelativeLayout>

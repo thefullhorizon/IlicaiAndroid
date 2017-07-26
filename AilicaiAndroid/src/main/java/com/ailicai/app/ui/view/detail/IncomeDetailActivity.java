@@ -115,7 +115,7 @@ public class IncomeDetailActivity extends BaseBindActivity implements CustomPopW
         if (CustomPopWindow.isFastDoubleClick()) {
             return;
         }
-        tvIcon.setText(getResources().getString(R.string.area));
+        tvIcon.setText(getResources().getString(R.string.chevous_up));
         CustomPopWindowParams params = new CustomPopWindowParams();
         params.setStyle(true);
         CustomPopWindow.showPopWindow(this, this, params);

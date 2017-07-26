@@ -121,8 +121,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:clickable="true"
                             android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
                             android:gravity="center"
                             android:orientation="vertical">
 
@@ -564,7 +564,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        app:bg_color="@color/color_f15a4c"
         app:hasDivider="false"
+        app:isDark="true"
         app:titleview_title_text="活期宝" />
 
     <LinearLayout

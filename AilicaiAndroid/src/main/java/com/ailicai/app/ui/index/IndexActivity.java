@@ -42,7 +42,7 @@ import butterknife.Bind;
 
 /**
  * name: IndexActivity <BR>
- * description: write class description <BR>
+ * description: 首页容器<BR>
  * create date: 2017/7/12
  *
  * @author: IWJW Zhou Xuan

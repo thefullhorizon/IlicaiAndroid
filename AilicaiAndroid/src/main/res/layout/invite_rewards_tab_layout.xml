@@ -61,7 +61,7 @@
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="60dp"
                     android:layout_weight="1"
-                    android:background="@android:color/transparent" />
+                    android:background="#f75a14" />
 
                 <View
                     android:layout_width="0dp"
@@ -69,7 +69,7 @@
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="60dp"
                     android:layout_weight="1"
-                    android:background="#f75a14" />
+                    android:background="@android:color/transparent" />
             </LinearLayout>
 
             <LinearLayout

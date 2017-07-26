@@ -37,7 +37,7 @@ public abstract class CustomPopWindow {
         } else {
             setPopupWindowTouchModal(mPopupWindow, false);
         }
-        Drawable dw = context.getResources().getDrawable(R.color.black_50_color);
+        Drawable dw = context.getResources().getDrawable(R.color.transparent);
         mPopupWindow.setBackgroundDrawable(dw);
 
         if (params.getAnimLocation() == 1) {
@@ -65,7 +65,7 @@ public abstract class CustomPopWindow {
         View view = null;
         ListView listView = null;
         if (params.isStyle()) {
-            setPopBackgroundAlpha((Activity) context, 0.7f);
+//            setPopBackgroundAlpha((Activity) context, 0.7f);
 
             view = View.inflate(context, R.layout.pop_custom_view2, null);
             listView = (ListView) view.findViewById(R.id.listView);

@@ -40,7 +40,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:textColor="#de000000"
-                android:text="@string/homepage_arrow_left"
+                android:text="@string/chevous_down"
                 android:textSize="16sp"/>
         </LinearLayout>
     </FrameLayout>

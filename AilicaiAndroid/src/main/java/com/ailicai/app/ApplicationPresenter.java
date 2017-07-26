@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import com.ailicai.app.common.constants.AILICAIBuildConfig;
 import com.ailicai.app.common.constants.CommonTag;
+import com.ailicai.app.common.constants.IWBuildConfig;
 import com.ailicai.app.common.push.PushUtil;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
@@ -29,6 +30,7 @@ import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.android.volley.VolleyError;
+import com.growingio.android.sdk.collection.GrowingIO;
 import com.huoqiu.framework.analysis.ManyiAnalysis;
 import com.huoqiu.framework.app.AppConfig;
 import com.huoqiu.framework.exception.RestException;
@@ -40,6 +42,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.L;
+import com.reyun.sdk.TrackingIO;
+import com.tendcloud.appcpa.TalkingDataAppCpa;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.common.SocializeConstants;
 
@@ -51,8 +55,8 @@ public class ApplicationPresenter {
 
     //热晕TrackIO
     //安卓：APPKEY：90263f2940828d77ed70a034d17110ba、TOKEN：F6CDC6C0DE57692937BCC02080CBF3A5
-    private static final String REYUN_IW_USER_APPKEY = "90263f2940828d77ed70a034d17110ba";
-    private static final String REYUN_IW_USER_TOKEN = "F6CDC6C0DE57692937BCC02080CBF3A5";
+    private static final String REYUN_IW_USER_APPKEY = "4d39a4ac6106fec3036fcf81d184afa5";
+    private static final String REYUN_IW_USER_TOKEN = "7FB7DEEEF64E7DAFB23BB15A92F8E011";
     //Talking Data
     //App ID：E273855C7A2647F2873F0EBB1E376406
     private static final String TALKING_DATA_IW_USER_APPKEY = "E273855C7A2647F2873F0EBB1E376406";
@@ -280,11 +284,11 @@ public class ApplicationPresenter {
         initUmeng();
         initBugly();
         //Register GrowingIO
-//        registerGrowingIO();
+        registerGrowingIO();
         //热晕SDK
         initReYunTrackingIOSDK();
-        //Talking Data
-        initTalkingDataSDK();
+        //Talking Data 没在用
+        //initTalkingDataSDK();
         //initOneAPM();
         long bb = System.currentTimeMillis() - aaa;
         LogUtil.d("debuglog", "initModule:" + bb);
@@ -292,61 +296,60 @@ public class ApplicationPresenter {
     }
 
     public void onExitApp() {
-        //TrackingIO.exitSdk();
+        TrackingIO.exitSdk();
     }
 
-//    public void registerGrowingIO() {
-//        String channelName = "iwjw";
-//        try {
-//            ApplicationInfo appInfo = myApplication.getPackageManager().getApplicationInfo(myApplication.getPackageName(), PackageManager.GET_META_DATA);
-//            channelName = appInfo.metaData.getString("UMENG_CHANNEL");
-//            LogUtil.d("=======channelName==========" + channelName);
-//        } catch (PackageManager.NameNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        GrowingIO configuration = GrowingIO.startWithConfiguration(myApplication, new com.growingio.android.sdk.collection.Configuration()
-//                .useID()
-//                .trackAllFragments()
-//                .setChannel(channelName));
-//        if (UserInfo.getInstance().isLogin()) {
-//            configuration.setCS1("userid", UserInfo.getInstance().getUserId() + "").setCS2("mobile", UserInfo.getInstance().getUserMobile());
-//        }
-//        configuration.setCS3("city", CityManager.getInstance().getCurrentCity().getCityName());
-//    }
+    public void registerGrowingIO() {
+        String channelName = "iwjw";
+        try {
+            ApplicationInfo appInfo = myApplication.getPackageManager().getApplicationInfo(myApplication.getPackageName(), PackageManager.GET_META_DATA);
+            channelName = appInfo.metaData.getString("UMENG_CHANNEL");
+            LogUtil.d("=======channelName==========" + channelName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        GrowingIO configuration = GrowingIO.startWithConfiguration(myApplication, new com.growingio.android.sdk.collection.Configuration()
+                .useID()
+                .trackAllFragments()
+                .setChannel(channelName));
+        if (UserInfo.getInstance().isLogin()) {
+            configuration.setCS1("userid", UserInfo.getInstance().getUserId() + "").setCS2("mobile", UserInfo.getInstance().getUserMobile());
+        }
+        //configuration.setCS3("city", CityManager.getInstance().getCurrentCity().getCityName());
+    }
 
     /**
      * 安卓：APPKEY：90263f2940828d77ed70a034d17110ba、TOKEN：F6CDC6C0DE57692937BCC02080CBF3A5
      */
     public void initReYunTrackingIOSDK() {
-//        if (IWBuildConfig.isProduction()) {
-//            String channelName = "iwjw";
-//            try {
-//                ApplicationInfo appInfo = myApplication.getPackageManager().getApplicationInfo(myApplication.getPackageName(), PackageManager.GET_META_DATA);
-//                channelName = appInfo.metaData.getString("UMENG_CHANNEL");
-//                LogUtil.d("=======channelName=====ReYun=====" + channelName);
-//            } catch (PackageManager.NameNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//            TrackingIO.initWithKeyAndChannelId(myApplication, REYUN_IW_USER_APPKEY, channelName);
-//            TrackingIO.setRegisterWithAccountID(channelName);
-//        }
+        if (IWBuildConfig.isProduction()) {
+            String channelName = "iwjw";
+            try {
+                ApplicationInfo appInfo = myApplication.getPackageManager().getApplicationInfo(myApplication.getPackageName(), PackageManager.GET_META_DATA);
+                channelName = appInfo.metaData.getString("UMENG_CHANNEL");
+                LogUtil.d("=======channelName=====ReYun=====" + channelName);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            TrackingIO.initWithKeyAndChannelId(myApplication, REYUN_IW_USER_APPKEY, channelName);
+            TrackingIO.setRegisterWithAccountID(channelName);
+        }
     }
 
     public void initTalkingDataSDK() {
-
-//        if (AILICAIBuildConfig.isProduction()) {
-//            String channelName = "iwjw";
-//            try {
-//                ApplicationInfo appInfo = myApplication.getPackageManager().getApplicationInfo(myApplication.getPackageName(), PackageManager.GET_META_DATA);
-//                channelName = appInfo.metaData.getString("UMENG_CHANNEL");
-//                LogUtil.d("=======channelName===TalkingData=======" + channelName);
-//            } catch (PackageManager.NameNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//            TalkingDataAppCpa.init(myApplication, TALKING_DATA_IW_USER_APPKEY, channelName);
-//            //关闭TalkingData的相关日志输出
-//            //TalkingDataAppCpa.setVerboseLogDisable();
-//        }
+        if (AILICAIBuildConfig.isProduction()) {
+            String channelName = "iwjw";
+            try {
+                ApplicationInfo appInfo = myApplication.getPackageManager().getApplicationInfo(myApplication.getPackageName(), PackageManager.GET_META_DATA);
+                channelName = appInfo.metaData.getString("UMENG_CHANNEL");
+                LogUtil.d("=======channelName===TalkingData=======" + channelName);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            TalkingDataAppCpa.init(myApplication, TALKING_DATA_IW_USER_APPKEY, channelName);
+            //关闭TalkingData的相关日志输出
+            //TalkingDataAppCpa.setVerboseLogDisable();
+        }
     }
 
     void initBugly() {

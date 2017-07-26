@@ -2,6 +2,8 @@ package com.ailicai.app.ui.index;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 
 import com.ailicai.app.R;
@@ -68,7 +70,22 @@ public class IndexFragment extends BaseWebViewFragment {
         CommonUtil.uiSystemBarTint(getActivity(), getView());
         IWTopTitleView topTitleView = (IWTopTitleView) getView().findViewById(R.id.webview_title);
         topTitleView.setVisibility(View.GONE);
-        setMiSystemBarColor();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // 为了让状态栏显示成白色，山炮做法，因为IWtoptitleview中如果是白色titleview会把状态栏设成黑色字所以
+        // 后面几个fragment的添加都会对当前activity的状态栏造成影响
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                setMiSystemBarColor();
+            }
+        };
+        handler.sendEmptyMessageDelayed(0, 2000);
     }
 
     @Override
@@ -119,14 +136,18 @@ public class IndexFragment extends BaseWebViewFragment {
         addJumpUiActions(new WebJumpUiAction("indexmore") {
             @Override
             public void jumpUi(HashMap<String, String> params) {
-               IndexActivity.goToInvestTab(getWRActivity(),0);
+                IndexActivity.goToInvestTab(getWRActivity(), 0);
             }
         });
 
         addMethodCallAction(new WebMethodCallAction("titlevisibility") {
             @Override
             public Boolean call(HashMap params) {
-                isTitleVisible = (boolean) params.get("isTitleVisible");
+                try {
+                    isTitleVisible = Boolean.parseBoolean(String.valueOf(params.get("isTitleVisible")));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 setMiSystemBarColor();
                 return false;
             }
@@ -139,7 +160,7 @@ public class IndexFragment extends BaseWebViewFragment {
     }
 
     public void setMiSystemBarColor() {
-        if(isTitleVisible) {
+        if (isTitleVisible) {
             CommonUtil.miDarkSystemBar(getWRActivity());
         } else {
             CommonUtil.miWhiteSystemBar(getWRActivity());

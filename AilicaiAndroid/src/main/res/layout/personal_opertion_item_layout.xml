@@ -38,10 +38,16 @@
             android:orientation="vertical" />
 
         <FrameLayout
+            android:id="@+id/top_bg"
             android:layout_width="match_parent"
             android:layout_height="170dp"
             android:background="#f15a4c">
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/wallet_pic_bg" />
 
             <LinearLayout
                 android:id="@+id/mine_not_login"
