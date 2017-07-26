@@ -99,6 +99,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
 
     private boolean isInviteBtnChecked = false;
     private boolean isRewardBtnChecked = false;
+    private boolean isFirstInit = false;
 
     @Override
     public int getLayout() {
@@ -177,13 +178,16 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         });
         */
         aroundHouseGroup.check(aroundHouseGroup.getChildAt(0).getId());
+        isFirstInit = true;
         loadInviteRecord();
     }
 
     public void loadInviteRecord() {
         onScrollDisplay(0);
         changeFirstTabsName();
-        setThumbAnimation(thumb, 0, -DeviceUtil.getScreenWidth() / 2);
+        if (!isFirstInit) {
+            setThumbAnimation(thumb, DeviceUtil.getScreenWidth() / 2, 0);
+        }
         inviteRecordListView.setVisibility(View.VISIBLE);
         rewardRecordListView.setVisibility(View.GONE);
         loadData(false);
@@ -192,7 +196,8 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     public void loadRewardRecord() {
         onScrollDisplay(0);
         changeSecondTabsName();
-        setThumbAnimation(thumb, -DeviceUtil.getScreenWidth() / 2, 0);
+        isFirstInit = false;
+        setThumbAnimation(thumb, 0, DeviceUtil.getScreenWidth() / 2);
         inviteRecordListView.setVisibility(View.GONE);
         rewardRecordListView.setVisibility(View.VISIBLE);
         loadData(false);

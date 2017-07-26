@@ -110,16 +110,16 @@
                 <data
                     android:host="m.iwjw.com"
                     android:scheme="ilicai" />
+
             </intent-filter>
 
             <!-- GrowingIO 启动圈选接口 -->
             <intent-filter>
-                <data android:scheme="growing.f1d9217ba7c7cd69" />
+                <data android:scheme="growing.344a595645efb251"/>
+                <action android:name="android.intent.action.VIEW"/>
 
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
             <!-- GrowingIO 启动圈选接口 -->
         </activity>

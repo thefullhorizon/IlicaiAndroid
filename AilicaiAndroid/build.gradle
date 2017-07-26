@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.growingio.android'
+apply plugin: 'com.growingio.android'
 
 repositories {
     mavenCentral()
@@ -42,9 +42,8 @@ android {
             //abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
 
-        // TODO 申请新的账号
-        resValue("string", "growingio_project_id", "9f6117ba867d4d36")
-        resValue("string", "growingio_url_scheme", "growing.f1d9217ba7c7cd69")
+        resValue("string", "growingio_project_id", "b76ba150621a4b61")
+        resValue("string", "growingio_url_scheme", "growing.344a595645efb251")
 
 
         signingConfigs {
@@ -178,7 +177,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.growingio.android:vds-android-agent:0.9.102@aar'
+    compile 'com.growingio.android:vds-android-agent:0.9.104@aar'
     //AVLoadingIndicatorView
     compile 'com.wang.avi:library:2.1.3'
     testCompile 'junit:junit:4.12'
