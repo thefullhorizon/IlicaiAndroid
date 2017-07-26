@@ -457,7 +457,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         }
         if (assetInfoNewResponse.getPurchaseCount() > 0) {
             purchaseView.setVisibility(View.VISIBLE);
-            purchaseAmount.setText(assetInfoNewResponse.getPurchaseCount() + "笔共" + assetInfoNewResponse.getPurchaseAmount());
+            purchaseAmount.setText(assetInfoNewResponse.getPurchaseCount() + "笔共" + assetInfoNewResponse.getPurchaseAmount()+"元");
         } else {
             purchaseView.setVisibility(View.GONE);
         }

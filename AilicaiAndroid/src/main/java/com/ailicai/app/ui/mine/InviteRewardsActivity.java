@@ -293,7 +293,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
 
         if (InviteRecordListTemp.size() < pageSize && inviteListAdapter.getCount() != 0) {
             inviteRecordListView.onAllLoaded();
-            inviteRecordListView.setPromptText("没有更多数");
+            inviteRecordListView.setPromptText("没有更多数据");
             if (inviteListAdapter.getCount() == 1) {
                 inviteRecordListView.setPromptText("");
             }
@@ -364,7 +364,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
 
         if (rewardRecordListTemp.size() < pageSize && rewardRecordListAdapter.getCount() != 0) {
             rewardRecordListView.onAllLoaded();
-            rewardRecordListView.setPromptText("没有更多数");
+            rewardRecordListView.setPromptText("没有更多数据");
             if (rewardRecordListAdapter.getCount() == 1) {
                 rewardRecordListView.setPromptText("");
             }
