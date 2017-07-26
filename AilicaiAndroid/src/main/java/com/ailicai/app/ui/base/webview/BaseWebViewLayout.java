@@ -42,6 +42,7 @@ import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.asset.FinanceUpgradePresenter;
 import com.ailicai.app.ui.base.BaseActivity;
+import com.ailicai.app.ui.index.IndexActivity;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.view.AssetInViewOfBirdActivity;
@@ -461,7 +462,7 @@ public class BaseWebViewLayout extends LinearLayout {
         addJumpUiActions(new WebJumpUiAction("4", "finance") {
             @Override
             public void jumpUi(HashMap<String, String> params) {
-//                IndexChoiceBusinessView.toFinanceHome(getWRContext(), new Intent());
+                IndexActivity.startIndexActivityToTab(getWRContext(),0);
             }
         });
 

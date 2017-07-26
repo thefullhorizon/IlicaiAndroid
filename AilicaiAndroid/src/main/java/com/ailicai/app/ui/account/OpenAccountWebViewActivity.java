@@ -161,7 +161,11 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
         addMethodCallAction(new WebMethodCallAction("isbackshowquit") {
             @Override
             public Boolean call(HashMap params) {
-                isBackShowQuit = (boolean) params.get("isbackshowquit");
+                try {
+                    isBackShowQuit = Boolean.parseBoolean(String.valueOf(params.get("isbackshowquit"))) ;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 return false;
             }
         });

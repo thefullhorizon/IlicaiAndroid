@@ -16,6 +16,7 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
+import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.eventbus.LoginEvent;
@@ -115,7 +116,6 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
         bottomNavigation.setNotificationTextColor(Color.WHITE);
         bottomNavigation.setDefaultBackgroundColor(getResources().getColor(R.color.color_f7f7f7));
         bottomNavigation.setUseElevation(true);
-        mViewPager.setCurrentItem(0);
         MessageTypeProcessUtils.parseIntent(this);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -126,6 +126,8 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
 
             @Override
             public void onPageSelected(int position) {
+
+                setChildMiMiSystemBarColor(position);
                 setChildFragmentAutoRefreshState(position);
             }
 
@@ -134,7 +136,7 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
 
             }
         });
-
+        mViewPager.setCurrentItem(0);
     }
 
     @Override
@@ -319,6 +321,17 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
             }
             MyApplication.getAppPresenter().onExitApp();
             finish();
+        }
+    }
+
+    public void setChildMiMiSystemBarColor(int position) {
+        if(position == 0) {
+            IndexFragment indexFragment  = (IndexFragment) nvgPagerAdapter.getItem(0);
+            indexFragment.setMiSystemBarColor();
+        } else if(position == 1) {
+            CommonUtil.miDarkSystemBar(IndexActivity.this);
+        } else if(position == 2) {
+            CommonUtil.miWhiteSystemBar(IndexActivity.this);
         }
     }
 

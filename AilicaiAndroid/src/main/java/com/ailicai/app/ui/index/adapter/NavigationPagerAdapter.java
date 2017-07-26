@@ -94,23 +94,23 @@ public class NavigationPagerAdapter extends FragmentPagerAdapter implements View
         if (!wasSelected) {//初始化打开
             mViewPager.setCurrentItem(position, false);
         }
-        BaseFragment currentFragment = getItem(position);
-        //去掉红点和通知
-        switch (position) {
-            case 0:
-//                ((IndexFragment) currentFragment).alphaChangeMiSystemBarColor();
-                currentFragment.reloadData();
-                break;
-            case 1:
-                CommonUtil.miDarkSystemBar(activity);
-                break;
-            case 2:
-                CommonUtil.miDarkSystemBar(activity);
-                break;
-            case 3:
-                CommonUtil.miWhiteSystemBar(activity);
-                break;
-        }
+//        BaseFragment currentFragment = getItem(position);
+//        //去掉红点和通知
+//        switch (position) {
+//            case 0:
+////                ((IndexFragment) currentFragment).alphaChangeMiSystemBarColor();
+//                currentFragment.reloadData();
+//                break;
+//            case 1:
+//                CommonUtil.miDarkSystemBar(activity);
+//                break;
+//            case 2:
+//                CommonUtil.miDarkSystemBar(activity);
+//                break;
+//            case 3:
+//                CommonUtil.miWhiteSystemBar(activity);
+//                break;
+//        }
         return true;
     }
 

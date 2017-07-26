@@ -12,6 +12,7 @@ import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
+import com.ailicai.app.ui.base.webview.WebMethodCallAction;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.reserve.ReserveActivity;
 import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
@@ -32,6 +33,7 @@ import java.util.HashMap;
  */
 public class IndexFragment extends BaseWebViewFragment {
 
+    boolean isTitleVisible = false;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class IndexFragment extends BaseWebViewFragment {
         CommonUtil.uiSystemBarTint(getActivity(), getView());
         IWTopTitleView topTitleView = (IWTopTitleView) getView().findViewById(R.id.webview_title);
         topTitleView.setVisibility(View.GONE);
+        setMiSystemBarColor();
     }
 
     @Override
@@ -119,11 +122,28 @@ public class IndexFragment extends BaseWebViewFragment {
                IndexActivity.goToInvestTab(getWRActivity(),0);
             }
         });
+
+        addMethodCallAction(new WebMethodCallAction("titlevisibility") {
+            @Override
+            public Boolean call(HashMap params) {
+                isTitleVisible = (boolean) params.get("isTitleVisible");
+                setMiSystemBarColor();
+                return false;
+            }
+        });
     }
 
     private void goReserve() {
         Intent intent = new Intent(getActivity(), ReserveActivity.class);
         startActivity(intent);
+    }
+
+    public void setMiSystemBarColor() {
+        if(isTitleVisible) {
+            CommonUtil.miDarkSystemBar(getWRActivity());
+        } else {
+            CommonUtil.miWhiteSystemBar(getWRActivity());
+        }
     }
 
     @Override
