@@ -178,6 +178,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     }
 
     public void loadInviteRecord() {
+        onScrollDisplay(0);
         changeFirstTabsName();
         setThumbAnimation(thumb, 0, -DeviceUtil.getScreenWidth() / 2);
         inviteRecordListView.setVisibility(View.VISIBLE);
@@ -185,7 +186,8 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
         loadData(false);
     }
 
-    public void loadRewardRecord(){
+    public void loadRewardRecord() {
+        onScrollDisplay(0);
         changeSecondTabsName();
         setThumbAnimation(thumb, -DeviceUtil.getScreenWidth() / 2, 0);
         inviteRecordListView.setVisibility(View.GONE);
@@ -422,14 +424,21 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     public void loadData(boolean loadMore) {
         if (!loadMore) {
             offSet = 0;
-            inviteRecordList.clear();
-            rewardRecordList.clear();
-            inviteRecordListCallBack.clear();
-            rewardRecordListCallBack.clear();
-            rewardRecordListView.resetAll();
-            inviteRecordListView.resetAll();
-            rewardRecordListView.smoothScrollToPosition(0);
-            inviteRecordListView.smoothScrollToPosition(0);
+            switch (aroundHouseGroup.getCheckedRadioButtonId()) {
+                case R.id.invite_record_rb:
+                    inviteRecordList.clear();
+                    inviteRecordListCallBack.clear();
+                    inviteRecordListView.resetAll();
+                    inviteRecordListView.smoothScrollToPosition(0);
+                    break;
+                case R.id.reward_record_rb:
+                    rewardRecordList.clear();
+                    rewardRecordListCallBack.clear();
+                    rewardRecordListView.resetAll();
+                    rewardRecordListView.smoothScrollToPosition(0);
+                    break;
+            }
+
         } else {
             switch (aroundHouseGroup.getCheckedRadioButtonId()) {
                 case R.id.invite_record_rb:

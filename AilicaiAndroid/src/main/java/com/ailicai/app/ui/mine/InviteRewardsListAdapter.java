@@ -48,9 +48,10 @@ public class InviteRewardsListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (inviteRewards.size() == 0) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.reward_record_adapter_empty, null);
-            TextView noData = (TextView)convertView.findViewById(R.id.no_record);
+            View emptyView = LayoutInflater.from(mContext).inflate(R.layout.reward_record_adapter_empty, null);
+            TextView noData = (TextView) emptyView.findViewById(R.id.no_record);
             noData.setText("暂无邀请记录");
+            return emptyView;
         } else {
             ItemView itemView;
             if (convertView == null) {
@@ -61,8 +62,8 @@ public class InviteRewardsListAdapter extends BaseAdapter {
                 itemView = (ItemView) convertView.getTag();
             }
             itemView.bindData((InviteRecord) getItem(position), position);
+            return convertView;
         }
-        return convertView;
     }
 
     class ItemView {
