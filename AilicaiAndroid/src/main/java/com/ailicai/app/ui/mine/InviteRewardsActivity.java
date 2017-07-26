@@ -454,13 +454,13 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
                     inviteRecordList.clear();
                     inviteRecordListCallBack.clear();
                     inviteRecordListView.resetAll();
-                    inviteRecordListView.smoothScrollToPosition(0);
+                    //inviteRecordListView.smoothScrollToPosition(0);
                     break;
                 case R.id.reward_record_rb:
                     rewardRecordList.clear();
                     rewardRecordListCallBack.clear();
                     rewardRecordListView.resetAll();
-                    rewardRecordListView.smoothScrollToPosition(0);
+                    //rewardRecordListView.smoothScrollToPosition(0);
                     break;
             }
 
@@ -484,6 +484,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
                 getRewardRecord();
                 break;
         }
+
     }
 
     /**
