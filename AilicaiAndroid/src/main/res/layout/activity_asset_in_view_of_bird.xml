@@ -69,7 +69,7 @@
                             android:textSize="14sp"
                             android:textColor="#212121"
                             android:gravity="end"
-                            android:text="0.00元"/>
+                            android:text="0.00"/>
 
                         <View
                             android:layout_width="8dp"
@@ -118,7 +118,7 @@
                             android:textSize="14sp"
                             android:textColor="#212121"
                             android:gravity="end"
-                            android:text="0.00元"/>
+                            android:text="0.00"/>
 
 
                         <View
@@ -167,7 +167,7 @@
                             android:textSize="14sp"
                             android:textColor="#212121"
                             android:gravity="end"
-                            android:text="0.00元"/>
+                            android:text="0.00"/>
 
                         <View
                             android:layout_width="8dp"
@@ -216,7 +216,7 @@
                             android:textSize="14sp"
                             android:textColor="#212121"
                             android:gravity="end"
-                            android:text="0.00元"/>
+                            android:text="0.00"/>
 
 
                         <View
