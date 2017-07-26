@@ -61,7 +61,7 @@ public class AssetInViewOfBirdActivity extends BaseBindActivity {
     }
 
     private void requestData() {
-
+        showLoadTranstView();
         AssetInfoNewRequest request = new AssetInfoNewRequest();
         request.setUserId(UserInfo.getInstance().getUserId());
         ServiceSender.exec(this, request, new IwjwRespListener<AssetInfoNewResponse>(this) {

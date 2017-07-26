@@ -243,10 +243,10 @@ public class RegularFinanceDetailH5Activity extends BaseWebViewActivity {
             getTiYanBaoData(Long.parseLong(activityId));
         } else {
             //进入统一处理页面
-//            if (!NoSetSafeCardHint.isShowHintDialog(RegularFinanceDetailH5Activity.this)) {
-//                Intent intent = new Intent(RegularFinanceDetailH5Activity.this, ProcessActivity.class);
-//                startActivityForResult(intent, REQUEST_FOR_PROCESS_BUY);
-//            }
+            if (!NoSetSafeCardHint.isShowHintDialog(RegularFinanceDetailH5Activity.this)) {
+                Intent intent = new Intent(RegularFinanceDetailH5Activity.this, ProcessActivity.class);
+                startActivityForResult(intent, REQUEST_FOR_PROCESS_BUY);
+            }
         }
 
 
