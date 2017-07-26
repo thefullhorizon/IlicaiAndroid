@@ -60,7 +60,7 @@ public class IncomeDetailParentFragment extends BaseBindFragment {
 
         Bundle bundle = new Bundle();
         bundle.putInt(IncomeDetailChildFragment.INCOME_TYPE, IncomeDetailChildFragment.INCOME_REGULAR);
-        mViewPagerAdapter.addNvgItem("定期资产", IncomeDetailChildFragment.class, bundle);
+        mViewPagerAdapter.addNvgItem("网贷资产", IncomeDetailChildFragment.class, bundle);
 
         Bundle bundle2 = new Bundle();
         bundle2.putInt(IncomeDetailChildFragment.INCOME_TYPE, IncomeDetailChildFragment.INCOME_DEMAND);
