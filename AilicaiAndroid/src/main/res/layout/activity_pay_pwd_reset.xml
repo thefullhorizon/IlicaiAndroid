@@ -29,12 +29,11 @@
 
             <TextView
                 android:id="@+id/tvPayPwdNameExplain"
+                style="@style/text_16_212121"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="@string/pay_pwd_name"
-                android:textColor="@color/color_757575"
-                android:textSize="16sp" />
+                android:text="@string/pay_pwd_name" />
 
             <EditText
                 android:id="@+id/etPayPwdName"
@@ -44,7 +43,7 @@
                 android:layout_toRightOf="@+id/tvPayPwdNameExplain"
                 android:background="@null"
                 android:hint="@string/pay_pwd_name_value"
-                android:textColor="#000000"
+                android:textColor="@color/color_757575"
                 android:textSize="16sp" />
 
             <com.ailicai.app.widget.TextViewTF
@@ -75,12 +74,11 @@
 
             <TextView
                 android:id="@+id/tvPayPwdIdCardExplain"
+                style="@style/text_16_212121"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="@string/pay_pwd_id_card"
-                android:textColor="@color/color_757575"
-                android:textSize="16sp" />
+                android:text="@string/pay_pwd_id_card" />
 
             <EditText
                 android:id="@+id/etPayPwdIdCard"
@@ -91,7 +89,7 @@
                 android:digits="0123456789xX"
                 android:hint="@string/pay_pwd_id_card_number"
                 android:singleLine="true"
-                android:textColor="#000000"
+                android:textColor="@color/color_757575"
                 android:textSize="16sp" />
 
         </RelativeLayout>

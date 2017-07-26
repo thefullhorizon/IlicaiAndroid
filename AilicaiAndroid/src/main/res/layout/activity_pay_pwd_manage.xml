@@ -30,12 +30,12 @@
             android:paddingRight="@dimen/_16">
 
             <TextView
+                style="@style/text_16_212121"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:alpha="0.87"
-                android:text="@string/pay_pwd_modify"
-                android:textSize="16sp" />
+                android:text="@string/pay_pwd_modify" />
 
             <View
                 android:layout_width="8dp"
@@ -60,12 +60,12 @@
             android:paddingRight="@dimen/_16">
 
             <TextView
+                style="@style/text_16_212121"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:alpha="0.87"
-                android:text="@string/pay_pwd_reset"
-                android:textSize="16sp" />
+                android:text="@string/pay_pwd_reset" />
 
             <View
                 android:layout_width="8dp"

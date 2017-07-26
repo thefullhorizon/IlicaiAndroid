@@ -18,7 +18,15 @@
 
 
         <com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListView
-            android:id="@+id/rewards_list"
+            android:id="@+id/invite_record_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/transparent"
+            android:divider="@null"
+            android:listSelector="@null" />
+
+        <com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListView
+            android:id="@+id/reward_record_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:cacheColorHint="@color/transparent"

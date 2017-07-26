@@ -8,6 +8,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -56,8 +57,10 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     LinearLayout rewardTopHead;
     @Bind(R.id.tabs_head)
     LinearLayout tabsHead;
-    @Bind(R.id.rewards_list)
-    BottomRefreshListView mSwipeListView;
+    @Bind(R.id.invite_record_list)
+    BottomRefreshListView inviteRecordListView;
+    @Bind(R.id.reward_record_list)
+    BottomRefreshListView rewardRecordListView;
     @Bind(R.id.alreadyAward)
     TextView alreadyAward;
     @Bind(R.id.waittingAward)
@@ -68,6 +71,10 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     TextView investAmount;
     @Bind(R.id.plot_house_list_group)
     RadioGroup aroundHouseGroup;
+    @Bind(R.id.invite_record_rb)
+    RadioButton inviteRecordRadioBtn;
+    @Bind(R.id.reward_record_rb)
+    RadioButton rewardRecordRadioBtn;
     @Bind(R.id.second_title_view)
     LinearLayout secondTitleView;
     @Bind(R.id.list_bg)
@@ -81,6 +88,8 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     @Bind(R.id.tt3)
     TextView tt3;
 
+    InviteRewardsListAdapter inviteListAdapter;
+    RewardRecordListAdapter rewardRecordListAdapter;
     List<InviteRecord> inviteRecordList = ObjectUtil.newArrayList();
     List<InviteRecord> inviteRecordListCallBack = ObjectUtil.newArrayList();
     List<RewardRecord> rewardRecordList = ObjectUtil.newArrayList();
@@ -97,15 +106,18 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     public void init(Bundle savedInstanceState) {
         spanUtil = new SpannableUtil(mContext);
         CommonUtil.addAnimForView(mAllView);
-        mSwipeListView.setScrollViewCallbacks(this);
-        mSwipeListView.setOnLoadMoreListener(this);
+        inviteRecordListView.setScrollViewCallbacks(this);
+        rewardRecordListView.setScrollViewCallbacks(this);
+        inviteRecordListView.setOnLoadMoreListener(this);
+        rewardRecordListView.setOnLoadMoreListener(this);
         rewardTopHead.postDelayed(new Runnable() {
             @Override
             public void run() {
                 LinearLayout listHead = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.rewards_list_head, null);
                 AbsListView.LayoutParams lp = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, rewardTopHead.getMeasuredHeight());
                 listHead.setLayoutParams(lp);
-                mSwipeListView.addHeaderView(listHead);
+                inviteRecordListView.addHeaderView(listHead);
+                rewardRecordListView.addHeaderView(listHead);
             }
         }, 100);
 
@@ -138,6 +150,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     }
 
     public void setTabsCheckAction() {
+        /*
         aroundHouseGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -145,17 +158,51 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
                     case R.id.invite_record_rb:
                         changeFirstTabsName();
                         setThumbAnimation(thumb, 0, -DeviceUtil.getScreenWidth() / 2);
+                        inviteRecordListView.setVisibility(View.VISIBLE);
+                        rewardRecordListView.setVisibility(View.GONE);
                         loadData(false);
                         break;
                     case R.id.reward_record_rb:
                         changeSecondTabsName();
                         setThumbAnimation(thumb, -DeviceUtil.getScreenWidth() / 2, 0);
+                        inviteRecordListView.setVisibility(View.GONE);
+                        rewardRecordListView.setVisibility(View.VISIBLE);
                         loadData(false);
                         break;
                 }
             }
         });
+        */
         aroundHouseGroup.check(aroundHouseGroup.getChildAt(0).getId());
+        loadInviteRecord();
+    }
+
+    public void loadInviteRecord() {
+        changeFirstTabsName();
+        setThumbAnimation(thumb, 0, -DeviceUtil.getScreenWidth() / 2);
+        inviteRecordListView.setVisibility(View.VISIBLE);
+        rewardRecordListView.setVisibility(View.GONE);
+        loadData(false);
+    }
+
+    @OnClick(R.id.invite_record_rb)
+    void inviteRecord() {
+        if (inviteRecordRadioBtn.isChecked()) {
+            return;
+        }
+        loadInviteRecord();
+    }
+
+    @OnClick(R.id.reward_record_rb)
+    void rewardRecord() {
+        if (rewardRecordRadioBtn.isChecked()) {
+            return;
+        }
+        changeSecondTabsName();
+        setThumbAnimation(thumb, -DeviceUtil.getScreenWidth() / 2, 0);
+        inviteRecordListView.setVisibility(View.GONE);
+        rewardRecordListView.setVisibility(View.VISIBLE);
+        loadData(false);
     }
 
 
@@ -221,9 +268,21 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
      * 设置邀请记录数据
      */
     public void setInviteRecordData(List<InviteRecord> InviteRecordListTemp) {
-        inviteRecordList.addAll(InviteRecordListTemp);
-        InviteRewardsListAdapter listAdapter = new InviteRewardsListAdapter(this, inviteRecordList);
-        mSwipeListView.setAdapter(listAdapter);
+        if (InviteRecordListTemp != null) {
+            inviteRecordList.addAll(InviteRecordListTemp);
+        }
+        if (inviteListAdapter != null) {
+            inviteListAdapter.notifyDataSetChanged();
+        } else {
+            inviteListAdapter = new InviteRewardsListAdapter(mContext, inviteRecordList);
+            inviteRecordListView.setAdapter(inviteListAdapter);
+        }
+
+        if (InviteRecordListTemp.size() < pageSize && inviteListAdapter.getCount() != 0) {
+            inviteRecordListView.onAllLoaded();
+            inviteRecordListView.setPromptText("没有更多数");
+        }
+
         if (inviteRecordList.size() == 0) {
             setSecondTitleShow(false);
         } else {
@@ -261,7 +320,6 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
                 //showContentView();
                 rewardRecordListCallBack = (jsonObject.getRewardRecordList() != null) ? jsonObject.getRewardRecordList() : ObjectUtil.<RewardRecord>newArrayList();
                 setRewardRecordData(rewardRecordListCallBack);
-
             }
 
             @Override
@@ -277,9 +335,22 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
      * 奖励记录数据
      */
     public void setRewardRecordData(List<RewardRecord> rewardRecordListTemp) {
-        rewardRecordList.addAll(rewardRecordListTemp);
-        RewardRecordListAdapter listAdapter = new RewardRecordListAdapter(this, rewardRecordList);
-        mSwipeListView.setAdapter(listAdapter);
+
+        if (rewardRecordListTemp != null) {
+            rewardRecordList.addAll(rewardRecordListTemp);
+        }
+        if (rewardRecordListAdapter != null) {
+            rewardRecordListAdapter.notifyDataSetChanged();
+        } else {
+            rewardRecordListAdapter = new RewardRecordListAdapter(mContext, rewardRecordList);
+            rewardRecordListView.setAdapter(rewardRecordListAdapter);
+        }
+
+        if (rewardRecordListTemp.size() < pageSize && rewardRecordListAdapter.getCount() != 0) {
+            rewardRecordListView.onAllLoaded();
+            rewardRecordListView.setPromptText("没有更多数");
+        }
+
         if (rewardRecordList.size() == 0) {
             setSecondTitleShow(false);
         } else {
@@ -321,36 +392,26 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     @Override
     public void onLoadMore() {
         //上拉刷新加载数据
-        boolean loadMore = false;
         switch (aroundHouseGroup.getCheckedRadioButtonId()) {
             case R.id.invite_record_rb:
                 if (inviteRecordListCallBack.size() < pageSize) {
-                    //if (!hasNextPage || totalNum <= mDatas.size() || mDatas.size() < PAGE_SIZE) {
-                    //if (!hasNextPage) {
-                    loadMore = false;
+                    inviteRecordListView.onAllLoaded();
+                    inviteRecordListView.setPromptText("没有更多数据");
                 } else {
-                    loadMore = true;
+                    inviteRecordListView.setLoadingText("数据加载中");
+                    loadData(true);
                 }
                 break;
             case R.id.reward_record_rb:
                 if (rewardRecordListCallBack.size() < pageSize) {
-                    //if (!hasNextPage || totalNum <= mDatas.size() || mDatas.size() < PAGE_SIZE) {
-                    //if (!hasNextPage) {
-                    loadMore = false;
+                    rewardRecordListView.onAllLoaded();
+                    rewardRecordListView.setPromptText("没有更多数据");
                 } else {
-                    loadMore = true;
+                    rewardRecordListView.setLoadingText("数据加载中");
+                    loadData(true);
                 }
                 break;
         }
-
-        if (loadMore) {
-            mSwipeListView.setLoadingText("数据加载中");
-            loadData(true);
-        } else {
-            mSwipeListView.onAllLoaded();
-            mSwipeListView.setPromptText("没有更多数据");
-        }
-
 
     }
 
@@ -365,8 +426,12 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
             offSet = 0;
             inviteRecordList.clear();
             rewardRecordList.clear();
-            mSwipeListView.resetAll();
-            mSwipeListView.smoothScrollToPosition(0);
+            inviteRecordListCallBack.clear();
+            rewardRecordListCallBack.clear();
+            rewardRecordListView.resetAll();
+            inviteRecordListView.resetAll();
+            rewardRecordListView.smoothScrollToPosition(0);
+            inviteRecordListView.smoothScrollToPosition(0);
         } else {
             switch (aroundHouseGroup.getCheckedRadioButtonId()) {
                 case R.id.invite_record_rb:
