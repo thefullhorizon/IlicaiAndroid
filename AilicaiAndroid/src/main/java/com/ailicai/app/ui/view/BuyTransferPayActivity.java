@@ -469,6 +469,9 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             public void onFailInfo(String errorInfo) {
                 showContentView();
                 ToastUtil.showInCenter(errorInfo);
+
+
+
             }
 
             @Override
@@ -608,7 +611,17 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             public void onPayFailInfo(String msgInfo, String errorCode, BuyDingqibaoResponse object) {
                 //购买失败
                 object.setBizStatus("F");
-                goToPayResultActivity(object);
+                if(object.getErrorCode() == 0 ){
+                    goToPayResultActivity(object);
+                }else{
+                    DialogBuilder.showSimpleDialogCenter( object.getMessage(), BuyTransferPayActivity.this, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                }
+
             }
 
             @Override
