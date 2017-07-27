@@ -91,7 +91,11 @@ public class IndexFragment extends BaseWebViewFragment {
     @Override
     public void onResume() {
         super.onResume();
-        startOrStopAutoRefresh(true);
+        if(getWRActivity() != null) {
+            if(((IndexActivity)getWRActivity()).getCurrentItem() == 0) {
+                startOrStopAutoRefresh(true);
+            }
+        }
     }
 
     @Override

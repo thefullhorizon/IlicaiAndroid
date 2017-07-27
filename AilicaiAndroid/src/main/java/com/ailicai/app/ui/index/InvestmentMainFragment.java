@@ -43,7 +43,11 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
     @Override
     public void onResume() {
         super.onResume();
-        setAutoRefreshStateStart();
+        if(getWRActivity() != null) {
+            if(((IndexActivity)getWRActivity()).getCurrentItem() == 1) {
+                setAutoRefreshStateStart();
+            }
+        }
     }
 
     @Override

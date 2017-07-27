@@ -19,6 +19,7 @@ import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ToastUtil;
+import com.ailicai.app.common.utils.UIUtils;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.MineShowRedPointEvent;
 import com.ailicai.app.model.request.HtmlUrlRequest;
@@ -116,6 +117,7 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
         bottomNavigation.setNotificationTextColor(Color.WHITE);
         bottomNavigation.setDefaultBackgroundColor(getResources().getColor(R.color.color_f7f7f7));
         bottomNavigation.setUseElevation(true);
+        bottomNavigation.setTitleTextSize(UIUtils.dipToPx(this,11f),UIUtils.dipToPx(this,10f));
         MessageTypeProcessUtils.parseIntent(this);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -208,6 +210,10 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
     public void setCurrentItem(int index) {
         //   mViewPager.setCurrentItem(index);
         bottomNavigation.setCurrentItem(index);
+    }
+
+    public int getCurrentItem() {
+        return bottomNavigation.getCurrentItem();
     }
 
     /**

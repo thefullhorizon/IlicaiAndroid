@@ -121,12 +121,12 @@ public class IwjwHttpReq extends BaseRequest {
             secret = secret.substring(0, secret.length() - 1);
         }
         LogUtil.i("HttpClient", "------------------- RequestJSON --------------");
-        LogUtil.i("HttpClient", secret);
+        LogUtil.i("HttpClient secret：===》", secret);
         LogUtil.i("HttpClient", "------------------- RequestJSON --------------");
         String timestamp = String.valueOf((TimeUtil.getCurrentTime(MyApplication.getInstance()).getTimeInMillis() / 100000));
 
 
-        String md5 = Encrypt.decryptKey(secret, timestamp, MyApplication.getInstance().getPackageName());
+        String md5 = Encrypt.decryptKey(secret, timestamp, "com.manyi.lovehouse");
         HashMap<String, String> headers = new HashMap<>();
         //     headers.put(appKeyLabel, AppConfig.get_appkey());
         headers.put(appKeyLabel, Configuration.DEFAULT.appKey);

@@ -47,6 +47,10 @@ public class InvestmentNetLoanFragment extends BaseWebViewFragment {
                 if (newProgress > 50) {
                     webViewLayout.shouldShowLoading(false);
                 }
+
+                if(newProgress == 100) {
+                    startOrStopAutoRefresh(false);
+                }
             }
 
             @Override
