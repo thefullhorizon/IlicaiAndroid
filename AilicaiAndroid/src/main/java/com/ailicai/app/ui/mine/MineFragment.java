@@ -69,17 +69,6 @@ import butterknife.OnClick;
 
 public class MineFragment extends BaseBindFragment implements ObservableScrollViewCallbacks, SwipeRefreshLayout.OnRefreshListener {
 
-    @Bind(R.id.title_root)
-    RelativeLayout titleRoot;
-    @Bind(R.id.tv_new_msg_point)
-    TextView mTvNewMsgPoint;
-    @Bind(R.id.top_bg)
-    FrameLayout topBg;
-
-    boolean isMessageClick = false;
-    boolean isCardClick = false;
-    boolean isMessagePointShow = false;
-    boolean isCardPointShow = false;
     /**
      * 点击头像区域跳转至个人信息编辑页面
      */
@@ -89,19 +78,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             switch (v.getId()) {
                 case R.id.fl_msg_container:
                     //消息点击
-                    mTvNewMsgPoint.setVisibility(View.GONE);
-                    isMessageClick = true;
-                    if (isCardPointShow) {
-                        if (isCardClick) {
-                            MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
-                            showEvent.setShowRedPoint(false);
-                            EventBus.getDefault().post(showEvent);
-                        }
-                    } else {
-                        MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
-                        showEvent.setShowRedPoint(false);
-                        EventBus.getDefault().post(showEvent);
-                    }
                     Intent intent = new Intent(getWRActivity(), MessageActivity.class);
                     startActivity(intent);
                     break;
@@ -111,6 +87,17 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             }
         }
     };
+    @Bind(R.id.title_root)
+    RelativeLayout titleRoot;
+    @Bind(R.id.tv_new_msg_point)
+    TextView mTvNewMsgPoint;
+
+    //    boolean isMessageClick = false;
+//    boolean isCardClick = false;
+//    boolean isMessagePointShow = false;
+//    boolean isCardPointShow = false;
+    @Bind(R.id.top_bg)
+    FrameLayout topBg;
     @Bind(R.id.my_scroll_view)
     ObservableScrollView mScrollView;
     @Bind(R.id.ticket_red_dot)
@@ -539,10 +526,15 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     public void handlefinal(final NewNotifMsgEvent event) {
         mTvNewMsgPoint.setVisibility(event.notifNum > 0 ? View.VISIBLE : View.GONE);
         if (event.notifNum > 0) {
-            isMessagePointShow = true;
             MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
             showEvent.setShowRedPoint(true);
             EventBus.getDefault().post(showEvent);
+        } else {
+            if (ticket_red_dot.getVisibility() == View.GONE) {
+                MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
+                showEvent.setShowRedPoint(false);
+                EventBus.getDefault().post(showEvent);
+            }
         }
     }
 
@@ -767,23 +759,13 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             showEvent.setShowRedPoint(true);
             EventBus.getDefault().post(showEvent);
             ticket_red_dot.setVisibility(View.VISIBLE);
-            isCardPointShow = true;
         } else {
-            isCardPointShow = false;
-            isCardClick = true;
-            if (isMessagePointShow) {
-                if (isMessageClick) {
-                    MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
-                    showEvent.setShowRedPoint(false);
-                    EventBus.getDefault().post(showEvent);
-                }
-            } else {
+            ticket_red_dot.setVisibility(View.INVISIBLE);
+            if (mTvNewMsgPoint.getVisibility() == View.GONE) {
                 MineShowRedPointEvent showEvent = new MineShowRedPointEvent();
                 showEvent.setShowRedPoint(false);
                 EventBus.getDefault().post(showEvent);
             }
-
-            ticket_red_dot.setVisibility(View.INVISIBLE);
         }
         saveVoucherRedDotStateByUser(isShow);
     }
