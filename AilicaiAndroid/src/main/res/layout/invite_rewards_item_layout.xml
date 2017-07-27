@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:cacheColorHint="@color/transparent"
             android:divider="@null"
-            android:listSelector="@null" />
+            android:listSelector="@color/transparent" />
 
         <com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListView
             android:id="@+id/reward_record_list"
@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:cacheColorHint="@color/transparent"
             android:divider="@null"
-            android:listSelector="@null" />
+            android:listSelector="@color/transparent" />
 
     </FrameLayout>
 </LinearLayout>
