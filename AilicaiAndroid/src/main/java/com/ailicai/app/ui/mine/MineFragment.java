@@ -423,12 +423,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                 setVoucherRedDotState(assetInfoNewResponse.getVoucherRedPoint() > 0);
             }
 
-            // 卡券小红点
-            if (isShowVoucherRedDotState()) {
-                setVoucherRedDotState(true);
-            } else {
-                setVoucherRedDotState(false);
-            }
+//            // 卡券小红点
+//            if (isShowVoucherRedDotState()) {
+//                setVoucherRedDotState(true);
+//            } else {
+//                setVoucherRedDotState(false);
+//            }
 
             //自动跳转至目标页面
             jumpToMenuTarget(loginAction);
@@ -767,18 +767,18 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                 EventBus.getDefault().post(showEvent);
             }
         }
-        saveVoucherRedDotStateByUser(isShow);
+//        saveVoucherRedDotStateByUser(isShow);
     }
 
-    private void saveVoucherRedDotStateByUser(boolean isShow) {
-        long userId = UserManager.getInstance(getWRActivity()).getUserInfoBase().getUserId();
-        MyPreference.getInstance().write(userId + "VoucherRedDotIsShow", isShow);
-    }
-
-    public boolean isShowVoucherRedDotState() {
-        long userId = UserManager.getInstance(getWRActivity()).getUserInfoBase().getUserId();
-        return MyPreference.getInstance().read(userId + "VoucherRedDotIsShow", false);
-    }
+//    private void saveVoucherRedDotStateByUser(boolean isShow) {
+//        long userId = UserManager.getInstance(getWRActivity()).getUserInfoBase().getUserId();
+//        MyPreference.getInstance().write(userId + "VoucherRedDotIsShow", isShow);
+//    }
+//
+//    public boolean isShowVoucherRedDotState() {
+//        long userId = UserManager.getInstance(getWRActivity()).getUserInfoBase().getUserId();
+//        return MyPreference.getInstance().read(userId + "VoucherRedDotIsShow", false);
+//    }
 
     /*
     private static class UserInfoResponseIwjwRespListener extends IwjwRespListener<UserInfoResponse> {
