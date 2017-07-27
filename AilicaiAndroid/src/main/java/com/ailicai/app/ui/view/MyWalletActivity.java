@@ -222,7 +222,7 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
 
     @OnClick(R.id.mywallet_raise_income)
     void clickRaiseIncome() {
-        IndexActivity.startIndexActivityToTab(this,1);
+        IndexActivity.startIndexActivityToTab(this,0);
 //        EventLog.upEventLog("354", "more_money_product", 4);
     }
 

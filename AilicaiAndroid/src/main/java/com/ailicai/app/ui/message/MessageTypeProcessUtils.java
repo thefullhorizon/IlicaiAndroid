@@ -66,14 +66,15 @@ public class MessageTypeProcessUtils {
                         PushMessage.REMINDTYPE);
                 activity.startActivity(intentGo);
                 break;
-            case PushMessage.INFOTYPE:
+            //此处只在首页处调用，不需要重复跳转
+            /*case PushMessage.INFOTYPE:
             case PushMessage.ACTIVITYTYPE:
                 switch (pushMessage.getOptional().getType()) {
                     case PushMessage.NOTICETYPETOFINANCE:
                         IndexActivity.startIndexActivityToTab(activity,1);
                         break;
                 }
-                break;
+                break;*/
         }
     }
 
@@ -91,9 +92,10 @@ public class MessageTypeProcessUtils {
                         activity.setIntent(new Intent());
                     }
                     break;
-                case CommonTags.FINANCE:
+                //此处只在首页处调用，不需要重复跳转
+               /* case CommonTags.FINANCE:
                     IndexActivity.startIndexActivityToTab(activity,1);
-                    break;
+                    break;*/
                 case CommonTags.MYFCB:
                     String tab = data.getQueryParameter(CommonTags.TABINDEX);
                     switch (tab) {
@@ -152,7 +154,7 @@ public class MessageTypeProcessUtils {
             switch (notice.getRemindType()){
                 case PushMessage.NOTICETYPETOFINANCE:
                     sendEventLog(notice);
-                    IndexActivity.startIndexActivityToTab(context,1);
+                    IndexActivity.startIndexActivityToTab(context,0);
                     break;
                 default:
                     showNewVersionDialog(context);
@@ -182,7 +184,7 @@ public class MessageTypeProcessUtils {
             case PushMessage.REMINDTYPELIUBIAO:
             case PushMessage.REMINDTYPETYJTOFIHOME:
                 sendEventLog(notice);
-                IndexActivity.startIndexActivityToTab(activity,1);
+                IndexActivity.startIndexActivityToTab(activity,0);
                 break;
             case PushMessage.REMINDTYPEHUANKUAN:
             case PushMessage.REMINDTYPEZHUANRANG:

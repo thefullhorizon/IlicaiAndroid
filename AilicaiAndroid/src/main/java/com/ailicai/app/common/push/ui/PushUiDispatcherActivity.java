@@ -142,6 +142,7 @@ public class PushUiDispatcherActivity extends BaseBindActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra(PushMessage.PUSHMESSAGE, pushMessage);
         intent.putExtra(CommonTags.FROM,CommonTags.PUSH);
+        intent.putExtra("settabIndex", 0);
 
         String manufacturer = android.os.Build.MANUFACTURER;
         if ("Xiaomi".equals(manufacturer)) {
@@ -161,9 +162,9 @@ public class PushUiDispatcherActivity extends BaseBindActivity {
     private void goPushIndexHome(PushMessage pushMessage){
         LogUtil.i(TAG,"goIndexHome" + pushMessage.toString());
         Intent intent=new Intent(this,IndexActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra(PushMessage.PUSHMESSAGE, pushMessage);
         intent.putExtra(CommonTags.FROM,CommonTags.PUSH);
+        intent.putExtra("settabIndex", 0);
         startActivity(intent);
         finishDelay();
     }
