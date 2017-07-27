@@ -142,23 +142,23 @@ public class CouponWebViewActivity extends BaseWebViewActivity {
             }
         });
 
-        /*addJumpUiActions(new WebJumpUiAction("applyrebates") {
-            @Override
-            public void jumpUi(HashMap<String, String> params) {
-                String voucherid = params.get("voucherid");
-                String refundurl = params.get("refundurl");
-                String voucherurl = params.get("voucherurl");
-                if (!TextUtils.isEmpty(voucherid)) {
-                    // 申请返利 (审核中, 审核失败)
-                    Intent intent = new Intent(CouponWebViewActivity.this, FlatApplyForBackProfitActivity.class);
-                    intent.putExtra("couponId", voucherid);
-                    intent.putExtra("refundUrl", refundurl);
-                    intent.putExtra("couponDetailUrl",voucherurl);
-
-                    startActivity(intent);
-                }
-            }
-        });*/
+//        addJumpUiActions(new WebJumpUiAction("applyrebates") {
+//            @Override
+//            public void jumpUi(HashMap<String, String> params) {
+//                String voucherid = params.get("voucherid");
+//                String refundurl = params.get("refundurl");
+//                String voucherurl = params.get("voucherurl");
+//                if (!TextUtils.isEmpty(voucherid)) {
+//                    // 申请返利 (审核中, 审核失败)
+//                    Intent intent = new Intent(CouponWebViewActivity.this, FlatApplyForBackProfitActivity.class);
+//                    intent.putExtra("couponId", voucherid);
+//                    intent.putExtra("refundUrl", refundurl);
+//                    intent.putExtra("couponDetailUrl",voucherurl);
+//
+//                    startActivity(intent);
+//                }
+//            }
+//        });
 
         addJumpUiActions(new WebJumpUiAction("refund") {
             @Override
@@ -172,32 +172,32 @@ public class CouponWebViewActivity extends BaseWebViewActivity {
                 }
             }
         });
-        /*addJumpUiActions(new WebJumpUiAction("myproperty") {
-            @Override
-            public void jumpUi(HashMap<String, String> params) {
-                String url = String.valueOf(params.get("url"));
-                if (!TextUtils.isEmpty(url)) {
-                    // 跳转我的资产页面
-                    Intent intent = new Intent(CouponWebViewActivity.this, MyAssetsActivity.class);
-                    intent.putExtra(CouponDetailWebViewActivity.PARAM_DETAIL_URL, url);
-                    startActivity(intent);
-                }
-            }
-        });*/
+//        addJumpUiActions(new WebJumpUiAction("myproperty") {
+//            @Override
+//            public void jumpUi(HashMap<String, String> params) {
+//                String url = String.valueOf(params.get("url"));
+//                if (!TextUtils.isEmpty(url)) {
+//                    // 跳转我的资产页面
+//                    Intent intent = new Intent(CouponWebViewActivity.this, MyAssetsActivity.class);
+//                    intent.putExtra(CouponDetailWebViewActivity.PARAM_DETAIL_URL, url);
+//                    startActivity(intent);
+//                }
+//            }
+//        });
 
-        /*addJumpUiActions(new WebJumpUiAction("rebatesuccess") {
-            @Override
-            public void jumpUi(HashMap<String, String> params) {
-                String voucherfee = String.valueOf(params.get("voucherfee"));
-                if (!TextUtils.isEmpty(voucherfee)) {
-                    // 跳转卡券详情页
-                    Intent intent = new Intent(CouponWebViewActivity.this, FlatBackProfitSuccessActivity.class);
-                    intent.putExtra("voucherfee", voucherfee);
-                    startActivity(intent);
-                }
-            }
-        });
-*/
+//        addJumpUiActions(new WebJumpUiAction("rebatesuccess") {
+//            @Override
+//            public void jumpUi(HashMap<String, String> params) {
+//                String voucherfee = String.valueOf(params.get("voucherfee"));
+//                if (!TextUtils.isEmpty(voucherfee)) {
+//                    // 跳转卡券详情页
+//                    Intent intent = new Intent(CouponWebViewActivity.this, FlatBackProfitSuccessActivity.class);
+//                    intent.putExtra("voucherfee", voucherfee);
+//                    startActivity(intent);
+//                }
+//            }
+//        });
+
         EventBus.getDefault().register(this);
     }
 

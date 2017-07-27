@@ -82,36 +82,36 @@ public class CouponDetailWebViewActivity extends BaseWebViewActivity {
             }
         });
 
-        /*addJumpUiActions(new WebJumpUiAction("applyrebates") {
-            @Override
-            public void jumpUi(HashMap<String, String> params) {
-                // 申请返利
-                String couponId = params.get("voucherid");
-                if (!TextUtils.isEmpty(couponId)) {
-                    Intent intent = new Intent(CouponDetailWebViewActivity.this, FlatApplyForBackProfitActivity.class);
-                    intent.putExtra("couponId", couponId);
-                    intent.putExtra("couponDetailUrl", detailUrl);
-                    startActivityForResult(intent, APPLY_FOR_BACK_PROFIT_REQUEST_CODE);
-                }
-            }
-        });*/
+//        addJumpUiActions(new WebJumpUiAction("applyrebates") {
+//            @Override
+//            public void jumpUi(HashMap<String, String> params) {
+//                // 申请返利
+//                String couponId = params.get("voucherid");
+//                if (!TextUtils.isEmpty(couponId)) {
+//                    Intent intent = new Intent(CouponDetailWebViewActivity.this, FlatApplyForBackProfitActivity.class);
+//                    intent.putExtra("couponId", couponId);
+//                    intent.putExtra("couponDetailUrl", detailUrl);
+//                    startActivityForResult(intent, APPLY_FOR_BACK_PROFIT_REQUEST_CODE);
+//                }
+//            }
+//        });
 
 
-        /*addJumpUiActions(new WebJumpUiAction("pay") {
-            @Override
-            public void jumpUi(HashMap<String, String> params) {
-                // 立即购买
-                String ordertype = params.get("ordertype");
-                String billtitle = params.get("billtitle");//返利券标题
-                String billfee = params.get("billfee");//返利券金额"
-                if (!TextUtils.isEmpty(ordertype)) {
-                    Intent intent = new Intent(CouponDetailWebViewActivity.this, BuyRebateVoucherActivity.class);
-                    intent.putExtra(BuyRebateVoucherActivity.PARAM_PAY_TITLE, billtitle);
-                    intent.putExtra(BuyRebateVoucherActivity.PARAM_PAY_AMOUNT, billfee);
-                    startActivityForResult(intent, BUYREBATEVOUCHER_REQCODE);
-                }
-            }
-        });*/
+//        addJumpUiActions(new WebJumpUiAction("pay") {
+//            @Override
+//            public void jumpUi(HashMap<String, String> params) {
+//                // 立即购买
+//                String ordertype = params.get("ordertype");
+//                String billtitle = params.get("billtitle");//返利券标题
+//                String billfee = params.get("billfee");//返利券金额"
+//                if (!TextUtils.isEmpty(ordertype)) {
+//                    Intent intent = new Intent(CouponDetailWebViewActivity.this, BuyRebateVoucherActivity.class);
+//                    intent.putExtra(BuyRebateVoucherActivity.PARAM_PAY_TITLE, billtitle);
+//                    intent.putExtra(BuyRebateVoucherActivity.PARAM_PAY_AMOUNT, billfee);
+//                    startActivityForResult(intent, BUYREBATEVOUCHER_REQCODE);
+//                }
+//            }
+//        });
 
         addJumpUiActions(new WebJumpUiAction("refund") {
             @Override
