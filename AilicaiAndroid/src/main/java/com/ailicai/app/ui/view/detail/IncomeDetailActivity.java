@@ -30,8 +30,8 @@ import butterknife.OnClick;
 public class IncomeDetailActivity extends BaseBindActivity implements CustomPopWindowInterface, IWTopTitleView.TopTitleOnClickListener {
 
     public static final String TYPE = "type";
-    public static final int WALLET = 0;
-    public static final int REGULAR = 1;
+    public static final int REGULAR = 0;
+    public static final int WALLET = 1;
     public static final int TRY = 2;
 
     @Bind(R.id.llTitle)
@@ -41,7 +41,7 @@ public class IncomeDetailActivity extends BaseBindActivity implements CustomPopW
     @Bind(R.id.tvIcon)
     TextView tvIcon;
 
-    private String[] valueArray = {"活期宝", "网贷资产"};
+    private String[] valueArray = {"网贷资产", "活期宝"};
 
     // 正在显示的fragment
     Fragment lastFragment;
@@ -64,9 +64,9 @@ public class IncomeDetailActivity extends BaseBindActivity implements CustomPopW
     public void getIntentValue() {
         typeValue = getIntent().getIntExtra(TYPE, 0);
         if (typeValue == WALLET) {
-            tvTitle.setText(valueArray[0]);
-        } else {
             tvTitle.setText(valueArray[1]);
+        } else {
+            tvTitle.setText(valueArray[0]);
         }
     }
 
