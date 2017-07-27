@@ -156,6 +156,8 @@ public class MessageTypeProcessUtils {
                     sendEventLog(notice);
                     IndexActivity.startIndexActivityToTab(context,0);
                     break;
+                case PushMessage.NOTICETYPETONOTICELIST:
+                    break;
                 default:
                     showNewVersionDialog(context);
                     break;
@@ -170,6 +172,8 @@ public class MessageTypeProcessUtils {
         Intent intent;
         int remindType = notice.getRemindType();
         switch (remindType){
+            case PushMessage.NOTICETYPETONOTICELIST://啥也不干
+                break;
             case PushMessage.REMINDTYPENEWVOUCHER:
             case PushMessage.REMINDTYPETIYANJI:
                 intent = new Intent(activity, CouponWebViewActivity.class);
