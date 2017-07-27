@@ -18,7 +18,7 @@ import java.io.ObjectOutputStream;
  * Created by Ted on 14-7-28.
  */
 public class ServerIPManger {
-    public static final String CONFIG_FILE_NAME = "iwjwconfig";
+    public static final String CONFIG_FILE_NAME = "ailicaiconfig";
 
     public static ServerIPModel GetServerIP() {
         String serverIP = getFromAssets(CONFIG_FILE_NAME);

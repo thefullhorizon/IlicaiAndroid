@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.utils.CommonUtil;
+import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.OpenAccountFinishEvent;
 import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
@@ -15,6 +17,7 @@ import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
 import com.ailicai.app.ui.base.webview.WebMethodCallAction;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.reserve.ReserveActivity;
 import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
@@ -25,6 +28,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * name: IndexFragment <BR>
@@ -154,6 +158,20 @@ public class IndexFragment extends BaseWebViewFragment {
                 }
                 setMiSystemBarColor();
                 return false;
+            }
+        });
+
+        addJumpUiActions(new WebJumpUiAction("noticedetail") {
+            @Override
+            public void jumpUi(HashMap<String, String> params) {
+                if (params.containsKey("url")) {
+                    String url = params.get("url");
+                    Map<String, String> dataMap = ObjectUtil.newHashMap();
+                    dataMap.put(WebViewActivity.URL, url);
+                    dataMap.put(WebViewActivity.USEWEBTITLE, "true");
+                    dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+                    MyIntent.startActivity(getWRActivity(), WebViewActivity.class, dataMap);
+                }
             }
         });
     }
