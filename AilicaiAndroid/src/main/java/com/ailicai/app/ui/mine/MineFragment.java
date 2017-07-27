@@ -369,6 +369,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         }
         if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
             ticket_red_dot.setVisibility(View.GONE);
+            mTvNewMsgPoint.setVisibility(View.GONE);
             mineNotLogin.setVisibility(View.VISIBLE);
             mineLogin.setVisibility(View.GONE);
             tvLogin.setOnClickListener(mOnClickListener);
@@ -386,6 +387,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
             MyPreference.getInstance().write("eyeOpen_" + userId, eyeOpen);
         } else if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
+            ticket_red_dot.setVisibility(View.GONE);
+            mTvNewMsgPoint.setVisibility(View.GONE);
             mineNotLogin.setVisibility(View.GONE);
             mineLogin.setVisibility(View.VISIBLE);
 
