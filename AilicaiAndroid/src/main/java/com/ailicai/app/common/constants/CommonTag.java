@@ -1,10 +1,14 @@
 package com.ailicai.app.common.constants;
 
+import android.os.Build;
+
+import com.ailicai.app.BuildConfig;
+
 /**
  * 全局tag
  */
 public class CommonTag {
-    public static final String IS_FIREST_START = "isFirstStart";//是否第一次启动
+    public static final String IS_FIREST_START = "isFirstStart" + BuildConfig.VERSION_CODE;//是否第一次启动
     public static final String BUY_CARD_DATA = "buy_card_data";
     public static final String COOKIE = "Cookie";
     public static final String CUR_APP_VERSION = "cur_app_version";

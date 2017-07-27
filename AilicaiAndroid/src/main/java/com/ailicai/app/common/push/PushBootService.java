@@ -163,7 +163,11 @@ public class PushBootService extends Service {
     }
 
     private void unregisterNotificationReceiver() {
-        unregisterReceiver(notificationReceiver);
+        try {
+            unregisterReceiver(notificationReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void registerConnectivityReceiver() {
@@ -176,7 +180,11 @@ public class PushBootService extends Service {
 
     private void unregisterConnectivityReceiver() {
         telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
-        unregisterReceiver(connectivityReceiver);
+        try {
+            unregisterReceiver(connectivityReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void registerUserPresentReceiver() {
@@ -186,7 +194,11 @@ public class PushBootService extends Service {
     }
 
     private void unregisterUserPresentReceiver() {
-        unregisterReceiver(userPresentReceiver);
+        try {
+            unregisterReceiver(userPresentReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void start() {
