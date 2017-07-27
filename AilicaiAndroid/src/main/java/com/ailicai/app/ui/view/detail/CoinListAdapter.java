@@ -91,7 +91,7 @@ public class CoinListAdapter extends BaseAdapter {
                 dataMap.put(WebViewActivity.TITLE, "借款协议");
                 dataMap.put(WebViewActivity.URL, products.get(position).getProtocolUrl());
                 dataMap.put(WebViewActivity.NEED_REFRESH, 0 + "");
-                dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+                dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
                 MyIntent.startActivity(mContext, WebViewActivity.class, dataMap);
             }
 
@@ -105,7 +105,7 @@ public class CoinListAdapter extends BaseAdapter {
         dataMap.put(WebViewActivity.TITLE, title);
         dataMap.put(WebViewActivity.URL, url);
         dataMap.put(WebViewActivity.NEED_REFRESH, 0 + "");
-        dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+        dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
         MyIntent.startActivity(mContext, RegularFinanceDetailH5Activity.class, dataMap);
 
     }

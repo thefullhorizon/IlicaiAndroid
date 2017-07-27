@@ -63,7 +63,7 @@ public class AgreementDialog extends MyBaseDialog {
                         dataMap.put(WebViewActivity.TITLE, "协议详情");
                         dataMap.put(WebViewActivity.URL, protocol.getUrl());
                         dataMap.put(WebViewActivity.NEED_REFRESH, "0");
-                        dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+                        dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
                         MyIntent.startActivity(getActivity(), WebViewActivity.class, dataMap);
                     }
                 });

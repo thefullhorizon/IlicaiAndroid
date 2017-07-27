@@ -170,7 +170,7 @@ public class IndexFragment extends BaseWebViewFragment {
                     Map<String, String> dataMap = ObjectUtil.newHashMap();
                     dataMap.put(WebViewActivity.URL, url);
                     dataMap.put(WebViewActivity.USEWEBTITLE, "true");
-                    dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+                    dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
                     MyIntent.startActivity(getWRActivity(), WebViewActivity.class, dataMap);
                 }
             }

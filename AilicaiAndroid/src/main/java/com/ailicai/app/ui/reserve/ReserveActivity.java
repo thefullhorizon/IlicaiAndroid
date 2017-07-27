@@ -387,7 +387,7 @@ TextView mConfirm;
             dataMap.put(WebViewActivity.TITLE, "更多详情");
             dataMap.put(WebViewActivity.URL, url);
             dataMap.put(WebViewActivity.NEED_REFRESH, 0 + "");
-            dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+            dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
             MyIntent.startActivity(this, WebViewActivity.class, dataMap);
         }
     }

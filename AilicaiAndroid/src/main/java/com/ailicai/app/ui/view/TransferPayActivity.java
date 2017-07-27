@@ -132,7 +132,7 @@ public class TransferPayActivity extends BaseBindActivity {
 
                 Map<String, String> dataMap = ObjectUtil.newHashMap();
                 dataMap.put(WebViewActivity.USEWEBTITLE, "true");
-                dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+                dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
                 dataMap.put(WebViewActivity.NEED_REFRESH, "0");
                 if (null != infoResponse) {
                     dataMap.put(WebViewActivity.URL, infoResponse.getAssignRule());

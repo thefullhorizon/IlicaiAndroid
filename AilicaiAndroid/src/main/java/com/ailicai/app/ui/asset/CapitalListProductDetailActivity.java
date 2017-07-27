@@ -478,7 +478,7 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
             dataMap.put(WebViewActivity.TITLE, "借款协议");
             dataMap.put(WebViewActivity.URL, protocolUrl);
             dataMap.put(WebViewActivity.NEED_REFRESH, 0 + "");
-            dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+            dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
             MyIntent.startActivity(this, WebViewActivity.class, dataMap);
         }
     }
@@ -499,7 +499,7 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
             dataMap.put(WebViewActivity.TITLE, "债权转让协议");
             dataMap.put(WebViewActivity.URL, protocolUrl);
             dataMap.put(WebViewActivity.NEED_REFRESH, 0 + "");
-            dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+            dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
             MyIntent.startActivity(this, WebViewActivity.class, dataMap);
         }
 

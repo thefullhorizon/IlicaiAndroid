@@ -250,17 +250,17 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
     }
 
     private void showCancelText() {
+
+        // 刷新开户状态
+        if (UserInfo.isLogin()) {
+            LoginManager.updateUserInfoData();
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatDialog);
         builder.setMessage("是否放弃开户");
         builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                // 点击是则刷新开户状态
-                if (UserInfo.isLogin()) {
-                    LoginManager.updateUserInfoData();
-                }
-
                 if (AccountInfo.isRealNameVerify()) {
                     EventLog.upEventLog("683", "abandon", "setcard");
                 } else {

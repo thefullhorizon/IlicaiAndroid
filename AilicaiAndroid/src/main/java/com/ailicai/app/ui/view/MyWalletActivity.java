@@ -210,7 +210,7 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
             dataMap.put(WebViewActivity.TITLE, "更多详情");
             dataMap.put(WebViewActivity.URL, productInfoUrl);
             dataMap.put(WebViewActivity.NEED_REFRESH, 0 + "");
-            dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+            dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
             MyIntent.startActivity(MyWalletActivity.this, WebViewActivity.class, dataMap);
         }
     }

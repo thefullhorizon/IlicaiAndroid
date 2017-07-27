@@ -147,7 +147,7 @@ public class UpgradeProtocalDialog extends MyBaseDialog{
 
             Map<String, String> dataMap = ObjectUtil.newHashMap();
             dataMap.put(WebViewActivity.NEED_REFRESH, "0");
-            dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
+            dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
             for(int i = 0;i<protocols.size();i++) {
                 if(i == type) {
                     dataMap.put(WebViewActivity.URL, protocols.get(i).getUrl());
