@@ -20,6 +20,7 @@ import com.ailicai.app.ui.base.webview.WebMethodCallAction;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.reserve.ReserveActivity;
+import com.ailicai.app.ui.view.MyWalletActivity;
 import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
 import com.ailicai.app.widget.IWTopTitleView;
 
@@ -172,6 +173,14 @@ public class IndexFragment extends BaseWebViewFragment {
                     dataMap.put(WebViewActivity.TOPVIEWTHEME, "true");
                     MyIntent.startActivity(getWRActivity(), WebViewActivity.class, dataMap);
                 }
+            }
+        });
+
+        addJumpUiActions(new WebJumpUiAction("wallet") {
+            @Override
+            public void jumpUi(HashMap<String, String> params) {
+                //我的钱包
+                MyWalletActivity.goMywallet(getWRActivity());
             }
         });
     }
