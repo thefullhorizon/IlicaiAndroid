@@ -75,22 +75,19 @@ public class IndexFragment extends BaseWebViewFragment {
         CommonUtil.uiSystemBarTint(getActivity(), getView());
         IWTopTitleView topTitleView = (IWTopTitleView) getView().findViewById(R.id.webview_title);
         topTitleView.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
 
         // 为了让状态栏显示成白色，山炮做法，因为IWtoptitleview中如果是白色titleview会把状态栏设成黑色字所以
         // 后面几个fragment的添加都会对当前activity的状态栏造成影响
-        Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                setMiSystemBarColor();
-            }
-        };
+        SetSystemBarHandler handler = new SetSystemBarHandler();
         handler.sendEmptyMessageDelayed(0, 2000);
+    }
+
+    class SetSystemBarHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            setMiSystemBarColor();
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.ailicai.app.ui.index;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,12 +15,17 @@ import android.widget.Toast;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
+import com.ailicai.app.common.download.DownloadNotificationManager;
+import com.ailicai.app.common.download.DownloadProgressDialogManger;
+import com.ailicai.app.common.reqaction.IwjwHttp;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.utils.UIUtils;
+import com.ailicai.app.common.version.VersionInterface;
+import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.MineShowRedPointEvent;
 import com.ailicai.app.model.request.HtmlUrlRequest;
@@ -40,6 +46,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.Bind;
 
+import static com.ailicai.app.common.reqaction.IwjwRespListener.HASCHECKNEWVERSION;
+
 
 /**
  * name: IndexActivity <BR>
@@ -48,7 +56,7 @@ import butterknife.Bind;
  *
  * @author: IWJW Zhou Xuan
  */
-public class IndexActivity extends BaseBindActivity /*implements VersionInterface*/ {
+public class IndexActivity extends BaseBindActivity implements VersionInterface {
 
     private final static int[][] tabiconss = new int[][]{
             {R.drawable.tabbar_homepage_inactive, R.drawable.tabbar_homepage_active},
@@ -96,6 +104,26 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
         setViewPageData();
         htmlUrlUpdate();
         MyPreference.getInstance().write(CommonTag.IS_FIREST_START, false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
+            if (!hasCheckNewVersion) {
+                VersionUtil.check(this, this);
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+        downloadProgressDestroy(MyApplication.getInstance());
+        IwjwHttp.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void setViewPageData() {
@@ -175,37 +203,37 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
         });
     }
 
-//    @Override
-//    public void remindPoint() {
+    @Override
+    public void remindPoint() {
+        // TODO 等有更新时候设置里面需要红点的时候再打开
 //        setRedNotification(2);
-//    }
-//
-//    @Override
-//    public void checkStart() {
-//
-//    }
-//
-//    @Override
-//    public void checkSuccess() {
-//        //检查通过
-//        this.hasCheckNewVersion = true;
-//        //MyPreference.getInstance().write(HASCHECKNEWVERSION, true);
-//    }
-//
-//    @Override
-//    public void checkFailed(String message) {
-//        //检查没通过
-//    }
-//
-//    @Override
-//    public void checkLatest(String version) {
-//        //检查通过并没有更新
-//    }
-//
-//    @Override
-//    public boolean ignorePop() {
-//        return false;
-//    }
+    }
+
+    @Override
+    public void checkStart() {
+
+    }
+
+    @Override
+    public void checkSuccess() {
+        //检查通过
+        this.hasCheckNewVersion = true;
+    }
+
+    @Override
+    public void checkFailed(String message) {
+        //检查没通过
+    }
+
+    @Override
+    public void checkLatest(String version) {
+        //检查通过并没有更新
+    }
+
+    @Override
+    public boolean ignorePop() {
+        return false;
+    }
 
     public void setCurrentItem(int index) {
         //   mViewPager.setCurrentItem(index);
@@ -310,12 +338,6 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Override
     public void onBackPressed() {
         if (System.currentTimeMillis() - LastBackTime > 2500) {
             LastBackTime = System.currentTimeMillis();
@@ -328,6 +350,14 @@ public class IndexActivity extends BaseBindActivity /*implements VersionInterfac
             MyApplication.getAppPresenter().onExitApp();
             finish();
         }
+    }
+
+    /**
+     * 销毁下载弹窗
+     */
+    private static void downloadProgressDestroy(Context mC) {
+        DownloadProgressDialogManger.getInstance().destory();
+        DownloadNotificationManager.getInstance(mC).destroy();
     }
 
     public void setChildMiMiSystemBarColor(int position) {
