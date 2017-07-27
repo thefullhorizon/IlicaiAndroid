@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentActivity;
 
 import com.ailicai.app.model.bean.Banner;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
-import com.ailicai.app.ui.view.AssetInViewOfBirdActivity;
+import com.ailicai.app.ui.view.CapitalActivity;
 import com.ailicai.app.ui.view.MyWalletActivity;
 
 import java.util.Map;
@@ -38,7 +38,7 @@ public class MainIntentUtil {
                     mActivity.startActivity(intent);
                     break;
                 case 12://资产页
-                    MyIntent.startActivity(mActivity, AssetInViewOfBirdActivity.class, null);
+                    MyIntent.startActivity(mActivity, CapitalActivity.class, null);
                     break;
 
                 default:
