@@ -23,6 +23,7 @@ import com.ailicai.app.ui.base.webview.WebMethodCallAction;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.LoginManager;
+import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.paypassword.PayPwdResetActivity;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.alibaba.fastjson.JSON;
@@ -254,6 +255,12 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
         builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+                // 点击是则刷新开户状态
+                if (UserInfo.isLogin()) {
+                    LoginManager.updateUserInfoData();
+                }
+
                 if (AccountInfo.isRealNameVerify()) {
                     EventLog.upEventLog("683", "abandon", "setcard");
                 } else {
