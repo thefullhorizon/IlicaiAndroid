@@ -53,7 +53,6 @@ import com.ailicai.app.ui.buy.IwPwdPayResultListener;
 import com.ailicai.app.ui.buy.RegularReChangePay;
 import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
-import com.ailicai.app.widget.SystemBarTintManager;
 import com.huoqiu.framework.util.ManyiUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -153,10 +152,10 @@ public class RegularPayActivity extends BaseBindActivity {
                 return true;
             }
         });
-        setShowSystemBarTint(false);
-        SystemBarTintManager tintManager = new SystemBarTintManager(this);
-        tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(R.color.main_top_deep_color);
+//        setShowSystemBarTint(false);
+//        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+//        tintManager.setStatusBarTintEnabled(true);
+//        tintManager.setStatusBarTintResource(R.color.main_top_deep_color);
         mConfirmBtn.setEnabled(false);
         initBaseInfo();
         addListener();
