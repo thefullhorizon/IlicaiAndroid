@@ -41,6 +41,9 @@ public class IncomeDetailActivity extends BaseBindActivity implements CustomPopW
     @Bind(R.id.tvIcon)
     TextView tvIcon;
 
+    @Bind(R.id.filter_shade_view)
+    View mFilterShadeView;
+
     private String[] valueArray = {"网贷资产", "活期宝"};
 
     // 正在显示的fragment
@@ -119,6 +122,9 @@ public class IncomeDetailActivity extends BaseBindActivity implements CustomPopW
         CustomPopWindowParams params = new CustomPopWindowParams();
         params.setStyle(true);
         CustomPopWindow.showPopWindow(this, this, params);
+
+        mFilterShadeView.setVisibility(mFilterShadeView.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+
     }
 
     @Override
