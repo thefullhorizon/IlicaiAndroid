@@ -716,7 +716,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
 
     //资产预览
-    @OnClick(R.id.assets_total)
+    @OnClick(R.id.totalAsset)
     void goAssetsTotal() {
         if (!NoSetSafeCardHint.isOpenAccount()) {
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);

@@ -101,10 +101,9 @@
                 android:gravity="center|bottom"
                 android:orientation="vertical"
                 android:paddingBottom="20dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <LinearLayout
-                    android:id="@+id/assets_total"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
