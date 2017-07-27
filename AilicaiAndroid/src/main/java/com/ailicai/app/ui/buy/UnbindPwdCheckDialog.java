@@ -73,7 +73,7 @@ public class UnbindPwdCheckDialog extends BaseBuyFinancePay {
             public void onFailInfo(String errorInfo) {
                 super.onFailInfo(errorInfo);
                 ToastUtil.showInCenterLong(MyApplication.getInstance(), errorInfo);
-                onDialogDismiss();
+                disMsgCodeProgress();
             }
         });
     }
@@ -137,6 +137,7 @@ public class UnbindPwdCheckDialog extends BaseBuyFinancePay {
                 disLoadProgress();
                 ToastUtil.showInCenter(error);
                 clearPassword();
+                onDialogDismiss();
             }
         });
     }
