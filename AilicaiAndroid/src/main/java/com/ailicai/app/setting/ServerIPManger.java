@@ -71,7 +71,7 @@ public class ServerIPManger {
 
         model.mIPType = 0;
         model.mServerProtocol = "https";
-        model.mServerHostname = "poros.iwlicaitest.com";
+        model.mServerHostname = "fin.iwlicai.com";
         model.mServerPort = 443;
         model.mServerPath = "";
         model.mPushServerIP = "";
