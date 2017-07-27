@@ -97,10 +97,10 @@ public class TransactionListAdapter extends BaseAdapter {
         }
 
         if (model.isExpand() == true) {
-            viewHolder.mTextResultIcon.setText(R.string.area);
+            viewHolder.mTextResultIcon.setText(R.string.chevous_up);
             viewHolder.mLayoutResonDesc.setVisibility(View.VISIBLE);
         } else {
-            viewHolder.mTextResultIcon.setText(R.string.homepage_arrow_left);
+            viewHolder.mTextResultIcon.setText(R.string.chevous_down);
             viewHolder.mLayoutResonDesc.setVisibility(View.GONE);
         }
 
