@@ -26,6 +26,7 @@ import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.paypassword.PayPwdResetActivity;
 import com.ailicai.app.widget.IWTopTitleView;
+import com.ailicai.app.widget.SystemBarTintManager;
 import com.alibaba.fastjson.JSON;
 
 import org.greenrobot.eventbus.EventBus;
@@ -67,6 +68,9 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setShowSystemBarTint(false);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        tintManager.setStatusBarTintResource(R.color.white);
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
                         | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
