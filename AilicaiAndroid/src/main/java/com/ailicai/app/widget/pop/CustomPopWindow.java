@@ -62,6 +62,47 @@ public abstract class CustomPopWindow {
 
     }
 
+    public static void showPopWindowWithAView(final Context context, final CustomPopWindowInterface mInterface, CustomPopWindowParams params,final View view) {
+        if(params.getCustomWidth() > 0) {
+            mPopupWindow = new PopupWindow(params.getCustomWidth(), RelativeLayout.LayoutParams.WRAP_CONTENT);
+        } else {
+            mPopupWindow = new PopupWindow(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        }
+        mPopupWindow.setOutsideTouchable(true);
+        mPopupWindow.setFocusable(true);
+        // 自定义宽度的摸旁边activity不想接收事件
+        if(params.getCustomWidth() > 0) {
+            setPopupWindowTouchModal(mPopupWindow, true);
+        } else {
+            setPopupWindowTouchModal(mPopupWindow, false);
+        }
+        Drawable dw = context.getResources().getDrawable(R.color.transparent);
+        mPopupWindow.setBackgroundDrawable(dw);
+
+        if (params.getAnimLocation() == 1) {
+            mPopupWindow.setAnimationStyle(R.style.CustomPopAnimOnLeft);
+        } else if (params.getAnimLocation() == 2) {
+            mPopupWindow.setAnimationStyle(R.style.CustomPopAnimOnRight);
+        } else {
+            mPopupWindow.setAnimationStyle(R.style.CustomPopAnimOnMiddle);
+        }
+        View popView = initPopViewAndSetData(context, mInterface, params);
+        mPopupWindow.setContentView(popView);
+        mPopupWindow.update();
+        mPopupWindow.showAsDropDown(mInterface.popShowAsLocation(), 0, 0);
+        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                setPopBackgroundAlpha((Activity) context, 1f);
+                mInterface.popDismissListener();
+                view.setVisibility(View.INVISIBLE);
+            }
+        });
+        view.setVisibility(View.VISIBLE);
+
+
+    }
+
 
     private static View initPopViewAndSetData(Context context, final CustomPopWindowInterface mInterface, CustomPopWindowParams params) {
         View view = null;

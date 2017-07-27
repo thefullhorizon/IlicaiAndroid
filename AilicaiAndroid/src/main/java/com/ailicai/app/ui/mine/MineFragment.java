@@ -728,7 +728,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else {
-            MyIntent.startActivity(getWRActivity(), IncomeDetailActivity.class, null);
+            Intent intent = new Intent(getWRActivity(), IncomeDetailActivity.class);
+            intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.REGULAR);
+            startActivity(intent);
         }
     }
 
@@ -739,7 +741,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else {
-            MyIntent.startActivity(getWRActivity(), IncomeDetailActivity.class, null);
+            Intent intent = new Intent(getWRActivity(), IncomeDetailActivity.class);
+            intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.REGULAR);
+            startActivity(intent);
         }
     }
 

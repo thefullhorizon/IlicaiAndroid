@@ -229,7 +229,7 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
     @OnClick(R.id.wallet_frozen_layout)
     void walletFrozenRecoard() {
         Intent intent = new Intent(this, IncomeDetailActivity.class);
-        intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.REGULAR);
+        intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.WALLET);
         startActivity(intent);
     }
 
