@@ -20,7 +20,7 @@ import com.ailicai.app.common.utils.MathUtil;
 import com.ailicai.app.eventbus.ReservePayEvent;
 import com.ailicai.app.model.bean.Product;
 import com.ailicai.app.model.bean.Protocol;
-import com.ailicai.app.model.response.AdvanceDepositAndApplyAppResponse;
+import com.ailicai.app.model.response.reserve.AdvanceDepositAndApplyAppResponse;
 import com.ailicai.app.model.response.ApplyReserveAppResponse;
 import com.ailicai.app.model.response.ReserveDetailResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
