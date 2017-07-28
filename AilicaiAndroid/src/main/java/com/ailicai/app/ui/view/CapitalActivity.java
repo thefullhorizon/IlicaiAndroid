@@ -611,6 +611,10 @@ public class CapitalActivity extends BaseBindActivity implements
         resetHomePage();
         presenter.updateHeader();
         presenter.updateContent(false);
+        if (verifyRelocationOnCurrentTab()){
+            mHomePage.setSelection(0);
+        }
+
     }
 
     @Override
@@ -648,4 +652,16 @@ public class CapitalActivity extends BaseBindActivity implements
         super.logout(activity, msg);
         finish();
     }
+
+    private boolean verifyRelocationOnCurrentTab(){
+        if (getCategory() == ProductCategory.Apply) {
+            if ((mAdapter.getProductOffset()+ mAdapter.getReserveOffset()) > 0) return true;
+        } else if (getCategory() == ProductCategory.Holder) {
+            if ((mAdapter.getProductOffset()+ mAdapter.getTiyanbaoOffset()) > 0) return true;
+        } else if (getCategory() == ProductCategory.Expired) {
+            if (mAdapter.getProductOffset() > 0) return true;
+        }
+        return false;
+    }
+
 }
