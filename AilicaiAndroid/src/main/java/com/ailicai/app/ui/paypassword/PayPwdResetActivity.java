@@ -11,6 +11,7 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.rsa.RSAEncrypt;
+import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.model.request.PayPwdResetRequest;
 import com.ailicai.app.ui.account.IDCardScanActivity;
@@ -88,6 +89,12 @@ public class PayPwdResetActivity extends BaseBindActivity {
                 isIdCardNull = s.length() > 17;
             }
         });
+    }
+
+    @Override
+    public void finish() {
+        SystemUtil.HideSoftInput(this);
+        super.finish();
     }
 
     @OnClick(R.id.btPayPwdNext)
