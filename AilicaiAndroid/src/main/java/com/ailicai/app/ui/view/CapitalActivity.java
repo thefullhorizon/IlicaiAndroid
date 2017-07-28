@@ -608,6 +608,7 @@ public class CapitalActivity extends BaseBindActivity implements
     @Override
     public void onResume() {
         super.onResume();
+        resetHomePage();
         presenter.updateHeader();
         presenter.updateContent(false);
     }
