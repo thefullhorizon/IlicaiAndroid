@@ -159,7 +159,9 @@ public class BaseMessageListAdapter extends BaseAdapter {
                 || remindType == PushMessage.REMINDTYPETIYANJI) {
             //新的现金券通知
 //            viewHolderRemind.iconLeft.setText(R.string.mine_ticket);
-        }else if (remindType == PushMessage.REMINDTYPERESERVESUCCESS) {
+        }else if(remindType == PushMessage.NOTICETYPETONOTICELIST){
+             viewHolderRemind.messageViewDetail.setVisibility(View.GONE);
+         }else if (remindType == PushMessage.REMINDTYPERESERVESUCCESS) {
 
 //            viewHolderRemind.iconLeft.setText(R.string.tab_financial);
         } else if (remindType == PushMessage.REMINDTYPERESERVEFAIL ||
@@ -214,7 +216,18 @@ public class BaseMessageListAdapter extends BaseAdapter {
             ImageLoaderClient.display(getContext(), viewHolderInfo.messageImg, loadParam);
         }
 
-        viewHolderInfo.messageViewDetail.setVisibility(View.VISIBLE);
+        if(notice.getRemindType() == PushMessage.NOTICETYPETOWEBVIEW){
+            if(TextUtils.isEmpty(notice.getUrl())) {
+                viewHolderInfo.messageViewDetail.setVisibility(View.GONE);
+            }else{
+                viewHolderInfo.messageViewDetail.setVisibility(View.VISIBLE);
+            }
+        }else if(notice.getRemindType() == PushMessage.NOTICETYPETONOTICELIST ) {
+            viewHolderInfo.messageViewDetail.setVisibility(View.GONE);
+        }else{
+            viewHolderInfo.messageViewDetail.setVisibility(View.VISIBLE);
+        }
+
     }
 
     //提醒类型的消息

@@ -152,6 +152,13 @@ public class MessageTypeProcessUtils {
             processRemindMessageClick(context,notice);
         }else{//活动和资讯消息
             switch (notice.getRemindType()){
+                case PushMessage.NOTICETYPETOWEBVIEW:
+                    if(!TextUtils.isEmpty(notice.getUrl())) {
+                        Intent intent = new Intent(context, MessageDetailWebViewActivity.class);
+                        intent.putExtra(MessageDetailWebViewActivity.URL, notice.getUrl());
+                        context.startActivity(intent);
+                    }
+                    break;
                 case PushMessage.NOTICETYPETOFINANCE:
                     sendEventLog(notice);
                     IndexActivity.startIndexActivityToTab(context,0);
@@ -172,6 +179,11 @@ public class MessageTypeProcessUtils {
         Intent intent;
         int remindType = notice.getRemindType();
         switch (remindType){
+            case PushMessage.NOTICETYPETOWEBVIEW:
+                intent = new Intent(activity, MessageDetailWebViewActivity.class);
+                intent.putExtra(MessageDetailWebViewActivity.URL, notice.getUrl());
+                activity.startActivity(intent);
+                break;
             case PushMessage.NOTICETYPETONOTICELIST://啥也不干
                 break;
             case PushMessage.REMINDTYPENEWVOUCHER:

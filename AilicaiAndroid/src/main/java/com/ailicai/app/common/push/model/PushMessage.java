@@ -24,6 +24,7 @@ public class PushMessage implements Serializable {
 
     public static final int REMINDTYPENEWVOUCHER         = INITTYPE + 11;//现金券通知
 
+    public static final int NOTICETYPETOWEBVIEW          = INITTYPE + 13; //资讯打开指定URL或资讯内容
     public static final int NOTICETYPETOFINANCE          = INITTYPE + 14; //14:资讯打开打开爱理财
     public static final int NOTICETYPETONOTICELIST       = INITTYPE + 15;//啥也不干
 
