@@ -1068,6 +1068,10 @@ public class BaseWebViewLayout extends LinearLayout {
                 }
             }
         }
+
+        if (!SystemUtil.isNetWorkAvaliable(getWRContext())) {
+            showNetWorkError();
+        }
     }
 
     private void loadFile(String filePath) {
@@ -1093,8 +1097,12 @@ public class BaseWebViewLayout extends LinearLayout {
     }
 
     public void reloadData() {
-        showLoadView();
-        webView.reload();
+        if (!SystemUtil.isNetWorkAvaliable(getWRContext())) {
+            showNetWorkError();
+        } else {
+            showLoadView();
+            webView.reload();
+        }
     }
 
     protected void goBack() {

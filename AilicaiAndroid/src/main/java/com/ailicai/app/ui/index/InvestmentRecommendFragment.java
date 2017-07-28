@@ -44,7 +44,7 @@ public class InvestmentRecommendFragment extends BaseWebViewFragment {
 
             @Override
             public void onProgressChanged(int newProgress, BaseWebViewLayout webViewLayout) {
-                if (newProgress > 50) {
+                if (newProgress > 30) {
                     webViewLayout.shouldShowLoading(false);
                 }
                 if(newProgress == 100) {
