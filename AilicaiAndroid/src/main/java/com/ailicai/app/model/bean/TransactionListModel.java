@@ -1,4 +1,4 @@
-package com.ailicai.app.ui.view.transaction;
+package com.ailicai.app.model.bean;
 
 import java.io.Serializable;
 

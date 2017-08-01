@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ailicai.app.R;
+import com.ailicai.app.model.bean.TransactionListModel;
 import com.ailicai.app.widget.TextViewTF;
 
 import java.util.ArrayList;

@@ -1,4 +1,6 @@
-package com.ailicai.app.ui.view.transaction;
+package com.ailicai.app.model.bean;
+
+import com.ailicai.app.ui.view.transaction.TransactionEnum;
 
 /**
  * Created by wulianghuan on 2016/1/4.
