@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.ailicai.app.widget.IWTopTitleView
+        android:id="@+id/top_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hasDivider="false"
+        app:hasLeft="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_title_view"
+        android:layout_marginTop="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text_24_212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="验证码已发送至" />
+
+            <TextView
+                android:id="@+id/show_phone_text"
+                style="@style/text_14_757575"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="+86 186 8999 1432" />
+
+
+            <LinearLayout
+                android:id="@+id/login_next_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <com.jungly.gridpasswordviewext.GridPasswordView
+                    android:id="@+id/gpv_auth_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:gpvGridColor="@color/white"
+                    app:gpvLineColor="#bbbbbb"
+                    app:gpvLineWidth="1dp"
+                    app:gpvPasswordLength="4"
+                    app:gpvTextColor="#212121"
+                    app:gpvTextSize="20sp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/auto_code_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/get_voice_auth_code"
+                            style="@style/LoginRetryGetAutoCodeBg"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:text="@string/validate_voice_auth_code"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/get_auth_code"
+                            style="@style/LoginGetAutoCodeBg"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/validate_phone_auth_code_retry" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/logining_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <ProgressBar
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:indeterminateDrawable="@drawable/loading_progress_more"
+                            android:max="100"
+                            android:orientation="vertical" />
+
+                        <TextView
+                            style="@style/text_16_757575"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="登录中" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/login_bg" />
+
+</RelativeLayout>

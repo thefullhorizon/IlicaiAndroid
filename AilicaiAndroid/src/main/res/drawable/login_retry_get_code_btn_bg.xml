@@ -3,7 +3,7 @@
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
             <corners android:radius="3dp" />
-            <stroke android:width="0.5dp" android:color="@color/white" />
+            <stroke android:width="0.5dp" android:color="@color/transparent" />
         </shape>
     </item>
 
@@ -12,13 +12,13 @@
             <item>
                 <shape android:shape="rectangle">
                     <corners android:radius="3dp" />
-                    <stroke android:width="0.5dp" android:color="@color/white" />
+                    <stroke android:width="0.5dp" android:color="@color/transparent" />
                 </shape>
             </item>
             <item>
                 <shape android:shape="rectangle">
                     <corners android:radius="3dp" />
-                    <stroke android:width="0.5dp" android:color="@color/white" />
+                    <stroke android:width="0.5dp" android:color="@color/transparent" />
                     <solid android:color="@color/white" />
                 </shape>
             </item>
@@ -28,7 +28,7 @@
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="3dp" />
-            <stroke android:width="0.5dp" android:color="@color/white" />
+            <stroke android:width="0.5dp" android:color="@color/transparent" />
         </shape>
     </item>
 </selector>

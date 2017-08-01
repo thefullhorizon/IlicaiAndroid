@@ -26,14 +26,14 @@
     <string name="auth_code">验证码</string>
     <string name="to_login_text">登录</string>
     <string name="phone_number">手机号码</string>
-    <string name="phone_number1">请输入你的手机号</string>
+    <string name="phone_number1">请输入手机号码</string>
     <string name="validate_phone_auth_code">发送验证码</string>
-    <string name="validate_phone_auth_code_retry">重新发送</string>
+    <string name="validate_phone_auth_code_retry">重新获取</string>
     <string name="validate_auth_code_hint">输入验证码</string>
     <string name="validate_auth_code_hint2">验证码</string>
-    <string name="validate_voice_auth_code">没收到?</string>
-    <string name="auth_code_time_num">还剩%1$d秒</string>
-    <string name="permit_agreement_text"><![CDATA[<font color="#999999">温馨提示：<br/>未注册爱屋吉屋账号的手机号，登录时将自动注册，且代表您已同意</font><font color="#747e89">《爱屋吉屋用户协议》</font>]]></string>
+    <string name="validate_voice_auth_code">收不到验证码?</string>
+    <string name="auth_code_time_num">%1$d秒后重新获取</string>
+    <string name="permit_agreement_text"><![CDATA[<font color="#757575">注册/登录即代表您同意</font><font color="#212121">《爱理财平台服务协议》</font>]]></string>
     <string name="permit_agreement_title_text">《爱屋吉屋用户协议》</string>
 
     <!-- Mine -->

@@ -231,7 +231,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             }
         });
 
-        MsgLiteView.refreshNoticeNums(null);
     }
 
     @Override
@@ -388,7 +387,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             MyPreference.getInstance().write("eyeOpen_" + userId, eyeOpen);
         } else if (UserInfo.getInstance().getLoginState() == UserInfo.LOGIN) {
             ticket_red_dot.setVisibility(View.GONE);
-            mTvNewMsgPoint.setVisibility(View.GONE);
+            //mTvNewMsgPoint.setVisibility(View.GONE);
             mineNotLogin.setVisibility(View.GONE);
             mineLogin.setVisibility(View.VISIBLE);
 
@@ -418,13 +417,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                     .showImageOnLoading(resID)
                     .displayer(new SimpleBitmapDisplayer());
 
-
             if (assetInfoNewResponse != null) {
                 eyeOpen = MyPreference.getInstance().read("eyeOpen_" + userId, false);
                 handlerEyesStatus();
                 //卡券红点
                 setVoucherRedDotState(assetInfoNewResponse.getVoucherRedPoint() > 0);
             }
+
+            MsgLiteView.refreshNoticeNums(null);
 
 //            // 卡券小红点
 //            if (isShowVoucherRedDotState()) {

@@ -5,132 +5,112 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <LinearLayout
-        android:id="@+id/top_close_layout"
+    <RelativeLayout
+        android:id="@+id/title_root_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|right"
-        android:orientation="horizontal"
-        android:padding="20dp">
+        android:layout_height="72dp">
 
-        <com.ailicai.app.widget.TextViewTF
-            android:id="@+id/close_button"
-            style="@style/SingleBtnBgStyle"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:gravity="center"
-            android:text="@string/delete"
-            android:textColor="@color/login_close_btn_iconfont_color"
-            android:textSize="24sp" />
-    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <com.ailicai.app.widget.TextViewTF
+                android:id="@+id/close_button"
+                style="@style/SingleBtnBgStyle"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textColor="@color/login_close_btn_iconfont_color"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/top_close_layout">
+        android:layout_below="@+id/title_root_layout"
+        android:layout_marginTop="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:gravity="center_vertical"
             android:orientation="vertical">
+
+            <TextView
+                style="@style/text_24_212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手机快捷登录" />
+
+            <TextView
+                style="@style/text_14_757575"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="未注册爱理财的用户，登录时将自动注册" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
-                android:gravity="center">
-
-                <com.ailicai.app.widget.TextViewTF
-                    android:id="@+id/login_phone_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/login_phonenumber"
-                    android:textColor="@color/color_616161"
-                    android:textSize="20sp" />
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <com.ailicai.app.widget.ManyiEditText
                     android:id="@+id/phone_edit"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_weight="1"
                     android:background="@null"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    app:edit_appearance="@style/text_16_de000000"
-                    app:edit_hint_value="@string/phone_number"
+                    app:edit_appearance="@style/text_24_212121"
+                    app:edit_hint_value="@string/phone_number1"
                     app:edit_inputType="number"
                     app:edit_maxLength="18" />
 
-                <Button
-                    android:id="@+id/get_auth_code"
-                    style="@style/RoundCornerBorderBtnBg"
-                    android:layout_marginLeft="13dp"
-                    android:minWidth="80dp"
-                    android:text="@string/validate_phone_auth_code"
-                    android:textSize="13sp" />
-            </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/color_e6e6e6" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/pinkish_grey" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <com.ailicai.app.widget.TextViewTF
-                    android:id="@+id/login_auth_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/login_message"
-                    android:textColor="@color/color_616161"
-                    android:textSize="20sp" />
-
-                <com.ailicai.app.widget.ManyiEditText
-                    android:id="@+id/auth_edit"
-                    android:layout_width="0dp"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    app:edit_appearance="@style/text_16_de000000"
-                    app:edit_hint_value="@string/auth_code"
-                    app:edit_inputType="number"
-                    app:edit_maxLength="4" />
+                    android:layout_marginTop="32dp">
 
-                <Button
-                    android:id="@+id/get_voice_auth_code"
-                    style="@style/RoundCornerBorderBtnBg"
-                    android:minWidth="80dp"
-                    android:text="@string/validate_voice_auth_code"
-                    android:visibility="gone" />
+                    <TextView
+                        android:id="@+id/login_next_btn"
+                        style="@style/RoundCornerBtnBg"
+                        android:layout_height="48dp"
+                        android:layout_centerInParent="true"
+                        android:text="下一步" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <com.wang.avi.AVLoadingIndicatorView
+                            android:id="@+id/next_loading"
+                            style="@style/AVLoadingIndicatorView.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:indicatorName="BallBeatIndicator" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/pinkish_grey" />
-
-            <Button
-                android:id="@+id/login_btn"
-                style="@style/RoundCornerBtnBg"
-                android:layout_marginTop="24dp"
-                android:text="@string/to_login_text" />
-
-            <TextView
-                android:id="@+id/permit_agreement"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:textSize="12sp" />
         </LinearLayout>
     </ScrollView>
 
@@ -140,4 +120,14 @@
         android:layout_alignParentBottom="true"
         android:adjustViewBounds="true"
         android:src="@drawable/login_bg" />
+
+    <TextView
+        android:id="@+id/permit_agreement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="注册/登录即代表您同意《爱理财平台服务协议》"
+        android:textSize="12sp" />
 </RelativeLayout>

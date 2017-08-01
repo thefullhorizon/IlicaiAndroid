@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 import com.ailicai.app.MyApplication;
+import com.ailicai.app.R;
 import com.ailicai.app.common.push.PushUtil;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
+import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.ToastUtil;
@@ -218,7 +220,6 @@ public class LoginManager {
     }
 
     public static void goLogin(final Activity activity, final Map<String, Object> dataMap) {
-        /*
         if (activity != null) {
             try {
                 activity.runOnUiThread(new Runnable() {
@@ -233,9 +234,8 @@ public class LoginManager {
                 e.printStackTrace();
             }
         }
-        */
 
-        showLoginDialog(activity, dataMap);
+        //showLoginDialog(activity, dataMap);
     }
 
     public static void showLoginDialog(final Activity activity, final Map<String, Object> dataMap) {

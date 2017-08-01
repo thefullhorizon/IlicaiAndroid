@@ -35,20 +35,20 @@
 
     <style name="LoginGetAutoCodeBg">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/login_get_auto_code_btn_bg</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/btn_text_orange_color</item>
     </style>
 
     <style name="LoginRetryGetAutoCodeBg">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/login_retry_get_code_btn_bg</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">#757575</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#616161</item>
     </style>
 
     <style name="AppCompatDialog2" parent="AppCompatDialog">
@@ -122,6 +122,10 @@
     <style name="text_16_2962ff">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#2962ff</item>
+    </style>
+
+    <style name="SingleBtnBgStyle">
+        <item name="android:background">@drawable/bg_black_a10_selector_round</item>
     </style>
 
 
