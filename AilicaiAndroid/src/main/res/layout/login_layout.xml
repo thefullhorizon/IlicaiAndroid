@@ -91,7 +91,8 @@
                         style="@style/RoundCornerBtnBg"
                         android:layout_height="48dp"
                         android:layout_centerInParent="true"
-                        android:text="下一步" />
+                        android:text="下一步"
+                        android:textSize="18sp" />
 
 
                     <LinearLayout
