@@ -58,7 +58,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -70,6 +69,7 @@ import butterknife.OnClick;
  */
 public class LoginFragment extends BaseBindFragment {
     private int fromPage = LoginManager.LOGIN_FROM_MINE;
+    private UserLoginResponse mUserLoginResponse = null;
     private final int TIMER_STARTING = 0x0001;
     private final int TIMER_CANCELED = 0x0002;
     @Bind(R.id.close_button)
@@ -547,7 +547,7 @@ public class LoginFragment extends BaseBindFragment {
             @Override
             public void onJsonSuccess(UserLoginResponse jsonObject) {
                 showContentView();
-
+                mUserLoginResponse = jsonObject;
                 int code = jsonObject.getErrorCode();
                 if (code == 0) {
                     if (null != getWRActivity()) {
@@ -673,7 +673,7 @@ public class LoginFragment extends BaseBindFragment {
     private void continueLogin() {
         getWRActivity().finish();
         //处理登录成功相关事件
-        LoginManager.loginSuccess(fromPage);
+        LoginManager.loginSuccess(fromPage,mUserLoginResponse);
     }
 
     /**

@@ -21,6 +21,7 @@ import com.ailicai.app.model.request.UserInfoRequest;
 import com.ailicai.app.model.request.account.AccountRequest;
 import com.ailicai.app.model.response.RreshDataResponse;
 import com.ailicai.app.model.response.UserInfoResponse;
+import com.ailicai.app.model.response.UserLoginResponse;
 import com.ailicai.app.model.response.account.AccountResponse;
 import com.ailicai.app.ui.base.FragmentHelper;
 import com.ailicai.app.ui.dialog.LoginDialog;
@@ -274,7 +275,7 @@ public class LoginManager {
         MobclickAgent.onProfileSignOff();
     }
 
-    public static void loginSuccess(int fromPage) {
+    public static void loginSuccess(int fromPage,UserLoginResponse jsonObject) {
         //登录成功获取用户信息接口
         LoginManager.updateUserInfoData();
 
@@ -288,6 +289,7 @@ public class LoginManager {
         LoginEvent loginEvent = new LoginEvent();
         loginEvent.setLoginSuccess(true);
         loginEvent.setFromPageCode(fromPage);
+        loginEvent.setJsonObject(jsonObject);
         EventBus.getDefault().post(loginEvent);
         MobclickAgent.onProfileSignIn(UserInfo.getInstance().getUserMobile());
 

@@ -1,6 +1,7 @@
 package com.ailicai.app.eventbus;
 
 
+import com.ailicai.app.model.response.UserLoginResponse;
 import com.ailicai.app.ui.login.LoginManager;
 
 /**
@@ -13,6 +14,7 @@ public class LoginEvent {
     private boolean isLoginSuccess = false;
 
     private boolean cancelLogin = false;
+    private UserLoginResponse jsonObject = null;
     /**
      * 发起登录或者退出的页面的标记，默认是来自我的页面
      */
@@ -40,5 +42,13 @@ public class LoginEvent {
 
     public void setFromPageCode(int fromPageCode) {
         this.fromPageCode = fromPageCode;
+    }
+
+    public UserLoginResponse getJsonObject() {
+        return jsonObject;
+    }
+
+    public void setJsonObject(UserLoginResponse jsonObject) {
+        this.jsonObject = jsonObject;
     }
 }

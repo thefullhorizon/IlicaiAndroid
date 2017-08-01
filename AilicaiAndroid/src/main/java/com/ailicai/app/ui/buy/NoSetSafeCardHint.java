@@ -3,6 +3,7 @@ package com.ailicai.app.ui.buy;
 import android.content.DialogInterface;
 
 import com.ailicai.app.MyApplication;
+import com.ailicai.app.model.response.UserLoginResponse;
 import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.login.AccountInfo;
@@ -20,6 +21,17 @@ public class NoSetSafeCardHint {
         boolean isOpenCount = AccountInfo.isOpenAccount();
 
         if (!hasSafeCard() && isOpenCount) {
+            showDeductionsCheckCardDialog(activity);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isShowHintDialogWithLoginInfo(BaseBindActivity activity, UserLoginResponse jsonObject) {
+
+        boolean isOpenCount = AccountInfo.isOpenAccount();
+
+        if (!(hasSafeCard()|| (jsonObject.getHasSafeCard() == 1)) && (isOpenCount || (jsonObject.getIsOpenAccount() == 1))) {
             showDeductionsCheckCardDialog(activity);
             return true;
         }
