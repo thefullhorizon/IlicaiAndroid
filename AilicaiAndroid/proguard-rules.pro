@@ -249,7 +249,7 @@ public static ** valueOf(java.lang.String);
 -keep class com.alibaba.fastjson.** { *; }
 
 -keep class com.manyi.lovehouse.reqaction.IwjwRespListener {*;}
--keep class * extends com.ailicai.app.model.** {*;}
+-keep class com.ailicai.app.model.** {*;}
 -keep class * extends java.util.Observable {*;}
 -keep class com.manyi.lovehouse.wxapi.WXEntryActivity {*;}
 -keep class com.manyi.lovehouse.wxapi.WXPayEntryActivity {*;}
