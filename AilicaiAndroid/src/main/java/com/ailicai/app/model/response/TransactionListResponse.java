@@ -1,6 +1,6 @@
 package com.ailicai.app.model.response;
 
-import com.ailicai.app.ui.view.transaction.TransactionListModel;
+import com.ailicai.app.model.bean.TransactionListModel;
 import com.huoqiu.framework.rest.Response;
 
 import java.util.List;

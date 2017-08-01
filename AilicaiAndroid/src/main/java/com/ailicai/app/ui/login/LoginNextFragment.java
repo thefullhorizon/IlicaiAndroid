@@ -413,7 +413,7 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
                         //}
                         //}
 
-                        continueLogin();
+                        continueLogin(jsonObject);
                     } else {
                         showMyToast("认证失败，请重试！");
                         onLoginComplete();
@@ -435,10 +435,10 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
         loginingLayout.setVisibility(View.GONE);
     }
 
-    private void continueLogin() {
+    private void continueLogin(UserLoginResponse jsonObject) {
         //onLoginComplete();
         //处理登录成功相关事件
-        LoginManager.loginSuccess(fromPage);
+        LoginManager.loginSuccess(fromPage,jsonObject);
         getActivity().finish();
     }
 

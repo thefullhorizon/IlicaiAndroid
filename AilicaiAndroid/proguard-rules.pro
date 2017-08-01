@@ -67,16 +67,6 @@
 -keepclassmembers class * {
     @com.j256.ormlite.field.DatabaseField *;
 }
--keep class com.alipay.android.app.IAlixPay{*;}
--keep class com.alipay.android.app.IAlixPay$Stub{*;}
--keep class com.alipay.android.app.IRemoteServiceCallback{*;}
--keep class com.alipay.android.app.IRemoteServiceCallback$Stub{*;}
--keep class com.alipay.sdk.app.PayTask{ public *;}
--keep class com.alipay.sdk.app.AuthTask{ public *;}
-
--dontwarn com.taobao.**
--keep class com.taobao.**
--keep interface com.taobao.**
 
 -keep public class com.nostra13.universalimageloader.**{*;}
 -keepclassmembers class com.nostra13.universalimageloader.** {*;}
@@ -124,6 +114,7 @@ public void *(android.view.View);
 ##-------------------jackson---------------------------
 
 ##-------------------support.v4---------------------------
+-keep public class * extends android.support.v4.app.FragmentActivity
 -keep public class * extends android.support.v4.app.Fragment
 -keep class android.support.v4.** { *;}
 -keep public class * extends android.support.v4.**
@@ -248,11 +239,12 @@ public static ** valueOf(java.lang.String);
 -keep class com.huoqiu.framework.commhttp.JsonHttpResponseListener {*;}
 -keep class com.alibaba.fastjson.** { *; }
 
--keep class com.manyi.lovehouse.reqaction.IwjwRespListener {*;}
+-keep class com.ailicai.app.common.reqaction.IwjwRespListener {*;}
+-keep class * extends com.ailicai.app.model.request.Request {*;}
 -keep class com.ailicai.app.model.** {*;}
+-keep class * extends java.io.Serializable {*;}
 -keep class * extends java.util.Observable {*;}
--keep class com.manyi.lovehouse.wxapi.WXEntryActivity {*;}
--keep class com.manyi.lovehouse.wxapi.WXPayEntryActivity {*;}
+-keep class com.ailicai.app.common.share.wxapi.WXEntryActivity {*;}
 
 -keep class com.parse.** {*;}
 -keep class org.jivesoftware.** {*;}

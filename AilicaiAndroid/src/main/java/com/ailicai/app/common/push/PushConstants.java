@@ -34,8 +34,8 @@ public class PushConstants {
     /**
      * MiPush Id & key
      */
-    public static final String MIPUSH_APP_ID = "2882303761517597107";
-    public static final String MIPUSH_APP_KEY = "5481759754107";
+    public static final String MIPUSH_APP_ID = "2882303761517602012";
+    public static final String MIPUSH_APP_KEY = "5631760293012";
     public static final String MIPUSH_APP_NAME = "alicai/push/android/xiaoMI";
     public static final String HWPUSH_APP_NAME = "alicai/push/android/huaWei";
     public static final String JPUSH_APP_NAME = "alicai/push/android/jpush";

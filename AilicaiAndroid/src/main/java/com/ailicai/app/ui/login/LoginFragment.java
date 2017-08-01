@@ -43,8 +43,6 @@ import butterknife.OnClick;
  * 用户登录
  */
 public class LoginFragment extends BaseBindFragment {
-    @Bind(R.id.permit_agreement)
-    TextView mPermitTextView;
     @Bind(R.id.close_button)
     TextViewTF mCloseBtn;
     @Bind(R.id.login_next_btn)
@@ -53,6 +51,8 @@ public class LoginFragment extends BaseBindFragment {
     AVLoadingIndicatorView mNextLoading;
     @Bind(R.id.phone_edit)
     ManyiEditText mPhoneEditText;
+    @Bind(R.id.permit_agreement)
+    TextView mPermitTextView;
     /**
      * 自动获取到的电话号码
      */
@@ -198,7 +198,6 @@ public class LoginFragment extends BaseBindFragment {
         SystemUtil.hideKeyboard(mPhoneEditText);
     }
 
-
     @Override
     public int getLayout() {
         return R.layout.login_layout;
@@ -238,14 +237,12 @@ public class LoginFragment extends BaseBindFragment {
         MyIntent.startActivity(getWRActivity(), WebViewActivity.class, dataMap);
     }
 
-
     public void showNextView() {
         closeKeyBoard();
         mPhoneEditText.showClearButton(true);
         mPhoneEditText.getmEditText().setEnabled(true);
         toLoginNextFragment();
     }
-
 
     public void toLoginNextFragment() {
         LoginNextFragment mLoginNextFragment = new LoginNextFragment();
@@ -267,7 +264,6 @@ public class LoginFragment extends BaseBindFragment {
         //mLoginNextFragment.setBackOp(null);
         mLoginNextFragment.show(mLoginNextFragment.SHOW_ADD_HIDE);
     }
-
 
     @Override
     public void onPause() {
@@ -312,7 +308,6 @@ public class LoginFragment extends BaseBindFragment {
         }
         return true;
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

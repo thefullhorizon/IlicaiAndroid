@@ -21,6 +21,8 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.SystemUtil;
+import com.ailicai.app.model.bean.TransactionListModel;
+import com.ailicai.app.model.bean.TransactionTypeModel;
 import com.ailicai.app.model.request.TransactionListRequest;
 import com.ailicai.app.model.response.TransactionListResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;

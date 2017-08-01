@@ -153,6 +153,7 @@ public class LoginDialog extends MyBaseDialog implements GridPasswordView.OnPass
 
     };
     private int fromPage = LoginManager.LOGIN_FROM_MINE;
+    private UserLoginResponse mUserLoginResponse = null;
     /*
     AppraiseAgentDialogUpdate.AppraiseAgentInterface appraiseAgentInterface = new AppraiseAgentDialogUpdate.AppraiseAgentInterface() {
         @Override
@@ -681,7 +682,7 @@ public class LoginDialog extends MyBaseDialog implements GridPasswordView.OnPass
 
             @Override
             public void onJsonSuccess(UserLoginResponse jsonObject) {
-
+                mUserLoginResponse = jsonObject;
                 int code = jsonObject.getErrorCode();
                 if (code == 0) {
                     if (null != getWRActivity()) {
@@ -804,7 +805,7 @@ public class LoginDialog extends MyBaseDialog implements GridPasswordView.OnPass
     */
     private void continueLogin() {
         //处理登录成功相关事件
-        LoginManager.loginSuccess(fromPage);
+        LoginManager.loginSuccess(fromPage,mUserLoginResponse);
         dismiss();
     }
 
