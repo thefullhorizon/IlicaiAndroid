@@ -244,8 +244,9 @@ public class MsgLiteView extends FrameLayout implements View.OnClickListener {
         } else {
             if (callBackToMsgActivity && event.isLoginSuccess()) {
                 callBackToMsgActivity = false;
-                getActivity().startActivity(new Intent(getActivity(), MessageActivity.class));
-
+                if(event.isContinueNext()){
+                    getActivity().startActivity(new Intent(getActivity(), MessageActivity.class));
+                }
             }
         }
     }

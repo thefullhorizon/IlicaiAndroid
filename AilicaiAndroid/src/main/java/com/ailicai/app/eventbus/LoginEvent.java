@@ -12,6 +12,8 @@ public class LoginEvent {
      * 登录或者退出
      */
     private boolean isLoginSuccess = false;
+    //登录成功是否弹出大礼包
+    private boolean continueNext = true;
 
     private boolean cancelLogin = false;
     private UserLoginResponse jsonObject = null;
@@ -26,6 +28,14 @@ public class LoginEvent {
 
     public void setLoginSuccess(boolean loginSuccess) {
         isLoginSuccess = loginSuccess;
+    }
+
+    public boolean isContinueNext() {
+        return continueNext;
+    }
+
+    public void setContinueNext(boolean continueNext) {
+        this.continueNext = continueNext;
     }
 
     public boolean isCancelLogin() {

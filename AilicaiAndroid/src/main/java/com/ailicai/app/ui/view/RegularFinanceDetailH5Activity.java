@@ -91,7 +91,7 @@ public class RegularFinanceDetailH5Activity extends BaseWebViewActivity {
                 } else if ("0".equals(type)) {
                     //之前版本的逻辑(普通和转让)
                     buyRegularFinance(params);
-                }else if ("2".equals(type)) {
+                } else if ("2".equals(type)) {
                     //小钱袋
                     isSmallCoin = true;
                     //走跟房产宝相同的逻辑
@@ -196,9 +196,9 @@ public class RegularFinanceDetailH5Activity extends BaseWebViewActivity {
             //进入统一处理页面
             if (!NoSetSafeCardHint.isShowHintDialog(RegularFinanceDetailH5Activity.this)) {
                 Intent intent = new Intent(RegularFinanceDetailH5Activity.this, ProcessActivity.class);
-                if (params.containsKey("openAccountUrl")){
+                if (params.containsKey("openAccountUrl")) {
                     String openAccountUrl = (String) params.get("openAccountUrl");
-                    intent.putExtra("openAccountUrl",openAccountUrl);
+                    intent.putExtra("openAccountUrl", openAccountUrl);
                 }
                 startActivityForResult(intent, REQUEST_FOR_PROCESS_BUY);
             }
@@ -213,12 +213,12 @@ public class RegularFinanceDetailH5Activity extends BaseWebViewActivity {
                 //统一处理
                 callJsRefresh();
                 if (resultCode == RESULT_OK) {
-                    if (isSmallCoin){
+                    if (isSmallCoin) {
                         Intent smallCoinIntent = new Intent(RegularFinanceDetailH5Activity.this, RegularPayActivity.class);
-                        smallCoinIntent.putExtra(RegularPayActivity.PRODUCT_ID_KEY,prodId);
-                        smallCoinIntent.putExtra(RegularPayActivity.IS_FROM_SMALL_COIN,true);
+                        smallCoinIntent.putExtra(RegularPayActivity.PRODUCT_ID_KEY, prodId);
+                        smallCoinIntent.putExtra(RegularPayActivity.IS_FROM_SMALL_COIN, true);
                         startActivityForResult(smallCoinIntent, REQUEST_FOR_PROCESS_BUY);
-                    }else{
+                    } else {
                         if ("1".equals(isTransfer)) {
                             //是转让的房产宝
                             MyIntent.startActivity(RegularFinanceDetailH5Activity.this, BuyTransferPayActivity.class, prodId);
@@ -240,19 +240,25 @@ public class RegularFinanceDetailH5Activity extends BaseWebViewActivity {
         }
         if (loginEvent.isLoginSuccess() && "1".equals(type)) {
             //获取是否有体验金
-            getTiYanBaoData(Long.parseLong(activityId));
+            if (loginEvent.isContinueNext()) {
+                getTiYanBaoData(Long.parseLong(activityId));
+            }
         } else {
-            //进入统一处理页面
-            if (!NoSetSafeCardHint.isShowHintDialogWithLoginInfo(RegularFinanceDetailH5Activity.this,loginEvent.getJsonObject())) {
-                Intent intent = new Intent(RegularFinanceDetailH5Activity.this, ProcessActivity.class);
-                startActivityForResult(intent, REQUEST_FOR_PROCESS_BUY);
+            if (loginEvent.isLoginSuccess()) {
+                //进入统一处理页面
+                if (!NoSetSafeCardHint.isShowHintDialogWithLoginInfo(RegularFinanceDetailH5Activity.this, loginEvent.getJsonObject())) {
+                    if (loginEvent.isContinueNext()) {
+                        Intent intent = new Intent(RegularFinanceDetailH5Activity.this, ProcessActivity.class);
+                        startActivityForResult(intent, REQUEST_FOR_PROCESS_BUY);
+                    }
+                }
             }
         }
 
 
-        if(loginEvent.isLoginSuccess()) {
+        if (loginEvent.isLoginSuccess()) {
             // 在当前页面登陆成功上报的埋点
-            EventLog.upEventLog("2017050801","y","alc_detail");
+            EventLog.upEventLog("2017050801", "y", "alc_detail");
         }
     }
 

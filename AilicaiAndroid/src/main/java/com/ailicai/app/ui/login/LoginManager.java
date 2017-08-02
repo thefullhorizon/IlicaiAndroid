@@ -275,7 +275,7 @@ public class LoginManager {
         MobclickAgent.onProfileSignOff();
     }
 
-    public static void loginSuccess(int fromPage,UserLoginResponse jsonObject) {
+    public static void loginSuccess(int fromPage, UserLoginResponse jsonObject, boolean showPackage) {
         //登录成功获取用户信息接口
         LoginManager.updateUserInfoData();
 
@@ -287,6 +287,7 @@ public class LoginManager {
          */
 
         LoginEvent loginEvent = new LoginEvent();
+        loginEvent.setContinueNext(!showPackage);
         loginEvent.setLoginSuccess(true);
         loginEvent.setFromPageCode(fromPage);
         loginEvent.setJsonObject(jsonObject);

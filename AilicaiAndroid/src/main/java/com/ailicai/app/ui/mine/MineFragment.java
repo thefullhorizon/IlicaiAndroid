@@ -40,7 +40,6 @@ import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
 import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.LoginManager;
-import com.ailicai.app.ui.login.LoginSuccessCardDialog;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.login.UserInfoBase;
 import com.ailicai.app.ui.login.UserManager;
@@ -267,6 +266,10 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleLoginEvent(LoginEvent event) {
         if (event.isLoginSuccess()) {
+            //弹出大礼包后不自动跳转页面
+            if (!event.isContinueNext()) {
+                loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
+            }
             assetInfoNewResponse = new AssetInfoNewResponse();
             setUIData();
             refreshMyDataFromServer();
