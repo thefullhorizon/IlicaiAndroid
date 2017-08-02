@@ -440,12 +440,10 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
     private void continueLogin(UserLoginResponse jsonObject) {
         //onLoginComplete();
         //新用户登录&有大礼包
-        boolean isFirstlogin = true;
         boolean isHavePackage = true;
         //处理登录成功相关事件
-        boolean showPackage = isFirstlogin && isHavePackage;
-
-        LoginManager.loginSuccess(fromPage, jsonObject,showPackage);
+        boolean showPackage = isHavePackage;
+        LoginManager.loginSuccess(fromPage, jsonObject, showPackage);
 
         //新用户登录弹出大礼包
         if (showPackage) {

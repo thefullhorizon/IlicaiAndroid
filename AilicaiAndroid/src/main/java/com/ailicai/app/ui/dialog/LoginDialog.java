@@ -694,15 +694,15 @@ public class LoginDialog extends MyBaseDialog implements GridPasswordView.OnPass
                             PushUtil.resetMqttService(getWRActivity());
 
                             //if (jsonObject.getFirstLogin() == 0) { //0-首次 1-否
-                                //123 setInatllAgentTask();
+                            //123 setInatllAgentTask();
                             //} else {
-                                //appointmentId = jsonObject.getAppointmentId();
-                                //appointBizType = jsonObject.getAppointBizType();
-                                //if (jsonObject.getAppointmentId() > 0) {
-                                    //123 appraiseAgentTask();
-                                //} else {
-                                 //   continueLogin();
-                                //}
+                            //appointmentId = jsonObject.getAppointmentId();
+                            //appointBizType = jsonObject.getAppointBizType();
+                            //if (jsonObject.getAppointmentId() > 0) {
+                            //123 appraiseAgentTask();
+                            //} else {
+                            //   continueLogin();
+                            //}
                             //}
 
                             continueLogin();
@@ -805,7 +805,7 @@ public class LoginDialog extends MyBaseDialog implements GridPasswordView.OnPass
     */
     private void continueLogin() {
         //处理登录成功相关事件
-        LoginManager.loginSuccess(fromPage,mUserLoginResponse);
+        LoginManager.loginSuccess(fromPage, mUserLoginResponse, false);
         dismiss();
     }
 
