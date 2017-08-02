@@ -40,6 +40,7 @@ import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
 import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.LoginManager;
+import com.ailicai.app.ui.login.LoginSuccessCardDialog;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.login.UserInfoBase;
 import com.ailicai.app.ui.login.UserManager;
@@ -405,7 +406,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             //根据登录的手机号获取已保存的用户信息
             long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
             UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
-            int resID = R.drawable.head_portrait;
+            int resID = R.drawable.avatar;
             DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder();
             builder.cacheInMemory(true)// 是否缓存都內存中
                     .cacheOnDisk(true)// 是否缓存到sd卡上

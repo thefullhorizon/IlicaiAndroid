@@ -17,7 +17,6 @@ import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
-
 import com.ailicai.app.MyApplication;
 
 import java.io.IOException;
@@ -27,11 +26,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class DeviceUtil {
+    public static int nScreentWidth;
+    public static int nScreentHeight;
     private static int nStatusbarHeight;
     private static int nNavigatebarHeight;
     private static int nNavigationBarWidth;
-    public static int nScreentWidth;
-    public static int nScreentHeight;
 
     /**
      * 获取设备的型号

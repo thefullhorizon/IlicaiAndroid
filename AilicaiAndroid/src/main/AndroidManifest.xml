@@ -511,6 +511,13 @@
             android:theme="@style/AppAppCompatTheme.AnimL"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
+        <activity
+            android:name=".ui.login.LoginSuccessCardDialog"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/myactivity.dialog"
+            android:windowSoftInputMode="adjustResize" />
+
         // cashier desk end
 
         <activity

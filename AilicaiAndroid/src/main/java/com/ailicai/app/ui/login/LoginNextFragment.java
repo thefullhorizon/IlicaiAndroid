@@ -3,6 +3,7 @@ package com.ailicai.app.ui.login;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -60,6 +61,7 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
     public static final String PHONE_NUM = "phone_num_text";
     private final int TIMER_STARTING = 0x0001;
     private final int TIMER_CANCELED = 0x0002;
+    public LoginSuccessCardDialog cardDialog;
     public Handler smsHandler = new Handler() {
     };
     @Bind(R.id.show_phone_text)
@@ -438,9 +440,14 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
     private void continueLogin(UserLoginResponse jsonObject) {
         //onLoginComplete();
         //处理登录成功相关事件
-        LoginManager.loginSuccess(fromPage,jsonObject);
+        LoginManager.loginSuccess(fromPage, jsonObject);
+
+        Intent cardIntent = new Intent(getWRActivity(), LoginSuccessCardDialog.class);
+        cardIntent.putExtra(LoginSuccessCardDialog.CARD_DATA, jsonObject);
+        getWRActivity().startActivity(cardIntent);
         getActivity().finish();
     }
+
 
     private boolean checkLogin() {
         if (!NetCheckUtil.hasActiveNetwork()) {

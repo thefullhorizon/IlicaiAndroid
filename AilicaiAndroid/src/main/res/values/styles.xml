@@ -88,10 +88,12 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimAmount">0.4</item>
     </style>
+
     <style name="textview_openaccount_current_step_center">
         <item name="android:textSize">26sp</item>
         <item name="android:textColor">#f75a14</item>
     </style>
+
     <style name="textview_openaccount_current_step_left">
         <item name="android:textSize">26sp</item>
         <item name="android:textColor">#f75a14</item>
@@ -102,11 +104,11 @@
         <item name="android:textSize">8dp</item>
         <item name="android:textColor">#f75a14</item>
     </style>
+
     <style name="textview_openaccount_already_pass_step_left">
         <item name="android:textSize">8dp</item>
         <item name="android:textColor">#f75a14</item>
     </style>
-
 
 
     <style name="textview_openaccount_not_reach_step_center">
@@ -114,6 +116,7 @@
         <item name="android:textColor">#e6e6e6</item>
 
     </style>
+
     <style name="textview_openaccount_not_reach_step_right">
         <item name="android:textSize">8dp</item>
         <item name="android:textColor">#e6e6e6</item>
@@ -126,6 +129,35 @@
 
     <style name="SingleBtnBgStyle">
         <item name="android:background">@drawable/bg_black_a10_selector_round</item>
+    </style>
+
+    <style name="mydialog_first_page">
+        <item name="android:windowEnterAnimation">@anim/activity_lollipop_open_enter</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
+
+    <style name="myactivity.dialog" parent="AppAppCompatTheme.AnimL">
+        <!-- 去黑边 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 设置是否可滑动 -->
+        <item name="android:windowIsFloating">false</item>
+        <!-- 设置是否透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景 -->
+        <item name="android:background">@null</item>
+        <!-- 窗口背景 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 是否变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 点击空白部分activity消失 -->
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowAnimationStyle">@style/mydialog_first_page</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
     </style>
 
 
