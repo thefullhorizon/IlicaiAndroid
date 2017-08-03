@@ -409,7 +409,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             //根据登录的手机号获取已保存的用户信息
             long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
             UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
-            int resID = R.drawable.avatar;
+            int resID = R.drawable.head_portrait;
             DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder();
             builder.cacheInMemory(true)// 是否缓存都內存中
                     .cacheOnDisk(true)// 是否缓存到sd卡上
