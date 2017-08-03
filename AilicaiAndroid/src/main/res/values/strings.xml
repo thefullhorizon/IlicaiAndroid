@@ -93,5 +93,16 @@
     <string name="common_question_answer_7">答：如有问题联系我们，祝您抢购成功！</string>
     <string name="cancel">取消</string>
 
+    <string name="gesture_lock_view_set_lock_tip">请绘制手势密码</string>
+    <string name="gesture_lock_view_set_unpattern">为了您的账户安全，请至少连续绘制4个点</string>
+    <string name="gesture_lock_view_reconfirm">再次绘制手势密码</string>
+    <string name="gesture_lock_view_unpattern">与上次绘制不一致，请重新绘制</string>
+    <string name="gesture_lock_view_pattern">设置成功，2秒后关闭设置手势页面</string>
+    <string name="gesture_lock_view_unpattern_tip">密码错误%1$d次，还可以再试%2$d次</string>
+    <string name="gesture_lock_view_verify_tip">请输入原手势密码</string>
+    <string name="gesture_lock_view_forget_pwd_tip">忘记手势密码</string>
+    <string name="gesture_lock_view_change_user_tip">切换其他账号</string>
+    <string name="gesture_lock_view_user_setting_tip">开启后，进入爱理财客户端需要验证此手势密码。</string>
+
 
 </resources>

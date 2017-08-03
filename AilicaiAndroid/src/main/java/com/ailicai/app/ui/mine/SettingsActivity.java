@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
+import com.ailicai.app.common.utils.AppUtils;
 import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MapUtil;
 import com.ailicai.app.common.utils.MyIntent;
@@ -24,11 +26,13 @@ import com.ailicai.app.eventbus.ExitEvent;
 import com.ailicai.app.eventbus.UserInfoUpdateEvent;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.buy.ProcessActivity;
+import com.ailicai.app.ui.gesture.GestureLockActivity;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.login.UserInfoBase;
 import com.ailicai.app.ui.login.UserManager;
 import com.ailicai.app.ui.paypassword.PayPwdManageActivity;
 import com.ailicai.app.widget.DialogBuilder;
+import com.ailicai.app.widget.ToggleButton;
 import com.huoqiu.framework.util.CheckDoubleClick;
 
 import org.greenrobot.eventbus.EventBus;
@@ -44,8 +48,9 @@ import butterknife.OnClick;
  * Created by Gerry on 2017/7/18.
  */
 
-public class SettingsActivity extends BaseBindActivity {
+public class SettingsActivity extends BaseBindActivity implements ToggleButton.OnToggleChanged{
     private final static int REQUEST_CODE_OPEN_ACCOUNT = 10001;
+    private final static int REQUEST_CODE_GESTURE_LOCK = 10002;
     @Bind(R.id.user_phone_tag)
     TextView mPhoneTag;
     @Bind(R.id.real_name)
@@ -54,6 +59,11 @@ public class SettingsActivity extends BaseBindActivity {
     LinearLayout mLoginOut;
     @Bind(R.id.mine_password_manage_container)
     LinearLayout mPasswordManage;
+    @Bind(R.id.tb_control_gesture_lock)
+    ToggleButton mTbControlGestureLock;
+    @Bind(R.id.rl_fix_gesture_lock_container)
+    View mVFixGestureLockContainer;
+
     Handler mBackHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -78,6 +88,9 @@ public class SettingsActivity extends BaseBindActivity {
             dataMap = MyIntent.getData(savedInstanceState);
             setUserInfo(dataMap);
         }
+        mTbControlGestureLock.setOnToggleChanged(this);
+
+        setToggleStatus();
     }
 
     @Override
@@ -155,7 +168,18 @@ public class SettingsActivity extends BaseBindActivity {
                     //开户成功
                     MyIntent.startActivity(mContext, RealUserInfoActivity.class, dataMap);
                     break;
+                case REQUEST_CODE_GESTURE_LOCK:
+                    setToggleStatus();
+                    break;
             }
+        }
+    }
+
+    private void setToggleStatus(){
+        if(TextUtils.isEmpty(MyPreference.getInstance().read(AppUtils.getLockKey(),""))){
+            mTbControlGestureLock.toggleOff();
+        }else{
+            mTbControlGestureLock.toggleOn();
         }
     }
 
@@ -188,6 +212,11 @@ public class SettingsActivity extends BaseBindActivity {
         setUIData();
     }
 
+    @OnClick(R.id.rl_fix_gesture_lock_container)
+    void fixGestureLockClick(){
+        AppUtils.goActivity(this,GestureLockActivity.TYPE_PERSON_VERIFY_FOR_FIX);
+    }
+
     public void setUIData() {
         if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
             mLoginOut.setVisibility(View.GONE);
@@ -208,6 +237,25 @@ public class SettingsActivity extends BaseBindActivity {
                 mBackHandler.sendEmptyMessageDelayed(0, 200);
             }
         });
+    }
+
+
+    @Override
+    public void onToggle(boolean fromClick,boolean on) {
+        Intent intent;
+        if(fromClick){
+            if(!on){
+                intent = AppUtils.getGestureLockIntent(this,GestureLockActivity.TYPE_PERSON_VERIFY_FOR_CLOSE);
+            }else{
+                MyPreference.getInstance().write(AppUtils.getJumpLockViewKey(),false);
+                intent = AppUtils.getGestureLockIntent(this,GestureLockActivity.TYPE_PERSON_SETTING);
+            }
+            if(intent != null){
+                startActivityForResult(intent,REQUEST_CODE_GESTURE_LOCK);
+            }
+        }
+
+        mVFixGestureLockContainer.setVisibility(on ? View.VISIBLE : View.GONE);
     }
 
 

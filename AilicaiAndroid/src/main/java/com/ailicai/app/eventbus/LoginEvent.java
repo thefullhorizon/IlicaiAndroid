@@ -4,10 +4,12 @@ package com.ailicai.app.eventbus;
 import com.ailicai.app.model.response.UserLoginResponse;
 import com.ailicai.app.ui.login.LoginManager;
 
+import java.io.Serializable;
+
 /**
  * Created by Ted on 2014/10/11.
  */
-public class LoginEvent {
+public class LoginEvent implements Serializable{
     /**
      * 登录或者退出
      */

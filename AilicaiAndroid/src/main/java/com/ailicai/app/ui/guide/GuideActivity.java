@@ -34,6 +34,8 @@ public class GuideActivity extends BaseBindActivity implements ViewPager.OnPageC
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        // 禁止唤起手势页
+        disablePatternLock();
         initViewPager();
         initPoint();
     }

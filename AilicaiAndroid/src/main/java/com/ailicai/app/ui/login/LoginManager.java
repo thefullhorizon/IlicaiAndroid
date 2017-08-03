@@ -3,6 +3,7 @@ package com.ailicai.app.ui.login;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -11,6 +12,7 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.push.PushUtil;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
+import com.ailicai.app.common.utils.AppUtils;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
@@ -27,6 +29,7 @@ import com.ailicai.app.model.response.UserLoginResponse;
 import com.ailicai.app.model.response.account.AccountResponse;
 import com.ailicai.app.ui.base.FragmentHelper;
 import com.ailicai.app.ui.dialog.LoginDialog;
+import com.ailicai.app.ui.gesture.GestureLockActivity;
 import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -273,9 +276,11 @@ public class LoginManager {
         //123 IMHelper.getInstance().logout(false, null);
         MyPreference.getInstance().write("FinanceAdActivity", false);
         MobclickAgent.onProfileSignOff();
+        //清除跳过的标志位
+        MyPreference.getInstance().remove(AppUtils.getJumpLockViewKey());
     }
 
-    public static void loginSuccess(int fromPage, UserLoginResponse jsonObject, boolean showPackage) {
+    public static void loginSuccess(Context context,int fromPage, UserLoginResponse jsonObject, boolean showPackage) {
         //登录成功获取用户信息接口
         LoginManager.updateUserInfoData();
 
@@ -291,8 +296,24 @@ public class LoginManager {
         loginEvent.setLoginSuccess(true);
         loginEvent.setFromPageCode(fromPage);
         loginEvent.setJsonObject(jsonObject);
-        EventBus.getDefault().post(loginEvent);
+
         MobclickAgent.onProfileSignIn(UserInfo.getInstance().getUserMobile());
+
+        Intent intent = AppUtils.getGestureLockIntent(context,GestureLockActivity.TYPE_SETTING);
+        if(intent != null){
+            //如果没有设置手势密码，需要拦截
+            intent.putExtra("loginEvent",loginEvent);
+            context.startActivity(intent);
+        }else{
+            EventBus.getDefault().post(loginEvent);
+
+            //新用户登录弹出大礼包
+            if (showPackage) {
+                Intent cardIntent = new Intent(context, LoginSuccessCardDialog.class);
+                cardIntent.putExtra(LoginSuccessCardDialog.CARD_DATA, jsonObject);
+                context.startActivity(cardIntent);
+            }
+        }
 
         //房源详情关注、咨询、我要看房
         if (fromPage != LoginManager.LOGIN_FROM_SELL_DETAIL_ATTENTION_HOUSE
@@ -312,7 +333,7 @@ public class LoginManager {
                 && !LoginManager.loginPageLocation.isLastLoginInThisPage(LoginManager.LoginLocation.MESSAGE)
                 && !LoginManager.loginPageLocation.isLastLoginInThisPage(LoginManager.LoginLocation.INDEXATTENTION)
                 && !LoginManager.loginPageLocation.isLastLoginInThisPage(LoginLocation.MY)
-                && loginEvent.getFromPageCode() != LoginManager.LOGIN_FROM_MINE) {
+                && fromPage != LoginManager.LOGIN_FROM_MINE) {
             //123 EventLog.upEventLog("2017050801", "z", "");
         }
     }

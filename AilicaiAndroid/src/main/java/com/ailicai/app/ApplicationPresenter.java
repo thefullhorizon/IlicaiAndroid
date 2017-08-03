@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import com.ailicai.app.common.constants.AILICAIBuildConfig;
 import com.ailicai.app.common.constants.CommonTag;
+import com.ailicai.app.common.constants.GlobleConstants;
 import com.ailicai.app.common.constants.IWBuildConfig;
 import com.ailicai.app.common.push.PushUtil;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
@@ -68,6 +69,7 @@ public class ApplicationPresenter {
     boolean isIndexAdDialog = false;//广告弹窗
     boolean isChangeCityDialog = false;//选择城市弹窗
     boolean appraiseDialogCanDialog = false;//经纪人评价弹窗
+    private boolean mIsInFront = false;//是否在前台
 
     private ApplicationPresenter(MyApplication myApplication) {
         this.myApplication = myApplication;
@@ -583,5 +585,19 @@ public class ApplicationPresenter {
         }
         appraiseDialogCanDialog = true;
         return appraiseDialogCanDialog;
+    }
+
+    /***
+     * 设置app进入后台
+     */
+    public void setAppBackground(){
+        GlobleConstants.mLockAppTime = System.currentTimeMillis();
+        mIsInFront = false;
+    }
+    public boolean isInFront(){
+        return mIsInFront;
+    }
+    public void setAppFront(boolean isInFront){
+        mIsInFront = isInFront;
     }
 }

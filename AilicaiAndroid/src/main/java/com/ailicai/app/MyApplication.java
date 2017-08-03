@@ -7,11 +7,13 @@ import android.os.HandlerThread;
 import android.support.multidex.MultiDexApplication;
 
 import com.ailicai.app.common.constants.AILICAIBuildConfig;
+import com.ailicai.app.common.constants.GlobleConstants;
 import com.ailicai.app.common.push.utils.DeathChecker;
 import com.ailicai.app.common.utils.SystemUtil;
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.huoqiu.framework.app.AppConfig;
 import com.squareup.leakcanary.LeakCanary;
+import com.umeng.socialize.utils.Log;
 
 public class MyApplication extends MultiDexApplication {
     private final static String fontPath = "fonts/iconfont.ttf";
@@ -34,6 +36,8 @@ public class MyApplication extends MultiDexApplication {
     private HttpProxyCacheServer proxy;
     private HandlerThread notUIHandlerThread;
     private Handler notUiHandler;
+    private long mLockTime;
+    public boolean mInFront = false;//是否在前台
 
     public static MyApplication getInstance() {
         return application;
@@ -114,6 +118,16 @@ public class MyApplication extends MultiDexApplication {
         }
     }
 
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        //按返回键退出app或者按home键到桌面，或者菜单键切换app都会调用
+        if(level == TRIM_MEMORY_UI_HIDDEN){
+            appPresenter.setAppBackground();
+        }
+    }
+
     public Handler getUiHandler() {
         return uiHandler;
     }
@@ -146,4 +160,6 @@ public class MyApplication extends MultiDexApplication {
     public final void runOnUiThread(Runnable action) {
         uiHandler.post(action);
     }
+
+
 }

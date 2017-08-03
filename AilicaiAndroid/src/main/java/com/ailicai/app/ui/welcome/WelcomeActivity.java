@@ -15,6 +15,7 @@ import com.ailicai.app.ApplicationPresenter;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
+import com.ailicai.app.common.constants.GlobleConstants;
 import com.ailicai.app.common.push.constant.CommonTags;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ToastUtil;
@@ -39,6 +40,7 @@ public class WelcomeActivity extends BackOpFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         ApplicationPresenter.syncTime(null);
+        GlobleConstants.mLockAppTime = 0;
     }
 
     @Override

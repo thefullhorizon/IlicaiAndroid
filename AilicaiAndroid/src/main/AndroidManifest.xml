@@ -505,6 +505,10 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
+            android:name="com.ailicai.app.ui.gesture.GestureLockActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
             android:name=".ui.login.LoginActivity"
             android:configChanges="orientation|keyboardHidden|locale"
             android:screenOrientation="portrait"
@@ -544,6 +548,7 @@
             </intent-filter>
 
         </activity>
+
 
         <!-- MQTT service -->
         <service android:name="com.manyi.inthingsq.android.service.MqttService" />

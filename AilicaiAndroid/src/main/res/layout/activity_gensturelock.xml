@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.ailicai.app.widget.IWTopTitleView
+        android:id="@+id/iwttv_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <ViewStub
+        android:id="@+id/vs_lock_view_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout="@layout/viewstub_gesturelock_indicator"/>
+
+    <ViewStub
+        android:id="@+id/vs_userinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout="@layout/viewstub_gesture_userinfo"/>
+
+    <TextView
+        android:id="@+id/tv_gesture_lock_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
+
+    <com.ailicai.app.widget.gestruelock.GestureLockViewGroup
+        android:id="@+id/glvg_lock_on"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        app:count="3"
+        app:tryTimes="5"
+        app:color_no_finger_inner_circle="@color/edit_text_hint_color"
+        app:color_no_finger_outer_circle="@color/transparent"
+        app:color_finger_on="@color/color_4a4a4a"
+        app:color_finger_wrong="@color/color_b92b27"
+        app:show_arrow_when_success="false"/>
+
+    <ViewStub
+        android:id="@+id/vs_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:layout_marginTop="20dp"
+        android:layout="@layout/viewstub_gesture_lock_bottom"/>
+</LinearLayout>

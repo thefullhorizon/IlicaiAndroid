@@ -3,6 +3,7 @@ package com.ailicai.app.ui.index;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -30,6 +31,7 @@ import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.MineShowRedPointEvent;
 import com.ailicai.app.model.request.HtmlUrlRequest;
 import com.ailicai.app.model.response.Iwjwh5UrlResponse;
+import com.ailicai.app.receiver.ScreenStatusReceiver;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.index.adapter.NavigationPagerAdapter;
@@ -78,6 +80,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     Toast toast;
     private boolean hasCheckNewVersion = false;
     private long LastBackTime;
+    private ScreenStatusReceiver mScreenStatusReceiver;
 
     public static void startIndexActivityToTab(Activity activity, int settabIndex) {
         Intent mIntent = new Intent(activity, IndexActivity.class);
@@ -104,6 +107,14 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         setViewPageData();
         htmlUrlUpdate();
         MyPreference.getInstance().write(CommonTag.IS_FIREST_START, false);
+        //注册息屏广播
+        if(mScreenStatusReceiver == null){
+            mScreenStatusReceiver = new ScreenStatusReceiver();
+            IntentFilter screenStatusIF = new IntentFilter();
+//            screenStatusIF.addAction(Intent.ACTION_SCREEN_ON);
+            screenStatusIF.addAction(Intent.ACTION_SCREEN_OFF);
+            registerReceiver(mScreenStatusReceiver, screenStatusIF);
+        }
     }
 
     @Override
@@ -124,6 +135,10 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         downloadProgressDestroy(MyApplication.getInstance());
         IwjwHttp.onDestroy();
         EventBus.getDefault().unregister(this);
+        if(mScreenStatusReceiver != null){
+            unregisterReceiver(mScreenStatusReceiver);
+            mScreenStatusReceiver = null;
+        }
     }
 
     private void setViewPageData() {

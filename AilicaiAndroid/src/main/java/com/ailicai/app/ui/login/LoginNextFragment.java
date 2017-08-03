@@ -449,14 +449,10 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
         boolean isHavePackage = true;
         //处理登录成功相关事件
         boolean showPackage = isHavePackage;
-        LoginManager.loginSuccess(fromPage, jsonObject, showPackage);
+        LoginManager.loginSuccess(getWRActivity(),fromPage, jsonObject, showPackage);
 
-        //新用户登录弹出大礼包
-        if (showPackage) {
-            Intent cardIntent = new Intent(getWRActivity(), LoginSuccessCardDialog.class);
-            cardIntent.putExtra(LoginSuccessCardDialog.CARD_DATA, jsonObject);
-            getWRActivity().startActivity(cardIntent);
-        }
+
+
         getActivity().finish();
 
     }

@@ -805,7 +805,7 @@ public class LoginDialog extends MyBaseDialog implements GridPasswordView.OnPass
     */
     private void continueLogin() {
         //处理登录成功相关事件
-        LoginManager.loginSuccess(fromPage, mUserLoginResponse, false);
+        LoginManager.loginSuccess(getWRActivity(),fromPage, mUserLoginResponse, false);
         dismiss();
     }
 

@@ -137,7 +137,7 @@ public class ToggleButton extends View {
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                toggle(defaultAnimate);
+                toggle(true,defaultAnimate);
             }
         });
 
@@ -159,29 +159,29 @@ public class ToggleButton extends View {
     }
 
     public void toggle() {
-        toggle(true);
+        toggle(false,true);
     }
 
-    public void toggle(boolean animate) {
+    public void toggle(boolean fromClick,boolean animate) {
         toggleOn = !toggleOn;
         takeEffect(animate);
 
         if (listener != null) {
-            listener.onToggle(toggleOn);
+            listener.onToggle(fromClick,toggleOn);
         }
     }
 
     public void toggleOn() {
         setToggleOn();
         if (listener != null) {
-            listener.onToggle(toggleOn);
+            listener.onToggle(false,toggleOn);
         }
     }
 
     public void toggleOff() {
         setToggleOff();
         if (listener != null) {
-            listener.onToggle(toggleOn);
+            listener.onToggle(false,toggleOn);
         }
     }
 
@@ -351,7 +351,7 @@ public class ToggleButton extends View {
         /**
          * @param on
          */
-        void onToggle(boolean on);
+        void onToggle(boolean formClick,boolean on);
     }
 
 }

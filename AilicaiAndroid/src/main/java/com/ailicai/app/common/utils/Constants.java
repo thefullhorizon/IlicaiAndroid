@@ -41,4 +41,6 @@ public class Constants {
      */
     public static final String PACKAGE_NAME = "com.manyi.lovehouse";
 
+    public static final int LOCK_TIME = 1 * 60 * 1000;
+
 }
