@@ -59,7 +59,7 @@
                     app:gpvLineWidth="1dp"
                     app:gpvPasswordLength="4"
                     app:gpvTextColor="#212121"
-                    app:gpvTextSize="20sp" />
+                    app:gpvTextSize="22sp" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
