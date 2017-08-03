@@ -37,9 +37,9 @@ public class LoginSuccessCardDialog extends BaseBindActivity {
 
         //cardDesc.setText("恭喜您\n" + "获得¥688礼包");
         if (Build.VERSION.SDK_INT >= 24) {
-            cardDesc.setText(Html.fromHtml(getString(R.string.login_card_dialog, 688), Html.FROM_HTML_MODE_COMPACT));
+            cardDesc.setText(Html.fromHtml(getString(R.string.login_card_dialog, "¥688礼包"), Html.FROM_HTML_MODE_COMPACT));
         } else {
-            cardDesc.setText(Html.fromHtml(getString(R.string.login_card_dialog, 688)));
+            cardDesc.setText(Html.fromHtml(getString(R.string.login_card_dialog, "¥688礼包")));
         }
     }
 
