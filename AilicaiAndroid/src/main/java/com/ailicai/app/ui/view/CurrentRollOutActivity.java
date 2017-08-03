@@ -89,6 +89,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
 
     private CurrentRollOutBaseInfoResponse infoResponse;
     private ProtocolHelper protocolHelper;
+    private int toType;
 
     @Override
     public void onResume() {
@@ -239,8 +240,10 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         //支付到的账户类型 1-安全卡；2-账户余额 说明：活期宝收银台需指定
         if (accountCheckBox.isChecked()) {
             currentPayInfo.setPayMethod("2");
+            toType = 2;
         } else if (bankCheckBox.isChecked()) {
             currentPayInfo.setPayMethod("1");
+            toType = 1;
         }
 
         OutCurrentPay outCurrentPay = new OutCurrentPay(this, currentPayInfo, new IwPwdPayResultListener<SaleHuoqibaoResponse>() {
@@ -273,6 +276,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         Intent mIntent = new Intent(mContext, CurrentRollOutResultActivity.class);
         Bundle mBundle = new Bundle();
         mBundle.putSerializable(CurrentRollOutResultActivity.KEY, object);
+        mBundle.putInt(CurrentRollOutResultActivity.TOTYPE, toType);
         mIntent.putExtras(mBundle);
         mContext.startActivity(mIntent);
     }

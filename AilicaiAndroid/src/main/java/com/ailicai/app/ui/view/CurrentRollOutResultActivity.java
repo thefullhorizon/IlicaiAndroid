@@ -44,6 +44,7 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
     private SaleHuoqibaoResponse response;
 
     public static String KEY = "response";
+    public static String TOTYPE = "toType";// 1-安全卡；2-账户余额
 
     @Override
     public int getLayout() {
@@ -54,6 +55,7 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         response = (SaleHuoqibaoResponse) getIntent().getExtras().getSerializable(KEY);
+        int toType = getIntent().getIntExtra(TOTYPE,1);
         //处理结果，S成功;P处理中;F失败
         String bizStatus = response.getBizStatus();
         mConfirmRepay.setVisibility(View.VISIBLE);
@@ -67,7 +69,11 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
                 mConfirmRepay.setVisibility(View.GONE);
                 mConfirmSuccess.setText("完成");
                 mMesgResultText.setText("转出成功");
-                mRollOutTipsMesg.setText(Html.fromHtml(getResources().getString(R.string.roll_out_tips_text, response.getAmount(), response.getGiveDate())));
+                if (toType == 1){
+                    mRollOutTipsMesg.setText(Html.fromHtml(getResources().getString(R.string.roll_out_tips_text, response.getAmount(), response.getGiveDate())));
+                }else{
+                    mRollOutTipsMesg.setText(Html.fromHtml(getResources().getString(R.string.account_result_tips_text, response.getAmount(), response.getGiveDate())));
+                }
                 if (!TextUtils.isEmpty(response.getTips())) {
                     rollOutTips.setVisibility(View.VISIBLE);
                     rollOutTips.setText(response.getTips());

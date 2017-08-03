@@ -52,7 +52,7 @@
                 android:layout_marginRight="@dimen/_32"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="0元预计在xxxx到账安全卡"
+                android:text="0元预计在xxxx到账账户余额"
                 style="@style/text_14_757575"
                 android:visibility="visible" />
 

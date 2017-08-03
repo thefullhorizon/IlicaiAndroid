@@ -85,7 +85,7 @@ public class AccountTransactionResultActivity extends BaseBindActivity {
                     mResultStatus.setText(getResources().getString(R.string.topup_amount_text, CommonUtil.numberFormatWithTwoDigital(topUpResponse.getAmount())+""));
                     mResultStatusDetail.setVisibility(View.GONE);
                     mConfirmLeft.setText("完成");
-                    mConfirmRight.setText("继续转入");
+                    mConfirmRight.setText("继续充值");
                 }else if (WITHDRAW.equals(transactionType)){
                     mResultStatus.setText("提现成功");
                     mResultStatusDetail.setVisibility(View.VISIBLE);
