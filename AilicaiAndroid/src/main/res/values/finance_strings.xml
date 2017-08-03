@@ -3,6 +3,7 @@
 
     <string name="roll_out_time_text"><![CDATA[<font color="#8a000000">预计</font><font color="#e84a01"> %1$s </font><font color="#8a000000">到账</font>]]></string>
     <string name="roll_out_tips_text"><![CDATA[<font color="#8a000000">%1$s元预计在%2$s到账安全卡</font>]]></string>
+    <string name="withdraw_tips_text"><![CDATA[<font color="#8a000000">%1$s元预计在%2$s到账账户余额</font>]]></string>
     <string name="roll_in_time_text"><![CDATA[<font color="#757575">钱包预计</font><font color="#e84a01"> %1$s </font><font color="#757575">起息，次日可查看收益</font>]]></string>
     <string name="roll_in_amount_text">成功转入%1$s元</string>
     <string name="topup_amount_text">成功充值%1$s元</string>

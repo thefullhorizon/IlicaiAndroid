@@ -89,7 +89,7 @@ public class AccountTransactionResultActivity extends BaseBindActivity {
                 }else if (WITHDRAW.equals(transactionType)){
                     mResultStatus.setText("提现成功");
                     mResultStatusDetail.setVisibility(View.VISIBLE);
-                    mResultStatusDetail.setText(Html.fromHtml(getResources().getString(R.string.roll_out_tips_text, CommonUtil.numberFormatWithTwoDigital(withdrawResponse.getAmount())+"", withdrawResponse.getGiveDate())));
+                    mResultStatusDetail.setText(Html.fromHtml(getResources().getString(R.string.withdraw_tips_text, CommonUtil.numberFormatWithTwoDigital(withdrawResponse.getAmount())+"", withdrawResponse.getGiveDate())));
                     mConfirmLeft.setVisibility(View.GONE);
                     mConfirmRight.setText("完成");
                 }
