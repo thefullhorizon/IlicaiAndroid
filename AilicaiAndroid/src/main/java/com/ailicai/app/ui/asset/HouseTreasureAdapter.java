@@ -274,8 +274,7 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
             viewHolder.productIcon.setTextColor(mContext.getResources().getColor(R.color.color_e84a01));
         }
 
-        int addRate = product.getIsAddRate();
-        if (addRate == 1){
+        if (product.getIsAddRate() > 0){
             viewHolder.addRateLayout.setVisibility(View.VISIBLE);
             viewHolder.addRateContent.setText(product.getAddRateInfo());
         }else {

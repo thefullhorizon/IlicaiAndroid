@@ -802,12 +802,9 @@ public class RegularPayActivity extends BaseBindActivity {
                     tvTicketText.setText("享加息" + voucherRate + "%");
                 } else {
                     //6.0 改
-                    int actualRateDay = addRateDay;
-                    if (addRateDay > infoResponse.getLoanTerm()) {
-                        actualRateDay = infoResponse.getLoanTerm();
-                    }
+                    addRateDay = addRateDay > infoResponse.getLoanTerm() ? infoResponse.getLoanTerm() : addRateDay;
                     //加息券有天数限制
-                    tvTicketText.setText("享前" + actualRateDay + "天加息" + voucherRate + "%");
+                    tvTicketText.setText("享前" + addRateDay + "天加息" + voucherRate + "%");
                 }
                 tvTicketText.setTextColor(Color.parseColor("#212121"));
             } else {
