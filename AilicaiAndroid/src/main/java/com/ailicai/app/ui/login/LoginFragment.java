@@ -1,6 +1,7 @@
 package com.ailicai.app.ui.login;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,6 +9,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -273,14 +275,17 @@ public class LoginFragment extends BaseBindFragment {
 
     /**
      * 弹出软件盘
-     *
-     * @param editText
      */
-    private void showInputMethod(EditText editText) {
-        editText.setFocusable(true);
-        editText.setFocusableInTouchMode(true);
-        editText.requestFocus();
-        SystemUtil.showKeyboard(editText);
+
+    public void forceInputViewGetFocus() {
+        EditText mInputView = mPhoneEditText.getmEditText();
+        mInputView.setFocusable(true);
+        mInputView.setFocusableInTouchMode(true);
+        mInputView.requestFocus();
+        //SystemUtil.showKeyboard(editText);
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(mInputView, InputMethodManager.SHOW_IMPLICIT);
+
     }
 
     @OnClick(R.id.login_next_btn)
@@ -307,12 +312,6 @@ public class LoginFragment extends BaseBindFragment {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        showInputMethod(mPhoneEditText.getmEditText());
     }
 
     private void setActionViewState() {
@@ -379,6 +378,7 @@ public class LoginFragment extends BaseBindFragment {
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         showPhoneNum();
+        forceInputViewGetFocus();
     }
 
     void showPhoneNum() {

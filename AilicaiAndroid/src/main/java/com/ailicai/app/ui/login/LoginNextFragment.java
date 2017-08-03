@@ -153,6 +153,12 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
     }
 
     @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mGpvAuthCode.forceInputViewGetFocus();
+    }
+
+    @Override
     public void init(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         Map<String, Object> dataMap = MyIntent.getData(getArguments());
