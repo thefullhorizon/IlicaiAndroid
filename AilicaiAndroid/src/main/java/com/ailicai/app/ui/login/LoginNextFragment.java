@@ -3,10 +3,10 @@ package com.ailicai.app.ui.login;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -445,16 +445,10 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
 
     private void continueLogin(UserLoginResponse jsonObject) {
         //onLoginComplete();
-        //新用户登录&有大礼包
-        boolean isHavePackage = true;
         //处理登录成功相关事件
-        boolean showPackage = isHavePackage;
-        LoginManager.loginSuccess(getWRActivity(),fromPage, jsonObject, showPackage);
-
-
-
+        boolean showPackage = !TextUtils.isEmpty(jsonObject.getActivityName());
+        LoginManager.loginSuccess(getWRActivity(), fromPage, jsonObject, showPackage);
         getActivity().finish();
-
     }
 
 
