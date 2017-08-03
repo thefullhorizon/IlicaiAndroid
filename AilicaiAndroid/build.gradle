@@ -42,8 +42,8 @@ android {
             //abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
 
-        resValue("string", "growingio_project_id", "b76ba150621a4b61")
-        resValue("string", "growingio_url_scheme", "growing.344a595645efb251")
+        resValue("string", "growingio_project_id", "9f6117ba867d4d36")
+        resValue("string", "growingio_url_scheme", "growing.24d83f7d1764c766")
 
 
         signingConfigs {

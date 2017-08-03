@@ -58,6 +58,8 @@ public class UserLoginResponse extends Response {
     private long appointmentId; //约会ID
     private int appointBizType; // 业务类型 1：租房，2：二手房
 
+    private String activityName;//大礼包数据
+
     public int getGender() {
         return gender;
     }
@@ -305,5 +307,13 @@ public class UserLoginResponse extends Response {
 
     public void setAppointBizType(int appointBizType) {
         this.appointBizType = appointBizType;
+    }
+
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 }
