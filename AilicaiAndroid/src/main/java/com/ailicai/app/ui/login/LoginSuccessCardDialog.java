@@ -32,15 +32,15 @@ public class LoginSuccessCardDialog extends BaseBindActivity {
 
         UserLoginResponse jsonObject = (UserLoginResponse) getIntent().getSerializableExtra(CARD_DATA);
         if (jsonObject != null) {
-
+            //cardDesc.setText("恭喜您\n" + "获得¥688礼包");
+            if (Build.VERSION.SDK_INT >= 24) {
+                cardDesc.setText(Html.fromHtml(getString(R.string.login_card_dialog, jsonObject.getActivityName()), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                cardDesc.setText(Html.fromHtml(getString(R.string.login_card_dialog, jsonObject.getActivityName())));
+            }
         }
 
-        //cardDesc.setText("恭喜您\n" + "获得¥688礼包");
-        if (Build.VERSION.SDK_INT >= 24) {
-            cardDesc.setText(Html.fromHtml(getString(R.string.login_card_dialog, "688礼包"), Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            cardDesc.setText(Html.fromHtml(getString(R.string.login_card_dialog, "688礼包")));
-        }
+
     }
 
     private void initWindow() {

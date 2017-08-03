@@ -115,7 +115,7 @@
 
             <!-- GrowingIO 启动圈选接口 -->
             <intent-filter>
-                <data android:scheme="growing.344a595645efb251"/>
+                <data android:scheme="growing.24d83f7d1764c766"/>
                 <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
