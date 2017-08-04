@@ -37,10 +37,11 @@ import com.ailicai.app.model.response.VoiceVerifyCodeInitResponse;
 import com.ailicai.app.receiver.SmsObserver;
 import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.widget.DialogBuilder;
+import com.ailicai.app.widget.psd.PayPsdInputView;
+import com.github.florent37.viewanimator.ViewAnimator;
 import com.huoqiu.framework.exception.RestException;
 import com.huoqiu.framework.rest.Response;
 import com.huoqiu.framework.util.NetworkUtil;
-import com.jungly.gridpasswordviewext.GridPasswordView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -57,8 +58,9 @@ import butterknife.OnClick;
 /**
  * 登录下一步页面
  */
-public class LoginNextFragment extends BaseBindFragment implements GridPasswordView.OnPasswordChangedListener {
+public class LoginNextFragment extends BaseBindFragment implements PayPsdInputView.OnPasswordChangedListener {
     public static final String PHONE_NUM = "phone_num_text";
+    private static final int CURSORTIMEROPENED = 0;
     private final int TIMER_STARTING = 0x0001;
     private final int TIMER_CANCELED = 0x0002;
     public LoginSuccessCardDialog cardDialog;
@@ -66,8 +68,12 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
     };
     @Bind(R.id.show_phone_text)
     TextView mShowPhoneText;
-    @Bind(R.id.gpv_auth_edit)
-    GridPasswordView mGpvAuthCode;
+    //@Bind(R.id.gpv_auth_edit)
+    //GridPasswordView mGpvAuthCode;
+    @Bind(R.id.psd_edit)
+    PayPsdInputView mPayPsdInputView;
+    @Bind(R.id.cursor_view)
+    View mCursorView;
     @Bind(R.id.auto_code_layout)
     RelativeLayout mAutoCodeLayout;
     @Bind(R.id.get_voice_auth_code)
@@ -98,6 +104,27 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
 
 
     };
+    private boolean cursorTimerOpened = false;
+    public Handler mHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what) {
+                case CURSORTIMEROPENED:
+                    ViewAnimator.animate(mCursorView)
+                            .alpha(mCursorView.getAlpha(), 1f - mCursorView.getAlpha())
+                            .duration(200)
+                            .start();
+
+                    if (cursorTimerOpened) {
+                        Message timer = new Message();
+                        timer.what = 0;
+                        mHandler.sendMessageDelayed(timer, 800);
+                    }
+                    break;
+            }
+            return false;
+        }
+    });
     private WeakReference<Activity> activityWeakReference;
     private int fromPage = LoginManager.LOGIN_FROM_MINE;
     private boolean isAutoLogined = false;
@@ -129,6 +156,8 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
     @Override
     public void onDetach() {
         super.onDetach();
+        cursorTimerOpened =false;
+        mHandler.removeMessages(CURSORTIMEROPENED);
         activityWeakReference = null;
     }
 
@@ -155,7 +184,11 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mGpvAuthCode.forceInputViewGetFocus();
+        //mGpvAuthCode.forceInputViewGetFocus();
+        mPayPsdInputView.setFocusable(true);
+        mPayPsdInputView.setFocusableInTouchMode(true);
+        mPayPsdInputView.requestFocus();
+        SystemUtil.showKeyboard(mPayPsdInputView);
     }
 
     @Override
@@ -168,9 +201,15 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
         }
 
         mTimerUtil = new TimerUtil(mTimerListener, this.getClass().getCanonicalName());
+
+        /*
         mGpvAuthCode.clearPassword();
         mGpvAuthCode.setOnPasswordChangedListener(this);
         mGpvAuthCode.setPasswordVisibility(true);
+        */
+
+        mPayPsdInputView.clearPassword();
+        mPayPsdInputView.setComparePassword(null, this);
 
         mShowPhoneText.setText("+86 " + StringUtil.formatCheckMobileNumber(mPhoneNumber, " "));
         mGetAuthCodeBtn.setEnabled(false);
@@ -180,12 +219,22 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
     }
 
     public void closeKeyBoard() {
-        SystemUtil.hideKeyboard(mGpvAuthCode);
+        //SystemUtil.hideKeyboard(mGpvAuthCode);
+        SystemUtil.hideKeyboard(mPayPsdInputView);
+    }
+
+    @Override
+    public void onStop() {
+        cursorTimerOpened =false;
+        mHandler.removeMessages(CURSORTIMEROPENED);
+        super.onStop();
     }
 
     @Override
     public void onPause() {
         closeKeyBoard();
+        cursorTimerOpened =false;
+        mHandler.removeMessages(CURSORTIMEROPENED);
         //倒计时继续该页面不需要
         /*
         if (mTimerUtil.isTimerStarting()) {
@@ -283,7 +332,8 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
         }
 
         if (checkPhone()) {
-            mGpvAuthCode.clearPassword();
+            //mGpvAuthCode.clearPassword();
+            mPayPsdInputView.clearPassword();
             sendToGetAuthCode();
             mGetAuthCodeBtn.setEnabled(false);
             mTimerUtil.startTimer();
@@ -330,6 +380,28 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
     }
 
     @Override
+    public void onDifference() {
+
+    }
+
+    @Override
+    public void onEqual(String psd) {
+
+    }
+
+    @Override
+    public void showCursor(float x, float y) {
+        mCursorView.setVisibility(View.VISIBLE);
+        mCursorView.setTranslationX(x);
+        if (!cursorTimerOpened) {
+            cursorTimerOpened = true;
+            Message timer = new Message();
+            timer.what = 0;
+            mHandler.sendMessageDelayed(timer, 0);
+        }
+    }
+
+    @Override
     public void onDestroy() {
         if (smsObserver != null) {
             getWRActivity().getContentResolver().unregisterContentObserver(smsObserver);
@@ -345,9 +417,11 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleSmsCodeEvent(SmsCodeEvent event) {
-        mGpvAuthCode.setPassword(event.getCode());
+        //mGpvAuthCode.setPassword(event.getCode());
+        mPayPsdInputView.setPasswordString(event.getCode());
         mTimerUtil.stopTimer();
-        String authCode = StringUtil.allSpaceFormat(mGpvAuthCode.getPassWord());
+        //String authCode = StringUtil.allSpaceFormat(mGpvAuthCode.getPassWord());
+        String authCode = StringUtil.allSpaceFormat(mPayPsdInputView.getPasswordString());
         if (ValidateUtil.isValidAuthCode(authCode)) {
             LogUtil.d("=======AUTO===LOGIN==========");
             if (!isAutoLogined) {
@@ -371,7 +445,8 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
     }
 
     private boolean checkAuthCode() {
-        if (!ValidateUtil.isValidAuthCode(StringUtil.allSpaceFormat(mGpvAuthCode.getPassWord()))) {
+        //if (!ValidateUtil.isValidAuthCode(StringUtil.allSpaceFormat(mGpvAuthCode.getPassWord()))) {
+        if (!ValidateUtil.isValidAuthCode(StringUtil.allSpaceFormat(mPayPsdInputView.getPasswordString()))) {
             ToastUtil.showInCenter("验证码有误");
             return false;
         }
@@ -385,7 +460,8 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
         houseInfos = list.toArray(houseInfos);
         loginRequest.setHouseIds(houseInfos);
         loginRequest.setMobile(mPhoneNumber);
-        loginRequest.setVerifyCode(StringUtil.allSpaceFormat(mGpvAuthCode.getPassWord()));
+        //loginRequest.setVerifyCode(StringUtil.allSpaceFormat(mGpvAuthCode.getPassWord()));
+        loginRequest.setVerifyCode(StringUtil.allSpaceFormat(mPayPsdInputView.getPasswordString()));
         loginRequest.setMobileSn(DeviceUtil.getMobileUUID(MyApplication.getInstance()));
         loginRequest.setFromPage(fromPage);
         loginRequest.setSystemVer(DeviceUtil.getSystemVersion());
@@ -433,7 +509,8 @@ public class LoginNextFragment extends BaseBindFragment implements GridPasswordV
             public void onFailInfo(String errorInfo) {
                 onLoginComplete();
                 showMyToast(errorInfo);
-                mGpvAuthCode.clearPassword();
+                //mGpvAuthCode.clearPassword();
+                mPayPsdInputView.clearPassword();
             }
         });
     }

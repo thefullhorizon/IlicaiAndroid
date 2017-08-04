@@ -50,16 +50,37 @@
                 android:orientation="vertical"
                 android:visibility="visible">
 
-                <com.jungly.gridpasswordviewext.GridPasswordView
-                    android:id="@+id/gpv_auth_edit"
+                <!--<com.jungly.gridpasswordviewext.GridPasswordView-->
+                <!--android:id="@+id/gpv_auth_edit"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:gpvGridColor="@color/white"-->
+                <!--app:gpvLineColor="#bbbbbb"-->
+                <!--app:gpvLineWidth="1dp"-->
+                <!--app:gpvPasswordLength="4"-->
+                <!--app:gpvTextColor="#212121"-->
+                <!--app:gpvTextSize="22sp" />-->
+
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:gpvGridColor="@color/white"
-                    app:gpvLineColor="#bbbbbb"
-                    app:gpvLineWidth="1dp"
-                    app:gpvPasswordLength="4"
-                    app:gpvTextColor="#212121"
-                    app:gpvTextSize="22sp" />
+                    android:layout_height="50dp">
+
+                    <com.ailicai.app.widget.psd.PayPsdInputView
+                        android:id="@+id/psd_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:inputType="number"
+                        app:maxCount="4"
+                        app:psdType="grid"
+                        app:rectGridAngle="4dp" />
+
+                    <include
+                        android:id="@+id/cursor_view"
+                        layout="@layout/cursor"
+                        android:visibility="gone" />
+                </FrameLayout>
+
 
                 <FrameLayout
                     android:layout_width="match_parent"
