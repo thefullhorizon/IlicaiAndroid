@@ -28,6 +28,7 @@ import com.ailicai.app.common.utils.ValidateUtil;
 import com.ailicai.app.model.request.GetVerifyCodeRequest;
 import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
+import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.widget.ManyiEditText;
 import com.ailicai.app.widget.TextViewTF;
 import com.huoqiu.framework.exception.RestException;
@@ -232,10 +233,9 @@ public class LoginFragment extends BaseBindFragment {
 
     @OnClick(R.id.permit_agreement)
     void clickReadText() {
-        String url = Configuration.DEFAULT.getDomain() + "/ihouse/policy.html";
         Map<String, String> dataMap = ObjectUtil.newHashMap();
         dataMap.put(WebViewActivity.TITLE, getString(R.string.permit_agreement_title_text));
-        dataMap.put(WebViewActivity.URL, url);
+        dataMap.put(WebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getAilicaiProtocol());
         MyIntent.startActivity(getWRActivity(), WebViewActivity.class, dataMap);
     }
 
