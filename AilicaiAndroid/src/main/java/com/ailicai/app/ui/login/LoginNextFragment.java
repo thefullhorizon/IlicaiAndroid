@@ -116,9 +116,7 @@ public class LoginNextFragment extends BaseBindFragment implements PayPsdInputVi
                             .start();
 
                     if (cursorTimerOpened) {
-                        Message timer = new Message();
-                        timer.what = 0;
-                        mHandler.sendMessageDelayed(timer, 800);
+                        mHandler.sendEmptyMessageDelayed(CURSORTIMEROPENED, 800);
                     }
                     break;
             }
@@ -395,9 +393,7 @@ public class LoginNextFragment extends BaseBindFragment implements PayPsdInputVi
         mCursorView.setTranslationX(x);
         if (!cursorTimerOpened) {
             cursorTimerOpened = true;
-            Message timer = new Message();
-            timer.what = 0;
-            mHandler.sendMessageDelayed(timer, 0);
+            mHandler.sendEmptyMessage(CURSORTIMEROPENED);
         }
     }
 
