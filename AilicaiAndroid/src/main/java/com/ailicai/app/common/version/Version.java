@@ -15,7 +15,6 @@ import android.text.TextUtils;
 
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
-import com.ailicai.app.common.constants.AILICAIBuildConfig;
 import com.ailicai.app.common.constants.CommonTag;
 import com.ailicai.app.common.download.DownloadListener;
 import com.ailicai.app.common.download.DownloadNotificationManager;
@@ -129,10 +128,12 @@ public class Version implements DownloadListener {
     }
 
     private void executeUpdateResult() {
-        if (MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
-            return;
+        if (AppInfo.getInstance().isForceUpdate()) {
+            if (MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
+                return;
+            }
+            MyPreference.getInstance().write(HASCHECKNEWVERSION, true);
         }
-        MyPreference.getInstance().write(HASCHECKNEWVERSION, true);
 
         int needPop = AppInfo.getInstance().getNeedPopup();
 
@@ -234,6 +235,7 @@ public class Version implements DownloadListener {
                 });
             }
         } else {
+            MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
             String version = TextUtils.isEmpty(appVersion) ? "" : "V" + appVersion;
             reference.get().checkLatest(version);
         }
