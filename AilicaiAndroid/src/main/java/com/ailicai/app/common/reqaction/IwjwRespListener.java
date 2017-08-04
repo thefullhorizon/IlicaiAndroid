@@ -3,17 +3,14 @@ package com.ailicai.app.common.reqaction;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 
 import com.ailicai.app.ApplicationPresenter;
 import com.ailicai.app.R;
-import com.ailicai.app.common.reqaction.reporthttp.IwErrorLogSender;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.setting.DeBugLogActivity;
-import com.ailicai.app.widget.DialogBuilder;
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
@@ -169,7 +166,7 @@ public abstract class IwjwRespListener<T> extends JsonHttpResponseListener<T> im
                             }
                         }
                     }
-                    return true;
+                    return false;
                 case RestException.LOGOUT_ERROR:
                     if (isFragmentReq) {
                         Fragment fragment = getWRFragment();
