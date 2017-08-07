@@ -43,9 +43,11 @@ import com.ailicai.app.eventbus.FinancePayEvent;
 import com.ailicai.app.eventbus.MoneyChangeEvent;
 import com.ailicai.app.model.bean.ActivityRuleModel;
 import com.ailicai.app.model.bean.Protocol;
+import com.ailicai.app.model.request.GetAppropriateCouponRequest;
 import com.ailicai.app.model.request.RegularPayBaseInfoRequest;
 import com.ailicai.app.model.response.AdvanceDepositAndApplyAppResponse;
 import com.ailicai.app.model.response.BuyDingqibaoResponse;
+import com.ailicai.app.model.response.GetAppropriateCouponResponse;
 import com.ailicai.app.model.response.RegularPayBaseInfoResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.buy.BuyRegularPay;
@@ -285,6 +287,7 @@ public class RegularPayActivity extends BaseBindActivity {
                 //剩余额度小于起购金额
                 if (mAgreementCheckbox.isChecked()) {
                     mConfirmBtn.setEnabled(true);
+                    getBestVoucher(input);
                 } else {
                     mConfirmBtn.setEnabled(false);
                 }
@@ -292,6 +295,7 @@ public class RegularPayActivity extends BaseBindActivity {
                 //剩余额度大于等于起购金额
                 if (checkInputMoney() && mAgreementCheckbox.isChecked()) {
                     mConfirmBtn.setEnabled(true);
+                    getBestVoucher(input);
                 } else {
                     mConfirmBtn.setEnabled(false);
                 }
@@ -879,6 +883,44 @@ public class RegularPayActivity extends BaseBindActivity {
     public void reloadData() {
         super.reloadData();
         initBaseInfo();
+    }
+
+
+    public void getBestVoucher(String amount) {
+
+        GetAppropriateCouponRequest request = new GetAppropriateCouponRequest();
+        request.setAmount(amount);
+        request.setProductId(productId);
+        ServiceSender.exec(this, request, new IwjwRespListener<GetAppropriateCouponResponse>(this) {
+
+            @Override
+            public void onStart() {
+                super.onStart();
+            }
+
+            @Override
+            public void onJsonSuccess(GetAppropriateCouponResponse jsonObject) {
+                showContentView();
+                bindAppropriateCouponData(jsonObject);
+            }
+
+            @Override
+            public void onFailInfo(String errorInfo) {
+                showContentView();
+                ToastUtil.showInCenter(errorInfo);
+            }
+        });
+
+    }
+
+    private void bindAppropriateCouponData(GetAppropriateCouponResponse jsonObject) {
+        String text = "";
+        if (jsonObject.getVoucherType() == 73){
+            text += "[加息券]满 元享加息"+jsonObject.getAddRate()+"%";
+        }if (jsonObject.getVoucherType() == 74){
+            text += "[返金券]满 元返"+jsonObject.getAmountCent()+"元";
+        }
+        tvTicketText.setText(text);
     }
 
     /**
