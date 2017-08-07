@@ -129,6 +129,8 @@ public class RegularPayActivity extends BaseBindActivity {
 
     private String productId = "";
     private boolean isFromSmallCoin = false;
+    private int appropriateVoucherId = -1;
+    private String input;
 
     @Override
     public int getLayout() {
@@ -271,7 +273,7 @@ public class RegularPayActivity extends BaseBindActivity {
     @OnTextChanged(value = R.id.input_price_edit, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     public void onTextChanged(Editable s) {
 //        if (!"".equals(s.toString()) && mAgreementCheckbox.isChecked()) {
-        String input = s.toString();
+        input = s.toString();
         if (input.startsWith("0") && input.length() > 1 && !input.contains(".")) {
             input = input.substring(1, input.length());
             mInputPriceEdit.setText(input);
@@ -381,6 +383,8 @@ public class RegularPayActivity extends BaseBindActivity {
 
         Intent intent = new Intent(this, VoucherListActivity.class);
         intent.putExtra(VoucherListActivity.EXTRA_PRODUCT_ID, productId);
+        intent.putExtra(VoucherListActivity.EXTRA_APPROPRIATE_VOUCHER_ID, appropriateVoucherId);
+        intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, input);
         startActivityForResult(intent, REQUEST_CODE_SELECT_VOUCHER);
         ManyiUtils.closeKeyBoard(this, mInputPriceEdit);
 
@@ -796,6 +800,9 @@ public class RegularPayActivity extends BaseBindActivity {
         voucherId = infoResponse.getVoucherId();
         addRateDay = infoResponse.getAddRateDay();
         voucherRate = infoResponse.getAddRate();
+
+        //当前页面初始化中与卡券相关的逻辑拿掉
+        /*
         if (jsonObject.getBiddableAmount()==0) {
             tvTicketText.setText("暂无可用");
             tvTicketText.setTextColor(Color.parseColor("#757575"));
@@ -825,6 +832,8 @@ public class RegularPayActivity extends BaseBindActivity {
                 }
             }
         }
+        */
+
         if (infoResponse.getActivity() == null) {
             //无活动
             rlActivity.setVisibility(View.GONE);
@@ -914,11 +923,22 @@ public class RegularPayActivity extends BaseBindActivity {
     }
 
     private void bindAppropriateCouponData(GetAppropriateCouponResponse jsonObject) {
+        appropriateVoucherId = jsonObject.getVoucher().getVoucherId();
         String text = "";
-        if (jsonObject.getVoucherType() == 73){
-            text += "[加息券]满 元享加息"+jsonObject.getAddRate()+"%";
-        }if (jsonObject.getVoucherType() == 74){
-            text += "[返金券]满 元返"+jsonObject.getAmountCent()+"元";
+        if (jsonObject.getVoucher().getVoucherType() == 73){
+            if(jsonObject.getVoucher().getMinAmountCent() > 0){
+                text += "[加息券]满"+jsonObject.getVoucher().getMinAmountCent()+"元享加息"+jsonObject.getVoucher().getAddRate()+"%";
+            }else{
+                text += "[加息券]享加息"+jsonObject.getVoucher().getAddRate()+"%";
+            }
+
+        }if (jsonObject.getVoucher().getVoucherType() == 74){
+            if(jsonObject.getVoucher().getMinAmountCent() > 0){
+                text += "[返金券]满"+jsonObject.getVoucher().getMinAmountCent()+"元返"+jsonObject.getVoucher().getAmountCent()+"元";
+            }else{
+                text += "[返金券]返"+jsonObject.getVoucher().getAmountCent()+"元";
+            }
+
         }
         tvTicketText.setText(text);
     }

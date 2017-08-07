@@ -14,6 +14,7 @@ public class VoucherListByProductRequest extends Request {
     private int pageSize;// 每页显示多少行
     private String productId; //房产宝id
 
+    private int amount; // 金额
 
     public String getUserId() {
         return userId;
@@ -45,5 +46,13 @@ public class VoucherListByProductRequest extends Request {
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

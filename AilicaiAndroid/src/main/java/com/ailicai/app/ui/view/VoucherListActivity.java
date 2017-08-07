@@ -9,7 +9,7 @@ import com.ailicai.app.R;
 import com.ailicai.app.model.bean.Voucher;
 import com.ailicai.app.model.response.VoucherListResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
-import com.ailicai.app.ui.view.vocher.VoucherListAdapter;
+import com.ailicai.app.ui.view.vocher.VoucherListAdapterNew;
 import com.ailicai.app.ui.view.vocher.VoucherListPresenter;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListView;
@@ -24,8 +24,10 @@ import butterknife.OnClick;
  * 加息券列表Activity
  * Created by liyanan on 16/3/4.
  */
-public class VoucherListActivity extends BaseBindActivity implements SwipeRefreshLayout.OnRefreshListener, BottomRefreshListView.OnLoadMoreListener, VoucherListAdapter.UseClickListener {
+public class VoucherListActivity extends BaseBindActivity implements SwipeRefreshLayout.OnRefreshListener, BottomRefreshListView.OnLoadMoreListener, VoucherListAdapterNew.UseClickListener {
     public static final String EXTRA_PRODUCT_ID = "product_id";
+    public static final String EXTRA_APPROPRIATE_VOUCHER_ID = "appropriate_voucher_id";
+    public static final String EXTRA_AMOUNT = "amount";
     @Bind(R.id.srl_layout)
     SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.lv_red_envelope)
@@ -34,6 +36,8 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
     IWTopTitleView titleView;
 
     private View vHead;
+    private String amount;
+    private int appropriateVoucherId = -1;
 
     @OnClick(R.id.top_title_back_textview)
     public void onTopTitleBackTextview() {
@@ -42,14 +46,13 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
     }
 
     private List<Voucher> values = new ArrayList<>();
-    private VoucherListAdapter adapter;
+    private VoucherListAdapterNew adapter;
     private VoucherListPresenter presenter;
     /**
      * 总数量
      */
     private int totalSize = 0;
     private String productId;
-
 
     @Override
     public int getLayout() {
@@ -61,11 +64,13 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
         super.init(savedInstanceState);
 
         productId = getIntent().getStringExtra(EXTRA_PRODUCT_ID);
+        appropriateVoucherId = getIntent().getIntExtra(EXTRA_APPROPRIATE_VOUCHER_ID,-1);
+        amount = getIntent().getStringExtra(EXTRA_AMOUNT);
         swipeRefreshLayout.setColorSchemeResources(R.color.main_red_color);
         swipeRefreshLayout.setOnRefreshListener(this);
         lvRedEnvelope.setOnLoadMoreListener(this);
         presenter = new VoucherListPresenter(this);
-        presenter.refresh(true, productId);
+        presenter.refresh(true, productId,Integer.parseInt(amount));
     }
 
     /**
@@ -74,7 +79,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
     @Override
     public void onRefresh() {
         //刷新红包列表
-        presenter.refresh(false, productId);
+        presenter.refresh(false, productId,Integer.parseInt(amount));
     }
 
     /**
@@ -94,7 +99,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
         int size = values.size();
         if (size > 0 && totalSize > size) {
             //加载更多
-            presenter.loadMore(size, productId);
+            presenter.loadMore(size, productId,Integer.parseInt(amount));
             return true;
         }
         return false;
@@ -106,7 +111,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
     @Override
     public void reloadData() {
         super.reloadData();
-        presenter.refresh(true, productId);
+        presenter.refresh(true, productId,Integer.parseInt(amount));
     }
 
     /**
@@ -131,7 +136,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
             showContentView();
             totalSize = jsonObject.getTotal();
             if (adapter == null) {
-                adapter = new VoucherListAdapter(this, values, this);
+                adapter = new VoucherListAdapterNew(this, values,appropriateVoucherId, this);
                 lvRedEnvelope.setAdapter(adapter);
                 vHead= View.inflate(this, R.layout.voucher_no_use, null);
                 vHead.setOnClickListener(new View.OnClickListener() {

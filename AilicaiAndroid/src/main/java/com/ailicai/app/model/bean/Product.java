@@ -477,4 +477,20 @@ public class Product implements Serializable {
     public void setCouponId(long couponId) {
         this.couponId = couponId;
     }
+
+    public int getIsCashBackVoucher() {
+        return isCashBackVoucher;
+    }
+
+    public void setIsCashBackVoucher(int isCashBackVoucher) {
+        this.isCashBackVoucher = isCashBackVoucher;
+    }
+
+    public String getCashBackVoucherCopywriter() {
+        return cashBackVoucherCopywriter;
+    }
+
+    public void setCashBackVoucherCopywriter(String cashBackVoucherCopywriter) {
+        this.cashBackVoucherCopywriter = cashBackVoucherCopywriter;
+    }
 }

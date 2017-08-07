@@ -1,5 +1,6 @@
 package com.ailicai.app.model.response;
 
+import com.ailicai.app.model.bean.Voucher;
 import com.huoqiu.framework.rest.Response;
 
 /**
@@ -8,49 +9,22 @@ import com.huoqiu.framework.rest.Response;
 
 public class GetAppropriateCouponResponse extends Response {
 
-    private String voucherId;//卡券Id
-    private int voucherType;//卡券类型(73-爱理财加息券,74-爱理财返金券)
-    private String amountCent;//金额//单位：分
-    private String addRate;//利率
-    private String addRateDay;//加息天数
+    private Voucher voucher;
+    private int availableVoucherNumber;
 
-    public String getVoucherId() {
-        return voucherId;
+    public Voucher getVoucher() {
+        return voucher;
     }
 
-    public void setVoucherId(String voucherId) {
-        this.voucherId = voucherId;
+    public void setVoucher(Voucher voucher) {
+        this.voucher = voucher;
     }
 
-    public int getVoucherType() {
-        return voucherType;
+    public int getAvailableVoucherNumber() {
+        return availableVoucherNumber;
     }
 
-    public void setVoucherType(int voucherType) {
-        this.voucherType = voucherType;
-    }
-
-    public String getAmountCent() {
-        return amountCent;
-    }
-
-    public void setAmountCent(String amountCent) {
-        this.amountCent = amountCent;
-    }
-
-    public String getAddRate() {
-        return addRate;
-    }
-
-    public void setAddRate(String addRate) {
-        this.addRate = addRate;
-    }
-
-    public String getAddRateDay() {
-        return addRateDay;
-    }
-
-    public void setAddRateDay(String addRateDay) {
-        this.addRateDay = addRateDay;
+    public void setAvailableVoucherNumber(int availableVoucherNumber) {
+        this.availableVoucherNumber = availableVoucherNumber;
     }
 }

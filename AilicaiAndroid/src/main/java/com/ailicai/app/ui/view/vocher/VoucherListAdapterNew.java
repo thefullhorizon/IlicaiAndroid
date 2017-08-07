@@ -32,11 +32,13 @@ public class VoucherListAdapterNew extends BaseAdapter {
     private List<Voucher> values;
     private Context context;
     private UseClickListener listener;
+    private int appropriateVoucherId = -1;
 
-    public VoucherListAdapterNew(Context context, List<Voucher> values, UseClickListener listener) {
+    public VoucherListAdapterNew(Context context, List<Voucher> values,int appropriateVoucherId, UseClickListener listener) {
         this.context = context;
         this.values = values;
         this.listener = listener;
+        this.appropriateVoucherId = appropriateVoucherId;
     }
 
     @Override
@@ -93,8 +95,12 @@ public class VoucherListAdapterNew extends BaseAdapter {
                 viewHolder.mItemUp.setBackgroundResource(R.drawable.bg_voucher_up);
                 viewHolder.mBgVoucherGear.setBackgroundResource(R.drawable.bg_voucher_up);
                 viewHolder.mIndicatorBest.setVisibility(View.GONE);
-                //TODO nanshan 根据voucherId设置是否打对号
 
+                if (appropriateVoucherId != -1 && appropriateVoucherId == voucher.getVoucherId() ){
+                    viewHolder.mIndicatorBest.setChecked(true);
+                }else{
+                    viewHolder.mIndicatorBest.setChecked(false);
+                }
 
                 break;
             default:

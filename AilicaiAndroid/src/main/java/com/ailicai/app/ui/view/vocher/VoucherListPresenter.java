@@ -26,12 +26,13 @@ public class VoucherListPresenter {
      * @param reLoad true 页面重新加载,显示loadingView
      *               false 下拉刷新
      */
-    public void refresh(final boolean reLoad, String productId) {
+    public void refresh(final boolean reLoad, String productId,int amount) {
         VoucherListByProductRequest request = new VoucherListByProductRequest();
         request.setUserId(String.valueOf(UserInfo.getInstance().getUserId()));
         request.setOffset(0);
         request.setPageSize(PAGE_SIZE);
         request.setProductId(productId);
+        request.setAmount(amount);
         ServiceSender.exec(activity, request, new IwjwRespListener<VoucherListResponse>() {
             @Override
             public void onStart() {
@@ -65,11 +66,12 @@ public class VoucherListPresenter {
      * @param offset 已看过多少条
      */
 
-    public void loadMore(int offset, String productId) {
+    public void loadMore(int offset, String productId,int amount) {
         VoucherListByProductRequest request = new VoucherListByProductRequest();
         request.setOffset(offset);
         request.setPageSize(PAGE_SIZE);
         request.setProductId(productId);
+        request.setAmount(amount);
         ServiceSender.exec(activity, request, new IwjwRespListener<VoucherListResponse>() {
             @Override
             public void onJsonSuccess(VoucherListResponse jsonObject) {

@@ -273,13 +273,21 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
             viewHolder.productIcon.setText(mContext.getResources().getString(R.string.coin_sack_border));
             viewHolder.productIcon.setTextColor(mContext.getResources().getColor(R.color.color_e84a01));
         }
-
+        //加息券逻辑
         if (product.getIsAddRate() > 0){
             viewHolder.addRateLayout.setVisibility(View.VISIBLE);
             viewHolder.addRateContent.setText(product.getAddRateInfo());
         }else {
             viewHolder.addRateLayout.setVisibility(View.GONE);
         }
+        //返金券逻辑
+        if (product.getIsCashBackVoucher() > 0){
+            viewHolder.addRateLayout.setVisibility(View.VISIBLE);
+            viewHolder.addRateContent.setText(product.getCashBackVoucherCopywriter());
+        }else {
+            viewHolder.addRateLayout.setVisibility(View.GONE);
+        }
+
         if (TextUtils.isEmpty(product.getHasTransferAmount())&& TextUtils.isEmpty(product.getTransferingAmount())){
             viewHolder.transferLayout.setVisibility(View.GONE);
         }else {
