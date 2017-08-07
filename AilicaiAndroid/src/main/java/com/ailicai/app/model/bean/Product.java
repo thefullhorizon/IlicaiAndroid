@@ -50,6 +50,10 @@ public class Product implements Serializable {
     private String protocolUrl = ""; //居间协议地址
     private int isAddRate; //是否使用加息券 0-没使用，1-使用
     private String addRateInfo = ""; //加息券信息 eg.加息券：享前{N}天加息{加息值}
+
+    private int           isCashBackVoucher;//是否是返金券：0：不是，1：是
+    private String        cashBackVoucherCopywriter;   // 返金券文案
+
     private List<String> tags; //运营活动标签
     private int isTransfer;//是否是转让房产宝  1 是   0否
     private String oriProductId ="";//原房产宝编号

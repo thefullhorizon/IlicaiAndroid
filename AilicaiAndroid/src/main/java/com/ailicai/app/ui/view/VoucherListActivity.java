@@ -33,6 +33,8 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
     @Bind(R.id.title_view)
     IWTopTitleView titleView;
 
+    private View vHead;
+
     @OnClick(R.id.top_title_back_textview)
     public void onTopTitleBackTextview() {
         setResult(1000);
@@ -57,7 +59,6 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        titleView.setCancelText("不使用");
 
         productId = getIntent().getStringExtra(EXTRA_PRODUCT_ID);
         swipeRefreshLayout.setColorSchemeResources(R.color.main_red_color);
@@ -132,6 +133,14 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
             if (adapter == null) {
                 adapter = new VoucherListAdapter(this, values, this);
                 lvRedEnvelope.setAdapter(adapter);
+                vHead= View.inflate(this, R.layout.voucher_no_use, null);
+                vHead.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        useClick(-1);
+                    }
+                });
+                lvRedEnvelope.addHeaderView(vHead);
             }
             values.clear();
             values.addAll(jsonObject.getVoucherList());
@@ -188,9 +197,14 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
     @Override
     public void useClick(int position) {
         Intent intent = new Intent();
-        intent.putExtra("voucherRate", values.get(position).getAddRate());
-        intent.putExtra("voucherId", values.get(position).getVoucherId());
-        intent.putExtra("addRateDay", values.get(position).getAddRateDay());
+        if (position == -1){
+            intent.putExtra("doesUse", 0);
+        }else{
+            intent.putExtra("doesUse", 1);
+            intent.putExtra("voucherRate", values.get(position).getAddRate());
+            intent.putExtra("voucherId", values.get(position).getVoucherId());
+            intent.putExtra("addRateDay", values.get(position).getAddRateDay());
+        }
         setResult(RESULT_OK, intent);
         finish();
     }

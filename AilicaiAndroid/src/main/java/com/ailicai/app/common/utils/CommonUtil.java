@@ -138,7 +138,7 @@ public class CommonUtil {
      * @param mActivity
      */
     public static void miWhiteSystemBar(Activity mActivity) {
-        if (AppConfig.CAN_SET_MIUIBAR) {
+        if (AppConfig.CAN_SET_MIUIBAR && mActivity != null) {
             setMiuiWhiteSystemBar(mActivity.getWindow());// MIUI的沉浸式
         }
     }

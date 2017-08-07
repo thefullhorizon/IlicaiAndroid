@@ -1,5 +1,7 @@
 package com.ailicai.app.model.bean;
 
+import java.util.List;
+
 /**
  * 现金券
  * Created by liyanan on 16/3/8.
@@ -10,13 +12,17 @@ public class Voucher {
     private String userTimeFrom; //卡券有效期开始时间 eg.2016-03-09 10:25
     private String userTimeTo; //卡券有效期结束时间 eg.2016-03-10 10:24
     private int amountCent; //金额，单位分
-    private int voucherType; //卡券类型 67-爱理财现金券；68-爱理财抵扣券；73-爱理财加息券; 83-权益卡
+    private int voucherType; //卡券类型 67-爱理财现金券；68-爱理财抵扣券；73-爱理财加息券; 74-爱理财返金券 83-权益卡
     private String voucherTypeStr = ""; //卡券类型文案
     private int status; //状态 0-不可用；1-正常；2-已使用；3-已过期；4-已作废; 5-未到使用时间
     private double addRate; //加息比例 小数表示，比如1.5表示1.5%
     private String simpleDesc;//类型下描述
     private String bottomDesc;//加息券底部描述
     private int addRateDay;//加息天数//-1代表不限
+
+    private List<Integer> productTypes;// 可使用的标的类型限制73-房产宝,74-小钱袋
+    private int minAmountCent;// 最低投资金额限制
+    private int minPeriodDay;// 最少投资天数
 
     public int getVoucherId() {
         return voucherId;
@@ -112,5 +118,29 @@ public class Voucher {
 
     public void setAddRateDay(int addRateDay) {
         this.addRateDay = addRateDay;
+    }
+
+    public List<Integer> getProductTypes() {
+        return productTypes;
+    }
+
+    public void setProductTypes(List<Integer> productTypes) {
+        this.productTypes = productTypes;
+    }
+
+    public int getMinAmountCent() {
+        return minAmountCent;
+    }
+
+    public void setMinAmountCent(int minAmountCent) {
+        this.minAmountCent = minAmountCent;
+    }
+
+    public int getMinPeriodDay() {
+        return minPeriodDay;
+    }
+
+    public void setMinPeriodDay(int minPeriodDay) {
+        this.minPeriodDay = minPeriodDay;
     }
 }

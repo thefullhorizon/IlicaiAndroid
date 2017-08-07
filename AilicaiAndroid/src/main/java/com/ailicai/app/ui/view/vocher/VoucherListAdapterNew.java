@@ -1,0 +1,189 @@
+package com.ailicai.app.ui.view.vocher;
+
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.ailicai.app.R;
+import com.ailicai.app.common.utils.SpannableUtil;
+import com.ailicai.app.model.bean.Voucher;
+import com.huoqiu.framework.util.CheckDoubleClick;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+/**
+ * 现金券列表adapter
+ * Created by liyanan on 16/3/8.
+ */
+public class VoucherListAdapterNew extends BaseAdapter {
+
+    private List<Voucher> values;
+    private Context context;
+    private UseClickListener listener;
+
+    public VoucherListAdapterNew(Context context, List<Voucher> values, UseClickListener listener) {
+        this.context = context;
+        this.values = values;
+        this.listener = listener;
+    }
+
+    @Override
+    public int getCount() {
+        return values == null ? 0 : values.size();
+    }
+
+    @Override
+    public Voucher getItem(int position) {
+        return values.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.list_item_voucher_new, null);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        final Voucher voucher = getItem(position);
+
+        //top
+        switch (voucher.getVoucherType()) {
+            case 73://加息券
+                viewHolder.mIndicatorVoucherType.setText(" + ");
+                viewHolder.mVoucherValue.setText(String.valueOf(voucher.getAddRate() + "%"));
+                break;
+            case 74://返金券
+                viewHolder.mIndicatorVoucherType.setText(R.string.help_payquestion);
+                viewHolder.mVoucherValue.setText(voucher.getAmountCent()+"");
+                break;
+        }
+        viewHolder.mVoucherType.setText(voucher.getVoucherTypeStr());
+
+        switch (voucher.getStatus()) {
+            case 1:
+                viewHolder.mItemLayout.setClickable(true);
+                viewHolder.mItemLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!CheckDoubleClick.isFastDoubleClick()) {
+                            listener.useClick(position);
+                        }
+                    }
+                });
+                viewHolder.mItemUp.setBackgroundResource(R.drawable.bg_voucher_up);
+                viewHolder.mBgVoucherGear.setBackgroundResource(R.drawable.bg_voucher_up);
+                viewHolder.mIndicatorBest.setVisibility(View.GONE);
+                //TODO nanshan 根据voucherId设置是否打对号
+
+
+                break;
+            default:
+                viewHolder.mItemLayout.setClickable(false);
+                viewHolder.mItemUp.setBackgroundResource(R.color.color_dddddd);
+                viewHolder.mBgVoucherGear.setBackgroundResource(R.color.color_dddddd);
+                viewHolder.mIndicatorBest.setVisibility(View.GONE);
+                break;
+        }
+        viewHolder.mVoucherName.setText(voucher.getVoucherName());
+
+        //middle
+        viewHolder.mVoucherDescription.setText(voucher.getBottomDesc());
+        String limit = "";
+        limit += voucher.getSimpleDesc()+";";
+        limit += "满"+voucher.getMinAmountCent()+"元";
+        if(voucher.getProductTypes() != null && voucher.getProductTypes().size() > 0){
+            limit += "仅限";
+            for (int i = 0 ; i < voucher.getProductTypes().size(); i++){
+                if (voucher.getProductTypes().get(i) == 73){
+                    limit += "房产宝,";
+                }else {
+                    limit += "小钱袋,";
+                }
+            }
+            limit += limit.substring(0,limit.lastIndexOf(','));
+            limit += "等产品的购买使用";
+        }
+        viewHolder.mVoucherLimit.setText(limit);
+
+        //bottom
+        SpannableUtil spannableUtil = new SpannableUtil(context);
+        SpannableStringBuilder builder = spannableUtil.getSpannableString("有效期至 "+ voucher.getUserTimeTo()," （仅剩"+voucher.getMinPeriodDay()+"天)", R.style.text_12_757575, R.style.text_12_d0011b);
+        viewHolder.mVoucherAvailableTime.setText(builder);
+
+        return convertView;
+    }
+
+    /**
+     * 日期转换
+     *
+     * @param time
+     * @return
+     */
+    private String formatDate(String time) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = format.parse(time);
+            return format.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    class ViewHolder {
+
+        @Bind(R.id.item_layout)
+        RelativeLayout mItemLayout;
+        @Bind(R.id.rl_bg_voucher_gear)
+        RelativeLayout mBgVoucherGear;
+        @Bind(R.id.item_up)
+        RelativeLayout mItemUp;
+        @Bind(R.id.indicator_voucher_type)
+        TextView mIndicatorVoucherType;
+        @Bind(R.id.voucher_value)
+        TextView mVoucherValue;
+        @Bind(R.id.voucher_type)
+        TextView mVoucherType;
+        @Bind(R.id.voucher_name)
+        TextView mVoucherName;
+        @Bind(R.id.indicator_best)
+        CheckBox mIndicatorBest;
+
+        @Bind(R.id.voucher_description)
+        TextView mVoucherDescription;
+        @Bind(R.id.voucher_limit)
+        TextView mVoucherLimit;
+
+        @Bind(R.id.voucher_available_time)
+        TextView mVoucherAvailableTime;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
+
+
+    public interface UseClickListener {
+        void useClick(int position);
+    }
+}

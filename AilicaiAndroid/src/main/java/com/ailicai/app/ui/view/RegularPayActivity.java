@@ -117,6 +117,7 @@ public class RegularPayActivity extends BaseBindActivity {
     //卡券利率
     private double voucherRate;
     //卡券id
+    private int use;
     private int voucherId;
     //卡券加息天数
     private int addRateDay;
@@ -922,20 +923,26 @@ public class RegularPayActivity extends BaseBindActivity {
         switch (requestCode) {
             case REQUEST_CODE_SELECT_VOUCHER:
                 if (resultCode == RESULT_OK && data != null) {
-                    voucherRate = data.getDoubleExtra("voucherRate", -1);
-                    voucherId = data.getIntExtra("voucherId", -1);
-                    addRateDay = data.getIntExtra("addRateDay", -1);
-                    if (voucherRate > 0) {
-                        if (addRateDay == -1) {
-                            //加息券不限天数
-                            tvTicketText.setText("享加息" + voucherRate + "%");
-                        } else {
-                            //加息券有天数限制
-                            tvTicketText.setText("享前" + addRateDay + "天加息" + voucherRate + "%");
+                    use = data.getIntExtra("doesUse", -1);
+                    if (use == 1){
+
+                        voucherRate = data.getDoubleExtra("voucherRate", -1);
+                        voucherRate = data.getDoubleExtra("voucherRate", -1);
+                        voucherId = data.getIntExtra("voucherId", -1);
+                        addRateDay = data.getIntExtra("addRateDay", -1);
+                        if (voucherRate > 0) {
+                            if (addRateDay == -1) {
+                                //加息券不限天数
+                                tvTicketText.setText("享加息" + voucherRate + "%");
+                            } else {
+                                //加息券有天数限制
+                                tvTicketText.setText("享前" + addRateDay + "天加息" + voucherRate + "%");
+                            }
+                            tvTicketText.setTextColor(Color.parseColor("#212121"));
+                            calculateProfit();
                         }
-                        tvTicketText.setTextColor(Color.parseColor("#212121"));
-                        calculateProfit();
                     }
+
                 } else if (resultCode == 1000) {
                     //清空当前选择的卡券,恢复未选择之前的状态
                     voucherRate = -1;
