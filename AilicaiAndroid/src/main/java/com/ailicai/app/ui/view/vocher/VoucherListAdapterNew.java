@@ -130,7 +130,13 @@ public class VoucherListAdapterNew extends BaseAdapter {
 
         //bottom
         SpannableUtil spannableUtil = new SpannableUtil(context);
-        SpannableStringBuilder builder = spannableUtil.getSpannableString("有效期至 "+ voucher.getUserTimeTo()," （仅剩"+voucher.getLeftValidDays()+"天)", R.style.text_12_757575, R.style.text_12_d0011b);
+        String leftDay = voucher.getLeftValidDayString();
+        SpannableStringBuilder builder ;
+        if (!TextUtils.isEmpty(leftDay)){
+            builder = spannableUtil.getSpannableString("有效期至 "+ voucher.getUserTimeTo()," （仅剩"+voucher.getLeftValidDays()+"天)", R.style.text_12_757575, R.style.text_12_d0011b);
+        }else{
+            builder = spannableUtil.getSpannableString("有效期至 "+ voucher.getUserTimeTo(), R.style.text_12_757575);
+        }
         viewHolder.mVoucherAvailableTime.setText(builder);
 
         return convertView;
