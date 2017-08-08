@@ -74,15 +74,15 @@ public class VoucherListAdapterNew extends BaseAdapter {
         switch (voucher.getVoucherType()) {
             case 73://加息券
                 viewHolder.mIndicatorVoucherType.setText(" + ");
-                viewHolder.mVoucherValue.setText("加息券");
+                viewHolder.mVoucherValue.setText(String.valueOf(voucher.getAddRate() + "%"));
+                viewHolder.mVoucherType.setText("加息券");
                 break;
             case 74://返金券
                 viewHolder.mIndicatorVoucherType.setText(R.string.help_payquestion);
-                viewHolder.mVoucherValue.setText("返金券");
+                viewHolder.mVoucherValue.setText(voucher.getAmountCent()+"");
+                viewHolder.mVoucherType.setText("返金券");
                 break;
         }
-        viewHolder.mVoucherType.setText(voucher.getVoucherTypeStr());
-
         switch (voucher.getStatus()) {
             case 1:
                 viewHolder.mItemLayout.setClickable(true);
