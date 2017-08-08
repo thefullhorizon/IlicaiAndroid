@@ -44,15 +44,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true" />
 
-    <ViewStub
-        android:id="@+id/vs_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout="@layout/viewstub_gesture_lock_bottom"/>
-
     <com.ailicai.app.widget.gestruelock.GestureLockViewContent
         android:id="@+id/glvg_lock_on"
         android:layout_width="match_parent"
@@ -71,6 +62,13 @@
         app:color_finger_wrong="@color/color_b92b27"
         app:show_arrow_when_success="false"/>
 
-
+    <ViewStub
+        android:id="@+id/vs_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout="@layout/viewstub_gesture_lock_bottom"/>
 
 </RelativeLayout>

@@ -409,7 +409,7 @@ public class GestureLockViewContent extends RelativeLayout{
         mGestureLockLineView.reset();
         mChoose.clear();
         mLastPathX = mLastPathY = 0;
-        isAnswerRight = false;// 重置
+
         for (GestureLockView gestureLockView : mGestureLockViews) {
             gestureLockView.setMode(GestureLockView.STATUS_NO_FINGER, showPath);
             gestureLockView.setArrowDegree(-1);//-1时不会绘制三角
@@ -452,6 +452,7 @@ public class GestureLockViewContent extends RelativeLayout{
 
     public void reInit(){
         reset();
+        isAnswerRight = false;// 重置
 //        mAnswer.clear();
 //        firstSetAnswerStr = "";
         mGestureStatus = STATUS_SETTING;
