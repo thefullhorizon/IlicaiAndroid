@@ -806,7 +806,7 @@ public class RegularPayActivity extends BaseBindActivity {
         voucherRate = infoResponse.getAddRate();
 
         //当前页面初始化中与卡券相关的逻辑拿掉
-        /*
+
         if (jsonObject.getBiddableAmount()==0) {
             tvTicketText.setText("暂无可用");
             tvTicketText.setTextColor(Color.parseColor("#757575"));
@@ -836,7 +836,6 @@ public class RegularPayActivity extends BaseBindActivity {
                 }
             }
         }
-        */
 
         if (infoResponse.getActivity() == null) {
             //无活动
@@ -927,20 +926,21 @@ public class RegularPayActivity extends BaseBindActivity {
     }
 
     private void bindAppropriateCouponData(GetAppropriateCouponResponse jsonObject) {
-        appropriateVoucherId = jsonObject.getVoucher().getVoucherId();
+
+        appropriateVoucherId = jsonObject.getVoucherId();
         String text = "";
-        if (jsonObject.getVoucher().getVoucherType() == 73){
-            if(jsonObject.getVoucher().getMinAmountCent() > 0){
-                text += "[加息券]满"+jsonObject.getVoucher().getMinAmountCent()+"元享加息"+jsonObject.getVoucher().getAddRate()+"%";
+        if (jsonObject.getVoucherType() == 73){
+            if(jsonObject.getMinAmountCent() > 0){
+                text += "[加息券]满"+jsonObject.getMinAmountCent()+"元享加息"+jsonObject.getAddRate()+"%";
             }else{
-                text += "[加息券]享加息"+jsonObject.getVoucher().getAddRate()+"%";
+                text += "[加息券]享加息"+jsonObject.getAddRate()+"%";
             }
 
-        }if (jsonObject.getVoucher().getVoucherType() == 74){
-            if(jsonObject.getVoucher().getMinAmountCent() > 0){
-                text += "[返金券]满"+jsonObject.getVoucher().getMinAmountCent()+"元返"+jsonObject.getVoucher().getAmountCent()+"元";
+        }if (jsonObject.getVoucherType() == 74){
+            if(jsonObject.getMinAmountCent() > 0){
+                text += "[返金券]满"+jsonObject.getMinAmountCent()+"元返"+jsonObject.getAmountCent()+"元";
             }else{
-                text += "[返金券]返"+jsonObject.getVoucher().getAmountCent()+"元";
+                text += "[返金券]返"+jsonObject.getAmountCent()+"元";
             }
 
         }

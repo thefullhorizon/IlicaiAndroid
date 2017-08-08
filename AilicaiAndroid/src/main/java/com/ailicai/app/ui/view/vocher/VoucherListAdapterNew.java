@@ -2,6 +2,7 @@ package com.ailicai.app.ui.view.vocher;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,11 +74,11 @@ public class VoucherListAdapterNew extends BaseAdapter {
         switch (voucher.getVoucherType()) {
             case 73://加息券
                 viewHolder.mIndicatorVoucherType.setText(" + ");
-                viewHolder.mVoucherValue.setText(String.valueOf(voucher.getAddRate() + "%"));
+                viewHolder.mVoucherValue.setText("加息券");
                 break;
             case 74://返金券
                 viewHolder.mIndicatorVoucherType.setText(R.string.help_payquestion);
-                viewHolder.mVoucherValue.setText(voucher.getAmountCent()+"");
+                viewHolder.mVoucherValue.setText("返金券");
                 break;
         }
         viewHolder.mVoucherType.setText(voucher.getVoucherTypeStr());
@@ -116,25 +117,20 @@ public class VoucherListAdapterNew extends BaseAdapter {
         //middle
         viewHolder.mVoucherDescription.setText(voucher.getBottomDesc());
         String limit = "";
-        limit += voucher.getSimpleDesc()+";";
-        limit += "满"+voucher.getMinAmountCent()+"元";
-        if(voucher.getProductTypes() != null && voucher.getProductTypes().size() > 0){
-            limit += "仅限";
-            for (int i = 0 ; i < voucher.getProductTypes().size(); i++){
-                if (voucher.getProductTypes().get(i) == 73){
-                    limit += "房产宝,";
-                }else {
-                    limit += "小钱袋,";
-                }
-            }
-            limit += limit.substring(0,limit.lastIndexOf(','));
-            limit += "等产品的购买使用";
+        if (!TextUtils.isEmpty(voucher.getSimpleDesc())){
+            limit += voucher.getSimpleDesc()+";";
+        }
+        if (!TextUtils.isEmpty(voucher.getMinAmountCentString())){
+            limit += voucher.getMinAmountCentString()+";";
+        }
+        if (!TextUtils.isEmpty(voucher.getUseRange())){
+            limit += voucher.getUseRange();
         }
         viewHolder.mVoucherLimit.setText(limit);
 
         //bottom
         SpannableUtil spannableUtil = new SpannableUtil(context);
-        SpannableStringBuilder builder = spannableUtil.getSpannableString("有效期至 "+ voucher.getUserTimeTo()," （仅剩"+voucher.getMinPeriodDay()+"天)", R.style.text_12_757575, R.style.text_12_d0011b);
+        SpannableStringBuilder builder = spannableUtil.getSpannableString("有效期至 "+ voucher.getUserTimeTo()," （仅剩"+voucher.getLeftValidDays()+"天)", R.style.text_12_757575, R.style.text_12_d0011b);
         viewHolder.mVoucherAvailableTime.setText(builder);
 
         return convertView;

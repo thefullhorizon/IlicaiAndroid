@@ -22,7 +22,12 @@ public class Voucher {
 
     private List<Integer> productTypes;// 可使用的标的类型限制73-房产宝,74-小钱袋
     private int minAmountCent;// 最低投资金额限制
-    private int minPeriodDay;// 最少投资天数
+    private int leftValidDays;// 剩余天数剩余
+    private String leftValidDayString=""; //剩余天数描述
+    private String useRange="";//投资标的限制描述
+    private String minAmountCentString="";//最低投资金额限制文案
+
+
 
     public int getVoucherId() {
         return voucherId;
@@ -120,6 +125,7 @@ public class Voucher {
         this.addRateDay = addRateDay;
     }
 
+
     public List<Integer> getProductTypes() {
         return productTypes;
     }
@@ -136,11 +142,35 @@ public class Voucher {
         this.minAmountCent = minAmountCent;
     }
 
-    public int getMinPeriodDay() {
-        return minPeriodDay;
+    public int getLeftValidDays() {
+        return leftValidDays;
     }
 
-    public void setMinPeriodDay(int minPeriodDay) {
-        this.minPeriodDay = minPeriodDay;
+    public void setLeftValidDays(int leftValidDays) {
+        this.leftValidDays = leftValidDays;
+    }
+
+    public String getLeftValidDayString() {
+        return leftValidDayString;
+    }
+
+    public void setLeftValidDayString(String leftValidDayString) {
+        this.leftValidDayString = leftValidDayString;
+    }
+
+    public String getUseRange() {
+        return useRange;
+    }
+
+    public void setUseRange(String useRange) {
+        this.useRange = useRange;
+    }
+
+    public String getMinAmountCentString() {
+        return minAmountCentString;
+    }
+
+    public void setMinAmountCentString(String minAmountCentString) {
+        this.minAmountCentString = minAmountCentString;
     }
 }
