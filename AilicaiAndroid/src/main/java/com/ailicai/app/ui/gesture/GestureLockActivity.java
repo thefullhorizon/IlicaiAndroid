@@ -102,6 +102,7 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
         }
         View view;
         if(mLockType == TYPE_SETTING || mLockType == TYPE_PERSON_SETTING){
+            MyPreference.getInstance().remove(GestureLockTools.getLockTryTimesKey());
             view = mVsLockViewIndicator.inflate();
             mGlvgIndicator = ButterKnife.findById(view,R.id.gli_indicator);
             mTitleBar.setTitleText("设置手势密码");
@@ -123,7 +124,8 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
             mTvUserPhone = ButterKnife.findById(view,R.id.tv_user_phone);
             mTvUserPhone.setText(StringUtil.formatMobileSubTwo(UserInfo.getInstance().getUserMobile()));
 
-            mGlvgLock.setUnMatchExceedBoundary(MyPreference.getInstance().read(GestureLockTools.getLockTryTimesKey(),GESTURE_TRY_TIMES));//默认最多重试5次
+            int tryTimes = MyPreference.getInstance().read(GestureLockTools.getLockTryTimesKey(),GESTURE_TRY_TIMES);
+            mGlvgLock.setUnMatchExceedBoundary(tryTimes == 0 ? GESTURE_TRY_TIMES : tryTimes);//默认最多重试5次
             mGlvgLock.setAnswer(MyPreference.getInstance().read(GestureLockTools.getLockKey(),""));
 
             view = mVsBottom.inflate();
