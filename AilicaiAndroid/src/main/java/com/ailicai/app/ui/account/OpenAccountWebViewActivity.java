@@ -39,6 +39,8 @@ import java.util.Map;
 public class OpenAccountWebViewActivity extends BaseWebViewActivity {
 
     boolean isBackShowQuit = false;
+    boolean isFirst = false; // 是否是开户第一步或者绑卡第一步
+    boolean isNeedCustomAnimation = false; // 是否需要finish的时候activity向下退出，顶部back和点手机back键的时候需要
 
     private static final int RC_TO_SCAN_BANK_CARD = 1;
     private static final int RC_TO_DATA_BACK = 2;
@@ -50,18 +52,18 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
     public static void goToOpenAccount(Context context) {
         Map<String, String> dataMap = ObjectUtil.newHashMap();
         dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getOpenAccountUrl());
-//        dataMap.put(BaseWebViewActivity.URL, "http://192.168.1.44:2323/account/password-all");
         dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
         dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
+        dataMap.put("isFirst", "true");
         MyIntent.startActivity(context, OpenAccountWebViewActivity.class, dataMap);
     }
 
     public static void goToBindNewSafeCard(Context context) {
         Map<String, String> dataMap = ObjectUtil.newHashMap();
         dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getBindNewOpenAccountUrl());
-//        dataMap.put(BaseWebViewActivity.URL, "http://192.168.1.44:2323/account/id-binded");
         dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
         dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
+        dataMap.put("isFirst", "true");
         MyIntent.startActivity(context, OpenAccountWebViewActivity.class, dataMap);
     }
 
@@ -118,6 +120,11 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
                 });
             }
 
+            isFirst = HashMapUtil.getBoolean(dataMap, "isFirst");
+            if(isFirst) {
+                getWebViewLayout().setShowCloseBtn(true);
+            }
+
             addAction();
 
             EventBus.getDefault().register(this);
@@ -156,9 +163,10 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
         addMethodCallAction(new WebMethodCallAction("openaccountfinish") {
             @Override
             public Boolean call(HashMap params) {
+                BankCardListActivity.NEED_MANUAL_REFRESH_LIST = true;
+                isNeedCustomAnimation = true;
                 EventBus.getDefault().post(new OpenAccountFinishEvent());
                 LoginManager.updateUserInfoData();
-                BankCardListActivity.NEED_MANUAL_REFRESH_LIST = true;
                 return false;
             }
         });
@@ -234,6 +242,9 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
         if(isBackShowQuit) {
             showCancelText();
         } else {
+            if(isFirst) {
+                isNeedCustomAnimation = true;
+            }
             super.onBackPressed();
         }
     }
@@ -247,6 +258,9 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
                     showCancelText();
                     return true;
                 } else {
+                    if(isFirst) {
+                        isNeedCustomAnimation = true;
+                    }
                     return false;
                 }
             }
@@ -270,6 +284,7 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
                 } else {
                     EventLog.upEventLog("682", "abandon", "setcard");
                 }
+                isNeedCustomAnimation = true;
                 finish();
             }
         });
@@ -284,5 +299,13 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
             }
         });
         builder.create().show();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        if(isNeedCustomAnimation) {
+            overridePendingTransition(R.anim.none, R.anim.activity_lollipop_close_exit);
+        }
     }
 }

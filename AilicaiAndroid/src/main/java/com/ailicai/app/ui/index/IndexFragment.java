@@ -42,6 +42,8 @@ public class IndexFragment extends BaseWebViewFragment {
 
     boolean isTitleVisible = false;
 
+    SetSystemBarHandler setSystemBarHandler;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -69,7 +71,6 @@ public class IndexFragment extends BaseWebViewFragment {
         });
 
         addAction();
-//        loadUrl("http://192.168.1.44:2323/licai");
         loadUrl(SupportUrl.getSupportUrlsResponse().getPorosWebUrl());
 
         CommonUtil.uiSystemBarTint(getActivity(), getView());
@@ -78,8 +79,8 @@ public class IndexFragment extends BaseWebViewFragment {
 
         // 为了让状态栏显示成白色，山炮做法，因为IWtoptitleview中如果是白色titleview会把状态栏设成黑色字所以
         // 后面几个fragment的添加都会对当前activity的状态栏造成影响
-        SetSystemBarHandler handler = new SetSystemBarHandler();
-        handler.sendEmptyMessageDelayed(0, 2000);
+        setSystemBarHandler = new SetSystemBarHandler();
+        setSystemBarHandler.sendEmptyMessageDelayed(0, 2000);
     }
 
     class SetSystemBarHandler extends Handler {
@@ -104,6 +105,15 @@ public class IndexFragment extends BaseWebViewFragment {
     public void onPause() {
         super.onPause();
         startOrStopAutoRefresh(false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // 销毁延时两秒发送消息的Handler
+        setSystemBarHandler.removeMessages(0);
+        setSystemBarHandler = null;
+        EventBus.getDefault().unregister(this);
     }
 
     private void addAction() {
@@ -193,12 +203,6 @@ public class IndexFragment extends BaseWebViewFragment {
         } else {
             CommonUtil.miWhiteSystemBar(getWRActivity());
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

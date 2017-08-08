@@ -538,7 +538,16 @@ public class BaseWebViewLayout extends LinearLayout {
                     dataMap.put(BaseWebViewActivity.URL, url);
                     dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
                     dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, String.valueOf(isDark));
-                    MyIntent.startActivity(getWRContext(), OpenAccountWebViewActivity.class, dataMap);
+                    if(params.containsKey("isfirst")) {
+                        boolean isFirst = Boolean.parseBoolean(String.valueOf(params.get("isfirst")));
+                        dataMap.put("isFirst", isFirst+"");
+                        MyIntent.startActivity(getWRContext(), OpenAccountWebViewActivity.class, dataMap);
+                        if(isFirst) {
+                            getWRContext().overridePendingTransition(R.anim.activity_lollipop_open_enter,R.anim.activity_lollipop_close_exit);
+                        }
+                    } else {
+                        MyIntent.startActivity(getWRContext(), OpenAccountWebViewActivity.class, dataMap);
+                    }
                 }
             }
         });
@@ -947,6 +956,10 @@ public class BaseWebViewLayout extends LinearLayout {
 
     private void setCanRefresh(boolean canRefresh) {
         swipeRefreshLayout.setEnabled(canRefresh);
+    }
+
+    public void setShowCloseBtn(boolean isShown) {
+        topTitleView.setShowCloseBtn(isShown);
     }
 
     protected void addTitleRightText(int resId, int style, View.OnClickListener event) {

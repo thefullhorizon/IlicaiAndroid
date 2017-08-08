@@ -46,7 +46,7 @@ public class WelcomeActivity extends BackOpFragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mHandler.sendEmptyMessageDelayed(SHOW_GUIDE_OR_HOME, 800);
+        mHandler.sendEmptyMessageDelayed(SHOW_GUIDE_OR_HOME, 300);
     }
 
     private Handler mHandler = new Handler(new Handler.Callback() {

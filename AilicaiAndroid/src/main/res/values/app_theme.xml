@@ -37,6 +37,7 @@
 
     <style name="AppAppCompatTheme.WelcomeTheme">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/welcome</item>
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 

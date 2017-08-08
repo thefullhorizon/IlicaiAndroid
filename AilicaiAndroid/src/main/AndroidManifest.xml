@@ -91,6 +91,7 @@
             android:name=".ui.welcome.WelcomeActivity"
             android:configChanges="orientation|keyboardHidden|locale"
             android:screenOrientation="portrait"
+            android:exported="true"
             android:theme="@style/AppAppCompatTheme.WelcomeTheme"
             android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>

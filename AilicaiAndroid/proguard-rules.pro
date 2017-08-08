@@ -126,6 +126,12 @@ public void *(android.view.View);
 -dontwarn com.android.volley.**
 ##----------------volley----------------
 
+##-------------合合科技 银行卡 身份证扫描----------------
+-keep class com.intsig.ccrengine.** { *;}
+-keep class com.intsig.nativelib.** { *;}
+-keep class com.intsig.idcardscan.sdk.** { *;}
+##-------------合合科技 银行卡 身份证扫描----------------
+
 ##----------------acra----------------
 -keep class org.arca.** { *;}
 -dontwarn org.arca.**
