@@ -66,7 +66,7 @@ public class GestureLockView extends View {
     /**
      * 内圆的半径 = mInnerCircleRadiusRate * mRadus
      */
-    private float mInnerCircleRadiusRate = 0.3F;
+    private final float mInnerCircleRadiusRate = 0.3F;
 
     /**
      * 四个颜色，可由用户自定义，初始化时由GestureLockViewGroup传入
@@ -98,8 +98,6 @@ public class GestureLockView extends View {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mArrowPath = new Path();
 
-//        setBackgroundColor(mGestureLockViewBg);
-
     }
 
     public GestureLockView(Context context) {
@@ -120,10 +118,10 @@ public class GestureLockView extends View {
 
         // 绘制三角形，初始时是个默认箭头朝上的一个等腰三角形，用户绘制结束后，根据由两个GestureLockView决定需要旋转多少度
         float arrowLength = mWidth / 2 * mArrowRate;
-        mArrowPath.moveTo(mWidth / 2, mStrokeWidth + 2);
-        mArrowPath.lineTo(mWidth / 2 - arrowLength, mStrokeWidth + 2
+        mArrowPath.moveTo(mWidth / 2, mStrokeWidth + 6);//最上面的顶点 mStrokeWidth + ？的数值就是三角离边的距离
+        mArrowPath.lineTo(mWidth / 2 - arrowLength, mStrokeWidth + 6 //左边的点
                 + arrowLength);
-        mArrowPath.lineTo(mWidth / 2 + arrowLength, mStrokeWidth + 2
+        mArrowPath.lineTo(mWidth / 2 + arrowLength, mStrokeWidth + 6 //右边的点
                 + arrowLength);
         mArrowPath.close();
         mArrowPath.setFillType(Path.FillType.WINDING);

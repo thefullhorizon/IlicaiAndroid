@@ -280,7 +280,6 @@ public class GestureLockViewContent extends RelativeLayout{
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.d("tag","isAnswerRight="+isAnswerRight);
         return !(mIsIndicator || mTryTimes == 0 || isAnswerRight) && super.dispatchTouchEvent(ev);
     }
 
@@ -298,7 +297,6 @@ public class GestureLockViewContent extends RelativeLayout{
             case MotionEvent.ACTION_MOVE:
                 // 初始化画笔为蓝色
                 mGestureLockLineView.setViewColor(mFingerOnColor);
-
                 GestureLockView child = mGestureLockUtils.getChildIdByPos(x, y,mGestureLockViewWidth);
 
                 if (child != null) {
