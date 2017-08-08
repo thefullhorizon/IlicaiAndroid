@@ -11,7 +11,7 @@ import com.ailicai.app.ui.login.UserInfo;
  * Created by jeme on 2017/8/1.
  */
 
-public class AppUtils {
+public class GestureLockTools {
 
     public static Intent getGestureLockIntent(Context context,@GestureLockActivity.LockType int type){
         Intent intent = null;
@@ -43,14 +43,14 @@ public class AppUtils {
         }
         return intent;
     }
-    public static void goActivity(Context context, @GestureLockActivity.LockType int type){
+    public static void goGestureLockView(Context context, @GestureLockActivity.LockType int type){
         Intent intent = getGestureLockIntent(context,type);
         if(intent != null){
             context.startActivity(intent);
         }
     }
-    public static void goActivity(Context context){
-        goActivity(context,GestureLockActivity.TYPE_AUTO);
+    public static void goGestureLockView(Context context){
+        goGestureLockView(context,GestureLockActivity.TYPE_AUTO);
     }
 
     /***
@@ -61,5 +61,8 @@ public class AppUtils {
     }
     public static String getJumpLockViewKey(){
         return "lock_jump_" + UserInfo.getInstance().getUserId();
+    }
+    public static String getLockEnableKey(){
+        return "lockEnable:" + UserInfo.getInstance().getUserId();
     }
 }

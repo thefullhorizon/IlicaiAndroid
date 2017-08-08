@@ -18,6 +18,7 @@
         app:color_no_finger_inner_circle="@color/transparent"
         app:color_no_finger_outer_circle="@color/edit_text_hint_color"
         app:color_finger_on="@color/color_4a4a4a"
+        app:color_background="@color/edit_text_hint_color"
         app:lock_view_size="10dp"
         app:margin_lock_view="4dp"/>
 </LinearLayout>

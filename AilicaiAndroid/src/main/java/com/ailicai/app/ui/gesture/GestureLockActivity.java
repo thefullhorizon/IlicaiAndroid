@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
-import com.ailicai.app.common.utils.AppUtils;
+import com.ailicai.app.common.utils.GestureLockTools;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.StringUtil;
 import com.ailicai.app.eventbus.LoginEvent;
@@ -20,7 +20,7 @@ import com.ailicai.app.ui.login.LoginSuccessCardDialog;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.gestruelock.GestureLockIndicator;
-import com.ailicai.app.widget.gestruelock.GestureLockViewGroup;
+import com.ailicai.app.widget.gestruelock.GestureLockViewContent;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -32,10 +32,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
+ * 手势页面及设置页面
  * Created by jeme on 2017/8/1.
  */
 
-public class GestureLockActivity extends BaseBindActivity implements GestureLockViewGroup.OnGestureLockViewListener,View.OnClickListener{
+public class GestureLockActivity extends BaseBindActivity implements GestureLockViewContent.OnGestureLockViewListener,View.OnClickListener{
 
     public static final int TYPE_AUTO = 1;
     public static final int TYPE_SETTING = 2;
@@ -58,20 +59,21 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
     @Bind(R.id.tv_gesture_lock_tip)
     TextView mTvGestureLockTip;
     @Bind(R.id.glvg_lock_on)
-    GestureLockViewGroup mGlvgLock;
+    GestureLockViewContent mGlvgLock;
     @Bind(R.id.iwttv_top)
     IWTopTitleView mTitleBar;
     @Bind(R.id.vs_bottom)
     ViewStub mVsBottom;
+    //底部布局
+    View mVForgetPwd;
+    View mVLine;
+    View mVChangeUser;
     //指示器的vs
     GestureLockIndicator mGlvgIndicator;
     //用户的vs
 //    CircleImageView mCivUserPhoto;
     TextView mTvUserPhone;
-    //底部布局
-    View mVForgetPwd;
-    View mVLine;
-    View mVChangeUser;
+
 
     private @LockType int mLockType;
     private LoginEvent mLoginEvent;
@@ -112,7 +114,7 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
             mTitleBar.setVisibility(View.VISIBLE);
             mTvGestureLockTip.setText(R.string.gesture_lock_view_set_lock_tip);
             mGlvgLock.setUnMatchExceedBoundary(Integer.MAX_VALUE);
-            mGlvgLock.isFirstSet(true);
+            mGlvgLock.setStatus(GestureLockViewContent.STATUS_SETTING);
         }else if(mLockType == TYPE_LOCK || mLockType == TYPE_PERSON_VERIFY_FOR_FIX ||
                 mLockType == TYPE_PERSON_VERIFY_FOR_CLOSE){
 
@@ -121,7 +123,7 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
             mTvUserPhone = ButterKnife.findById(view,R.id.tv_user_phone);
             mTvUserPhone.setText(StringUtil.formatMobileSubTwo(UserInfo.getInstance().getUserMobile()));
             mGlvgLock.setUnMatchExceedBoundary(GESTURE_TRY_TIMES);//最多重试5次
-            mGlvgLock.setAnswer(MyPreference.getInstance().read(AppUtils.getLockKey(),""));
+            mGlvgLock.setAnswer(MyPreference.getInstance().read(GestureLockTools.getLockKey(),""));
 
             view = mVsBottom.inflate();
             mVForgetPwd = ButterKnife.findById(view,R.id.tv_forget_pwd);
@@ -146,6 +148,12 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
         mGlvgLock.setOnGestureLockViewListener(this);
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        MyApplication.getAppPresenter().setAppFront(true);
+    }
+
     /***
      * 从登陆页面到此，需要延迟处理登陆事件
      */
@@ -168,15 +176,16 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
             if (matched) {
                 mTvGestureLockTip.setTextColor(getResources().getColor(R.color.color_4a4a4a));
                 mTvGestureLockTip.setText(R.string.gesture_lock_view_pattern);
-                //todo 保存数值，需要加密
-                MyPreference.getInstance().write(AppUtils.getLockKey(),mGlvgLock.getChooseStr());
+                mTitleBar.getRightText().setEnabled(false);
+                MyPreference.getInstance().write(GestureLockTools.getLockKey(), mGlvgLock.getChooseStr());
                 MyApplication.getInstance().getUiHandler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         finish();
+                        processLoginEvent();
                     }
                 },2000);
-                processLoginEvent();
+
             }else{
                 mTvGestureLockTip.setText(R.string.gesture_lock_view_unpattern);
                 mTvGestureLockTip.setTextColor(getResources().getColor(R.color.color_b92b27));
@@ -186,10 +195,10 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
             if (matched) {
                 mTvGestureLockTip.setVisibility(View.GONE);
                 if(mLockType == TYPE_PERSON_VERIFY_FOR_CLOSE){
-                    MyPreference.getInstance().remove(AppUtils.getLockKey());
+                    MyPreference.getInstance().remove(GestureLockTools.getLockKey());
                 }else if(mLockType == TYPE_PERSON_VERIFY_FOR_FIX){
-//                    MyPreference.getInstance().remove(AppUtils.getLockKey());
-                    AppUtils.goActivity(this,TYPE_PERSON_SETTING);
+//                    MyPreference.getInstance().remove(GestureLockTools.getLockKey());
+                    GestureLockTools.goGestureLockView(this,TYPE_PERSON_SETTING);
                 }
                 //进入app
                 finish();
@@ -221,6 +230,7 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
         mTvGestureLockTip.setTextColor(patternOk ? getResources().getColor(R.color.color_9b9b9b) :
                 getResources().getColor(R.color.color_b92b27));
         if(mLockType == TYPE_PERSON_SETTING && patternOk){
+            mTitleBar.getRightText().setEnabled(true);
             mTitleBar.addRightText("重设",this);
         }
         if(patternOk) {
@@ -235,7 +245,7 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
             case R.id.top_title_right_icon:
                 if(mLockType == GestureLockActivity.TYPE_SETTING){
                     processLoginEvent();
-                    MyPreference.getInstance().write(AppUtils.getJumpLockViewKey(),true);
+                    MyPreference.getInstance().write(GestureLockTools.getJumpLockViewKey(),true);
                     finish();
                 }else if(mLockType == GestureLockActivity.TYPE_PERSON_SETTING){
                     mGlvgIndicator.setIndictorAnswer(null);
@@ -246,7 +256,7 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
                 }
                 break;
             case R.id.tv_forget_pwd://忘记密码
-                MyPreference.getInstance().remove(AppUtils.getLockKey());
+                MyPreference.getInstance().remove(GestureLockTools.getLockKey());
                 onUnmatchedExceedBoundary();
                 break;
             case R.id.tv_change_user://切换用户

@@ -12,7 +12,7 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.push.PushUtil;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
-import com.ailicai.app.common.utils.AppUtils;
+import com.ailicai.app.common.utils.GestureLockTools;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
@@ -277,7 +277,7 @@ public class LoginManager {
         MyPreference.getInstance().write("FinanceAdActivity", false);
         MobclickAgent.onProfileSignOff();
         //清除跳过的标志位
-        MyPreference.getInstance().remove(AppUtils.getJumpLockViewKey());
+        MyPreference.getInstance().remove(GestureLockTools.getJumpLockViewKey());
     }
 
     public static void loginSuccess(Context context,int fromPage, UserLoginResponse jsonObject, boolean showPackage) {
@@ -299,7 +299,7 @@ public class LoginManager {
 
         MobclickAgent.onProfileSignIn(UserInfo.getInstance().getUserMobile());
 
-        Intent intent = AppUtils.getGestureLockIntent(context,GestureLockActivity.TYPE_SETTING);
+        Intent intent = GestureLockTools.getGestureLockIntent(context,GestureLockActivity.TYPE_SETTING);
         if(intent != null){
             //如果没有设置手势密码，需要拦截
             intent.putExtra("loginEvent",loginEvent);

@@ -4,8 +4,9 @@ import android.os.Bundle;
 
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.common.constants.GlobleConstants;
-import com.ailicai.app.common.utils.AppUtils;
+import com.ailicai.app.common.utils.GestureLockTools;
 import com.ailicai.app.common.utils.Constants;
+import com.ailicai.app.common.utils.MyPreference;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -53,11 +54,14 @@ public abstract class BaseBindActivity extends BaseActivity {
         super.onPostResume();
         if (enableLock && !MyApplication.getAppPresenter().isInFront()) {
             MyApplication.getAppPresenter().setAppFront(true);
+            if( !MyPreference.getInstance().read(GestureLockTools.getLockEnableKey(),true)){
+                return;
+            }
             // 减得当前APP在后台滞留的时间 durTime
             long durTime = System.currentTimeMillis() - GlobleConstants.mLockAppTime;
             if (durTime > Constants.LOCK_TIME) {
                 // 显示手势密码页面
-                AppUtils.goActivity(this);
+                GestureLockTools.goGestureLockView(this);
             }
         }
     }

@@ -9,7 +9,7 @@ import java.util.List;
  * 手势指示器
  * Created by jeme on 2016/10/28 0028.
  */
-public class GestureLockIndicator extends GestureLockViewGroup {
+public class GestureLockIndicator extends GestureLockViewContent {
     private static final String TAG = "GestureLockIndicator";
 
     public GestureLockIndicator(Context context, AttributeSet attrs) {
@@ -18,8 +18,7 @@ public class GestureLockIndicator extends GestureLockViewGroup {
 
     public GestureLockIndicator(Context context, AttributeSet attrs,
                                 int defStyle) {
-        super(context, attrs, defStyle);
-        mIsIndicator = true;
+        super(context, attrs, defStyle,true);
     }
 
     /***

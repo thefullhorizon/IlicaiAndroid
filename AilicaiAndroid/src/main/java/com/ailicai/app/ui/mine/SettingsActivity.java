@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
-import com.ailicai.app.common.utils.AppUtils;
+import com.ailicai.app.common.utils.GestureLockTools;
 import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MapUtil;
 import com.ailicai.app.common.utils.MyIntent;
@@ -91,6 +91,14 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
         mTbControlGestureLock.setOnToggleChanged(this);
 
         setToggleStatus();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(UserInfo.getInstance().getLoginState() != UserInfo.LOGIN){
+            finish();
+        }
     }
 
     @Override
@@ -176,10 +184,12 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
     }
 
     private void setToggleStatus(){
-        if(TextUtils.isEmpty(MyPreference.getInstance().read(AppUtils.getLockKey(),""))){
+        if(TextUtils.isEmpty(MyPreference.getInstance().read(GestureLockTools.getLockKey(),""))){
             mTbControlGestureLock.toggleOff();
+            MyPreference.getInstance().write(GestureLockTools.getLockEnableKey(),false);
         }else{
             mTbControlGestureLock.toggleOn();
+            MyPreference.getInstance().write(GestureLockTools.getLockEnableKey(),true);
         }
     }
 
@@ -214,7 +224,7 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
 
     @OnClick(R.id.rl_fix_gesture_lock_container)
     void fixGestureLockClick(){
-        AppUtils.goActivity(this,GestureLockActivity.TYPE_PERSON_VERIFY_FOR_FIX);
+        GestureLockTools.goGestureLockView(this,GestureLockActivity.TYPE_PERSON_VERIFY_FOR_FIX);
     }
 
     public void setUIData() {
@@ -245,10 +255,10 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
         Intent intent;
         if(fromClick){
             if(!on){
-                intent = AppUtils.getGestureLockIntent(this,GestureLockActivity.TYPE_PERSON_VERIFY_FOR_CLOSE);
+                intent = GestureLockTools.getGestureLockIntent(this,GestureLockActivity.TYPE_PERSON_VERIFY_FOR_CLOSE);
             }else{
-                MyPreference.getInstance().write(AppUtils.getJumpLockViewKey(),false);
-                intent = AppUtils.getGestureLockIntent(this,GestureLockActivity.TYPE_PERSON_SETTING);
+                MyPreference.getInstance().write(GestureLockTools.getJumpLockViewKey(),false);
+                intent = GestureLockTools.getGestureLockIntent(this,GestureLockActivity.TYPE_PERSON_SETTING);
             }
             if(intent != null){
                 startActivityForResult(intent,REQUEST_CODE_GESTURE_LOCK);

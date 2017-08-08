@@ -403,12 +403,14 @@
         <attr name="head" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="GestureLockViewGroup">
+    <declare-styleable name="GestureLockViewContent">
         <attr name="color_no_finger_inner_circle"  format="color|reference" />
         <attr name="color_no_finger_outer_circle"  format="color|reference" />
         <attr name="color_finger_on"  format="color|reference" />
+        <attr name="color_finger_right"  format="color|reference" />
         <attr name="color_finger_wrong"  format="color|reference" />
         <attr name="color_inner_circle_size" format="dimension"/>
+        <attr name="color_background" format="color|reference"/>
         <attr name="show_arrow_when_success" format="boolean"/>
         <attr name="margin_lock_view" format="integer|dimension"/>
         <attr name="lock_view_size" format="integer|dimension"/>

@@ -75,6 +75,9 @@ public class GestureLockView extends View {
     private int mColorNoFingerOutter;
     private int mColorFingerOn;
     private int mColorFingerUp;
+    private int mColorFingerWrong;//错误状态的颜色
+    private int mColorBg;//背景色
+
 
     // 用于设置是否绘制轨迹（箭头和内圆）
     private boolean showPath = true;// 默认显示
@@ -83,15 +86,19 @@ public class GestureLockView extends View {
     private boolean isAnswerRight;
     private boolean isIndicator;
 
-    public GestureLockView(Context context, int colorNoFingerInner, int colorNoFingerOutter, int colorFingerOn, int colorFingerUp, boolean isIndicator) {
+    public GestureLockView(Context context, int colorNoFingerInner, int colorNoFingerOutter, int colorFingerOn, int colorFingerUp, int colorFingerWrong,int mGestureLockViewBg,boolean isIndicator) {
         super(context);
         this.mColorNoFingerInner = colorNoFingerInner;
         this.mColorNoFingerOutter = colorNoFingerOutter;
         this.mColorFingerOn = colorFingerOn;
         this.mColorFingerUp = colorFingerUp;
+        this.mColorFingerWrong = colorFingerWrong;
+        mColorBg = mGestureLockViewBg;
         this.isIndicator = isIndicator;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mArrowPath = new Path();
+
+//        setBackgroundColor(mGestureLockViewBg);
 
     }
 
@@ -130,8 +137,12 @@ public class GestureLockView extends View {
             case STATUS_FINGER_UP:
                 // 在手指抬起后，答案错误一定会进行绘制，如果答案正确那么再判断是否显示路径
                 if (!isAnswerRight || showPath) {
+                    //绘制圆形背景
+                    mPaint.setStyle(Paint.Style.FILL);
+                    mPaint.setColor(mColorBg);
+                    canvas.drawCircle(mCenterX, mCenterY, mRadius, mPaint);
                     // 绘制外圆
-                    mPaint.setColor(mColorFingerUp);
+                    mPaint.setColor(isAnswerRight ? mColorFingerUp:mColorFingerWrong);
                     mPaint.setStyle(Paint.Style.STROKE);
                     mPaint.setStrokeWidth(mStrokeWidth);
                     canvas.drawCircle(mCenterX, mCenterY, mRadius, mPaint);
@@ -140,12 +151,15 @@ public class GestureLockView extends View {
                     canvas.drawCircle(mCenterX, mCenterY, mRadius * mInnerCircleRadiusRate, mPaint);
                     // 绘制箭头
                     drawArrow(canvas);
-
                     break;
                 }
             case STATUS_FINGER_ON:
                 // 在画手势密码时判断是否显示路径
                 if (showPath) {
+                    //绘制圆形背景
+                    mPaint.setStyle(Paint.Style.FILL);
+                    mPaint.setColor(mColorBg);
+                    canvas.drawCircle(mCenterX, mCenterY, mRadius, mPaint);
                     // 绘制外圆
                     mPaint.setStyle(isIndicator ? Paint.Style.FILL : Paint.Style.STROKE);
                     mPaint.setColor(mColorFingerOn);
@@ -154,10 +168,13 @@ public class GestureLockView extends View {
                     // 绘制内圆
                     mPaint.setStyle(Paint.Style.FILL);
                     canvas.drawCircle(mCenterX, mCenterY, mRadius * mInnerCircleRadiusRate, mPaint);
-
                     break;
                 }
             case STATUS_NO_FINGER:
+                //绘制圆形背景
+                mPaint.setStyle(Paint.Style.FILL);
+                mPaint.setColor(mColorBg);
+                canvas.drawCircle(mCenterX, mCenterY, mRadius, mPaint);
                 // 绘制外圆
                 mPaint.setStyle(isIndicator ? Paint.Style.FILL : Paint.Style.STROKE);
                 mPaint.setColor(mColorNoFingerOutter);
@@ -167,7 +184,6 @@ public class GestureLockView extends View {
                 mPaint.setStyle(Paint.Style.FILL);
                 mPaint.setColor(mColorNoFingerInner);
                 canvas.drawCircle(mCenterX, mCenterY, mRadius * mInnerCircleRadiusRate, mPaint);
-
                 break;
         }
 
