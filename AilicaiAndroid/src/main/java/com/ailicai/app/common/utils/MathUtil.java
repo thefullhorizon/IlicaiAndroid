@@ -1,5 +1,6 @@
 package com.ailicai.app.common.utils;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
@@ -77,4 +78,14 @@ public class MathUtil {
         decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
         return Double.parseDouble(decimalFormat.format(count));
     }
+
+    /**
+     * BigDecimal计算保留两位精度
+     * @param subtrahend 减数 minuend被减数
+     * @return
+     */
+    public static BigDecimal offetSetBetweenTwoBD(BigDecimal subtrahend,BigDecimal minuend) {
+        return subtrahend.subtract(minuend).setScale(2,BigDecimal.ROUND_DOWN);
+    }
+
 }

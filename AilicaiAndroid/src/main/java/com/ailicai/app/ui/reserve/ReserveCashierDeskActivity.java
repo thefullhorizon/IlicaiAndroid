@@ -34,6 +34,7 @@ import com.huoqiu.framework.util.CheckDoubleClick;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import butterknife.Bind;
@@ -246,7 +247,8 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
         } else {
             if (amount > reserveResponse.getAvailableBalance()) {
                 isEnough = false;
-                rechargeAmountSum = amount - reserveResponse.getAvailableBalance();
+                BigDecimal offset = (new BigDecimal(amount)).subtract(new BigDecimal(reserveResponse.getAvailableBalance()));
+                rechargeAmountSum = offset.doubleValue();
                 btConfirm.setText("账户可用余额不足，需充值" + MathUtil.saveTwoDecimal(rechargeAmountSum) + "元");
             }
             tvInputErrorHint.setVisibility(View.GONE);

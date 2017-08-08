@@ -61,6 +61,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import butterknife.Bind;
@@ -488,7 +489,8 @@ public class RegularPayActivity extends BaseBindActivity {
         if (money > infoResponse.getAvailableBalance()) {
             //购买金额大于钱包余额
             //走转入流程
-            double reChangeMoney = MathUtil.doubleFormatTwoDecimal(money - infoResponse.getAvailableBalance());
+            BigDecimal offset = (new BigDecimal(money)).subtract(new BigDecimal(infoResponse.getAvailableBalance()));
+            double reChangeMoney = offset.doubleValue();
             if (infoResponse.getBankLimit() != 0 && reChangeMoney > infoResponse.getBankLimit()) {
                 //转入金额大于安全卡限额
                 showMyToast("单笔最多可转入" + infoResponse.getBankLimit() + "元");
@@ -745,8 +747,8 @@ public class RegularPayActivity extends BaseBindActivity {
                 return false;
             } else if (isLast && Double.parseDouble(money) > infoResponse.getAvailableBalance()) {
                 //最后一笔,且钱包余额不足
-                double offset = MathUtil.doubleFormatTwoDecimal(Double.parseDouble(money) - infoResponse.getAvailableBalance());
-                mConfirmBtn.setText("账户可用余额不足，需充值" + MathUtil.saveTwoDecimal(offset) + "元");
+                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(money) ,new BigDecimal(infoResponse.getAvailableBalance()));
+                mConfirmBtn.setText("账户可用余额不足，需充值" + offset + "元");
                 return true;
             } else if (isLast && Double.parseDouble(money) <= infoResponse.getAvailableBalance()) {
                 //最后一笔,且钱包余额充足
@@ -772,8 +774,8 @@ public class RegularPayActivity extends BaseBindActivity {
                 return false;
             } else if (Double.parseDouble(money) > infoResponse.getAvailableBalance()) {
                 //since 5.3变更去掉
-                double offset = MathUtil.doubleFormatTwoDecimal(Double.parseDouble(money) - infoResponse.getAvailableBalance());
-                mConfirmBtn.setText("账户可用余额不足，需充值" + MathUtil.saveTwoDecimal(offset) + "元");
+                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(money) ,new BigDecimal(infoResponse.getAvailableBalance()));
+                mConfirmBtn.setText("账户可用余额不足，需充值" + offset + "元");
                 return true;
                 /**
                  } else if (infoResponse.getBuyLimit() > 0 && Double.parseDouble(money) > infoResponse.getBuyLimit()) {
