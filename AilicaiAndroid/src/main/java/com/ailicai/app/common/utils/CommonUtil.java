@@ -36,8 +36,8 @@ import java.util.regex.Pattern;
 
 public class CommonUtil {
 
-    private static DecimalFormat df4                = new DecimalFormat("#,##0.00");
-    private static DecimalFormat df5                = new DecimalFormat("#0.00");
+    private static DecimalFormat df4 = new DecimalFormat("#,##0.00");
+    private static DecimalFormat df5 = new DecimalFormat("#0.00");
 
     @TargetApi(11)
     public static void addAnimForView(View rootView) {
@@ -310,7 +310,7 @@ public class CommonUtil {
             TelephonyManager mTelephonyMgr = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
             phoneNumber = mTelephonyMgr.getLine1Number();
         }
-        return phoneNumber;
+        return StringUtil.trimTelNum(phoneNumber);
     }
 
     public static String getPhone11Num(Context mContext) {
@@ -519,6 +519,15 @@ public class CommonUtil {
         return propertiesMap;
     }
 
+    public static String formatDouble(double amt) {
+
+        if (amt < 1000) {
+            return df5.format(amt);
+        } else {
+            return df4.format(amt);
+        }
+    }
+
     // 判断一个字符串是否都为数字
     public boolean isDigit(String strNum) {
         Pattern pattern = Pattern.compile("[0-9]{1,}");
@@ -551,15 +560,6 @@ public class CommonUtil {
         void OnSingleClick(View v);
 
         void OnDoubleClick(View v);
-    }
-
-    public static String formatDouble(double amt) {
-
-        if (amt < 1000) {
-            return df5.format(amt);
-        } else {
-            return df4.format(amt);
-        }
     }
 
 }
