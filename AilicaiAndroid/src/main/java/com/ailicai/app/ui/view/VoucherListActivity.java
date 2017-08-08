@@ -36,7 +36,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
     IWTopTitleView titleView;
 
     private View vHead;
-    private String amount;
+    private int amount;
     private int appropriateVoucherId = -1;
 
     @OnClick(R.id.top_title_back_textview)
@@ -65,12 +65,12 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
 
         productId = getIntent().getStringExtra(EXTRA_PRODUCT_ID);
         appropriateVoucherId = getIntent().getIntExtra(EXTRA_APPROPRIATE_VOUCHER_ID,-1);
-        amount = getIntent().getStringExtra(EXTRA_AMOUNT);
+        amount = getIntent().getIntExtra(EXTRA_AMOUNT,-1);
         swipeRefreshLayout.setColorSchemeResources(R.color.main_red_color);
         swipeRefreshLayout.setOnRefreshListener(this);
         lvRedEnvelope.setOnLoadMoreListener(this);
         presenter = new VoucherListPresenter(this);
-        presenter.refresh(true, productId,Integer.parseInt(amount));
+        presenter.refresh(true, productId,amount);
     }
 
     /**
@@ -79,7 +79,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
     @Override
     public void onRefresh() {
         //刷新红包列表
-        presenter.refresh(false, productId,Integer.parseInt(amount));
+        presenter.refresh(false, productId,amount);
     }
 
     /**
@@ -99,7 +99,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
         int size = values.size();
         if (size > 0 && totalSize > size) {
             //加载更多
-            presenter.loadMore(size, productId,Integer.parseInt(amount));
+            presenter.loadMore(size, productId,amount);
             return true;
         }
         return false;
@@ -111,7 +111,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
     @Override
     public void reloadData() {
         super.reloadData();
-        presenter.refresh(true, productId,Integer.parseInt(amount));
+        presenter.refresh(true, productId,amount);
     }
 
     /**

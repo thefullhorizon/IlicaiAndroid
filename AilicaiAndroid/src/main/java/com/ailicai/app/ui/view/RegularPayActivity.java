@@ -130,7 +130,7 @@ public class RegularPayActivity extends BaseBindActivity {
     private String productId = "";
     private boolean isFromSmallCoin = false;
     private int appropriateVoucherId = -1;
-    private String input;
+    private String input = "";
 
     @Override
     public int getLayout() {
@@ -384,7 +384,11 @@ public class RegularPayActivity extends BaseBindActivity {
         Intent intent = new Intent(this, VoucherListActivity.class);
         intent.putExtra(VoucherListActivity.EXTRA_PRODUCT_ID, productId);
         intent.putExtra(VoucherListActivity.EXTRA_APPROPRIATE_VOUCHER_ID, appropriateVoucherId);
-        intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, input);
+        if (input != null && input.length()>0){
+            intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, Integer.parseInt(input));
+        }else{
+            intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, -1);
+        }
         startActivityForResult(intent, REQUEST_CODE_SELECT_VOUCHER);
         ManyiUtils.closeKeyBoard(this, mInputPriceEdit);
 

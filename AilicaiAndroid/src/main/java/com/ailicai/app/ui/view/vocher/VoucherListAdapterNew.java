@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -159,7 +160,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
     class ViewHolder {
 
         @Bind(R.id.item_layout)
-        RelativeLayout mItemLayout;
+        LinearLayout mItemLayout;
         @Bind(R.id.rl_bg_voucher_gear)
         RelativeLayout mBgVoucherGear;
         @Bind(R.id.item_up)
