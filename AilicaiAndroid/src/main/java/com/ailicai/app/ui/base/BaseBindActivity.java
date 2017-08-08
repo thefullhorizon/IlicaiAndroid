@@ -52,17 +52,8 @@ public abstract class BaseBindActivity extends BaseActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        if (enableLock && !MyApplication.getAppPresenter().isInFront()) {
-            MyApplication.getAppPresenter().setAppFront(true);
-            if( !MyPreference.getInstance().read(GestureLockTools.getLockEnableKey(),true)){
-                return;
-            }
-            // 减得当前APP在后台滞留的时间 durTime
-            long durTime = System.currentTimeMillis() - GlobleConstants.mLockAppTime;
-            if (durTime > Constants.LOCK_TIME) {
-                // 显示手势密码页面
-                GestureLockTools.goGestureLockView(this);
-            }
+        if(enableLock){
+            GestureLockTools.checkGesture(this);
         }
     }
 

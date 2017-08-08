@@ -1,9 +1,12 @@
 package com.ailicai.app.common.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.ailicai.app.MyApplication;
+import com.ailicai.app.common.constants.GlobleConstants;
 import com.ailicai.app.ui.gesture.GestureLockActivity;
 import com.ailicai.app.ui.login.UserInfo;
 
@@ -12,6 +15,7 @@ import com.ailicai.app.ui.login.UserInfo;
  */
 
 public class GestureLockTools {
+
 
     public static Intent getGestureLockIntent(Context context,@GestureLockActivity.LockType int type){
         Intent intent = null;
@@ -53,6 +57,21 @@ public class GestureLockTools {
         goGestureLockView(context,GestureLockActivity.TYPE_AUTO);
     }
 
+    public static void checkGesture(Activity activity){
+        if (!MyApplication.getAppPresenter().isInFront()) {
+            MyApplication.getAppPresenter().setAppFront(true);
+            if( !MyPreference.getInstance().read(GestureLockTools.getLockEnableKey(),true)){
+                return;
+            }
+            // 减得当前APP在后台滞留的时间 durTime
+            long durTime = System.currentTimeMillis() - GlobleConstants.mLockAppTime;
+            if (durTime > Constants.LOCK_TIME) {
+                // 显示手势密码页面
+                GestureLockTools.goGestureLockView(activity);
+            }
+        }
+    }
+
     /***
      * 本地保存手势密码的key
      */
@@ -64,5 +83,8 @@ public class GestureLockTools {
     }
     public static String getLockEnableKey(){
         return "lockEnable:" + UserInfo.getInstance().getUserId();
+    }
+    public static String getLockTryTimesKey(){
+        return "lockTryTimesKey:"+ UserInfo.getInstance().getUserId();
     }
 }

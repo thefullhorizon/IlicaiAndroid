@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.logCollect.EventLog;
+import com.ailicai.app.common.utils.GestureLockTools;
 import com.intsig.ccrengine.CCREngine;
 
 import java.io.ByteArrayOutputStream;
@@ -159,6 +160,12 @@ public class BankCardScanActivity extends Activity implements Camera.PreviewCall
 				openCamera();
 			}
 		}
+	}
+
+	@Override
+	protected void onPostResume() {
+		super.onPostResume();
+		GestureLockTools.checkGesture(this);
 	}
 
 	private void openCamera() {

@@ -41,8 +41,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
+import com.ailicai.app.common.constants.GlobleConstants;
 import com.ailicai.app.common.logCollect.EventLog;
+import com.ailicai.app.common.utils.Constants;
+import com.ailicai.app.common.utils.GestureLockTools;
+import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.widget.DialogBuilder;
 import com.intsig.idcardscan.sdk.IDCardScanSDK;
 import com.intsig.idcardscan.sdk.ResultData;
@@ -141,6 +146,12 @@ public class IDCardScanActivity extends Activity implements Camera.PreviewCallba
                 openCamera();
             }
         }
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        GestureLockTools.checkGesture(this);
     }
 
     private void openCamera() {

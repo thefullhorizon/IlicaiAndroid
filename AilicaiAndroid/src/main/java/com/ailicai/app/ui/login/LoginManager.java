@@ -278,6 +278,7 @@ public class LoginManager {
         MobclickAgent.onProfileSignOff();
         //清除跳过的标志位
         MyPreference.getInstance().remove(GestureLockTools.getJumpLockViewKey());
+        MyPreference.getInstance().remove(GestureLockTools.getLockTryTimesKey());
     }
 
     public static void loginSuccess(Context context,int fromPage, UserLoginResponse jsonObject, boolean showPackage) {

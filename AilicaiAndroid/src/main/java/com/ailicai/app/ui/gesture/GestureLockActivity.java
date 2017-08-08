@@ -45,7 +45,7 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
     public static final int TYPE_PERSON_VERIFY_FOR_CLOSE = 5;//用户验证然后关闭手势
     public static final int TYPE_PERSON_VERIFY_FOR_FIX = 6;//用户验证然后重设密码
     public static final String TYPE_KEY = "lockTypeKey";
-    private final int GESTURE_TRY_TIMES = 5;
+    private int GESTURE_TRY_TIMES = 5;
 
 
     @IntDef({TYPE_AUTO,TYPE_SETTING,TYPE_LOCK,TYPE_PERSON_SETTING,TYPE_PERSON_VERIFY_FOR_CLOSE,TYPE_PERSON_VERIFY_FOR_FIX})
@@ -122,7 +122,8 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
             View vEmpty = ButterKnife.findById(view,R.id.v_empty);
             mTvUserPhone = ButterKnife.findById(view,R.id.tv_user_phone);
             mTvUserPhone.setText(StringUtil.formatMobileSubTwo(UserInfo.getInstance().getUserMobile()));
-            mGlvgLock.setUnMatchExceedBoundary(GESTURE_TRY_TIMES);//最多重试5次
+
+            mGlvgLock.setUnMatchExceedBoundary(MyPreference.getInstance().read(GestureLockTools.getLockTryTimesKey(),GESTURE_TRY_TIMES));//默认最多重试5次
             mGlvgLock.setAnswer(MyPreference.getInstance().read(GestureLockTools.getLockKey(),""));
 
             view = mVsBottom.inflate();
@@ -184,15 +185,20 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
                         finish();
                         processLoginEvent();
                     }
-                },2000);
+                },1000);
 
             }else{
                 mTvGestureLockTip.setText(R.string.gesture_lock_view_unpattern);
                 mTvGestureLockTip.setTextColor(getResources().getColor(R.color.color_b92b27));
+                if(mLockType == TYPE_SETTING){
+                    mGlvgIndicator.setIndictorAnswer(null);
+                    mGlvgLock.reInit();
+                }
 
             }
         }else{
             if (matched) {
+                MyPreference.getInstance().remove(GestureLockTools.getLockTryTimesKey());
                 mTvGestureLockTip.setVisibility(View.GONE);
                 if(mLockType == TYPE_PERSON_VERIFY_FOR_CLOSE){
                     MyPreference.getInstance().remove(GestureLockTools.getLockKey());
@@ -203,6 +209,7 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
                 //进入app
                 finish();
             }else{
+                MyPreference.getInstance().write(GestureLockTools.getLockTryTimesKey(),mGlvgLock.getTryTimes());
                 mTvGestureLockTip.setText(String.format(Locale.CHINA,
                         getString(R.string.gesture_lock_view_unpattern_tip),
                         GESTURE_TRY_TIMES-mGlvgLock.getTryTimes(),mGlvgLock.getTryTimes()));
@@ -238,6 +245,13 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
         }
     }
 
+    private void resetGesture(){
+        mGlvgIndicator.setIndictorAnswer(null);
+        mGlvgLock.reInit();
+        mTvGestureLockTip.setText(R.string.gesture_lock_view_set_lock_tip);
+        mTvGestureLockTip.setTextColor(getResources().getColor(R.color.color_4a4a4a));
+    }
+
     @Override
     public void onClick(View v) {
         int vId = v.getId();
@@ -250,9 +264,9 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
                 }else if(mLockType == GestureLockActivity.TYPE_PERSON_SETTING){
                     mGlvgIndicator.setIndictorAnswer(null);
                     mGlvgLock.reInit();
-                    mTitleBar.getRightText().setVisibility(View.GONE);
                     mTvGestureLockTip.setText(R.string.gesture_lock_view_set_lock_tip);
                     mTvGestureLockTip.setTextColor(getResources().getColor(R.color.color_4a4a4a));
+                    mTitleBar.getRightText().setVisibility(View.GONE);
                 }
                 break;
             case R.id.tv_forget_pwd://忘记密码
