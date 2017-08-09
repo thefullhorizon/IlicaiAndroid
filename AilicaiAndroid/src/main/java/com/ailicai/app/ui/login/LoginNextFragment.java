@@ -153,10 +153,9 @@ public class LoginNextFragment extends BaseBindFragment implements PayPsdInputVi
 
     @Override
     public void onDetach() {
-        super.onDetach();
-        cursorTimerOpened =false;
-        mHandler.removeMessages(CURSORTIMEROPENED);
+        hideCursor();
         activityWeakReference = null;
+        super.onDetach();
     }
 
     /**
@@ -182,6 +181,10 @@ public class LoginNextFragment extends BaseBindFragment implements PayPsdInputVi
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        showPsdKeyBoard();
+    }
+
+    public void showPsdKeyBoard() {
         //mGpvAuthCode.forceInputViewGetFocus();
         mPayPsdInputView.setFocusable(true);
         mPayPsdInputView.setFocusableInTouchMode(true);
@@ -221,18 +224,27 @@ public class LoginNextFragment extends BaseBindFragment implements PayPsdInputVi
         SystemUtil.hideKeyboard(mPayPsdInputView);
     }
 
+    /**
+     * 隐藏光标
+     */
+    public void hideCursor() {
+        cursorTimerOpened = false;
+        mHandler.removeMessages(CURSORTIMEROPENED);
+        if (mCursorView != null) {
+            mCursorView.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void onStop() {
-        cursorTimerOpened =false;
-        mHandler.removeMessages(CURSORTIMEROPENED);
+        hideCursor();
         super.onStop();
     }
 
     @Override
     public void onPause() {
         closeKeyBoard();
-        cursorTimerOpened =false;
-        mHandler.removeMessages(CURSORTIMEROPENED);
+        hideCursor();
         //倒计时继续该页面不需要
         /*
         if (mTimerUtil.isTimerStarting()) {
@@ -371,10 +383,15 @@ public class LoginNextFragment extends BaseBindFragment implements PayPsdInputVi
 
     @Override
     public void onInputFinish(String s) {
-        mAutoCodeLayout.setVisibility(View.GONE);
-        loginingLayout.setVisibility(View.VISIBLE);
+        //mAutoCodeLayout.setVisibility(View.GONE);
+        //loginingLayout.setVisibility(View.VISIBLE);
+        mTimerUtil.stopTimer();
+        hideCursor();
         closeKeyBoard();
-        clickLogin();
+        if (!clickLogin()) {
+            mPayPsdInputView.clearPassword();
+            showPsdKeyBoard();
+        }
     }
 
     @Override
@@ -428,24 +445,18 @@ public class LoginNextFragment extends BaseBindFragment implements PayPsdInputVi
         }
     }
 
-    void clickLogin() {
+    public boolean clickLogin() {
         if (!NetCheckUtil.hasActiveNetwork()) {
             ToastUtil.showInCenter("网络未连接，请检查网络后重试！");
-            return;
+            return false;
         }
-        if (checkLogin()) {
-            if (checkAuthCode()) {
-                login();
-            }
-        }
-    }
-
-    private boolean checkAuthCode() {
         //if (!ValidateUtil.isValidAuthCode(StringUtil.allSpaceFormat(mGpvAuthCode.getPassWord()))) {
         if (!ValidateUtil.isValidAuthCode(StringUtil.allSpaceFormat(mPayPsdInputView.getPasswordString()))) {
             ToastUtil.showInCenter("验证码有误");
             return false;
         }
+
+        login();
         return true;
     }
 
@@ -469,11 +480,12 @@ public class LoginNextFragment extends BaseBindFragment implements PayPsdInputVi
 
             @Override
             public void onStart() {
+                showLoadTranstView();
             }
 
             @Override
             public void onJsonSuccess(UserLoginResponse jsonObject) {
-
+                showContentView();
                 int code = jsonObject.getErrorCode();
                 if (code == 0) {
                     if (jsonObject.getUserId() > 0) {
@@ -495,25 +507,26 @@ public class LoginNextFragment extends BaseBindFragment implements PayPsdInputVi
 
                         continueLogin(jsonObject);
                     } else {
-                        showMyToast("认证失败，请重试！");
-                        onLoginComplete();
+                        onFailInfo("认证失败，请重试！");
                     }
                 }
             }
 
             @Override
             public void onFailInfo(String errorInfo) {
+                showContentView();
                 onLoginComplete();
                 showMyToast(errorInfo);
                 //mGpvAuthCode.clearPassword();
                 mPayPsdInputView.clearPassword();
+                showPsdKeyBoard();
             }
         });
     }
 
     public void onLoginComplete() {
-        mAutoCodeLayout.setVisibility(View.VISIBLE);
-        loginingLayout.setVisibility(View.GONE);
+        //mAutoCodeLayout.setVisibility(View.VISIBLE);
+        //loginingLayout.setVisibility(View.GONE);
     }
 
     private void continueLogin(UserLoginResponse jsonObject) {
@@ -524,12 +537,4 @@ public class LoginNextFragment extends BaseBindFragment implements PayPsdInputVi
         getActivity().finish();
     }
 
-
-    private boolean checkLogin() {
-        if (!NetCheckUtil.hasActiveNetwork()) {
-            showMyToast("请检查网络设置并重试");
-            return false;
-        }
-        return true;
-    }
 }
