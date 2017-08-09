@@ -224,4 +224,8 @@
     <string name="asset_subscribe">&#xea08;</string>
     <string name="mine_us">&#xea28;</string>
 
+
+    <!--收银台协议-->
+    <string name="only_rightcheck">&#xea33;</string>
+
 </resources>

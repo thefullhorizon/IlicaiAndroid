@@ -120,7 +120,7 @@ public class RegularPayActivity extends BaseBindActivity {
     //卡券利率
     private double voucherRate;
     //返金金额
-    private int voucherValue;
+    private String voucherValue;
     private int use;
     //卡券id
     private int voucherId;
@@ -383,11 +383,11 @@ public class RegularPayActivity extends BaseBindActivity {
                     //金额*天数*年利率/年的天数
                     double normalProfit = moneyCount * infoResponse.getLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
                     if (moneyCount > 0) {
-                        if (voucherValue > 0) {
+                        if (!TextUtils.isEmpty(voucherValue)) {
                             SpannableUtil spannableUtil = new SpannableUtil(this);
                             SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
                                     MathUtil.saveTwoDecimal(normalProfit),
-                                    " 元 ", "+ 返金收益 ", MathUtil.saveTwoDecimal(voucherValue), " 元",
+                                    " 元 ", "+ 返金收益 ", voucherValue, " 元",
                                     R.style.text_12_757575,
                                     R.style.text_12_e84a01,
                                     R.style.text_12_757575,
@@ -1054,7 +1054,7 @@ public class RegularPayActivity extends BaseBindActivity {
                                 }
                                 break;
                             case 74://返金券
-                                voucherValue = data.getIntExtra("voucherValue", -1);
+                                voucherValue = data.getStringExtra("voucherValue");
                                 if(minAmountCent > 0){
                                     text += "[返金券]满"+minAmountCent+"元返"+voucherValue+"元";
                                 }else{
@@ -1071,7 +1071,7 @@ public class RegularPayActivity extends BaseBindActivity {
                     voucherRate = -1;
                     voucherId = -1;
                     addRateDay = -1;
-                    voucherValue = -1;
+                    voucherValue = "";
                     if (availableVoucherNumber > 0) {
                         tvTicketText.setText(availableVoucherNumber + "张可用，请选择");
                         tvTicketText.setTextColor(Color.parseColor("#212121"));

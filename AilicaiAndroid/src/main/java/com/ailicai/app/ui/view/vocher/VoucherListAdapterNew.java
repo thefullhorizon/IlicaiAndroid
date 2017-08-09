@@ -121,7 +121,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
             limit += voucher.getSimpleDesc()+";";
         }
         if (!TextUtils.isEmpty(voucher.getMinAmountCentString())){
-            limit += voucher.getMinAmountCentString()+";";
+            limit += voucher.getMinAmountCentString();
         }
         if (!TextUtils.isEmpty(voucher.getUseRange())){
             limit += voucher.getUseRange();
