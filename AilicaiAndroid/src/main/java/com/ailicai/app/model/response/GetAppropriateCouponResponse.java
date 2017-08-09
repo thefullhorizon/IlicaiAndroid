@@ -17,6 +17,8 @@ public class GetAppropriateCouponResponse extends Response {
 
     private int availableVoucherNumber;
 
+    private String amountCentString="";// 金额字符串(返金券使用)
+
     public int getVoucherId() {
         return voucherId;
     }
@@ -71,5 +73,13 @@ public class GetAppropriateCouponResponse extends Response {
 
     public void setAvailableVoucherNumber(int availableVoucherNumber) {
         this.availableVoucherNumber = availableVoucherNumber;
+    }
+
+    public String getAmountCentString() {
+        return amountCentString;
+    }
+
+    public void setAmountCentString(String amountCentString) {
+        this.amountCentString = amountCentString;
     }
 }

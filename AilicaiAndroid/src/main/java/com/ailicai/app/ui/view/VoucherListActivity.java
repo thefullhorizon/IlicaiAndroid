@@ -213,7 +213,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
                 intent.putExtra("addRateDay", values.get(position).getAddRateDay());
             break;
             case 74://返金券
-                intent.putExtra("voucherValue", values.get(position).getAmountCent());
+                intent.putExtra("voucherValue", values.get(position).getAmountCentString());
 
                 break;
         }

@@ -981,9 +981,9 @@ public class RegularPayActivity extends BaseBindActivity {
                 }
                 if (jsonObject.getVoucherType() == 74) {
                     if (jsonObject.getMinAmountCent() > 0) {
-                        text += "[返金券]满" + jsonObject.getMinAmountCent() + "元返" + jsonObject.getAmountCent() + "元";
+                        text += "[返金券]满" + jsonObject.getMinAmountCent() + "元返" + jsonObject.getAmountCentString() + "元";
                     } else {
-                        text += "[返金券]返" + jsonObject.getAmountCent() + "元";
+                        text += "[返金券]返" + jsonObject.getAmountCentString() + "元";
                     }
                 }
             }else if (availableVoucherNumber > 1) {

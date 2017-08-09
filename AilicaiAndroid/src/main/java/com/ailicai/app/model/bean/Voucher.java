@@ -27,6 +27,7 @@ public class Voucher {
     private String useRange="";//投资标的限制描述
     private String minAmountCentString="";//最低投资金额限制文案
 
+    private String amountCentString="";// 金额字符串(返金券使用)
 
 
     public int getVoucherId() {
@@ -172,5 +173,13 @@ public class Voucher {
 
     public void setMinAmountCentString(String minAmountCentString) {
         this.minAmountCentString = minAmountCentString;
+    }
+
+    public String getAmountCentString() {
+        return amountCentString;
+    }
+
+    public void setAmountCentString(String amountCentString) {
+        this.amountCentString = amountCentString;
     }
 }
