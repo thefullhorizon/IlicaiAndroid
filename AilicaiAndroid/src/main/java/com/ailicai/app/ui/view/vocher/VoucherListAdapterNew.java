@@ -34,7 +34,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
     private List<Voucher> values;
     private Context context;
     private UseClickListener listener;
-    private int appropriateVoucherId = -1;
+    private int appropriateVoucherId ;
 
     public VoucherListAdapterNew(Context context, List<Voucher> values,int appropriateVoucherId, UseClickListener listener) {
         this.context = context;
@@ -98,7 +98,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
                 viewHolder.mBgVoucherGear.setBackgroundResource(R.drawable.bg_voucher_up);
                 viewHolder.mIndicatorBest.setVisibility(View.GONE);
 
-                if (appropriateVoucherId != -1 && appropriateVoucherId == voucher.getVoucherId() ){
+                if (appropriateVoucherId != 0 && appropriateVoucherId == voucher.getVoucherId() ){
                     viewHolder.mIndicatorBest.setChecked(true);
                 }else{
                     viewHolder.mIndicatorBest.setChecked(false);

@@ -119,9 +119,12 @@ public class RegularPayActivity extends BaseBindActivity {
     private RegularPayBaseInfoResponse infoResponse;
     //卡券利率
     private double voucherRate;
-    //卡券id
+    //返金金额
+    private int voucherValue;
     private int use;
+    //卡券id
     private int voucherId;
+    private int voucherType;
     //卡券加息天数
     private int addRateDay;
     private ActivityRuleModel ruleModel;
@@ -130,7 +133,8 @@ public class RegularPayActivity extends BaseBindActivity {
 
     private String productId = "";
     private boolean isFromSmallCoin = false;
-    private int appropriateVoucherId = -1;
+    private int appropriateVoucherId;
+    private int availableVoucherNumber ;
     private String input = "";
 
     @Override
@@ -336,41 +340,69 @@ public class RegularPayActivity extends BaseBindActivity {
             tvProfitText.setText(builder);
         } else {
             double moneyCount = Double.parseDouble(moneyCountString);
-            if (moneyCount > 0) {
-                //金额*天数*年利率/年的天数
-                double normalProfit = moneyCount * infoResponse.getLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
-                if (voucherId > 0) {
-                    //有加息券
-                    double voucherProfit;
-                    if (addRateDay == -1) {
-                        //代表加息券不限天数
-                        addRateDay = infoResponse.getLoanTerm();
-                        voucherProfit = moneyCount * infoResponse.getLoanTerm() * voucherRate / 100 / 360;
-                    } else {
-                        //加息券有天数限制
-                        int actualRateDay = addRateDay;
-                        if (addRateDay > infoResponse.getLoanTerm()) {
-                            actualRateDay = infoResponse.getLoanTerm();
+            switch (voucherType) {
+                case 73://加息券
+                    if (moneyCount > 0) {
+                        //金额*天数*年利率/年的天数
+                        double normalProfit = moneyCount * infoResponse.getLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
+                        if (voucherRate > 0) {
+                            //有加息券
+                            double voucherProfit;
+                            if (addRateDay == -1) {
+                                //代表加息券不限天数
+                                addRateDay = infoResponse.getLoanTerm();
+                                voucherProfit = moneyCount * infoResponse.getLoanTerm() * voucherRate / 100 / 360;
+                            } else {
+                                //加息券有天数限制
+                                int actualRateDay = addRateDay;
+                                if (addRateDay > infoResponse.getLoanTerm()) {
+                                    actualRateDay = infoResponse.getLoanTerm();
+                                }
+                                voucherProfit = moneyCount * actualRateDay * voucherRate / 100 / 360;
+                            }
+                            SpannableUtil spannableUtil = new SpannableUtil(this);
+                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
+                                    MathUtil.saveTwoDecimal(normalProfit),
+                                    " 元 ", "+ 加息收益 ", MathUtil.saveTwoDecimal(voucherProfit), " 元",
+                                    R.style.text_12_757575,
+                                    R.style.text_12_e84a01,
+                                    R.style.text_12_757575,
+                                    R.style.text_12_757575,
+                                    R.style.text_12_e84a01,
+                                    R.style.text_12_757575);
+                            tvProfitText.setText(builder);
+                        } else {
+                            //无加息券
+                            SpannableUtil spannableUtil = new SpannableUtil(this);
+                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", MathUtil.saveTwoDecimal(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                            tvProfitText.setText(builder);
                         }
-                        voucherProfit = moneyCount * actualRateDay * voucherRate / 100 / 360;
                     }
-                    SpannableUtil spannableUtil = new SpannableUtil(this);
-                    SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
-                            MathUtil.saveTwoDecimal(normalProfit),
-                            " 元 ", "+ 加息收益 ", MathUtil.saveTwoDecimal(voucherProfit), " 元",
-                            R.style.text_12_757575,
-                            R.style.text_12_e84a01,
-                            R.style.text_12_757575,
-                            R.style.text_12_757575,
-                            R.style.text_12_e84a01,
-                            R.style.text_12_757575);
-                    tvProfitText.setText(builder);
-                } else {
-                    //无加息券
-                    SpannableUtil spannableUtil = new SpannableUtil(this);
-                    SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", MathUtil.saveTwoDecimal(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
-                    tvProfitText.setText(builder);
-                }
+                    break;
+                case 74://返金券
+                    //金额*天数*年利率/年的天数
+                    double normalProfit = moneyCount * infoResponse.getLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
+                    if (moneyCount > 0) {
+                        if (voucherValue > 0) {
+                            SpannableUtil spannableUtil = new SpannableUtil(this);
+                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
+                                    MathUtil.saveTwoDecimal(normalProfit),
+                                    " 元 ", "+ 返金收益 ", MathUtil.saveTwoDecimal(voucherValue), " 元",
+                                    R.style.text_12_757575,
+                                    R.style.text_12_e84a01,
+                                    R.style.text_12_757575,
+                                    R.style.text_12_757575,
+                                    R.style.text_12_e84a01,
+                                    R.style.text_12_757575);
+                            tvProfitText.setText(builder);
+                        } else {
+                            //无返金券
+                            SpannableUtil spannableUtil = new SpannableUtil(this);
+                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", MathUtil.saveTwoDecimal(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                            tvProfitText.setText(builder);
+                        }
+                    }
+                    break;
             }
         }
     }
@@ -388,7 +420,7 @@ public class RegularPayActivity extends BaseBindActivity {
         if (input != null && input.length()>0){
             intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, Integer.parseInt(input));
         }else{
-            intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, -1);
+            intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, 0);
         }
         startActivityForResult(intent, REQUEST_CODE_SELECT_VOUCHER);
         ManyiUtils.closeKeyBoard(this, mInputPriceEdit);
@@ -513,7 +545,7 @@ public class RegularPayActivity extends BaseBindActivity {
     private void reChange(double amount, double depositAmount) {
         RegularReChangePay.CurrentPayInfo currentPayInfo = new RegularReChangePay.CurrentPayInfo();
         currentPayInfo.setAmount(amount);
-        currentPayInfo.setDepositAmount(Double.parseDouble(MathUtil.saveTwoDecimal(depositAmount)));
+        currentPayInfo.setDepositAmount(depositAmount);
         if (voucherId > 0) {
             currentPayInfo.setVoucherId(voucherId);
         }
@@ -808,7 +840,7 @@ public class RegularPayActivity extends BaseBindActivity {
         voucherRate = infoResponse.getAddRate();
 
         //当前页面初始化中与卡券相关的逻辑拿掉
-
+        /*
         if (jsonObject.getBiddableAmount()==0) {
             tvTicketText.setText("暂无可用");
             tvTicketText.setTextColor(Color.parseColor("#757575"));
@@ -838,6 +870,7 @@ public class RegularPayActivity extends BaseBindActivity {
                 }
             }
         }
+        */
 
         if (infoResponse.getActivity() == null) {
             //无活动
@@ -882,6 +915,10 @@ public class RegularPayActivity extends BaseBindActivity {
             tvAllBuy.setVisibility(View.VISIBLE);
             EventLog.upEventLog("201610283", "qegm_show", "ptfcb_syt");
         }
+
+        //请求卡券相关的逻辑
+        getBestVoucher("0");
+
     }
 
     private void scrollToBottom() {
@@ -929,22 +966,31 @@ public class RegularPayActivity extends BaseBindActivity {
 
     private void bindAppropriateCouponData(GetAppropriateCouponResponse jsonObject) {
 
-        appropriateVoucherId = jsonObject.getVoucherId();
+        availableVoucherNumber = jsonObject.getAvailableVoucherNumber();
         String text = "";
-        if (jsonObject.getVoucherType() == 73){
-            if(jsonObject.getMinAmountCent() > 0){
-                text += "[加息券]满"+jsonObject.getMinAmountCent()+"元享加息"+jsonObject.getAddRate()+"%";
-            }else{
-                text += "[加息券]享加息"+jsonObject.getAddRate()+"%";
+        if (availableVoucherNumber > 0){
+            appropriateVoucherId = jsonObject.getVoucherId();
+            voucherId = appropriateVoucherId;
+            if (availableVoucherNumber == 1) {
+                if (jsonObject.getVoucherType() == 73) {
+                    if (jsonObject.getMinAmountCent() > 0) {
+                        text += "[加息券]满" + jsonObject.getMinAmountCent() + "元享加息" + jsonObject.getAddRate() + "%";
+                    } else {
+                        text += "[加息券]享加息" + jsonObject.getAddRate() + "%";
+                    }
+                }
+                if (jsonObject.getVoucherType() == 74) {
+                    if (jsonObject.getMinAmountCent() > 0) {
+                        text += "[返金券]满" + jsonObject.getMinAmountCent() + "元返" + jsonObject.getAmountCent() + "元";
+                    } else {
+                        text += "[返金券]返" + jsonObject.getAmountCent() + "元";
+                    }
+                }
+            }else if (availableVoucherNumber > 1) {
+                text = jsonObject.getAvailableVoucherNumber() + "张可用，请选择";
             }
-
-        }if (jsonObject.getVoucherType() == 74){
-            if(jsonObject.getMinAmountCent() > 0){
-                text += "[返金券]满"+jsonObject.getMinAmountCent()+"元返"+jsonObject.getAmountCent()+"元";
-            }else{
-                text += "[返金券]返"+jsonObject.getAmountCent()+"元";
-            }
-
+        }else {
+            text = "暂无可用";
         }
         tvTicketText.setText(text);
     }
@@ -993,32 +1039,41 @@ public class RegularPayActivity extends BaseBindActivity {
                 if (resultCode == RESULT_OK && data != null) {
                     use = data.getIntExtra("doesUse", -1);
                     if (use == 1){
-
-                        voucherRate = data.getDoubleExtra("voucherRate", -1);
-                        voucherRate = data.getDoubleExtra("voucherRate", -1);
                         voucherId = data.getIntExtra("voucherId", -1);
-                        addRateDay = data.getIntExtra("addRateDay", -1);
-                        if (voucherRate > 0) {
-                            if (addRateDay == -1) {
-                                //加息券不限天数
-                                tvTicketText.setText("享加息" + voucherRate + "%");
-                            } else {
-                                //加息券有天数限制
-                                tvTicketText.setText("享前" + addRateDay + "天加息" + voucherRate + "%");
-                            }
-                            tvTicketText.setTextColor(Color.parseColor("#212121"));
-                            calculateProfit();
+                        int minAmountCent = data.getIntExtra("minAmountCent", -1);
+                        String text = "";
+                        voucherType = data.getIntExtra("voucherType",0);
+                        switch (voucherType){
+                            case 73://加息券
+                                voucherRate = data.getDoubleExtra("addRate", -1);
+                                addRateDay = data.getIntExtra("addRateDay", -1);
+                                if(minAmountCent > 0){
+                                    text += "[加息券]满"+minAmountCent+"元享加息"+voucherRate+"%";
+                                }else{
+                                    text += "[加息券]享加息"+voucherRate+"%";
+                                }
+                                break;
+                            case 74://返金券
+                                voucherValue = data.getIntExtra("voucherValue", -1);
+                                if(minAmountCent > 0){
+                                    text += "[返金券]满"+minAmountCent+"元返"+voucherValue+"元";
+                                }else{
+                                    text += "[返金券]返"+voucherValue+"元";
+                                }
+                                break;
                         }
+                        calculateProfit();
+                        tvTicketText.setText(text);
                     }
 
-                } else if (resultCode == 1000) {
-                    //清空当前选择的卡券,恢复未选择之前的状态
+                } else if (resultCode == 1000) {//点击了不使用
+
                     voucherRate = -1;
                     voucherId = -1;
                     addRateDay = -1;
-                    if (infoResponse != null && infoResponse.getInterestVoucherNum() > 0) {
-                        //加息券数量大于0
-                        tvTicketText.setText(infoResponse.getInterestVoucherNum() + "张可用，请选择");
+                    voucherValue = -1;
+                    if (availableVoucherNumber > 0) {
+                        tvTicketText.setText(availableVoucherNumber + "张可用，请选择");
                         tvTicketText.setTextColor(Color.parseColor("#212121"));
                     } else {
                         tvTicketText.setText("暂无可用");
