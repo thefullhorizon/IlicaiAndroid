@@ -386,7 +386,7 @@ public class RegularPayActivity extends BaseBindActivity {
                             SpannableUtil spannableUtil = new SpannableUtil(this);
                             SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
                                     MathUtil.saveTwoDecimal(normalProfit),
-                                    " 元 ", "+ 返金收益 ", voucherValue, " 元",
+                                    " 元 ", "+ 返金金额 ", voucherValue, " 元",
                                     R.style.text_12_757575,
                                     R.style.text_12_e84a01,
                                     R.style.text_12_757575,
