@@ -177,7 +177,7 @@
                 android:layout_width="51dp"
                 android:layout_height="31dp"
                 android:layout_gravity="center_vertical"
-                manyi:onColor="@color/main_red_color" />
+                manyi:onColor="@color/deep_orange" />
         </LinearLayout>
 
         <RelativeLayout
