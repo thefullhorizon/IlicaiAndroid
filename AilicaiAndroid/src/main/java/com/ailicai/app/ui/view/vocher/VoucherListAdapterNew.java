@@ -96,9 +96,9 @@ public class VoucherListAdapterNew extends BaseAdapter {
                 });
                 viewHolder.mItemUp.setBackgroundResource(R.drawable.bg_voucher_up);
                 viewHolder.mBgVoucherGear.setBackgroundResource(R.drawable.bg_voucher_up);
-                viewHolder.mIndicatorBest.setVisibility(View.GONE);
+                viewHolder.mIndicatorBest.setVisibility(View.VISIBLE);
 
-                if (appropriateVoucherId != 0 && appropriateVoucherId == voucher.getVoucherId() ){
+                if (appropriateVoucherId != -1 && appropriateVoucherId == voucher.getVoucherId() ){
                     viewHolder.mIndicatorBest.setChecked(true);
                 }else{
                     viewHolder.mIndicatorBest.setChecked(false);

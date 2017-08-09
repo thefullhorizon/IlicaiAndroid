@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:button="@null"
                 android:layout_alignParentRight="true"
-                android:drawableLeft="@drawable/agreement_box_bg"/>
+                android:drawableLeft="@drawable/agreement_box_bg_voucher"/>
 
 
         </RelativeLayout>

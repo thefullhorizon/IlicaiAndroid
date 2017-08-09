@@ -133,7 +133,6 @@ public class RegularPayActivity extends BaseBindActivity {
 
     private String productId = "";
     private boolean isFromSmallCoin = false;
-    private int appropriateVoucherId;
     private int availableVoucherNumber ;
     private String input = "";
 
@@ -416,7 +415,7 @@ public class RegularPayActivity extends BaseBindActivity {
 
         Intent intent = new Intent(this, VoucherListActivity.class);
         intent.putExtra(VoucherListActivity.EXTRA_PRODUCT_ID, productId);
-        intent.putExtra(VoucherListActivity.EXTRA_APPROPRIATE_VOUCHER_ID, appropriateVoucherId);
+        intent.putExtra(VoucherListActivity.EXTRA_APPROPRIATE_VOUCHER_ID, voucherId);
         if (input != null && input.length()>0){
             intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, Integer.parseInt(input));
         }else{
@@ -969,28 +968,23 @@ public class RegularPayActivity extends BaseBindActivity {
         availableVoucherNumber = jsonObject.getAvailableVoucherNumber();
         String text = "";
         if (availableVoucherNumber > 0){
-            appropriateVoucherId = jsonObject.getVoucherId();
-            voucherId = appropriateVoucherId;
-            if (availableVoucherNumber == 1) {
-                if (jsonObject.getVoucherType() == 73) {
-                    if (jsonObject.getMinAmountCent() > 0) {
-                        text += "[加息券]满" + jsonObject.getMinAmountCent() + "元享加息" + jsonObject.getAddRate() + "%";
-                    } else {
-                        text += "[加息券]享加息" + jsonObject.getAddRate() + "%";
-                    }
+            voucherId = jsonObject.getVoucherId();
+            if (jsonObject.getVoucherType() == 73) {
+                if (jsonObject.getMinAmountCent() > 0) {
+                    text += "[加息券]满" + jsonObject.getMinAmountCent() + "元享加息" + jsonObject.getAddRate() + "%";
+                } else {
+                    text += "[加息券]享加息" + jsonObject.getAddRate() + "%";
                 }
-                if (jsonObject.getVoucherType() == 74) {
-                    if (jsonObject.getMinAmountCent() > 0) {
-                        text += "[返金券]满" + jsonObject.getMinAmountCent() + "元返" + jsonObject.getAmountCentString() + "元";
-                    } else {
-                        text += "[返金券]返" + jsonObject.getAmountCentString() + "元";
-                    }
+            }
+            if (jsonObject.getVoucherType() == 74) {
+                if (jsonObject.getMinAmountCent() > 0) {
+                    text += "[返金券]满" + jsonObject.getMinAmountCent() + "元返" + jsonObject.getAmountCentString() + "元";
+                } else {
+                    text += "[返金券]返" + jsonObject.getAmountCentString() + "元";
                 }
-            }else if (availableVoucherNumber > 1) {
-                text = jsonObject.getAvailableVoucherNumber() + "张可用，请选择";
             }
         }else {
-            text = "暂无可用";
+            text = "暂无可用卡券";
         }
         tvTicketText.setText(text);
     }

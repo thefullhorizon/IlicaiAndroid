@@ -37,7 +37,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
 
     private View vHead;
     private int amount;
-    private int appropriateVoucherId = -1;
+    private int appropriateOrSelectedVoucherId = -1;
 
     @OnClick(R.id.top_title_back_textview)
     public void onTopTitleBackTextview() {
@@ -64,7 +64,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
         super.init(savedInstanceState);
 
         productId = getIntent().getStringExtra(EXTRA_PRODUCT_ID);
-        appropriateVoucherId = getIntent().getIntExtra(EXTRA_APPROPRIATE_VOUCHER_ID,0);
+        appropriateOrSelectedVoucherId = getIntent().getIntExtra(EXTRA_APPROPRIATE_VOUCHER_ID,-1);
         amount = getIntent().getIntExtra(EXTRA_AMOUNT,0);
         swipeRefreshLayout.setColorSchemeResources(R.color.main_red_color);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -136,7 +136,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
             showContentView();
             totalSize = jsonObject.getTotal();
             if (adapter == null) {
-                adapter = new VoucherListAdapterNew(this, values,appropriateVoucherId, this);
+                adapter = new VoucherListAdapterNew(this, values, appropriateOrSelectedVoucherId, this);
                 lvRedEnvelope.setAdapter(adapter);
                 vHead= View.inflate(this, R.layout.voucher_no_use, null);
                 vHead.setOnClickListener(new View.OnClickListener() {
