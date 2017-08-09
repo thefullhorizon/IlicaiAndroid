@@ -48,11 +48,19 @@ public class CouponWebViewActivity extends BaseWebViewActivity {
                 try {
                     String showleft = String.valueOf(params.get("showleft"));
                     String showright = String.valueOf(params.get("showright"));
-                    final String rightTxt = String.valueOf(params.get("righttxt"));
+                    String rightTxt = String.valueOf(params.get("righttxt"));
                     final String rightUrl = String.valueOf(params.get("righturl"));
+                    String righticon = String.valueOf(params.get("righticon"));
 
-                    if (!TextUtils.isEmpty(rightTxt)) {
-                        addTitleRightText(rightTxt, R.style.text_14_54000000, new View.OnClickListener() {
+                    String toShowRightStr = "";
+                    if("1".equals(righticon)) {
+                        toShowRightStr = getResources().getString(R.string.mine_us);
+                    } else {
+                        toShowRightStr = rightTxt;
+                    }
+
+                    if (!TextUtils.isEmpty(toShowRightStr)) {
+                        addTitleRightText(toShowRightStr, R.style.text_14_54000000, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 

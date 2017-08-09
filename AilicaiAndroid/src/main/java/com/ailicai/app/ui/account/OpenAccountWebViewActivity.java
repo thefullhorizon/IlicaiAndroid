@@ -41,6 +41,7 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
     boolean isBackShowQuit = false;
     boolean isFirst = false; // 是否是开户第一步或者绑卡第一步
     boolean isNeedCustomAnimation = false; // 是否需要finish的时候activity向下退出，顶部back和点手机back键的时候需要
+    boolean isCannotUseBackKey = false; // 是否禁用back键
 
     private static final int RC_TO_SCAN_BANK_CARD = 1;
     private static final int RC_TO_DATA_BACK = 2;
@@ -190,6 +191,22 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
                 startActivityForResult(intent, 22);
             }
         });
+
+        addMethodCallAction(new WebMethodCallAction("setnavigation") {
+            @Override
+            public Object call(HashMap params) {
+                try {
+                    String showleft = String.valueOf(params.get("showleft"));
+                    if(!"yes".equals(showleft) && !"true".equals(showleft)) {
+                        isCannotUseBackKey = true;
+                        showBack(false);
+                    }
+                }catch (Exception e) {
+
+                }
+                return false;
+            }
+        });
     }
 
     private void callJSToTellCardNumber(String cardNumber) {
@@ -245,7 +262,10 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
             if(isFirst) {
                 isNeedCustomAnimation = true;
             }
-            super.onBackPressed();
+
+            if(!isCannotUseBackKey) {
+                super.onBackPressed();
+            }
         }
     }
 

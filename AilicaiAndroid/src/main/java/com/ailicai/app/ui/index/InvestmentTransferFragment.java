@@ -23,7 +23,7 @@ import java.util.HashMap;
 /**
  * 投资-转让
  */
-public class InvestmentTransferFragment extends BaseWebViewFragment {
+public class InvestmentTransferFragment extends BaseWebViewFragment implements INotifyLoadUrl{
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -57,8 +57,11 @@ public class InvestmentTransferFragment extends BaseWebViewFragment {
         });
 
         addAction();
-        loadUrl(SupportUrl.getSupportUrlsResponse().getTransferUrl());
 //        loadUrl("http://192.168.1.44:2323/licai/transfer");
+    }
+
+    public void notifyLoadUrl() {
+        loadUrl(SupportUrl.getSupportUrlsResponse().getTransferUrl());
     }
 
     private void addAction() {

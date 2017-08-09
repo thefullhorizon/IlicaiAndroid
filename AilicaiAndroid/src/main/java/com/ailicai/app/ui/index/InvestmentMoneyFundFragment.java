@@ -23,7 +23,7 @@ import java.util.HashMap;
 /**
  * 投资-货基
  */
-public class InvestmentMoneyFundFragment extends BaseWebViewFragment {
+public class InvestmentMoneyFundFragment extends BaseWebViewFragment implements INotifyLoadUrl{
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -57,8 +57,11 @@ public class InvestmentMoneyFundFragment extends BaseWebViewFragment {
             }
         });
         addAction();
-        loadUrl(SupportUrl.getSupportUrlsResponse().getMonetaryFundUrl());
 //        loadUrl("http://192.168.1.44:2323/licai/fund");
+    }
+
+    public void notifyLoadUrl() {
+        loadUrl(SupportUrl.getSupportUrlsResponse().getMonetaryFundUrl());
     }
 
     private void addAction() {
@@ -96,5 +99,4 @@ public class InvestmentMoneyFundFragment extends BaseWebViewFragment {
     public void handleOpenAccountFinshEvent(OpenAccountFinishEvent finishEvent) {
         callJsRefresh();
     }
-
 }

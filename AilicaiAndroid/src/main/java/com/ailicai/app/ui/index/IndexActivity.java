@@ -174,6 +174,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
 
                 setChildMiMiSystemBarColor(position);
                 setChildFragmentAutoRefreshState(position);
+                notifyInvestLoad(position);
             }
 
             @Override
@@ -399,6 +400,13 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         } else {
             indexFragment.startOrStopAutoRefresh(false);
             investmentMainFragment.setAllRefreshStateStop();
+        }
+    }
+
+    public void notifyInvestLoad(int position) {
+        if(position == 1) {
+            InvestmentMainFragment investmentMainFragment = (InvestmentMainFragment) nvgPagerAdapter.getItem(1);
+            investmentMainFragment.notifyLoadUrl();
         }
     }
 }

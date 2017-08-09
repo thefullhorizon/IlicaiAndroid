@@ -12,6 +12,7 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
+import com.ailicai.app.ui.html5.SupportUrl;
 
 import java.util.ArrayList;
 
@@ -177,6 +178,20 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
                 BaseWebViewFragment unSelectedFragment = (BaseWebViewFragment) mViewPagerAdapter.getItem(i);
                 unSelectedFragment.startOrStopAutoRefresh(false);
             }
+        }
+    }
+
+    boolean hasNotifyed = false;
+
+    public void notifyLoadUrl() {
+        if(!hasNotifyed) {
+            if (mViewPagerAdapter != null) {
+                for (int i = 0; i <= 3; i++) {
+                    INotifyLoadUrl notifyLoadUrl = (INotifyLoadUrl) mViewPagerAdapter.getItem(i);
+                    notifyLoadUrl.notifyLoadUrl();
+                }
+            }
+            hasNotifyed = true;
         }
     }
 }

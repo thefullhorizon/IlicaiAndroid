@@ -24,7 +24,7 @@ import java.util.HashMap;
 /**
  * 投资-推荐
  */
-public class InvestmentRecommendFragment extends BaseWebViewFragment {
+public class InvestmentRecommendFragment extends BaseWebViewFragment implements INotifyLoadUrl{
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -58,8 +58,11 @@ public class InvestmentRecommendFragment extends BaseWebViewFragment {
         });
 
         addAction();
-        loadUrl(SupportUrl.getSupportUrlsResponse().getRecommondUrl());
 //        loadUrl("http://192.168.1.44:2323/licai/recommend");
+    }
+
+    public void notifyLoadUrl() {
+        loadUrl(SupportUrl.getSupportUrlsResponse().getRecommondUrl());
     }
 
     private void addAction() {

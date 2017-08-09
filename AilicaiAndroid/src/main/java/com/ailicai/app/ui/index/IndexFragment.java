@@ -63,6 +63,10 @@ public class IndexFragment extends BaseWebViewFragment {
                 if (newProgress > 30) {
                     webViewLayout.shouldShowLoading(false);
                 }
+
+                if(newProgress >= 99) {
+                    ((IndexActivity)getWRActivity()).notifyInvestLoad(1);
+                }
             }
 
             @Override
