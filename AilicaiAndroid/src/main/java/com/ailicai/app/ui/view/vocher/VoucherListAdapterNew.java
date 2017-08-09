@@ -98,6 +98,14 @@ public class VoucherListAdapterNew extends BaseAdapter {
                 viewHolder.mBgVoucherGear.setBackgroundResource(R.drawable.bg_voucher_up);
                 viewHolder.mIndicatorBest.setVisibility(View.VISIBLE);
 
+                viewHolder.mIndicatorBest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!CheckDoubleClick.isFastDoubleClick()) {
+                            listener.useClick(position);
+                        }
+                    }
+                });
                 if (appropriateVoucherId != -1 && appropriateVoucherId == voucher.getVoucherId() ){
                     viewHolder.mIndicatorBest.setChecked(true);
                 }else{
