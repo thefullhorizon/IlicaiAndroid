@@ -135,7 +135,7 @@ public class BuyTiYanBaoActivity extends BaseBindActivity {
     void clickCoupon() {
         if (!CheckDoubleClick.isFastDoubleClick()) {
             Intent intent = new Intent(this, TiYanBaoCouponH5Activity.class);
-            intent.putExtra(TiYanBaoCouponH5Activity.EXTRA_URL, response.getCouponUrl());
+            intent.putExtra(TiYanBaoCouponH5Activity.EXTRA_URL, response.getCouponUrl()+"?"+currentCouponId);
             startActivityForResult(intent, REQUEST_CODE_COUPON);
         }
     }

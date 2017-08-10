@@ -339,11 +339,11 @@ public class RegularPayActivity extends BaseBindActivity {
             tvProfitText.setText(builder);
         } else {
             double moneyCount = Double.parseDouble(moneyCountString);
+            //金额*天数*年利率/年的天数
+            double normalProfit = moneyCount * infoResponse.getLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
             switch (voucherType) {
                 case 73://加息券
                     if (moneyCount > 0) {
-                        //金额*天数*年利率/年的天数
-                        double normalProfit = moneyCount * infoResponse.getLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
                         if (voucherRate > 0) {
                             //有加息券
                             double voucherProfit;
@@ -378,9 +378,8 @@ public class RegularPayActivity extends BaseBindActivity {
                         }
                     }
                     break;
+
                 case 74://返金券
-                    //金额*天数*年利率/年的天数
-                    double normalProfit = moneyCount * infoResponse.getLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
                     if (moneyCount > 0) {
                         if (!TextUtils.isEmpty(voucherValue)) {
                             SpannableUtil spannableUtil = new SpannableUtil(this);
@@ -401,6 +400,12 @@ public class RegularPayActivity extends BaseBindActivity {
                             tvProfitText.setText(builder);
                         }
                     }
+                    break;
+
+                default://默认根据用户的输入计算收益
+                    SpannableUtil spannableUtil = new SpannableUtil(this);
+                    SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", MathUtil.saveTwoDecimal(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                    tvProfitText.setText(builder);
                     break;
             }
         }

@@ -91,7 +91,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
             lvRedEnvelope.setLoadingText("加载中");
         } else {
             lvRedEnvelope.onAllLoaded();
-            lvRedEnvelope.setPromptText("加息券已全部加载");
+            lvRedEnvelope.setPromptText("卡券已全部加载");
         }
     }
 
@@ -154,7 +154,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
             lvRedEnvelope.smoothScrollToPosition(0);
             if (values.size() == totalSize) {
                 lvRedEnvelope.onAllLoaded();
-                lvRedEnvelope.setPromptText("加息券已全部加载");
+                lvRedEnvelope.setPromptText("卡券已全部加载");
             } else {
                 lvRedEnvelope.resetAll();
             }
@@ -190,7 +190,7 @@ public class VoucherListActivity extends BaseBindActivity implements SwipeRefres
         } else {
             //无数据
             lvRedEnvelope.onAllLoaded();
-            lvRedEnvelope.setPromptText("加息券已全部加载");
+            lvRedEnvelope.setPromptText("卡券已全部加载");
         }
 
     }

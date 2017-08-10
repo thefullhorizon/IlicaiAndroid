@@ -79,7 +79,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
                 break;
             case 74://返金券
                 viewHolder.mIndicatorVoucherType.setText(R.string.help_payquestion);
-                viewHolder.mVoucherValue.setText(voucher.getAmountCent()+"");
+                viewHolder.mVoucherValue.setText(voucher.getAmountCentString()+"");
                 viewHolder.mVoucherType.setText("返金券");
                 break;
         }
