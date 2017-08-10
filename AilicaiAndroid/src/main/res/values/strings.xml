@@ -34,7 +34,7 @@
     <string name="validate_voice_auth_code">收不到验证码?</string>
     <string name="auth_code_time_num">%1$d秒后重新获取</string>
     <string name="permit_agreement_text"><![CDATA[<font color="#757575">注册/登录即代表您同意</font><font color="#212121">《爱理财平台服务协议》</font>]]></string>
-    <string name="login_card_dialog"><![CDATA[恭喜您获得<br/>¥%1$s]]></string>
+    <string name="login_card_dialog"><![CDATA[恭喜您获得<br/>%1$s]]></string>
     <string name="permit_agreement_title_text">《爱理财平台服务协议》</string>
 
     <!-- Mine -->
