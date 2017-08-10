@@ -665,21 +665,22 @@ public class RegularPayActivity extends BaseBindActivity {
             public void onPayFailInfo(String msgInfo, String errorCode, BuyDingqibaoResponse object) {
                 //购买失败
                 object.setBizStatus("F");
-                if(object.getErrorCode() == 0 ){
-                    if (object.getBizCode() == 2) {
-                        //toast相关报错
-                        showMyToast(object.getMessage());
-                        initBaseInfo();
-                    } else {
+
+                if (object.getBizCode() == 2) {
+                    //toast相关报错
+                    showMyToast(object.getMessage());
+                    initBaseInfo();
+                } else {
+                    if(object.getErrorCode() == -1 ){
+                        DialogBuilder.showSimpleDialogCenter( object.getMessage(), RegularPayActivity.this, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }else{
                         goToPayResultActivity(object);
                     }
-                }else{
-                    DialogBuilder.showSimpleDialogCenter( object.getMessage(), RegularPayActivity.this, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
                 }
 
             }

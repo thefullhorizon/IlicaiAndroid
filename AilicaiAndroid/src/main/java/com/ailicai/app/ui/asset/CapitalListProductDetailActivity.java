@@ -578,7 +578,7 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
         }, new ReserveCancelPwdCheckDialog.ShowInfo() {
             @Override
             public double showAmount() {
-                return Double.parseDouble(reserveSimpleInfoResponse.getReserveAmt());
+                return Double.parseDouble(reserveSimpleInfoResponse.getReserveAmtValue());
             }
 
             @Override
