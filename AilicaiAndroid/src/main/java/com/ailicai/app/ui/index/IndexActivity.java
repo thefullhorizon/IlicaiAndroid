@@ -23,6 +23,7 @@ import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MyPreference;
+import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.utils.UIUtils;
 import com.ailicai.app.common.version.VersionInterface;
@@ -32,6 +33,7 @@ import com.ailicai.app.eventbus.MineShowRedPointEvent;
 import com.ailicai.app.model.request.HtmlUrlRequest;
 import com.ailicai.app.model.response.Iwjwh5UrlResponse;
 import com.ailicai.app.receiver.ScreenStatusReceiver;
+import com.ailicai.app.ui.asset.FinanceUpgradePresenter;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.index.adapter.NavigationPagerAdapter;
@@ -207,14 +209,16 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     }
 
 
-    //EventBUS 刷新Tab 数字
-
     private void htmlUrlUpdate() {
         HtmlUrlRequest request = new HtmlUrlRequest();
         ServiceSender.exec(this, request, new IwjwRespListener<Iwjwh5UrlResponse>() {
             @Override
             public void onJsonSuccess(Iwjwh5UrlResponse jsonObject) {
                 SupportUrl.saveUrls(jsonObject);
+
+                // 请求是否弹框提醒升级协议(爱理财接入协议)
+                FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
+                presenter.httpForProtocalUpgradeState(IndexActivity.this);
             }
         });
     }
@@ -364,7 +368,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
                 toast = null;
             }
             MyApplication.getAppPresenter().onExitApp();
-            finish();
+            SystemUtil.exitApplication(this);
         }
     }
 

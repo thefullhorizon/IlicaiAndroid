@@ -880,26 +880,6 @@ public class BaseWebViewLayout extends LinearLayout {
             }
         });
 
-        addMethodCallAction(new WebMethodCallAction("systemupgradealert") {
-            @Override
-            public Object call(HashMap params) {
-               // 请求是否是否维护中
-                FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
-                presenter.httpForSystemIsFix(getWRContext());
-                return false;
-            }
-        });
-
-        addMethodCallAction(new WebMethodCallAction("protcolupgradealert") {
-            @Override
-            public Object call(HashMap params) {
-                // 请求是否弹框提醒升级协议
-                FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
-                presenter.httpForProtocalUpgradeState(getWRContext());
-                return false;
-            }
-        });
-
         addMethodCallAction(new WebMethodCallAction("getstatusbarheight") {
             @Override
             public Object call(HashMap params) {

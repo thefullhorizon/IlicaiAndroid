@@ -2,7 +2,9 @@ package com.ailicai.app.common.reqaction;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 import com.ailicai.app.ApplicationPresenter;
 import com.ailicai.app.R;
@@ -11,6 +13,7 @@ import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.setting.DeBugLogActivity;
+import com.ailicai.app.ui.dialog.SystemMaintenanceDialog;
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
@@ -167,6 +170,35 @@ public abstract class IwjwRespListener<T> extends JsonHttpResponseListener<T> im
                         }
                     }
                     return false;
+                    case RestException.SYSTEM_MAINTANCE:
+                        // 先拿到当前Activity
+                        FragmentActivity currentActivity = null;
+                        if (isFragmentReq) {
+                            Fragment fragment = getWRFragment();
+                            if (null != fragment) {
+                                currentActivity = fragment.getActivity();
+                            }
+                        } else {
+                            Context context = getWRContext();
+                            if (null != context && context instanceof Activity) {
+                                currentActivity = (FragmentActivity)context;
+                            }
+                        }
+                        // 先拿到当前Activity
+
+                        // 判断当前页面是否正在显示系统维护弹框 没在显示的话弹出 系统维护
+                        if (null != currentActivity) {
+                            Fragment fragment = currentActivity.getSupportFragmentManager().findFragmentByTag(SystemMaintenanceDialog.class.getSimpleName());
+                            if(fragment == null || !fragment.isVisible()) {
+                                SystemMaintenanceDialog dialog = new SystemMaintenanceDialog();
+                                Bundle data = new Bundle();
+                                data.putString("data",responseTo.getMessage());
+                                dialog.setArguments(data);
+                                dialog.show(currentActivity.getSupportFragmentManager(),SystemMaintenanceDialog.class.getSimpleName());
+                            }
+                        }
+                        // 判断当前页面是否正在显示系统维护弹框 没在显示的话弹出 系统维护
+                        return false;
                 case RestException.LOGOUT_ERROR:
                     if (isFragmentReq) {
                         Fragment fragment = getWRFragment();

@@ -190,10 +190,6 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
         } else {
             mPresenter.getProductDetailData(productId);
         }
-
-        // 请求是否弹框提醒升级协议
-        FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
-        presenter.httpForProtocalUpgradeState(this);
     }
 
     @Override

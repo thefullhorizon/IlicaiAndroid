@@ -36,6 +36,8 @@ public class RestException extends RuntimeException {
     public static final int LOGIN_RECOMMEND_AGENT_SINGLE = 200052;
     //强制更新
     public static final int VERSION_UPDATE_STRONG = 999999;
+    //系统维护
+    public static final int SYSTEM_MAINTANCE = 999998;
     private static final long serialVersionUID = 1L;
     private int errorCode;
 

@@ -2,11 +2,7 @@ package com.ailicai.app.ui.base;
 
 import android.os.Bundle;
 
-import com.ailicai.app.MyApplication;
-import com.ailicai.app.common.constants.GlobleConstants;
 import com.ailicai.app.common.utils.GestureLockTools;
-import com.ailicai.app.common.utils.Constants;
-import com.ailicai.app.common.utils.MyPreference;
 
 import org.greenrobot.eventbus.EventBus;
 
