@@ -85,7 +85,7 @@ public class MathUtil {
      * @return
      */
     public static BigDecimal offetSetBetweenTwoBD(BigDecimal subtrahend,BigDecimal minuend) {
-        return subtrahend.subtract(minuend).setScale(2,BigDecimal.ROUND_DOWN);
+        return subtrahend.subtract(minuend).setScale(2,BigDecimal.ROUND_HALF_UP);
     }
 
 }
