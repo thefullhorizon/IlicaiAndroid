@@ -1145,10 +1145,8 @@ public class RegularPayActivity extends BaseBindActivity {
     }
     @Override
     public void verifyProtocolListLogical(List<Protocol> list) {
-        if (list != null && list.size() == 0){
-            if (mAgreementLayout != null){
-                mAgreementLayout.setVisibility(View.GONE);
-            }
+        if (list == null) {
+            mAgreementLayout.setVisibility(View.GONE);
         }
     }
 }
