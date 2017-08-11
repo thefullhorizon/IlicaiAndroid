@@ -372,6 +372,12 @@ public class BaseBuyFinanceDialog implements View.OnClickListener, GridPasswordV
             layoutParams.bottomMargin = MyApplication.getInstance().getResources().getDimensionPixelOffset(R.dimen._32);
         } else {
             otherPayTypeView.setText(String.valueOf(buyDialogShowInfo.getPayTypFrom()));
+            /*
+            if ("1".equals(buyDialogShowInfo.getPayMethod())) {
+            } else if ("2".equals(buyDialogShowInfo.getPayMethod())) {
+                //使用账户余额支付
+            }
+            */
             moneyPayIco.setText(buyDialogShowInfo.getPayTypFromIco());
         }
         moneyoutView.setText(String.valueOf(buyDialogShowInfo.getMoneyOutStr()));
