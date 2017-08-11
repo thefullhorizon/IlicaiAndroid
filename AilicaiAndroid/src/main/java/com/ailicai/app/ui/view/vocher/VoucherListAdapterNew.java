@@ -126,7 +126,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
         viewHolder.mVoucherDescription.setText(voucher.getBottomDesc());
         String limit = "";
         if (!TextUtils.isEmpty(voucher.getSimpleDesc())){
-            limit += voucher.getSimpleDesc()+";";
+            limit += voucher.getSimpleDesc();
         }
         if (!TextUtils.isEmpty(voucher.getMinAmountCentString())){
             limit += voucher.getMinAmountCentString();

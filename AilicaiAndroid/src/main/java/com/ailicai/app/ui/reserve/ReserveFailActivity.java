@@ -1,10 +1,8 @@
 package com.ailicai.app.ui.reserve;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.TextView;
-
 
 import com.ailicai.app.R;
 import com.ailicai.app.ui.base.BaseBindActivity;
@@ -34,8 +32,9 @@ public class ReserveFailActivity extends BaseBindActivity {
 
     @OnClick(R.id.btn_complete)
     void onCompleteClicked() {
-        Intent intent = new Intent(this, ReserveActivity.class);
-        startActivity(intent);
+        finish();
+//        Intent intent = new Intent(this, ReserveActivity.class);
+//        startActivity(intent);
     }
 
 

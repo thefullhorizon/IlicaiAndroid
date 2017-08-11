@@ -71,12 +71,12 @@ public class ReserveActivity extends BaseBindActivity implements
 //    @Bind(R.id.reserve_horizon)
 //    TextView mHorizon;
     @Bind(R.id.reserve_bid_amount)
-TextView mBidAmount;
+    TextView mBidAmount;
 
 //    @Bind(R.id.reserve_deal_date)
 //    TextView mDealDate;
     @Bind(R.id.reserve_confirmed)
-TextView mConfirm;
+    TextView mConfirm;
     @Bind(R.id.reserve_count_down)
     TimeZHTextCounter mCountDown;
 
