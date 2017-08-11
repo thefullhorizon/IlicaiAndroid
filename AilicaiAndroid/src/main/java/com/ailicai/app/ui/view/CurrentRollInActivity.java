@@ -407,35 +407,35 @@ public class CurrentRollInActivity extends BaseBindActivity implements View.OnCl
         } else if (!CommonUtil.isMoneyNumber(money)) {
             //ToastUtil.show("请输入正确的金额");
             return false;
-        } else if (Double.parseDouble(money) <= 0) {
+        } else if (!accountCheckBox.isChecked() && Double.parseDouble(money) <= 0) {
             //mErrorTips.setText(infoResponse.getBuyMinLimitStr());
-            mErrorTips.setText("最低转入" + infoResponse.getFormatBuyMinLimitStr() + "元");
+            mErrorTips.setText("最低转入 " + infoResponse.getFormatBuyMinLimitStr() + " 元");
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;
         } else if (accountCheckBox.isChecked() && infoResponse.getDepositoryBalance() <= 0 && Double.parseDouble(money) > infoResponse.getDepositoryBalance()) {
-            mErrorTips.setText("账户可用余额" + CommonUtil.numberFormat(infoResponse.getDepositoryBalance()) + "元");
+            mErrorTips.setText("账户可用余额 " + CommonUtil.numberFormat(infoResponse.getDepositoryBalance()) + " 元");
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;
         } else if (accountCheckBox.isChecked() && infoResponse.getDepositoryBalance() > 0 && Double.parseDouble(money) > infoResponse.getDepositoryBalance()) {
-            mErrorTips.setText("当前最多可转入" + CommonUtil.numberFormat(infoResponse.getDepositoryBalance()) + "元");
+            mErrorTips.setText("当前最多可转入 " + CommonUtil.numberFormat(infoResponse.getDepositoryBalance()) + " 元");
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;
-        } else if (infoResponse.getDayRemain() > 0 && Double.parseDouble(money) > x) {
+        } else if (!accountCheckBox.isChecked() && infoResponse.getDayRemain() > 0 && Double.parseDouble(money) > x) {
             DecimalFormat df = new DecimalFormat("######0.00");
             if (infoResponse.getBuyLimit() > infoResponse.getDayRemain()) {
-                mErrorTips.setText("当前最多可转入" + df.format(x) + "元");
+                mErrorTips.setText("当前最多可转入 " + df.format(x) + " 元");
             } else {
-                mErrorTips.setText("单笔最多可转入" + df.format(x) + "元");
+                mErrorTips.setText("单笔最多可转入 " + df.format(x) + " 元");
             }
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;
-        } else if (infoResponse.getBuyMinLimit() > 0 && Double.parseDouble(money) < infoResponse.getBuyMinLimit()) {
+        } else if (!accountCheckBox.isChecked() && infoResponse.getBuyMinLimit() > 0 && Double.parseDouble(money) < infoResponse.getBuyMinLimit()) {
             //mErrorTips.setText(infoResponse.getBuyMinLimitStr());
-            mErrorTips.setText("最低转入" + infoResponse.getFormatBuyMinLimitStr() + "元");
+            mErrorTips.setText("最低转入 " + infoResponse.getFormatBuyMinLimitStr() + " 元");
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;
@@ -451,13 +451,13 @@ public class CurrentRollInActivity extends BaseBindActivity implements View.OnCl
         } else if (Double.parseDouble(money) <= 0) {
             ToastUtil.show("请输入正确的金额");
             return false;
-        } else if (infoResponse.getBuyLimit() > 0 && Double.parseDouble(money) > infoResponse.getBuyLimit()) {
+        } else if (!accountCheckBox.isChecked() &&infoResponse.getBuyLimit() > 0 && Double.parseDouble(money) > infoResponse.getBuyLimit()) {
             //ToastUtil.show("单笔最多" + infoResponse.getBuyLimitStr());
-            ToastUtil.show("最高转入" + infoResponse.getBuyLimit() + "元");
+            ToastUtil.show("最高转入 " + infoResponse.getBuyLimit() + " 元");
             return false;
-        } else if (infoResponse.getBuyMinLimit() > 0 && Double.parseDouble(money) < infoResponse.getBuyMinLimit()) {
+        } else if (!accountCheckBox.isChecked() &&infoResponse.getBuyMinLimit() > 0 && Double.parseDouble(money) < infoResponse.getBuyMinLimit()) {
             //ToastUtil.show(infoResponse.getBuyMinLimitStr());
-            ToastUtil.show("最低转入" + infoResponse.getBuyMinLimit() + "元");
+            ToastUtil.show("最低转入 " + infoResponse.getBuyMinLimit() + " 元");
             return false;
         }
         return true;
@@ -503,7 +503,7 @@ public class CurrentRollInActivity extends BaseBindActivity implements View.OnCl
 
     public void setRollOutType(CurrentRollInBaseInfoResponse jsonObject) {
         accountNameText.setText("账户余额");
-        accountDescText.setText("当前可用余额" + CommonUtil.numberFormat(jsonObject.getDepositoryBalance()) + "元");
+        accountDescText.setText("当前可用余额 " + CommonUtil.numberFormat(jsonObject.getDepositoryBalance()) + " 元");
         bankNameText.setText(jsonObject.getBankName() + " (尾号" + jsonObject.getCardNo() + ")");
         accountCheckBox.setChecked(false);
         bankCheckBox.setChecked(true);
