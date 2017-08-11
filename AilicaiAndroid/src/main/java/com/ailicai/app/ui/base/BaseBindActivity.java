@@ -3,8 +3,11 @@ package com.ailicai.app.ui.base;
 import android.os.Bundle;
 
 import com.ailicai.app.common.utils.GestureLockTools;
+import com.ailicai.app.eventbus.ExitAppEvent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 
@@ -33,9 +36,9 @@ public abstract class BaseBindActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         // 注册公共全局事件
-//        if (!EventBus.getDefault().isRegistered(this)) {
-//            EventBus.getDefault().register(this);
-//        }
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -90,5 +93,10 @@ public abstract class BaseBindActivity extends BaseActivity {
      */
     protected void disablePatternLock() {
         enableLock = false;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleExitAppEvent(ExitAppEvent event) {
+        finish();
     }
 }
