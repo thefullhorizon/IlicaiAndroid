@@ -978,6 +978,8 @@ public class RegularPayActivity extends BaseBindActivity {
     private void bindAppropriateCouponData(GetAppropriateCouponResponse jsonObject) {
 
         availableVoucherNumber = jsonObject.getAvailableVoucherNumber();
+        voucherType = jsonObject.getVoucherType();
+        voucherValue = jsonObject.getAmountCentString();
         String text = "";
         if (availableVoucherNumber > 0){
             voucherId = jsonObject.getVoucherId();
