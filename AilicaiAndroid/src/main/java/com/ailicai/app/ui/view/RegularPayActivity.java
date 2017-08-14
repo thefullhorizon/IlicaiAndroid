@@ -1002,7 +1002,7 @@ public class RegularPayActivity extends BaseBindActivity {
                 }
             }
         }else {
-            text = "暂无可用卡券";
+            text = "暂无可用";
         }
         tvTicketText.setText(text);
         calculateProfit();
