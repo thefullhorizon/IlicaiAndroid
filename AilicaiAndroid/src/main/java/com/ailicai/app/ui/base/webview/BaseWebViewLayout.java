@@ -7,9 +7,12 @@ import android.net.Uri;
 import android.net.UrlQuerySanitizer;
 import android.net.http.SslError;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -23,6 +26,7 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.ailicai.app.ApplicationPresenter;
 import com.ailicai.app.BuildConfig;
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.AILICAIBuildConfig;
@@ -33,19 +37,20 @@ import com.ailicai.app.common.reqaction.jshttp.ServiceJsCallSender;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.utils.UrlDecoder;
 import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.eventbus.LoginEvent;
+import com.ailicai.app.setting.DeBugLogActivity;
 import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
-import com.ailicai.app.ui.asset.FinanceUpgradePresenter;
 import com.ailicai.app.ui.base.BaseActivity;
+import com.ailicai.app.ui.dialog.SystemMaintenanceDialog;
 import com.ailicai.app.ui.index.IndexActivity;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
-import com.ailicai.app.ui.view.AssetInViewOfBirdActivity;
 import com.ailicai.app.ui.view.CapitalActivity;
 import com.ailicai.app.ui.view.MyWalletActivity;
 import com.ailicai.app.ui.voucher.CouponWebViewActivity;
@@ -1406,6 +1411,36 @@ public class BaseWebViewLayout extends LinearLayout {
                                 doForceExit(response, webViewLayotSoftReference.get().getWRContext());
                             }
                             break;
+
+                        case RestException.VERSION_UPDATE_STRONG:
+                            //当errorCode=999999的时候，代表当前版本小于强更的版本，需要客户端进行升级
+                            BaseActivity activity = webViewLayotSoftReference.get().getWRContext();
+                            if (null != activity) {
+                                if (!MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
+                                    VersionUtil.check(this,activity, response.getUpdateInfo());
+                                }
+                            }
+                            break;
+                        case RestException.SYSTEM_MAINTANCE:
+                            // 先拿到当前Activity
+                            FragmentActivity currentActivity = webViewLayotSoftReference.get().getWRContext();
+
+                            // 判断当前页面是否正在显示系统维护弹框 没在显示的话弹出 系统维护
+                            if (null != currentActivity) {
+                                Fragment fragment = currentActivity.getSupportFragmentManager().findFragmentByTag(SystemMaintenanceDialog.class.getSimpleName());
+                                if(fragment == null || !fragment.isVisible()) {
+                                    SystemMaintenanceDialog dialog = new SystemMaintenanceDialog();
+                                    Bundle data = new Bundle();
+                                    data.putString("data",response.getMessage());
+                                    dialog.setArguments(data);
+                                    dialog.show(currentActivity.getSupportFragmentManager(),SystemMaintenanceDialog.class.getSimpleName());
+                                }
+                            }
+                            // 判断当前页面是否正在显示系统维护弹框 没在显示的话弹出 系统维护
+                            break;
+                        case RestException.SYNC_TIME_ERROR:
+                            DeBugLogActivity.saveOtheLog("出现一次100001");
+                            ApplicationPresenter.syncTime(null);
                         default:
                             onFailInfo(response, response.getMessage());
                             break;
