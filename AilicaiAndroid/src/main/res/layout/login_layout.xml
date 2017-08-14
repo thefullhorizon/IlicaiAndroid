@@ -120,6 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:adjustViewBounds="true"
+        android:visibility="gone"
         android:src="@drawable/login_bg" />
 
     <TextView
