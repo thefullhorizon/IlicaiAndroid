@@ -135,6 +135,7 @@ public class RegularPayActivity extends BaseBindActivity {
     private boolean isFromSmallCoin = false;
     private int availableVoucherNumber ;
     private String input = "";
+    private String initialInputValue ="0";
 
     @Override
     public int getLayout() {
@@ -898,7 +899,8 @@ public class RegularPayActivity extends BaseBindActivity {
             mInputPriceEdit.setTextColor(Color.parseColor("#9b9b9b"));
         }else if (jsonObject.getBiddableAmount() > 0 && jsonObject.getBiddableAmount() <= jsonObject.getMinAmount()) {
             //剩余额度小于起购金额,直接填入剩余额度且不可修改
-            mInputPriceEdit.setText(MathUtil.subZeroAndDot(String.valueOf(jsonObject.getBiddableAmount())));
+            initialInputValue = String.valueOf(jsonObject.getBiddableAmount());
+            mInputPriceEdit.setText(MathUtil.subZeroAndDot(initialInputValue));
             mInputPriceEdit.setEnabled(false);
             mInputPriceEdit.setTextColor(Color.parseColor("#9b9b9b"));
             tvLastMoneyText.setVisibility(View.VISIBLE);
@@ -928,7 +930,7 @@ public class RegularPayActivity extends BaseBindActivity {
         }
 
         //请求卡券相关的逻辑
-        getBestVoucher("0");
+        getBestVoucher(initialInputValue);
 
     }
 
