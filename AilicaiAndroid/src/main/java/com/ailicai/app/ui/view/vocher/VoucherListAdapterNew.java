@@ -174,7 +174,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
         @Bind(R.id.rl_bg_voucher_gear)
         RelativeLayout mBgVoucherGear;
         @Bind(R.id.item_up)
-        RelativeLayout mItemUp;
+        LinearLayout mItemUp;
         @Bind(R.id.indicator_voucher_type)
         TextView mIndicatorVoucherType;
         @Bind(R.id.voucher_value)
