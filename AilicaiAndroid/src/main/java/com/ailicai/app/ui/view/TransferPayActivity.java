@@ -499,6 +499,7 @@ public class TransferPayActivity extends BaseBindActivity {
             mTvAllBuy.setVisibility(View.VISIBLE);
             EventLog.upEventLog("201610284", "qezr_show");
         }
+        mConfirmBtn.setEnabled(isLast);
     }
 
     @Override
