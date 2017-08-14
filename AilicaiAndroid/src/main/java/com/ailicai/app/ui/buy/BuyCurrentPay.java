@@ -349,7 +349,7 @@ public class BuyCurrentPay extends BaseBuyFinancePay {
                 iconString = mActivity.getString(R.string.account_bankcard);
             } else if ("2".equals(currentPayInfo.getPayMethod())) {
                 tips = "使用账户余额支付";
-                iconString = mActivity.getString(R.string.icon_rmb_process);
+                iconString = mActivity.getString(R.string.current_pay);
             }
         }
         return new BuyDialogShowInfo.BankPayBuild()
