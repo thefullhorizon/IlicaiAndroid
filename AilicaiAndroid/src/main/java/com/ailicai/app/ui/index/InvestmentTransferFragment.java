@@ -24,6 +24,10 @@ import java.util.HashMap;
  * 投资-转让
  */
 public class InvestmentTransferFragment extends BaseWebViewFragment implements INotifyLoadUrl{
+
+    // 是否已经通知加载过
+    private boolean hasNotifyLoad = false;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -57,11 +61,14 @@ public class InvestmentTransferFragment extends BaseWebViewFragment implements I
         });
 
         addAction();
-//        loadUrl("http://192.168.1.44:2323/licai/transfer");
     }
 
+    @Override
     public void notifyLoadUrl() {
-        loadUrl(SupportUrl.getSupportUrlsResponse().getTransferUrl());
+        if(!hasNotifyLoad) {
+            loadUrl(SupportUrl.getSupportUrlsResponse().getTransferUrl());
+            hasNotifyLoad = true;
+        }
     }
 
     private void addAction() {

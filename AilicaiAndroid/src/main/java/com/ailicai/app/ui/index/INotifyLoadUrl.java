@@ -8,5 +8,5 @@ package com.ailicai.app.ui.index;
  * @author: IWJW Administrator
  */
 public interface INotifyLoadUrl {
-    public void notifyLoadUrl();
+    void notifyLoadUrl();
 }
