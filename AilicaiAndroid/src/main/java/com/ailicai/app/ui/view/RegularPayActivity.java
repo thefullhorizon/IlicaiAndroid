@@ -529,8 +529,8 @@ public class RegularPayActivity extends BaseBindActivity {
             double reChangeMoney = offset.doubleValue();
             if (infoResponse.getBankLimit() != 0 && reChangeMoney > infoResponse.getBankLimit()) {
                 //转入金额大于安全卡限额
-//                showMyToast("单笔最多可转入" + infoResponse.getBankLimit() + "元");
-                DialogBuilder.showSimpleDialogCenter( "单笔最多可转入" + infoResponse.getBankLimit() + "元", RegularPayActivity.this, new DialogInterface.OnClickListener() {
+//                showMyToast("单笔最多可充值" + infoResponse.getBankLimit() + "元");
+                DialogBuilder.showSimpleDialogCenter( "单笔最多可充值" + infoResponse.getBankLimit() + "元", RegularPayActivity.this, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -980,6 +980,8 @@ public class RegularPayActivity extends BaseBindActivity {
         availableVoucherNumber = jsonObject.getAvailableVoucherNumber();
         voucherType = jsonObject.getVoucherType();
         voucherValue = jsonObject.getAmountCentString();
+        addRateDay = jsonObject.getAddRateDay();
+        voucherRate = jsonObject.getAddRate();
         String text = "";
         if (availableVoucherNumber > 0){
             voucherId = jsonObject.getVoucherId();
