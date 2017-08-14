@@ -873,7 +873,7 @@ public class RegularPayActivity extends BaseBindActivity {
                 if (jsonObject.getInterestVoucherNum() > 0) {
 
                     //加息券数量大于0
-                    tvTicketText.setText(jsonObject.getInterestVoucherNum() + "张可用，请选择");
+                    tvTicketText.setText(jsonObject.getInterestVoucherNum() + "张可用");
                     tvTicketText.setTextColor(Color.parseColor("#212121"));
                 } else {
                     tvTicketText.setText("暂无可用");
@@ -1003,6 +1003,7 @@ public class RegularPayActivity extends BaseBindActivity {
             text = "暂无可用卡券";
         }
         tvTicketText.setText(text);
+        calculateProfit();
     }
 
     /**
@@ -1083,7 +1084,7 @@ public class RegularPayActivity extends BaseBindActivity {
                     addRateDay = -1;
                     voucherValue = "";
                     if (availableVoucherNumber > 0) {
-                        tvTicketText.setText(availableVoucherNumber + "张可用，请选择");
+                        tvTicketText.setText(availableVoucherNumber + "张可用");
                         tvTicketText.setTextColor(Color.parseColor("#212121"));
                     } else {
                         tvTicketText.setText("暂无可用");

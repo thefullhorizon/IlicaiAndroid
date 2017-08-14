@@ -201,7 +201,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_8"
                         android:layout_toLeftOf="@+id/view_ticket_arrow"
-                        android:text="暂无可用"
+                        android:text=""
                         android:textColor="#757575"
                         android:textSize="14sp" />
 
