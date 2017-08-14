@@ -900,6 +900,9 @@ public class RegularPayActivity extends BaseBindActivity {
         }else if (jsonObject.getBiddableAmount() > 0 && jsonObject.getBiddableAmount() <= jsonObject.getMinAmount()) {
             //剩余额度小于起购金额,直接填入剩余额度且不可修改
             initialInputValue = String.valueOf(jsonObject.getBiddableAmount());
+            if(initialInputValue.contains(".")){
+                initialInputValue = initialInputValue.substring(0,initialInputValue.indexOf("."));
+            }
             mInputPriceEdit.setText(MathUtil.subZeroAndDot(initialInputValue));
             mInputPriceEdit.setEnabled(false);
             mInputPriceEdit.setTextColor(Color.parseColor("#9b9b9b"));
