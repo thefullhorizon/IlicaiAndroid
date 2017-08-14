@@ -23,6 +23,9 @@ import com.ailicai.app.BuildConfig;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.AILICAIBuildConfig;
+import com.ailicai.app.eventbus.ExitAppEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -152,7 +155,7 @@ public final class SystemUtil {
     }
 
     public static void exitApplication(Activity activity) {
-        if (!activity.isFinishing()) activity.finish();
+        EventBus.getDefault().post(new ExitAppEvent());
         ActivityManager amgr = (ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE);
         amgr.killBackgroundProcesses(activity.getPackageName());
         android.os.Process.killProcess(android.os.Process.myPid());

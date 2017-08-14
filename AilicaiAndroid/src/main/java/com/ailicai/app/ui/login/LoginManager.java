@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
@@ -27,8 +25,6 @@ import com.ailicai.app.model.response.RreshDataResponse;
 import com.ailicai.app.model.response.UserInfoResponse;
 import com.ailicai.app.model.response.UserLoginResponse;
 import com.ailicai.app.model.response.account.AccountResponse;
-import com.ailicai.app.ui.base.FragmentHelper;
-import com.ailicai.app.ui.dialog.LoginDialog;
 import com.ailicai.app.ui.gesture.GestureLockActivity;
 import com.umeng.analytics.MobclickAgent;
 
@@ -210,8 +206,6 @@ public class LoginManager {
 
     public static LoginLocation loginPageLocation;
 
-    private static LoginDialog appointAreaTipsDialog;
-
     /**
      * @param activity      发起Activity，一般都是mainActivity
      * @param loginFromCode 发起登录请求的页面code，请参照LoginManager中的code定义
@@ -239,20 +233,6 @@ public class LoginManager {
             }
         }
 
-        //showLoginDialog(activity, dataMap);
-    }
-
-    public static void showLoginDialog(final Activity activity, final Map<String, Object> dataMap) {
-        FragmentHelper mFragmentHelper = new FragmentHelper(((FragmentActivity) activity).getSupportFragmentManager());
-        if (appointAreaTipsDialog != null) {
-            appointAreaTipsDialog.dismiss();
-            appointAreaTipsDialog = null;
-        }
-        appointAreaTipsDialog = new LoginDialog();
-        Bundle mBunndle = new Bundle();
-        int fromPage = (int) dataMap.get(LoginManager.LOGIN_FROM);
-        mBunndle.putInt(LoginManager.LOGIN_FROM, fromPage);
-        mFragmentHelper.showDialog(mBunndle, appointAreaTipsDialog);
     }
 
     /**
@@ -281,7 +261,7 @@ public class LoginManager {
         MyPreference.getInstance().remove(GestureLockTools.getLockTryTimesKey());
     }
 
-    public static void loginSuccess(Context context,int fromPage, UserLoginResponse jsonObject, boolean showPackage) {
+    public static void loginSuccess(Context context, int fromPage, UserLoginResponse jsonObject, boolean showPackage) {
         //登录成功获取用户信息接口
         LoginManager.updateUserInfoData();
 
@@ -300,12 +280,12 @@ public class LoginManager {
 
         MobclickAgent.onProfileSignIn(UserInfo.getInstance().getUserMobile());
 
-        Intent intent = GestureLockTools.getGestureLockIntent(context,GestureLockActivity.TYPE_SETTING);
-        if(intent != null){
+        Intent intent = GestureLockTools.getGestureLockIntent(context, GestureLockActivity.TYPE_SETTING);
+        if (intent != null) {
             //如果没有设置手势密码，需要拦截
-            intent.putExtra("loginEvent",loginEvent);
+            intent.putExtra("loginEvent", loginEvent);
             context.startActivity(intent);
-        }else{
+        } else {
             EventBus.getDefault().post(loginEvent);
 
             //新用户登录弹出大礼包

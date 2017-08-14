@@ -210,7 +210,7 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
     }
 
     private void callJSToTellCardNumber(String cardNumber) {
-        loadJs("javascript:callJs('getcardno'," + cardNumber + ")");
+        loadJs("javascript:callJs('getcardno'," + "'"+cardNumber +"'"+ ")");
     }
 
     private void callJSToTellIdCardInfo(String name, String idNo) {

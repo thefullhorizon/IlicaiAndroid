@@ -44,8 +44,8 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
     @Override
     public void onResume() {
         super.onResume();
-        if(getWRActivity() != null) {
-            if(((IndexActivity)getWRActivity()).getCurrentItem() == 1) {
+        if (getWRActivity() != null) {
+            if (((IndexActivity) getWRActivity()).getCurrentItem() == 1) {
                 setAutoRefreshStateStart();
             }
         }
@@ -93,6 +93,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
             @Override
             public void onPageSelected(int position) {
                 setAutoRefreshStateStart();
+                notifyLoadUrl(position);
             }
 
             @Override
@@ -181,17 +182,10 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
         }
     }
 
-    boolean hasNotifyed = false;
-
-    public void notifyLoadUrl() {
-        if(!hasNotifyed) {
-            if (mViewPagerAdapter != null) {
-                for (int i = 0; i <= 3; i++) {
-                    INotifyLoadUrl notifyLoadUrl = (INotifyLoadUrl) mViewPagerAdapter.getItem(i);
-                    notifyLoadUrl.notifyLoadUrl();
-                }
-            }
-            hasNotifyed = true;
+    public void notifyLoadUrl(int position) {
+        if (mViewPagerAdapter != null) {
+            INotifyLoadUrl notifyLoadUrl = (INotifyLoadUrl) mViewPagerAdapter.getItem(position);
+            notifyLoadUrl.notifyLoadUrl();
         }
     }
 }

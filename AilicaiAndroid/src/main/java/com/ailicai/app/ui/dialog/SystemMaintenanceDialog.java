@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.utils.DeviceUtil;
+import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.UIUtils;
 import com.ailicai.app.ui.index.IndexActivity;
 
@@ -80,10 +81,6 @@ public class SystemMaintenanceDialog extends MyBaseDialog{
     @OnClick(R.id.tvIKown)
     void onIKnow() {
         dismiss();
-        if(getActivity() instanceof IndexActivity) {
-            //TODO nanshan 暂时先去掉（2017-07-21）
-//            IndexActivity.startIndexActivityToTab(getActivity(),0);
-        }
-        getActivity().finish();
+        SystemUtil.exitApplication(getActivity());
     }
 }

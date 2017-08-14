@@ -1,7 +1,6 @@
 package com.ailicai.app.ui.login;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,7 +8,6 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -32,7 +30,6 @@ import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.widget.ManyiEditText;
 import com.ailicai.app.widget.TextViewTF;
 import com.huoqiu.framework.exception.RestException;
-import com.huoqiu.framework.rest.Configuration;
 import com.huoqiu.framework.rest.Response;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -225,6 +222,7 @@ public class LoginFragment extends BaseBindFragment {
         mPhoneEditText.setEditorWatchListener(mPhoneTextWatch);
         mPhoneEditText.setFocusable(true);
         mPhoneEditText.setEditorHintColor(getResources().getColor(R.color.login_edit_text_hint_color));
+        mPhoneEditText.getmEditText().setSelection(mPhoneEditText.getmEditText().getText().length());
 
         mNextLoading.hide();
 
@@ -282,10 +280,7 @@ public class LoginFragment extends BaseBindFragment {
         mInputView.setFocusable(true);
         mInputView.setFocusableInTouchMode(true);
         mInputView.requestFocus();
-        //SystemUtil.showKeyboard(editText);
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(mInputView, InputMethodManager.SHOW_IMPLICIT);
-
+        SystemUtil.showKeyboard(mInputView);
     }
 
     @OnClick(R.id.login_next_btn)
@@ -378,7 +373,12 @@ public class LoginFragment extends BaseBindFragment {
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         showPhoneNum();
-        forceInputViewGetFocus();
+        mPhoneEditText.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                forceInputViewGetFocus();
+            }
+        }, 300);
     }
 
     void showPhoneNum() {
@@ -386,6 +386,7 @@ public class LoginFragment extends BaseBindFragment {
             autoMobileNum = CommonUtil.getPhone11Num(getWRActivity());
             if (!TextUtils.isEmpty(autoMobileNum)) {
                 mPhoneEditText.setEditorText(StringUtil.formatCheckMobileNumber(autoMobileNum, " "));
+                mPhoneEditText.getmEditText().setSelection(mPhoneEditText.getmEditText().getText().length());
             }
         }
     }

@@ -45,7 +45,7 @@
                 android:id="@+id/login_next_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="36dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="visible">
@@ -148,6 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:adjustViewBounds="true"
-        android:src="@drawable/login_bg" />
+        android:src="@drawable/login_bg"
+        android:visibility="gone" />
 
 </RelativeLayout>

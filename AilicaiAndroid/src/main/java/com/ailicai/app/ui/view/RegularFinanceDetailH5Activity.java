@@ -115,17 +115,6 @@ public class RegularFinanceDetailH5Activity extends BaseWebViewActivity {
                 }
             }
         });
-
-
-        addMethodCallAction(new WebMethodCallAction("protcolupgradealert") {
-            @Override
-            public Object call(HashMap params) {
-                // 请求是否弹框提醒升级协议
-                FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
-                presenter.httpForProtocalUpgradeState(RegularFinanceDetailH5Activity.this);
-                return false;
-            }
-        });
     }
 
     private void buyTiYanBao(HashMap params) {

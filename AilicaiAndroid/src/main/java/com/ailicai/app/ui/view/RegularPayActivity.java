@@ -120,7 +120,7 @@ public class RegularPayActivity extends BaseBindActivity {
     //卡券利率
     private double voucherRate;
     //返金金额
-    private int voucherValue;
+    private String voucherValue;
     private int use;
     //卡券id
     private int voucherId;
@@ -133,7 +133,6 @@ public class RegularPayActivity extends BaseBindActivity {
 
     private String productId = "";
     private boolean isFromSmallCoin = false;
-    private int appropriateVoucherId;
     private int availableVoucherNumber ;
     private String input = "";
 
@@ -340,11 +339,11 @@ public class RegularPayActivity extends BaseBindActivity {
             tvProfitText.setText(builder);
         } else {
             double moneyCount = Double.parseDouble(moneyCountString);
+            //金额*天数*年利率/年的天数
+            double normalProfit = moneyCount * infoResponse.getLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
             switch (voucherType) {
                 case 73://加息券
                     if (moneyCount > 0) {
-                        //金额*天数*年利率/年的天数
-                        double normalProfit = moneyCount * infoResponse.getLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
                         if (voucherRate > 0) {
                             //有加息券
                             double voucherProfit;
@@ -379,15 +378,14 @@ public class RegularPayActivity extends BaseBindActivity {
                         }
                     }
                     break;
+
                 case 74://返金券
-                    //金额*天数*年利率/年的天数
-                    double normalProfit = moneyCount * infoResponse.getLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
                     if (moneyCount > 0) {
-                        if (voucherValue > 0) {
+                        if (!TextUtils.isEmpty(voucherValue)) {
                             SpannableUtil spannableUtil = new SpannableUtil(this);
                             SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
                                     MathUtil.saveTwoDecimal(normalProfit),
-                                    " 元 ", "+ 返金收益 ", MathUtil.saveTwoDecimal(voucherValue), " 元",
+                                    " 元 ", "+ 返金金额 ", voucherValue, " 元",
                                     R.style.text_12_757575,
                                     R.style.text_12_e84a01,
                                     R.style.text_12_757575,
@@ -403,6 +401,12 @@ public class RegularPayActivity extends BaseBindActivity {
                         }
                     }
                     break;
+
+                default://默认根据用户的输入计算收益
+                    SpannableUtil spannableUtil = new SpannableUtil(this);
+                    SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", MathUtil.saveTwoDecimal(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                    tvProfitText.setText(builder);
+                    break;
             }
         }
     }
@@ -416,7 +420,7 @@ public class RegularPayActivity extends BaseBindActivity {
 
         Intent intent = new Intent(this, VoucherListActivity.class);
         intent.putExtra(VoucherListActivity.EXTRA_PRODUCT_ID, productId);
-        intent.putExtra(VoucherListActivity.EXTRA_APPROPRIATE_VOUCHER_ID, appropriateVoucherId);
+        intent.putExtra(VoucherListActivity.EXTRA_APPROPRIATE_VOUCHER_ID, voucherId);
         if (input != null && input.length()>0){
             intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, Integer.parseInt(input));
         }else{
@@ -525,7 +529,13 @@ public class RegularPayActivity extends BaseBindActivity {
             double reChangeMoney = offset.doubleValue();
             if (infoResponse.getBankLimit() != 0 && reChangeMoney > infoResponse.getBankLimit()) {
                 //转入金额大于安全卡限额
-                showMyToast("单笔最多可转入" + infoResponse.getBankLimit() + "元");
+//                showMyToast("单笔最多可充值" + infoResponse.getBankLimit() + "元");
+                DialogBuilder.showSimpleDialogCenter( "单笔最多可充值" + infoResponse.getBankLimit() + "元", RegularPayActivity.this, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
                 return;
             }
             reChange(money, reChangeMoney);
@@ -661,21 +671,22 @@ public class RegularPayActivity extends BaseBindActivity {
             public void onPayFailInfo(String msgInfo, String errorCode, BuyDingqibaoResponse object) {
                 //购买失败
                 object.setBizStatus("F");
-                if(object.getErrorCode() == 0 ){
-                    if (object.getBizCode() == 2) {
-                        //toast相关报错
-                        showMyToast(object.getMessage());
-                        initBaseInfo();
-                    } else {
+
+                if (object.getBizCode() == 2) {
+                    //toast相关报错
+                    showMyToast(object.getMessage());
+                    initBaseInfo();
+                } else {
+                    if(object.getErrorCode() == -1 ){
+                        DialogBuilder.showSimpleDialogCenter( object.getMessage(), RegularPayActivity.this, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }else{
                         goToPayResultActivity(object);
                     }
-                }else{
-                    DialogBuilder.showSimpleDialogCenter( object.getMessage(), RegularPayActivity.this, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
                 }
 
             }
@@ -967,30 +978,29 @@ public class RegularPayActivity extends BaseBindActivity {
     private void bindAppropriateCouponData(GetAppropriateCouponResponse jsonObject) {
 
         availableVoucherNumber = jsonObject.getAvailableVoucherNumber();
+        voucherType = jsonObject.getVoucherType();
+        voucherValue = jsonObject.getAmountCentString();
+        addRateDay = jsonObject.getAddRateDay();
+        voucherRate = jsonObject.getAddRate();
         String text = "";
         if (availableVoucherNumber > 0){
-            appropriateVoucherId = jsonObject.getVoucherId();
-            voucherId = appropriateVoucherId;
-            if (availableVoucherNumber == 1) {
-                if (jsonObject.getVoucherType() == 73) {
-                    if (jsonObject.getMinAmountCent() > 0) {
-                        text += "[加息券]满" + jsonObject.getMinAmountCent() + "元享加息" + jsonObject.getAddRate() + "%";
-                    } else {
-                        text += "[加息券]享加息" + jsonObject.getAddRate() + "%";
-                    }
+            voucherId = jsonObject.getVoucherId();
+            if (jsonObject.getVoucherType() == 73) {
+                if (jsonObject.getMinAmountCent() > 0) {
+                    text += "[加息券]满" + jsonObject.getMinAmountCent() + "元享加息" + jsonObject.getAddRate() + "%";
+                } else {
+                    text += "[加息券]享加息" + jsonObject.getAddRate() + "%";
                 }
-                if (jsonObject.getVoucherType() == 74) {
-                    if (jsonObject.getMinAmountCent() > 0) {
-                        text += "[返金券]满" + jsonObject.getMinAmountCent() + "元返" + jsonObject.getAmountCentString() + "元";
-                    } else {
-                        text += "[返金券]返" + jsonObject.getAmountCentString() + "元";
-                    }
+            }
+            if (jsonObject.getVoucherType() == 74) {
+                if (jsonObject.getMinAmountCent() > 0) {
+                    text += "[返金券]满" + jsonObject.getMinAmountCent() + "元返" + jsonObject.getAmountCentString() + "元";
+                } else {
+                    text += "[返金券]返" + jsonObject.getAmountCentString() + "元";
                 }
-            }else if (availableVoucherNumber > 1) {
-                text = jsonObject.getAvailableVoucherNumber() + "张可用，请选择";
             }
         }else {
-            text = "暂无可用";
+            text = "暂无可用卡券";
         }
         tvTicketText.setText(text);
     }
@@ -1054,7 +1064,7 @@ public class RegularPayActivity extends BaseBindActivity {
                                 }
                                 break;
                             case 74://返金券
-                                voucherValue = data.getIntExtra("voucherValue", -1);
+                                voucherValue = data.getStringExtra("voucherValue");
                                 if(minAmountCent > 0){
                                     text += "[返金券]满"+minAmountCent+"元返"+voucherValue+"元";
                                 }else{
@@ -1071,7 +1081,7 @@ public class RegularPayActivity extends BaseBindActivity {
                     voucherRate = -1;
                     voucherId = -1;
                     addRateDay = -1;
-                    voucherValue = -1;
+                    voucherValue = "";
                     if (availableVoucherNumber > 0) {
                         tvTicketText.setText(availableVoucherNumber + "张可用，请选择");
                         tvTicketText.setTextColor(Color.parseColor("#212121"));
@@ -1137,10 +1147,8 @@ public class RegularPayActivity extends BaseBindActivity {
     }
     @Override
     public void verifyProtocolListLogical(List<Protocol> list) {
-        if (list != null && list.size() == 0){
-            if (mAgreementLayout != null){
-                mAgreementLayout.setVisibility(View.GONE);
-            }
+        if (list == null) {
+            mAgreementLayout.setVisibility(View.GONE);
         }
     }
 }

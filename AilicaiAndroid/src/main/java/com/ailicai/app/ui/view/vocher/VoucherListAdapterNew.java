@@ -79,7 +79,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
                 break;
             case 74://返金券
                 viewHolder.mIndicatorVoucherType.setText(R.string.help_payquestion);
-                viewHolder.mVoucherValue.setText(voucher.getAmountCent()+"");
+                viewHolder.mVoucherValue.setText(voucher.getAmountCentString()+"");
                 viewHolder.mVoucherType.setText("返金券");
                 break;
         }
@@ -96,9 +96,17 @@ public class VoucherListAdapterNew extends BaseAdapter {
                 });
                 viewHolder.mItemUp.setBackgroundResource(R.drawable.bg_voucher_up);
                 viewHolder.mBgVoucherGear.setBackgroundResource(R.drawable.bg_voucher_up);
-                viewHolder.mIndicatorBest.setVisibility(View.GONE);
+                viewHolder.mIndicatorBest.setVisibility(View.VISIBLE);
 
-                if (appropriateVoucherId != 0 && appropriateVoucherId == voucher.getVoucherId() ){
+                viewHolder.mIndicatorBest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!CheckDoubleClick.isFastDoubleClick()) {
+                            listener.useClick(position);
+                        }
+                    }
+                });
+                if (appropriateVoucherId != -1 && appropriateVoucherId == voucher.getVoucherId() ){
                     viewHolder.mIndicatorBest.setChecked(true);
                 }else{
                     viewHolder.mIndicatorBest.setChecked(false);
@@ -118,10 +126,10 @@ public class VoucherListAdapterNew extends BaseAdapter {
         viewHolder.mVoucherDescription.setText(voucher.getBottomDesc());
         String limit = "";
         if (!TextUtils.isEmpty(voucher.getSimpleDesc())){
-            limit += voucher.getSimpleDesc()+";";
+            limit += voucher.getSimpleDesc();
         }
         if (!TextUtils.isEmpty(voucher.getMinAmountCentString())){
-            limit += voucher.getMinAmountCentString()+";";
+            limit += voucher.getMinAmountCentString();
         }
         if (!TextUtils.isEmpty(voucher.getUseRange())){
             limit += voucher.getUseRange();
@@ -133,9 +141,9 @@ public class VoucherListAdapterNew extends BaseAdapter {
         String leftDay = voucher.getLeftValidDayString();
         SpannableStringBuilder builder ;
         if (!TextUtils.isEmpty(leftDay)){
-            builder = spannableUtil.getSpannableString("有效期至 "+ voucher.getUserTimeTo()," （仅剩"+voucher.getLeftValidDays()+"天)", R.style.text_12_757575, R.style.text_12_d0011b);
+            builder = spannableUtil.getSpannableString("有效期: "+ voucher.getUserTimeFrom()+" 至 "+voucher.getUserTimeTo()," （仅剩"+voucher.getLeftValidDays()+"天)", R.style.text_12_757575, R.style.text_12_d0011b);
         }else{
-            builder = spannableUtil.getSpannableString("有效期至 "+ voucher.getUserTimeTo(), R.style.text_12_757575);
+            builder = spannableUtil.getSpannableString("有效期: "+ voucher.getUserTimeFrom()+" 至 "+voucher.getUserTimeTo(), R.style.text_12_757575);
         }
         viewHolder.mVoucherAvailableTime.setText(builder);
 
@@ -166,7 +174,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
         @Bind(R.id.rl_bg_voucher_gear)
         RelativeLayout mBgVoucherGear;
         @Bind(R.id.item_up)
-        RelativeLayout mItemUp;
+        LinearLayout mItemUp;
         @Bind(R.id.indicator_voucher_type)
         TextView mIndicatorVoucherType;
         @Bind(R.id.voucher_value)

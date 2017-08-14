@@ -304,16 +304,17 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
             //ToastUtil.show("请输入正确的金额");
             return false;
         } else if (infoResponse.getWithdrawBalance() >= 0 && Double.parseDouble(money) > infoResponse.getWithdrawBalance()) {
-            showError("当前最多可转出" + CommonUtil.numberFormat(infoResponse.getWithdrawBalance()) + "元");
+            showError("当前最多可转出 " + CommonUtil.numberFormat(infoResponse.getWithdrawBalance()) + " 元");
             return false;
-        } else if (Double.parseDouble(money) > infoResponse.getLimit()) {
+        } else if (!accountCheckBox.isChecked() && Double.parseDouble(money) > infoResponse.getLimit()) {
             if (infoResponse.getLimit() % 10000 == 0) {
-                showError("每笔最多可转出" + CommonUtil.numberFormat(infoResponse.getLimit() / 10000) + "万");
+                showError("每笔最多可转出 " + CommonUtil.numberFormat(infoResponse.getLimit() / 10000) + " 万");
             } else {
-                showError("每笔最多可转出" + CommonUtil.numberFormat(infoResponse.getLimit()));
+                showError("每笔最多可转出 " + CommonUtil.numberFormat(infoResponse.getLimit()));
             }
             return false;
         }
+        showBalance();
         return true;
     }
 
@@ -321,6 +322,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         SpannableUtil spanUtil = new SpannableUtil(this);
         SpannableStringBuilder builder = spanUtil.getSpannableString(errorMessage, R.style.text_14_e84a01);
         mCurrentBalance.setText(builder);
+        mCurrentBalance.setVisibility(View.VISIBLE);
     }
 
     private void showBalance() {
@@ -329,7 +331,9 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
             SpannableStringBuilder builder = spanUtil.getSpannableString("活期宝余额 ", CommonUtil.numberFormat(infoResponse.getWithdrawBalance()), " 元",
                     R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
             mCurrentBalance.setText(builder);
+            mCurrentBalance.setVisibility(View.VISIBLE);
         }
+
     }
 
     /**
@@ -348,8 +352,8 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         } else if (Double.parseDouble(money) <= 0) {
             ToastUtil.show("请输入正确的金额");
             return false;
-        } else if (infoResponse.getWithdrawBalance() > 0 && Double.parseDouble(money) > infoResponse.getWithdrawBalance()) {
-            ToastUtil.show("您最多可转出账户可用余额" + CommonUtil.formatMoneyForFinance(infoResponse.getWithdrawBalance()) + "元");
+        } else if (!accountCheckBox.isChecked() && infoResponse.getWithdrawBalance() > 0 && Double.parseDouble(money) > infoResponse.getWithdrawBalance()) {
+            ToastUtil.show("您最多可转出账户可用余额 " + CommonUtil.formatMoneyForFinance(infoResponse.getWithdrawBalance()) + " 元");
             return false;
         }
         return true;
@@ -371,7 +375,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
 
     public void setRollOutType(CurrentRollOutBaseInfoResponse jsonObject) {
         accountNameText.setText("账户余额");
-        accountDescText.setText("当前可用余额" + CommonUtil.numberFormat(jsonObject.getDepositoryBalance()) + "元");
+        accountDescText.setText("当前可用余额 " + CommonUtil.numberFormat(jsonObject.getDepositoryBalance()) + " 元");
         bankNameText.setText(jsonObject.getBankName() + " (尾号" + jsonObject.getCardNo() + ")");
         accountCheckBox.setChecked(true);
         bankCheckBox.setChecked(false);
@@ -458,7 +462,11 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
     public void onAccountBoxChange(CheckBox box, boolean isChecked) {
         if (isChecked) {
             mInputPriceEditLable.setText("请输入金额");
-            checkInputMoney();
+            if (checkInputMoney()) {
+                mConfirmBtn.setEnabled(true);
+            } else {
+                mConfirmBtn.setEnabled(false);
+            }
             mRollOutTime.setText(Html.fromHtml(getResources().getString(R.string.roll_out_time_text,
                     infoResponse.getToDepositoryDate())));
         }
@@ -469,7 +477,11 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
     public void onBankBoxChange(CheckBox box, boolean isChecked) {
         if (isChecked) {
             mInputPriceEditLable.setText(infoResponse.getHint());
-            checkInputMoney();
+            if (checkInputMoney()) {
+                mConfirmBtn.setEnabled(true);
+            } else {
+                mConfirmBtn.setEnabled(false);
+            }
             mRollOutTime.setText(Html.fromHtml(getResources().getString(R.string.roll_out_time_text,
                     infoResponse.getGiveDate())));
         }
@@ -478,10 +490,8 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
 
     @Override
     public void verifyProtocolListLogical(List<Protocol> list) {
-        if (list != null && list.size() == 0) {
-            if (mAgreementLayout != null) {
-                mAgreementLayout.setVisibility(View.GONE);
-            }
+        if (list == null) {
+            mAgreementLayout.setVisibility(View.GONE);
         }
     }
 

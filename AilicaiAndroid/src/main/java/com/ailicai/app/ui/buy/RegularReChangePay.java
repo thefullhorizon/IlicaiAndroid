@@ -328,7 +328,7 @@ public class RegularReChangePay extends BaseBuyFinancePay {
     BuyDialogShowInfo getDispalyInfo() {
         return new BuyDialogShowInfo.BankPayBuild()
                 .setAmount(currentPayInfo.amount)
-                .setMoneyOutStr(TextUtils.isEmpty(moneyOutStr)?"转入并购买房产宝":moneyOutStr)
+                .setMoneyOutStr(TextUtils.isEmpty(moneyOutStr)?"充值并购买房产宝":moneyOutStr)
                 .setPayTypFrom("使用账户余额+安全卡支付")
                 .setPayTypFromIco(mActivity.getString(R.string.current_pay))
                 .create();

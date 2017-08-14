@@ -336,23 +336,28 @@ public class BuyCurrentPay extends BaseBuyFinancePay {
         AccountResponse accountResponse = AccountInfo.getInstance().getAccountResponse();
         String title = null;
         String tips = null;
+        String iconString = mActivity.getString(R.string.account_bankcard);
         if ("106".equals(currentPayInfo.getAccountType())) {
             title = "充值账户余额";
             tips = "使用" + accountResponse.getBankName() + "(" + accountResponse.getBankcardTailNo() + ")支付";
+            iconString = mActivity.getString(R.string.account_bankcard);
         } else if ("101".equals(currentPayInfo.getAccountType())) {
             title = "转入活期宝";
             //支付到的账户类型 1-安全卡；2-账户余额
             if ("1".equals(currentPayInfo.getPayMethod())) {
                 tips = "使用" + accountResponse.getBankName() + "(" + accountResponse.getBankcardTailNo() + ")支付";
+                iconString = mActivity.getString(R.string.account_bankcard);
             } else if ("2".equals(currentPayInfo.getPayMethod())) {
                 tips = "使用账户余额支付";
+                iconString = mActivity.getString(R.string.icon_rmb_process);
             }
         }
         return new BuyDialogShowInfo.BankPayBuild()
                 .setAmount(currentPayInfo.amount)
                 .setMoneyOutStr(title)
                 .setPayTypFrom(tips)
-                .setPayTypFromIco(mActivity.getString(R.string.account_bankcard))
+                .setPayTypFromIco(iconString)
+                .setPayMethod(currentPayInfo.getPayMethod())
                 .create();
     }
 

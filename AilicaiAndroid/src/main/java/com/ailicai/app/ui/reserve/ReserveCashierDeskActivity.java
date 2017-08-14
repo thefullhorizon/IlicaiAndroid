@@ -323,10 +323,8 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
 
     @Override
     public void verifyProtocolListLogical(List<Protocol> list) {
-        if (list != null && list.size() == 0){
-            if (mAgreementLayout != null){
-                mAgreementLayout.setVisibility(View.GONE);
-            }
+        if (list == null) {
+            mAgreementLayout.setVisibility(View.GONE);
         }
     }
 }

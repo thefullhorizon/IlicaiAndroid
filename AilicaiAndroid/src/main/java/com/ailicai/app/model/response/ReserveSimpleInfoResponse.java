@@ -9,7 +9,8 @@ public class ReserveSimpleInfoResponse extends Response {
 
     private String productName = "";//产品标题
     private String reserveTime; //预约时间
-    private String reserveAmt = "";// 预约金额
+    private String reserveAmt = "";// 预约金额（后台经过格式处理,如1,000.00）
+    private String reserveAmtValue ="";// 预约金额（后台未经过格式处理,如1,000.00）
     private String preBuyTime = "";// 预计申购时间
     private String horizon="";// 预约期限
     private String yearInterestRateStr; // 预计年化利率字符串
@@ -83,5 +84,13 @@ public class ReserveSimpleInfoResponse extends Response {
 
     public void setBidOrderNo(String bidOrderNo) {
         this.bidOrderNo = bidOrderNo;
+    }
+
+    public String getReserveAmtValue() {
+        return reserveAmtValue;
+    }
+
+    public void setReserveAmtValue(String reserveAmtValue) {
+        this.reserveAmtValue = reserveAmtValue;
     }
 }

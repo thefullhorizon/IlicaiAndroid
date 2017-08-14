@@ -71,10 +71,6 @@ public class BankCardSafeDetailActivity extends BaseBindActivity {
         presenter = new BankCardSafeDetailPresenter(this);
         presenter.init();
 
-        // 爱理财系统升级弹框
-        FinanceUpgradePresenter financeUpgradePresenter = new FinanceUpgradePresenter();
-        financeUpgradePresenter.httpForSystemIsFix(this);
-
         EventBus.getDefault().register(this);
     }
 

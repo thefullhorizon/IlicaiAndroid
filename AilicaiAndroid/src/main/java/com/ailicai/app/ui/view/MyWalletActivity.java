@@ -133,12 +133,6 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
         super.onResume();
         presenter.requestMyWalletInfo();
         refresh();
-
-        // 请求是否 是否维护中
-        FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
-        presenter.httpForSystemIsFix(this);
-        // 请求是否弹框提醒升级协议
-        presenter.httpForProtocalUpgradeState(this);
     }
 
     public void refresh() {

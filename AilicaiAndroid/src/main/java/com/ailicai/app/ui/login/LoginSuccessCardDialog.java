@@ -48,7 +48,7 @@ public class LoginSuccessCardDialog extends BaseBindActivity {
         p.width = ScreenUtils.getScreenWidth(this);
         p.height = ScreenUtils.getSreenHeight(this);
         p.gravity = Gravity.CENTER;
-        p.dimAmount = 0.7f;
+        p.dimAmount = 0.5f;
         getWindow().setAttributes(p);
     }
 

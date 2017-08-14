@@ -170,10 +170,6 @@ public class CapitalActivity extends BaseBindActivity implements
         mHomePage.setOnScrollListener(this);
         mAdapter.setEvent(this);
 
-        // 爱理财系统升级弹框
-        FinanceUpgradePresenter financeUpgradePresenter = new FinanceUpgradePresenter();
-        financeUpgradePresenter.httpForSystemIsFix(this);
-
         presenter = new CapitalPresenter(this);
 
         presenter.updateHeader();
@@ -195,10 +191,6 @@ public class CapitalActivity extends BaseBindActivity implements
                     break;
             }
         }
-
-        // 请求是否弹框提醒升级协议
-        FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
-        presenter.httpForProtocalUpgradeState(this);
     }
 
     int calFitEmptyHeight() {
