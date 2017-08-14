@@ -54,7 +54,7 @@
                 android:background="@drawable/scan_ceram_outline"
                 android:gravity="center"
                 android:text="@string/scan_camera"
-                android:textColor="@color/login_close_btn_iconfont_color"
+                android:textColor="#616161"
                 android:textSize="19sp" />
 
         </RelativeLayout>
