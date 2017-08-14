@@ -527,6 +527,14 @@ public class BaseWebViewLayout extends LinearLayout {
                 }
             }
         });
+        addJumpUiActions(new WebJumpUiAction("gomine") {
+            @Override
+            public void jumpUi(HashMap<String, String> params) {
+                if (null != getWRContext()) {
+                    IndexActivity.startIndexActivityToTab(getWRContext(),2);
+                }
+            }
+        });
 
         addJumpUiActions(new WebJumpUiAction("openaccountprocess") {
             @Override
