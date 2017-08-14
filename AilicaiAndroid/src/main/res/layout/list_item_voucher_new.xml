@@ -15,20 +15,25 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
-            android:id="@+id/item_up"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_voucher_up"
-            android:paddingLeft="@dimen/_16"
-            android:paddingRight="@dimen/_16"
-            android:paddingTop="23dp"
-            android:paddingBottom="10dp"
-            android:orientation="vertical">
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/bg_voucher_up">-->
 
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/item_up"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_voucher_up"
+                android:paddingLeft="@dimen/_16"
+                android:paddingRight="@dimen/_16"
+                android:paddingTop="23dp"
+                android:paddingBottom="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <com.ailicai.app.widget.TextViewTF
                         android:id="@+id/indicator_voucher_type"
@@ -76,30 +81,59 @@
                         android:layout_centerVertical="true"
                         android:drawableLeft="@drawable/agreement_box_bg_voucher"/>
 
-            </RelativeLayout>
+                </RelativeLayout>
 
-            <TextView
-                android:id="@+id/voucher_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginLeft="14dp"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:text="微信粉丝专享福利"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        </LinearLayout>
+
+                    <com.ailicai.app.widget.TextViewTF
+                        android:id="@+id/indicator_voucher_type_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/help_payquestion"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        android:visibility="invisible"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/voucher_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/indicator_voucher_type_location"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:text="微信粉丝专享福利"/>
+
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="3dp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:background="@drawable/bg_voucher_gear"/>-->
+
+        <!--</RelativeLayout>-->
 
         <RelativeLayout
             android:id="@+id/rl_bg_voucher_gear"
             android:layout_width="match_parent"
-            android:layout_height="4dp"
+            android:layout_height="3dp"
             android:background="@drawable/bg_voucher_up">
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="3dp"
                 android:background="@drawable/bg_voucher_gear"/>
+
         </RelativeLayout>
 
         <TextView
