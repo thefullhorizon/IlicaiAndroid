@@ -33,9 +33,9 @@ public class PayPsdInputView extends EditText {
     /**
      * 格子的颜色
      */
-    private static final int DEFAULT_BORDERGRI_DCOLOR = 0xaabdbdbd;
-    private static final int DEFAULT_BORDERGRI_SELECTED_DCOLOR = 0xaa212121;
-    private static final int DEFAULT_GRID_TEXT_DCOLOR = 0xaa212121;
+    private static final int DEFAULT_BORDERGRI_DCOLOR = 0xFFbdbdbd;
+    private static final int DEFAULT_BORDERGRI_SELECTED_DCOLOR = 0xFF212121;
+    private static final int DEFAULT_GRID_TEXT_DCOLOR = 0xFF212121;
     private int mTextSize = DEFAULT_TEXTSIZE;
     private Context mContext;
     /**
