@@ -14,13 +14,7 @@
         android:background="@drawable/bg_voucher"
         android:orientation="vertical">
 
-
-        <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/bg_voucher_up">-->
-
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/item_up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,14 +108,6 @@
 
 
             </LinearLayout>
-
-            <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="3dp"-->
-                <!--android:layout_alignParentBottom="true"-->
-                <!--android:background="@drawable/bg_voucher_gear"/>-->
-
-        <!--</RelativeLayout>-->
 
         <RelativeLayout
             android:id="@+id/rl_bg_voucher_gear"

@@ -235,14 +235,14 @@ public class RegularPayActivity extends BaseBindActivity {
         if (availableBalance > minAmount) {
             //可用余额大于起购金额
             //可用余额减去起购金额对投标单位的取余整数
-            int intAvailable = (int) ((availableBalance - minAmount) / bidUnit);
+            int intAvailable = (int) ((availableBalance) / bidUnit);
             //剩余额度减去起购金额对投标单位的取余整数
-            int intBiddable = (int) ((biddableAmount - minAmount) / bidUnit);
+            int intBiddable = (int) ((biddableAmount) / bidUnit);
             //二者取其最小值
             if (intAvailable >= intBiddable) {
-                mInputPriceEdit.setText(MathUtil.subZeroAndDot(String.valueOf(intBiddable * bidUnit + minAmount)));
+                mInputPriceEdit.setText(MathUtil.subZeroAndDot(String.valueOf(intBiddable * bidUnit )));
             } else {
-                mInputPriceEdit.setText(MathUtil.subZeroAndDot(String.valueOf(intAvailable * bidUnit + minAmount)));
+                mInputPriceEdit.setText(MathUtil.subZeroAndDot(String.valueOf(intAvailable * bidUnit )));
             }
         } else {
             //可用余额小于起购金额(since 5.8 不显示全额购买按钮)
@@ -900,9 +900,9 @@ public class RegularPayActivity extends BaseBindActivity {
         }else if (jsonObject.getBiddableAmount() > 0 && jsonObject.getBiddableAmount() <= jsonObject.getMinAmount()) {
             //剩余额度小于起购金额,直接填入剩余额度且不可修改
             initialInputValue = String.valueOf(jsonObject.getBiddableAmount());
-            if(initialInputValue.contains(".")){
-                initialInputValue = initialInputValue.substring(0,initialInputValue.indexOf("."));
-            }
+//            if(initialInputValue.contains(".")){
+//                initialInputValue = initialInputValue.substring(0,initialInputValue.indexOf("."));
+//            }
             mInputPriceEdit.setText(MathUtil.subZeroAndDot(initialInputValue));
             mInputPriceEdit.setEnabled(false);
             mInputPriceEdit.setTextColor(Color.parseColor("#9b9b9b"));
@@ -933,7 +933,8 @@ public class RegularPayActivity extends BaseBindActivity {
         }
 
         //请求卡券相关的逻辑
-        getBestVoucher(initialInputValue);
+//        getBestVoucher(initialInputValue);
+        getBestVoucher("100.0");
 
     }
 
