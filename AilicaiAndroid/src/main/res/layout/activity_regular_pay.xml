@@ -316,6 +316,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/confirm_btn"
                     android:gravity="center_horizontal"
+                    android:visibility="gone"
                     android:layout_marginTop="12dp">
 
                     <CheckBox
