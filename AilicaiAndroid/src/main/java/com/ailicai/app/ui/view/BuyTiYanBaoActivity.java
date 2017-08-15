@@ -13,12 +13,17 @@ import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.MathUtil;
 import com.ailicai.app.common.utils.SpannableUtil;
+import com.ailicai.app.eventbus.OpenAccountFinishEvent;
 import com.ailicai.app.model.request.TiyanbaoDetailRequest;
 import com.ailicai.app.model.response.BuyTiyanbaoInitResponse;
 import com.ailicai.app.model.response.BuyTiyanbaoResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.login.AccountInfo;
 import com.huoqiu.framework.util.CheckDoubleClick;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,6 +67,7 @@ public class BuyTiYanBaoActivity extends BaseBindActivity {
         super.init(savedInstanceState);
         presenter = new BuyTiYanBaoPresenter(this);
         response = (BuyTiyanbaoInitResponse) getIntent().getSerializableExtra(EXTRA_KEY);
+        EventBus.getDefault().register(this);
         initData();
     }
 
@@ -214,6 +220,12 @@ public class BuyTiYanBaoActivity extends BaseBindActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
         presenter.removeActivity();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleOpenAccountFinshEvent(OpenAccountFinishEvent finishEvent) {
+        finish();
     }
 }

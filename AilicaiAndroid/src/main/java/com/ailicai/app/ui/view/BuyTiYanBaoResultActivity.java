@@ -14,16 +14,20 @@ import android.widget.TextView;
 import com.ailicai.app.R;
 import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.utils.SpannableUtil;
+import com.ailicai.app.eventbus.OpenAccountFinishEvent;
 import com.ailicai.app.eventbus.RegularPayEvent;
 import com.ailicai.app.eventbus.RegularPayH5ActivityFinishEvent;
 import com.ailicai.app.model.response.BuyTiyanbaoResponse;
 import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.index.IndexActivity;
 import com.ailicai.app.ui.login.AccountInfo;
 import com.alibaba.fastjson.JSON;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -64,7 +68,14 @@ public class BuyTiYanBaoResultActivity extends BaseBindActivity {
         super.init(savedInstanceState);
         response = (BuyTiyanbaoResponse) getIntent().getExtras().getSerializable(KEY);
         initData(true);
+        EventBus.getDefault().register(this);
         EventBus.getDefault().post(new RegularPayEvent());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     /**
@@ -191,5 +202,11 @@ public class BuyTiYanBaoResultActivity extends BaseBindActivity {
                     break;
             }
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleOpenAccountFinshEvent(OpenAccountFinishEvent finishEvent) {
+        IndexActivity.startIndexActivityToTab(this,0);
+        finish();
     }
 }
