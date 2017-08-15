@@ -286,6 +286,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
      * 设置邀请记录数据
      */
     public void setInviteRecordData(List<InviteRecord> InviteRecordListTemp) {
+        inviteRecordListView.onLoadMoreComplete();
         if (InviteRecordListTemp != null) {
             inviteRecordList.addAll(InviteRecordListTemp);
         }
@@ -357,6 +358,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
      */
     public void setRewardRecordData(List<RewardRecord> rewardRecordListTemp) {
 
+        rewardRecordListView.onLoadMoreComplete();
         if (rewardRecordListTemp != null) {
             rewardRecordList.addAll(rewardRecordListTemp);
         }
