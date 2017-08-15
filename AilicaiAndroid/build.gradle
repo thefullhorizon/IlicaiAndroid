@@ -74,7 +74,7 @@ android {
         }
 
         beta {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles 'proguard-rules.pro'
             signingConfig signingConfigs.debug
             buildConfigField "String", "BUILDVERSION", appendQuotes("BETA")
@@ -82,7 +82,7 @@ android {
         }
 
         debug {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles 'proguard-rules.pro'
             signingConfig signingConfigs.debug
             buildConfigField "String", "BUILDVERSION", appendQuotes("DEBUG")

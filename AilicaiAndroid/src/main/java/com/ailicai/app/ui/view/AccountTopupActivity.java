@@ -436,7 +436,9 @@ public class AccountTopupActivity extends BaseBindActivity {
 
     @Override
     public void verifyProtocolListLogical(List<Protocol> list) {
-        if (list == null) {
+        if (list != null && list.size() > 0) {
+            mAgreementLayout.setVisibility(View.VISIBLE);
+        }else{
             mAgreementLayout.setVisibility(View.GONE);
         }
     }
