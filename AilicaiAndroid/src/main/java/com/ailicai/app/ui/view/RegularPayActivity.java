@@ -934,7 +934,7 @@ public class RegularPayActivity extends BaseBindActivity {
 
         //请求卡券相关的逻辑
 //        getBestVoucher(initialInputValue);
-        getBestVoucher("100.0");
+        getBestVoucher(initialInputValue);
 
     }
 
