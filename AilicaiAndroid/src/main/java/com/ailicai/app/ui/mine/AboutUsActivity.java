@@ -14,12 +14,10 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.constants.IWBuildConfig;
 import com.ailicai.app.common.hybrid.HybridEngine;
 import com.ailicai.app.common.utils.MyIntent;
-import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.common.version.VersionUtil;
-import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
@@ -31,8 +29,6 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-
-import static com.ailicai.app.common.reqaction.IwjwRespListener.HASCHECKNEWVERSION;
 
 /**
  * Created by Gerry on 2017/7/18.
@@ -93,7 +89,7 @@ public class AboutUsActivity extends BaseBindActivity implements VersionInterfac
         if (CheckDoubleClick.isFastDoubleClick()) {
             return;
         }
-        MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+        //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
         VersionUtil.check(this, this);
     }
 

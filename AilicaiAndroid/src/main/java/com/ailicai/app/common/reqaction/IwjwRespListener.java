@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentActivity;
 import com.ailicai.app.ApplicationPresenter;
 import com.ailicai.app.R;
 import com.ailicai.app.common.utils.CommonUtil;
-import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.setting.DeBugLogActivity;
@@ -156,49 +155,49 @@ public abstract class IwjwRespListener<T> extends JsonHttpResponseListener<T> im
                         if (null != fragment) {
                             Activity activity = fragment.getActivity();
                             if (null != activity) {
-                                if (!MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
-                                    VersionUtil.check(this, activity, ((Response) response).getUpdateInfo());
-                                }
+                                //if (!MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
+                                VersionUtil.check(this, activity, ((Response) response).getUpdateInfo());
+                                //}
                             }
                         }
                     } else {
                         Context context = getWRContext();
                         if (null != context && context instanceof Activity) {
-                            if (!MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
-                                VersionUtil.check(this, (Activity) context, ((Response) response).getUpdateInfo());
-                            }
+                            //if (!MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
+                            VersionUtil.check(this, (Activity) context, ((Response) response).getUpdateInfo());
+                            //}
                         }
                     }
                     return false;
-                    case RestException.SYSTEM_MAINTANCE:
-                        // 先拿到当前Activity
-                        FragmentActivity currentActivity = null;
-                        if (isFragmentReq) {
-                            Fragment fragment = getWRFragment();
-                            if (null != fragment) {
-                                currentActivity = fragment.getActivity();
-                            }
-                        } else {
-                            Context context = getWRContext();
-                            if (null != context && context instanceof Activity) {
-                                currentActivity = (FragmentActivity)context;
-                            }
+                case RestException.SYSTEM_MAINTANCE:
+                    // 先拿到当前Activity
+                    FragmentActivity currentActivity = null;
+                    if (isFragmentReq) {
+                        Fragment fragment = getWRFragment();
+                        if (null != fragment) {
+                            currentActivity = fragment.getActivity();
                         }
-                        // 先拿到当前Activity
+                    } else {
+                        Context context = getWRContext();
+                        if (null != context && context instanceof Activity) {
+                            currentActivity = (FragmentActivity) context;
+                        }
+                    }
+                    // 先拿到当前Activity
 
-                        // 判断当前页面是否正在显示系统维护弹框 没在显示的话弹出 系统维护
-                        if (null != currentActivity) {
-                            Fragment fragment = currentActivity.getSupportFragmentManager().findFragmentByTag(SystemMaintenanceDialog.class.getSimpleName());
-                            if(fragment == null || !fragment.isVisible()) {
-                                SystemMaintenanceDialog dialog = new SystemMaintenanceDialog();
-                                Bundle data = new Bundle();
-                                data.putString("data",responseTo.getMessage());
-                                dialog.setArguments(data);
-                                dialog.show(currentActivity.getSupportFragmentManager(),SystemMaintenanceDialog.class.getSimpleName());
-                            }
+                    // 判断当前页面是否正在显示系统维护弹框 没在显示的话弹出 系统维护
+                    if (null != currentActivity) {
+                        Fragment fragment = currentActivity.getSupportFragmentManager().findFragmentByTag(SystemMaintenanceDialog.class.getSimpleName());
+                        if (fragment == null || !fragment.isVisible()) {
+                            SystemMaintenanceDialog dialog = new SystemMaintenanceDialog();
+                            Bundle data = new Bundle();
+                            data.putString("data", responseTo.getMessage());
+                            dialog.setArguments(data);
+                            dialog.show(currentActivity.getSupportFragmentManager(), SystemMaintenanceDialog.class.getSimpleName());
                         }
-                        // 判断当前页面是否正在显示系统维护弹框 没在显示的话弹出 系统维护
-                        return false;
+                    }
+                    // 判断当前页面是否正在显示系统维护弹框 没在显示的话弹出 系统维护
+                    return false;
                 case RestException.LOGOUT_ERROR:
                     if (isFragmentReq) {
                         Fragment fragment = getWRFragment();

@@ -1424,9 +1424,9 @@ public class BaseWebViewLayout extends LinearLayout {
                             //当errorCode=999999的时候，代表当前版本小于强更的版本，需要客户端进行升级
                             BaseActivity activity = webViewLayotSoftReference.get().getWRContext();
                             if (null != activity) {
-                                if (!MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
+                                //if (!MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
                                     VersionUtil.check(this,activity, response.getUpdateInfo());
-                                }
+                                //}
                             }
                             break;
                         case RestException.SYSTEM_MAINTANCE:

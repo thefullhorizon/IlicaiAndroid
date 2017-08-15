@@ -50,8 +50,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.Bind;
 
-import static com.ailicai.app.common.reqaction.IwjwRespListener.HASCHECKNEWVERSION;
-
 
 /**
  * name: IndexActivity <BR>
@@ -97,6 +95,14 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         activity.startActivity(mIntent);
     }
 
+    /**
+     * 销毁下载弹窗
+     */
+    private static void downloadProgressDestroy(Context mC) {
+        DownloadProgressDialogManger.getInstance().destory();
+        DownloadNotificationManager.getInstance(mC).destroy();
+    }
+
     @Override
     public int getLayout() {
         return R.layout.activity_index_main;
@@ -110,7 +116,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         htmlUrlUpdate();
         MyPreference.getInstance().write(CommonTag.IS_FIREST_START, false);
         //注册息屏广播
-        if(mScreenStatusReceiver == null){
+        if (mScreenStatusReceiver == null) {
             mScreenStatusReceiver = new ScreenStatusReceiver();
             IntentFilter screenStatusIF = new IntentFilter();
 //            screenStatusIF.addAction(Intent.ACTION_SCREEN_ON);
@@ -123,21 +129,21 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     protected void onResume() {
         super.onResume();
 
-        if (!MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
-            if (!hasCheckNewVersion) {
-                VersionUtil.check(this, this);
-            }
+        //if (!MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
+        if (!hasCheckNewVersion) {
+            VersionUtil.check(this, this);
         }
+        //}
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+        //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
         downloadProgressDestroy(MyApplication.getInstance());
         IwjwHttp.onDestroy();
         EventBus.getDefault().unregister(this);
-        if(mScreenStatusReceiver != null){
+        if (mScreenStatusReceiver != null) {
             unregisterReceiver(mScreenStatusReceiver);
             mScreenStatusReceiver = null;
         }
@@ -162,7 +168,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         bottomNavigation.setNotificationTextColor(Color.WHITE);
         bottomNavigation.setDefaultBackgroundColor(getResources().getColor(R.color.color_f7f7f7));
         bottomNavigation.setUseElevation(true);
-        bottomNavigation.setTitleTextSize(UIUtils.dipToPx(this,11f),UIUtils.dipToPx(this,10f));
+        bottomNavigation.setTitleTextSize(UIUtils.dipToPx(this, 11f), UIUtils.dipToPx(this, 10f));
         MessageTypeProcessUtils.parseIntent(this);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -207,7 +213,6 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         }
         MessageTypeProcessUtils.parseIntent(this);
     }
-
 
     private void htmlUrlUpdate() {
         HtmlUrlRequest request = new HtmlUrlRequest();
@@ -255,13 +260,13 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         return false;
     }
 
+    public int getCurrentItem() {
+        return bottomNavigation.getCurrentItem();
+    }
+
     public void setCurrentItem(int index) {
         //   mViewPager.setCurrentItem(index);
         bottomNavigation.setCurrentItem(index);
-    }
-
-    public int getCurrentItem() {
-        return bottomNavigation.getCurrentItem();
     }
 
     /**
@@ -289,7 +294,6 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
 
         }
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleShowRefreshNotifEvent(LoginEvent event) {
@@ -372,33 +376,25 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         }
     }
 
-    /**
-     * 销毁下载弹窗
-     */
-    private static void downloadProgressDestroy(Context mC) {
-        DownloadProgressDialogManger.getInstance().destory();
-        DownloadNotificationManager.getInstance(mC).destroy();
-    }
-
     public void setChildMiMiSystemBarColor(int position) {
-        if(position == 0) {
-            IndexFragment indexFragment  = (IndexFragment) nvgPagerAdapter.getItem(0);
+        if (position == 0) {
+            IndexFragment indexFragment = (IndexFragment) nvgPagerAdapter.getItem(0);
             indexFragment.setMiSystemBarColor();
-        } else if(position == 1) {
+        } else if (position == 1) {
             CommonUtil.miDarkSystemBar(IndexActivity.this);
-        } else if(position == 2) {
+        } else if (position == 2) {
             CommonUtil.miWhiteSystemBar(IndexActivity.this);
         }
     }
 
     public void setChildFragmentAutoRefreshState(int position) {
-        IndexFragment indexFragment  = (IndexFragment) nvgPagerAdapter.getItem(0);
+        IndexFragment indexFragment = (IndexFragment) nvgPagerAdapter.getItem(0);
         InvestmentMainFragment investmentMainFragment = (InvestmentMainFragment) nvgPagerAdapter.getItem(1);
 
-        if(position == 0) {
+        if (position == 0) {
             indexFragment.startOrStopAutoRefresh(true);
             investmentMainFragment.setAllRefreshStateStop();
-        } else  if(position == 1) {
+        } else if (position == 1) {
             indexFragment.startOrStopAutoRefresh(false);
             investmentMainFragment.setAutoRefreshStateStart();
         } else {

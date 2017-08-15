@@ -1,7 +1,6 @@
 package com.ailicai.app.common.version;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -44,8 +43,6 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.lang.ref.WeakReference;
 
-import static com.ailicai.app.common.reqaction.IwjwRespListener.HASCHECKNEWVERSION;
-
 
 /**
  * Created by David on 15/8/10.
@@ -55,6 +52,7 @@ public class Version implements DownloadListener {
     private WeakReference<VersionInterface> reference;
     private boolean isCurrentPatchUpdate = false;
     private WeakReference<Activity> activityWeakReference;
+    private AlertDialog alertDialog = null;
 
     public static synchronized Version instance() {
         if (version == null) version = new Version();
@@ -128,12 +126,12 @@ public class Version implements DownloadListener {
     }
 
     private void executeUpdateResult() {
-        if (AppInfo.getInstance().isForceUpdate()) {
-            if (MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
-                return;
-            }
-            MyPreference.getInstance().write(HASCHECKNEWVERSION, true);
-        }
+//        if (AppInfo.getInstance().isForceUpdate()) {
+//            if (MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
+//                return;
+//            }
+//            MyPreference.getInstance().write(HASCHECKNEWVERSION, true);
+//        }
 
         int needPop = AppInfo.getInstance().getNeedPopup();
 
@@ -175,32 +173,34 @@ public class Version implements DownloadListener {
             sb.append("\n功能：\n" + versionInfo);
             if (AppInfo.getInstance().isForceUpdate()) {
                 MyApplication.getAppPresenter().setUpDialog(true);
-                AlertDialog alertDialog = DialogBuilder.showSimpleDialog(getActivity(), "更新", sb.toString(), res.getString(R.string.update_version_exit), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //强更用、见IwjwRespListener
-                        MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
-                        exitApp();
-                    }
-                }, res.getString(R.string.update_version_update), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
-                        versionUpdate();
-                    }
-                });
+                if (alertDialog == null) {
+                    alertDialog = DialogBuilder.showSimpleDialog(getActivity(), "更新", sb.toString(), res.getString(R.string.update_version_exit), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //强更用、见IwjwRespListener
+                            //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+                            exitApp();
+                        }
+                    }, res.getString(R.string.update_version_update), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+                            versionUpdate();
+                        }
+                    });
+                }
                 alertDialog.setCancelable(false);
                 alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+                        //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
                         MyApplication.getAppPresenter().setUpDialog(false);
                     }
                 });
                 alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
-                        MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+                        //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
                         MyApplication.getAppPresenter().setUpDialog(false);
                     }
                 });
@@ -212,30 +212,32 @@ public class Version implements DownloadListener {
 //                }
 
                 MyApplication.getAppPresenter().setUpDialog(true);
-                Dialog updialog = DialogBuilder.showSimpleDialog(getActivity(), "更新", sb.toString(), res.getString(R.string.update_version_cancel), null, res.getString(R.string.update_version_confirm), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
-                        versionUpdate();
-                    }
-                });
-                updialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                if (alertDialog == null) {
+                    alertDialog = DialogBuilder.showSimpleDialog(getActivity(), "更新", sb.toString(), res.getString(R.string.update_version_cancel), null, res.getString(R.string.update_version_confirm), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+                            versionUpdate();
+                        }
+                    });
+                }
+                alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+                        //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
                         MyApplication.getAppPresenter().setUpDialog(false);
                     }
                 });
-                updialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
-                        MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+                        //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
                         MyApplication.getAppPresenter().setUpDialog(false);
                     }
                 });
             }
         } else {
-            MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
+            //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
             String version = TextUtils.isEmpty(appVersion) ? "" : "V" + appVersion;
             reference.get().checkLatest(version);
         }
