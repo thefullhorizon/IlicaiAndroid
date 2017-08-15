@@ -99,6 +99,7 @@ public class PatchUtil {
                     });
 
                 } catch (Exception e) {
+                    e.printStackTrace();
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         @Override

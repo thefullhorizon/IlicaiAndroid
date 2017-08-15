@@ -26,7 +26,7 @@ public class FileDownLoaderManger {
     public FileDownLoaderManger(Context context) {
         this.mContext = context;
         downloadPath = Environment.getExternalStorageDirectory()
-                + File.separator + "IWJW" + File.separator
+                + File.separator + "ILICAI" + File.separator
                 + AppConfig.versionName + File.separator
                 + "download" + File.separator;
     }

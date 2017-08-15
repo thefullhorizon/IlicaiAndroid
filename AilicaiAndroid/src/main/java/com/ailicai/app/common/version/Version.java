@@ -155,8 +155,7 @@ public class Version implements DownloadListener {
 
         if (!pop) return;
         if (TextUtils.isEmpty(newVersionUrl)) {
-            // TODO
-//            ToastUtil.showInCenter("下载路径为空");
+            ToastUtil.showInCenter("下载路径为空");
             return;
         }
 
