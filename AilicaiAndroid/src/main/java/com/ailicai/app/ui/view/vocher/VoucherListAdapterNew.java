@@ -1,6 +1,7 @@
 package com.ailicai.app.ui.view.vocher;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -95,7 +96,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
                     }
                 });
                 viewHolder.mItemUp.setBackgroundResource(R.drawable.bg_voucher_up);
-                viewHolder.mBgVoucherGear.setBackgroundResource(R.drawable.bg_voucher_up);
+                viewHolder.mBgVoucherGear.setBackgroundResource(R.drawable.bg_voucher_up_gear_gradient);
                 viewHolder.mIndicatorBest.setVisibility(View.VISIBLE);
 
                 viewHolder.mIndicatorBest.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +117,7 @@ public class VoucherListAdapterNew extends BaseAdapter {
             default:
                 viewHolder.mItemLayout.setClickable(false);
                 viewHolder.mItemUp.setBackgroundResource(R.drawable.bg_voucher_up_unselected);
-                viewHolder.mBgVoucherGear.setBackgroundResource(R.drawable.bg_voucher_up_unselected);
+                viewHolder.mBgVoucherGear.setBackgroundColor(Color.parseColor("#dddddd"));
                 viewHolder.mIndicatorBest.setVisibility(View.GONE);
                 break;
         }
