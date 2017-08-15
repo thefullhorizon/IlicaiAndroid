@@ -136,7 +136,7 @@ public class AccountTopupActivity extends BaseBindActivity {
         //请求数据
         initAilicaiNoticeList();
         initBaseInfo();
-//        initProtocol();
+        initProtocol();
 
     }
 
