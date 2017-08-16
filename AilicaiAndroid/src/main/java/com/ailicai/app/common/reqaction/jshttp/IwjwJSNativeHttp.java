@@ -17,7 +17,6 @@ import java.util.Map;
 public class IwjwJSNativeHttp {
 
     public final static String CENTER_URL = "";
-    public static String ROOT_URL = Configuration.DEFAULT.protocol + "://" + Configuration.DEFAULT.hostname + ":" + Configuration.DEFAULT.port;// 生产环境
     private static RequestQueue mQueue;
     private static IwjwJSNativeHttp instance;
     private boolean shouldCache;
@@ -38,8 +37,16 @@ public class IwjwJSNativeHttp {
         return mQueue;
     }
 
+    private static String getRootUrl() {
+        if(Configuration.DEFAULT.port == 0) {
+            return Configuration.DEFAULT.protocol + "://" + Configuration.DEFAULT.hostname;
+        } else {
+            return Configuration.DEFAULT.protocol + "://" + Configuration.DEFAULT.hostname + ":" + Configuration.DEFAULT.port;
+        }
+    }
+
     private static String reqUrlForRest(String path) {
-        return ROOT_URL + CENTER_URL + path;
+        return getRootUrl() + CENTER_URL + path;
     }
 
     public static void cancel(Object tag) {

@@ -7,10 +7,13 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.ailicai.app.BuildConfig;
 import com.ailicai.app.R;
+import com.ailicai.app.common.constants.AILICAIBuildConfig;
 import com.ailicai.app.common.constants.IWBuildConfig;
 import com.ailicai.app.common.hybrid.HybridEngine;
 import com.ailicai.app.common.utils.MyIntent;
@@ -18,11 +21,14 @@ import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.common.version.VersionUtil;
+import com.ailicai.app.setting.IpChangeFragment;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
+import com.ailicai.app.widget.IWTopTitleView;
 import com.huoqiu.framework.analysis.ManyiAnalysis;
+import com.huoqiu.framework.app.SuperFragment;
 import com.huoqiu.framework.util.CheckDoubleClick;
 
 import java.util.Map;
@@ -38,6 +44,8 @@ public class AboutUsActivity extends BaseBindActivity implements VersionInterfac
     private static final int MSG_CLICK_UPDATE_APP = 0x001;
     @Bind(R.id.app_version)
     TextView appVersion;
+    @Bind(R.id.title)
+    IWTopTitleView title;
 
     @Override
     public int getLayout() {
@@ -67,6 +75,20 @@ public class AboutUsActivity extends BaseBindActivity implements VersionInterfac
         }
 
         appVersion.setText("版本号 " + versionName);
+
+        if (!AILICAIBuildConfig.isProduction()) {
+            title.addRightText("开发者设置", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    IpChangeFragment fra = new IpChangeFragment();
+                    fra.setManager(getSupportFragmentManager());
+                    fra.setContainerId(Window.ID_ANDROID_CONTENT);
+                    fra.setTag(IpChangeFragment.class.getSimpleName());
+                    fra.setDefaultAnimations();
+                    fra.show(SuperFragment.SHOW_ADD);
+                }
+            });
+        }
     }
 
     @OnClick(R.id.mine_love_app)

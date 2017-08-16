@@ -211,7 +211,7 @@ public class IndexFragment extends BaseWebViewFragment {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void handleOpenAccountFinshEvent(LoginEvent loginEvent) {
+    public void handleLoginEvent(LoginEvent loginEvent) {
         callJsRefresh();
     }
 }

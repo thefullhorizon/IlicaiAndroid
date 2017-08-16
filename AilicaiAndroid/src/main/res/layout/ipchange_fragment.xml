@@ -4,6 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:clickable="true"
+    android:background="@color/global_background"
     android:orientation="vertical">
 
     <com.ailicai.app.widget.IWTopTitleView
@@ -59,6 +60,16 @@
                 android:paddingTop="10dp"
                 android:text="线上"
                 android:textSize="16dp" />
+
+            <RadioButton
+                android:id="@+id/check_box4"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="自定义"
+                android:textSize="16dp" />
         </LinearLayout>
 
         <EditText
@@ -67,6 +78,7 @@
             android:layout_height="48dp"
             android:hint="服务端地址"
             android:inputType="textWebEmailAddress"
+            android:enabled="false"
             android:textCursorDrawable="@drawable/edit_cursor_bg" />
 
         <EditText
@@ -75,9 +87,11 @@
             android:layout_height="48dp"
             android:hint="端口"
             android:inputType="number"
+            android:enabled="false"
             android:textCursorDrawable="@drawable/edit_cursor_bg" />
 
         <LinearLayout
+            android:id="@+id/llSaveAndShow"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
@@ -106,6 +120,7 @@
         android:layout_marginTop="8dp"
         android:background="@color/color_white"
         android:elevation="2dp"
+        android:visibility="gone"
         android:orientation="vertical"
         android:paddingLeft="@dimen/_16"
         android:paddingRight="@dimen/_16">

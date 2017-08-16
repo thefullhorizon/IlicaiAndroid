@@ -1,18 +1,32 @@
 package com.ailicai.app.setting;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
 import com.ailicai.app.common.reqaction.IwjwHttp;
+import com.ailicai.app.common.reqaction.IwjwRespListener;
+import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.MyPreference;
+import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
+import com.ailicai.app.model.request.HtmlUrlRequest;
+import com.ailicai.app.model.response.Iwjwh5UrlResponse;
+import com.ailicai.app.ui.asset.FinanceUpgradePresenter;
 import com.ailicai.app.ui.base.BaseBindFragment;
+import com.ailicai.app.ui.html5.SupportUrl;
+import com.ailicai.app.ui.index.IndexActivity;
+import com.ailicai.app.ui.login.LoginManager;
 import com.huoqiu.framework.rest.Configuration;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -24,10 +38,14 @@ public class IpChangeFragment extends BaseBindFragment implements CompoundButton
     RadioButton box2;
     @Bind(R.id.check_box3)
     RadioButton box3;
+    @Bind(R.id.check_box4)
+    RadioButton box4;
     @Bind(R.id.ip_edit)
     EditText ipEdit;
     @Bind(R.id.port_edit)
     EditText portEdit;
+    @Bind(R.id.llSaveAndShow)
+    LinearLayout llSaveAndShow;
 
     @Bind(R.id.h5ip_edit)
     EditText h5ipEdit;
@@ -49,10 +67,35 @@ public class IpChangeFragment extends BaseBindFragment implements CompoundButton
 
     @OnClick(R.id.save)
     public void saveCurrentServer() {
-        saveConfig();
-        IwjwHttp.updateRootUrlByConfig();
-        showCurrentServer();
-        remove();
+        changeConfigInMemory();
+        HtmlUrlRequest request = new HtmlUrlRequest();
+        ServiceSender.exec(this, request, new IwjwRespListener<Iwjwh5UrlResponse>() {
+
+            @Override
+            public void onStart() {
+                super.onStart();
+                showLoadTranstView();
+                ToastUtil.showInCenterLong(getContext(),"保存中....保存成功后将自动退出登录并退出应用");
+            }
+
+            @Override
+            public void onJsonSuccess(Iwjwh5UrlResponse jsonObject) {
+                SupportUrl.saveUrls(jsonObject);
+                changeConfigInPreference();
+                showCurrentServer();
+                remove();
+                //退出登录
+                LoginManager.loginOut(getActivity());
+                SystemUtil.exitApplication(getWRActivity());
+            }
+
+
+            @Override
+            public void onFailInfo(String errorInfo) {
+                super.onFailInfo(errorInfo);
+                ToastUtil.showInCenterLong(getContext(),"保存的IP和端口不通");
+            }
+        });
     }
 
     @Override
@@ -66,10 +109,13 @@ public class IpChangeFragment extends BaseBindFragment implements CompoundButton
         Configuration conf = Configuration.DEFAULT;
         ipEdit.setText(conf.hostname);
         portEdit.setText("" + conf.port);
-
+        if(conf.port == 0) {
+            portEdit.setVisibility(View.GONE);
+        }
         box1.setOnCheckedChangeListener(this);
         box2.setOnCheckedChangeListener(this);
         box3.setOnCheckedChangeListener(this);
+        box4.setOnCheckedChangeListener(this);
         h5ipEdit.setText(MyPreference.getInstance().read(CommonTag.CUSTOME_H5HOST, ""));
     }
 
@@ -80,31 +126,59 @@ public class IpChangeFragment extends BaseBindFragment implements CompoundButton
                 case R.id.check_box1:
                     box2.setChecked(false);
                     box3.setChecked(false);
+                    box4.setChecked(false);
+                    portEdit.setVisibility(View.VISIBLE);
                     ipEdit.setText("192.168.1.44");
                     portEdit.setText("" + 1319);
+                    ipEdit.setEnabled(false);
+                    portEdit.setEnabled(false);
                     break;
                 case R.id.check_box2:
                     box1.setChecked(false);
                     box3.setChecked(false);
+                    box4.setChecked(false);
+                    portEdit.setVisibility(View.VISIBLE);
                     ipEdit.setText("poros.iwlicaibeta.com");
-                    portEdit.setText("" + 8638);
+                    portEdit.setText("" + 80);
+                    ipEdit.setEnabled(false);
+                    portEdit.setEnabled(false);
                     break;
                 case R.id.check_box3:
                     box1.setChecked(false);
                     box2.setChecked(false);
-                    ipEdit.setText("poros.iwlicai.com");
-                    portEdit.setText("" + 443);
+                    box4.setChecked(false);
+                    portEdit.setVisibility(View.GONE);
+                    ipEdit.setText("fin.iwlicai.com");
+                    portEdit.setText("");
+                    ipEdit.setEnabled(false);
+                    portEdit.setEnabled(false);
+                    break;
+                case R.id.check_box4:
+                    box1.setChecked(false);
+                    box2.setChecked(false);
+                    box3.setChecked(false);
+                    portEdit.setVisibility(View.VISIBLE);
+                    ipEdit.setText("192.168.1.44");
+                    portEdit.setText("" + 1319);
+                    ipEdit.setEnabled(true);
+                    portEdit.setEnabled(true);
                     break;
             }
         }
     }
 
-    private void saveConfig() {
+    private void changeConfigInMemory() {
         Configuration.DEFAULT.hostname = ipEdit.getText().toString();
-        Configuration.DEFAULT.port = Integer.parseInt(portEdit.getText().toString());
+        if(TextUtils.isEmpty(portEdit.getText().toString().trim())) {
+            Configuration.DEFAULT.port = 0;
+        } else {
+            Configuration.DEFAULT.port = Integer.parseInt(portEdit.getText().toString());
+        }
+    }
+
+    private void changeConfigInPreference() {
         MyPreference.getInstance().write(CommonTag.SERVER_PORT, Configuration.DEFAULT.port);
         MyPreference.getInstance().write(CommonTag.SERVER_IP, Configuration.DEFAULT.hostname);
-
     }
 
     @OnClick(R.id.h5ip_save_btn)
