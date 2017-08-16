@@ -33,6 +33,7 @@ public class RegularPayBaseInfoResponse extends Response {
     private int loanTerm; // 房产宝投资期限
     private int interestVoucherNum = 0;//加息券数量
     private int bankLimit;//充值限额
+    private String bankLimitStr="";//银行限额文案
     private int voucherId; //卡券ID
     private int addRateDay; //可加息天数
     private double addRate; //加息比例 小数表示，比如1.5表示1.5%
@@ -50,6 +51,8 @@ public class RegularPayBaseInfoResponse extends Response {
     private int timeDiff = 0; //转让日-起息日
     private String creditId; //债券转让ID
     /****** 购买转让相关字段 5.4新增  edit by zhouxuan *********************/
+
+
 
 
     public String getProductId() {
@@ -330,5 +333,13 @@ public class RegularPayBaseInfoResponse extends Response {
 
     public void setProtocolList(List<Protocol> protocolList) {
         this.protocolList = protocolList;
+    }
+
+    public String getBankLimitStr() {
+        return bankLimitStr;
+    }
+
+    public void setBankLimitStr(String bankLimitStr) {
+        this.bankLimitStr = bankLimitStr;
     }
 }

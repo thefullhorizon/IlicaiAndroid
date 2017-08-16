@@ -24,7 +24,7 @@ public class ReserveDetailResponse extends Response {
     private String protocolUrl;//http://m.iwjwtest.com/licai/protocal/deduct
     private Product product; //产品详情
     private int bankLimit;// 银行卡支付限额
-
+    private String bankLimitStr="";//银行限额文案
     private int productNum90; //90天以内可预约产品数量
     private int maxDays; //房产宝最大投资天数,大于90天时展示
     private List<ProductRate> rateList; //可预约房产宝利率列表
@@ -209,4 +209,11 @@ public class ReserveDetailResponse extends Response {
         }
     }
 
+    public String getBankLimitStr() {
+        return bankLimitStr;
+    }
+
+    public void setBankLimitStr(String bankLimitStr) {
+        this.bankLimitStr = bankLimitStr;
+    }
 }

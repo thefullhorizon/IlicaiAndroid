@@ -12,20 +12,25 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MathUtil;
+import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.eventbus.ReservePayEvent;
 import com.ailicai.app.model.bean.Product;
 import com.ailicai.app.model.bean.Protocol;
-import com.ailicai.app.model.response.reserve.AdvanceDepositAndApplyAppResponse;
 import com.ailicai.app.model.response.ApplyReserveAppResponse;
 import com.ailicai.app.model.response.ReserveDetailResponse;
+import com.ailicai.app.model.response.reserve.AdvanceDepositAndApplyAppResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.buy.IwPwdPayResultListener;
 import com.ailicai.app.ui.buy.ReservePay;
+import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.view.ProtocolHelper;
 import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
@@ -36,6 +41,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnCheckedChanged;
@@ -72,6 +78,11 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
     @Bind(R.id.btConfirm)
     Button btConfirm;
 
+    @Bind(R.id.rl_max_value)
+    RelativeLayout mMaxValueLayout;
+    @Bind(R.id.tv_max_value_per_time)
+    TextView mMaxValue;
+
     private ReserveDetailResponse reserveResponse;
     private Product product;
     private int term;
@@ -80,6 +91,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
 
     private boolean isEnough;
     private double rechargeAmountSum;
+    private boolean doesMeetBankLimit;
 
     @Override
     public int getLayout() {
@@ -133,6 +145,16 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
     }
 
 
+    @OnClick(R.id.tv_max_value_introduction_list)
+    public void maxValueIntroductionList() {
+
+        Map<String, String> dataMap = ObjectUtil.newHashMap();
+        dataMap.put(WebViewActivity.TITLE, getResources().getString(R.string.support_cards));
+        dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+        dataMap.put(WebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getSupportcardsByAllUrl() + "?channel=2");
+        MyIntent.startActivity(this, WebViewActivity.class, dataMap);
+    }
+
     @OnCheckedChanged(R.id.cbAgreement)
     public void onCbClick() {
         checkReserveBuy();
@@ -154,7 +176,13 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
     public void onConfirmClick() {
         if (CheckDoubleClick.isFastDoubleClick()) return;
         if (reserveResponse.getBankLimit() != 0 && rechargeAmountSum > reserveResponse.getBankLimit()) {
-            showMyToast("单笔最多可转入" + reserveResponse.getBankLimit() + "元");
+//            showMyToast("单笔最多可转入" + reserveResponse.getBankLimit() + "元");
+            DialogBuilder.showSimpleDialogCenter( "单笔最多可充值" + reserveResponse.getBankLimit() + "元", ReserveCashierDeskActivity.this, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
             return;
         }
         final Product product = reserveResponse.getProduct();
@@ -249,12 +277,20 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
                 isEnough = false;
                 BigDecimal offset = (new BigDecimal(amount)).subtract(new BigDecimal(reserveResponse.getAvailableBalance()));
                 rechargeAmountSum = offset.doubleValue();
-                btConfirm.setText("账户可用余额不足，需充值" + MathUtil.saveTwoDecimal(rechargeAmountSum) + "元");
+                if((offset.compareTo(new BigDecimal(reserveResponse.getBankLimit())) == 1)){
+                    mMaxValueLayout.setVisibility(View.VISIBLE);
+                    mMaxValue.setText(reserveResponse.getBankLimitStr());
+                    doesMeetBankLimit = false;
+                }else{
+                    mMaxValueLayout.setVisibility(View.GONE);
+                    doesMeetBankLimit = true;
+                }
+                btConfirm.setText("账户可用余额不足，需支付" + MathUtil.saveTwoDecimal(rechargeAmountSum) + "元");
             }
             tvInputErrorHint.setVisibility(View.GONE);
             tvBalance.setVisibility(View.VISIBLE);
             tvInputErrorHint.setText("");
-            if (cbAgreement.isChecked()) {
+            if (doesMeetBankLimit && cbAgreement.isChecked()) {
                 btConfirm.setEnabled(true);
             }
         }

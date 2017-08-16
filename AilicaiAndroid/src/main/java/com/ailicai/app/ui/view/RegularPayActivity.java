@@ -50,9 +50,11 @@ import com.ailicai.app.model.response.BuyDingqibaoResponse;
 import com.ailicai.app.model.response.GetAppropriateCouponResponse;
 import com.ailicai.app.model.response.RegularPayBaseInfoResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.buy.BuyRegularPay;
 import com.ailicai.app.ui.buy.IwPwdPayResultListener;
 import com.ailicai.app.ui.buy.RegularReChangePay;
+import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.huoqiu.framework.util.ManyiUtils;
@@ -63,6 +65,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -115,6 +118,11 @@ public class RegularPayActivity extends BaseBindActivity {
     ScrollView svRegular;
     @Bind(R.id.tv_all_buy)
     TextView tvAllBuy;
+
+    @Bind(R.id.rl_max_value)
+    RelativeLayout mMaxValueLayout;
+    @Bind(R.id.tv_max_value_per_time)
+    TextView mMaxValue;
 
     private RegularPayBaseInfoResponse infoResponse;
     //卡券利率
@@ -212,6 +220,16 @@ public class RegularPayActivity extends BaseBindActivity {
         LogUtil.e("lyn", "clearEditText");
     }
 
+    @OnClick(R.id.tv_max_value_introduction_list)
+    public void maxValueIntroductionList() {
+
+        Map<String, String> dataMap = ObjectUtil.newHashMap();
+        dataMap.put(WebViewActivity.TITLE, getResources().getString(R.string.support_cards));
+        dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+        dataMap.put(WebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getSupportcardsByAllUrl() + "?channel=2");
+        MyIntent.startActivity(this, WebViewActivity.class, dataMap);
+    }
+
     /**
      * 点击全部购买
      */
@@ -294,7 +312,6 @@ public class RegularPayActivity extends BaseBindActivity {
                 //剩余额度小于起购金额
                 if (mAgreementCheckbox.isChecked()) {
                     mConfirmBtn.setEnabled(true);
-                    getBestVoucher(input);
                 } else {
                     mConfirmBtn.setEnabled(false);
                 }
@@ -302,11 +319,11 @@ public class RegularPayActivity extends BaseBindActivity {
                 //剩余额度大于等于起购金额
                 if (checkInputMoney() && mAgreementCheckbox.isChecked()) {
                     mConfirmBtn.setEnabled(true);
-                    getBestVoucher(input);
                 } else {
                     mConfirmBtn.setEnabled(false);
                 }
             }
+            getBestVoucher(input);
         } else {
             // 剩余额度为0
             checkInputMoney();
@@ -792,8 +809,15 @@ public class RegularPayActivity extends BaseBindActivity {
             } else if (isLast && Double.parseDouble(money) > infoResponse.getAvailableBalance()) {
                 //最后一笔,且钱包余额不足
                 BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(money) ,new BigDecimal(infoResponse.getAvailableBalance()));
-                mConfirmBtn.setText("账户可用余额不足，需充值" + offset + "元");
-                return true;
+                mConfirmBtn.setText("账户可用余额不足，需支付" + offset + "元");
+                if((offset.compareTo(new BigDecimal(infoResponse.getBankLimit())) == 1)){
+                    mMaxValueLayout.setVisibility(View.VISIBLE);
+                    mMaxValue.setText(infoResponse.getBankLimitStr());
+                    return false;
+                }else{
+                    mMaxValueLayout.setVisibility(View.GONE);
+                    return true;
+                }
             } else if (isLast && Double.parseDouble(money) <= infoResponse.getAvailableBalance()) {
                 //最后一笔,且钱包余额充足
                 return true;
@@ -819,8 +843,16 @@ public class RegularPayActivity extends BaseBindActivity {
             } else if (Double.parseDouble(money) > infoResponse.getAvailableBalance()) {
                 //since 5.3变更去掉
                 BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(money) ,new BigDecimal(infoResponse.getAvailableBalance()));
-                mConfirmBtn.setText("账户可用余额不足，需充值" + offset + "元");
-                return true;
+                mConfirmBtn.setText("账户可用余额不足，需支付" + offset + "元");
+                if((offset.compareTo(new BigDecimal(infoResponse.getBankLimit())) == 1)){
+                    mMaxValueLayout.setVisibility(View.VISIBLE);
+                    mMaxValue.setText(infoResponse.getBankLimitStr());
+                    return false;
+                }else{
+                    mMaxValueLayout.setVisibility(View.GONE);
+                    return true;
+                }
+
                 /**
                  } else if (infoResponse.getBuyLimit() > 0 && Double.parseDouble(money) > infoResponse.getBuyLimit()) {
                  mErrorTips.setText(infoResponse.getBuyLimitStr());
@@ -900,9 +932,6 @@ public class RegularPayActivity extends BaseBindActivity {
         }else if (jsonObject.getBiddableAmount() > 0 && jsonObject.getBiddableAmount() <= jsonObject.getMinAmount()) {
             //剩余额度小于起购金额,直接填入剩余额度且不可修改
             initialInputValue = String.valueOf(jsonObject.getBiddableAmount());
-//            if(initialInputValue.contains(".")){
-//                initialInputValue = initialInputValue.substring(0,initialInputValue.indexOf("."));
-//            }
             mInputPriceEdit.setText(MathUtil.subZeroAndDot(initialInputValue));
             mInputPriceEdit.setEnabled(false);
             mInputPriceEdit.setTextColor(Color.parseColor("#9b9b9b"));

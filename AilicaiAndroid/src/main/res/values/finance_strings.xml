@@ -62,4 +62,8 @@
     <string name="transfer_pay_amount_text">请输入%1$s的整数倍</string>
     <string name="tiyanbao_titile">体验宝</string>
     <string name="purchase_money_format">%1$d笔共%2$s元</string>
+
+    <string name="up_limit_per_day">银行限额列表</string>
+
+
 </resources>
