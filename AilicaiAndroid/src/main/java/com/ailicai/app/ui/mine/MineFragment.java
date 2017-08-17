@@ -510,6 +510,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
     }
 
+    @OnClick(R.id.rl_auto_invest)
+    void autoInvest() {
+        //TODO nanshan 跳转到自动投标
+//        MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
+    }
+
     /**
      * 点击版本更新时，强制更新退出客户端
      *
