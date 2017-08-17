@@ -84,6 +84,8 @@ public class VoucherListAdapterNew extends BaseAdapter {
                 viewHolder.mVoucherType.setText("返金券");
                 break;
         }
+
+
         switch (voucher.getStatus()) {
             case 1:
                 viewHolder.mItemLayout.setClickable(true);
@@ -112,35 +114,36 @@ public class VoucherListAdapterNew extends BaseAdapter {
                 }else{
                     viewHolder.mIndicatorBest.setChecked(false);
                 }
-
+                viewHolder.mVoucherLimit.setTextColor(Color.parseColor("#616161"));
                 break;
             default:
                 viewHolder.mItemLayout.setClickable(false);
                 viewHolder.mItemUp.setBackgroundResource(R.drawable.bg_voucher_up_unselected);
                 viewHolder.mBgVoucherGear.setBackgroundColor(Color.parseColor("#dddddd"));
                 viewHolder.mIndicatorBest.setVisibility(View.GONE);
+                viewHolder.mVoucherLimit.setTextColor(Color.parseColor("#d0011b"));
                 break;
         }
         viewHolder.mVoucherName.setText(voucher.getVoucherName());
 
         //middle
         viewHolder.mVoucherDescription.setText(voucher.getBottomDesc());
-        String limit = "";
-        if (!TextUtils.isEmpty(voucher.getSimpleDesc())){
-            limit += voucher.getSimpleDesc();
-        }
-        if (!TextUtils.isEmpty(voucher.getMinAmountCentString())){
-            limit += voucher.getMinAmountCentString();
-        }
-        if (!TextUtils.isEmpty(voucher.getUseRange())){
-            limit += voucher.getUseRange();
-        }
-        viewHolder.mVoucherLimit.setText(limit);
+
+        SpannableUtil spannableUtil = new SpannableUtil(context);
+        SpannableStringBuilder builder ;
+
+        String simpleDesc = !TextUtils.isEmpty(voucher.getSimpleDesc()) ? "" : voucher.getSimpleDesc();
+        String MinAmountCentString = !TextUtils.isEmpty(voucher.getMinAmountCentString()) ? "" : voucher.getMinAmountCentString();
+        String useRange = !TextUtils.isEmpty(voucher.getUseRange()) ? "" : voucher.getUseRange();
+        builder = spannableUtil.getSpannableString(simpleDesc,MinAmountCentString,useRange,
+                voucher.isSimpleDescRed()? R.style.text_12_757575 : R.style.text_12_d0011b,
+                voucher.isMinAmountCentStringRed()? R.style.text_12_757575 : R.style.text_12_d0011b,
+                voucher.isUseRangeRed()? R.style.text_12_757575 : R.style.text_12_d0011b);
+        viewHolder.mVoucherLimit.setText(builder);
 
         //bottom
-        SpannableUtil spannableUtil = new SpannableUtil(context);
+
         String leftDay = voucher.getLeftValidDayString();
-        SpannableStringBuilder builder ;
         if (!TextUtils.isEmpty(leftDay)){
             builder = spannableUtil.getSpannableString("有效期: "+ voucher.getUserTimeFrom()+" 至 "+voucher.getUserTimeTo()," （仅剩"+voucher.getLeftValidDays()+"天)", R.style.text_12_757575, R.style.text_12_d0011b);
         }else{

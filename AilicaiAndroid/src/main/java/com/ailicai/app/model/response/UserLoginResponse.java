@@ -60,6 +60,9 @@ public class UserLoginResponse extends Response {
 
     private String activityName;//大礼包数据
 
+    private int isTestUser; //是否为新浪渠道内测用户 0-否 1-是
+    private String isAutoBid; // "Y":表示自动投标, "N":表示未设置自动投标
+
     public int getGender() {
         return gender;
     }
@@ -315,5 +318,21 @@ public class UserLoginResponse extends Response {
 
     public void setActivityName(String activityName) {
         this.activityName = activityName;
+    }
+
+    public int getIsTestUser() {
+        return isTestUser;
+    }
+
+    public void setIsTestUser(int isTestUser) {
+        this.isTestUser = isTestUser;
+    }
+
+    public String getIsAutoBid() {
+        return isAutoBid;
+    }
+
+    public void setIsAutoBid(String isAutoBid) {
+        this.isAutoBid = isAutoBid;
     }
 }

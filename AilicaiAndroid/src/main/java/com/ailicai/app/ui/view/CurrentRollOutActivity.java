@@ -1,5 +1,6 @@
 package com.ailicai.app.ui.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,12 +26,15 @@ import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.model.bean.Protocol;
 import com.ailicai.app.model.request.AilicaiNoticeListOnRollRequest;
 import com.ailicai.app.model.request.CurrentRollOutBaseInfoRequest;
+import com.ailicai.app.model.request.UserTipsWhenTransactionOutRequest;
 import com.ailicai.app.model.response.AilicaiNoticeListOnRollReponse;
 import com.ailicai.app.model.response.CurrentRollOutBaseInfoResponse;
 import com.ailicai.app.model.response.SaleHuoqibaoResponse;
+import com.ailicai.app.model.response.UserTipsWhenTransactionOutResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.buy.IwPwdPayResultListener;
 import com.ailicai.app.ui.buy.OutCurrentPay;
+import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.RollHotTopicView;
 import com.huoqiu.framework.util.ManyiUtils;
@@ -90,6 +94,9 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
     private CurrentRollOutBaseInfoResponse infoResponse;
     private ProtocolHelper protocolHelper;
     private int toType;
+    private static final String ACCOUNT = "1";//存管账户（这里的1，2由服务器定义）
+    private static final String SECURITYCARD = "2";//安全卡
+    private String mTransactionOutType = "1";
 
     @Override
     public void onResume() {
@@ -233,42 +240,36 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         if (!checkInputMoneyConfirm()) {
             return;
         }
-        OutCurrentPay.CurrentPayInfo currentPayInfo = new OutCurrentPay.CurrentPayInfo();
-        currentPayInfo.setAmount(Double.valueOf(mInputPriceEdit.getText().toString()));
-        //收银台类型：101-活期宝；106-用户账户
-        currentPayInfo.setAccountType("101");
-        //支付到的账户类型 1-安全卡；2-账户余额 说明：活期宝收银台需指定
-        if (accountCheckBox.isChecked()) {
-            currentPayInfo.setPayMethod("2");
-            toType = 2;
-        } else if (bankCheckBox.isChecked()) {
-            currentPayInfo.setPayMethod("1");
-            toType = 1;
-        }
 
-        OutCurrentPay outCurrentPay = new OutCurrentPay(this, currentPayInfo, new IwPwdPayResultListener<SaleHuoqibaoResponse>() {
+        UserTipsWhenTransactionOutRequest request = new UserTipsWhenTransactionOutRequest();
+        request.setAccountType("101");
+        request.setPayMethod(mTransactionOutType);
+        ServiceSender.exec(this, request, new IwjwRespListener<UserTipsWhenTransactionOutResponse>(this) {
+
             @Override
-            public void onPayComplete(SaleHuoqibaoResponse object) {
-                startActivity(object);
+            public void onStart() {
+                super.onStart();
             }
 
             @Override
-            public void onPayStateDelay(String msgInfo, SaleHuoqibaoResponse object) {
-                startActivity(object);
+            public void onJsonSuccess(UserTipsWhenTransactionOutResponse jsonObject) {
+                showContentView();
+                if (toType == 1){//安全卡
+                    showTransactionOutUserInfo(jsonObject);
+                }else if(toType == 2){//账户余额
+                    if (!jsonObject.isBeforeFifteen()){
+                        showTransactionOutUserInfo(jsonObject);
+                    }
+                }
             }
 
             @Override
-            public void onPayFailInfo(String msgInfo, String errorCode, SaleHuoqibaoResponse object) {
-                startActivity(object);
-            }
-
-            @Override
-            public void onPayPwdTryAgain() {
-                onConfirmClick();
+            public void onFailInfo(String errorInfo) {
+                showContentView();
+                ToastUtil.show(errorInfo);
             }
         });
-        outCurrentPay.pay();
-        EventLog.upEventLog("201610281", "sub", "out_syt");
+
     }
 
     public void startActivity(SaleHuoqibaoResponse object) {
@@ -502,4 +503,62 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         super.onPause();
         SystemUtil.hideKeyboard(mInputPriceEdit);
     }
+
+    private void showTransactionOutUserInfo(UserTipsWhenTransactionOutResponse jsonObject){
+
+        DialogBuilder.showSimpleDialog(CurrentRollOutActivity.this,"",jsonObject.getMessageLine1()+"\\n"+jsonObject.getMessageLine2(),
+                "取消",null,
+                "确认转出",new DialogInterface.OnClickListener(){
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        toTransation();
+                    }
+                });
+
+    }
+
+    private void toTransation(){
+        OutCurrentPay.CurrentPayInfo currentPayInfo = new OutCurrentPay.CurrentPayInfo();
+        currentPayInfo.setAmount(Double.valueOf(mInputPriceEdit.getText().toString()));
+        //收银台类型：101-活期宝；106-用户账户
+        currentPayInfo.setAccountType("101");
+        //支付到的账户类型 1-安全卡；2-账户余额 说明：活期宝收银台需指定
+        if (accountCheckBox.isChecked()) {
+            currentPayInfo.setPayMethod("2");
+            toType = 2;
+            mTransactionOutType = SECURITYCARD;
+        } else if (bankCheckBox.isChecked()) {
+            currentPayInfo.setPayMethod("1");
+            toType = 1;
+            mTransactionOutType = ACCOUNT;
+        }
+
+        OutCurrentPay outCurrentPay = new OutCurrentPay(this, currentPayInfo, new IwPwdPayResultListener<SaleHuoqibaoResponse>() {
+            @Override
+            public void onPayComplete(SaleHuoqibaoResponse object) {
+                startActivity(object);
+            }
+
+            @Override
+            public void onPayStateDelay(String msgInfo, SaleHuoqibaoResponse object) {
+                startActivity(object);
+            }
+
+            @Override
+            public void onPayFailInfo(String msgInfo, String errorCode, SaleHuoqibaoResponse object) {
+                startActivity(object);
+            }
+
+            @Override
+            public void onPayPwdTryAgain() {
+                onConfirmClick();
+            }
+        });
+        outCurrentPay.pay();
+        EventLog.upEventLog("201610281", "sub", "out_syt");
+
+    }
+
+
 }

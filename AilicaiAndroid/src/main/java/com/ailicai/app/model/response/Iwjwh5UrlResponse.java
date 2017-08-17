@@ -34,6 +34,8 @@ public class Iwjwh5UrlResponse extends Response {
     private String openAccountUrl;// 开户
     private String bindNewOpenAccountUrl; // 重新绑定安全卡
 
+    private String safeBankSupport = "";//安全卡限额列表地址
+
     public String getHelpCenterUrl() {
         return helpCenterUrl;
     }
@@ -216,5 +218,13 @@ public class Iwjwh5UrlResponse extends Response {
 
     public void setBindNewOpenAccountUrl(String bindNewOpenAccountUrl) {
         this.bindNewOpenAccountUrl = bindNewOpenAccountUrl;
+    }
+
+    public String getSafeBankSupport() {
+        return safeBankSupport;
+    }
+
+    public void setSafeBankSupport(String safeBankSupport) {
+        this.safeBankSupport = safeBankSupport;
     }
 }

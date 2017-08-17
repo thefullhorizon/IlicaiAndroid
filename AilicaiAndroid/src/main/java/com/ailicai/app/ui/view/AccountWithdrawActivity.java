@@ -1,5 +1,6 @@
 package com.ailicai.app.ui.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ailicai.app.R;
+import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
@@ -20,12 +22,15 @@ import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.model.request.AilicaiNoticeListOnRollRequest;
 import com.ailicai.app.model.request.CurrentRollOutBaseInfoRequest;
+import com.ailicai.app.model.request.UserTipsWhenTransactionOutRequest;
 import com.ailicai.app.model.response.AilicaiNoticeListOnRollReponse;
 import com.ailicai.app.model.response.CurrentRollOutBaseInfoResponse;
 import com.ailicai.app.model.response.SaleHuoqibaoResponse;
+import com.ailicai.app.model.response.UserTipsWhenTransactionOutResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.buy.IwPwdPayResultListener;
 import com.ailicai.app.ui.buy.OutCurrentPay;
+import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.RollHotTopicView;
 import com.huoqiu.framework.util.ManyiUtils;
@@ -202,32 +207,38 @@ public class AccountWithdrawActivity extends BaseBindActivity {
         if (!checkInputMoneyConfirm()) {
             return;
         }
-        OutCurrentPay.CurrentPayInfo currentPayInfo = new OutCurrentPay.CurrentPayInfo();
-        currentPayInfo.setAmount(Double.valueOf(mInputPriceEdit.getText().toString()));
-        currentPayInfo.setAccountType(CASHIERDESKTYPE);
-        OutCurrentPay outCurrentPay = new OutCurrentPay(this, currentPayInfo, new IwPwdPayResultListener<SaleHuoqibaoResponse>() {
+
+        UserTipsWhenTransactionOutRequest request = new UserTipsWhenTransactionOutRequest();
+        request.setAccountType("106");
+        ServiceSender.exec(this, request, new IwjwRespListener<UserTipsWhenTransactionOutResponse>(this) {
+
             @Override
-            public void onPayComplete(SaleHuoqibaoResponse object) {
-                startActivity(object);
+            public void onStart() {
+                super.onStart();
             }
 
             @Override
-            public void onPayStateDelay(String msgInfo, SaleHuoqibaoResponse object) {
-                startActivity(object);
+            public void onJsonSuccess(UserTipsWhenTransactionOutResponse jsonObject) {
+                showContentView();
+
+                DialogBuilder.showSimpleDialog(AccountWithdrawActivity.this,"",jsonObject.getMessageLine1()+"\\n"+jsonObject.getMessageLine2(),
+                        "取消",null,
+                        "确认转出",new DialogInterface.OnClickListener(){
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                toTransaction();
+                            }
+                        });
             }
 
             @Override
-            public void onPayFailInfo(String msgInfo, String errorCode, SaleHuoqibaoResponse object) {
-                startActivity(object);
-            }
-
-            @Override
-            public void onPayPwdTryAgain() {
-                onConfirmClick();
+            public void onFailInfo(String errorInfo) {
+                showContentView();
+                ToastUtil.show(errorInfo);
             }
         });
-        outCurrentPay.pay();
-//        EventLog.upEventLog("201610281", "sub", "out_syt");
+
     }
 
     public void startActivity(SaleHuoqibaoResponse object) {
@@ -365,5 +376,34 @@ public class AccountWithdrawActivity extends BaseBindActivity {
     protected void onPause() {
         super.onPause();
         SystemUtil.hideKeyboard(mInputPriceEdit);
+    }
+
+    private void toTransaction(){
+        OutCurrentPay.CurrentPayInfo currentPayInfo = new OutCurrentPay.CurrentPayInfo();
+        currentPayInfo.setAmount(Double.valueOf(mInputPriceEdit.getText().toString()));
+        currentPayInfo.setAccountType(CASHIERDESKTYPE);
+        OutCurrentPay outCurrentPay = new OutCurrentPay(this, currentPayInfo, new IwPwdPayResultListener<SaleHuoqibaoResponse>() {
+            @Override
+            public void onPayComplete(SaleHuoqibaoResponse object) {
+                startActivity(object);
+            }
+
+            @Override
+            public void onPayStateDelay(String msgInfo, SaleHuoqibaoResponse object) {
+                startActivity(object);
+            }
+
+            @Override
+            public void onPayFailInfo(String msgInfo, String errorCode, SaleHuoqibaoResponse object) {
+                startActivity(object);
+            }
+
+            @Override
+            public void onPayPwdTryAgain() {
+                onConfirmClick();
+            }
+        });
+        outCurrentPay.pay();
+        EventLog.upEventLog("201610281", "sub", "out_syt");
     }
 }

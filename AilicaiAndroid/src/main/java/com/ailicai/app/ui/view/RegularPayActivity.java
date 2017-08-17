@@ -35,7 +35,6 @@ import com.ailicai.app.common.utils.HandlerUtil;
 import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MathUtil;
 import com.ailicai.app.common.utils.MyIntent;
-import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.SpannableUtil;
 import com.ailicai.app.common.utils.SystemUtil;
@@ -58,7 +57,6 @@ import com.ailicai.app.ui.buy.RegularReChangePay;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
-import com.ailicai.app.widget.ToggleButton;
 import com.huoqiu.framework.util.ManyiUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -126,9 +124,6 @@ public class RegularPayActivity extends BaseBindActivity {
     @Bind(R.id.tv_max_value_per_time)
     TextView mMaxValue;
 
-    @Bind(R.id.tb_control_auto_invest)
-    ToggleButton mTbControlAutoInvest;
-
     private RegularPayBaseInfoResponse infoResponse;
     //卡券利率
     private double voucherRate;
@@ -189,25 +184,6 @@ public class RegularPayActivity extends BaseBindActivity {
         tvProfitText.setText(builder);
         initProtocol();
 
-        //Automatically invest
-        if(MyPreference.getInstance().read(MP_AUTO_INVEST,false)){
-            mTbControlAutoInvest.toggleOn();
-        }else{
-            mTbControlAutoInvest.toggleOff();
-        }
-        mTbControlAutoInvest.setOnToggleChanged(new ToggleButton.OnToggleChanged() {
-            @Override
-            public void onToggle(boolean formClick, boolean on) {
-                if(on){
-                    MyPreference.getInstance().write(MP_AUTO_INVEST,true);
-                    //TODO nanshan 跳转到自动投标页面
-
-                }else{
-
-                    MyPreference.getInstance().write(MP_AUTO_INVEST,false);
-                }
-            }
-        });
     }
 
     private void getDataFromIntent() {
