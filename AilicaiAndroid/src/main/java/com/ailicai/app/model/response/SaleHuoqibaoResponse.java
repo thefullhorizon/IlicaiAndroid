@@ -16,7 +16,7 @@ public class SaleHuoqibaoResponse extends Response {
 
     private int remainingCnt=-1;
 
-    private boolean beforeFifteen; //当前时间是否是15点前
+    private int beforeFifteen; //当前时间是否是15点前
 
     public int getRemainingCnt() {
         return remainingCnt;
@@ -66,11 +66,11 @@ public class SaleHuoqibaoResponse extends Response {
         this.tips = tips;
     }
 
-    public boolean isBeforeFifteen() {
+    public int getBeforeFifteen() {
         return beforeFifteen;
     }
 
-    public void setBeforeFifteen(boolean beforeFifteen) {
+    public void setBeforeFifteen(int beforeFifteen) {
         this.beforeFifteen = beforeFifteen;
     }
 

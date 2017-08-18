@@ -257,7 +257,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
                 if (toType == 1){//安全卡
                     showTransactionOutUserInfo(jsonObject);
                 }else if(toType == 2){//账户余额
-                    if (!jsonObject.isBeforeFifteen()){
+                    if (jsonObject.getBeforeFifteen() == 0){
                         showTransactionOutUserInfo(jsonObject);
                     }
                 }
