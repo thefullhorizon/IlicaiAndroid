@@ -159,6 +159,7 @@ def appendQuotes(tag) {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':AilicaiFramework')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.jungly:gridPasswordView:0.3'

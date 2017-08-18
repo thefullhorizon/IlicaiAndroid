@@ -6,7 +6,7 @@ import android.os.Bundle;
  * Created by jeme on 2017/7/10.
  */
 
-public abstract class BaseMvpActivity<V extends BaseView,T extends BasePresenter> extends BaseBindActivity{
+public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseBindActivity{
 
     protected T mPresenter;
     @Override
@@ -16,7 +16,7 @@ public abstract class BaseMvpActivity<V extends BaseView,T extends BasePresenter
         if(!(this instanceof BaseView)){
             throw new RuntimeException("activity must be BaseView");
         }else {
-            mPresenter.attach(this, (V) this);
+            mPresenter.attach(this, (BaseView)this);
         }
 
         super.onCreate(savedInstanceState);

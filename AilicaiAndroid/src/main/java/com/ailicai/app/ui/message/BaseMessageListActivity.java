@@ -31,7 +31,7 @@ import butterknife.Bind;
 /**
  * Created by duo.chen on 2015/8/7.
  */
-public class BaseMessageListActivity extends BaseMvpActivity<BaseMessageActivityPresenter.BaseMessageView,BaseMessageActivityPresenter>
+public class BaseMessageListActivity extends BaseMvpActivity<BaseMessageActivityPresenter>
         implements BaseMessageListAdapter.OndeleteListener, OnRefreshListener,BaseMessageActivityPresenter.BaseMessageView{
 
     public final static String MESSAGELISTTYPE = "messagelisttype";
