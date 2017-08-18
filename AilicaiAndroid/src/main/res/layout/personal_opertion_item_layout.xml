@@ -668,7 +668,7 @@
             <com.ailicai.app.widget.TextViewTF
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mine_us"
+                android:text="@string/auto_investmengt"
                 android:textColor="#616161"
                 android:visibility="invisible"
                 android:textSize="20sp" />

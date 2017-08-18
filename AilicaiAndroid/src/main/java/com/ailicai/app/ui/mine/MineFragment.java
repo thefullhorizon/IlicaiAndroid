@@ -37,6 +37,7 @@ import com.ailicai.app.model.request.AssetInfoNewRequest;
 import com.ailicai.app.model.response.AssetInfoNewResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.BaseBindFragment;
+import com.ailicai.app.ui.buy.AutomaticTenderActivity;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
 import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.LoginManager;
@@ -512,8 +513,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     @OnClick(R.id.rl_auto_invest)
     void autoInvest() {
-        //TODO nanshan 跳转到自动投标
-//        MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
+
+        if (!NoSetSafeCardHint.isOpenAccount()) {
+            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
+            startActivity(intent);
+        } else {
+            MyIntent.startActivity(getWRActivity(), AutomaticTenderActivity.class, null);
+        }
+
     }
 
     /**

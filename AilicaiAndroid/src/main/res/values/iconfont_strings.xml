@@ -223,9 +223,12 @@
     <string name="asset_record">&#xe9fb;</string>
     <string name="asset_subscribe">&#xea08;</string>
     <string name="mine_us">&#xea28;</string>
+    <string name="auto_investmengt">&#xea3b;</string>
 
 
     <!--收银台协议-->
     <string name="only_rightcheck">&#xea33;</string>
+
+
 
 </resources>
