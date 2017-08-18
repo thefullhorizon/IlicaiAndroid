@@ -132,13 +132,13 @@ public class VoucherListAdapterNew extends BaseAdapter {
         SpannableUtil spannableUtil = new SpannableUtil(context);
         SpannableStringBuilder builder ;
 
-        String simpleDesc = !TextUtils.isEmpty(voucher.getSimpleDesc()) ? "" : voucher.getSimpleDesc();
-        String MinAmountCentString = !TextUtils.isEmpty(voucher.getMinAmountCentString()) ? "" : voucher.getMinAmountCentString();
-        String useRange = !TextUtils.isEmpty(voucher.getUseRange()) ? "" : voucher.getUseRange();
+        String simpleDesc = TextUtils.isEmpty(voucher.getSimpleDesc()) ? "" : voucher.getSimpleDesc();
+        String MinAmountCentString = TextUtils.isEmpty(voucher.getMinAmountCentString()) ? "" : voucher.getMinAmountCentString();
+        String useRange = TextUtils.isEmpty(voucher.getUseRange()) ? "" : voucher.getUseRange();
         builder = spannableUtil.getSpannableString(simpleDesc,MinAmountCentString,useRange,
-                voucher.isSimpleDescRed()? R.style.text_12_757575 : R.style.text_12_d0011b,
-                voucher.isMinAmountCentStringRed()? R.style.text_12_757575 : R.style.text_12_d0011b,
-                voucher.isUseRangeRed()? R.style.text_12_757575 : R.style.text_12_d0011b);
+                voucher.getSimpleDescRed() == 1? R.style.text_12_d0011b : R.style.text_12_757575,
+                voucher.getMinAmountCentStringRed()== 1? R.style.text_12_d0011b : R.style.text_12_757575,
+                voucher.getUseRangeRed()== 1? R.style.text_12_d0011b : R.style.text_12_757575);
         viewHolder.mVoucherLimit.setText(builder);
 
         //bottom
