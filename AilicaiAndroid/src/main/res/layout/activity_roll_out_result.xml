@@ -32,9 +32,11 @@
         android:padding="16dp">
 
         <LinearLayout
+            android:id="@+id/success_ui_previous"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <com.ailicai.app.widget.TextViewTF
@@ -86,12 +88,124 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:id="@+id/success_ui_current"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/_24"
+            android:paddingLeft="@dimen/_32"
+            android:paddingRight="@dimen/_32"
+            android:paddingTop="@dimen/_24">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_regular_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_16"
+                    android:layout_toRightOf="@+id/tv_icon_regular_result"
+                    android:text="您的申购已提交"
+                    android:textStyle="bold"
+                    android:textColor="#3aa78f"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_regular_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_regular_submit"
+                    android:layout_below="@+id/tv_regular_submit"
+                    android:layout_marginTop="8dp"
+                    android:text="刚刚"
+                    android:textColor="#757575"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_regular_process"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_regular_submit"
+                    android:layout_below="@+id/tv_regular_label"
+                    android:layout_marginTop="@dimen/_24"
+                    android:text="预计到账时间"
+                    android:textColor="#212121"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_regular_process_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_regular_submit"
+                    android:layout_below="@+id/tv_regular_process"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingExtra="4dp"
+                    android:text="预计在 08月16日 周三到账"
+                    android:textColor="#757575"
+                    android:textSize="13sp" />
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/tv_icon_regular_result"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:layout_alignTop="@+id/tv_regular_submit"
+                    android:layout_alignBottom="@+id/tv_regular_submit"
+                    android:text="@string/select_checkbox_pre"
+                    android:textColor="#3aa78f"
+                    android:textSize="20sp" />
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:id="@+id/tv_icon_regular_process"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:layout_alignTop="@+id/tv_regular_process"
+                    android:layout_alignBottom="@+id/tv_regular_process"
+                    android:text="@string/time_processing"
+                    android:textColor="#d2d5db"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tv_icon_regular_process"
+                    android:layout_below="@+id/tv_icon_regular_result"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="-6dp"
+                    android:layout_marginBottom="-6dp"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.0"
+                        android:background="#3aa78f"/>
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.0"
+                        android:background="#d2d5db"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
 
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="top"
         android:orientation="vertical">
@@ -128,7 +242,6 @@
                 android:textStyle="normal" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 

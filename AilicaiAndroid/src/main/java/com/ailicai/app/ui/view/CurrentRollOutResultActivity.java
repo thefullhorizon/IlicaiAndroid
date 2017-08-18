@@ -7,6 +7,8 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ailicai.app.R;
@@ -41,6 +43,13 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
     @Bind(R.id.roll_out_tips)
     TextView rollOutTips;
 
+    @Bind(R.id.success_ui_previous)
+    LinearLayout previousUIOfSuccess;
+    @Bind(R.id.success_ui_current)
+    RelativeLayout currentUIOfSuccess;
+    @Bind(R.id.tv_regular_process_label)
+    TextView timeOfReceiving;
+
     private SaleHuoqibaoResponse response;
 
     public static String KEY = "response";
@@ -64,25 +73,32 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
         postEventBus(bizStatus);
         switch (bizStatus) {
             case "S":
-                mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_succeed));
-                mImageIcon.setText(R.string.succeed);
-                mConfirmRepay.setVisibility(View.GONE);
-                mConfirmSuccess.setText("完成");
-                mMesgResultText.setText("转出成功");
-                if (toType == 1){
-                    mRollOutTipsMesg.setText(Html.fromHtml(getResources().getString(R.string.roll_out_tips_text, response.getAmount(), response.getGiveDate())));
-                }else{
-                    mRollOutTipsMesg.setText(Html.fromHtml(getResources().getString(R.string.account_result_tips_text, response.getAmount(), response.getGiveDate())));
+                if (toType == 1){//安全卡
+                    currentUIOfSuccess();
+                }else{//存管账户
+                    if (response.isBeforeFifteen()){
+                        previousUIOfSuccess.setVisibility(View.VISIBLE);
+                        mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_succeed));
+                        mImageIcon.setText(R.string.succeed);
+                        mConfirmRepay.setVisibility(View.GONE);
+                        mConfirmSuccess.setText("完成");
+                        mMesgResultText.setText("转出成功");
+                        mRollOutTipsMesg.setText(Html.fromHtml(getResources().getString(R.string.account_result_tips_text, response.getAmount()+"", response.getGiveDate())));
+                        if (!TextUtils.isEmpty(response.getTips())) {
+                            rollOutTips.setVisibility(View.VISIBLE);
+                            rollOutTips.setText(response.getTips());
+                        } else {
+                            rollOutTips.setVisibility(View.GONE);
+                        }
+                    }else{
+                        currentUIOfSuccess();
+                    }
                 }
-                if (!TextUtils.isEmpty(response.getTips())) {
-                    rollOutTips.setVisibility(View.VISIBLE);
-                    rollOutTips.setText(response.getTips());
-                } else {
-                    rollOutTips.setVisibility(View.GONE);
-                }
+
                 EventLog.upEventLog("201610282", "show", "out_success");
                 break;
             case "F":
+                previousUIOfSuccess.setVisibility(View.VISIBLE);
                 mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_failed));
                 mImageIcon.setText(R.string.failured);
                 mConfirmRepay.setText("继续转出");
@@ -93,6 +109,7 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
                 EventLog.upEventLog("201610282", "show", "out_fail");
                 break;
             case "P":
+                previousUIOfSuccess.setVisibility(View.VISIBLE);
                 mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_waiting));
                 mImageIcon.setText(R.string.waiting);
                 mConfirmRepay.setText("完成");
@@ -101,6 +118,13 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
                 mRollOutTipsMesg.setText("支付中，稍后请在交易记录中查询");
                 break;
         }
+    }
+
+    private void currentUIOfSuccess(){
+        currentUIOfSuccess.setVisibility(View.VISIBLE);
+        mConfirmRepay.setVisibility(View.GONE);
+        mConfirmSuccess.setText("完成");
+        timeOfReceiving.setText("预计在"+response.getGiveDate()+"到账");
     }
 
     /**

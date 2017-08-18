@@ -7,6 +7,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ailicai.app.R;
@@ -47,6 +48,13 @@ public class AccountTransactionResultActivity extends BaseBindActivity {
     @Bind(R.id.confirm_right)
     Button mConfirmRight;
 
+    @Bind(R.id.success_ui_previous)
+    LinearLayout previousUIOfSuccess;
+    @Bind(R.id.success_ui_current)
+    RelativeLayout currentUIOfSuccess;
+    @Bind(R.id.tv_regular_process_label)
+    TextView timeOfReceiving;
+
     public static String KEY = "response";
     private BuyHuoqibaoResponse topUpResponse;
     private SaleHuoqibaoResponse withdrawResponse;
@@ -78,24 +86,25 @@ public class AccountTransactionResultActivity extends BaseBindActivity {
         postEventBus(bizStatus);
         switch (bizStatus) {
             case "S":
-                mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_succeed));
-                mImageIcon.setText(R.string.succeed);
-
                 if (TOPUP.equals(transactionType)){
+                    previousUIOfSuccess.setVisibility(View.VISIBLE);
+                    mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_succeed));
+                    mImageIcon.setText(R.string.succeed);
                     mResultStatus.setText(getResources().getString(R.string.topup_amount_text, CommonUtil.numberFormatWithTwoDigital(topUpResponse.getAmount())+""));
                     mResultStatusDetail.setVisibility(View.GONE);
                     mConfirmLeft.setText("完成");
                     mConfirmRight.setText("继续充值");
                 }else if (WITHDRAW.equals(transactionType)){
-                    mResultStatus.setText("提现成功");
-                    mResultStatusDetail.setVisibility(View.VISIBLE);
-                    mResultStatusDetail.setText(Html.fromHtml(getResources().getString(R.string.withdraw_tips_text, CommonUtil.numberFormatWithTwoDigital(withdrawResponse.getAmount())+"", withdrawResponse.getGiveDate())));
+
+                    currentUIOfSuccess.setVisibility(View.VISIBLE);
                     mConfirmLeft.setVisibility(View.GONE);
                     mConfirmRight.setText("完成");
+                    timeOfReceiving.setText("预计在"+ withdrawResponse.getGiveDate() +"到账");
                 }
                 EventLog.upEventLog("201610282", "show", "out_success");
                 break;
             case "F":
+                previousUIOfSuccess.setVisibility(View.VISIBLE);
                 mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_failed));
                 mImageIcon.setText(R.string.failured);
                 if (TOPUP.equals(transactionType)){
@@ -115,6 +124,7 @@ public class AccountTransactionResultActivity extends BaseBindActivity {
                 EventLog.upEventLog("201610282", "show", "out_fail");
                 break;
             case "P":
+                previousUIOfSuccess.setVisibility(View.VISIBLE);
                 mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_waiting));
                 mImageIcon.setText(R.string.waiting);
 
