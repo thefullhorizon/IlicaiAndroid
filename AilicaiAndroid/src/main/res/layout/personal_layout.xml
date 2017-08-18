@@ -62,7 +62,7 @@
                 android:layout_height="24dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="14dp"
+                android:layout_marginLeft="16dp"
                 android:src="@drawable/head_portrait" />
 
             <FrameLayout
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="12dp"
                 android:background="@drawable/bg_black_a10_selector_round">
 
                 <com.ailicai.app.widget.TextViewTF

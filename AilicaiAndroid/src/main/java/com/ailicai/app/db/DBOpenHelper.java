@@ -37,10 +37,8 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase sqliteDatabase, ConnectionSource connectionSource) {
         try {
             TableUtils.createTableIfNotExists(connectionSource, UserInfoTableModel.class);
-
             userInfoDao = getUserInfoDao();
             userInfoRuntimeDao = getUserInfoRuntimeDao();
-
         } catch (SQLException e) {
             Log.e(TAG, e.toString());
             e.printStackTrace();
