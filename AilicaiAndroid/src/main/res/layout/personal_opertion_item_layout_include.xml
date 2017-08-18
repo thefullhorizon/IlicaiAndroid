@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/global_background"
+    android:orientation="vertical">
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/asset_expect"
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/text_14_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="网贷类" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="35dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/huoqibao"
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/text_14_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="活期宝" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="35dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_auto_invest"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/auto_investmengt"
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/text_14_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="自动投资" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginBottom="8dp" />
+
+    <View style="@style/cell_divider_hor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/mineCardCouponst"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/asset_ticket"
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        style="@style/text_14_212121"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="卡券" />
+
+                    <TextView
+                        android:id="@+id/ticket_red_dot"
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_gravity="top|right"
+                        android:background="@drawable/red_point_bg" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="35dp" />
+
+        <RelativeLayout
+            android:id="@+id/rewards"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mine_gift"
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/text_14_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="邀请好友" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/rewards_money"
+                    style="@style/text_14_757575"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="待发收益0.00元"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/account_arrow_selector" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginBottom="8dp" />
+
+    <View style="@style/cell_divider_hor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_bank_card"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/asset_bankcard"
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/text_14_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="银行卡" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="35dp" />
+
+        <RelativeLayout
+            android:id="@+id/gotoReserveRecordList"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/make_appointment"
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/text_14_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="预约记录" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="35dp" />
+
+        <RelativeLayout
+            android:id="@+id/gotoTransactionList"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.ailicai.app.widget.TextViewTF
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/asset_record"
+                    android:textColor="#616161"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/text_14_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="交易记录" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        style="@style/cell_divider_hor"
+        android:layout_marginBottom="8dp" />
+
+    <View style="@style/cell_divider_hor" />
+
+    <RelativeLayout
+        android:id="@+id/about_us"
+        android:layout_width="match_parent"
+        android:layout_height="45dip"
+        android:background="@drawable/white_to_pressed_selector"
+        android:clickable="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.ailicai.app.widget.TextViewTF
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mine_us"
+                android:textColor="#616161"
+                android:textSize="20sp" />
+
+            <TextView
+                style="@style/text_14_212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="关于我们" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/account_arrow_selector" />
+
+    </RelativeLayout>
+
+    <View style="@style/cell_divider_hor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+
+</LinearLayout>
