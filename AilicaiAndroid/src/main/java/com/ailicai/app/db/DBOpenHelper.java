@@ -51,10 +51,8 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqliteDatabase, ConnectionSource connectionSource, int oldVer, int newVer) {
-//        try {
-        //增加新字段,直接删除旧数据,防止字段为空异常
-        //TableUtils.dropTable(connectionSource, CityDBItem.class, true);
-
+        try {
+            TableUtils.dropTable(connectionSource, UserInfoTableModel.class, true);
             /*
             if (oldVer < 12) {
                 userInfoDao = getUserInfoDao();
@@ -68,13 +66,12 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
                 userInfoDao.executeRaw(sqlHead + " key2 TEXT");
             }
             */
+            onCreate(sqliteDatabase, connectionSource);
 
-        onCreate(sqliteDatabase, connectionSource);
-
-//        } catch (SQLException e) {
-//            Log.e(DBOpenHelper.class.getName(), "Unable to upgrade database from version " +
-//                    oldVer + " to new " + newVer, e);
-//        }
+        } catch (SQLException e) {
+            Log.e(DBOpenHelper.class.getName(), "Unable to upgrade database from version " +
+                    oldVer + " to new " + newVer, e);
+        }
     }
 
     private Dao<UserInfoTableModel, Integer> getUserInfoDao() throws SQLException {
