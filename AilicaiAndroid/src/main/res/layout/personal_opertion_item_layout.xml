@@ -9,26 +9,26 @@
         android:id="@+id/mine_top_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/graph_balance"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/mine_top_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ef675b"
             android:orientation="vertical" />
+
+        <!--android:background="#ef675b"-->
 
         <FrameLayout
             android:id="@+id/top_bg"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:background="#ef675b">
+            android:layout_height="170dp">
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@drawable/graph_balance" />
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom" />
 
             <LinearLayout
                 android:id="@+id/mine_not_login"
@@ -117,7 +117,9 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/totalAsset_click"
                         android:layout_width="match_parent"
+                        android:clickable="true"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center_vertical"
