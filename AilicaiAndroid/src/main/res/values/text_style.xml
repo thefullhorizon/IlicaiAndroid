@@ -285,6 +285,11 @@
         <item name="android:textColor">#757575</item>
     </style>
 
+    <style name="text_16_aaaaaa">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#aaaaaa</item>
+    </style>
+
     <style name="text_14_005ebd">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#005ebd</item>

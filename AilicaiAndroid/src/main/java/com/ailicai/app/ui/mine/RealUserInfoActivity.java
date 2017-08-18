@@ -40,7 +40,7 @@ public class RealUserInfoActivity extends BaseBindActivity {
     }
 
     public void setUserInfo(Map<String, Object> dataMap) {
-        tvIdName.setText(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_R_NAME));
+        tvIdName.setText(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_NAME));
         tvIdCardNumber.setText(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_IDCARDNUMBER));
 
     }

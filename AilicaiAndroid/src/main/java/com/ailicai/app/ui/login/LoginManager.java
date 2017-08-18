@@ -394,9 +394,10 @@ public class LoginManager {
         infoBase.setKey2(userInfo.getKey2());
         infoBase.setRsaClose(userInfo.getRsaClose());
         infoBase.setHasSafeCard(userInfo.getHasSafeCard());
+        infoBase.setBankName(userInfo.getBankName());
+        infoBase.setBankcardTailNo(userInfo.getBankcardTailNo());
         infoBase.setIsRealNameVerify(userInfo.getIsRealNameVerify());
         infoBase.setIsBinDebitCard(userInfo.getIsBinDebitCard());
-        infoBase.setrName(userInfo.getrName());
         infoBase.setIdCardNo(userInfo.getIdCardNo());
         infoBase.setCollectionNum(userInfo.getCollectionNum());
         infoBase.isTestUser = userInfo.isTestUser;
@@ -518,25 +519,21 @@ public class LoginManager {
          * 卡券
          */
         ACTION_INDEX_CARD_COUPONST(0),
-        /**
-         * 银行卡
-         */
-        ACTION_INDEX_BANK_CARD(1),
 
         /**
          * 交易记录
          */
-        ACTION_INDEX_TRANSACTION_LIST(2),
+        ACTION_INDEX_TRANSACTION_LIST(1),
 
         /**
          * 预约记录
          */
-        ACTION_INDEX_RESERVERECORD_LIST(3),
+        ACTION_INDEX_RESERVERECORD_LIST(2),
 
         /**
          * 邀请奖励
          */
-        ACTION_INDEX_REWARDS_LIST(4),
+        ACTION_INDEX_REWARDS_LIST(3),
 
 
         ACTION_INDEX_NORMAL(-1);

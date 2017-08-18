@@ -10,10 +10,8 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "userinfo")
 public class UserInfoTableModel {
 
-    public UserInfoTableModel() {
-        //必须无参数构造函数
-    }
-
+    @DatabaseField()
+    public int isTestUser; //是否新浪测试用户
     @DatabaseField(id = true)
     private long userId; //用户ID
     @DatabaseField()
@@ -33,6 +31,10 @@ public class UserInfoTableModel {
     @DatabaseField()
     private int hasSafeCard = 0; // 是否已绑定安全卡  0:否，1:是
     @DatabaseField()
+    private String bankName; //安全卡银行名称
+    @DatabaseField()
+    private String bankcardTailNo; //安全卡末尾4位
+    @DatabaseField()
     private int isAilicaiAllowUser = 0; // 判断是否爱理财白名单用户 0:否，1:是
     @DatabaseField()
     private String key1 = ""; // app端加密用公钥
@@ -45,12 +47,20 @@ public class UserInfoTableModel {
     @DatabaseField()
     private String imPasswd = ""; // 环信用户密码
     @DatabaseField()
-    private String rName = ""; // 用户真实姓名
-    @DatabaseField()
     private String idCardNo = ""; // 身份证号
     @DatabaseField()
     private int collectionNum; //关注总数量
+    public UserInfoTableModel() {
+        //必须无参数构造函数
+    }
 
+    public int getIsTestUser() {
+        return isTestUser;
+    }
+
+    public void setIsTestUser(int isTestUser) {
+        this.isTestUser = isTestUser;
+    }
 
     public long getUserId() {
         return userId;
@@ -156,6 +166,22 @@ public class UserInfoTableModel {
         this.hasSafeCard = hasSafeCard;
     }
 
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getBankcardTailNo() {
+        return bankcardTailNo;
+    }
+
+    public void setBankcardTailNo(String bankcardTailNo) {
+        this.bankcardTailNo = bankcardTailNo;
+    }
+
     public String getImUserId() {
         return imUserId;
     }
@@ -170,14 +196,6 @@ public class UserInfoTableModel {
 
     public void setImPasswd(String imPasswd) {
         this.imPasswd = imPasswd;
-    }
-
-    public String getrName() {
-        return rName;
-    }
-
-    public void setrName(String rName) {
-        this.rName = rName;
     }
 
     public String getIdCardNo() {

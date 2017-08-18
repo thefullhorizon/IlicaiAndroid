@@ -22,7 +22,6 @@ import org.greenrobot.eventbus.EventBus;
 public class UserInfo {
     public static final String IM_USERID = "im_userid";
     public static final String IM_PASSWD = "im_passwd";
-    public static final String R_NAME = "rName";
     public static final String ID_CARDNO = "idCardNo";
     public static final String COLLECTION_NUM = "collectionNum";
     public static final String IS_TESTUSER = "isTestuser";
@@ -431,7 +430,6 @@ public class UserInfo {
         MyPreference.getInstance().write(UserInfo.IM_USERID, userInfo.getImUserId());
         MyPreference.getInstance().write(UserInfo.IM_PASSWD, userInfo.getImPasswd());
 
-        MyPreference.getInstance().write(UserInfo.R_NAME, userInfo.getrName());
         MyPreference.getInstance().write(UserInfo.ID_CARDNO, userInfo.getIdCardNo());
         MyPreference.getInstance().write(UserInfo.COLLECTION_NUM, userInfo.getCollectionNum());
         MyPreference.getInstance().write(UserInfo.IS_TESTUSER, userInfo.isTestUser);
@@ -455,7 +453,6 @@ public class UserInfo {
         MyPreference.getInstance().write(UserInfo.IM_USERID, loginResponse.getImUserId());
         MyPreference.getInstance().write(UserInfo.IM_PASSWD, loginResponse.getImPasswd());
 
-        MyPreference.getInstance().write(UserInfo.R_NAME, loginResponse.getrName());
         MyPreference.getInstance().write(UserInfo.ID_CARDNO, loginResponse.getIdCardNo());
         MyPreference.getInstance().write(UserInfo.COLLECTION_NUM, loginResponse.getCollectionNum());
         MyPreference.getInstance().write(UserInfo.IS_ALL_DONT_DISTURB, loginResponse.getIsAllDontDisturb());

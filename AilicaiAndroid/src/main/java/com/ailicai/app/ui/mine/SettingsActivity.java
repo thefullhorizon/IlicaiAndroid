@@ -24,6 +24,7 @@ import com.ailicai.app.common.utils.StringUtil;
 import com.ailicai.app.eventbus.EditUserInfoEvent;
 import com.ailicai.app.eventbus.ExitEvent;
 import com.ailicai.app.eventbus.UserInfoUpdateEvent;
+import com.ailicai.app.ui.bankcard.BankCardListActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.gesture.GestureLockActivity;
@@ -48,17 +49,17 @@ import butterknife.OnClick;
  * Created by Gerry on 2017/7/18.
  */
 
-public class SettingsActivity extends BaseBindActivity implements ToggleButton.OnToggleChanged{
+public class SettingsActivity extends BaseBindActivity implements ToggleButton.OnToggleChanged {
     private final static int REQUEST_CODE_OPEN_ACCOUNT = 10001;
     private final static int REQUEST_CODE_GESTURE_LOCK = 10002;
     @Bind(R.id.user_phone_tag)
     TextView mPhoneTag;
     @Bind(R.id.real_name)
     TextView mRealName;
+    @Bind(R.id.bank_card_name)
+    TextView bankCardName;
     @Bind(R.id.login_out)
     LinearLayout mLoginOut;
-    @Bind(R.id.mine_password_manage_container)
-    LinearLayout mPasswordManage;
     @Bind(R.id.tb_control_gesture_lock)
     ToggleButton mTbControlGestureLock;
     @Bind(R.id.rl_fix_gesture_lock_container)
@@ -96,7 +97,7 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
     @Override
     protected void onResume() {
         super.onResume();
-        if(UserInfo.getInstance().getLoginState() != UserInfo.LOGIN){
+        if (UserInfo.getInstance().getLoginState() != UserInfo.LOGIN) {
             finish();
         }
     }
@@ -119,7 +120,8 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
             Map<String, Object> dataMap = ObjectUtil.newHashMap();
             dataMap.put(CommonTag.PERSONAL_USER_ID, infoBase.getUserId());
             dataMap.put(CommonTag.PERSONAL_USER_NAME, infoBase.getRealName());
-            dataMap.put(CommonTag.PERSONAL_USER_R_NAME, infoBase.getrName());
+            dataMap.put(CommonTag.PERSONAL_BANK_NAME, infoBase.getBankName());
+            dataMap.put(CommonTag.PERSONAL_BANKCARDTAILNO, infoBase.getBankcardTailNo());
             dataMap.put(CommonTag.PERSONAL_USER_SEX, infoBase.getGender());
             dataMap.put(CommonTag.PERSONAL_USER_PHONE, infoBase.getMobile());
             dataMap.put(CommonTag.PERSONAL_USER_ISREALNAMEVERIFY, infoBase.getIsRealNameVerify());
@@ -167,6 +169,14 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
 
     }
 
+    /**
+     * 银行卡
+     */
+    @OnClick(R.id.rl_bank_card)
+    void onClickBankCard() {
+        MyIntent.startActivity(this, BankCardListActivity.class, "");
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -183,13 +193,13 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
         }
     }
 
-    private void setToggleStatus(){
-        if(TextUtils.isEmpty(MyPreference.getInstance().read(GestureLockTools.getLockKey(),""))){
+    private void setToggleStatus() {
+        if (TextUtils.isEmpty(MyPreference.getInstance().read(GestureLockTools.getLockKey(), ""))) {
             mTbControlGestureLock.toggleOff();
-            MyPreference.getInstance().write(GestureLockTools.getLockEnableKey(),false);
-        }else{
+            MyPreference.getInstance().write(GestureLockTools.getLockEnableKey(), false);
+        } else {
             mTbControlGestureLock.toggleOn();
-            MyPreference.getInstance().write(GestureLockTools.getLockEnableKey(),true);
+            MyPreference.getInstance().write(GestureLockTools.getLockEnableKey(), true);
         }
     }
 
@@ -214,6 +224,7 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
 
     public void setUserInfo(Map<String, Object> dataMap) {
         mPhoneTag.setText(StringUtil.formatMobileSubTwo(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_PHONE)));
+        bankCardName.setText(MapUtil.getString(dataMap, CommonTag.PERSONAL_BANK_NAME) + "(" + MapUtil.getString(dataMap, CommonTag.PERSONAL_BANKCARDTAILNO) + ")");
         if (MapUtil.getInt(dataMap, CommonTag.PERSONAL_USER_ISREALNAMEVERIFY) == 1) {
             mRealName.setText("已实名");
         } else {
@@ -223,8 +234,8 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
     }
 
     @OnClick(R.id.rl_fix_gesture_lock_container)
-    void fixGestureLockClick(){
-        GestureLockTools.goGestureLockView(this,GestureLockActivity.TYPE_PERSON_VERIFY_FOR_FIX);
+    void fixGestureLockClick() {
+        GestureLockTools.goGestureLockView(this, GestureLockActivity.TYPE_PERSON_VERIFY_FOR_FIX);
     }
 
     public void setUIData() {
@@ -251,17 +262,17 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
 
 
     @Override
-    public void onToggle(boolean fromClick,boolean on) {
+    public void onToggle(boolean fromClick, boolean on) {
         Intent intent;
-        if(fromClick){
-            if(!on){
-                intent = GestureLockTools.getGestureLockIntent(this,GestureLockActivity.TYPE_PERSON_VERIFY_FOR_CLOSE);
-            }else{
-                MyPreference.getInstance().write(GestureLockTools.getJumpLockViewKey(),false);
-                intent = GestureLockTools.getGestureLockIntent(this,GestureLockActivity.TYPE_PERSON_SETTING);
+        if (fromClick) {
+            if (!on) {
+                intent = GestureLockTools.getGestureLockIntent(this, GestureLockActivity.TYPE_PERSON_VERIFY_FOR_CLOSE);
+            } else {
+                MyPreference.getInstance().write(GestureLockTools.getJumpLockViewKey(), false);
+                intent = GestureLockTools.getGestureLockIntent(this, GestureLockActivity.TYPE_PERSON_SETTING);
             }
-            if(intent != null){
-                startActivityForResult(intent,REQUEST_CODE_GESTURE_LOCK);
+            if (intent != null) {
+                startActivityForResult(intent, REQUEST_CODE_GESTURE_LOCK);
             }
         }
 

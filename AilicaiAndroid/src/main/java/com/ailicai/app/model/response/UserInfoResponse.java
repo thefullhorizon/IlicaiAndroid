@@ -20,10 +20,11 @@ public class UserInfoResponse extends Response {
     private String key2=""; // server端加密的对应解密私钥
     private int rsaClose = 0; // RSA加密是否关闭，1：关闭，0：打开
     private int hasSafeCard = 0; // 是否已绑定安全卡  0:否，1:是
+    private String bankName; //安全卡银行名称
+    private String bankcardTailNo; //安全卡末尾4位
     private String imUserId = ""; // 环信用户Id
     private String imPasswd = ""; // 环信用户密码
 
-    private String rName = ""; // 用户真实姓名
     private String idCardNo = ""; // 身份证号
     private int collectionNum; //关注总数量
 
@@ -133,6 +134,30 @@ public class UserInfoResponse extends Response {
         this.hasSafeCard = hasSafeCard;
     }
 
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getBankcardTailNo() {
+        return bankcardTailNo;
+    }
+
+    public void setBankcardTailNo(String bankcardTailNo) {
+        this.bankcardTailNo = bankcardTailNo;
+    }
+
+    public int getIsTestUser() {
+        return isTestUser;
+    }
+
+    public void setIsTestUser(int isTestUser) {
+        this.isTestUser = isTestUser;
+    }
+
     public String getImUserId() {
         return imUserId;
     }
@@ -147,14 +172,6 @@ public class UserInfoResponse extends Response {
 
     public void setImPasswd(String imPasswd) {
         this.imPasswd = imPasswd;
-    }
-
-    public String getrName() {
-        return rName;
-    }
-
-    public void setrName(String rName) {
-        this.rName = rName;
     }
 
     public String getIdCardNo() {
@@ -191,7 +208,6 @@ public class UserInfoResponse extends Response {
                 ", hasSafeCard=" + hasSafeCard +
                 ", imUserId='" + imUserId + '\'' +
                 ", imPasswd='" + imPasswd + '\'' +
-                ", rName='" + rName + '\'' +
                 ", idCardNo='" + idCardNo + '\'' +
                 ", collectionNum=" + collectionNum +
                 '}';

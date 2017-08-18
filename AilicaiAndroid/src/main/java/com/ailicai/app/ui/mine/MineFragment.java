@@ -143,10 +143,10 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     RelativeLayout accountbalanceLayout;
     @Bind(R.id.purchase_view)
     LinearLayout purchaseView;
+    @Bind(R.id.top_line)
+    View topLine;
     @Bind(R.id.purchaseAmount)
     TextView purchaseAmount;
-    @Bind(R.id.rewards_view)
-    LinearLayout rewardsView;
     @Bind(R.id.swipe)
     SwipeRefreshLayout mSwipeLayout;
     private MinePresenter mPresenter;
@@ -181,7 +181,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Map<String, Object> dataMap = ObjectUtil.newHashMap();
             dataMap.put(CommonTag.PERSONAL_USER_ID, infoBase.getUserId());
             dataMap.put(CommonTag.PERSONAL_USER_NAME, infoBase.getRealName());
-            dataMap.put(CommonTag.PERSONAL_USER_R_NAME, infoBase.getrName());
+            dataMap.put(CommonTag.PERSONAL_BANK_NAME, infoBase.getBankName());
+            dataMap.put(CommonTag.PERSONAL_BANKCARDTAILNO, infoBase.getBankcardTailNo());
             dataMap.put(CommonTag.PERSONAL_USER_SEX, infoBase.getGender());
             dataMap.put(CommonTag.PERSONAL_USER_PHONE, infoBase.getMobile());
             dataMap.put(CommonTag.PERSONAL_USER_ISREALNAMEVERIFY, infoBase.getIsRealNameVerify());
@@ -288,10 +289,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
      * @param action
      */
     public void jumpToMenuTarget(LoginManager.LoginAction action) {
-        if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_BANK_CARD.getActionIndex())) {
-            //银行卡
-            mPresenter.gotoMyBankCrad(getWRActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_CARD_COUPONST.getActionIndex())) {
+        if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_CARD_COUPONST.getActionIndex())) {
             //卡券
             mPresenter.gotoCardCoupon(getWRActivity());
         } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_TRANSACTION_LIST.getActionIndex())) {
@@ -386,6 +384,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             flMsgContainer.setOnClickListener(null);
 
             accountbalanceLayout.setVisibility(View.GONE);
+            topLine.setVisibility(View.GONE);
             purchaseView.setVisibility(View.GONE);
             rewardsMoney.setVisibility(View.GONE);
             long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
@@ -404,6 +403,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             userPhoto.setClickable(true);
             userPhoto.setOnClickListener(userLayoutOnClickListener);
             accountbalanceLayout.setVisibility(View.VISIBLE);
+            topLine.setVisibility(View.VISIBLE);
             purchaseView.setVisibility(View.GONE);
             rewardsMoney.setVisibility(View.GONE);
 
@@ -455,7 +455,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                 "0.0".equals(assetInfoNewResponse.getInviteReward())) {
             rewardsMoney.setVisibility(View.GONE);
         } else {
-            rewardsMoney.setVisibility(View.VISIBLE);
+            rewardsMoney.setVisibility(View.GONE);
         }
         if (assetInfoNewResponse.getPurchaseCount() > 0) {
             purchaseView.setVisibility(View.VISIBLE);
@@ -477,7 +477,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                 "0.0".equals(assetInfoNewResponse.getInviteReward())) {
             rewardsMoney.setVisibility(View.GONE);
         } else {
-            rewardsMoney.setVisibility(View.VISIBLE);
+            rewardsMoney.setVisibility(View.GONE);
         }
         if (assetInfoNewResponse.getPurchaseCount() > 0) {
             purchaseView.setVisibility(View.VISIBLE);
@@ -631,19 +631,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_CARD_COUPONST);
             // 点击后卡券后，本地小红点状态改为false
             setVoucherRedDotState(false);
-        }
-    }
-
-    /**
-     * 银行卡
-     */
-    @OnClick(R.id.rl_bank_card)
-    void onClickBankCard() {
-        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
-            loginAction = LoginManager.LoginAction.ACTION_INDEX_BANK_CARD;
-            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
-        } else {
-            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_BANK_CARD);
         }
     }
 

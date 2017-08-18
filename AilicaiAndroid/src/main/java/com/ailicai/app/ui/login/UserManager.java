@@ -60,11 +60,12 @@ public class UserManager {
             userInfoModel.setKey2(userInfoBase.getKey2());
             userInfoModel.setRsaClose(userInfoBase.getRsaClose());
             userInfoModel.setHasSafeCard(userInfoBase.getHasSafeCard());
+            userInfoModel.setBankName(userInfoBase.getBankName());
+            userInfoModel.setBankcardTailNo(userInfoBase.getBankcardTailNo());
             userInfoModel.setIsRealNameVerify(userInfoBase.getIsRealNameVerify());
             userInfoModel.setIsBinDebitCard(userInfoBase.getIsBinDebitCard());
             userInfoModel.setImUserId(userInfoBase.getImUserId());
             userInfoModel.setImPasswd(userInfoBase.getImPasswd());
-            userInfoModel.setrName(userInfoBase.getrName());
             userInfoModel.setIdCardNo(userInfoBase.getIdCardNo());
             userInfoModel.setCollectionNum(userInfoBase.getCollectionNum());
           //  userInfoModel.isTestUser=userInfoBase.isTestUser;不存数据库
@@ -92,11 +93,12 @@ public class UserManager {
             userInfoBase.setKey2(userModel.getKey2());
             userInfoBase.setRsaClose(userModel.getRsaClose());
             userInfoBase.setHasSafeCard(userModel.getHasSafeCard());
+            userInfoBase.setBankName(userModel.getBankName());
+            userInfoBase.setBankcardTailNo(userModel.getBankcardTailNo());
             userInfoBase.setIsRealNameVerify(userModel.getIsRealNameVerify());
             userInfoBase.setIsBinDebitCard(userModel.getIsBinDebitCard());
             userInfoBase.setImUserId(userModel.getImUserId());
             userInfoBase.setImPasswd(userModel.getImPasswd());
-            userInfoBase.setrName(userModel.getrName());
             userInfoBase.setIdCardNo(userModel.getIdCardNo());
             userInfoBase.setCollectionNum(userModel.getCollectionNum());
         }
