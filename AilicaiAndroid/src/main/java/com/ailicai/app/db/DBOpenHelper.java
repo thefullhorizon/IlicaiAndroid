@@ -17,8 +17,8 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
     // 数据库名称
     public static final String DATABASE_NAME = "AilicaiInfo.db";
     // 数据库[APP]-[DB]
-    // 1.0-1
-    public static final int DATABASE_VERSION = 1;
+    // 1.0-1 1.2-2
+    public static final int DATABASE_VERSION = 2;
 
     private static final String TAG = "DBOpenHelper";
 
@@ -52,8 +52,8 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqliteDatabase, ConnectionSource connectionSource, int oldVer, int newVer) {
 //        try {
-            //增加新字段,直接删除旧数据,防止字段为空异常
-            //TableUtils.dropTable(connectionSource, CityDBItem.class, true);
+        //增加新字段,直接删除旧数据,防止字段为空异常
+        //TableUtils.dropTable(connectionSource, CityDBItem.class, true);
 
             /*
             if (oldVer < 12) {
@@ -69,7 +69,7 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
             }
             */
 
-            onCreate(sqliteDatabase, connectionSource);
+        onCreate(sqliteDatabase, connectionSource);
 
 //        } catch (SQLException e) {
 //            Log.e(DBOpenHelper.class.getName(), "Unable to upgrade database from version " +
