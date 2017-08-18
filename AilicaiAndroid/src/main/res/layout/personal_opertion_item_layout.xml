@@ -141,18 +141,18 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                style="@style/text_14_ffffff"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="8dp"
-                                android:text="详情"
-                                android:textColor="@color/color_ffffff" />
+                                android:text="详情" />
 
                             <com.ailicai.app.widget.TextViewTF
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/arrowright"
                                 android:textColor="@color/color_ffffff"
-                                android:textSize="20sp" />
+                                android:textSize="14sp" />
 
                         </LinearLayout>
                     </LinearLayout>

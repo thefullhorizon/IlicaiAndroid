@@ -224,7 +224,12 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
 
     public void setUserInfo(Map<String, Object> dataMap) {
         mPhoneTag.setText(StringUtil.formatMobileSubTwo(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_PHONE)));
-        bankCardName.setText(MapUtil.getString(dataMap, CommonTag.PERSONAL_BANK_NAME) + "(" + MapUtil.getString(dataMap, CommonTag.PERSONAL_BANKCARDTAILNO) + ")");
+        String cardNum = MapUtil.getString(dataMap, CommonTag.PERSONAL_BANKCARDTAILNO);
+        String cardNO = "";
+        if (!TextUtils.isEmpty(cardNum)) {
+            cardNO = "(" + cardNum + ")";
+        }
+        bankCardName.setText(MapUtil.getString(dataMap, CommonTag.PERSONAL_BANK_NAME) + cardNO);
         if (MapUtil.getInt(dataMap, CommonTag.PERSONAL_USER_ISREALNAMEVERIFY) == 1) {
             mRealName.setText("已实名");
         } else {
