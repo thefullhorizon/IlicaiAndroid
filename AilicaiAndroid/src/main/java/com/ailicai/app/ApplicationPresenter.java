@@ -502,8 +502,10 @@ public class ApplicationPresenter {
             if (!TextUtils.isEmpty(ip)) {
                 Configuration.IWJW_BETA.hostname = ip;
             }
-            int port = MyPreference.getInstance().read(CommonTag.SERVER_PORT, 0);
-            Configuration.IWJW_BETA.port = port;
+            int port = MyPreference.getInstance().read(CommonTag.SERVER_PORT, -1);
+            if(port != -1) {
+                Configuration.IWJW_BETA.port = port;
+            }
             Configuration.IWJW_BETA.path = "";
             Configuration.DEFAULT = Configuration.IWJW_BETA;
             Configuration.DEFAULTIMG = Configuration.IWJW_BETA_IMG;
@@ -514,8 +516,10 @@ public class ApplicationPresenter {
             if (!TextUtils.isEmpty(ip)) {
                 Configuration.IWJW_TEST.hostname = ip;
             }
-            int port = MyPreference.getInstance().read(CommonTag.SERVER_PORT, 0);
-            Configuration.IWJW_TEST.port = port;
+            int port = MyPreference.getInstance().read(CommonTag.SERVER_PORT, -1);
+            if(port != -1) {
+                Configuration.IWJW_TEST.port = port;
+            }
             Configuration.IWJW_TEST.path = "";
             Configuration.DEFAULT = Configuration.IWJW_TEST;
             Configuration.DEFAULTIMG = Configuration.IWJW_TEST_IMG;
