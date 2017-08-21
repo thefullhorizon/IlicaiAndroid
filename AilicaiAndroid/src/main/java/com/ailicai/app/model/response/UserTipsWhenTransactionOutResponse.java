@@ -8,15 +8,15 @@ import com.huoqiu.framework.rest.Response;
 
 public class UserTipsWhenTransactionOutResponse extends Response {
 
-    private int beforeFifteen; //当前时间是否是15点前
+    private boolean beforeFifteen; //当前时间是否是15点前
     private String messageLine1; //下发文案 1
     private String messageLine2; //下发文案 2
 
-    public int getBeforeFifteen() {
+    public boolean isBeforeFifteen() {
         return beforeFifteen;
     }
 
-    public void setBeforeFifteen(int beforeFifteen) {
+    public void setBeforeFifteen(boolean beforeFifteen) {
         this.beforeFifteen = beforeFifteen;
     }
 

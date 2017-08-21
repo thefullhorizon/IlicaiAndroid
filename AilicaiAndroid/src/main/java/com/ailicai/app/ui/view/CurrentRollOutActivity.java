@@ -243,6 +243,11 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
 
         UserTipsWhenTransactionOutRequest request = new UserTipsWhenTransactionOutRequest();
         request.setAccountType("101");
+        if (accountCheckBox.isChecked()) {
+            mTransactionOutType = ACCOUNT;
+        } else if (bankCheckBox.isChecked()){
+            mTransactionOutType = SECURITYCARD;
+        }
         request.setPayMethod(mTransactionOutType);
         ServiceSender.exec(this, request, new IwjwRespListener<UserTipsWhenTransactionOutResponse>(this) {
 
@@ -254,12 +259,13 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
             @Override
             public void onJsonSuccess(UserTipsWhenTransactionOutResponse jsonObject) {
                 showContentView();
-                if (toType == 1){//安全卡
-                    showTransactionOutUserInfo(jsonObject);
-                }else if(toType == 2){//账户余额
-                    if (jsonObject.getBeforeFifteen() == 0){
+
+                if (accountCheckBox.isChecked()) {
+                    if (!jsonObject.isBeforeFifteen()){
                         showTransactionOutUserInfo(jsonObject);
                     }
+                } else if (bankCheckBox.isChecked()){
+                    showTransactionOutUserInfo(jsonObject);
                 }
             }
 
@@ -506,7 +512,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
 
     private void showTransactionOutUserInfo(UserTipsWhenTransactionOutResponse jsonObject){
 
-        DialogBuilder.showSimpleDialog(CurrentRollOutActivity.this,"",jsonObject.getMessageLine1()+"\\n"+jsonObject.getMessageLine2(),
+        DialogBuilder.showSimpleDialog(CurrentRollOutActivity.this,"",jsonObject.getMessageLine1()+"\n"+jsonObject.getMessageLine2(),
                 "取消",null,
                 "确认转出",new DialogInterface.OnClickListener(){
 
@@ -527,11 +533,11 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         if (accountCheckBox.isChecked()) {
             currentPayInfo.setPayMethod("2");
             toType = 2;
-            mTransactionOutType = SECURITYCARD;
+            mTransactionOutType = ACCOUNT;
         } else if (bankCheckBox.isChecked()) {
             currentPayInfo.setPayMethod("1");
             toType = 1;
-            mTransactionOutType = ACCOUNT;
+            mTransactionOutType = SECURITYCARD;
         }
 
         OutCurrentPay outCurrentPay = new OutCurrentPay(this, currentPayInfo, new IwPwdPayResultListener<SaleHuoqibaoResponse>() {

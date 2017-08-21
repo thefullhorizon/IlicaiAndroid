@@ -37,6 +37,7 @@ import com.ailicai.app.model.request.AssetInfoNewRequest;
 import com.ailicai.app.model.response.AssetInfoNewResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.BaseBindFragment;
+import com.ailicai.app.ui.buy.AutomaticTenderActivity;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
 import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.LoginManager;
@@ -91,6 +92,11 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     RelativeLayout titleRoot;
     @Bind(R.id.tv_new_msg_point)
     TextView mTvNewMsgPoint;
+
+    //    boolean isMessageClick = false;
+//    boolean isCardClick = false;
+//    boolean isMessagePointShow = false;
+//    boolean isCardPointShow = false;
     @Bind(R.id.top_bg)
     FrameLayout topBg;
     @Bind(R.id.my_scroll_view)
@@ -101,6 +107,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     LinearLayout mAllView;
     @Bind(R.id.mine_top_head)
     LinearLayout mineTopHead;
+    //@Bind(R.id.mine_top_head_bg)
+    //LinearLayout mineTopHeadBg;
     @Bind(R.id.mine_not_login)
     LinearLayout mineNotLogin;
     @Bind(R.id.mine_login)
@@ -109,6 +117,10 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     LinearLayout mineTopMargin;
     @Bind(R.id.title_root_layout)
     RelativeLayout titleBg;
+    //@Bind(R.id.mine_top_margin_bg)
+    //LinearLayout mineTopMarginBg;
+    //@Bind(R.id.mine_top_margin_bg_scroll)
+    //LinearLayout mineTopMarginScroll;
     @Bind(R.id.tvLogin)
     TextView tvLogin;
     @Bind(R.id.userPhoto)
@@ -169,7 +181,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Map<String, Object> dataMap = ObjectUtil.newHashMap();
             dataMap.put(CommonTag.PERSONAL_USER_ID, infoBase.getUserId());
             dataMap.put(CommonTag.PERSONAL_USER_NAME, infoBase.getRealName());
-            dataMap.put(CommonTag.PERSONAL_HASSAFECARD, infoBase.getHasSafeCard());
             dataMap.put(CommonTag.PERSONAL_BANK_NAME, infoBase.getBankName());
             dataMap.put(CommonTag.PERSONAL_BANKCARDTAILNO, infoBase.getBankcardTailNo());
             dataMap.put(CommonTag.PERSONAL_USER_SEX, infoBase.getGender());
@@ -201,6 +212,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
         topBg.getLayoutParams().height = mFlexibleSpaceImageHeight;
         mineTopMargin.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
+        //mineTopMarginScroll.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
+        //mineTopMarginBg.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
         ((FrameLayout.LayoutParams) titleRoot.getLayoutParams()).setMargins(0, CommonUtil.getStatusBarHeight(getWRActivity()), 0, 0);
 
         titleBg.setAlpha(0);
@@ -288,15 +301,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_REWARDS_LIST.getActionIndex())) {
             //邀请奖励
             mPresenter.goRewards(getWRActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_WANG_DAI_CLICK.getActionIndex())) {
-            //网贷类
-            mPresenter.goWangDai(getWRActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK.getActionIndex())) {
-            //自动投资
-            mPresenter.goAutoTz(getWRActivity());
-        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK.getActionIndex())) {
-            //活期宝
-            mPresenter.goHQB(getWRActivity());
         }
         loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
     }
@@ -326,6 +330,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
         mineNotLogin.setAlpha(1 - alpha);
         mineLogin.setAlpha(1 - alpha);
+        //int minOverlayTransitionY = CommonUtil.getTitleHeight(getWRActivity()) - mineTopHead.getMeasuredHeight();
+        //mineTopHeadBg.setTranslationY(ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
+        //mineTopHead.setTranslationY(-scrollY);
     }
 
     @Override
@@ -424,6 +431,13 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
             MsgLiteView.refreshNoticeNums(null);
 
+//            // 卡券小红点
+//            if (isShowVoucherRedDotState()) {
+//                setVoucherRedDotState(true);
+//            } else {
+//                setVoucherRedDotState(false);
+//            }
+
             //自动跳转至目标页面
             jumpToMenuTarget(loginAction);
         }
@@ -499,12 +513,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     @OnClick(R.id.rl_auto_invest)
     void autoInvest() {
-        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
-            loginAction = LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK;
-            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+
+        if (!NoSetSafeCardHint.isOpenAccount()) {
+            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
+            startActivity(intent);
         } else {
-            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK);
+            MyIntent.startActivity(getWRActivity(), AutomaticTenderActivity.class, null);
         }
+
     }
 
     /**
@@ -663,6 +679,10 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.tv_account_balance_get_cash)
     void accountBalanceGetCashClick() {
         if (!NoSetSafeCardHint.isOpenAccount()) {
+            //Map<String, String> dataMap = ObjectUtil.newHashMap();
+            //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
+            //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
+
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
@@ -678,6 +698,10 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.tv_account_balance_charge)
     void accountBalanceChargeClick() {
         if (!NoSetSafeCardHint.isOpenAccount()) {
+            //Map<String, String> dataMap = ObjectUtil.newHashMap();
+            //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
+            //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
+
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
@@ -724,26 +748,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), IncomeDetailActivity.class);
             intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.REGULAR);
             startActivity(intent);
-        }
-    }
-
-    @OnClick(R.id.net_loan_layout)
-    public void netLoanClick() {
-        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
-            loginAction = LoginManager.LoginAction.ACTION_INDEX_WANG_DAI_CLICK;
-            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
-        } else {
-            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_WANG_DAI_CLICK);
-        }
-    }
-
-    @OnClick(R.id.to_huo_qi_bao)
-    public void goHuoQiBao() {
-        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
-            loginAction = LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK;
-            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
-        } else {
-            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK);
         }
     }
 

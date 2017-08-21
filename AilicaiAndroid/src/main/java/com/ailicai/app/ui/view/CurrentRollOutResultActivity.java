@@ -76,7 +76,7 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
                 if (toType == 1){//安全卡
                     currentUIOfSuccess();
                 }else{//存管账户
-                    if (response.getBeforeFifteen() == 1){
+                    if (response.isBeforeFifteen()){
                         previousUIOfSuccess.setVisibility(View.VISIBLE);
                         mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_succeed));
                         mImageIcon.setText(R.string.succeed);
