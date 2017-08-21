@@ -58,6 +58,8 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
     TextView mRealName;
     @Bind(R.id.bank_card_name)
     TextView bankCardName;
+    @Bind(R.id.rl_bank_card_layout)
+    LinearLayout bankCardLayout;
     @Bind(R.id.login_out)
     LinearLayout mLoginOut;
     @Bind(R.id.tb_control_gesture_lock)
@@ -120,6 +122,7 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
             Map<String, Object> dataMap = ObjectUtil.newHashMap();
             dataMap.put(CommonTag.PERSONAL_USER_ID, infoBase.getUserId());
             dataMap.put(CommonTag.PERSONAL_USER_NAME, infoBase.getRealName());
+            dataMap.put(CommonTag.PERSONAL_HASSAFECARD, infoBase.getHasSafeCard());
             dataMap.put(CommonTag.PERSONAL_BANK_NAME, infoBase.getBankName());
             dataMap.put(CommonTag.PERSONAL_BANKCARDTAILNO, infoBase.getBankcardTailNo());
             dataMap.put(CommonTag.PERSONAL_USER_SEX, infoBase.getGender());
@@ -224,16 +227,24 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
 
     public void setUserInfo(Map<String, Object> dataMap) {
         mPhoneTag.setText(StringUtil.formatMobileSubTwo(MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_PHONE)));
-        String cardNum = MapUtil.getString(dataMap, CommonTag.PERSONAL_BANKCARDTAILNO);
-        String cardNO = "";
-        if (!TextUtils.isEmpty(cardNum)) {
-            cardNO = "(" + cardNum + ")";
-        }
-        bankCardName.setText(MapUtil.getString(dataMap, CommonTag.PERSONAL_BANK_NAME) + cardNO);
         if (MapUtil.getInt(dataMap, CommonTag.PERSONAL_USER_ISREALNAMEVERIFY) == 1) {
             mRealName.setText("已实名");
         } else {
             mRealName.setText("未实名");
+        }
+
+        // 是否已绑定安全卡  0:否，1:是
+        int hasSafeCard = MapUtil.getInt(dataMap, CommonTag.PERSONAL_HASSAFECARD);
+        if (hasSafeCard > 0) {
+            bankCardLayout.setVisibility(View.VISIBLE);
+            String cardNum = MapUtil.getString(dataMap, CommonTag.PERSONAL_BANKCARDTAILNO);
+            String cardNO = "";
+            if (!TextUtils.isEmpty(cardNum)) {
+                cardNO = "(" + cardNum + ")";
+            }
+            bankCardName.setText(MapUtil.getString(dataMap, CommonTag.PERSONAL_BANK_NAME) + cardNO);
+        } else {
+            bankCardLayout.setVisibility(View.GONE);
         }
         setUIData();
     }

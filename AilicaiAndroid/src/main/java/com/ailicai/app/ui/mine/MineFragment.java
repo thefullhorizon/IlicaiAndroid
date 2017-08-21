@@ -180,6 +180,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Map<String, Object> dataMap = ObjectUtil.newHashMap();
             dataMap.put(CommonTag.PERSONAL_USER_ID, infoBase.getUserId());
             dataMap.put(CommonTag.PERSONAL_USER_NAME, infoBase.getRealName());
+            dataMap.put(CommonTag.PERSONAL_HASSAFECARD, infoBase.getHasSafeCard());
             dataMap.put(CommonTag.PERSONAL_BANK_NAME, infoBase.getBankName());
             dataMap.put(CommonTag.PERSONAL_BANKCARDTAILNO, infoBase.getBankcardTailNo());
             dataMap.put(CommonTag.PERSONAL_USER_SEX, infoBase.getGender());

@@ -55,6 +55,7 @@ public class CommonTag {
     public static final String PERSONAL_USER_ID = "userId";
     public static final String PERSONAL_USER_NAME = "userName";
     public static final String PERSONAL_BANK_NAME = "personal_bank_name";
+    public static final String PERSONAL_HASSAFECARD = "personal_hasSafeCard";
     public static final String PERSONAL_BANKCARDTAILNO = "bankcardtailno";
     public static final String PERSONAL_USER_SEX = "userSex";
     public static final String PERSONAL_USER_PHONE = "userPhone";
