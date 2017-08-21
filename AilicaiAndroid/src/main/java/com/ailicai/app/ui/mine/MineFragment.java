@@ -91,11 +91,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     RelativeLayout titleRoot;
     @Bind(R.id.tv_new_msg_point)
     TextView mTvNewMsgPoint;
-
-    //    boolean isMessageClick = false;
-//    boolean isCardClick = false;
-//    boolean isMessagePointShow = false;
-//    boolean isCardPointShow = false;
     @Bind(R.id.top_bg)
     FrameLayout topBg;
     @Bind(R.id.my_scroll_view)
@@ -106,8 +101,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     LinearLayout mAllView;
     @Bind(R.id.mine_top_head)
     LinearLayout mineTopHead;
-    //@Bind(R.id.mine_top_head_bg)
-    //LinearLayout mineTopHeadBg;
     @Bind(R.id.mine_not_login)
     LinearLayout mineNotLogin;
     @Bind(R.id.mine_login)
@@ -116,10 +109,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     LinearLayout mineTopMargin;
     @Bind(R.id.title_root_layout)
     RelativeLayout titleBg;
-    //@Bind(R.id.mine_top_margin_bg)
-    //LinearLayout mineTopMarginBg;
-    //@Bind(R.id.mine_top_margin_bg_scroll)
-    //LinearLayout mineTopMarginScroll;
     @Bind(R.id.tvLogin)
     TextView tvLogin;
     @Bind(R.id.userPhoto)
@@ -212,8 +201,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
         topBg.getLayoutParams().height = mFlexibleSpaceImageHeight;
         mineTopMargin.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
-        //mineTopMarginScroll.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
-        //mineTopMarginBg.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
         ((FrameLayout.LayoutParams) titleRoot.getLayoutParams()).setMargins(0, CommonUtil.getStatusBarHeight(getWRActivity()), 0, 0);
 
         titleBg.setAlpha(0);
@@ -339,9 +326,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
         mineNotLogin.setAlpha(1 - alpha);
         mineLogin.setAlpha(1 - alpha);
-        //int minOverlayTransitionY = CommonUtil.getTitleHeight(getWRActivity()) - mineTopHead.getMeasuredHeight();
-        //mineTopHeadBg.setTranslationY(ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
-        //mineTopHead.setTranslationY(-scrollY);
     }
 
     @Override
@@ -439,13 +423,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             }
 
             MsgLiteView.refreshNoticeNums(null);
-
-//            // 卡券小红点
-//            if (isShowVoucherRedDotState()) {
-//                setVoucherRedDotState(true);
-//            } else {
-//                setVoucherRedDotState(false);
-//            }
 
             //自动跳转至目标页面
             jumpToMenuTarget(loginAction);
@@ -686,10 +663,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.tv_account_balance_get_cash)
     void accountBalanceGetCashClick() {
         if (!NoSetSafeCardHint.isOpenAccount()) {
-            //Map<String, String> dataMap = ObjectUtil.newHashMap();
-            //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
-            //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
-
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
@@ -705,10 +678,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.tv_account_balance_charge)
     void accountBalanceChargeClick() {
         if (!NoSetSafeCardHint.isOpenAccount()) {
-            //Map<String, String> dataMap = ObjectUtil.newHashMap();
-            //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
-            //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
-
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
