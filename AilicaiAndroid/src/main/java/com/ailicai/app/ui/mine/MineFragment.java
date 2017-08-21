@@ -37,7 +37,6 @@ import com.ailicai.app.model.request.AssetInfoNewRequest;
 import com.ailicai.app.model.response.AssetInfoNewResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.BaseBindFragment;
-import com.ailicai.app.ui.buy.AutomaticTenderActivity;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
 import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.LoginManager;
@@ -301,6 +300,15 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_REWARDS_LIST.getActionIndex())) {
             //邀请奖励
             mPresenter.goRewards(getWRActivity());
+        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_WANG_DAI_CLICK.getActionIndex())) {
+            //网贷类
+            mPresenter.goWangDai(getWRActivity());
+        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK.getActionIndex())) {
+            //自动投资
+            mPresenter.goAutoTz(getWRActivity());
+        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK.getActionIndex())) {
+            //活期宝
+            mPresenter.goHQB(getWRActivity());
         }
         loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
     }
@@ -513,14 +521,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     @OnClick(R.id.rl_auto_invest)
     void autoInvest() {
-
-        if (!NoSetSafeCardHint.isOpenAccount()) {
-            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
-            startActivity(intent);
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
         } else {
-            MyIntent.startActivity(getWRActivity(), AutomaticTenderActivity.class, null);
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK);
         }
-
     }
 
     /**
@@ -748,6 +754,26 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), IncomeDetailActivity.class);
             intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.REGULAR);
             startActivity(intent);
+        }
+    }
+
+    @OnClick(R.id.net_loan_layout)
+    public void netLoanClick() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_WANG_DAI_CLICK;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+        } else {
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_WANG_DAI_CLICK);
+        }
+    }
+
+    @OnClick(R.id.to_huo_qi_bao)
+    public void goHuoQiBao() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+        } else {
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK);
         }
     }
 

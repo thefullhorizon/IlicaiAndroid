@@ -535,6 +535,21 @@ public class LoginManager {
          */
         ACTION_INDEX_REWARDS_LIST(3),
 
+        /**
+         * 网贷类
+         */
+        ACTION_INDEX_WANG_DAI_CLICK(4),
+
+        /**
+         * 自动投资
+         */
+        ACTION_INDEX_AUTO_TPUZI_CLICK(5),
+
+        /**
+         * 活期宝
+         */
+        ACTION_INDEX_HUOQIBAO_CLICK(6),
+
 
         ACTION_INDEX_NORMAL(-1);
 

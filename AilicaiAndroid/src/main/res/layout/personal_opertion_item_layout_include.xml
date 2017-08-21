@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/net_loan_layout"
             android:layout_width="match_parent"
             android:layout_height="45dip"
             android:background="@drawable/white_to_pressed_selector"
@@ -57,6 +58,7 @@
             android:layout_marginLeft="35dp" />
 
         <RelativeLayout
+            android:id="@+id/to_huo_qi_bao"
             android:layout_width="match_parent"
             android:layout_height="45dip"
             android:background="@drawable/white_to_pressed_selector"
