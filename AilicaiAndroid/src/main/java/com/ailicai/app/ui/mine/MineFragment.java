@@ -503,7 +503,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else {
-            AutomaticTenderActivity.open(getWRActivity(), assetInfoNewResponse.getNetLoanBalance(), assetInfoNewResponse.getAccountBalance());
+            AutomaticTenderActivity.open(getWRActivity(),
+                    assetInfoNewResponse == null ? null :assetInfoNewResponse.getNetLoanBalance(),
+                    assetInfoNewResponse == null ? null :assetInfoNewResponse.getAccountBalance());
         }
 
     }
