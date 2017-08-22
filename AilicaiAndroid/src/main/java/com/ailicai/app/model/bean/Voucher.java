@@ -29,9 +29,9 @@ public class Voucher {
 
     private String amountCentString="";// 金额字符串(返金券使用)
 
-    private int simpleDescRed ; // 类型描述是否标红
-    private int useRangeRed ; // 卡券所使用的标的限制描述是否标红
-    private int minAmountCentStringRed ; // 最低投资金额是否标红
+    private boolean simpleDescRed ; // 类型描述是否标红
+    private boolean useRangeRed ; // 卡券所使用的标的限制描述是否标红
+    private boolean minAmountCentStringRed ; // 最低投资金额是否标红
 
     public int getVoucherId() {
         return voucherId;
@@ -186,27 +186,27 @@ public class Voucher {
         this.amountCentString = amountCentString;
     }
 
-    public int getSimpleDescRed() {
+    public boolean isSimpleDescRed() {
         return simpleDescRed;
     }
 
-    public void setSimpleDescRed(int simpleDescRed) {
+    public void setSimpleDescRed(boolean simpleDescRed) {
         this.simpleDescRed = simpleDescRed;
     }
 
-    public int getUseRangeRed() {
+    public boolean isUseRangeRed() {
         return useRangeRed;
     }
 
-    public void setUseRangeRed(int useRangeRed) {
+    public void setUseRangeRed(boolean useRangeRed) {
         this.useRangeRed = useRangeRed;
     }
 
-    public int getMinAmountCentStringRed() {
+    public boolean isMinAmountCentStringRed() {
         return minAmountCentStringRed;
     }
 
-    public void setMinAmountCentStringRed(int minAmountCentStringRed) {
+    public void setMinAmountCentStringRed(boolean minAmountCentStringRed) {
         this.minAmountCentStringRed = minAmountCentStringRed;
     }
 }

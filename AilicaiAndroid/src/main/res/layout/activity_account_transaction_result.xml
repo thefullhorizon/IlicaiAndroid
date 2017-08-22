@@ -3,7 +3,7 @@
     xmlns:manyi="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/global_background"
+    android:background="@color/color_f7f7f7"
     android:orientation="vertical">
 
     <com.ailicai.app.widget.IWTopTitleView
@@ -11,12 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         manyi:hasLeft="false"
+        android:background="@color/white"
         manyi:titleview_title_text="结果" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         android:padding="16dp">
 
         <LinearLayout
@@ -88,7 +89,6 @@
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:paddingBottom="@dimen/_24"
             android:paddingLeft="@dimen/_32"
             android:paddingRight="@dimen/_32"
@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_16"
                     android:layout_toRightOf="@+id/tv_icon_regular_result"
-                    android:text="您的申购已提交"
+                    android:text="您的申购已提交，等待处理"
                     android:textStyle="bold"
                     android:textColor="#3aa78f"
                     android:textSize="18sp" />
@@ -201,7 +201,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:gravity="top"
         android:orientation="vertical">
 

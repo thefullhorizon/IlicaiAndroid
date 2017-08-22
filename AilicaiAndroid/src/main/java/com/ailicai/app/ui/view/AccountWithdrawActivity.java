@@ -221,7 +221,7 @@ public class AccountWithdrawActivity extends BaseBindActivity {
             public void onJsonSuccess(UserTipsWhenTransactionOutResponse jsonObject) {
                 showContentView();
 
-                DialogBuilder.showSimpleDialog(AccountWithdrawActivity.this,"",jsonObject.getMessageLine1()+"\\n"+jsonObject.getMessageLine2(),
+                DialogBuilder.showSimpleDialog(AccountWithdrawActivity.this,"",jsonObject.getMessageLine1()+"\n"+jsonObject.getMessageLine2(),
                         "取消",null,
                         "确认转出",new DialogInterface.OnClickListener(){
 

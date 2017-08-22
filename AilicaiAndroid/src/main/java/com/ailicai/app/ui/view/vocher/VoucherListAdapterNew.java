@@ -136,9 +136,9 @@ public class VoucherListAdapterNew extends BaseAdapter {
         String MinAmountCentString = TextUtils.isEmpty(voucher.getMinAmountCentString()) ? "" : voucher.getMinAmountCentString();
         String useRange = TextUtils.isEmpty(voucher.getUseRange()) ? "" : voucher.getUseRange();
         builder = spannableUtil.getSpannableString(simpleDesc,MinAmountCentString,useRange,
-                voucher.getSimpleDescRed() == 1? R.style.text_12_d0011b : R.style.text_12_757575,
-                voucher.getMinAmountCentStringRed()== 1? R.style.text_12_d0011b : R.style.text_12_757575,
-                voucher.getUseRangeRed()== 1? R.style.text_12_d0011b : R.style.text_12_757575);
+                voucher.isSimpleDescRed()? R.style.text_12_d0011b : R.style.text_12_757575,
+                voucher.isMinAmountCentStringRed()? R.style.text_12_d0011b : R.style.text_12_757575,
+                voucher.isUseRangeRed()? R.style.text_12_d0011b : R.style.text_12_757575);
         viewHolder.mVoucherLimit.setText(builder);
 
         //bottom
