@@ -51,6 +51,8 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     IWTopTitleView mIwttvTop;
     @Bind(R.id.tv_assert_money_tip)
     TextView mTvAssertMoneyTip;
+    @Bind(R.id.v_line)
+    View mVLine;
     @Bind(R.id.tv_balance_tip)
     TextView mTvBalanceTip;
     @Bind(R.id.tb_automatic_tender)
@@ -100,10 +102,20 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
         String netBalance = getIntent().getStringExtra(NETBALANCE_KEY);
         String accountBalance = getIntent().getStringExtra(ACCOUNTBALANCE_KEY);
 
-        mTvAssertMoneyTip.setText(String.format(Locale.CHINA,getResources().getString(R.string.automatic_net_balance),
-                TextUtils.isEmpty(netBalance) ? "0.00" : netBalance));
-        mTvBalanceTip.setText(String.format(Locale.CHINA,getResources().getString(R.string.automatic_account_balance),
-                TextUtils.isEmpty(accountBalance) ? "0.00" : accountBalance));
+        if(TextUtils.isEmpty(netBalance) || TextUtils.isEmpty(accountBalance)){
+            mTvAssertMoneyTip.setVisibility(View.GONE);
+            mTvBalanceTip.setVisibility(View.GONE);
+            mVLine.setVisibility(View.GONE);
+        }else{
+            mTvAssertMoneyTip.setText(String.format(Locale.CHINA,
+                    getResources().getString(R.string.automatic_net_balance), netBalance));
+            mTvBalanceTip.setText(String.format(Locale.CHINA,
+                    getResources().getString(R.string.automatic_account_balance),accountBalance));
+            mTvAssertMoneyTip.setVisibility(View.VISIBLE);
+            mTvBalanceTip.setVisibility(View.VISIBLE);
+            mVLine.setVisibility(View.VISIBLE);
+        }
+
         mTbAutomaticTender.setOnToggleChanged(this);
         mAttvYearMax.setOnCheckChangeListener(this);
         mAttvTimeShortest.setOnCheckChangeListener(this);
@@ -202,6 +214,8 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             mCbAgreement.setChecked(true);//重新打开都勾选
             ayncOkStatus();
         }else{
+            mEtReserveMoney.clearFocus();
+            SystemUtil.HideSoftInput(this);
             mVToggleContainer.setVisibility(View.GONE);
             mVAgreementContainer.setVisibility(View.GONE);
             mTvOk.setVisibility(View.GONE);

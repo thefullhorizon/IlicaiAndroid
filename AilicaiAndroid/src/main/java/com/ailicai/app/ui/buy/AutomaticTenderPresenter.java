@@ -13,9 +13,7 @@ import com.ailicai.app.model.response.AutoBidResponse;
 import com.ailicai.app.model.response.AutoBidSwitchResponse;
 import com.ailicai.app.ui.base.BasePresenter;
 import com.ailicai.app.ui.base.BaseView;
-import com.ailicai.app.ui.dialog.BaseBuyFinanceDialog;
 import com.huoqiu.framework.exception.RestException;
-import com.umeng.socialize.utils.Log;
 
 /**
  * Created by jeme on 2017/8/18.
@@ -65,10 +63,18 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
     public void submit(final boolean isOpenAuto,int strategyType,Double reserveBalance,String payPwd){
         AutoBidSwitchRequest request = new AutoBidSwitchRequest();
         request.setAutoBidCommand(isOpenAuto ? 1 : 0);
-        request.setStrategyType(strategyType);
-        request.setReserveBalance(reserveBalance);
         request.setPayPwd(payPwd);
+        if(isOpenAuto) {
+            request.setStrategyType(strategyType);
+            request.setReserveBalance(reserveBalance);
+        }
         ServiceSender.exec(getContext(),request,new IwjwRespListener<AutoBidSwitchResponse>(){
+
+            @Override
+            public void onStart() {
+                super.onStart();
+                getMvpView().showLoading();
+            }
 
             @Override
             public void onJsonSuccess(AutoBidSwitchResponse jsonObject) {
@@ -84,7 +90,7 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
                         } else {
                             mPay.showPwdErrorResetDialog((Activity)getContext(), jsonObject.getMessage());
                         }
-//                        getMvpView().processAfterSubmit(isOpenAuto,false,jsonObject.getMessage());
+                        getMvpView().processAfterSubmit(isOpenAuto,false,"");
                     }else if(jsonObject.getErrorCode() == 0){//0表示修改成功
                         getMvpView().processAfterSubmit(isOpenAuto,true,jsonObject.getMessage());
                         mPay.onDialogDismiss();
@@ -115,22 +121,28 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
         info.forOpen = forOpen;
         info.strategyType = strategyType;
         info.reserveMoney = reserveMoney;
-        mPay = new AutomaticTenderPay((FragmentActivity)getContext(), info,new IwPwdPayResultListener() {
+        mPay = new AutomaticTenderPay((FragmentActivity)getContext(), info,new IwPwdPayResultListener<AutoBidSwitchResponse>() {
             @Override
             public void onPayPwdTryAgain() {
                 showPwdDialogForOpen(info.forOpen, info.strategyType, info.reserveMoney);
             }
 
             @Override
-            public void onPayComplete(Object object) {
+            public void onPayComplete(AutoBidSwitchResponse object) {
+                if(object != null) {
+                    getMvpView().processAfterSubmit(object.isForOpen(), true, object.getMessage());
+                }
             }
 
             @Override
-            public void onPayStateDelay(String msgInfo, Object object) {
+            public void onPayStateDelay(String msgInfo, AutoBidSwitchResponse object) {
             }
 
             @Override
-            public void onPayFailInfo(String msgInfo, String errorCode, Object object) {
+            public void onPayFailInfo(String msgInfo, String errorCode, AutoBidSwitchResponse object) {
+                if(object != null) {
+                    getMvpView().processAfterSubmit(object.isForOpen(), false, msgInfo);
+                }
             }
         });
         mPay.setAutomaticPresenter(this);
