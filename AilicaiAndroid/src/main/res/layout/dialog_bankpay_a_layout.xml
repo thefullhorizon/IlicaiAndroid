@@ -47,6 +47,7 @@
         android:id="@+id/msg_viewswitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:measureAllChildren="false"
         android:inAnimation="@anim/activity_lollipop_open_right_enter"
         android:outAnimation="@anim/activity_lollipop_open_left_exit">
 
