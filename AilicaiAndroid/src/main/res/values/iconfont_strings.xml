@@ -115,7 +115,7 @@
     <string name="mobile_arrow_r">&#xe9db;</string>
     <string name="list_switch">&#xe67b;</string>
     <string name="map_switch">&#xe67c;</string>
-    <string name="apply_for_call">&#xe68a;</string>
+
     <string name="chat_nav_call">&#xe68d;</string>
 
     <!-- 约看-->
@@ -232,6 +232,8 @@
 
     <!--收银台协议-->
     <string name="only_rightcheck">&#xea33;</string>
+
+    <string name="information">&#xea3d;</string>
 
 
 

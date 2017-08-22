@@ -434,4 +434,11 @@
             <enum name="grid" value="2" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="AutomaticTenderTypeView">
+        <attr name="tenderTypeName" format="string|reference"/>
+        <attr name="tenderTypeTag" format="string|reference"/>
+        <attr name="tenderTypeDesc" format="string|reference"/>
+        <attr name="checked" format="boolean"/>
+    </declare-styleable>
 </resources>

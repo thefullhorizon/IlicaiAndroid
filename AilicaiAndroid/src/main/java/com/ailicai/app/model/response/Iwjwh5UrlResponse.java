@@ -35,6 +35,7 @@ public class Iwjwh5UrlResponse extends Response {
     private String bindNewOpenAccountUrl; // 重新绑定安全卡
 
     private String safeBankSupport = "";//安全卡限额列表地址
+    private String autoBidNoteH5Url          = ""; // 自动投标说明Url
 
     public String getHelpCenterUrl() {
         return helpCenterUrl;
@@ -226,5 +227,13 @@ public class Iwjwh5UrlResponse extends Response {
 
     public void setSafeBankSupport(String safeBankSupport) {
         this.safeBankSupport = safeBankSupport;
+    }
+
+    public String getAutoBidNoteH5Url() {
+        return autoBidNoteH5Url;
+    }
+
+    public void setAutoBidNoteH5Url(String autoBidNoteH5Url) {
+        this.autoBidNoteH5Url = autoBidNoteH5Url;
     }
 }

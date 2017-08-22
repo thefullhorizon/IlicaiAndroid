@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
@@ -8,11 +8,233 @@
     <com.ailicai.app.widget.IWTopTitleView
         android:id="@+id/iwttv_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:titleview_title_text="自动投标"/>
+
     <TextView
+        android:id="@+id/tv_assert_money_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/iwttv_top"
-        android:text="sldkfjlsd"/>
-</android.support.constraint.ConstraintLayout>
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:textSize="12sp"
+        android:textColor="@color/color_212121"
+        android:layout_alignBaseline="@+id/tv_balance_tip"
+        android:layout_alignBottom="@+id/tv_balance_tip"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="0.5dp"
+        android:layout_height="14dp"
+        android:layout_below="@id/iwttv_top"
+        android:layout_toRightOf="@+id/tv_assert_money_tip"
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="12dp"
+        android:background="@color/color_757575"
+        android:layout_marginStart="12dp" />
+
+    <TextView
+        android:id="@+id/tv_balance_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iwttv_top"
+        android:layout_toRightOf="@id/v_line"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:textSize="12sp"
+        android:textColor="@color/color_212121"
+        android:layout_marginTop="12dp"/>
+
+    <View
+        android:id="@+id/v_line_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_assert_money_tip"
+        android:layout_marginTop="12dp"
+        android:background="@color/color_e6e6e6"/>
+
+    <LinearLayout
+        android:id="@+id/ll_toggle_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v_line_2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:textColor="@color/color_212121"
+                android:text="自动投标" />
+
+            <com.ailicai.app.widget.ToggleButton
+                android:id="@+id/tb_automatic_tender"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                app:onColor="@color/deep_orange" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_toggle_on_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <View
+                android:id="@+id/v_line_3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="16dp"
+                android:background="@color/color_e6e6e6"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_212121"
+                    android:text="账户预留金额"/>
+
+                <EditText
+                    android:id="@+id/et_reserve_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="0.00"
+                    android:textColorHint="@color/color_BDBDBD"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_212121"
+                    android:background="@null"
+                    android:gravity="end|center_vertical"/>
+                <TextView
+                    android:id="@+id/tv_reserve_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_212121"
+                    android:text="元"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_e6e6e6"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="#dce7f3"/>
+
+            <com.ailicai.app.widget.AutomaticTenderTypeView
+                android:id="@+id/attv_year_max"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                app:tenderTypeName="年化最高"
+                app:tenderTypeTag="收益最大化"
+                app:tenderTypeDesc="为您投资平台内收益最高的标"
+                app:checked="false"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="16dp"
+                android:background="@color/color_e6e6e6"/>
+
+            <com.ailicai.app.widget.AutomaticTenderTypeView
+                android:id="@+id/attv_time_shortest"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                app:tenderTypeName="期限最短"
+                app:tenderTypeTag="资金更灵活"
+                app:tenderTypeDesc="为您投资平台内期限最短的标"
+                app:checked="false"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_line_4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/ll_toggle_container"
+        android:background="@color/color_e6e6e6"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_agreement_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v_line_4"
+        android:gravity="center_horizontal"
+        android:visibility="gone">
+
+        <CheckBox
+            android:id="@+id/cb_agreement_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingLeft="16dp"
+            android:button="@null"
+            android:checked="true"
+            android:drawableLeft="@drawable/agreement_box_bg"
+            android:drawablePadding="4dp"
+            android:text="我已阅读并同意"
+            android:textColor="@color/black_54_color"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_user_agreement_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_alignBaseline="@+id/cb_agreement_checkbox"
+            android:layout_toRightOf="@+id/cb_agreement_checkbox"
+            android:text="《自动投标授权协议》"
+            android:textColor="#005ebd"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_ok"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/selector_deep_orange"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="@string/ok"
+        android:visibility="gone"/>
+
+
+</RelativeLayout>

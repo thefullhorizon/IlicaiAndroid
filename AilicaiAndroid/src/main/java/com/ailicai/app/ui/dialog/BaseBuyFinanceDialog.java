@@ -380,6 +380,13 @@ public class BaseBuyFinanceDialog implements View.OnClickListener, GridPasswordV
             */
             moneyPayIco.setText(buyDialogShowInfo.getPayTypFromIco());
         }
+        /*String showInfo = String.valueOf(buyDialogShowInfo.getMoneyOutStr());
+        if(TextUtils.isEmpty(showInfo)){
+            moneyoutView.setVisibility(View.GONE);
+        }else{
+            moneyoutView.setText(showInfo);
+            moneyoutView.setVisibility(View.VISIBLE);
+        }*/
         moneyoutView.setText(String.valueOf(buyDialogShowInfo.getMoneyOutStr()));
         return this;
     }
