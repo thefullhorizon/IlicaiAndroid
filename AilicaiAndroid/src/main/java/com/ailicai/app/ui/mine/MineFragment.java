@@ -294,6 +294,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK.getActionIndex())) {
             //活期宝
             mPresenter.goHQB(getWRActivity());
+        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK.getActionIndex())) {
+            //自动投资
+            mPresenter.goAutoTz(getWRActivity(),assetInfoNewResponse);
         }
         loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
     }
@@ -499,15 +502,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     @OnClick(R.id.rl_auto_invest)
     void autoInvest() {
-        if (!NoSetSafeCardHint.isOpenAccount()) {
-            Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
-            startActivity(intent);
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
         } else {
-            AutomaticTenderActivity.open(getWRActivity(),
-                    assetInfoNewResponse == null ? null :assetInfoNewResponse.getNetLoanBalance(),
-                    assetInfoNewResponse == null ? null :assetInfoNewResponse.getAccountBalance());
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK);
         }
-
     }
 
     /**

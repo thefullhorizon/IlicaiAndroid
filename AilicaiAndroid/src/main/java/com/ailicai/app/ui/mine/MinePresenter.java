@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.model.response.AssetInfoNewResponse;
 import com.ailicai.app.ui.bankcard.BankCardListActivity;
 import com.ailicai.app.ui.buy.AutomaticTenderActivity;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
@@ -95,6 +96,24 @@ public class MinePresenter {
                     Intent intent = new Intent(context, CapitalActivity.class);
                     intent.putExtra(CapitalActivity.TAB, CapitalActivity.HOLD);
                     context.startActivity(intent);
+                }
+            }
+        }
+    }
+
+    /**
+     * 自动投资
+     */
+    public void goAutoTz(Context context, AssetInfoNewResponse assetInfoNewResponse) {
+        if (!CheckDoubleClick.isFastDoubleClick()) {
+            if (null != context) {
+                if (!NoSetSafeCardHint.isOpenAccount()) {
+                    Intent intent = new Intent(context, ProcessActivity.class);
+                    context.startActivity(intent);
+                } else {
+                    AutomaticTenderActivity.open(context,
+                            assetInfoNewResponse == null ? null : assetInfoNewResponse.getNetLoanBalance(),
+                            assetInfoNewResponse == null ? null : assetInfoNewResponse.getAccountBalance());
                 }
             }
         }
