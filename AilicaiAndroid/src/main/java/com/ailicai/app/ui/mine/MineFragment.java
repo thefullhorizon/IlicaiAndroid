@@ -210,10 +210,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.main_red_color);
 
-        topBg.getLayoutParams().height = mFlexibleSpaceImageHeight;
+        //topBg.getLayoutParams().height = mFlexibleSpaceImageHeight + DeviceUtil.getPixelFromDip(getWRActivity(), 20);
         mineTopMargin.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
-        //mineTopMarginScroll.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
-        //mineTopMarginBg.getLayoutParams().height = CommonUtil.getTitleHeight(getWRActivity());
         ((FrameLayout.LayoutParams) titleRoot.getLayoutParams()).setMargins(0, CommonUtil.getStatusBarHeight(getWRActivity()), 0, 0);
 
         titleBg.setAlpha(0);
@@ -518,7 +516,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else {
-            AutomaticTenderActivity.open(getWRActivity(),assetInfoNewResponse.getNetLoanBalance(),assetInfoNewResponse.getAccountBalance());
+            AutomaticTenderActivity.open(getWRActivity(), assetInfoNewResponse.getNetLoanBalance(), assetInfoNewResponse.getAccountBalance());
         }
 
     }
