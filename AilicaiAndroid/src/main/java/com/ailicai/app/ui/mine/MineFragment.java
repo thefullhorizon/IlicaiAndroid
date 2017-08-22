@@ -518,7 +518,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else {
-            MyIntent.startActivity(getWRActivity(), AutomaticTenderActivity.class, null);
+            AutomaticTenderActivity.open(getWRActivity(),assetInfoNewResponse.getNetLoanBalance(),assetInfoNewResponse.getAccountBalance());
         }
 
     }
