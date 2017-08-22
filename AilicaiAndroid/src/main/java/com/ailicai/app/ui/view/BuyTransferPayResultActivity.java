@@ -20,8 +20,11 @@ import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.share.ShareUtil;
+import com.ailicai.app.common.utils.DeviceUtil;
 import com.ailicai.app.common.utils.MathUtil;
 import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.common.utils.ObjectUtil;
+import com.ailicai.app.common.utils.UIUtils;
 import com.ailicai.app.eventbus.RegularPayEvent;
 import com.ailicai.app.eventbus.RegularPayH5ActivityFinishEvent;
 import com.ailicai.app.model.request.BannerListRequest;
@@ -29,6 +32,8 @@ import com.ailicai.app.model.response.BannerListResponse;
 import com.ailicai.app.model.response.BuyDingqibaoResponse;
 import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.TransparentWebViewActivity;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.dialog.ShareFinanceDialog;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.view.banner.IndexBannerScroller;
@@ -56,6 +61,8 @@ import butterknife.OnClick;
  * Created by ZhouXuan on 2016/8/2.
  */
 public class BuyTransferPayResultActivity extends BaseBindActivity {
+
+    public int LOTTERY_REQUEST = 1;
 
     @Bind(R.id.ll_result_success)
     View ll_result_success;
@@ -87,6 +94,14 @@ public class BuyTransferPayResultActivity extends BaseBindActivity {
     ViewPager mViewPagerBanner;
     @Bind(R.id.layout_indicators_banner)
     LinearLayout mIndicatorsBanner;
+
+    // 首投抽奖
+    @Bind(R.id.llFirstInvestLottery)
+    LinearLayout llFirstInvestLottery;
+    @Bind(R.id.tvLotteryDesc)
+    TextView tvLotteryDesc;
+    @Bind(R.id.llFirstInvestLotteryImage)
+    LinearLayout llFirstInvestLotteryImage;
 
 
     private BuyDingqibaoResponse response;
@@ -165,7 +180,37 @@ public class BuyTransferPayResultActivity extends BaseBindActivity {
         tvTotalMoneyDesc.setText("到期后，您将获得预计" + response.getBackAmount() + "元回款");
         confirm_repay.setText("查看详情");
         EventLog.upEventLog("201610282", "show", "zrfcb_success");
-        getBannerList(10);
+        setInvestActivity();
+    }
+
+    // 投资活动相关  banner 和首投奖励
+    private void setInvestActivity() {
+        if(response.getIsLottery() == 1) {
+            mLayoutBanner.setVisibility(View.GONE);
+            llFirstInvestLottery.setVisibility(View.VISIBLE);
+            setLotteryWidthAndHeight();
+            tvLotteryDesc.setText("恭喜您获得抽奖机会，立刻去抽奖");
+            llFirstInvestLottery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Map<String, String> dataMap = ObjectUtil.newHashMap();
+                    dataMap.put(WebViewActivity.URL, response.getFirstInvestLotteryURL());
+                    MyIntent.startActivityForResult(BuyTransferPayResultActivity.this, TransparentWebViewActivity.class, dataMap,LOTTERY_REQUEST);
+                    overridePendingTransition(R.anim.none,R.anim.none);
+                }
+            });
+        } else {
+            llFirstInvestLottery.setVisibility(View.GONE);
+            getBannerList(10);
+        }
+    }
+
+    private void setLotteryWidthAndHeight() {
+        int width = DeviceUtil.getScreenSize()[0] - UIUtils.dipToPx(this,24);
+        int height = 276*width/888;
+        LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(width, height);
+        lp1.setMargins(UIUtils.dipToPx(this,12),0,UIUtils.dipToPx(this,12),UIUtils.dipToPx(this,12));
+        llFirstInvestLotteryImage.setLayoutParams(lp1);
     }
 
     /**
@@ -590,6 +635,25 @@ public class BuyTransferPayResultActivity extends BaseBindActivity {
         super.onPause();
         if (mAutoRefreshCountDownTimer != null) {
             mAutoRefreshCountDownTimer.pause();
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode != RESULT_OK) {
+            return;
+        }
+
+        if(requestCode == LOTTERY_REQUEST) {
+            tvLotteryDesc.setText("您已抽过奖啦");
+            llFirstInvestLottery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
 

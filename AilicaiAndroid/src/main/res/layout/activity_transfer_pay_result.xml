@@ -631,6 +631,80 @@
 
         </LinearLayout>
 
+
+        // 首投抽奖
+        <LinearLayout
+            android:id="@+id/llFirstInvestLottery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#bdbdbd" />
+
+                <TextView
+                    style="@style/text_12_bdbdbd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="6dp"
+                    android:text="活动" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#bdbdbd" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llFirstInvestLotteryImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:background="@drawable/fangchanbao_result_banner_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="0sp"
+                    android:shadowColor="#99d82a00"
+                    android:shadowDy="2"
+                    android:shadowRadius="6"
+                    android:text="爱理财幸运大抽奖"
+                    android:textColor="#fff24f"
+                    android:textSize="23sp" />
+
+                <TextView
+                    android:id="@+id/tvLotteryDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:lineSpacingExtra="3sp"
+                    android:text="您已抽过奖啦"
+                    android:textColor="#ffffff"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
     </RelativeLayout>
 
 

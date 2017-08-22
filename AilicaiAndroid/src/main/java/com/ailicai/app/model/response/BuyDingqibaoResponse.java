@@ -36,6 +36,10 @@ public class BuyDingqibaoResponse extends Response {
     private String bidOrderNo = "";//订单编号  成功购买返回 用于跳转到详情
     private int usePoll; //   1轮询  0 不轮询   余额购买  仅新浪渠道购买转让房产宝需要轮询 是否轮询根据 Status=P&&userPoll =1
 
+    // V1.2新增
+    private String firstInvestLotteryURL="";//首投抽奖的url
+    private int isLottery; //是否可抽奖 1:可以抽奖
+
     public int getIsTransfer() {
         return isTransfer;
     }
@@ -251,6 +255,22 @@ public class BuyDingqibaoResponse extends Response {
 
     public void setUsePoll(int usePoll) {
         this.usePoll = usePoll;
+    }
+
+    public String getFirstInvestLotteryURL() {
+        return firstInvestLotteryURL;
+    }
+
+    public void setFirstInvestLotteryURL(String firstInvestLotteryURL) {
+        this.firstInvestLotteryURL = firstInvestLotteryURL;
+    }
+
+    public int getIsLottery() {
+        return isLottery;
+    }
+
+    public void setIsLottery(int isLottery) {
+        this.isLottery = isLottery;
     }
 
     @Override

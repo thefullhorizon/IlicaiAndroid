@@ -39,6 +39,10 @@ public class AdvanceDepositAndApplyAppResponse extends Response {
     private String backAmount=""; //预计回款收益
     private String bidOrderNo="";//订单编号  成功购买返回 用于跳转到详情
 
+    // V1.2新增
+    private String firstInvestLotteryURL="";//首投抽奖的url
+    private int isLottery; //是否可抽奖 1:可以抽奖
+
 
     public String getAdvanceVoucherNo() {
         return advanceVoucherNo;
@@ -254,5 +258,21 @@ public class AdvanceDepositAndApplyAppResponse extends Response {
 
     public void setBidOrderNo(String bidOrderNo) {
         this.bidOrderNo = bidOrderNo;
+    }
+
+    public String getFirstInvestLotteryURL() {
+        return firstInvestLotteryURL;
+    }
+
+    public void setFirstInvestLotteryURL(String firstInvestLotteryURL) {
+        this.firstInvestLotteryURL = firstInvestLotteryURL;
+    }
+
+    public int getIsLottery() {
+        return isLottery;
+    }
+
+    public void setIsLottery(int isLottery) {
+        this.isLottery = isLottery;
     }
 }

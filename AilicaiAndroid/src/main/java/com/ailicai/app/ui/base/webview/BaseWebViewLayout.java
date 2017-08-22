@@ -3,6 +3,7 @@ package com.ailicai.app.ui.base.webview;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.net.UrlQuerySanitizer;
 import android.net.http.SslError;
@@ -176,6 +177,15 @@ public class BaseWebViewLayout extends LinearLayout {
         super(context, attrs, defStyleAttr);
         this.webViewActivitySoftReference = new SoftReference<>(context);
         initWebViews();
+    }
+
+    // 设置webview透明，可显示webview上内容
+    public void setWebviewTransparent() {
+        webView.setBackgroundColor(Color.argb(1, 255, 255, 255));
+    }
+
+    public void setWebviewAlpha(int alpha) {
+        webView.setAlpha(alpha);
     }
 
     private BaseActivity getWRContext() {

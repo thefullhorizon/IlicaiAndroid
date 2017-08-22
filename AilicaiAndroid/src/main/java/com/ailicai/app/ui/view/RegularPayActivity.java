@@ -659,6 +659,8 @@ public class RegularPayActivity extends BaseBindActivity {
         response.setHasBuyPrecent(object.getHasBuyPrecent());
         response.setHasBuyPrecentStr(object.getHasBuyPrecentStr());
         response.setBidOrderNo(object.getBidOrderNo());
+        response.setFirstInvestLotteryURL(object.getFirstInvestLotteryURL());
+        response.setIsLottery(object.getIsLottery());
         return response;
     }
 

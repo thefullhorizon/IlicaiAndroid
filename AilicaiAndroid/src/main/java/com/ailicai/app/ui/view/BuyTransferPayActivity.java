@@ -585,6 +585,8 @@ public class BuyTransferPayActivity extends BaseBindActivity {
         response.setBackAmount(object.getBackAmount());
         response.setTransferPrice(object.getTransferPrice());
         response.setBidOrderNo(object.getBidOrderNo());
+        response.setFirstInvestLotteryURL(object.getFirstInvestLotteryURL());
+        response.setIsLottery(object.getIsLottery());
         return response;
     }
 

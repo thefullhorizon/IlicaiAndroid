@@ -26,9 +26,12 @@ import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.share.ShareUtil;
 import com.ailicai.app.common.utils.CommonUtil;
+import com.ailicai.app.common.utils.DeviceUtil;
 import com.ailicai.app.common.utils.MathUtil;
 import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.SpannableUtil;
+import com.ailicai.app.common.utils.UIUtils;
 import com.ailicai.app.eventbus.RegularPayEvent;
 import com.ailicai.app.eventbus.RegularPayH5ActivityFinishEvent;
 import com.ailicai.app.model.request.OptionReportRequest;
@@ -36,6 +39,8 @@ import com.ailicai.app.model.response.BannerListResponse;
 import com.ailicai.app.model.response.BuyDingqibaoResponse;
 import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.TransparentWebViewActivity;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.dialog.ShareFinanceDialog;
 import com.ailicai.app.ui.view.banner.IndexBannerScroller;
 import com.ailicai.app.ui.view.banner.PayResultBannerPagerAdapter;
@@ -65,6 +70,9 @@ import butterknife.OnClick;
  * Created by Gerry on 2015/12/29.
  */
 public class RegularPayResultActivity extends BaseBindActivity {
+
+    public int LOTTERY_REQUEST = 1;
+
     @Bind(R.id.product_txt)
     TextView mProductTxt;
     @Bind(R.id.money_txt)
@@ -109,6 +117,14 @@ public class RegularPayResultActivity extends BaseBindActivity {
     ViewPager mViewPagerBanner;
     @Bind(R.id.layout_indicators_banner)
     LinearLayout mIndicatorsBanner;
+
+    // 首投抽奖
+    @Bind(R.id.llFirstInvestLottery)
+    LinearLayout llFirstInvestLottery;
+    @Bind(R.id.tvLotteryDesc)
+    TextView tvLotteryDesc;
+    @Bind(R.id.llFirstInvestLotteryImage)
+    LinearLayout llFirstInvestLotteryImage;
 
     private RegularPayResultPresenter regularPayResultPresenter;
 
@@ -202,7 +218,7 @@ public class RegularPayResultActivity extends BaseBindActivity {
      */
     private void initPaySuccess(boolean isLast) {
 
-        regularPayResultPresenter.getBannerList(10);
+        setInvestActivity();
 
         llResultSuccess.setVisibility(View.VISIBLE);
         flResultNotSuccess.setVisibility(View.GONE);
@@ -262,6 +278,37 @@ public class RegularPayResultActivity extends BaseBindActivity {
         mRateTxt.setText(response.getYearInterestRate());
         EventLog.upEventLog("201610282", "show", "ptfcb_underway");
     }
+
+    // 投资活动相关  banner 和首投奖励
+    private void setInvestActivity() {
+        if(response.getIsLottery() == 1) {
+            mLayoutBanner.setVisibility(View.GONE);
+            llFirstInvestLottery.setVisibility(View.VISIBLE);
+            setLotteryWidthAndHeight();
+            tvLotteryDesc.setText("恭喜您获得抽奖机会，立刻去抽奖");
+            llFirstInvestLottery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Map<String, String> dataMap = ObjectUtil.newHashMap();
+                    dataMap.put(WebViewActivity.URL, response.getFirstInvestLotteryURL());
+                    MyIntent.startActivityForResult(RegularPayResultActivity.this, TransparentWebViewActivity.class, dataMap,LOTTERY_REQUEST);
+                }
+            });
+        } else {
+            llFirstInvestLottery.setVisibility(View.GONE);
+            regularPayResultPresenter.getBannerList(10);
+        }
+    }
+
+    private void setLotteryWidthAndHeight() {
+        int width = DeviceUtil.getScreenSize()[0] - UIUtils.dipToPx(this,24);
+        int height = 276*width/888;
+        LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(width, height);
+        lp1.setMargins(UIUtils.dipToPx(this,12),0,UIUtils.dipToPx(this,12),UIUtils.dipToPx(this,12));
+        llFirstInvestLotteryImage.setLayoutParams(lp1);
+    }
+
+
 
     /**
      * post 事件刷新相关页面
