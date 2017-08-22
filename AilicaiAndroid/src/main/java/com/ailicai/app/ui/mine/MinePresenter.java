@@ -101,22 +101,6 @@ public class MinePresenter {
     }
 
     /**
-     * 自动投资
-     */
-    public void goAutoTz(Context context) {
-        if (!CheckDoubleClick.isFastDoubleClick()) {
-            if (null != context) {
-                if (!NoSetSafeCardHint.isOpenAccount()) {
-                    Intent intent = new Intent(context, ProcessActivity.class);
-                    context.startActivity(intent);
-                } else {
-                    MyIntent.startActivity(context, AutomaticTenderActivity.class, null);
-                }
-            }
-        }
-    }
-
-    /**
      * 活期宝
      */
     public void goHQB(Context context) {

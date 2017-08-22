@@ -92,11 +92,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     RelativeLayout titleRoot;
     @Bind(R.id.tv_new_msg_point)
     TextView mTvNewMsgPoint;
-
-    //    boolean isMessageClick = false;
-//    boolean isCardClick = false;
-//    boolean isMessagePointShow = false;
-//    boolean isCardPointShow = false;
     @Bind(R.id.top_bg)
     FrameLayout topBg;
     @Bind(R.id.my_scroll_view)
@@ -107,8 +102,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     LinearLayout mAllView;
     @Bind(R.id.mine_top_head)
     LinearLayout mineTopHead;
-    //@Bind(R.id.mine_top_head_bg)
-    //LinearLayout mineTopHeadBg;
     @Bind(R.id.mine_not_login)
     LinearLayout mineNotLogin;
     @Bind(R.id.mine_login)
@@ -117,10 +110,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     LinearLayout mineTopMargin;
     @Bind(R.id.title_root_layout)
     RelativeLayout titleBg;
-    //@Bind(R.id.mine_top_margin_bg)
-    //LinearLayout mineTopMarginBg;
-    //@Bind(R.id.mine_top_margin_bg_scroll)
-    //LinearLayout mineTopMarginScroll;
     @Bind(R.id.tvLogin)
     TextView tvLogin;
     @Bind(R.id.userPhoto)
@@ -299,6 +288,12 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_REWARDS_LIST.getActionIndex())) {
             //邀请奖励
             mPresenter.goRewards(getWRActivity());
+        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_WANG_DAI_CLICK.getActionIndex())) {
+            //网贷类
+            mPresenter.goWangDai(getWRActivity());
+        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK.getActionIndex())) {
+            //活期宝
+            mPresenter.goHQB(getWRActivity());
         }
         loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
     }
@@ -429,13 +424,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
             MsgLiteView.refreshNoticeNums(null);
 
-//            // 卡券小红点
-//            if (isShowVoucherRedDotState()) {
-//                setVoucherRedDotState(true);
-//            } else {
-//                setVoucherRedDotState(false);
-//            }
-
             //自动跳转至目标页面
             jumpToMenuTarget(loginAction);
         }
@@ -511,7 +499,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     @OnClick(R.id.rl_auto_invest)
     void autoInvest() {
-
         if (!NoSetSafeCardHint.isOpenAccount()) {
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
@@ -677,10 +664,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.tv_account_balance_get_cash)
     void accountBalanceGetCashClick() {
         if (!NoSetSafeCardHint.isOpenAccount()) {
-            //Map<String, String> dataMap = ObjectUtil.newHashMap();
-            //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
-            //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
-
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
@@ -696,10 +679,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.tv_account_balance_charge)
     void accountBalanceChargeClick() {
         if (!NoSetSafeCardHint.isOpenAccount()) {
-            //Map<String, String> dataMap = ObjectUtil.newHashMap();
-            //dataMap.put(ACTION_KEY, ACTION_VAL_CHARGE);
-            //MyIntent.startActivity(getWRActivity(), JumpProcessActivity.class, dataMap);
-
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
@@ -746,6 +725,26 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), IncomeDetailActivity.class);
             intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.REGULAR);
             startActivity(intent);
+        }
+    }
+
+    @OnClick(R.id.net_loan_layout)
+    public void netLoanClick() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_WANG_DAI_CLICK;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+        } else {
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_WANG_DAI_CLICK);
+        }
+    }
+
+    @OnClick(R.id.to_huo_qi_bao)
+    public void goHuoQiBao() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+        } else {
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK);
         }
     }
 
