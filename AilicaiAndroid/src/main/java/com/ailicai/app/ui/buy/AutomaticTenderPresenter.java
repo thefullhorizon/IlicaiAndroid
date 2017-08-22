@@ -84,11 +84,10 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
                         } else {
                             mPay.showPwdErrorResetDialog((Activity)getContext(), jsonObject.getMessage());
                         }
-                        getMvpView().processAfterSubmit(isOpenAuto,false,jsonObject.getMessage());
+//                        getMvpView().processAfterSubmit(isOpenAuto,false,jsonObject.getMessage());
                     }else if(jsonObject.getErrorCode() == 0){//0表示修改成功
                         getMvpView().processAfterSubmit(isOpenAuto,true,jsonObject.getMessage());
                         mPay.onDialogDismiss();
-                        mPay = null;
                     }else{
                         getMvpView().processAfterSubmit(isOpenAuto,false,jsonObject.getMessage());
                     }
@@ -112,29 +111,26 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
       /*  if(mPay != null){
             return;
         }*/
-        AutomaticTenderPay.AutomaticTenderInfo info = new AutomaticTenderPay.AutomaticTenderInfo();
+        final AutomaticTenderPay.AutomaticTenderInfo info = new AutomaticTenderPay.AutomaticTenderInfo();
         info.forOpen = forOpen;
         info.strategyType = strategyType;
         info.reserveMoney = reserveMoney;
         mPay = new AutomaticTenderPay((FragmentActivity)getContext(), info,new IwPwdPayResultListener() {
             @Override
             public void onPayPwdTryAgain() {
-                Log.d("pay======>","onPayPwdTryAgain");
+                showPwdDialogForOpen(info.forOpen, info.strategyType, info.reserveMoney);
             }
 
             @Override
             public void onPayComplete(Object object) {
-                Log.d("pay======>","onPayComplete");
             }
 
             @Override
             public void onPayStateDelay(String msgInfo, Object object) {
-                Log.d("pay======>","msgInfo=>"+msgInfo );
             }
 
             @Override
             public void onPayFailInfo(String msgInfo, String errorCode, Object object) {
-                Log.d("pay======>","msgInfo"+msgInfo);
             }
         });
         mPay.setAutomaticPresenter(this);
@@ -145,13 +141,6 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
      * 关闭密码框
      */
     public void pwdDialogClose(boolean needRefresh){
-        /*if(TextUtils.isEmpty(message)){
-            if(forOpen){
-                message = isSuccess ? "自动投标设置成功" : "自动投标设置失败";
-            }else{
-                message = isSuccess ? "关闭自动投标成功" : "关闭自动投标失败";
-            }
-        }*/
         getMvpView().pwdDialogClose(needRefresh);
     }
 

@@ -62,6 +62,7 @@ public class UserInfo {
     private String userMobile = "";
     private String uticket = "";
     private String userMobileID = "";
+    private boolean isAutoBid;//是否开始自动投标
     /**
      * mAgent:用户对应的经纪人
      */
@@ -383,12 +384,21 @@ public class UserInfo {
         this.dynamicHouseNum = dynamicHouseNum;
     }
 
+    public boolean isAutoBid() {
+        return isAutoBid;
+    }
+
+    public void setAutoBid(boolean autoBid) {
+        isAutoBid = autoBid;
+    }
+
     public void setUserInfoData(final UserLoginResponse loginResponse, String mPhoneNumber) {
         if (null != loginResponse && loginResponse.getUserId() > 0) {
             setLoginState(LOGIN);
             setUserMobile(mPhoneNumber);
             setUserMobileID(mPhoneNumber);
             setUserId(loginResponse.getUserId());
+            setAutoBid(TextUtils.equals("Y",loginResponse.getIsAutoBid()));
             saveLoginData(loginResponse, mPhoneNumber);
             if (!TextUtils.isEmpty(loginResponse.getAssigneeName())) {
                 AgentBean agentBean = new AgentBean();

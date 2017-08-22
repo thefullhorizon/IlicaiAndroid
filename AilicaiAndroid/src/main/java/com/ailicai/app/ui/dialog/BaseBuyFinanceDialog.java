@@ -358,6 +358,9 @@ public class BaseBuyFinanceDialog implements View.OnClickListener, GridPasswordV
     }
 
     public BaseBuyFinanceDialog create() {
+        if(!TextUtils.isEmpty(buyDialogShowInfo.title)){
+            titleView.setText(buyDialogShowInfo.title);
+        }
         if (buyDialogShowInfo.getAmount() == 0) {
             moneyTextView.setVisibility(View.GONE);
         } else {

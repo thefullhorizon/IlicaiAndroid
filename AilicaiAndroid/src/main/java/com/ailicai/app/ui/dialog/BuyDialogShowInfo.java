@@ -10,6 +10,7 @@ public class BuyDialogShowInfo {
     private String payTypFrom = "";
     private String payTypFromIco = "";
     private String payMethod; //支付方式 1-安全卡；2-账户余额
+    String title;
 
     public String getPayTypFromIco() {
         return payTypFromIco;
@@ -32,6 +33,7 @@ public class BuyDialogShowInfo {
         return payMethod;
     }
 
+
     public static class BankPayBuild {
 
         double amount = 0;
@@ -39,6 +41,7 @@ public class BuyDialogShowInfo {
         String payTypFrom = "";
         String payTypFromIco = "";
         String payMethod; //支付方式 1-安全卡；2-账户余额
+        String title;
 
         public BankPayBuild setAmount(double amount) {
             this.amount = amount;
@@ -65,12 +68,18 @@ public class BuyDialogShowInfo {
             return this;
         }
 
+        public BankPayBuild setTitle(String title){
+            this.title = title;
+            return this;
+        }
+
         public void applyInfo(BuyDialogShowInfo buyDialogShowInfo) {
             buyDialogShowInfo.amount = this.amount;
             buyDialogShowInfo.moneyOutStr = this.moneyOutStr;
             buyDialogShowInfo.payTypFrom = this.payTypFrom;
             buyDialogShowInfo.payTypFromIco = this.payTypFromIco;
             buyDialogShowInfo.payMethod = this.payMethod;
+            buyDialogShowInfo.title = this.title;
         }
 
         public BuyDialogShowInfo create() {

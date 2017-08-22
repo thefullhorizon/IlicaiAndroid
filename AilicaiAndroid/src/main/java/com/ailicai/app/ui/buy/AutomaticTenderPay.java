@@ -48,7 +48,7 @@ public class AutomaticTenderPay extends BaseBuyFinancePay {
     @Override
     BuyDialogShowInfo getDispalyInfo() {
         return new BuyDialogShowInfo.BankPayBuild()
-                .setAmount(1)
+                .setAmount(0)
                 //.setMoneyOutStr("购买房产宝" + regularPayInfo.getProductId() + "号")
                 .setMoneyOutStr("")
                 .setPayTypFrom("使用账户余额支付")

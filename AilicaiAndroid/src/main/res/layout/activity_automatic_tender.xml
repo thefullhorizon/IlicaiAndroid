@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_f1f1f1">
 
     <com.ailicai.app.widget.IWTopTitleView
         android:id="@+id/iwttv_top"
@@ -151,7 +152,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="12dp"
-                android:background="#dce7f3"/>
+                android:background="@color/color_f1f1f1"/>
 
             <com.ailicai.app.widget.AutomaticTenderTypeView
                 android:id="@+id/attv_year_max"

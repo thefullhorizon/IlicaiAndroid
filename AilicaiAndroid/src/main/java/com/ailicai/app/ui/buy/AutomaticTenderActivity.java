@@ -18,11 +18,11 @@ import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.model.bean.Protocol;
 import com.ailicai.app.model.response.AutoBidResponse;
-import com.ailicai.app.model.response.AutoBidSwitchResponse;
 import com.ailicai.app.ui.base.BaseMvpActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
+import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.widget.AutomaticTenderTypeView;
 import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
@@ -118,8 +118,12 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
         mIwttvTop.addRightText(R.string.information, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String url = SupportUrl.getSupportUrlsResponse().getAutoBidNoteH5Url();
+                if(TextUtils.isEmpty(url)){
+                    return;
+                }
                 Map<String,String> dataMap = new HashMap<>();
-                dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getAutoBidNoteH5Url());
+                dataMap.put(BaseWebViewActivity.URL,url );
                 dataMap.put(BaseWebViewActivity.TITLE, "");
                 dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
                 dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
@@ -163,6 +167,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             mTbAutomaticTender.toggleOn();
             mOpen = true;
         }
+        UserInfo.getInstance().setAutoBid(mOpen);
     }
 
     @Override
