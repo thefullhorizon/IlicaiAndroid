@@ -27,6 +27,8 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
 
         void processSuccess(@NonNull AutoBidResponse response);
 
+        void processFail(String message);
+
         void processAfterSubmit(boolean forOpen, boolean isSuccess, String message);
 
         void pwdDialogClose(boolean forOpen);
@@ -45,7 +47,13 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
             public void onJsonSuccess(AutoBidResponse jsonObject) {
                 getMvpView().hideLoading();
                 if(jsonObject != null){
-                    getMvpView().processSuccess(jsonObject);
+                    if(jsonObject.getErrorCode() == 0) {
+                        getMvpView().processSuccess(jsonObject);
+                    }else{
+                        getMvpView().processFail(jsonObject.getMessage());
+                    }
+                }else{
+                    getMvpView().processFail("数据错误");
                 }
             }
 
@@ -53,6 +61,7 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
             public void onFailInfo(String errorInfo) {
                 super.onFailInfo(errorInfo);
                 getMvpView().hideLoading();
+                getMvpView().processFail(errorInfo);
             }
         });
     }

@@ -152,17 +152,24 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
 
     @Override
     public void showLoading() {
-        showLoadTranstView();
+        showLoadView();
     }
 
     @Override
     public void hideLoading() {
-        showContentView();
+    }
+
+    @Override
+    public void reloadData() {
+        super.reloadData();
+        mPresenter.loadData();
     }
 
     @Override
     public void processSuccess(@NonNull AutoBidResponse response) {
+        showContentView();
         mProtocal = response.getAutoBidProtocol();
+
         if(TextUtils.equals("N",response.getIsAutoBid())){
             mTbAutomaticTender.toggleOff();
             mOpen = false;
@@ -180,6 +187,11 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             mOpen = true;
         }
         UserInfo.getInstance().setAutoBid(mOpen);
+    }
+
+    @Override
+    public void processFail(String message) {
+        showErrorView(message);
     }
 
     @Override
@@ -214,7 +226,8 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             mCbAgreement.setChecked(true);//重新打开都勾选
             ayncOkStatus();
         }else{
-            mEtReserveMoney.clearFocus();
+//            mEtReserveMoney.clearFocus();
+            mTvOk.requestFocus();
             SystemUtil.HideSoftInput(this);
             mVToggleContainer.setVisibility(View.GONE);
             mVAgreementContainer.setVisibility(View.GONE);
