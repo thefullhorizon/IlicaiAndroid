@@ -21,15 +21,18 @@ import com.ailicai.app.eventbus.CapitalApplyRefreshEvent;
 import com.ailicai.app.eventbus.CapitalProductTypeChangeEvent;
 import com.ailicai.app.model.request.CheckTransferStatusRequest;
 import com.ailicai.app.model.request.ReserveCancelRequest;
+import com.ailicai.app.model.response.AutoBidSwitchResponse;
 import com.ailicai.app.model.response.CheckTransferStatusResponse;
 import com.ailicai.app.model.response.ProductSimpleInfoResponse;
 import com.ailicai.app.model.response.ReserveSimpleInfoResponse;
 import com.ailicai.app.model.response.TiyanbaoSimpleInfoResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
+import com.ailicai.app.ui.buy.AutomaticTenderPay;
 import com.ailicai.app.ui.buy.IwPwdPayResultListener;
 import com.ailicai.app.ui.buy.ReserveCancelInterface;
 import com.ailicai.app.ui.buy.ReserveCancelPwdCheckDialog;
+import com.ailicai.app.ui.dialog.BaseBuyFinanceDialog;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.view.CapitalActivity;
 import com.ailicai.app.ui.view.RegularFinanceDetailH5Activity;
@@ -625,7 +628,14 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
         public void onClick(View v) {
             EventLog.upEventLog("801", "zr");
             mTitleView.getRightText().setEnabled(false);
-            checkTransferStatus();
+
+            if(UserInfo.getInstance().isAutoBid()){
+                showAutoInvestDialog();
+            }else{
+                checkTransferStatus();
+            }
+
+
         }
     };
     private boolean showLoading;
@@ -673,6 +683,67 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
         });
 
     }
+    private void showAutoInvestDialog() {
+
+        DialogBuilder.showSimpleDialog(this, getString(R.string.friendly_reminder), getString(R.string.dialog_auto_invest),
+                getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        showPwdDialogForOpen(false,0,0d);
+                    }},
+                getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        checkTransferStatus();
+                    }
+                }
+        );
+    }
+
+    /***
+     * 关闭或者点击地步确认按钮需要交易密码验证
+     */
+    public void showPwdDialogForOpen(boolean forOpen,int strategyType,Double reserveMoney){
+
+        final AutomaticTenderPay.AutomaticTenderInfo info = new AutomaticTenderPay.AutomaticTenderInfo();
+        info.forOpen = forOpen;
+        info.strategyType = strategyType;
+        info.reserveMoney = reserveMoney;
+        AutomaticTenderPay mPay = new AutomaticTenderPay(CapitalListProductDetailActivity.this, info,new IwPwdPayResultListener<AutoBidSwitchResponse>() {
+            @Override
+            public void onPayPwdTryAgain() {
+                showPwdDialogForOpen(info.forOpen, info.strategyType, info.reserveMoney);
+            }
+
+            @Override
+            public void onPayComplete(AutoBidSwitchResponse object) {
+                checkTransferStatus();
+            }
+
+            @Override
+            public void onPayStateDelay(String msgInfo, AutoBidSwitchResponse object) {
+
+            }
+
+            @Override
+            public void onPayFailInfo(String msgInfo, String errorCode, AutoBidSwitchResponse object) {
+
+                if(!TextUtils.isEmpty(msgInfo)){
+                    showMyToast(msgInfo);
+                }
+            }
+        });
+        mPay.setDialogDismissListener(new BaseBuyFinanceDialog.DialogDismissListener() {
+            @Override
+            public void onDismiss() {
+
+            }
+        });
+        mPay.pay();
+    }
+
 
     private void showCannotTransferDialog(String msg) {
         DialogBuilder.getAlertDialog(this)
