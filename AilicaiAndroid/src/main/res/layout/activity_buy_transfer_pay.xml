@@ -27,6 +27,33 @@
         android:textSize="14sp"
         android:visibility="gone" />
 
+    <RelativeLayout
+        android:id="@+id/rl_max_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_12"
+        android:paddingLeft="@dimen/_16"
+        android:paddingRight="@dimen/_16"
+        android:paddingTop="@dimen/_12"
+        android:visibility="gone"
+        android:background="#fff3ec">
+
+        <TextView
+            android:id="@+id/tv_max_value_per_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_14_757575"/>
+
+        <TextView
+            android:id="@+id/tv_max_value_introduction_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_14_005ebd"
+            android:layout_alignParentRight="true"
+            android:text="查看银行限额"/>
+
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/tv_leave_account"
         android:layout_width="wrap_content"

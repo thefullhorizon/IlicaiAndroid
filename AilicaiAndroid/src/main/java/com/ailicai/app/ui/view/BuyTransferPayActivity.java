@@ -101,6 +101,10 @@ public class BuyTransferPayActivity extends BaseBindActivity {
     @Bind(R.id.tv_all_buy)
     TextView tvAllBuy;
 
+    @Bind(R.id.rl_max_value)
+    RelativeLayout mMaxValueLayout;
+    @Bind(R.id.tv_max_value_per_time)
+    TextView mMaxValue;
 
     private RegularPayBaseInfoResponse infoResponse;
     private boolean isLast;//是否是最后一笔
@@ -737,13 +741,30 @@ public class BuyTransferPayActivity extends BaseBindActivity {
                 mErrorTips.setVisibility(View.VISIBLE);
                 rlMyAccount.setVisibility(View.GONE);
                 return false;
+            }else if (getRealPayDouble() > infoResponse.getAvailableBalance()) {// 本地计算的实际需要支付的值大于可用余额
+
+                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(getRealPayDouble()) ,new BigDecimal(infoResponse.getAvailableBalance()));
+                mConfirmBtn.setText("账户余额不足，需支付" + offset + "元");
+                if((offset.compareTo(new BigDecimal(infoResponse.getBankLimit())) == 1)){
+                    mMaxValueLayout.setVisibility(View.VISIBLE);
+                    mMaxValue.setText(infoResponse.getBankLimitStr());
+                    return false;
+                }else{
+                    mMaxValueLayout.setVisibility(View.GONE);
+                    return true;
+                }
+            }else if (getRealPayDouble() <= infoResponse.getAvailableBalance()) {
+                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(getRealPayDouble()) ,new BigDecimal(infoResponse.getAvailableBalance()));
+                if((offset.compareTo(new BigDecimal(infoResponse.getBankLimit())) == 1)){
+                    mMaxValueLayout.setVisibility(View.VISIBLE);
+                    mMaxValue.setText(infoResponse.getBankLimitStr());
+                    return false;
+                }else{
+                    mMaxValueLayout.setVisibility(View.GONE);
+                    return true;
+                }
             }
-            // 本地计算的实际需要支付的值大于可用余额 // TODO 需要check其他else
-            else if (getRealPayDouble() > infoResponse.getAvailableBalance()) {
-                double offset = getRealPayDouble() - infoResponse.getAvailableBalance();
-                mConfirmBtn.setText("账户余额不足，需充值" + MathUtil.saveTwoDecimalHalfUp(offset) + "元");
-                return true;
-            }
+
         }
         return true;
     }
