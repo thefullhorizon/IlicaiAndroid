@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/graph_balance"
-        android:gravity="center"
+        android:gravity="top|center_horizontal"
         android:orientation="vertical">
 
         <LinearLayout
@@ -29,11 +29,9 @@
             <LinearLayout
                 android:id="@+id/mine_not_login"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:gravity="top|center_horizontal"
                 android:orientation="vertical"
-                android:paddingBottom="20dp"
-                android:paddingTop="10dp"
                 android:visibility="gone">
 
                 <FrameLayout
@@ -76,8 +74,8 @@
             <LinearLayout
                 android:id="@+id/mine_login"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:gravity="top|center_horizontal"
                 android:orientation="vertical"
                 android:paddingBottom="20dp"
                 android:paddingTop="10dp"
