@@ -868,6 +868,17 @@ public class RegularPayActivity extends BaseBindActivity {
                  mErrorTips.setVisibility(View.VISIBLE);
                  return false;
                  */
+            }else if (Double.parseDouble(money) <= infoResponse.getAvailableBalance()) {
+                //银行卡单笔限额的提醒
+                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(money) ,new BigDecimal(infoResponse.getAvailableBalance()));
+                if((offset.compareTo(new BigDecimal(infoResponse.getBankLimit())) == 1)){
+                    mMaxValueLayout.setVisibility(View.VISIBLE);
+                    mMaxValue.setText(infoResponse.getBankLimitStr());
+                    return false;
+                }else{
+                    mMaxValueLayout.setVisibility(View.GONE);
+                    return true;
+                }
             }
         }
         int length = mConfirmBtn.getText().length();
