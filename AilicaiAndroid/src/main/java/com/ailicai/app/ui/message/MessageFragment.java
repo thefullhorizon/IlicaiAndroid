@@ -141,7 +141,7 @@ public class MessageFragment extends BaseBindFragment{
                 setViewValue(mMtivInfomation,TextUtils.isEmpty(content) ? "暂无资讯" : content,num,time);
                 break;
             case PushMessage.REMINDTYPE:
-                setViewValue(mMtivRemind,TextUtils.isEmpty(content) ? "当前没有消息" : content,num,time);
+                setViewValue(mMtivRemind,TextUtils.isEmpty(content) ? "暂无资讯" : content,num,time);
                 break;
         }
 

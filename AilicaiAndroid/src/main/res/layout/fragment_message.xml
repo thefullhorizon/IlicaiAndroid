@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         manyi:hasLeft="false"
-        manyi:titleview_title_text="消息" />
+        manyi:titleview_title_text="消息中心" />
 
     <com.ailicai.app.widget.MessageTypeItemView
         android:id="@+id/mtiv_activity"
