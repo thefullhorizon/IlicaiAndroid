@@ -94,8 +94,8 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
     private CurrentRollOutBaseInfoResponse infoResponse;
     private ProtocolHelper protocolHelper;
     private int toType;
-    private static final String ACCOUNT = "1";//存管账户（这里的1，2由服务器定义）
-    private static final String SECURITYCARD = "2";//安全卡
+    private static final String ACCOUNT = "2";//存管账户（这里的1，2由服务器定义）
+    private static final String SECURITYCARD = "1";//安全卡
     private String mTransactionOutType = "1";
 
     @Override
@@ -261,7 +261,9 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
                 showContentView();
 
                 if (accountCheckBox.isChecked()) {
-                    if (!jsonObject.isBeforeFifteen()){
+                    if (jsonObject.isBeforeFifteen()){
+                        toTransation();
+                    }else{
                         showTransactionOutUserInfo(jsonObject);
                     }
                 } else if (bankCheckBox.isChecked()){
