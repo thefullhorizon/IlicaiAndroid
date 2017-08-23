@@ -107,7 +107,6 @@
     <!--自动投标-->
     <string name="automatic_net_balance">持有网贷资产  %s元</string>
     <string name="automatic_account_balance">账户可用余额  %s元</string>
+    <string name="automatic_close_tip">您尚未保存自动投标，是否退出</string>
     <string name="automatic_exit_tip">确认关闭自动投标吗，您的资金有可能站岗哦</string>
-
-
 </resources>

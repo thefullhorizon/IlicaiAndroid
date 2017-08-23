@@ -218,6 +218,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     @Override
     public void onToggle(boolean formClick, boolean on) {
         if(on){
+            mEtReserveMoney.clearFocus();
             mVToggleContainer.setVisibility(View.VISIBLE);
             mVAgreementContainer.setVisibility(View.VISIBLE);
             mTvOk.setVisibility(View.VISIBLE);
@@ -232,13 +233,27 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             mTvOk.setVisibility(View.GONE);
 
             if(formClick && mOpen) {
-                mPresenter.showPwdDialogForOpen(false, 0, 0d);
+                DialogBuilder.showSimpleDialog(this, getString(R.string.automatic_exit_tip), null,
+                        "再想想", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mTbAutomaticTender.toggleOn();
+                            }
+                        },
+                        "立即关闭", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mPresenter.showPwdDialogForOpen(false, 0, 0d);
+                            }
+                        });
+
             }
         }
     }
 
     @Override
     public void onCheckedChanged(AutomaticTenderTypeView view, boolean isChecked) {
+        mEtReserveMoney.clearFocus();
         SystemUtil.hideKeyboard(mEtReserveMoney);
         int vId = view.getId();
         switch (vId){
@@ -285,6 +300,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
 
     @Override
     public void onClick(View v) {
+        mEtReserveMoney.clearFocus();
         SystemUtil.hideKeyboard(mEtReserveMoney);
         int vId = v.getId();
         switch (vId){
@@ -316,9 +332,10 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
 
     @Override
     public void onBackPressed() {
+        mEtReserveMoney.clearFocus();
         SystemUtil.hideKeyboard(mEtReserveMoney);
         if(mTbAutomaticTender.isToggleOn()) {
-            DialogBuilder.showSimpleDialog(this, getString(R.string.automatic_exit_tip), null, "再想想", null, "立即关闭", new DialogInterface.OnClickListener() {
+            DialogBuilder.showSimpleDialog(this, getString(R.string.automatic_close_tip), null,"取消", null, "退出", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     finish();

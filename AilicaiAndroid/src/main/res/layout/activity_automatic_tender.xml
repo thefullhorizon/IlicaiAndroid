@@ -4,7 +4,9 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_f1f1f1">
+    android:background="@color/color_f1f1f1"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <com.ailicai.app.widget.IWTopTitleView
         android:id="@+id/iwttv_top"
