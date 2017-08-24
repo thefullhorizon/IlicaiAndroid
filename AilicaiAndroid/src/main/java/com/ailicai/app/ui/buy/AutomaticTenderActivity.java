@@ -201,10 +201,15 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
         }else{//关闭自动投标
             if(!isSuccess) {
                 mTbAutomaticTender.toggleOn();
+            }else{
+                //如果关闭成功就清空
+                mEtReserveMoney.setText("");
+                mAttvTimeShortest.setSelect(false);
+                mAttvYearMax.setSelect(false);
             }
         }
         if(!TextUtils.isEmpty(message)) {
-            ToastUtil.show(this, message);
+            ToastUtil.showInCenter(message);
         }
     }
 
@@ -223,7 +228,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             mVAgreementContainer.setVisibility(View.VISIBLE);
             mTvOk.setVisibility(View.VISIBLE);
             mCbAgreement.setChecked(true);//重新打开都勾选
-            ayncOkStatus();
+            mTvOk.setEnabled(mCbAgreement.isChecked());
         }else{
 //            mEtReserveMoney.clearFocus();
             mTvOk.requestFocus();
@@ -268,19 +273,15 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
                 }
                 break;
         }
-        ayncOkStatus();
     }
 
-    private void ayncOkStatus(){
-        if(mAttvYearMax.getChecked() || mAttvTimeShortest.getChecked()) {
-            mTvOk.setEnabled(mCbAgreement.isChecked());
-        }else{
-            mTvOk.setEnabled(false);
-        }
-    }
 
     private void processOkBtn(){
         if(!mCbAgreement.isChecked()){
+            return;
+        }
+        if(!mAttvYearMax.getChecked() && !mAttvTimeShortest.getChecked()) {
+            ToastUtil.showInCenter("请选择投资策略");
             return;
         }
         int strategyType = 0;
@@ -291,7 +292,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
         }
         Double reserveMoney = mPresenter.getReserveMoney(mEtReserveMoney.getText().toString());
         if(reserveMoney == -1){
-            ToastUtil.show(this,"请输入正确的账号预留金额");
+            ToastUtil.showInCenter("请输入正确的账号预留金额");
             return;
         }
         mPresenter.showPwdDialogForOpen(true,strategyType,reserveMoney);
@@ -327,7 +328,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
      */
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        ayncOkStatus();
+        mTvOk.setEnabled(mCbAgreement.isChecked());
     }
 
     @Override

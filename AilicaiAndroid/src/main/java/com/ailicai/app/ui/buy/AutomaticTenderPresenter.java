@@ -66,66 +66,11 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
         });
     }
 
-    /***
-     * 提交修改的自动投标的信息
-     */
-    public void submit(final boolean isOpenAuto,int strategyType,Double reserveBalance,String payPwd){
-        AutoBidSwitchRequest request = new AutoBidSwitchRequest();
-        request.setAutoBidCommand(isOpenAuto ? 1 : 0);
-        request.setPayPwd(payPwd);
-        if(isOpenAuto) {
-            request.setStrategyType(strategyType);
-            request.setReserveBalance(reserveBalance);
-        }
-        ServiceSender.exec(getContext(),request,new IwjwRespListener<AutoBidSwitchResponse>(){
-
-            @Override
-            public void onStart() {
-                super.onStart();
-                getMvpView().showLoading();
-            }
-
-            @Override
-            public void onJsonSuccess(AutoBidSwitchResponse jsonObject) {
-                getMvpView().hideLoading();
-                if(jsonObject != null){
-                    if (jsonObject.getErrorCode() == RestException.PAY_PWD_ERROR) {
-                        mPay.clearPassword();
-                        mPay.disLoadProgress();
-                        mPay.onDialogDismiss();
-                        int remainingCnt = jsonObject.getRemainingCnt();
-                        if (remainingCnt == 0) {
-                            BaseBuyFinancePay.showPwdLockedErrorDialog((Activity)getContext(), jsonObject.getMessage());
-                        } else {
-                            mPay.showPwdErrorResetDialog((Activity)getContext(), jsonObject.getMessage());
-                        }
-                        getMvpView().processAfterSubmit(isOpenAuto,false,"");
-                    }else if(jsonObject.getErrorCode() == 0){//0表示修改成功
-                        getMvpView().processAfterSubmit(isOpenAuto,true,jsonObject.getMessage());
-                        mPay.onDialogDismiss();
-                    }else{
-                        getMvpView().processAfterSubmit(isOpenAuto,false,jsonObject.getMessage());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailInfo(String errorInfo) {
-                super.onFailInfo(errorInfo);
-                getMvpView().hideLoading();
-                getMvpView().processAfterSubmit(isOpenAuto,false,errorInfo);
-            }
-        });
-    }
 
     /***
      * 关闭或者点击地步确认按钮需要交易密码验证
      */
     public void showPwdDialogForOpen(boolean forOpen,int strategyType,Double reserveMoney){
-
-      /*  if(mPay != null){
-            return;
-        }*/
         final AutomaticTenderPay.AutomaticTenderInfo info = new AutomaticTenderPay.AutomaticTenderInfo();
         info.forOpen = forOpen;
         info.strategyType = strategyType;
@@ -139,7 +84,7 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
             @Override
             public void onPayComplete(AutoBidSwitchResponse object) {
                 if(object != null) {
-                    getMvpView().processAfterSubmit(object.isForOpen(), true, object.getMessage());
+                    getMvpView().processAfterSubmit(object.isForOpen(), true, object.isForOpen() ? "自动投标已开启" : "自动投标已关闭");
                 }
             }
 
