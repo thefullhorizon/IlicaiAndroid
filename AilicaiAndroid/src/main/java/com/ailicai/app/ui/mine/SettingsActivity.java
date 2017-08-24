@@ -136,7 +136,6 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleEditUserInfoEvent(EditUserInfoEvent event) {
-        LogUtil.d("=====getMobile====1===" + event.getMobile());
         mPhoneTag.setText(StringUtil.formatMobileSubTwo(event.getMobile()));
     }
 
@@ -148,7 +147,7 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleUserInfoUpdateEvent(UserInfoUpdateEvent event) {
         dataMap = getDataMap();
-        LogUtil.d("=====getMobile====2===" + MapUtil.getString(dataMap, CommonTag.PERSONAL_USER_PHONE));
+        LogUtil.d("=====getMobile====2===" + MapUtil.getString(dataMap, CommonTag.PERSONAL_HASSAFECARD));
         setUserInfo(dataMap);
     }
 
