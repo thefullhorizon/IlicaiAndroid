@@ -275,7 +275,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
         } else {
             if (amount > reserveResponse.getAvailableBalance()) {
                 isEnough = false;
-                BigDecimal offset = (new BigDecimal(amount)).subtract(new BigDecimal(reserveResponse.getAvailableBalance()));
+                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(amount) ,new BigDecimal(reserveResponse.getAvailableBalance()));
                 rechargeAmountSum = offset.doubleValue();
                 if((offset.compareTo(new BigDecimal(reserveResponse.getBankLimit())) == 1)){
                     mMaxValueLayout.setVisibility(View.VISIBLE);
@@ -285,7 +285,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
                     mMaxValueLayout.setVisibility(View.GONE);
                     doesMeetBankLimit = true;
                 }
-                btConfirm.setText("账户可用余额不足，需支付" + MathUtil.saveTwoDecimal(rechargeAmountSum) + "元");
+                btConfirm.setText("账户可用余额不足，需支付" + rechargeAmountSum + "元");
             }
             tvInputErrorHint.setVisibility(View.GONE);
             tvBalance.setVisibility(View.VISIBLE);
