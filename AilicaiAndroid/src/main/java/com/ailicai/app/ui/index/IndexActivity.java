@@ -149,6 +149,10 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         }
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+    }
+
     private void setViewPageData() {
         mViewPager.setCanScroll(false);
         mViewPager.setOffscreenPageLimit(3);

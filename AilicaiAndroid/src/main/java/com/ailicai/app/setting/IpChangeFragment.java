@@ -1,5 +1,6 @@
 package com.ailicai.app.setting;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.index.IndexActivity;
 import com.ailicai.app.ui.login.LoginManager;
+import com.ailicai.app.widget.DialogBuilder;
 import com.huoqiu.framework.rest.Configuration;
 
 import org.greenrobot.eventbus.EventBus;
@@ -75,18 +77,24 @@ public class IpChangeFragment extends BaseBindFragment implements CompoundButton
             public void onStart() {
                 super.onStart();
                 showLoadTranstView();
-                ToastUtil.showInCenterLong(getContext(),"保存中....保存成功后将自动退出登录并退出应用");
             }
 
             @Override
             public void onJsonSuccess(Iwjwh5UrlResponse jsonObject) {
+
+                showContentView();
                 SupportUrl.saveUrls(jsonObject);
                 changeConfigInPreference();
                 showCurrentServer();
-                remove();
-                //退出登录
-                LoginManager.loginOut(getActivity());
-                SystemUtil.exitApplication(getWRActivity());
+                DialogBuilder.showSimpleDialog(getWRActivity(), null, "切换成功，点击确定关闭应用", null, null, "确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        remove();
+                        //退出登录
+                        LoginManager.loginOut(getActivity());
+                        SystemUtil.exitApplication(getWRActivity());
+                    }
+                });
             }
 
 
