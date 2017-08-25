@@ -162,7 +162,7 @@
                 android:layout_height="70dp"
                 app:tenderTypeName="年化最高"
                 app:tenderTypeTag="收益最大化"
-                app:tenderTypeDesc="为您投资平台内收益最高的标"
+                app:tenderTypeDesc="将为您投资平台内收益最高的标"
                 app:checked="false"/>
 
             <View
@@ -177,7 +177,7 @@
                 android:layout_height="70dp"
                 app:tenderTypeName="期限最短"
                 app:tenderTypeTag="资金更灵活"
-                app:tenderTypeDesc="为您投资平台内期限最短的标"
+                app:tenderTypeDesc="将为您投资平台内期限最短的标"
                 app:checked="false"/>
         </LinearLayout>
 

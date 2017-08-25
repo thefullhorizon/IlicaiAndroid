@@ -7,8 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
  */
 
 public class AutomaticTenderTypeView extends FrameLayout implements CompoundButton.OnCheckedChangeListener,
-View.OnClickListener{
+View.OnTouchListener{
 
     private TextView mTvTypeName;
     private TextView mTvTypeTag;
@@ -35,10 +35,10 @@ View.OnClickListener{
     private String mTypeDesc;
     private boolean mChecked;
     private AutomaticTenderCheckListener mListener;
-
+    private boolean mIsClick = false;
 
     public interface AutomaticTenderCheckListener{
-        void onCheckedChanged(AutomaticTenderTypeView view,boolean isChecked);
+        void onCheckedChanged(AutomaticTenderTypeView view,boolean fromClick,boolean isChecked);
     }
     public AutomaticTenderTypeView(@NonNull Context context) {
         this(context,null);
@@ -77,7 +77,7 @@ View.OnClickListener{
         mTvTypeTag.setText(TextUtils.isEmpty(mTypeTag) ? "" : mTypeTag);
         mTvTypeDesc.setText(TextUtils.isEmpty(mTypeDesc) ? "" : mTypeDesc);
         mCbCheck.setChecked(mChecked);
-
+        mCbCheck.setOnTouchListener(this);
         mCbCheck.setOnCheckedChangeListener(this);
     }
 
@@ -94,16 +94,21 @@ View.OnClickListener{
     }
 
     @Override
-    public void onClick(View v) {
-
-
+    public boolean onTouch(View v, MotionEvent event) {
+        int vId = v.getId();
+        switch (vId){
+            case R.id.cb_check:
+                mIsClick = true;
+                break;
+        }
+        return false;
     }
-
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(mListener != null){
-            mListener.onCheckedChanged(this,isChecked);
+            mListener.onCheckedChanged(this,mIsClick,isChecked);
         }
+        mIsClick = false;
     }
 }

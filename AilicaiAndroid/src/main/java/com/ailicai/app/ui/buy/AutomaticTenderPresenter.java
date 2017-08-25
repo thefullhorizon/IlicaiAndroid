@@ -36,7 +36,7 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
 
         void processAfterSubmit(boolean forOpen, boolean isSuccess, String message);
 
-        void pwdDialogClose(boolean forOpen);
+        void pwdDialogClose(boolean forOpen,boolean isSuccess);
 
     }
 
@@ -128,8 +128,8 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
     /***
      * 关闭密码框
      */
-    public void pwdDialogClose(boolean needRefresh){
-        getMvpView().pwdDialogClose(needRefresh);
+    public void pwdDialogClose(boolean forOpen,boolean isSuccess){
+        getMvpView().pwdDialogClose(forOpen,isSuccess);
     }
 
     public Double getReserveMoney(String reserveMoney){

@@ -22,7 +22,6 @@ import com.ailicai.app.ui.base.BaseMvpActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
-import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.widget.AutomaticTenderTypeView;
 import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
@@ -73,6 +72,9 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     TextView mTvUserAgreementLink;
     @Bind(R.id.tv_ok)
     TextView mTvOk;
+
+    private int mStrategyType;
+    private String mReserveMoney = "0.00";//用户预留的金额
 
     public static void open(Context context, String netBalance, String accountBalance){
         Intent intent = new Intent(context,AutomaticTenderActivity.class);
@@ -162,9 +164,11 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     @Override
     public void processAutomaticOpen(@NonNull AutoBidResponse response) {
         showContentView();
+        mStrategyType = response.getStrategyType();
         DecimalFormat format = new DecimalFormat("#0.00");
-        mEtReserveMoney.setText(format.format(response.getReserveBalance()));
-        if(response.getStrategyType() == 1){//期限短
+        mReserveMoney = format.format(response.getReserveBalance());
+        mEtReserveMoney.setText(mReserveMoney);
+        if(mStrategyType == 1){//期限短
             mAttvTimeShortest.setSelect(true);
         }else{//利率高
             mAttvYearMax.setSelect(true);
@@ -205,9 +209,9 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     }
 
     @Override
-    public void pwdDialogClose(boolean forOpen) {
-        if(!forOpen) {
-            mPresenter.loadData();
+    public void pwdDialogClose(boolean forOpen,boolean isSuccess) {
+        if(!forOpen && !isSuccess) {
+            mTbAutomaticTender.toggleOn();
         }
     }
 
@@ -247,7 +251,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     }
 
     @Override
-    public void onCheckedChanged(AutomaticTenderTypeView view, boolean isChecked) {
+    public void onCheckedChanged(AutomaticTenderTypeView view,boolean fromClick, boolean isChecked) {
         mEtReserveMoney.clearFocus();
         SystemUtil.hideKeyboard(mEtReserveMoney);
         int vId = view.getId();
@@ -274,12 +278,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             ToastUtil.showInCenter("请选择投资策略");
             return;
         }
-        int strategyType = 0;
-        if(mAttvTimeShortest.getChecked()){
-            strategyType = 1;//期限短
-        }else if(mAttvYearMax.getChecked()){
-            strategyType = 2;//利率高
-        }
+        int strategyType = getCurrentStrategy(0);
         Double reserveMoney = mPresenter.getReserveMoney(mEtReserveMoney.getText().toString());
         if(reserveMoney == -1){
             ToastUtil.showInCenter("请输入正确的账号预留金额");
@@ -287,7 +286,6 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
         }
         mPresenter.showPwdDialogForOpen(true,strategyType,reserveMoney);
     }
-
 
     @Override
     public void onClick(View v) {
@@ -322,19 +320,36 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
         mTvOk.setEnabled(mCbAgreement.isChecked());
     }
 
+    /***
+     * 获取页面当前策略
+     */
+    private int getCurrentStrategy(int defaultStrategy){
+        int strategyType = defaultStrategy;
+        if(mAttvTimeShortest.getChecked()){
+            strategyType = 1;//期限短
+        }else if(mAttvYearMax.getChecked()){
+            strategyType = 2;//利率高
+        }
+        return strategyType;
+    }
+
     @Override
     public void onBackPressed() {
         mEtReserveMoney.clearFocus();
         SystemUtil.hideKeyboard(mEtReserveMoney);
-        if(mTbAutomaticTender.isToggleOn() && !mPresenter.getServerIsOpen()) {
-            DialogBuilder.showSimpleDialog(this, getString(R.string.automatic_close_tip), null,"取消", null, "退出", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-        }else{
-            super.onBackPressed();
+        if(mTbAutomaticTender.isToggleOn() ) {
+            if(!mPresenter.getServerIsOpen() || mStrategyType != getCurrentStrategy(0) || !TextUtils.equals(mReserveMoney,mEtReserveMoney.getText().toString())) {
+                DialogBuilder.showSimpleDialog(this, getString(R.string.automatic_close_tip), null, "取消", null, "退出", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                return;
+            }
         }
+        super.onBackPressed();
     }
+
+
 }
