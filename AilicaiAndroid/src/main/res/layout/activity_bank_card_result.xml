@@ -18,7 +18,10 @@
         <requestFocus />
     </com.ailicai.app.widget.IWTopTitleView>
 
-    <include android:id="@+id/openaccountStepContainer" layout="@layout/layout_open_account_step01" android:visibility="gone"/>
+    <include
+        android:id="@+id/openaccountStepContainer"
+        layout="@layout/layout_open_account_step01"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"

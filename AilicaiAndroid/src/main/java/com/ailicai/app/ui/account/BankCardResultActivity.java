@@ -127,7 +127,15 @@ public class BankCardResultActivity extends BaseBindActivity {
             initCardContainer((String) extras.get("bankCardNumber"));
         }
 
-        setOpenAccountStepTo2();
+        //setOpenAccountStepTo2();
+
+        // 绑安全卡并且未开户
+        if(openAccountFeature.cardBinType == 0 && !AccountInfo.isOpenAccount()) {
+            setOpenAccountStepTo2();
+        } else {
+            openaccountStepContainer.setVisibility(View.GONE);
+        }
+
     }
 
     private void initCardContainer(String cardNo) {
