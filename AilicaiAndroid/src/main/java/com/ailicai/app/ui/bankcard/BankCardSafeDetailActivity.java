@@ -12,7 +12,6 @@ import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.eventbus.FinancePayEvent;
 import com.ailicai.app.model.response.BankCardDetailResponse;
 import com.ailicai.app.ui.account.OpenAccountWebViewActivity;
-import com.ailicai.app.ui.asset.FinanceUpgradePresenter;
 import com.ailicai.app.ui.bankcard.presenter.BankCardSafeDetailPresenter;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
@@ -120,7 +119,7 @@ public class BankCardSafeDetailActivity extends BaseBindActivity {
         Map<String, String> dataMap = ObjectUtil.newHashMap();
         dataMap.put(WebViewActivity.TITLE, getResources().getString(R.string.support_cards));
         dataMap.put(WebViewActivity.NEED_REFRESH, "0");
-        dataMap.put(WebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getSupportcardsByAllUrl() + "?channel=2");
+        dataMap.put(WebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getSafeBankSupport());
         MyIntent.startActivity(this, WebViewActivity.class, dataMap);
     }
 

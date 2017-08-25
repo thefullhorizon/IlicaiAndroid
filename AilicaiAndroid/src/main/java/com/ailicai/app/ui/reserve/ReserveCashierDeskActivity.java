@@ -151,7 +151,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
         Map<String, String> dataMap = ObjectUtil.newHashMap();
         dataMap.put(WebViewActivity.TITLE, getResources().getString(R.string.support_cards));
         dataMap.put(WebViewActivity.NEED_REFRESH, "0");
-        dataMap.put(WebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getSupportcardsByAllUrl() + "?channel=2");
+        dataMap.put(WebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getSafeBankSupport());
         MyIntent.startActivity(this, WebViewActivity.class, dataMap);
     }
 

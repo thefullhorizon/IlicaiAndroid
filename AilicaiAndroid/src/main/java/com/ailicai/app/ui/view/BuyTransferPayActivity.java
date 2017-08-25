@@ -27,6 +27,7 @@ import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MathUtil;
 import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.SpannableUtil;
 import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
@@ -40,9 +41,11 @@ import com.ailicai.app.model.response.BuyDingqibaoResponse;
 import com.ailicai.app.model.response.CalActualPayResponse;
 import com.ailicai.app.model.response.RegularPayBaseInfoResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.buy.BuyRegularPay;
 import com.ailicai.app.ui.buy.IwPwdPayResultListener;
 import com.ailicai.app.ui.buy.RegularReChangePay;
+import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.huoqiu.framework.util.ManyiUtils;
@@ -53,6 +56,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnCheckedChanged;
@@ -813,6 +817,16 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             tvAllBuy.setVisibility(View.VISIBLE);
             EventLog.upEventLog("201610283", "qegm_show", "zrfcb_syt");
         }
+    }
+
+    @OnClick(R.id.tv_max_value_introduction_list)
+    public void maxValueIntroductionList() {
+
+        Map<String, String> dataMap = ObjectUtil.newHashMap();
+        dataMap.put(WebViewActivity.TITLE, getResources().getString(R.string.support_cards));
+        dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+        dataMap.put(WebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getSafeBankSupport());
+        MyIntent.startActivity(this, WebViewActivity.class, dataMap);
     }
 
     @Override
