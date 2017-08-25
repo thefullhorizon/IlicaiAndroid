@@ -74,12 +74,6 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     @Bind(R.id.tv_ok)
     TextView mTvOk;
 
-    /***
-     * 协议内容
-     */
-    private Protocol mProtocal;
-    private boolean mOpen = false;//初始状态
-
     public static void open(Context context, String netBalance, String accountBalance){
         Intent intent = new Intent(context,AutomaticTenderActivity.class);
         intent.putExtra(AutomaticTenderActivity.NETBALANCE_KEY,netBalance);
@@ -166,25 +160,22 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     }
 
     @Override
-    public void processSuccess(@NonNull AutoBidResponse response) {
+    public void processAutomaticOpen(@NonNull AutoBidResponse response) {
         showContentView();
-        mProtocal = response.getAutoBidProtocol();
-
-        if(TextUtils.equals("N",response.getIsAutoBid())){
-            mTbAutomaticTender.toggleOff();
-            mOpen = false;
-        }else{
-            DecimalFormat format = new DecimalFormat("#0.00");
-            mEtReserveMoney.setText(format.format(response.getReserveBalance()));
-            if(response.getStrategyType() == 1){//期限短
-                mAttvTimeShortest.setSelect(true);
-            }else{//利率高
-                mAttvYearMax.setSelect(true);
-            }
-            mTbAutomaticTender.toggleOn();
-            mOpen = true;
+        DecimalFormat format = new DecimalFormat("#0.00");
+        mEtReserveMoney.setText(format.format(response.getReserveBalance()));
+        if(response.getStrategyType() == 1){//期限短
+            mAttvTimeShortest.setSelect(true);
+        }else{//利率高
+            mAttvYearMax.setSelect(true);
         }
-        UserInfo.getInstance().setAutoBid(mOpen);
+        mTbAutomaticTender.toggleOn();
+    }
+
+    @Override
+    public void processAutomaticClose(@NonNull AutoBidResponse response) {
+        showContentView();
+        mTbAutomaticTender.toggleOff();
     }
 
     @Override
@@ -230,14 +221,13 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             mCbAgreement.setChecked(true);//重新打开都勾选
             mTvOk.setEnabled(mCbAgreement.isChecked());
         }else{
-//            mEtReserveMoney.clearFocus();
             mTvOk.requestFocus();
             SystemUtil.HideSoftInput(this);
             mVToggleContainer.setVisibility(View.GONE);
             mVAgreementContainer.setVisibility(View.GONE);
             mTvOk.setVisibility(View.GONE);
 
-            if(formClick && mOpen) {
+            if(formClick && mPresenter.getServerIsOpen()) {
                 DialogBuilder.showSimpleDialog(this, getString(R.string.automatic_exit_tip), null,
                         "再想想", new DialogInterface.OnClickListener() {
                             @Override
@@ -309,12 +299,13 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
                 processOkBtn();
                 break;
             case R.id.tv_user_agreement_link:
-                if(mProtocal == null){
+                Protocol protocol = mPresenter.getProtocol();
+                if(protocol == null){
                     return;
                 }
                 Map<String,String> dataMap = new HashMap<>();
-                dataMap.put(BaseWebViewActivity.URL, mProtocal.getUrl());
-                dataMap.put(BaseWebViewActivity.TITLE, mProtocal.getName());
+                dataMap.put(BaseWebViewActivity.URL, protocol.getUrl());
+                dataMap.put(BaseWebViewActivity.TITLE, protocol.getName());
                 dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
                 dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
                 MyIntent.startActivity(mContext, WebViewActivity.class, dataMap);
@@ -335,7 +326,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     public void onBackPressed() {
         mEtReserveMoney.clearFocus();
         SystemUtil.hideKeyboard(mEtReserveMoney);
-        if(mTbAutomaticTender.isToggleOn()) {
+        if(mTbAutomaticTender.isToggleOn() && !mPresenter.getServerIsOpen()) {
             DialogBuilder.showSimpleDialog(this, getString(R.string.automatic_close_tip), null,"取消", null, "退出", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
