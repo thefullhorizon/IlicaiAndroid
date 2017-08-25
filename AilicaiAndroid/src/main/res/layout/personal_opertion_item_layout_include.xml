@@ -132,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="自动投资" />
+                    android:text="自动投标" />
             </LinearLayout>
 
 
