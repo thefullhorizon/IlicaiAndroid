@@ -714,6 +714,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
         String money = mInputPriceEdit.getText().toString();
         if ("".equals(money)) {
             mErrorTips.setText("");
+            mMaxValueLayout.setVisibility(View.GONE);
             mInputPriceEditLable.setVisibility(View.VISIBLE);
             return false;
         } else if (Double.parseDouble(money) == 0) {
@@ -805,7 +806,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             // 最后一笔余额不足直接显示需要转入
             if (getRealPayDouble() > infoResponse.getAvailableBalance()) {
                 double offset = getRealPayDouble() - infoResponse.getAvailableBalance();
-                mConfirmBtn.setText("账户余额不足，需充值" + MathUtil.saveTwoDecimalHalfUp(offset) + "元");
+                mConfirmBtn.setText("账户余额不足，需支付" + MathUtil.saveTwoDecimalHalfUp(offset) + "元");
             }
         } else {
             ManyiUtils.showKeyBoard(this, mInputPriceEdit);

@@ -797,6 +797,7 @@ public class RegularPayActivity extends BaseBindActivity {
         String money = mInputPriceEdit.getText().toString();
         if ("".equals(money)) {
             mErrorTips.setText("");
+            mMaxValueLayout.setVisibility(View.GONE);
             mInputPriceEditLable.setVisibility(View.VISIBLE);
             return false;
         } else if (Double.parseDouble(money) == 0) {

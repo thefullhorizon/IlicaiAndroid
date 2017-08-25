@@ -254,6 +254,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
             tvInputErrorHint.setVisibility(View.GONE);
             tvBalance.setVisibility(View.VISIBLE);
             btConfirm.setText("确认");
+            mMaxValueLayout.setVisibility(View.GONE);
             btConfirm.setEnabled(false);
             return;
         }
