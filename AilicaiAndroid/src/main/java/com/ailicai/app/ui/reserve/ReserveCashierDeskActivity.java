@@ -91,7 +91,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
 
     private boolean isEnough;
     private double rechargeAmountSum;
-    private boolean doesMeetBankLimit;
+    private boolean doesMeetBankLimit = true;
 
     @Override
     public int getLayout() {
@@ -286,7 +286,10 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
                     mMaxValueLayout.setVisibility(View.GONE);
                     doesMeetBankLimit = true;
                 }
-                btConfirm.setText("可用余额不足，需支付" + rechargeAmountSum + "元");
+                btConfirm.setText("余额不足，需支付" + rechargeAmountSum + "元");
+            }else{
+                mMaxValueLayout.setVisibility(View.GONE);
+                doesMeetBankLimit = true;
             }
             tvInputErrorHint.setVisibility(View.GONE);
             tvBalance.setVisibility(View.VISIBLE);
