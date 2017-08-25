@@ -778,7 +778,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
         verifyProtocolListLogical(jsonObject.getProtocolList());
         mInputPriceEditLable.setText(jsonObject.getHint());
         tvLeaveAccount.setText("剩余本金 " + jsonObject.getBiddableAmountStr() + "元");
-        mRegularBalance.setText("账户可用余额 " + CommonUtil.numberFormat(jsonObject.getAvailableBalance()) + " 元");
+        mRegularBalance.setText("可用余额 " + CommonUtil.numberFormat(jsonObject.getAvailableBalance()) + " 元");
         //余额不足转入成功后刷新页面并重新校验输入的金额
         if (checkInputMoney() && mAgreementCheckbox.isChecked()) {
             mConfirmBtn.setEnabled(true);

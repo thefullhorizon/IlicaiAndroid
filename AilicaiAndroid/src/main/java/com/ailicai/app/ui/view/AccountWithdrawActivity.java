@@ -332,7 +332,7 @@ public class AccountWithdrawActivity extends BaseBindActivity {
         SpannableStringBuilder builder = null;
 
         mBankCardNamee.setText(Html.fromHtml(getString(R.string.account_withdraw_bank_card_text, jsonObject.getBankName(), jsonObject.getCardNo())));
-        builder = spanUtil.getSpannableString("账户可用余额 ", CommonUtil.numberFormat(jsonObject.getWithdrawBalance()), " 元",
+        builder = spanUtil.getSpannableString("可用余额 ", CommonUtil.numberFormat(jsonObject.getWithdrawBalance()), " 元",
                 R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
         mCurrentBalance.setText(builder);
         mInputPriceEditLable.setText(jsonObject.getHint());

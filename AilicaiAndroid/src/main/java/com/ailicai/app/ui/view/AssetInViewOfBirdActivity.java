@@ -89,7 +89,7 @@ public class AssetInViewOfBirdActivity extends BaseBindActivity {
     private void bindViewData(AssetInfoNewResponse jsonObject){
 
         List<AssetPieBean> data = new ArrayList<>();
-        data.add(new AssetPieBean("账户可用余额","#40c8f7",Double.parseDouble(jsonObject.getAccountBalance().replace(",",""))));
+        data.add(new AssetPieBean("可用余额","#40c8f7",Double.parseDouble(jsonObject.getAccountBalance().replace(",",""))));
         data.add(new AssetPieBean("网贷资产","#ff6b5d",Double.parseDouble(jsonObject.getNetLoanBalance().replace(",",""))));
         data.add(new AssetPieBean("申购款","#29d96c",Double.parseDouble(jsonObject.getPurchaseAmount().replace(",",""))));
         data.add(new AssetPieBean("货币基金","#007afa",Double.parseDouble(jsonObject.getTimeDepositBalance().replace(",",""))));

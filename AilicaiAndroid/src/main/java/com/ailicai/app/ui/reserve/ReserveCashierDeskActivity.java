@@ -129,7 +129,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
     private void initView() {
         if (!TextUtils.isEmpty(reservePwd)) tvKl.setVisibility(View.VISIBLE);
         tvParamsHint.setText(product.getProductName() + "  " + yearRateZone + "  " + term + "天内");
-        tvBalance.setText("账户可用余额 " + CommonUtil.formatMoneyForFinance(reserveResponse.getAvailableBalance()) + " 元");//账户可用余额
+        tvBalance.setText("可用余额 " + CommonUtil.formatMoneyForFinance(reserveResponse.getAvailableBalance()) + " 元");//账户可用余额
         tvMoneyLable.setText(reserveResponse.getReserveAmtMemo());
         etMoney.setInputType(InputType.TYPE_CLASS_NUMBER);
         etMoney.addTextChangedListener(mTextWatcher);
@@ -285,7 +285,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
                     mMaxValueLayout.setVisibility(View.GONE);
                     doesMeetBankLimit = true;
                 }
-                btConfirm.setText("账户可用余额不足，需支付" + rechargeAmountSum + "元");
+                btConfirm.setText("可用余额不足，需支付" + rechargeAmountSum + "元");
             }
             tvInputErrorHint.setVisibility(View.GONE);
             tvBalance.setVisibility(View.VISIBLE);

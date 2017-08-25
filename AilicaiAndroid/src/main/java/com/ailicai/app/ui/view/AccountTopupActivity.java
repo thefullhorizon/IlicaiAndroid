@@ -412,7 +412,7 @@ public class AccountTopupActivity extends BaseBindActivity {
         SpannableStringBuilder builder1 = null;
 
         mBankCardName.setText(bankName + "卡(尾号" + cardNo + ") 充值 账户余额");
-        builder1 = spanUtil.getSpannableString("账户可用余额 ", CommonUtil.numberFormatWithTwoDigital(jsonObject.getWithdrawBalance()), " 元",
+        builder1 = spanUtil.getSpannableString("可用余额 ", CommonUtil.numberFormatWithTwoDigital(jsonObject.getWithdrawBalance()), " 元",
                 R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
 
         mRollInBalance.setText(builder1);

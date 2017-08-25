@@ -414,7 +414,7 @@ public class CurrentRollInActivity extends BaseBindActivity implements View.OnCl
             mRollInBalance.setVisibility(View.GONE);
             return false;
         } else if (accountCheckBox.isChecked() && infoResponse.getDepositoryBalance() <= 0 && Double.parseDouble(money) > infoResponse.getDepositoryBalance()) {
-            mErrorTips.setText("账户可用余额 " + CommonUtil.numberFormat(infoResponse.getDepositoryBalance()) + " 元");
+            mErrorTips.setText("可用余额 " + CommonUtil.numberFormat(infoResponse.getDepositoryBalance()) + " 元");
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;
