@@ -98,6 +98,8 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
             public void onPayComplete(AutoBidSwitchResponse object) {
                 if(object != null) {
                     getMvpView().processAfterSubmit(object.isForOpen(), true, object.isForOpen() ? "自动投标已开启" : "自动投标已关闭");
+                    mServerIsOpen = object.isForOpen();
+                    UserInfo.getInstance().setAutoBid(mServerIsOpen);
                 }
             }
 
