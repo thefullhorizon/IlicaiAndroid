@@ -67,7 +67,7 @@
 
     <string name="dialog_yes">是</string>
     <string name="dialog_no">否</string>
-    <string name="dialog_auto_invest">您已开通自动投标，转让成功后若未及时转出\n将为您复投，是否关闭自动投标</string>
+    <string name="dialog_auto_invest">您已开通自动投标，转让成功后若未及时转出将为您复投，是否关闭自动投标</string>
 
 
 </resources>

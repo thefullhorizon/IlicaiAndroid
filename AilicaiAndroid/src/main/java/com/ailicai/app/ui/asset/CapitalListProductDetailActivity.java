@@ -719,6 +719,7 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
 
             @Override
             public void onPayComplete(AutoBidSwitchResponse object) {
+                UserInfo.getInstance().setAutoBid(false);//因为本地的页面只与关闭操作有关
                 checkTransferStatus();
             }
 
