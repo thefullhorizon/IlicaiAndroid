@@ -20,6 +20,7 @@ public class AutomaticTenderPay extends BaseBuyFinancePay {
     private AutomaticTenderPresenter mPresenter;
     private AutomaticTenderInfo mInfo;
     private boolean mIsSuccess = false;//操作是否成功，防止用户中途点击关闭按钮
+    private boolean mIsFromClick = true;//是否用户手动点击关闭按钮
 
     public static class AutomaticTenderInfo {
         public boolean forOpen;
@@ -34,7 +35,8 @@ public class AutomaticTenderPay extends BaseBuyFinancePay {
             @Override
             public void onDismiss() {
                 if(mPresenter != null && mInfo != null){
-                    mPresenter.pwdDialogClose(mInfo.forOpen,mIsSuccess);
+                    mPresenter.pwdDialogClose(mInfo.forOpen,mIsSuccess,mIsFromClick);
+                    mIsFromClick = true;
                 }
             }
         });
@@ -77,6 +79,7 @@ public class AutomaticTenderPay extends BaseBuyFinancePay {
                 if(jsonObject != null){
                     jsonObject.setForOpen(isOpenAuto);
                     if (jsonObject.getErrorCode() == RestException.PAY_PWD_ERROR) {
+                        mIsFromClick = false;
                         clearPassword();
                         disLoadProgress();
                         onDialogDismiss();
@@ -89,6 +92,7 @@ public class AutomaticTenderPay extends BaseBuyFinancePay {
                         if(iwPayResultListener != null){
                             iwPayResultListener.onPayFailInfo("",jsonObject.getErrorCode()+"",jsonObject);
                         }
+
                     }else if(jsonObject.getErrorCode() == 0){//0表示修改成功
                         mIsSuccess = true;//只有这一种情况表示操作成功
                         if(iwPayResultListener != null){

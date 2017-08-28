@@ -197,8 +197,13 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             }
         }else{//关闭自动投标
             if(!isSuccess) {
-                mTbAutomaticTender.toggleOn();
+                if(!mTbAutomaticTender.isToggleOn()){
+                    mTbAutomaticTender.toggleOn();
+                }
             }else{
+                if(mTbAutomaticTender.isToggleOn()){
+                    mTbAutomaticTender.toggleOff();
+                }
                 //如果关闭成功就清空
                 mXetReserveMoney.setText("");
                 mAttvTimeShortest.setSelect(false);
@@ -211,8 +216,8 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     }
 
     @Override
-    public void pwdDialogClose(boolean forOpen,boolean isSuccess) {
-        if(!forOpen && !isSuccess) {
+    public void pwdDialogClose(boolean forOpen,boolean isSuccess,boolean isFromClick) {
+        if(!forOpen && !isSuccess ) {
             mTbAutomaticTender.toggleOn();
         }
     }
@@ -246,7 +251,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
                             public void onClick(DialogInterface dialog, int which) {
                                 mPresenter.showPwdDialogForOpen(false, 0, 0d);
                             }
-                        });
+                        }).setCancelable(false);
 
             }
         }
@@ -346,7 +351,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
                     }
-                });
+                }).setCancelable(false);
                 return;
             }
         }
