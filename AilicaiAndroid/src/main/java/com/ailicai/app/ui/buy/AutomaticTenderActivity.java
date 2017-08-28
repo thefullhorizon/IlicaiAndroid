@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ailicai.app.R;
@@ -26,6 +25,7 @@ import com.ailicai.app.widget.AutomaticTenderTypeView;
 import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.ToggleButton;
+import com.ailicai.app.widget.XEditText;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -58,8 +58,8 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     ToggleButton mTbAutomaticTender;
     @Bind(R.id.ll_toggle_on_container)
     View mVToggleContainer;
-    @Bind(R.id.et_reserve_money)
-    EditText mEtReserveMoney;
+    @Bind(R.id.xet_reserve_money)
+    XEditText mXetReserveMoney;
     @Bind(R.id.attv_year_max)
     AutomaticTenderTypeView mAttvYearMax;
     @Bind(R.id.attv_time_shortest)
@@ -121,6 +121,8 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
         mTvUserAgreementLink.setOnClickListener(this);
         mTvUserAgreementLink.setOnClickListener(this);
 
+        mXetReserveMoney.setMaxmumFilter(1000000000,2);
+
         mPresenter.loadData();
 
         mIwttvTop.addRightText(R.string.information, new View.OnClickListener() {
@@ -143,7 +145,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     @Override
     protected void onPause() {
         super.onPause();
-        SystemUtil.hideKeyboard(mEtReserveMoney);
+        SystemUtil.hideKeyboard(mXetReserveMoney);
     }
 
     @Override
@@ -167,7 +169,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
         mStrategyType = response.getStrategyType();
         DecimalFormat format = new DecimalFormat("#0.00");
         mReserveMoney = format.format(response.getReserveBalance());
-        mEtReserveMoney.setText(mReserveMoney);
+        mXetReserveMoney.setText(mReserveMoney);
         if(mStrategyType == 1){//期限短
             mAttvTimeShortest.setSelect(true);
         }else{//利率高
@@ -198,7 +200,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
                 mTbAutomaticTender.toggleOn();
             }else{
                 //如果关闭成功就清空
-                mEtReserveMoney.setText("");
+                mXetReserveMoney.setText("");
                 mAttvTimeShortest.setSelect(false);
                 mAttvYearMax.setSelect(false);
             }
@@ -218,7 +220,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     @Override
     public void onToggle(boolean formClick, boolean on) {
         if(on){
-            mEtReserveMoney.clearFocus();
+            mXetReserveMoney.clearFocus();
             mVToggleContainer.setVisibility(View.VISIBLE);
             mVAgreementContainer.setVisibility(View.VISIBLE);
             mTvOk.setVisibility(View.VISIBLE);
@@ -252,8 +254,8 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
 
     @Override
     public void onCheckedChanged(AutomaticTenderTypeView view,boolean fromClick, boolean isChecked) {
-        mEtReserveMoney.clearFocus();
-        SystemUtil.hideKeyboard(mEtReserveMoney);
+        mXetReserveMoney.clearFocus();
+        SystemUtil.hideKeyboard(mXetReserveMoney);
         int vId = view.getId();
         switch (vId){
             case R.id.attv_year_max:
@@ -279,7 +281,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             return;
         }
         int strategyType = getCurrentStrategy(0);
-        Double reserveMoney = mPresenter.getReserveMoney(mEtReserveMoney.getText().toString());
+        Double reserveMoney = mPresenter.getReserveMoney(mXetReserveMoney.getText().toString());
         if(reserveMoney == -1){
             ToastUtil.showInCenter("请输入正确的账号预留金额");
             return;
@@ -289,8 +291,8 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
 
     @Override
     public void onClick(View v) {
-        mEtReserveMoney.clearFocus();
-        SystemUtil.hideKeyboard(mEtReserveMoney);
+        mXetReserveMoney.clearFocus();
+        SystemUtil.hideKeyboard(mXetReserveMoney);
         int vId = v.getId();
         switch (vId){
             case R.id.tv_ok:
@@ -335,10 +337,10 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
 
     @Override
     public void onBackPressed() {
-        mEtReserveMoney.clearFocus();
-        SystemUtil.hideKeyboard(mEtReserveMoney);
+        mXetReserveMoney.clearFocus();
+        SystemUtil.hideKeyboard(mXetReserveMoney);
         if(mTbAutomaticTender.isToggleOn() ) {
-            if(!mPresenter.getServerIsOpen() || mStrategyType != getCurrentStrategy(0) || !TextUtils.equals(mReserveMoney,mEtReserveMoney.getText().toString())) {
+            if(!mPresenter.getServerIsOpen() || mStrategyType != getCurrentStrategy(0) || !TextUtils.equals(mReserveMoney,mXetReserveMoney.getText().toString())) {
                 DialogBuilder.showSimpleDialog(this, getString(R.string.automatic_close_tip), null, "取消", null, "退出", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -124,8 +124,8 @@
                     android:textColor="@color/color_212121"
                     android:text="账户预留金额"/>
 
-                <EditText
-                    android:id="@+id/et_reserve_money"
+                <com.ailicai.app.widget.XEditText
+                    android:id="@+id/xet_reserve_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
