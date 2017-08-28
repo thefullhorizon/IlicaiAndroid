@@ -47,6 +47,7 @@ public class UserInfo {
     public static final String USERINFO_UTICKET = "userinfo_uticket";
     public static final String USERINO_NOTIFY_LASTNOTICETIME = "userino_notify_lastnoticetime";
     public static final String USERINO_NOTIFY_OLDNOTICETIME = "userino_notify_oldnoticetime";
+    public static final String USERINO_AUTO_BIT = "userino_is_autobit";
     public static final int NOT_LOGIN = 0;
     public static final int LOGIN = 1;
     /**
@@ -62,7 +63,6 @@ public class UserInfo {
     private String userMobile = "";
     private String uticket = "";
     private String userMobileID = "";
-    private boolean isAutoBid;//是否开始自动投标
     /**
      * mAgent:用户对应的经纪人
      */
@@ -385,11 +385,11 @@ public class UserInfo {
     }
 
     public boolean isAutoBid() {
-        return isAutoBid;
+        return MyPreference.getInstance().read(UserInfo.USERINO_AUTO_BIT, false);
     }
 
     public void setAutoBid(boolean autoBid) {
-        isAutoBid = autoBid;
+        MyPreference.getInstance().write(UserInfo.USERINO_AUTO_BIT, autoBid);
     }
 
     public void setUserInfoData(final UserLoginResponse loginResponse, String mPhoneNumber) {
@@ -466,6 +466,7 @@ public class UserInfo {
         MyPreference.getInstance().write(UserInfo.ID_CARDNO, loginResponse.getIdCardNo());
         MyPreference.getInstance().write(UserInfo.COLLECTION_NUM, loginResponse.getCollectionNum());
         MyPreference.getInstance().write(UserInfo.IS_ALL_DONT_DISTURB, loginResponse.getIsAllDontDisturb());
+
     }
 
     public void setUserInfoData(final RreshDataResponse refreDataResponse) {
@@ -544,6 +545,7 @@ public class UserInfo {
 
         MyPreference.getInstance().write(UserInfo.IM_USERID, "");
         MyPreference.getInstance().write(UserInfo.IM_PASSWD, "");
+        MyPreference.getInstance().write(UserInfo.USERINO_AUTO_BIT, false);
 
         AccountInfo.getInstance().clearAccountInfo();
         /*
