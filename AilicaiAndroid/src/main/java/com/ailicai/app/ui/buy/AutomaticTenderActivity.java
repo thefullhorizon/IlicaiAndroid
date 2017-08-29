@@ -249,7 +249,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
                         "立即关闭", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                mPresenter.showPwdDialogForOpen(false, 0, 0d);
+                                mPresenter.showPwdDialogForOpen(false, 0, "0");
                             }
                         }).setCancelable(false);
 
@@ -286,10 +286,9 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
             return;
         }
         int strategyType = getCurrentStrategy(0);
-        Double reserveMoney = mPresenter.getReserveMoney(mXetReserveMoney.getText().toString());
-        if(reserveMoney == -1){
-            ToastUtil.showInCenter("请输入正确的账号预留金额");
-            return;
+        String reserveMoney = mXetReserveMoney.getText().toString();
+        if(TextUtils.isEmpty(reserveMoney)){
+            reserveMoney = "0";
         }
         mPresenter.showPwdDialogForOpen(true,strategyType,reserveMoney);
     }

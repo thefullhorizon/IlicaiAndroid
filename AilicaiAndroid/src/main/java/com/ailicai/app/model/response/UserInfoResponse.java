@@ -29,6 +29,7 @@ public class UserInfoResponse extends Response {
     private int collectionNum; //关注总数量
 
     public int isTestUser; //5.9新增是否为新浪渠道内测用户 0-否 1-是
+    private String isAutoBid; //是否开启了自动投标，Y：开启，N：未开启
 
     public long getUserId() {
         return userId;
@@ -188,6 +189,14 @@ public class UserInfoResponse extends Response {
 
     public void setCollectionNum(int collectionNum) {
         this.collectionNum = collectionNum;
+    }
+
+    public String getIsAutoBid() {
+        return isAutoBid;
+    }
+
+    public void setIsAutoBid(String isAutoBid) {
+        this.isAutoBid = isAutoBid;
     }
 
     @Override

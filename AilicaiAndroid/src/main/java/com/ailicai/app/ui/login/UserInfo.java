@@ -429,6 +429,7 @@ public class UserInfo {
         setUserMobileID(userInfo.getMobile());
         setUserId(userInfo.getUserId());
         setIsTestuser(userInfo.isTestUser);
+        setAutoBid(TextUtils.equals("Y",userInfo.getIsAutoBid()));
         MyPreference.getInstance().write(UserInfo.USERINFO_KEY_USER_ID, userInfo.getUserId());
         MyPreference.getInstance().write(UserInfo.USERINFO_KEY_USER_NAME, userInfo.getRealName());
         MyPreference.getInstance().write(UserInfo.USERINFO_KEY_MOBILE, userInfo.getMobile());

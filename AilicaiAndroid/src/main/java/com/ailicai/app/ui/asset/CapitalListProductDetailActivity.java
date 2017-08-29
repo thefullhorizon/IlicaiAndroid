@@ -690,7 +690,7 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        showPwdDialogForOpen(false,0,0d);
+                        showPwdDialogForOpen(false,0,"0");
                     }},
                 getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
                     @Override
@@ -705,7 +705,7 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
     /***
      * 关闭或者点击地步确认按钮需要交易密码验证
      */
-    public void showPwdDialogForOpen(boolean forOpen,int strategyType,Double reserveMoney){
+    public void showPwdDialogForOpen(boolean forOpen,int strategyType,String reserveMoney){
 
         final AutomaticTenderPay.AutomaticTenderInfo info = new AutomaticTenderPay.AutomaticTenderInfo();
         info.forOpen = forOpen;
