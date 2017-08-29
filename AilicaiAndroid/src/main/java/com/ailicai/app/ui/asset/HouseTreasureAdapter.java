@@ -277,7 +277,7 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
         String text = "";
         if (product.getIsAddRate() > 0 || product.getIsCashBackVoucher() > 0){
             viewHolder.addRateLayout.setVisibility(View.VISIBLE);
-            String textAddRate = TextUtils.isEmpty(product.getAddRateInfo()) ? "" : product.getAddRateInfo()+" ; ";
+            String textAddRate = TextUtils.isEmpty(product.getAddRateInfo()) ? "" : product.getAddRateInfo();
             String textCoucher = TextUtils.isEmpty(product.getCashBackVoucherCopywriter()) ? "" : product.getCashBackVoucherCopywriter();
             viewHolder.addRateContent.setText(textAddRate + textCoucher);
         }else {

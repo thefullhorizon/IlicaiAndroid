@@ -77,7 +77,7 @@ public class CancelTransferPay extends BaseBuyFinancePay {
                     return;
                 }
                 onDialogDismiss();
-                ToastUtil.showInCenter("取消转让成功");
+//                ToastUtil.showInCenter("取消转让成功");
                 iwPayResultListener.onPayComplete(response);
             }
 
