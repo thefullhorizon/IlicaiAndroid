@@ -133,18 +133,4 @@ public class AutomaticTenderPresenter extends BasePresenter<AutomaticTenderPrese
     public void pwdDialogClose(boolean forOpen,boolean isSuccess,boolean isFromClick){
         getMvpView().pwdDialogClose(forOpen,isSuccess,isFromClick);
     }
-
-    public Double getReserveMoney(String reserveMoney){
-        Double reserve = 0d;
-        if(!TextUtils.isEmpty(reserveMoney)){
-
-            try {
-                reserve = Double.valueOf(reserveMoney);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                reserve = -1d;
-            }
-        }
-        return reserve;
-    }
 }

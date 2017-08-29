@@ -167,8 +167,7 @@ public class AutomaticTenderActivity extends BaseMvpActivity<AutomaticTenderPres
     public void processAutomaticOpen(@NonNull AutoBidResponse response) {
         showContentView();
         mStrategyType = response.getStrategyType();
-        DecimalFormat format = new DecimalFormat("#0.00");
-        mReserveMoney = format.format(response.getReserveBalance());
+        mReserveMoney = response.getReserveBalance();
         mXetReserveMoney.setText(mReserveMoney);
         if(mStrategyType == 1){//期限短
             mAttvTimeShortest.setSelect(true);
