@@ -51,7 +51,9 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
     TextView timeOfReceiving;
 
     private SaleHuoqibaoResponse response;
+    private boolean isFifteen ;
 
+    public static String ISFIFTEEN = "isFifiteen";//十五点的逻辑
     public static String KEY = "response";
     public static String TOTYPE = "toType";// 1-安全卡；2-账户余额
 
@@ -64,6 +66,7 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         response = (SaleHuoqibaoResponse) getIntent().getExtras().getSerializable(KEY);
+        isFifteen = (boolean) getIntent().getExtras().getSerializable(ISFIFTEEN);
         int toType = getIntent().getIntExtra(TOTYPE,1);
         //处理结果，S成功;P处理中;F失败
         String bizStatus = response.getBizStatus();
@@ -76,7 +79,7 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
                 if (toType == 1){//安全卡
                     currentUIOfSuccess();
                 }else{//存管账户
-                    if (response.isBeforeFifteen()){
+                    if (isFifteen){
                         previousUIOfSuccess.setVisibility(View.VISIBLE);
                         mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_succeed));
                         mImageIcon.setText(R.string.succeed);

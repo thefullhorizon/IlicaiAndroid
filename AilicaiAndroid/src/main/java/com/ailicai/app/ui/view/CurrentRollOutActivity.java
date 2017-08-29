@@ -98,6 +98,8 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
     private static final String SECURITYCARD = "1";//安全卡
     private String mTransactionOutType = "1";
 
+    private boolean isBeforeFifteen ;
+
     @Override
     public void onResume() {
         super.onResume();
@@ -262,8 +264,10 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
 
                 if (accountCheckBox.isChecked()) {
                     if (jsonObject.isBeforeFifteen()){
+                        isBeforeFifteen = true;
                         toTransation();
                     }else{
+                        isBeforeFifteen = false;
                         showTransactionOutUserInfo(jsonObject);
                     }
                 } else if (bankCheckBox.isChecked()){
@@ -285,6 +289,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         Intent mIntent = new Intent(mContext, CurrentRollOutResultActivity.class);
         Bundle mBundle = new Bundle();
         mBundle.putSerializable(CurrentRollOutResultActivity.KEY, object);
+        mBundle.putBoolean(CurrentRollOutResultActivity.ISFIFTEEN, isBeforeFifteen);
         mBundle.putInt(CurrentRollOutResultActivity.TOTYPE, toType);
         mIntent.putExtras(mBundle);
         mContext.startActivity(mIntent);

@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_16"
                     android:layout_toRightOf="@+id/tv_icon_regular_result"
-                    android:text="您的申购已提交，等待处理"
+                    android:text="转出申购已提交，等待处理"
                     android:textStyle="bold"
                     android:textColor="#3aa78f"
                     android:textSize="18sp" />
