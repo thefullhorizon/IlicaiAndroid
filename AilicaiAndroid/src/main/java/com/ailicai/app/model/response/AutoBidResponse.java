@@ -12,7 +12,7 @@ public class AutoBidResponse extends Response {
 
     private String isAutoBid; // "Y":表示自动投标, "N":表示未设置自动投标
     private int strategyType; // 投标策略 1:期限短 2: 利率高
-    private double reserveBalance; // 保留金额
+    private String reserveBalance; // 保留金额
 
     private Protocol autoBidProtocol;//自动投标授权协议
 
@@ -32,11 +32,11 @@ public class AutoBidResponse extends Response {
         this.strategyType = strategyType;
     }
 
-    public double getReserveBalance() {
+    public String getReserveBalance() {
         return reserveBalance;
     }
 
-    public void setReserveBalance(double reserveBalance) {
+    public void setReserveBalance(String reserveBalance) {
         this.reserveBalance = reserveBalance;
     }
 
