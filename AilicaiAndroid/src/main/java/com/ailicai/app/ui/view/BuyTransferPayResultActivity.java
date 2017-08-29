@@ -656,5 +656,4 @@ public class BuyTransferPayResultActivity extends BaseBindActivity {
             });
         }
     }
-
 }

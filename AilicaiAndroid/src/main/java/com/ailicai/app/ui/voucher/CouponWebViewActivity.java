@@ -54,7 +54,7 @@ public class CouponWebViewActivity extends BaseWebViewActivity {
 
                     String toShowRightStr = "";
                     if("1".equals(righticon)) {
-                        toShowRightStr = getResources().getString(R.string.mine_us);
+                        toShowRightStr = getResources().getString(R.string.information);
                     } else {
                         toShowRightStr = rightTxt;
                     }
