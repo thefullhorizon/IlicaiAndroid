@@ -12,7 +12,7 @@ public class AutoBidSwitchRequest extends Request {
 
     private int autoBidCommand; // 自动投资开关 0:close 1:open
     private int strategyType; // 投标策略 1:期限短 2: 利率高
-    private double reserveBalance; // 保留金额
+    private String reserveBalance; // 保留金额
     private String payPwd; // 交易密码
 
     public int getAutoBidCommand() {
@@ -31,11 +31,11 @@ public class AutoBidSwitchRequest extends Request {
         this.strategyType = strategyType;
     }
 
-    public double getReserveBalance() {
+    public String getReserveBalance() {
         return reserveBalance;
     }
 
-    public void setReserveBalance(double reserveBalance) {
+    public void setReserveBalance(String reserveBalance) {
         this.reserveBalance = reserveBalance;
     }
 

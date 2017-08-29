@@ -25,7 +25,7 @@ public class AutomaticTenderPay extends BaseBuyFinancePay {
     public static class AutomaticTenderInfo {
         public boolean forOpen;
         public int strategyType;
-        public Double reserveMoney;
+        public String reserveMoney;
 
     }
     public AutomaticTenderPay(FragmentActivity mActivity,AutomaticTenderInfo info, IwPwdPayResultListener iwPayResultListener) {
@@ -57,7 +57,7 @@ public class AutomaticTenderPay extends BaseBuyFinancePay {
     /***
      * 提交修改的自动投标的信息
      */
-    public void submit(final boolean isOpenAuto,int strategyType,Double reserveBalance,String payPwd){
+    public void submit(final boolean isOpenAuto,int strategyType,String reserveBalance,String payPwd){
         final AutoBidSwitchRequest request = new AutoBidSwitchRequest();
         request.setAutoBidCommand(isOpenAuto ? 1 : 0);
         request.setPayPwd(payPwd);
