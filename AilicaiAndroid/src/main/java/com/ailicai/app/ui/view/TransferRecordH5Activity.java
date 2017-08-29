@@ -56,9 +56,9 @@ public class TransferRecordH5Activity extends BaseWebViewActivity {
         //取消转让
         addMethodCallAction(new WebMethodCallAction("canceltransfer") {
             @Override
-            public Boolean call(HashMap params) {
+            public Object call(HashMap params) {
                 if (showCancel) {
-                    return false;
+                    return null;
                 }
                 showCancel = true;
                 String id = (String) params.get("id");
@@ -68,7 +68,7 @@ public class TransferRecordH5Activity extends BaseWebViewActivity {
                     money = money.replace("元", "");
                 }
                 cancelTransfer(id, txt, money);
-                return false;
+                return null;
             }
         });
     }
