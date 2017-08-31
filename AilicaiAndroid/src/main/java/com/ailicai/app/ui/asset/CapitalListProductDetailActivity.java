@@ -420,16 +420,13 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
             mAddRateExplain.setText(response.getAddRateStr());
         }
 
-        if (TextUtils.isEmpty(response.getYearInterestRateAddStr())) {
-            mExpectYearRate.setText(response.getYearInterestRateStr());
-        } else {
-            mExpectYearRate.setText(getSpannableString(response.getYearInterestRateStr(), response.getYearInterestRateAddStr()));
-        }
-        if (TextUtils.isEmpty(response.getProfitAddStr())) {
-            mExpectIncome.setText(response.getProfitStr());
-        } else {
-            mExpectIncome.setText(getSpannableString(response.getProfitStr(), response.getProfitAddStr()));
-        }
+        String yearInterestRateStr = TextUtils.isEmpty(response.getYearInterestRateAddStr()) ? "": response.getYearInterestRateAddStr();
+        String yearInterestRateBoostStr = TextUtils.isEmpty(response.getYearInterestRateBoostStr()) ? "": response.getYearInterestRateBoostStr();
+        mExpectYearRate.setText(getSpannableString(response.getYearInterestRateStr(), yearInterestRateStr + yearInterestRateBoostStr));
+
+        String profitAddStr = TextUtils.isEmpty(response.getProfitAddStr()) ? "": response.getProfitAddStr();
+        String profitBoostStr = TextUtils.isEmpty(response.getProfitBoostStr()) ? "": response.getProfitBoostStr();
+        mExpectIncome.setText(getSpannableString(response.getProfitStr(), profitAddStr + profitBoostStr ));
 
         if (!TextUtils.isEmpty(response.getHasTransferAmount()) || !TextUtils.isEmpty(response.getTransferingAmount())) {
             mTransferCapitalLayout.setVisibility(View.VISIBLE);

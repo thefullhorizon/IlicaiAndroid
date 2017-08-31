@@ -52,7 +52,7 @@ public class RegularPayBaseInfoResponse extends Response {
     private String creditId; //债券转让ID
     /****** 购买转让相关字段 5.4新增  edit by zhouxuan *********************/
 
-
+    private int hasExtRaiseRate = 0; //是否有额外加息 0-否；1-是 用于判断是否向卡券列表页面跳转
 
 
     public String getProductId() {
@@ -341,5 +341,13 @@ public class RegularPayBaseInfoResponse extends Response {
 
     public void setBankLimitStr(String bankLimitStr) {
         this.bankLimitStr = bankLimitStr;
+    }
+
+    public int getHasExtRaiseRate() {
+        return hasExtRaiseRate;
+    }
+
+    public void setHasExtRaiseRate(int hasExtRaiseRate) {
+        this.hasExtRaiseRate = hasExtRaiseRate;
     }
 }

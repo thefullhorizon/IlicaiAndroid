@@ -59,6 +59,9 @@ public class ProductSimpleInfoResponse extends Response {
     private String notTransferTitle=""; // 无法转让标题
     private String notTransferReason="";//无法转让原因
 
+    private String yearInterestRateBoostStr = ""; // 助力加息年化收益率（拼接字符串，以+开头）
+    private String profitBoostStr = ""; //助力加息收益（拼接字符串，以+开头）
+
 
     public String getMatchStatus() {
         return matchStatus;
@@ -378,5 +381,21 @@ public class ProductSimpleInfoResponse extends Response {
 
     public void setNotTransferReason(String notTransferReason) {
         this.notTransferReason = notTransferReason;
+    }
+
+    public String getYearInterestRateBoostStr() {
+        return yearInterestRateBoostStr;
+    }
+
+    public void setYearInterestRateBoostStr(String yearInterestRateBoostStr) {
+        this.yearInterestRateBoostStr = yearInterestRateBoostStr;
+    }
+
+    public String getProfitBoostStr() {
+        return profitBoostStr;
+    }
+
+    public void setProfitBoostStr(String profitBoostStr) {
+        this.profitBoostStr = profitBoostStr;
     }
 }

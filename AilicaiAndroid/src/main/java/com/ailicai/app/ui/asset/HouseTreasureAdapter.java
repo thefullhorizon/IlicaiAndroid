@@ -211,18 +211,27 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
                 viewHolder.applyProgress.setProgress((int)Math.round(100*product.getHasBuyPrecent()));
                 viewHolder.mTVDate.setText(product.getOrderTimeStr() +" 预约");
                 viewHolder.mTVLimit.setText("期限 "+product.getHorizonStr());
+
                 viewHolder.reservingTagApplying.setVisibility(View.VISIBLE);
+                viewHolder.reservingTagApplying.setText("预约中");
+                viewHolder.reservingTagApplying.setBackgroundResource(R.drawable.treasure_purchasing_tag);
+
             } else {
                 product = products.get(position - reserves.size());
                 viewHolder.labelLeft.setText("申购金额(元)");
                 viewHolder.valueLeft.setText(product.getBidAmountStr());
-                viewHolder.labelRight.setText("申购进度");
-                viewHolder.valueRight.setText(product.getHasBuyPrecentStr());
+                viewHolder.labelRight.setText("预计收益(元)");
+                viewHolder.valueRight.setText(product.getProfitStr());
+                viewHolder.valueRight.setText(product.getProfitStr());
                 viewHolder.applyProgress.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.financing_progressbar_drawable));
                 viewHolder.applyProgress.setProgress((int)Math.round(100*product.getHasBuyPrecent()));
                 viewHolder.mTVDate.setText(product.getOrderTimeStr() +" 申购");
                 viewHolder.mTVYearInterest.setText(product.getYearInterestRateStr());
                 viewHolder.mTVLimit.setText("期限 "+product.getHorizonStr());
+
+                viewHolder.reservingTagApplying.setVisibility(View.VISIBLE);
+                viewHolder.reservingTagApplying.setText("申购进度"+product.getHasBuyPrecentStr());
+                viewHolder.reservingTagApplying.setBackgroundResource(R.drawable.treasure_purchasing_normal_tag);
             }
 
         } else if (category == ProductCategory.Holder) {
@@ -244,13 +253,10 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
             viewHolder.labelRight.setText("预计收益(元)");
             viewHolder.mTVDate.setText(product.getBackDateStr() +" 回款");
             if (position <= tiyanbaos.size() -1){
-//                viewHolder.mTVDate.setText(product.getBackDateStr() +" 回款");
                 viewHolder.valueRight.setText(product.getBackAmount());
             }else {
-//                viewHolder.mTVDate.setText(product.getOrderTimeStr() +" 回款");
                 viewHolder.valueRight.setText(product.getProfitStr());
             }
-
             viewHolder.mTVYearInterest.setText(product.getYearInterestRateStr());
             viewHolder.mTVLimit.setText("期限 "+product.getHorizonStr());
         } else {

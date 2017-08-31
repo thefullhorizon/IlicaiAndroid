@@ -59,6 +59,8 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
     RollHotTopicView mIndexHotTopicView;
     @Bind(R.id.current_balance)
     TextView mCurrentBalance;
+    @Bind(R.id.current_balance_all_of_out)
+    TextView mCurrentBalanceAllOfOut;
     @Bind(R.id.roll_out_time)
     TextView mRollOutTime;
     //@Bind(R.id.bank_card_name)
@@ -67,8 +69,6 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
     EditText mInputPriceEdit;
     @Bind(R.id.input_price_edit_lable)
     TextView mInputPriceEditLable;
-    @Bind(R.id.input_error_tips)
-    TextView mErrorTips;
     @Bind(R.id.price_del)
     TextView priceDel;
     @Bind(R.id.agreement_layout)
@@ -229,6 +229,14 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         }
     }
 
+    @OnClick(R.id.current_balance_all_of_out)
+    public void allOfOut(View v) {
+        if (!"".equals(mInputPriceEdit.getText().toString())) {
+            mInputPriceEdit.setText(CommonUtil.numberFormat(infoResponse.getWithdrawBalance()));
+            showBalance();
+        }
+    }
+
     @OnClick(R.id.input_price_edit)
     public void onEditTextClick(View v) {
         if (!"".equals(mInputPriceEdit.getText().toString())) {
@@ -301,7 +309,6 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
      * @return
      */
     private boolean checkInputMoney() {
-        mErrorTips.setVisibility(View.GONE);
         mInputPriceEditLable.setVisibility(View.GONE);
         mCurrentBalance.setVisibility(View.VISIBLE);
         priceDel.setVisibility(View.VISIBLE);
@@ -336,6 +343,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         SpannableUtil spanUtil = new SpannableUtil(this);
         SpannableStringBuilder builder = spanUtil.getSpannableString(errorMessage, R.style.text_14_e84a01);
         mCurrentBalance.setText(builder);
+        mCurrentBalanceAllOfOut.setVisibility(View.GONE);
         mCurrentBalance.setVisibility(View.VISIBLE);
     }
 
@@ -345,6 +353,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
             SpannableStringBuilder builder = spanUtil.getSpannableString("活期宝余额 ", CommonUtil.numberFormat(infoResponse.getWithdrawBalance()), " 元",
                     R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
             mCurrentBalance.setText(builder);
+            mCurrentBalanceAllOfOut.setVisibility(View.VISIBLE);
             mCurrentBalance.setVisibility(View.VISIBLE);
         }
 
@@ -383,7 +392,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
                 R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
         mCurrentBalance.setText(builder);
         mInputPriceEditLable.setText(jsonObject.getHint());
-
+        mCurrentBalanceAllOfOut.setVisibility(View.VISIBLE);
         setRollOutType(jsonObject);
     }
 

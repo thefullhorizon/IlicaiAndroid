@@ -109,21 +109,22 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/input_error_tips"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:textColor="#e84a01"
-                android:textSize="14sp"
-                android:visibility="gone" />
-
-            <TextView
                 android:id="@+id/current_balance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="活期宝余额 0 元"
                 android:textColor="#757575"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/current_balance_all_of_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="全额转出"
+                android:textColor="#005ebd"
                 android:textSize="14sp" />
 
         </RelativeLayout>

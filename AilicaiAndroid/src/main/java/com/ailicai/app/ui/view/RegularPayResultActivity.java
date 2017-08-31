@@ -178,6 +178,13 @@ public class RegularPayResultActivity extends BaseBindActivity {
             case "S":
                 //购买成功
                 initPaySuccess(response.isLast());
+                //弹出分享
+                if (response.getIsPopShare()) {
+                    showShareDialog();
+                    //type;//业务类型：0-一般业务（app大首页banner，爱理财banner，开屏弹窗） 1-分享弹窗业务 （微信分享）
+                    //status;//0-banner点击统计pv/uv     2-弹出弹窗的次数 3-点击分享分享朋友圈 4-点击分享给好友
+                    //requestOptionReport(response.getBannerId(), 1, 2);
+                }
                 break;
             case "F":
                 //购买失败
@@ -188,13 +195,7 @@ public class RegularPayResultActivity extends BaseBindActivity {
                 initPayHandling();
                 break;
         }
-        //弹出分享
-        if (response.getIsPopShare()) {
-            showShareDialog();
-            //type;//业务类型：0-一般业务（app大首页banner，爱理财banner，开屏弹窗） 1-分享弹窗业务 （微信分享）
-            //status;//0-banner点击统计pv/uv     2-弹出弹窗的次数 3-点击分享分享朋友圈 4-点击分享给好友
-            //requestOptionReport(response.getBannerId(), 1, 2);
-        }
+
     }
 
     /**

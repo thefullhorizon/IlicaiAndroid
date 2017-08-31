@@ -437,18 +437,21 @@ public class RegularPayActivity extends BaseBindActivity {
      */
     @OnClick(R.id.rl_select_voucher)
     public void onSelectVoucher() {
-        //选择卡券页面
-
-        Intent intent = new Intent(this, VoucherListActivity.class);
-        intent.putExtra(VoucherListActivity.EXTRA_PRODUCT_ID, productId);
-        intent.putExtra(VoucherListActivity.EXTRA_APPROPRIATE_VOUCHER_ID, voucherId);
-        if (input != null && input.length()>0){
-            intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, Integer.parseInt(input));
+        if(infoResponse.getHasExtRaiseRate() == 1){
+            ToastUtil.showInCenter("该标的已加息，不可使用卡券");
         }else{
-            intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, 0);
+            //选择卡券页面
+            Intent intent = new Intent(this, VoucherListActivity.class);
+            intent.putExtra(VoucherListActivity.EXTRA_PRODUCT_ID, productId);
+            intent.putExtra(VoucherListActivity.EXTRA_APPROPRIATE_VOUCHER_ID, voucherId);
+            if (input != null && input.length()>0){
+                intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, Integer.parseInt(input));
+            }else{
+                intent.putExtra(VoucherListActivity.EXTRA_AMOUNT, 0);
+            }
+            startActivityForResult(intent, REQUEST_CODE_SELECT_VOUCHER);
+            ManyiUtils.closeKeyBoard(this, mInputPriceEdit);
         }
-        startActivityForResult(intent, REQUEST_CODE_SELECT_VOUCHER);
-        ManyiUtils.closeKeyBoard(this, mInputPriceEdit);
 
     }
 
