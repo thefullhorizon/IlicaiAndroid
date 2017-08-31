@@ -450,7 +450,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
     public void getRealPayFromServer() {
         CalActualPayRequest request = new CalActualPayRequest();
         String moneyCountString = mInputPriceEdit.getText().toString();
-        request.setAmount(Double.parseDouble(moneyCountString));
+        request.setAmount(Double.parseDouble(moneyCountString)+"");
         request.setRateStr(infoResponse.getYearInterestRate() + "");
         request.setTerm(infoResponse.getTimeDiff() + "");
         request.setBeginTime(infoResponse.getInterestDate());

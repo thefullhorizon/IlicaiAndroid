@@ -9,7 +9,7 @@ import com.ailicai.app.common.reqaction.RequestPath;
 @RequestPath("/ailicai/buyDingqibao.rest")
 public class BuyDingqibaoRequest extends Request {
     private String productId; //产品编号
-    private double amount;//申购金额
+    private String amount;//申购金额
     private String paypwd; //交易密码，RSA加密
     private int voucherId; // 卡券id 5.2增加
     //参加活动的参数start 不参加活动则不需要传
@@ -52,11 +52,11 @@ public class BuyDingqibaoRequest extends Request {
         this.ruleId = ruleId;
     }
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

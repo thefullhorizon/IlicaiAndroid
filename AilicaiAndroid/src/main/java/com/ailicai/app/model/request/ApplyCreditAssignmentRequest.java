@@ -6,7 +6,7 @@ import com.ailicai.app.common.reqaction.RequestPath;
 @RequestPath("/ailicai/applyCreditAssignment.rest")
 public class ApplyCreditAssignmentRequest extends Request {
     private String creditAssignmentId; // 债权转让ID
-    private double assignmentAmount;//转让金额
+    private String assignmentAmount;//转让金额
     private String paypwd; //交易密码
 
     public String getCreditAssignmentId() {
@@ -17,11 +17,11 @@ public class ApplyCreditAssignmentRequest extends Request {
         this.creditAssignmentId = creditAssignmentId;
     }
 
-    public double getAssignmentAmount() {
+    public String getAssignmentAmount() {
         return assignmentAmount;
     }
 
-    public void setAssignmentAmount(double assignmentAmount) {
+    public void setAssignmentAmount(String assignmentAmount) {
         this.assignmentAmount = assignmentAmount;
     }
 

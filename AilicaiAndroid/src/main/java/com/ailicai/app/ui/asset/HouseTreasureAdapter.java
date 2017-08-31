@@ -195,7 +195,7 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
         viewHolder.productIcon.setTextSize(16);
         viewHolder.reservingTagApplying.setVisibility(View.GONE);
         if (category == ProductCategory.Apply) {
-            viewHolder.applyProgress.setVisibility(View.VISIBLE);
+//            viewHolder.applyProgress.setVisibility(View.VISIBLE);
             if (position <= reserves.size() - 1) {
                 viewHolder.mTVYearInterestDivider.setVisibility(View.GONE);
                 viewHolder.mTVYearInterest.setVisibility(View.GONE);
@@ -207,8 +207,8 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
                 viewHolder.valueLeft.setText(product.getBidAmountStr());
                 viewHolder.labelRight.setText("预计年化");
                 viewHolder.valueRight.setText(product.getYearInterestRateNoMemo());
-                viewHolder.applyProgress.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.capital_reserve_progressbar_drawable));
-                viewHolder.applyProgress.setProgress((int)Math.round(100*product.getHasBuyPrecent()));
+//                viewHolder.applyProgress.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.capital_reserve_progressbar_drawable));
+//                viewHolder.applyProgress.setProgress((int)Math.round(100*product.getHasBuyPrecent()));
                 viewHolder.mTVDate.setText(product.getOrderTimeStr() +" 预约");
                 viewHolder.mTVLimit.setText("期限 "+product.getHorizonStr());
 
@@ -221,10 +221,9 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
                 viewHolder.labelLeft.setText("申购金额(元)");
                 viewHolder.valueLeft.setText(product.getBidAmountStr());
                 viewHolder.labelRight.setText("预计收益(元)");
-                viewHolder.valueRight.setText(product.getProfitStr());
-                viewHolder.valueRight.setText(product.getProfitStr());
-                viewHolder.applyProgress.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.financing_progressbar_drawable));
-                viewHolder.applyProgress.setProgress((int)Math.round(100*product.getHasBuyPrecent()));
+                viewHolder.valueRight.setText(product.getBackAmount());
+//                viewHolder.applyProgress.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.financing_progressbar_drawable));
+//                viewHolder.applyProgress.setProgress((int)Math.round(100*product.getHasBuyPrecent()));
                 viewHolder.mTVDate.setText(product.getOrderTimeStr() +" 申购");
                 viewHolder.mTVYearInterest.setText(product.getYearInterestRateStr());
                 viewHolder.mTVLimit.setText("期限 "+product.getHorizonStr());

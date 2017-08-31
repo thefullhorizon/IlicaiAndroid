@@ -131,7 +131,7 @@ public class BuyRegularPay extends BaseBuyFinancePay {
             throw new IllegalArgumentException("密码加密有误!检查一下");
         }
         BuyDingqibaoRequest buyHuoqibaoRequest = new BuyDingqibaoRequest();
-        buyHuoqibaoRequest.setAmount(regularPayInfo.getAmount());
+        buyHuoqibaoRequest.setAmount(regularPayInfo.getAmount()+"");
         buyHuoqibaoRequest.setProductId(regularPayInfo.getProductId());
         buyHuoqibaoRequest.setPaypwd(s);
         if (regularPayInfo.getVoucherId() > 0) {

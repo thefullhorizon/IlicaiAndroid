@@ -103,7 +103,7 @@ public class BuyCurrentPay extends BaseBuyFinancePay {
     @Override
     void toPayForInfo(String s) {
         buyHuoqibaoRequest = new BuyHuoqibaoRequest();
-        buyHuoqibaoRequest.setAmount(currentPayInfo.getAmount());
+        buyHuoqibaoRequest.setAmount(currentPayInfo.getAmount()+"");
         buyHuoqibaoRequest.setPaypwd(s);
         buyHuoqibaoRequest.setOutTradeNo(getOutTradeNoResponse().getOutTradeNo());
         buyHuoqibaoRequest.setRequestNo(getOutTradeNoResponse().getRequestNo());
@@ -196,7 +196,7 @@ public class BuyCurrentPay extends BaseBuyFinancePay {
         huoqibaoPayAdvanceRequest.setOutTradeNo(currentOutTradeNo);
         huoqibaoPayAdvanceRequest.setAdvanceVoucherNo(currentAdvanceVoucherNo);
         huoqibaoPayAdvanceRequest.setVerifyCode(verifyCode.trim().replace(" ", ""));
-        huoqibaoPayAdvanceRequest.setAmount(currentPayInfo.getAmount());
+        huoqibaoPayAdvanceRequest.setAmount(currentPayInfo.getAmount()+"");
         //活动相关ID
         huoqibaoPayAdvanceRequest.setRuleId(currentPayInfo.getRuleId());
         huoqibaoPayAdvanceRequest.setActivityId(currentPayInfo.getActivityId());
@@ -212,7 +212,7 @@ public class BuyCurrentPay extends BaseBuyFinancePay {
     private void reqRetrySendMsgCode() {
         getReSentBtn().setEnabled(false);
         BuyHuoqibaoResendRequest buyHuoqibaoResendRequest = new BuyHuoqibaoResendRequest();
-        buyHuoqibaoResendRequest.setAmount(currentPayInfo.getAmount());
+        buyHuoqibaoResendRequest.setAmount(currentPayInfo.getAmount()+"");
         buyHuoqibaoResendRequest.setAccountType(currentPayInfo.getAccountType());
         buyHuoqibaoResendRequest.setPayMethod(currentPayInfo.getPayMethod());
         buyHuoqibaoResendRequest.setPaypwd(buyHuoqibaoRequest.getPaypwd());

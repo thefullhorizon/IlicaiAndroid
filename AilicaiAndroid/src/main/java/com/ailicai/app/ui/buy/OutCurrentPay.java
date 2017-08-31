@@ -98,7 +98,7 @@ public class OutCurrentPay extends BaseBuyFinancePay {
     void toPayForInfo(String s) {
         //  onDialogDismiss();
         SaleHuoqibaoRequest saleHuoqibaoRequest = new SaleHuoqibaoRequest();
-        saleHuoqibaoRequest.setAmount(currentPayInfo.getAmount());
+        saleHuoqibaoRequest.setAmount(currentPayInfo.getAmount()+"");
         saleHuoqibaoRequest.setAccountType(currentPayInfo.getAccountType());
         saleHuoqibaoRequest.setPayMethod(currentPayInfo.getPayMethod());
         saleHuoqibaoRequest.setPaypwd(s);

@@ -11,7 +11,7 @@ public class HuoqibaoPayAdvanceRequest extends Request {
     private String outTradeNo;//外部订单号
     private String advanceVoucherNo; //推进号
     private String verifyCode;//验证码
-    private double amount;//申购金额 (回传显示用)
+    private String amount;//申购金额 (回传显示用)
 
     //参加活动的参数start 不参加则不需要传
     private long activityId; //活动id
@@ -44,11 +44,11 @@ public class HuoqibaoPayAdvanceRequest extends Request {
         this.verifyCode = verifyCode;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
 

@@ -10,7 +10,7 @@ import com.ailicai.app.common.reqaction.RequestPath;
 public class AdvanceDepositAndApplyRequest extends Request {
     private String advanceVoucherNo; //推进号
     private String verifyCode;//验证码
-    private double amount;//房产宝申购金额
+    private String amount;//房产宝申购金额
     private String outTradeNo; //推进号
     private String productId; //房产宝id
     //参加活动的参数start 不参加则不需要传
@@ -36,11 +36,11 @@ public class AdvanceDepositAndApplyRequest extends Request {
         this.verifyCode = verifyCode;
     }
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

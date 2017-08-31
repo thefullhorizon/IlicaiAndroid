@@ -9,7 +9,7 @@ import com.ailicai.app.common.reqaction.RequestPath;
 @RequestPath("/ailicai/buyHuoqibao.rest")
 public class BuyHuoqibaoRequest extends Request {
     private String paypwd; //交易密码，RSA加密
-    private double amount;//申购金额
+    private String amount;//申购金额
     private String requestNo;//请求号
     private String outTradeNo;//外部订单号
 
@@ -25,11 +25,11 @@ public class BuyHuoqibaoRequest extends Request {
         this.paypwd = paypwd;
     }
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

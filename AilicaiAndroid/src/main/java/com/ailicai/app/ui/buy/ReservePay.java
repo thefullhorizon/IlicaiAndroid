@@ -105,7 +105,7 @@ public class ReservePay extends BaseBuyFinancePay {
     private void requestForReserve() {
         ApplyReserveRequest request = new ApplyReserveRequest();
         request.setProductId(payInfo.getProductId());
-        request.setAmount(payInfo.getAmount());
+        request.setAmount(payInfo.getAmount()+"");
         request.setTerm(payInfo.getTerm());
         request.setPaypwd(payPassword);
         if (!TextUtils.isEmpty(payInfo.getReservePwd())) {
@@ -157,12 +157,12 @@ public class ReservePay extends BaseBuyFinancePay {
      */
     private void requestForBuy() {
         DepositAndApplyReserveRequest dAARequest = new DepositAndApplyReserveRequest();
-        dAARequest.setAmount(payInfo.getAmount());
+        dAARequest.setAmount(payInfo.getAmount()+"");
         dAARequest.setPaypwd(payPassword);
         dAARequest.setOutTradeNo(getOutTradeNoResponse().getOutTradeNo());
         dAARequest.setRequestNo(getOutTradeNoResponse().getRequestNo());
         dAARequest.setProductId(payInfo.getProductId());
-        dAARequest.setDepositAmount(payInfo.getRechargeAmount());
+        dAARequest.setDepositAmount(payInfo.getRechargeAmount()+"");
         dAARequest.setTerm(payInfo.getTerm());
         if (!TextUtils.isEmpty(payInfo.getReservePwd())) {
             dAARequest.setReservePwd(payInfo.getReservePwd());
@@ -252,7 +252,7 @@ public class ReservePay extends BaseBuyFinancePay {
         aDAARequest.setOutTradeNo(currentOutTradeNo);
         aDAARequest.setAdvanceVoucherNo(currentAdvanceVoucherNo);
         aDAARequest.setVerifyCode(verifyCode.trim().replace(" ", ""));
-        aDAARequest.setAmount(payInfo.getRechargeAmount());
+        aDAARequest.setAmount(payInfo.getRechargeAmount()+"");
         aDAARequest.setProductId(payInfo.getProductId());
         ServiceSender.exec(mActivity, aDAARequest, aDAAResponseIwjwRespListener);
     }
@@ -346,8 +346,8 @@ public class ReservePay extends BaseBuyFinancePay {
         DepositAndApplyInvestReSendRequest reSendRequest = new DepositAndApplyInvestReSendRequest();
         reSendRequest.setOutTradeNo(currentOutTradeNo);
         reSendRequest.setPaypwd(payPassword);
-        reSendRequest.setAmount(payInfo.getAmount());
-        reSendRequest.setDepositAmount(payInfo.getRechargeAmount());
+        reSendRequest.setAmount(payInfo.getAmount()+"");
+        reSendRequest.setDepositAmount(payInfo.getRechargeAmount()+"");
         reSendRequest.setProductId(payInfo.getProductId());
         reSendRequest.setRequestNo(getOutTradeNoResponse().getRequestNo());
         reSendRequest.setTerm(payInfo.getTerm());

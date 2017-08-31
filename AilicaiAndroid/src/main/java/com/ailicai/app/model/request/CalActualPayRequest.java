@@ -11,16 +11,16 @@ import com.ailicai.app.common.reqaction.RequestPath;
 @RequestPath("/ailicai/calActualPay.rest")
 public class CalActualPayRequest extends Request {
 
-    private double amount;//支付本金
+    private String amount;//支付本金
     private long beginTime;//计息日
     private String rateStr;//年化利率 16% 传16
     private String term;//原房产宝借款期限  数字 不带天数
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

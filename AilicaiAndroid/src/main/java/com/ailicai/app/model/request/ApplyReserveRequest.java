@@ -11,7 +11,7 @@ public class ApplyReserveRequest extends Request {
 
     private long userId; //用户Id,通过请求Header里的uticket获取
     private String productId = ""; // 产品Id
-    private double amount;//申购金额
+    private String amount;//申购金额
     private int term; //预约期限
     private String paypwd; //交易密码 RSA加密
     private String reservePwd; // 预约口令
@@ -33,11 +33,11 @@ public class ApplyReserveRequest extends Request {
         this.productId = productId;
     }
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

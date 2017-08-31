@@ -77,7 +77,7 @@ public class ApplyCreditAssignmentPay extends BaseBuyFinancePay {
         }
         ApplyCreditAssignmentRequest request = new ApplyCreditAssignmentRequest();
         request.setCreditAssignmentId(String.valueOf(transfer.getCreditAssignmentId()));
-        request.setAssignmentAmount(transfer.getAssignmentAmount());
+        request.setAssignmentAmount(transfer.getAssignmentAmount()+"");
         request.setPaypwd(s);
         ServiceSender.exec(mActivity, request, new IwjwRespListener<ApplyAssignmentResponse>() {
             @Override

@@ -109,8 +109,8 @@ public class RegularReChangePay extends BaseBuyFinancePay {
         pwd = s;
         investRequest = new DepositAndApplyInvestRequest();
         investRequest.setPaypwd(s);
-        investRequest.setAmount(currentPayInfo.getAmount());
-        investRequest.setDepositAmount(currentPayInfo.getDepositAmount());
+        investRequest.setAmount(currentPayInfo.getAmount()+"");
+        investRequest.setDepositAmount(currentPayInfo.getDepositAmount()+"");
         investRequest.setOutTradeNo(getOutTradeNoResponse().getOutTradeNo());
         investRequest.setRequestNo(getOutTradeNoResponse().getRequestNo());
         investRequest.setProductId(currentPayInfo.getProductId());
@@ -202,7 +202,7 @@ public class RegularReChangePay extends BaseBuyFinancePay {
         applyRequest.setOutTradeNo(currentOutTradeNo);
         applyRequest.setAdvanceVoucherNo(currentAdvanceVoucherNo);
         applyRequest.setVerifyCode(verifyCode.trim().replace(" ", ""));
-        applyRequest.setAmount(currentPayInfo.getAmount());
+        applyRequest.setAmount(currentPayInfo.getAmount()+"");
         applyRequest.setProductId(currentPayInfo.getProductId());
         if (currentPayInfo.getRuleId() > 0) {
             applyRequest.setRuleId(currentPayInfo.getRuleId());
@@ -220,8 +220,8 @@ public class RegularReChangePay extends BaseBuyFinancePay {
         getReSentBtn().setEnabled(false);
         DepositAndApplyInvestReSendRequest reSendRequest = new DepositAndApplyInvestReSendRequest();
         reSendRequest.setPaypwd(pwd);
-        reSendRequest.setAmount(currentPayInfo.getAmount());
-        reSendRequest.setDepositAmount(currentPayInfo.getDepositAmount());
+        reSendRequest.setAmount(currentPayInfo.getAmount()+"");
+        reSendRequest.setDepositAmount(currentPayInfo.getDepositAmount()+"");
         reSendRequest.setOutTradeNo(currentOutTradeNo);
         reSendRequest.setRequestNo(currentAdvanceVoucherNo);
         reSendRequest.setProductId(currentPayInfo.getProductId());

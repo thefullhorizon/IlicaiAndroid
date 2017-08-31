@@ -10,11 +10,11 @@ import com.ailicai.app.common.reqaction.RequestPath;
 @RequestPath("/ailicai/depositAndApplyInvestResend.rest")
 public class DepositAndApplyInvestReSendRequest extends Request {
     private String paypwd; //交易密码
-    private double amount;//房产宝申购金额
+    private String amount;//房产宝申购金额
     private String requestNo;//请求号
     private String outTradeNo;//外部订单号
     private String productId = ""; // 标的编号(预约编号)
-    private double depositAmount;//钱包充值金额
+    private String depositAmount;//钱包充值金额
     private int voucherId; // 卡券id
     private int term; //预约期限 （仅预约时传值）
     private String reservePwd; // 预约口令（仅预约时传值）
@@ -29,11 +29,11 @@ public class DepositAndApplyInvestReSendRequest extends Request {
         this.paypwd = paypwd;
     }
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -61,11 +61,11 @@ public class DepositAndApplyInvestReSendRequest extends Request {
         this.productId = productId;
     }
 
-    public double getDepositAmount() {
+    public String getDepositAmount() {
         return depositAmount;
     }
 
-    public void setDepositAmount(double depositAmount) {
+    public void setDepositAmount(String depositAmount) {
         this.depositAmount = depositAmount;
     }
 

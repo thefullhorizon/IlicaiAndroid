@@ -9,15 +9,15 @@ import com.ailicai.app.common.reqaction.RequestPath;
 @RequestPath("/ailicai/buyHuoqibaoResend.rest")
 public class BuyHuoqibaoResendRequest extends Request {
     private String paypwd; //交易密码，RSA加密
-    private double amount;//申购金额
+    private String amount;//申购金额
     private String accountType; //转入类型：101-存钱罐；106-用户账户
     private String payMethod; //支付方式 1-安全卡；2-账户余额
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
