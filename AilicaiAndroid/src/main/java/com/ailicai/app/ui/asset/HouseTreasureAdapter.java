@@ -213,7 +213,7 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
                 viewHolder.mTVLimit.setText("期限 "+product.getHorizonStr());
 
                 viewHolder.reservingTagApplying.setVisibility(View.VISIBLE);
-                viewHolder.reservingTagApplying.setText("预约中");
+                viewHolder.reservingTagApplying.setText("预约进度"+product.getHasBuyPrecentStr());
                 viewHolder.reservingTagApplying.setBackgroundResource(R.drawable.treasure_purchasing_tag);
 
             } else {

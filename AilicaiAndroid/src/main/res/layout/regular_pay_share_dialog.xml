@@ -34,19 +34,6 @@
                 manyi:riv_corner_radius_top_left="2dp"
                 manyi:riv_corner_radius_top_right="2dp" />
 
-
-            <com.ailicai.app.widget.TextViewTF
-                android:id="@+id/close_button"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="top|right"
-                android:layout_margin="2dp"
-                android:background="@drawable/bg_black_a10_selector_round"
-                android:gravity="center"
-                android:text="@string/delete"
-                android:textColor="#8a000000"
-                android:textSize="20sp" />
-
         </FrameLayout>
 
         <LinearLayout
@@ -60,10 +47,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="10dp"
+                android:paddingBottom="40dp"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:paddingTop="10dp">
+                android:paddingTop="20dp">
 
                 <LinearLayout
                     android:id="@+id/share_to_wechat_circle"
@@ -76,7 +63,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/wechat_20_share" />
+                        android:src="@drawable/wechat_moment_icons" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -91,7 +78,7 @@
                     android:id="@+id/share_to_wechat"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/share_wechat_circle_btn_bg_normal"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -99,7 +86,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/wechat_4_20" />
+                        android:src="@drawable/wechat_icon" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -113,6 +100,18 @@
 
 
         </LinearLayout>
+
+        <com.ailicai.app.widget.TextViewTF
+            android:id="@+id/close_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/close_when_pop_ad"
+            android:gravity="center"
+            android:textColor="#8a000000"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
 </LinearLayout>

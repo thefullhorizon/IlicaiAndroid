@@ -118,9 +118,6 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
     @Bind(R.id.old_regular_detail_layout)
     View mOldRegularDetailLayout;
 
-    @Bind(R.id.add_rate_explain)
-    TextView mAddRateExplain;
-
     @Bind(R.id.transfer_price_layout)
     View mTransferPriceLayout;
     @Bind(R.id.transfer_price)
@@ -414,15 +411,10 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
             mTimeLine.updateState(titles, values, response.getInterestTotal(), response.getFullDay(), response.getTotalDay(), response.getPassDay());
         }
 
-
-        if (!TextUtils.isEmpty(response.getAddRateStr())) {
-            mAddRateExplain.setVisibility(View.VISIBLE);
-            mAddRateExplain.setText(response.getAddRateStr());
-        }
-
         String yearInterestRateStr = TextUtils.isEmpty(response.getYearInterestRateAddStr()) ? "": response.getYearInterestRateAddStr();
+        String addRateStr = TextUtils.isEmpty(response.getAddRateStr()) ? "": response.getAddRateStr();
         String yearInterestRateBoostStr = TextUtils.isEmpty(response.getYearInterestRateBoostStr()) ? "": response.getYearInterestRateBoostStr();
-        mExpectYearRate.setText(getSpannableString(response.getYearInterestRateStr(), yearInterestRateStr + yearInterestRateBoostStr));
+        mExpectYearRate.setText(getSpannableString(response.getYearInterestRateStr(), yearInterestRateStr + addRateStr + yearInterestRateBoostStr));
 
         String profitAddStr = TextUtils.isEmpty(response.getProfitAddStr()) ? "": response.getProfitAddStr();
         String profitBoostStr = TextUtils.isEmpty(response.getProfitBoostStr()) ? "": response.getProfitBoostStr();

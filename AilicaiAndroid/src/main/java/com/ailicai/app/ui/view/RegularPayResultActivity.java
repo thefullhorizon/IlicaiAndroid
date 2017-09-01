@@ -196,6 +196,8 @@ public class RegularPayResultActivity extends BaseBindActivity {
                 break;
         }
 
+        showShareDialog();
+
     }
 
     /**
