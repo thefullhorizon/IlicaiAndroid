@@ -221,7 +221,7 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
                 viewHolder.labelLeft.setText("申购金额(元)");
                 viewHolder.valueLeft.setText(product.getBidAmountStr());
                 viewHolder.labelRight.setText("预计收益(元)");
-                viewHolder.valueRight.setText(product.getBackAmount());
+                viewHolder.valueRight.setText(product.getProfitStr());
 //                viewHolder.applyProgress.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.financing_progressbar_drawable));
 //                viewHolder.applyProgress.setProgress((int)Math.round(100*product.getHasBuyPrecent()));
                 viewHolder.mTVDate.setText(product.getOrderTimeStr() +" 申购");
