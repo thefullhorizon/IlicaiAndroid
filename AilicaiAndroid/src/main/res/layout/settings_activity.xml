@@ -56,7 +56,7 @@
 
                     <TextView
                         android:id="@+id/user_phone_tag"
-                        style="@style/text_16_aaaaaa"
+                        style="@style/text_16_757575"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp" />
@@ -103,7 +103,7 @@
 
                     <TextView
                         android:id="@+id/real_name"
-                        style="@style/text_16_aaaaaa"
+                        style="@style/text_16_757575"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp" />
@@ -156,7 +156,7 @@
 
                         <TextView
                             android:id="@+id/bank_card_name"
-                            style="@style/text_16_aaaaaa"
+                            style="@style/text_16_757575"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -176,6 +176,65 @@
         </LinearLayout>
 
         <View style="@style/cell_divider_hor" />
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View style="@style/cell_divider_hor" />
+
+
+            <RelativeLayout
+                android:id="@+id/associator_layout"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:background="@drawable/white_to_pressed_selector"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+
+                <TextView
+                    style="@style/text_16_212121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="会员中心" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/associator_level_tag"
+                        style="@style/text_16_757575"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:visibility="visible" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="16dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/account_arrow_selector" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View style="@style/cell_divider_hor" />
+        </LinearLayout>
 
         <View
             style="@style/cell_divider_hor"

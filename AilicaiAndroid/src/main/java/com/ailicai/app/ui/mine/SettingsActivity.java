@@ -58,6 +58,8 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
     TextView mRealName;
     @Bind(R.id.bank_card_name)
     TextView bankCardName;
+    @Bind(R.id.associator_level_tag)
+    TextView associatorLevelTag;
     @Bind(R.id.rl_bank_card_layout)
     LinearLayout bankCardLayout;
     @Bind(R.id.login_out)
@@ -179,6 +181,14 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
         MyIntent.startActivity(this, BankCardListActivity.class, "");
     }
 
+    /**
+     * 会员中心
+     */
+    @OnClick(R.id.associator_layout)
+    void onClickAssociatorCenter() {
+        //TODO:跳转至会员中心
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -245,6 +255,10 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
         } else {
             bankCardLayout.setVisibility(View.GONE);
         }
+
+        //会员等级
+        associatorLevelTag.setText("V2会员");
+
         setUIData();
     }
 
