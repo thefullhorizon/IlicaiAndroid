@@ -439,6 +439,32 @@ public class CommonUtil {
     }
 
     /**
+     * double数字格式化：千分位符，保留两位小数，不足补零,不四舍五入
+     *
+     * @param amt
+     * @return
+     */
+    public static String amountWithTwoAfterPoint(double amt) {
+        DecimalFormat dqbDF2 = new DecimalFormat("#,###.00");
+        dqbDF2.setRoundingMode(RoundingMode.DOWN);
+        if (amt == 0) {
+            return "0.00";
+        } else {
+            return dqbDF2.format(amt);
+        }
+    }
+    /**
+     * double数字格式化：千分位格式，最多保留两位小数，去做小数点后末尾的零,不四舍五入
+     *
+     * @param amt
+     * @return
+     */
+    public static String mostTwoAfterPointRoundDown(double amt) {
+        DecimalFormat dqbDF2 = new DecimalFormat("#,###.##");
+        return dqbDF2.format(amt);
+    }
+
+    /**
      * 获取字符串中的所有数字
      *
      * @param msgStr
