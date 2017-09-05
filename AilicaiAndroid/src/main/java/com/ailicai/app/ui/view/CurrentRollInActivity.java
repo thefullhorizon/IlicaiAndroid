@@ -44,7 +44,6 @@ import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.RollHotTopicView;
 import com.huoqiu.framework.util.ManyiUtils;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -414,21 +413,20 @@ public class CurrentRollInActivity extends BaseBindActivity implements View.OnCl
             mRollInBalance.setVisibility(View.GONE);
             return false;
         } else if (accountCheckBox.isChecked() && infoResponse.getDepositoryBalance() <= 0 && Double.parseDouble(money) > infoResponse.getDepositoryBalance()) {
-            mErrorTips.setText("可用余额 " + CommonUtil.numberFormat(infoResponse.getDepositoryBalance()) + " 元");
+            mErrorTips.setText("可用余额 " + CommonUtil.amountWithTwoAfterPoint(infoResponse.getDepositoryBalance()) + " 元");
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;
         } else if (accountCheckBox.isChecked() && infoResponse.getDepositoryBalance() > 0 && Double.parseDouble(money) > infoResponse.getDepositoryBalance()) {
-            mErrorTips.setText("当前最多可转入 " + CommonUtil.numberFormat(infoResponse.getDepositoryBalance()) + " 元");
+            mErrorTips.setText("当前最多可转入 " + CommonUtil.amountWithTwoAfterPoint(infoResponse.getDepositoryBalance()) + " 元");
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;
         } else if (!accountCheckBox.isChecked() && infoResponse.getDayRemain() > 0 && Double.parseDouble(money) > x) {
-            DecimalFormat df = new DecimalFormat("######0.00");
             if (infoResponse.getBuyLimit() > infoResponse.getDayRemain()) {
-                mErrorTips.setText("当前最多可转入 " + df.format(x) + " 元");
+                mErrorTips.setText("当前最多可转入 " + CommonUtil.amountWithTwoAfterPoint(x) + " 元");
             } else {
-                mErrorTips.setText("单笔最多可转入 " + df.format(x) + " 元");
+                mErrorTips.setText("单笔最多可转入 " + CommonUtil.amountWithTwoAfterPoint(x) + " 元");
             }
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
@@ -471,7 +469,7 @@ public class CurrentRollInActivity extends BaseBindActivity implements View.OnCl
         String bankName = jsonObject.getBankName(); //银行名称
         int cardType = jsonObject.getCardType(); //卡类型【1：储蓄卡 、2：信用卡 、3：存折 、4：其它 】
         SpannableUtil spanUtil = new SpannableUtil(this);
-        SpannableStringBuilder builder1 = spanUtil.getSpannableString("活期宝余额 ", CommonUtil.numberFormat(jsonObject.getWithdrawBalance()), " 元",
+        SpannableStringBuilder builder1 = spanUtil.getSpannableString("活期宝余额 ", CommonUtil.amountWithTwoAfterPoint(jsonObject.getWithdrawBalance()), " 元",
                 R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
         mRollInBalance.setText(builder1);
         SpannableStringBuilder builder2 = spanUtil.getSpannableString("预计 ", giveDate, " 起息，次日可查看收益",
@@ -503,7 +501,7 @@ public class CurrentRollInActivity extends BaseBindActivity implements View.OnCl
 
     public void setRollOutType(CurrentRollInBaseInfoResponse jsonObject) {
         accountNameText.setText("账户余额");
-        accountDescText.setText("当前可用余额 " + CommonUtil.numberFormat(jsonObject.getDepositoryBalance()) + " 元");
+        accountDescText.setText("当前可用余额 " + CommonUtil.amountWithTwoAfterPoint(jsonObject.getDepositoryBalance()) + " 元");
         bankNameText.setText(jsonObject.getBankName() + " (尾号" + jsonObject.getCardNo() + ")");
         accountCheckBox.setChecked(false);
         bankCheckBox.setChecked(true);

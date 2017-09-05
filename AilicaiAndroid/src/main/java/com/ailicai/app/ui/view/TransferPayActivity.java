@@ -474,7 +474,7 @@ public class TransferPayActivity extends BaseBindActivity {
         this.infoResponse = jsonObject;
         mInputPriceEditLable.setText(infoResponse.getHint());
         tvLeaveAccount.setText("剩余期限 " + jsonObject.getRemainDays());
-        mRegularBalance.setText("可转本金 " + CommonUtil.formatMoney(jsonObject.getApplyAmount()) + " 元");
+        mRegularBalance.setText("可转本金 " + CommonUtil.amountWithTwoAfterPoint(jsonObject.getApplyAmount()) + " 元");
         double minAmount = infoResponse.getMinAmount();
         double applyAmount = jsonObject.getApplyAmount();
         if (applyAmount > 0 && applyAmount <= minAmount) {
@@ -538,11 +538,6 @@ public class TransferPayActivity extends BaseBindActivity {
             @Override
             public void onJsonSuccess(TransferPayBaseInfoResponse jsonObject) {
                 showContentView();
-                String msg = jsonObject.getMessage();
-                int code = jsonObject.getErrorCode();
-                if (!"".equals(msg)) {
-                    //ToastUtil.showInCenter(mContext, msg);
-                }
                 bindViewData(jsonObject);
             }
 

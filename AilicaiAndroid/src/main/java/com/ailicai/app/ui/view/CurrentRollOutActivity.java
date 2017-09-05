@@ -231,7 +231,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
 
     @OnClick(R.id.current_balance_all_of_out)
     public void allOfOut(View v) {
-        mInputPriceEdit.setText(CommonUtil.numberFormat(infoResponse.getWithdrawBalance()));
+        mInputPriceEdit.setText(CommonUtil.amountWithTwoAfterPoint(infoResponse.getWithdrawBalance()));
         showBalance();
     }
 
@@ -323,13 +323,13 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
             //ToastUtil.show("请输入正确的金额");
             return false;
         } else if (infoResponse.getWithdrawBalance() >= 0 && Double.parseDouble(money) > infoResponse.getWithdrawBalance()) {
-            showError("当前最多可转出 " + CommonUtil.numberFormat(infoResponse.getWithdrawBalance()) + " 元");
+            showError("当前最多可转出 " + CommonUtil.amountWithTwoAfterPoint(infoResponse.getWithdrawBalance()) + " 元");
             return false;
         } else if (!accountCheckBox.isChecked() && Double.parseDouble(money) > infoResponse.getLimit()) {
             if (infoResponse.getLimit() % 10000 == 0) {
                 showError("每笔最多可转出 " + CommonUtil.numberFormat(infoResponse.getLimit() / 10000) + " 万");
             } else {
-                showError("每笔最多可转出 " + CommonUtil.numberFormat(infoResponse.getLimit()));
+                showError("每笔最多可转出 " + CommonUtil.amountWithTwoAfterPoint(infoResponse.getLimit()));
             }
             return false;
         }
@@ -348,7 +348,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
     private void showBalance() {
         if (infoResponse != null) {
             SpannableUtil spanUtil = new SpannableUtil(this);
-            SpannableStringBuilder builder = spanUtil.getSpannableString("活期宝余额 ", CommonUtil.numberFormat(infoResponse.getWithdrawBalance()), " 元",
+            SpannableStringBuilder builder = spanUtil.getSpannableString("活期宝余额 ", CommonUtil.amountWithTwoAfterPoint(infoResponse.getWithdrawBalance()), " 元",
                     R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
             mCurrentBalance.setText(builder);
             mCurrentBalanceAllOfOut.setVisibility(View.VISIBLE);
