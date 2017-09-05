@@ -30,6 +30,7 @@ public class UserInfoResponse extends Response {
 
     public int isTestUser; //5.9新增是否为新浪渠道内测用户 0-否 1-是
     private String isAutoBid; //是否开启了自动投标，Y：开启，N：未开启
+    private String memberLevel; // 当前会员等级
 
     public long getUserId() {
         return userId;
@@ -199,6 +200,14 @@ public class UserInfoResponse extends Response {
         this.isAutoBid = isAutoBid;
     }
 
+    public String getMemberLevel() {
+        return memberLevel;
+    }
+
+    public void setMemberLevel(String memberLevel) {
+        this.memberLevel = memberLevel;
+    }
+
     @Override
     public String toString() {
         return "UserInfoResponse{" +
@@ -215,10 +224,15 @@ public class UserInfoResponse extends Response {
                 ", key2='" + key2 + '\'' +
                 ", rsaClose=" + rsaClose +
                 ", hasSafeCard=" + hasSafeCard +
+                ", bankName='" + bankName + '\'' +
+                ", bankcardTailNo='" + bankcardTailNo + '\'' +
                 ", imUserId='" + imUserId + '\'' +
                 ", imPasswd='" + imPasswd + '\'' +
                 ", idCardNo='" + idCardNo + '\'' +
                 ", collectionNum=" + collectionNum +
+                ", isTestUser=" + isTestUser +
+                ", isAutoBid='" + isAutoBid + '\'' +
+                ", memberLevel='" + memberLevel + '\'' +
                 '}';
     }
 }

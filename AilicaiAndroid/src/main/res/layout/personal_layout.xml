@@ -56,14 +56,34 @@
             android:layout_height="48dp"
             android:orientation="vertical">
 
-            <com.ailicai.app.widget.CircleImageView
-                android:id="@+id/userPhoto"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"
-                android:src="@drawable/head_portrait" />
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.ailicai.app.widget.CircleImageView
+                    android:id="@+id/userPhoto"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/head_portrait" />
+
+                <TextView
+                    android:id="@+id/member_level_text"
+                    style="@style/text_10_ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/mine_member_level_bg"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="V2" />
+            </LinearLayout>
+
 
             <FrameLayout
                 android:id="@+id/fl_msg_container"

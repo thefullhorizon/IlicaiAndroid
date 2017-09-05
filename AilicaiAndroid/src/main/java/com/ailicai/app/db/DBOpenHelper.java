@@ -17,8 +17,8 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
     // 数据库名称
     public static final String DATABASE_NAME = "AilicaiInfo.db";
     // 数据库[APP]-[DB]
-    // 1.0-1 1.2-2
-    public static final int DATABASE_VERSION = 2;
+    // 1.0-1 1.2-2 1.3 -3
+    public static final int DATABASE_VERSION = 3;
 
     private static final String TAG = "DBOpenHelper";
 

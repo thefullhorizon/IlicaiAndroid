@@ -62,6 +62,7 @@ public class UserLoginResponse extends Response {
 
     private int isTestUser; //是否为新浪渠道内测用户 0-否 1-是
     private String isAutoBid; // "Y":表示自动投标, "N":表示未设置自动投标
+    private String memberLevel; // 当前会员等级
 
     public int getGender() {
         return gender;
@@ -334,5 +335,13 @@ public class UserLoginResponse extends Response {
 
     public void setIsAutoBid(String isAutoBid) {
         this.isAutoBid = isAutoBid;
+    }
+
+    public String getMemberLevel() {
+        return memberLevel;
+    }
+
+    public void setMemberLevel(String memberLevel) {
+        this.memberLevel = memberLevel;
     }
 }

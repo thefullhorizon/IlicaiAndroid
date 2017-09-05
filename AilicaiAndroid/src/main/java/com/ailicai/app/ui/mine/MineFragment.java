@@ -135,6 +135,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     View topLine;
     @Bind(R.id.purchaseAmount)
     TextView purchaseAmount;
+    @Bind(R.id.member_level_text)
+    TextView memberLevelText;
     @Bind(R.id.swipe)
     SwipeRefreshLayout mSwipeLayout;
     private MinePresenter mPresenter;
@@ -371,6 +373,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             mineNotLogin.setVisibility(View.VISIBLE);
             mineLogin.setVisibility(View.GONE);
             tvLogin.setOnClickListener(mOnClickListener);
+            memberLevelText.setVisibility(View.GONE);
             userPhoto.setVisibility(View.GONE);
             userPhoto.setClickable(false);
             userPhoto.setOnClickListener(null);
@@ -395,6 +398,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             flMsgContainer.setClickable(true);
             flMsgContainer.setOnClickListener(userLayoutOnClickListener);
 
+            memberLevelText.setVisibility(View.VISIBLE);
             userPhoto.setVisibility(View.VISIBLE);
             userPhoto.setClickable(true);
             userPhoto.setOnClickListener(userLayoutOnClickListener);
@@ -406,6 +410,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             //根据登录的手机号获取已保存的用户信息
             long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
             UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
+            //会员等级
+            memberLevelText.setText(infoBase.getMemberLevel());
+
             int resID = R.drawable.head_portrait;
             DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder();
             builder.cacheInMemory(true)// 是否缓存都內存中

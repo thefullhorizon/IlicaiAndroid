@@ -50,6 +50,12 @@ public class UserInfoTableModel {
     private String idCardNo = ""; // 身份证号
     @DatabaseField()
     private int collectionNum; //关注总数量
+
+    @DatabaseField()
+    private String isAutoBid; //是否开启了自动投标，Y：开启，N：未开启
+    @DatabaseField()
+    private String memberLevel; // 当前会员等级
+
     public UserInfoTableModel() {
         //必须无参数构造函数
     }
@@ -212,5 +218,21 @@ public class UserInfoTableModel {
 
     public void setCollectionNum(int collectionNum) {
         this.collectionNum = collectionNum;
+    }
+
+    public String getIsAutoBid() {
+        return isAutoBid;
+    }
+
+    public void setIsAutoBid(String isAutoBid) {
+        this.isAutoBid = isAutoBid;
+    }
+
+    public String getMemberLevel() {
+        return memberLevel;
+    }
+
+    public void setMemberLevel(String memberLevel) {
+        this.memberLevel = memberLevel;
     }
 }
