@@ -382,7 +382,7 @@ public class RegularPayActivity extends BaseBindActivity {
                             }
                             SpannableUtil spannableUtil = new SpannableUtil(this);
                             SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
-                                    MathUtil.saveTwoDecimal(normalProfit),
+                                    CommonUtil.amountWithTwoAfterPoint(normalProfit),
                                     " 元 ", "+ 加息收益 ", MathUtil.saveTwoDecimal(voucherProfit), " 元",
                                     R.style.text_12_757575,
                                     R.style.text_12_e84a01,
@@ -394,7 +394,7 @@ public class RegularPayActivity extends BaseBindActivity {
                         } else {
                             //无加息券
                             SpannableUtil spannableUtil = new SpannableUtil(this);
-                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", MathUtil.saveTwoDecimal(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
                             tvProfitText.setText(builder);
                         }
                     }
@@ -405,7 +405,7 @@ public class RegularPayActivity extends BaseBindActivity {
                         if (!TextUtils.isEmpty(voucherValue)) {
                             SpannableUtil spannableUtil = new SpannableUtil(this);
                             SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
-                                    MathUtil.saveTwoDecimal(normalProfit),
+                                    CommonUtil.amountWithTwoAfterPoint(normalProfit),
                                     " 元 ", "+ 返金金额 ", voucherValue, " 元",
                                     R.style.text_12_757575,
                                     R.style.text_12_e84a01,
@@ -417,7 +417,7 @@ public class RegularPayActivity extends BaseBindActivity {
                         } else {
                             //无返金券
                             SpannableUtil spannableUtil = new SpannableUtil(this);
-                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", MathUtil.saveTwoDecimal(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
                             tvProfitText.setText(builder);
                         }
                     }
@@ -425,7 +425,7 @@ public class RegularPayActivity extends BaseBindActivity {
 
                 default://默认根据用户的输入计算收益
                     SpannableUtil spannableUtil = new SpannableUtil(this);
-                    SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", MathUtil.saveTwoDecimal(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                    SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
                     tvProfitText.setText(builder);
                     break;
             }
@@ -898,7 +898,7 @@ public class RegularPayActivity extends BaseBindActivity {
         this.infoResponse = jsonObject;
         verifyProtocolListLogical(jsonObject.getProtocolList());
         mInputPriceEditLable.setText(jsonObject.getHint());
-        mRegularBalance.setText("可用余额 " + CommonUtil.numberFormat(jsonObject.getAvailableBalance()) + " 元");
+        mRegularBalance.setText("可用余额 " + CommonUtil.amountWithTwoAfterPoint(jsonObject.getAvailableBalance()) + " 元");
         voucherId = infoResponse.getVoucherId();
         addRateDay = infoResponse.getAddRateDay();
         voucherRate = infoResponse.getAddRate();

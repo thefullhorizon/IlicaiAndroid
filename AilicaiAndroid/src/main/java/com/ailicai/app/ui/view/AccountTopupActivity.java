@@ -42,7 +42,6 @@ import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.RollHotTopicView;
 import com.huoqiu.framework.util.ManyiUtils;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -362,11 +361,10 @@ public class AccountTopupActivity extends BaseBindActivity {
             mRollInBalance.setVisibility(View.GONE);
             return false;
         } else if (infoResponse.getDayRemain() >= 0 && Double.parseDouble(money) > x) {
-            DecimalFormat df = new DecimalFormat("######0.00");
             if (infoResponse.getBuyLimit() > infoResponse.getDayRemain()){
-                mErrorTips.setText("当前最多可转入" + df.format(x) + "元");
+                mErrorTips.setText("当前最多可转入" + CommonUtil.amountWithTwoAfterPoint(x) + "元");
             }else{
-                mErrorTips.setText("单笔最多可转入" + df.format(x) + "元");
+                mErrorTips.setText("单笔最多可转入" + CommonUtil.amountWithTwoAfterPoint(x) + "元");
             }
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
