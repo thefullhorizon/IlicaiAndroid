@@ -497,8 +497,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     @OnClick(R.id.about_us)
     void goAboutUs() {
-        //MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
-        MyIntent.startActivity(getWRActivity(), IntegralDetailActivity.class, null);
+        MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
     }
 
     @OnClick(R.id.rl_auto_invest)

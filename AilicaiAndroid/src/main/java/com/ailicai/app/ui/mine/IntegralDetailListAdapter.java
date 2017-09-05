@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.ailicai.app.R;
-import com.ailicai.app.model.bean.IntegralModel;
+import com.ailicai.app.model.response.ScoreDetailResponse;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ import butterknife.ButterKnife;
  */
 public class IntegralDetailListAdapter extends BaseAdapter {
 
-    List<IntegralModel> integralRecordList;
+    List<ScoreDetailResponse> integralRecordList;
     private Context mContext;
 
-    public IntegralDetailListAdapter(Context context, List<IntegralModel> rewardRecordList) {
+    public IntegralDetailListAdapter(Context context, List<ScoreDetailResponse> rewardRecordList) {
         this.mContext = context;
         this.integralRecordList = rewardRecordList;
     }
@@ -60,7 +60,7 @@ public class IntegralDetailListAdapter extends BaseAdapter {
             //} else {
             //    itemView = (ItemView) convertView.getTag();
             //}
-            itemView.bindData((IntegralModel) getItem(position), position);
+            itemView.bindData((ScoreDetailResponse) getItem(position), position);
             return convertView;
         }
 
@@ -78,16 +78,26 @@ public class IntegralDetailListAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
 
-        public void bindData(IntegralModel model, int position) {
-            if (position % 2 == 0) {
-                integralText.setTextColor(ContextCompat.getColor(mContext, R.color.color_212121));
-            } else {
-                integralText.setTextColor(ContextCompat.getColor(mContext, R.color.main_red_color));
+        public void bindData(ScoreDetailResponse model, int position) {
+            integralTime.setText(model.getChangeDate());
+            // 积分变动缘由(1:续期消耗, 2:升级消耗,3:投资获得)
+            switch (model.getReason()) {
+                case 1:
+                    integralText.setTextColor(ContextCompat.getColor(mContext, R.color.color_212121));
+                    integralTitle.setText("续期消耗");
+                    integralText.setText("-" + model.getIncrement());
+                    break;
+                case 2:
+                    integralText.setTextColor(ContextCompat.getColor(mContext, R.color.color_212121));
+                    integralTitle.setText("升级消耗");
+                    integralText.setText("-" + model.getIncrement());
+                    break;
+                case 3:
+                    integralText.setTextColor(ContextCompat.getColor(mContext, R.color.main_red_color));
+                    integralTitle.setText("投资获得");
+                    integralText.setText("+" + model.getIncrement());
+                    break;
             }
-
-            integralText.setText("+"+model.getIntegralNum());
-            integralTitle.setText(model.getIntegralTitle());
-            integralTime.setText(model.getIntegralTime());
 
         }
 

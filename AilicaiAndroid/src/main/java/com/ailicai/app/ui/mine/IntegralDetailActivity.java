@@ -2,10 +2,16 @@ package com.ailicai.app.ui.mine;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.widget.TextView;
 
 import com.ailicai.app.R;
+import com.ailicai.app.common.reqaction.IwjwRespListener;
+import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.ObjectUtil;
-import com.ailicai.app.model.bean.IntegralModel;
+import com.ailicai.app.common.utils.ToastUtil;
+import com.ailicai.app.model.request.IntegralRecordRequest;
+import com.ailicai.app.model.response.IntegralRecordResponse;
+import com.ailicai.app.model.response.ScoreDetailResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListView;
 import com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListViewCallbacks;
@@ -22,12 +28,19 @@ import butterknife.Bind;
 public class IntegralDetailActivity extends BaseBindActivity implements SwipeRefreshLayout.OnRefreshListener,
         BottomRefreshListViewCallbacks, BottomRefreshListView.OnLoadMoreListener {
 
-    public List<IntegralModel> integralRecordList = ObjectUtil.newArrayList();
+    public List<ScoreDetailResponse> integralRecordList = ObjectUtil.newArrayList();
+    public List<ScoreDetailResponse> integralRecordListCallBack = ObjectUtil.newArrayList();
     public IntegralDetailListAdapter adapter;
     @Bind(R.id.reward_record_list)
     BottomRefreshListView listView;
     @Bind(R.id.swipe)
     SwipeRefreshLayout mSwipeLayout;
+    @Bind(R.id.score)
+    TextView score;
+
+    private int offSet = 0;//数据偏移量(请求记录数之和)
+    private int pageSize = 10;//每页记录数
+    private int total;// 数据总笔数
 
     @Override
     public int getLayout() {
@@ -44,24 +57,17 @@ public class IntegralDetailActivity extends BaseBindActivity implements SwipeRef
 
         adapter = new IntegralDetailListAdapter(this, integralRecordList);
         listView.setAdapter(adapter);
-        //test
-        setIntegralData();
+
+        //会员当前积分
+        score.setText("600");
+
+        getIntegralRecord();
     }
 
-    public void setIntegralData() {
-        for (int i = 0; i < 10; i++) {
-            IntegralModel model = new IntegralModel();
-            model.setIntegralTitle("装备消耗");
-            model.setIntegralTime("2017-08-28");
-            model.setIntegralNum("100");
-            integralRecordList.add(model);
-        }
-        adapter.notifyDataSetChanged();
-    }
 
     @Override
     public void onRefresh() {
-        mSwipeLayout.setRefreshing(false);
+        loadData(false);
     }
 
     @Override
@@ -81,6 +87,77 @@ public class IntegralDetailActivity extends BaseBindActivity implements SwipeRef
 
     @Override
     public void onLoadMore() {
+        if (integralRecordListCallBack.size() < pageSize || integralRecordList.size() >= total) {
+            listView.onAllLoaded();
+            listView.setPromptText("没有更多记录");
+            if (listView.getCount() == 1) {
+                listView.setPromptText("");
+            }
+        } else {
+            listView.setLoadingText("数据加载中");
+            loadData(true);
+        }
+    }
 
+    /**
+     * 数据请求入口
+     *
+     * @param loadMore
+     */
+    public void loadData(boolean loadMore) {
+        if (!loadMore) {
+            offSet = 0;
+            integralRecordList.clear();
+            integralRecordListCallBack.clear();
+            listView.resetAll();
+            //listView.smoothScrollToPosition(0);
+        } else {
+            offSet = integralRecordList.size();
+        }
+        getIntegralRecord();
+    }
+
+    /**
+     * 请求积分明细记录
+     */
+    public void getIntegralRecord() {
+        IntegralRecordRequest request = new IntegralRecordRequest();
+        request.setPageSize(pageSize);
+        request.setOffset(offSet);
+        ServiceSender.exec(this, request, new IwjwRespListener<IntegralRecordResponse>(this) {
+
+            @Override
+            public void onStart() {
+            }
+
+            @Override
+            public void onJsonSuccess(IntegralRecordResponse jsonObject) {
+                total = jsonObject.getTotal();
+                integralRecordListCallBack = (jsonObject.getRows() != null) ? jsonObject.getRows() : ObjectUtil.<ScoreDetailResponse>newArrayList();
+                setIntegralRecordData(integralRecordListCallBack);
+            }
+
+            @Override
+            public void onFailInfo(String errorInfo) {
+                ToastUtil.showInCenter(errorInfo);
+                setIntegralRecordData(ObjectUtil.<ScoreDetailResponse>newArrayList());
+            }
+        });
+    }
+
+    public void setIntegralRecordData(List<ScoreDetailResponse> integralRecordListTemp) {
+        listView.onLoadMoreComplete();
+        mSwipeLayout.setRefreshing(false);
+        if (integralRecordListTemp != null) {
+            integralRecordList.addAll(integralRecordListTemp);
+        }
+        adapter.notifyDataSetChanged();
+        if ((integralRecordListTemp.size() < pageSize || integralRecordList.size() >= total) && adapter.getCount() != 0) {
+            listView.onAllLoaded();
+            listView.setPromptText("没有更多记录");
+            if (adapter.getCount() == 1) {
+                listView.setPromptText("");
+            }
+        }
     }
 }
