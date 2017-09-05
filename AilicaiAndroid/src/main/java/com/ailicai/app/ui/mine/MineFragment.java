@@ -37,7 +37,6 @@ import com.ailicai.app.model.request.AssetInfoNewRequest;
 import com.ailicai.app.model.response.AssetInfoNewResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.BaseBindFragment;
-import com.ailicai.app.ui.buy.AutomaticTenderActivity;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
 import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.login.LoginManager;
@@ -297,7 +296,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             mPresenter.goHQB(getWRActivity());
         } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK.getActionIndex())) {
             //自动投资
-            mPresenter.goAutoTz(getWRActivity(),assetInfoNewResponse);
+            mPresenter.goAutoTz(getWRActivity(), assetInfoNewResponse);
         }
         loginAction = LoginManager.LoginAction.ACTION_INDEX_NORMAL;
     }
@@ -498,7 +497,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
 
     @OnClick(R.id.about_us)
     void goAboutUs() {
-        MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
+        //MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
+        MyIntent.startActivity(getWRActivity(), IntegralDetailActivity.class, null);
     }
 
     @OnClick(R.id.rl_auto_invest)
