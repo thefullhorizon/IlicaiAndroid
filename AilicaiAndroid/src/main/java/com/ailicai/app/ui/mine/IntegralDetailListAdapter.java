@@ -85,7 +85,7 @@ public class IntegralDetailListAdapter extends BaseAdapter {
                 integralText.setTextColor(ContextCompat.getColor(mContext, R.color.main_red_color));
             }
 
-            integralText.setText("—"+model.getIntegralNum());
+            integralText.setText("+"+model.getIntegralNum());
             integralTitle.setText(model.getIntegralTitle());
             integralTime.setText(model.getIntegralTime());
 
