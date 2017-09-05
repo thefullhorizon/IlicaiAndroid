@@ -280,11 +280,11 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
         }
         //加息券逻辑+返金券显示
         String text = "";
-        if (product.getIsAddRate() > 0 || product.getIsCashBackVoucher() > 0){
+        if (product.getIsAddRate() > 0 ){
             viewHolder.addRateLayout.setVisibility(View.VISIBLE);
             String textAddRate = TextUtils.isEmpty(product.getAddRateInfo()) ? "" : product.getAddRateInfo();
-            String textCoucher = TextUtils.isEmpty(product.getCashBackVoucherCopywriter()) ? "" : product.getCashBackVoucherCopywriter();
-            viewHolder.addRateContent.setText(textAddRate + textCoucher);
+//            String textCoucher = TextUtils.isEmpty(product.getCashBackVoucherCopywriter()) ? "" : product.getCashBackVoucherCopywriter();
+            viewHolder.addRateContent.setText(textAddRate);
         }else {
             viewHolder.addRateLayout.setVisibility(View.GONE);
         }
