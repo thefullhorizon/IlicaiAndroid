@@ -225,7 +225,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
             public void onJsonSuccess(Iwjwh5UrlResponse jsonObject) {
                 SupportUrl.saveUrls(jsonObject);
 
-                // 请求是否弹框提醒升级协议(爱理财接入协议)
+                // 请求是否弹框提醒升级协议(吉爱财接入协议)
                 FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
                 presenter.httpForProtocalUpgradeState(IndexActivity.this);
             }
@@ -369,7 +369,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     public void onBackPressed() {
         if (System.currentTimeMillis() - LastBackTime > 2500) {
             LastBackTime = System.currentTimeMillis();
-            toast = ToastUtil.showInBottom(getApplication(), "再按一次返回退出爱理财");
+            toast = ToastUtil.showInBottom(getApplication(), "再按一次返回退出吉爱财");
         } else {
             if (toast != null) {
                 toast.cancel();

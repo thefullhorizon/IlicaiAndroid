@@ -11,7 +11,7 @@ import com.ailicai.app.common.reqaction.RequestPath;
 public class BannerListRequest extends Request {
 
     private long userId ; //
-    private int btype = 0; //banner类型 0-普通banner，1-爱理财bannner，3-头条，4-贷总管，6-交房租
+    private int btype = 0; //banner类型 0-普通banner，1-吉爱财bannner，3-头条，4-贷总管，6-交房租
 
     public long getUserId() {
         return userId;

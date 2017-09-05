@@ -15,21 +15,21 @@ public class Iwjwh5UrlResponse extends Response {
     private String supportcardsByBankUrl = ""; // 显示所支持银行卡页URL
     private String supportcardsByCreditUrl = ""; // 显示所支持信用卡页URL
     private String accountProtocol = "";//爱屋吉屋电子账户服务协议
-    private String ailicaiProtocol = "";//爱理财平台服务协议
+    private String ailicaiProtocol = "";//吉爱财平台服务协议
     private String cardUrl = ""; // 卡券h5 URL
     private String ailicaiUrl = "";//理财首页地址
     private String aboutUrl; //关于爱屋吉屋页Url
-    private String alicaiType; //爱理财开启方式 0-关闭 1-理财首页 2-资产页
+    private String alicaiType; //吉爱财开启方式 0-关闭 1-理财首页 2-资产页
     private String tiyanbaoDetailUrl; // 体验宝详情URL
     private String productDetailUrl; //房产宝详情ur
 
-    // 独立app新增 首页(porosWebUrl)，银行卡(bankCardUrl) ，推荐(recommondUrl)，货币基金（monetaryFundUrl）  网贷(netLoanUrl)，转让(transferUrl) 关于爱理财（aboutAiLiCaiUrl）,开户（openAccountUrl）
+    // 独立app新增 首页(porosWebUrl)，银行卡(bankCardUrl) ，推荐(recommondUrl)，货币基金（monetaryFundUrl）  网贷(netLoanUrl)，转让(transferUrl) 关于吉爱财（aboutAiLiCaiUrl）,开户（openAccountUrl）
     private String porosWebUrl; // 首页
     private String recommondUrl; // 首页 投资中 四个tab之一推荐
     private String monetaryFundUrl; // 首页 投资中 四个tab之一货基
     private String netLoanUrl; // 首页 投资中 四个tab之一网贷
     private String transferUrl; // 首页 投资中 四个tab之一转让
-    private String aboutAiLiCaiUrl;// "我的"里面 关于爱理财
+    private String aboutAiLiCaiUrl;// "我的"里面 关于吉爱财
     private String inviteUrl;
     private String openAccountUrl;// 开户
     private String bindNewOpenAccountUrl; // 重新绑定安全卡

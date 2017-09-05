@@ -36,12 +36,12 @@ public class UserLoginResponse extends Response {
 
     private String uticket; // userId加密字符串(存储到本地和header中)
 
-    private int isOpenAccount = 0; // 判断爱理财是否是否开户 0:否，1:是
+    private int isOpenAccount = 0; // 判断吉爱财是否是否开户 0:否，1:是
     private int hasSafeCard = 0; // 是否已绑定安全卡  0:否，1:是
     private int isSetPayPwd = 0; // 判断是否设置支付密码 0:否，1:是
-    private int isRealNameVerify = 0; // 爱理财是否通过实名认证 0:否，1:是
-    private int isBinDebitCard = 0; // 爱理财是否已绑定借记卡 0:否，1:是
-    private int isAilicaiAllowUser = 0; // 判断是否爱理财白名单用户 0:否，1:是
+    private int isRealNameVerify = 0; // 吉爱财是否通过实名认证 0:否，1:是
+    private int isBinDebitCard = 0; // 吉爱财是否已绑定借记卡 0:否，1:是
+    private int isAilicaiAllowUser = 0; // 判断是否吉爱财白名单用户 0:否，1:是
     private String key1=""; // app端加密用公钥
     private String key2=""; // server端加密的对应解密私钥
     private int rsaClose = 0; // RSA加密是否关闭，1：关闭，0：打开

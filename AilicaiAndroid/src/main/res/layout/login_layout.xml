@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="未注册爱理财的用户，登录时将自动注册" />
+                android:text="未注册吉爱财的用户，登录时将自动注册" />
 
 
             <LinearLayout
@@ -130,6 +130,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:text="注册/登录即代表您同意《爱理财平台服务协议》"
+        android:text="注册/登录即代表您同意《吉爱财平台服务协议》"
         android:textSize="12sp" />
 </RelativeLayout>

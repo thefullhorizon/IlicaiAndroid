@@ -33,12 +33,12 @@ public class PVIDHandler {
         //地图页（二手房、租房、品牌公寓、新房）
         pageType.put("BusinessMapFragment","map");
 
-        //详情页（二手房、租房、品牌公寓、新房、爱理财）
+        //详情页（二手房、租房、品牌公寓、新房、吉爱财）
         pageType.put("HouseDetailFragment","detail");//品牌公寓
         pageType.put("FlatHouseDetailFragment","detail");//租房,品牌公寓
         pageType.put("NewHouseDetailActivity","detail");//新房
-        pageType.put("CapitalListProductDetailActivity","detail");//爱理财--房产宝
-        pageType.put("SmallCoinSackActivity","detail");//爱理财--小钱袋
+        pageType.put("CapitalListProductDetailActivity","detail");//吉爱财--房产宝
+        pageType.put("SmallCoinSackActivity","detail");//吉爱财--小钱袋
         //小区详情页(二手房、租房、品牌公寓)
         pageType.put("HouseEstateDetailCoordinatorFragment","estate_detail");//二手房
 

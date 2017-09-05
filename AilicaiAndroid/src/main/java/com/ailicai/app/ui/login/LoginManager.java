@@ -103,7 +103,7 @@ public class LoginManager {
     public static final int LOGIN_FROM_HOUSE_JC = 0x14;
     public static final int LOGIN_FROM_ESTATE_JC = 0x15;
 
-    // 从爱理财详情立即购买登录
+    // 从吉爱财详情立即购买登录
     public static final int LOGIN_FROM_AILICAI = 0x16;
 
     /**
@@ -485,7 +485,7 @@ public class LoginManager {
 //        首页  homepage
 //        房源详情页  house_detial
 //        小区详情页 estate_detail
-//        爱理财详情页 alc_detail
+//        吉爱财详情页 alc_detail
 //        地图页  map
 //        列表页  list
 

@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/_14"
-                android:text="爱理财加息券"
+                android:text="吉爱财加息券"
                 android:textColor="@color/color_757575"
                 android:textSize="14sp" />
 

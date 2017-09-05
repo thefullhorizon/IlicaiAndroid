@@ -9,7 +9,7 @@ import com.huoqiu.framework.rest.Response;
 public class GetAppropriateCouponResponse extends Response {
 
     private int voucherId;//卡券Id
-    private int voucherType;//卡券类型(73-爱理财加息券,74-爱理财返金券)
+    private int voucherType;//卡券类型(73-吉爱财加息券,74-吉爱财返金券)
     private int amountCent;//金额//单位：分
     private double addRate;//利率
     private int addRateDay;//加息天数

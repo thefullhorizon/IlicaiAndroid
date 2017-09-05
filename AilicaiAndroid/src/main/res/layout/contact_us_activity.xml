@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="关注爱理财官方微信：ailicaiwx" />
+            android:text="关注吉爱财官方微信：ailicaiwx" />
 
 
         <TextView

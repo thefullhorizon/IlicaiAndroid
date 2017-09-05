@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="爱理财" />
+            android:text="吉爱财" />
     </LinearLayout>
 
     <LinearLayout
@@ -58,7 +58,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
-                android:text="了解爱理财" />
+                android:text="了解吉爱财" />
 
             <View
                 android:layout_width="8dp"

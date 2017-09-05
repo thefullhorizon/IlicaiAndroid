@@ -331,7 +331,7 @@
                 android:id="@+id/tv_activity_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="爱理财50元现金券"
+                android:text="吉爱财50元现金券"
                 android:textColor="@color/main_red_color"
                 android:textSize="13sp" />
         </LinearLayout>
@@ -508,7 +508,7 @@
                     android:shadowColor="#99d82a00"
                     android:shadowDy="2"
                     android:shadowRadius="6"
-                    android:text="爱理财幸运大抽奖"
+                    android:text="吉爱财幸运大抽奖"
                     android:textColor="#fff24f"
                     android:textSize="23sp" />
 

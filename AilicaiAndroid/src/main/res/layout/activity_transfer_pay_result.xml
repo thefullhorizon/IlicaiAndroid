@@ -688,7 +688,7 @@
                     android:shadowColor="#99d82a00"
                     android:shadowDy="2"
                     android:shadowRadius="6"
-                    android:text="爱理财幸运大抽奖"
+                    android:text="吉爱财幸运大抽奖"
                     android:textColor="#fff24f"
                     android:textSize="23sp" />
 

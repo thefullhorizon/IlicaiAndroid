@@ -5,7 +5,7 @@ import com.huoqiu.framework.rest.Response;
 /**
  * Created by Zhou Xuan on 2016/11/24
  *
- * 爱理财是否系统在升级返回
+ * 吉爱财是否系统在升级返回
  */
 public class FinanceSystemIsFixResponse extends Response {
 

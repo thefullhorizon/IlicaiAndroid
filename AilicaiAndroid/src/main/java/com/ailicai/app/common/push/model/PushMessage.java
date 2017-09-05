@@ -25,17 +25,17 @@ public class PushMessage implements Serializable {
     public static final int REMINDTYPENEWVOUCHER         = INITTYPE + 11;//现金券通知
 
     public static final int NOTICETYPETOWEBVIEW          = INITTYPE + 13; //资讯打开指定URL或资讯内容
-    public static final int NOTICETYPETOFINANCE          = INITTYPE + 14; //14:资讯打开打开爱理财
+    public static final int NOTICETYPETOFINANCE          = INITTYPE + 14; //14:资讯打开打开吉爱财
     public static final int NOTICETYPETONOTICELIST       = INITTYPE + 15;//啥也不干
 
-    public static final int REMINDTYPERESERVESUCCESS     = INITTYPE + 23; //23 爱理财加息券-预约自动购买-成功
-    public static final int REMINDTYPERESERVEFAIL        = INITTYPE + 24; //24 爱理财加息券-预约自动购买-失败
-    public static final int REMINDTYPELIUBIAO            = INITTYPE + 25; //25 爱理财加息券-房产宝项目流标
-    public static final int REMINDTYPEHUANKUAN           = INITTYPE + 26; //26 爱理财加息券-房产宝还款
+    public static final int REMINDTYPERESERVESUCCESS     = INITTYPE + 23; //23 吉爱财加息券-预约自动购买-成功
+    public static final int REMINDTYPERESERVEFAIL        = INITTYPE + 24; //24 吉爱财加息券-预约自动购买-失败
+    public static final int REMINDTYPELIUBIAO            = INITTYPE + 25; //25 吉爱财加息券-房产宝项目流标
+    public static final int REMINDTYPEHUANKUAN           = INITTYPE + 26; //26 吉爱财加息券-房产宝还款
     public static final int REMINDTYPEZHUANRANG          = INITTYPE + 27; //27 转让状态从转让中变更为已结束
     public static final int REMINDTYPEMUZIJIXI           = INITTYPE + 28; //28 募资完成开始计息提醒
     public static final int REMINDTYPETIYANJI            = INITTYPE + 29; //29 代表是体验金
-    public static final int REMINDTYPETYJTOFIHOME        = INITTYPE + 32; //32 体验金到爱理财首页
+    public static final int REMINDTYPETYJTOFIHOME        = INITTYPE + 32; //32 体验金到吉爱财首页
     public static final int REMINDTYPEBANKRECEIPTFAIL    = INITTYPE + 36; //36 钱包出款失败
     /**
      * "title" : "消息标题"

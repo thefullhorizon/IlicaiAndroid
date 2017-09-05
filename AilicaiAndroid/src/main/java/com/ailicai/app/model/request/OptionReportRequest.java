@@ -10,7 +10,7 @@ import com.ailicai.app.common.reqaction.RequestPath;
 @RequestPath("/activity/optionReport.rest")
 public class OptionReportRequest extends Request {
     private long bannerId; //bannerId
-    private int type; //业务类型：0-一般业务（app大首页banner，爱理财banner，开屏弹窗） 1-分享弹窗业务 （微信分享）
+    private int type; //业务类型：0-一般业务（app大首页banner，吉爱财banner，开屏弹窗） 1-分享弹窗业务 （微信分享）
     private int status; //0-banner点击统计pv/uv     2-弹出弹窗的次数 3-点击分享分享朋友圈 4-点击分享给好友
 
     public long getBannerId() {

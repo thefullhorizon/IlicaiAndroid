@@ -207,7 +207,7 @@ public class LoginFragment extends BaseBindFragment {
     public void init(Bundle savedInstanceState) {
         //关闭按钮点击事件
         mCloseBtn.setOnClickListener(mCloseBtnClick);
-        //爱理财平台服务协议
+        //吉爱财平台服务协议
         String permitStr = getString(R.string.permit_agreement_text);
 
         if (Build.VERSION.SDK_INT >= 24) {

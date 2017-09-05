@@ -9,7 +9,7 @@ import com.huoqiu.framework.rest.Response;
  */
 public class AilicaiPartResponse extends Response {
     private String currentDepositBalance = ""; // 钱包总额
-    private String timeDepositBalance = "预计年化超7%"; // 爱理财总额 or 未开户文案
+    private String timeDepositBalance = "预计年化超7%"; // 吉爱财总额 or 未开户文案
     private String totalBalance = "";//总额
 
     public String getCurrentDepositBalance() {

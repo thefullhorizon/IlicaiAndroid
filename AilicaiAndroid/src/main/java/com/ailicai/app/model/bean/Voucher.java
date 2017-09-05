@@ -12,7 +12,7 @@ public class Voucher {
     private String userTimeFrom; //卡券有效期开始时间 eg.2016-03-09 10:25
     private String userTimeTo; //卡券有效期结束时间 eg.2016-03-10 10:24
     private int amountCent; //金额，单位分
-    private int voucherType; //卡券类型 67-爱理财现金券；68-爱理财抵扣券；73-爱理财加息券; 74-爱理财返金券 83-权益卡
+    private int voucherType; //卡券类型 67-吉爱财现金券；68-吉爱财抵扣券；73-吉爱财加息券; 74-吉爱财返金券 83-权益卡
     private String voucherTypeStr = ""; //卡券类型文案
     private int status; //状态 0-不可用；1-正常；2-已使用；3-已过期；4-已作废; 5-未到使用时间
     private double addRate; //加息比例 小数表示，比如1.5表示1.5%

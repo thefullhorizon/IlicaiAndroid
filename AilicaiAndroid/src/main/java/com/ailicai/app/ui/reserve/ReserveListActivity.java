@@ -110,7 +110,7 @@ public class ReserveListActivity extends BaseBindActivity implements SwipeRefres
         SpannableUtil mSpannableUtil = new SpannableUtil(this);
         SpannableStringBuilder count = mSpannableUtil.getSpannableString("申购结果将在", interestTimeStr,"通知，先到先得，卖完即止。", R.style
                 .text_14_757575, R.style.text_14_price_unit, R.style.text_14_757575);
-        tvHint.setText("预约成功后，爱理财将根据您选定的投资期限，按先后顺序，自动分散申购以下产品。");
+        tvHint.setText("预约成功后，吉爱财将根据您选定的投资期限，按先后顺序，自动分散申购以下产品。");
         tvHint2.setText(count);
     }
 

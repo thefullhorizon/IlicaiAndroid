@@ -30,7 +30,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="8dp"
-                android:text="爱理财 | 安全卡"
+                android:text="吉爱财 | 安全卡"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 

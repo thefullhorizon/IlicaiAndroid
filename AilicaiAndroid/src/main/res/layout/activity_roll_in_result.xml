@@ -166,7 +166,7 @@
                         android:id="@+id/cash_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="50元爱理财现金券"
+                        android:text="50元吉爱财现金券"
                         android:textColor="@color/main_red_color"
                         android:textSize="14sp" />
 

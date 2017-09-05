@@ -58,7 +58,7 @@
         android:paddingBottom="12dp"
         android:paddingTop="16dp"
         android:lineSpacingExtra="5dp"
-        android:text="亲爱的爱理财用户："
+        android:text="亲爱的吉爱财用户："
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -70,7 +70,7 @@
         android:paddingRight="32dp"
         android:paddingBottom="12dp"
         android:lineSpacingExtra="5dp"
-        android:text="当前系统正在升级维护中，维护期间暂停爱理财和钱包相关服务（转入、转出、购买、转让等），预计在xx月xx日xx点前恢复使用。望提前知晓，给你带来不便，还请谅解。"
+        android:text="当前系统正在升级维护中，维护期间暂停吉爱财和钱包相关服务（转入、转出、购买、转让等），预计在xx月xx日xx点前恢复使用。望提前知晓，给你带来不便，还请谅解。"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     
