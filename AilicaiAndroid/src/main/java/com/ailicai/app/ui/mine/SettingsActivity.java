@@ -256,8 +256,10 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
             bankCardLayout.setVisibility(View.GONE);
         }
 
+        long userId = UserInfo.getInstance().getUserId();
+        UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
         //会员等级
-        associatorLevelTag.setText("V2会员");
+        associatorLevelTag.setText(infoBase.getMemberLevel());
 
         setUIData();
     }

@@ -26,6 +26,7 @@ public class UserInfo {
     public static final String COLLECTION_NUM = "collectionNum";
     public static final String IS_TESTUSER = "isTestuser";
     public static final String IS_ALL_DONT_DISTURB = "isAllDontDisturb";
+    public static final String MEMBER_LEVEL = "member_level";
 
     public static final String USER_APP_PUBLIC_KEY = "user_app_public_key";
     public static final String USER_APP_RSA_CLOSED = "user_app_rsa_closed";
@@ -467,6 +468,7 @@ public class UserInfo {
         MyPreference.getInstance().write(UserInfo.ID_CARDNO, loginResponse.getIdCardNo());
         MyPreference.getInstance().write(UserInfo.COLLECTION_NUM, loginResponse.getCollectionNum());
         MyPreference.getInstance().write(UserInfo.IS_ALL_DONT_DISTURB, loginResponse.getIsAllDontDisturb());
+        MyPreference.getInstance().write(UserInfo.MEMBER_LEVEL, loginResponse.getMemberLevel());
 
     }
 

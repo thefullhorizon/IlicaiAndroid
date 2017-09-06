@@ -371,7 +371,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
 
         if (rewardRecordListTemp.size() < pageSize && rewardRecordListAdapter.getCount() != 0) {
             rewardRecordListView.onAllLoaded();
-            rewardRecordListView.setPromptText("没有更多数据");
+            rewardRecordListView.setPromptText("仅展示最近90天奖励记录");
             if (rewardRecordListAdapter.getCount() == 1) {
                 rewardRecordListView.setPromptText("");
             }
@@ -434,7 +434,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
             case R.id.reward_record_rb:
                 if (rewardRecordListCallBack.size() < pageSize) {
                     rewardRecordListView.onAllLoaded();
-                    rewardRecordListView.setPromptText("没有更多数据");
+                    rewardRecordListView.setPromptText("仅展示最近90天奖励记录");
                     if (rewardRecordListAdapter.getCount() == 1) {
                         rewardRecordListView.setPromptText("");
                     }

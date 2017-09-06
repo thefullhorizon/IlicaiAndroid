@@ -28,6 +28,8 @@ public class UserInfoBase implements Serializable {
     private String idCardNo = ""; // 身份证号
     private int collectionNum; //关注总数量
     public int isTestUser; //是否新浪测试用户
+    private String isAutoBid; //是否开启了自动投标，Y：开启，N：未开启
+    private String memberLevel; // 当前会员等级
 
     public long getUserId() {
         return userId;
@@ -188,6 +190,22 @@ public class UserInfoBase implements Serializable {
         this.isTestUser = isTestUser;
     }
 
+    public String getIsAutoBid() {
+        return isAutoBid;
+    }
+
+    public void setIsAutoBid(String isAutoBid) {
+        this.isAutoBid = isAutoBid;
+    }
+
+    public String getMemberLevel() {
+        return memberLevel;
+    }
+
+    public void setMemberLevel(String memberLevel) {
+        this.memberLevel = memberLevel;
+    }
+
     @Override
     public String toString() {
         return "UserInfoBase{" +
@@ -204,10 +222,15 @@ public class UserInfoBase implements Serializable {
                 ", key2='" + key2 + '\'' +
                 ", rsaClose=" + rsaClose +
                 ", hasSafeCard=" + hasSafeCard +
+                ", bankName='" + bankName + '\'' +
+                ", bankcardTailNo='" + bankcardTailNo + '\'' +
                 ", imUserId='" + imUserId + '\'' +
                 ", imPasswd='" + imPasswd + '\'' +
                 ", idCardNo='" + idCardNo + '\'' +
                 ", collectionNum=" + collectionNum +
+                ", isTestUser=" + isTestUser +
+                ", isAutoBid='" + isAutoBid + '\'' +
+                ", memberLevel='" + memberLevel + '\'' +
                 '}';
     }
 }

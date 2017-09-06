@@ -195,9 +195,6 @@ public class RegularPayResultActivity extends BaseBindActivity {
                 initPayHandling();
                 break;
         }
-
-        showShareDialog();
-
     }
 
     /**

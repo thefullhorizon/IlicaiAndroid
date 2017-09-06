@@ -69,7 +69,7 @@ public class ShareFinanceDialog extends MyBaseDialog implements View.OnClickList
 
     @Override
     public boolean cancelable() {
-        return true;
+        return false;
     }
 
     @Override

@@ -401,6 +401,8 @@ public class LoginManager {
         infoBase.setIdCardNo(userInfo.getIdCardNo());
         infoBase.setCollectionNum(userInfo.getCollectionNum());
         infoBase.isTestUser = userInfo.isTestUser;
+        infoBase.setIsAutoBid(userInfo.getIsAutoBid());
+        infoBase.setMemberLevel(userInfo.getMemberLevel());
         String imName = userInfo.getImUserId();
         String pwd = userInfo.getImPasswd();
         infoBase.setImUserId(imName);

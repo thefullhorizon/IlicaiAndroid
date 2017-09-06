@@ -325,7 +325,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
                 double normalProfit = moneyCount * infoResponse.getOriLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
                 //无加息券
                 SpannableUtil spannableUtil = new SpannableUtil(this);
-                SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", MathUtil.saveTwoDecimal(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
                 tvProfitText.setText(builder);
             }
         }

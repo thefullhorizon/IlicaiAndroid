@@ -69,6 +69,8 @@ public class UserManager {
             userInfoModel.setIdCardNo(userInfoBase.getIdCardNo());
             userInfoModel.setCollectionNum(userInfoBase.getCollectionNum());
           //  userInfoModel.isTestUser=userInfoBase.isTestUser;不存数据库
+            userInfoModel.setMemberLevel(userInfoBase.getMemberLevel());
+            userInfoModel.setIsAutoBid(userInfoBase.getIsAutoBid());
             userInfoDBUtil.insert(userInfoModel);
         }
     }
@@ -101,6 +103,8 @@ public class UserManager {
             userInfoBase.setImPasswd(userModel.getImPasswd());
             userInfoBase.setIdCardNo(userModel.getIdCardNo());
             userInfoBase.setCollectionNum(userModel.getCollectionNum());
+            userInfoBase.setMemberLevel(userModel.getMemberLevel());
+            userInfoBase.setIsAutoBid(userModel.getIsAutoBid());
         }
         return userInfoBase;
     }
