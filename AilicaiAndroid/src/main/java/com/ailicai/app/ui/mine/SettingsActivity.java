@@ -187,6 +187,7 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
     @OnClick(R.id.associator_layout)
     void onClickAssociatorCenter() {
         //TODO:跳转至会员中心
+        MyIntent.startActivity(this, MemberShipCenterActivity.class, "");
     }
 
     @Override

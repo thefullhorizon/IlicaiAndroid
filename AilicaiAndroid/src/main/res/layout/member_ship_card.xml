@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_v_0"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingTop="30dp">
+
+        <TextView
+            android:id="@+id/tvTitleDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="会员等级"
+            android:textColor="#ccffffff"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="V0"
+            android:textColor="#ffffff"
+            android:textSize="32sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingBottom="30dp">
+
+
+            <LinearLayout
+                android:id="@+id/llSeeMemberRule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看会员规则"
+                android:textColor="#ccffffff"
+                android:textSize="12sp" />
+
+            <com.ailicai.app.widget.TextViewTF
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="@string/arrow_right"
+                android:textColor="#ffffff" />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tvValidLevelTill"
+                android:textSize="12sp"
+                android:textColor="#ccffffff"
+                android:text="2017-08-29到期"
+                android:layout_width="0dp"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:paddingRight="20dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        
+    </LinearLayout>
+</LinearLayout>

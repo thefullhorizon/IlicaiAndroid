@@ -36,6 +36,7 @@ public class Iwjwh5UrlResponse extends Response {
 
     private String safeBankSupport = "";//安全卡限额列表地址
     private String autoBidNoteH5Url          = ""; // 自动投标说明Url
+    private String memberLevleH5Url       = ""; // 会员等级说明url
 
     public String getHelpCenterUrl() {
         return helpCenterUrl;
@@ -235,5 +236,13 @@ public class Iwjwh5UrlResponse extends Response {
 
     public void setAutoBidNoteH5Url(String autoBidNoteH5Url) {
         this.autoBidNoteH5Url = autoBidNoteH5Url;
+    }
+
+    public String getMemberLevleH5Url() {
+        return memberLevleH5Url;
+    }
+
+    public void setMemberLevleH5Url(String memberLevleH5Url) {
+        this.memberLevleH5Url = memberLevleH5Url;
     }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvV0Hint"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="72dp"
+    android:gravity="center_horizontal"
+    android:singleLine="false"
+    android:lineSpacingExtra="10sp"
+    android:text="暂时还没有任何特权喔，\n
+努力奔向V1会员，享受更好的特权"
+    android:textColor="#757575"
+    android:textSize="14sp" />
