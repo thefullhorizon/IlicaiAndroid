@@ -14,7 +14,6 @@ import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.UIUtils;
 import com.ailicai.app.model.bean.MemberLevel;
-import com.ailicai.app.model.response.MemberInfoResponse;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.html5.SupportUrl;
 

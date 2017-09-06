@@ -15,7 +15,7 @@
         manyi:isDark="true"
         manyi:titleview_title_text="会员中心" />
 
-    <ScrollView
+    <com.ailicai.app.widget.ScrollViewCompatibleForViewPager
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -142,6 +142,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:text="@string/arrow_right"
+                            android:textSize="12sp"
                             android:textColor="#a6acc0" />
                     </LinearLayout>
                 </RelativeLayout>
@@ -231,6 +232,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </com.ailicai.app.widget.ScrollViewCompatibleForViewPager>
 
 </LinearLayout>

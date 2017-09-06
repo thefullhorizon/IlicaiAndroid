@@ -29,7 +29,6 @@ import com.ailicai.app.model.bean.Reward;
 import com.ailicai.app.model.response.MemberInfoResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
-import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.mine.adapter.CustPagerTransformer;
 import com.ailicai.app.ui.mine.adapter.MemberShipCardViewPageAdapter;
@@ -39,7 +38,6 @@ import com.huoqiu.framework.imageloader.core.LoadParam;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -303,5 +301,11 @@ public class MemberShipCenterActivity extends BaseBindActivity {
     private void avoidHintColor(View view){
         if(view instanceof TextView)
             ((TextView)view).setHighlightColor(getResources().getColor(android.R.color.transparent));
+    }
+
+    @Override
+    public void reloadData() {
+        super.reloadData();
+        persenter.httpForMemberShipInfo();
     }
 }

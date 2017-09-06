@@ -1,5 +1,7 @@
 package com.ailicai.app.model.response;
 
+import android.text.TextUtils;
+
 import com.ailicai.app.model.bean.MemberLevel;
 import com.huoqiu.framework.rest.Response;
 
@@ -71,7 +73,7 @@ public class MemberInfoResponse extends Response {
     }
 
     public String getValidLevelTill() {
-        return validLevelTill;
+        return TextUtils.isEmpty(validLevelTill)?"":validLevelTill+"到期";
     }
 
     public void setValidLevelTill(String validLevelTill) {
