@@ -162,8 +162,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/_16"
-        android:paddingLeft="@dimen/_32"
-        android:paddingRight="@dimen/_32"
+        android:paddingLeft="@dimen/_16"
+        android:paddingRight="@dimen/_16"
         android:paddingTop="@dimen/_16">
 
         <Button

@@ -12,8 +12,7 @@
         manyi:titleview_title_text="结果" />
 
     <LinearLayout
-        android:layout_marginLeft="@dimen/_32"
-        android:layout_marginRight="@dimen/_32"
+
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,6 +20,8 @@
         android:orientation="vertical">
         <com.ailicai.app.widget.TextViewTF
             android:layout_marginTop="@dimen/_48"
+            android:layout_marginLeft="@dimen/_32"
+            android:layout_marginRight="@dimen/_32"
             android:textSize="72sp"
             android:text="@string/failured"
             android:layout_width="wrap_content"
@@ -28,12 +29,16 @@
         <TextView
             android:text="预约失败"
             android:layout_marginTop="@dimen/_16"
+            android:layout_marginLeft="@dimen/_32"
+            android:layout_marginRight="@dimen/_32"
             android:textColor="@color/color_212121"
             android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_marginTop="8dp"
+            android:layout_marginLeft="@dimen/_32"
+            android:layout_marginRight="@dimen/_32"
             android:textSize="14sp"
             android:textColor="@color/color_757575"
             android:id="@+id/tv_message"
@@ -43,6 +48,8 @@
         <Button
             style="@style/RoundCornerBtnBg"
             android:layout_marginTop="@dimen/_16"
+            android:layout_marginLeft="@dimen/_16"
+            android:layout_marginRight="@dimen/_16"
             android:id="@+id/btn_complete"
             android:text="完成"/>
     </LinearLayout>

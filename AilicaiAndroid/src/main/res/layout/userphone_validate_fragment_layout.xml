@@ -62,8 +62,8 @@
     <Button
         style="@style/RoundCornerBtnBg"
         android:id="@+id/edit_next_submit"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="16dip"
         android:text="@string/personal_phone_modify_next" />
 

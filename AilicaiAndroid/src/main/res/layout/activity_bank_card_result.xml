@@ -66,8 +66,8 @@
         <Button
             android:id="@+id/next"
             style="@style/RoundCornerBtnBg"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:text="下一步" />
     </LinearLayout>
