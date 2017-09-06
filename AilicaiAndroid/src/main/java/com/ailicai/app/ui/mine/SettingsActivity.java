@@ -259,7 +259,7 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
         long userId = UserInfo.getInstance().getUserId();
         UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
         //会员等级
-        associatorLevelTag.setText(infoBase.getMemberLevel());
+        associatorLevelTag.setText(infoBase.getMemberLevel() + "会员");
 
         setUIData();
     }

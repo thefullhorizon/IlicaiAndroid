@@ -19,6 +19,7 @@ public class MyApplication extends MultiDexApplication {
     private final static String fontPath = "fonts/iconfont.ttf";
     private final static String NUM_FONTPATH = "fonts/din_medium.ttf";
     private final static String DIN_BOLDALTERNATE = "fonts/din_boldalternate.ttf";
+    private final static String VIP_NUMBER_REGULAR = "fonts/iwlicai_vip_number-Regular.ttf";
     public static ApplicationPresenter appPresenter;
     private static MyApplication application = null;
     private final Handler uiHandler = new Handler();
@@ -27,6 +28,7 @@ public class MyApplication extends MultiDexApplication {
     */
     private Typeface iconfont;
     private Typeface dinMediumFont;
+    private Typeface vipNumberFont;
     /*
         public void setNewHouseUrl(String newHouseUrl) {
             this.newHouseUrl = newHouseUrl;
@@ -90,6 +92,13 @@ public class MyApplication extends MultiDexApplication {
             dinMediumFont = Typeface.createFromAsset(getInstance().getAssets(), NUM_FONTPATH);
         }
         return dinMediumFont;
+    }
+
+    public Typeface getVipNumberFont() {
+        if (vipNumberFont == null) {
+            vipNumberFont = Typeface.createFromAsset(getInstance().getAssets(), VIP_NUMBER_REGULAR);
+        }
+        return vipNumberFont;
     }
 
     public Typeface getDinBoldAlternate() {

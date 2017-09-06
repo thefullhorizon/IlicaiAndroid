@@ -71,7 +71,7 @@
                     android:layout_height="24dp"
                     android:src="@drawable/head_portrait" />
 
-                <TextView
+                <com.ailicai.app.widget.TextViewVipFont
                     android:id="@+id/member_level_text"
                     style="@style/text_10_ffffff"
                     android:layout_width="wrap_content"
@@ -79,9 +79,11 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/mine_member_level_bg"
                     android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:text="V2" />
+                    android:paddingBottom="1dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="1dp"
+                    android:text="V0" />
             </LinearLayout>
 
 
