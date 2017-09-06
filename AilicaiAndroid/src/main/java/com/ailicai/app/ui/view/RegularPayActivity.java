@@ -818,7 +818,8 @@ public class RegularPayActivity extends BaseBindActivity {
             } else if (isLast && Double.parseDouble(money) > infoResponse.getAvailableBalance()) {
                 //最后一笔,且钱包余额不足
                 BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(money) ,new BigDecimal(infoResponse.getAvailableBalance()));
-                mConfirmBtn.setText("可用余额不足，需支付" + offset + "元");
+
+                mConfirmBtn.setText("可用余额不足，需支付" + CommonUtil.amountWithTwoAfterPoint(offset.doubleValue()) + "元");
                 if((offset.compareTo(new BigDecimal(infoResponse.getBankLimit())) == 1)){
                     mMaxValueLayout.setVisibility(View.VISIBLE);
                     mMaxValue.setText(infoResponse.getBankLimitStr());
@@ -852,7 +853,7 @@ public class RegularPayActivity extends BaseBindActivity {
             } else if (Double.parseDouble(money) > infoResponse.getAvailableBalance()) {
                 //since 5.3变更去掉
                 BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(money) ,new BigDecimal(infoResponse.getAvailableBalance()));
-                mConfirmBtn.setText("可用余额不足，需支付" + offset + "元");
+                mConfirmBtn.setText("可用余额不足，需支付" + CommonUtil.amountWithTwoAfterPoint(offset.doubleValue()) + "元");
                 if((offset.compareTo(new BigDecimal(infoResponse.getBankLimit())) == 1)){
                     mMaxValueLayout.setVisibility(View.VISIBLE);
                     mMaxValue.setText(infoResponse.getBankLimitStr());

@@ -408,9 +408,9 @@ public class AccountTopupActivity extends BaseBindActivity {
         int cardType = jsonObject.getCardType(); //卡类型【1：储蓄卡 、2：信用卡 、3：存折 、4：其它 】
         SpannableUtil spanUtil = new SpannableUtil(this);
         SpannableStringBuilder builder1 = null;
-
         mBankCardName.setText(bankName + "卡(尾号" + cardNo + ") 充值 账户余额");
-        builder1 = spanUtil.getSpannableString("可用余额 ", CommonUtil.amountWithTwoAfterPoint(jsonObject.getWithdrawBalance()), " 元",
+        String balance = CommonUtil.amountWithTwoAfterPoint(jsonObject.getWithdrawBalance());
+        builder1 = spanUtil.getSpannableString("可用余额 ", balance, " 元",
                 R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
 
         mRollInBalance.setText(builder1);

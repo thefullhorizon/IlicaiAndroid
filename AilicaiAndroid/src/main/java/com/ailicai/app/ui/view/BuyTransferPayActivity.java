@@ -325,7 +325,8 @@ public class BuyTransferPayActivity extends BaseBindActivity {
                 double normalProfit = moneyCount * infoResponse.getOriLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
                 //无加息券
                 SpannableUtil spannableUtil = new SpannableUtil(this);
-                SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(normalProfit), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                String profitForDisplay = CommonUtil.amountWithTwoAfterPoint(normalProfit);
+                SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", profitForDisplay, " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
                 tvProfitText.setText(builder);
             }
         }
@@ -348,7 +349,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
         } else {
             llRealPay.setVisibility(View.VISIBLE);
             lineAccount.setBackgroundColor(Color.parseColor("#ffddca"));
-            tv_real_pay_count.setText(MathUtil.saveTwoDecimal(realNeedPay) + "");
+            tv_real_pay_count.setText(CommonUtil.amountWithTwoAfterPoint(realNeedPay) + "");
         }
     }
 

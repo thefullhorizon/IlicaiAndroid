@@ -348,7 +348,8 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
     private void showBalance() {
         if (infoResponse != null) {
             SpannableUtil spanUtil = new SpannableUtil(this);
-            SpannableStringBuilder builder = spanUtil.getSpannableString("活期宝余额 ", CommonUtil.amountWithTwoAfterPoint(infoResponse.getWithdrawBalance()), " 元",
+            String balance = CommonUtil.amountWithTwoAfterPoint(infoResponse.getWithdrawBalance());
+            SpannableStringBuilder builder = spanUtil.getSpannableString("活期宝余额 ", balance, " 元",
                     R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
             mCurrentBalance.setText(builder);
             mCurrentBalanceAllOfOut.setVisibility(View.VISIBLE);

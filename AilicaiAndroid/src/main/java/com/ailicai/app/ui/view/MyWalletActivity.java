@@ -15,7 +15,6 @@ import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.SpannableUtil;
 import com.ailicai.app.eventbus.FinancePayEvent;
 import com.ailicai.app.model.response.WalletInfoResponse;
-import com.ailicai.app.ui.asset.FinanceUpgradePresenter;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
@@ -267,10 +266,10 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
             }
             walletYesIncome.setText(walletInfoResponse.getYestodayIncomeStr());
         } else {
-            walletYesIncome.setText(CommonUtil.formatMoneyForFinance(walletInfoResponse.getYestodayIncome()));
+            walletYesIncome.setText(CommonUtil.amountWithTwoAfterPoint(walletInfoResponse.getYestodayIncome()));
         }
-        walletAvailable.setText(CommonUtil.formatMoneyForFinance(walletInfoResponse.getAvailableBalance()));
-        walletFrozen.setText(CommonUtil.formatMoneyForFinance(walletInfoResponse.getTotalIncome()));
+        walletAvailable.setText(CommonUtil.amountWithTwoAfterPoint(walletInfoResponse.getAvailableBalance()));
+        walletFrozen.setText(CommonUtil.amountWithTwoAfterPoint(walletInfoResponse.getTotalIncome()));
         yesterdayRate.setText(walletInfoResponse.getYearInterestRateDesc());
         if (walletInfoResponse.getRecentNum() > 0) {
             walletTransactonText.setText(String.format("最近7日有%s笔记录", walletInfoResponse.getRecentNum()));

@@ -469,7 +469,8 @@ public class CurrentRollInActivity extends BaseBindActivity implements View.OnCl
         String bankName = jsonObject.getBankName(); //银行名称
         int cardType = jsonObject.getCardType(); //卡类型【1：储蓄卡 、2：信用卡 、3：存折 、4：其它 】
         SpannableUtil spanUtil = new SpannableUtil(this);
-        SpannableStringBuilder builder1 = spanUtil.getSpannableString("活期宝余额 ", CommonUtil.amountWithTwoAfterPoint(jsonObject.getWithdrawBalance()), " 元",
+        String balance = CommonUtil.amountWithTwoAfterPoint(jsonObject.getWithdrawBalance());
+        SpannableStringBuilder builder1 = spanUtil.getSpannableString("活期宝余额 ", balance, " 元",
                 R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
         mRollInBalance.setText(builder1);
         SpannableStringBuilder builder2 = spanUtil.getSpannableString("预计 ", giveDate, " 起息，次日可查看收益",
