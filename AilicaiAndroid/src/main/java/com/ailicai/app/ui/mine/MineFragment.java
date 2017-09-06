@@ -406,6 +406,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             long userId = MyPreference.getInstance().read(UserInfo.USERINFO_KEY_USER_ID, new Long(0));
             UserInfoBase infoBase = UserManager.getInstance(MyApplication.getInstance()).getUserByUserId(userId);
             //会员等级
+            memberLevelText.setTypeface(MyApplication.getInstance().getVipNumberFont());
             memberLevelText.setText(infoBase.getMemberLevel());
 
             int resID = R.drawable.head_portrait;
@@ -508,7 +509,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     }
 
 
-
     @OnClick(R.id.rl_auto_invest)
     void autoInvest() {
         if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
@@ -566,6 +566,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             return;
         }
         getAssetInfo();
+        LoginManager.updateUserInfoData();
         //getUserInfo();
     }
 

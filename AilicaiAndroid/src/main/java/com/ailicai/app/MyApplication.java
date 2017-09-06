@@ -19,7 +19,7 @@ public class MyApplication extends MultiDexApplication {
     private final static String fontPath = "fonts/iconfont.ttf";
     private final static String NUM_FONTPATH = "fonts/din_medium.ttf";
     private final static String DIN_BOLDALTERNATE = "fonts/din_boldalternate.ttf";
-    private final static String VIP_NUMBER_REGULAR = "fonts/iwlicai_vip_number-Regular.ttf";
+    private final static String VIP_NUMBER_REGULAR = "fonts/iwlicai_vip_number_regular.ttf";
     public static ApplicationPresenter appPresenter;
     private static MyApplication application = null;
     private final Handler uiHandler = new Handler();

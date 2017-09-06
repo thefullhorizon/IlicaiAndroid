@@ -72,7 +72,7 @@
                     android:layout_height="24dp"
                     android:src="@drawable/head_portrait" />
 
-                <com.ailicai.app.widget.TextViewVipFont
+                <TextView
                     android:id="@+id/member_level_text"
                     style="@style/text_10_ffffff"
                     android:layout_width="wrap_content"
