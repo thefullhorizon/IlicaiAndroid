@@ -231,7 +231,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
 
     @OnClick(R.id.current_balance_all_of_out)
     public void allOfOut(View v) {
-        mInputPriceEdit.setText(CommonUtil.amountWithTwoAfterPoint(infoResponse.getWithdrawBalance()));
+        mInputPriceEdit.setText(infoResponse.getWithdrawBalance()+"");
         showBalance();
     }
 
