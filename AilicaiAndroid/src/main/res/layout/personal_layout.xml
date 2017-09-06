@@ -57,6 +57,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/userphoto_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"

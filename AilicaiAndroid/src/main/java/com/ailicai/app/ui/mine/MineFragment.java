@@ -81,9 +81,6 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
                     Intent intent = new Intent(getWRActivity(), MessageActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.userPhoto:
-                    MyIntent.startActivity(getActivity(), SettingsActivity.class, getDataMap());
-                    break;
             }
         }
     };
@@ -113,6 +110,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     TextView tvLogin;
     @Bind(R.id.userPhoto)
     ImageView userPhoto;
+    @Bind(R.id.userphoto_layout)
+    LinearLayout userPhotoLayout;
     @Bind(R.id.fl_msg_container)
     FrameLayout flMsgContainer;
     @Bind(R.id.tv_eyes_status)
@@ -373,10 +372,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             mineNotLogin.setVisibility(View.VISIBLE);
             mineLogin.setVisibility(View.GONE);
             tvLogin.setOnClickListener(mOnClickListener);
-            memberLevelText.setVisibility(View.GONE);
-            userPhoto.setVisibility(View.GONE);
-            userPhoto.setClickable(false);
-            userPhoto.setOnClickListener(null);
+            userPhotoLayout.setVisibility(View.GONE);
+            userPhotoLayout.setClickable(false);
 
             flMsgContainer.setVisibility(View.GONE);
             flMsgContainer.setClickable(false);
@@ -398,10 +395,8 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             flMsgContainer.setClickable(true);
             flMsgContainer.setOnClickListener(userLayoutOnClickListener);
 
-            memberLevelText.setVisibility(View.VISIBLE);
-            userPhoto.setVisibility(View.VISIBLE);
-            userPhoto.setClickable(true);
-            userPhoto.setOnClickListener(userLayoutOnClickListener);
+            userPhotoLayout.setVisibility(View.VISIBLE);
+            userPhotoLayout.setClickable(true);
             accountbalanceLayout.setVisibility(View.VISIBLE);
             topLine.setVisibility(View.VISIBLE);
             purchaseView.setVisibility(View.GONE);
@@ -506,6 +501,13 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     void goAboutUs() {
         MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
     }
+
+    @OnClick(R.id.userphoto_layout)
+    void goSettings() {
+        MyIntent.startActivity(getActivity(), SettingsActivity.class, getDataMap());
+    }
+
+
 
     @OnClick(R.id.rl_auto_invest)
     void autoInvest() {

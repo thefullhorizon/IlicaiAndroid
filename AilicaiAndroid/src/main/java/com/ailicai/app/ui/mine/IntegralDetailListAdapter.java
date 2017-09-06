@@ -49,7 +49,7 @@ public class IntegralDetailListAdapter extends BaseAdapter {
         if (integralRecordList.size() == 0) {
             View emptyView = LayoutInflater.from(mContext).inflate(R.layout.integral_record_adapter_empty, null);
             TextView noData = (TextView) emptyView.findViewById(R.id.no_record);
-            noData.setText("暂无积分记录");
+            noData.setText("");
             return emptyView;
         } else {
             ItemView itemView;
