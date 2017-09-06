@@ -58,8 +58,9 @@ public class IntegralDetailActivity extends BaseBindActivity implements SwipeRef
         adapter = new IntegralDetailListAdapter(this, integralRecordList);
         listView.setAdapter(adapter);
 
+        int scoreValue = getIntent().getIntExtra("score",0);
         //会员当前积分
-        score.setText("600");
+        score.setText(scoreValue);
 
         getIntegralRecord();
     }
