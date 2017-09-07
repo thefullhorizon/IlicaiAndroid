@@ -450,7 +450,11 @@ public class CommonUtil {
         if (amt == 0) {
             return "0.00";
         } else {
-            return dqbDF2.format(amt);
+            if(amt >=1 ){
+                return dqbDF2.format(amt);
+            }else{
+                return amt+"";
+            }
         }
     }
     /**

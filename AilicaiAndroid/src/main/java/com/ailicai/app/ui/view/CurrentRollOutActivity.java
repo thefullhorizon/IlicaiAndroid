@@ -397,7 +397,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
 
     public void setRollOutType(CurrentRollOutBaseInfoResponse jsonObject) {
         accountNameText.setText("账户余额");
-        accountDescText.setText("当前可用余额 " + CommonUtil.numberFormat(jsonObject.getDepositoryBalance()) + " 元");
+        accountDescText.setText("当前可用余额 " + CommonUtil.amountWithTwoAfterPoint(jsonObject.getDepositoryBalance()) + " 元");
         bankNameText.setText(jsonObject.getBankName() + " (尾号" + jsonObject.getCardNo() + ")");
         accountCheckBox.setChecked(true);
         bankCheckBox.setChecked(false);

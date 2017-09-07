@@ -675,7 +675,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             showMessageTipsDialog("购买金额不能低于起购金额");
             return false;
         } else if (infoResponse.getBiddableAmount() >= 0 && Double.parseDouble(money) > infoResponse.getBiddableAmount()) {
-            String msg = "购买金额不能超过剩余额度" + MathUtil.saveTwoDecimalHalfUp(infoResponse.getBiddableAmount()) + "元";
+            String msg = "购买金额不能超过剩余额度" + CommonUtil.amountWithTwoAfterPoint(infoResponse.getBiddableAmount()) + "元";
             showMessageTipsDialog(msg);
             return false;
         }
