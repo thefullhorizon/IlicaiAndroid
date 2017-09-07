@@ -238,8 +238,8 @@ public class TransferPayActivity extends BaseBindActivity {
                 }
                 String transferPriceStr = MathUtil.saveTwoDecimal(transferPrice);
                 String transferFeeStr = MathUtil.saveTwoDecimal(transferFee);
-                tvTicketText.setText(transferPriceStr + "元");
-                tvFeeText.setText(transferFeeStr + "元");
+                tvTicketText.setText(CommonUtil.amountWithTwoAfterPoint(Double.valueOf(transferPrice)) + "元");
+                tvFeeText.setText(CommonUtil.amountWithTwoAfterPoint(Double.valueOf(transferFee)) + "元");
                 SpannableUtil spannableUtil = new SpannableUtil(this);
                 SpannableStringBuilder builder = spannableUtil.getSpannableString("预计到账金额: ", MathUtil.saveTwoDecimal(Double.valueOf(transferPriceStr) - Double.valueOf(transferFeeStr)), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
                 tvProfitText.setText(builder);

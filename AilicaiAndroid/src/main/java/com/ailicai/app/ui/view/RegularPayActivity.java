@@ -698,22 +698,26 @@ public class RegularPayActivity extends BaseBindActivity {
                 //购买失败
                 object.setBizStatus("F");
 
-                if (object.getBizCode() == 2) {
-                    //toast相关报错
+                //改为跟IOS保持一致
+                if(object.getErrorCode() == 0 ){
+                    goToPayResultActivity(object);
+                }else if (object.getBizCode() == 2) { // 2 表示加息券的相关报错信息
                     showMyToast(object.getMessage());
                     initBaseInfo();
-                } else {
-                    if(object.getErrorCode() == -1 ){
-                        DialogBuilder.showSimpleDialogCenter( object.getMessage(), RegularPayActivity.this, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                    }else{
-                        goToPayResultActivity(object);
-                    }
+                }else{
+                    goToPayResultActivity(object);
+                    // v5.6 除密码错误，加息券相关出错之外的其它报错都去失败页面
+                    // v5.3:包含errorCode＝ 2102 表示活动已过期或失效的情况
+                    // 5.0 产品需求：购买失败时不必跳失败页面。
+
                 }
+
+//                DialogBuilder.showSimpleDialogCenter( object.getMessage(), RegularPayActivity.this, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
 
             }
 
