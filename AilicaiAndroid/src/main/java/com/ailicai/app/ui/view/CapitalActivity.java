@@ -21,7 +21,6 @@ import com.ailicai.app.eventbus.ReservePayEvent;
 import com.ailicai.app.model.response.AssetInfoResponse;
 import com.ailicai.app.model.response.HasBuyProductListResponse;
 import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
-import com.ailicai.app.ui.asset.FinanceUpgradePresenter;
 import com.ailicai.app.ui.asset.HouseTreasureAdapter;
 import com.ailicai.app.ui.asset.treasure.ProductCategory;
 import com.ailicai.app.ui.base.BaseBindActivity;
@@ -448,8 +447,9 @@ public class CapitalActivity extends BaseBindActivity implements
             total = assetInfo.getTimeDepositBalance();
         }
         mCapitalTotal.setText(total);
+        preProfit.setText(CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(assetInfo.getPreProfit())));
         mIncome.setText(CommonUtil.formatMoneyForFinance(assetInfo.getTotalIncome()));
-        preProfit.setText(assetInfo.getPreProfit());
+
         updateRegularSection(assetInfo.getApplyNum(), assetInfo.getHoldNum(), assetInfo.getOverdueNum());
     }
 
