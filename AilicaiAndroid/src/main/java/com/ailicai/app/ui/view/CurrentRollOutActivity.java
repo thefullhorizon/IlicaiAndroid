@@ -387,7 +387,8 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         String cardNo = jsonObject.getCardNo();
         //mBankCardNamee.setText(Html.fromHtml(getString(R.string.roll_out_bank_card_text, jsonObject.getBankName(), cardNo)));
         SpannableUtil spanUtil = new SpannableUtil(this);
-        SpannableStringBuilder builder = spanUtil.getSpannableString("活期宝余额 ", CommonUtil.numberFormat(jsonObject.getWithdrawBalance()), " 元",
+        String balance = CommonUtil.amountWithTwoAfterPoint(infoResponse.getWithdrawBalance());
+        SpannableStringBuilder builder = spanUtil.getSpannableString("活期宝余额 ", balance, " 元",
                 R.style.text_14_757575, R.style.text_14_757575, R.style.text_14_757575);
         mCurrentBalance.setText(builder);
         mInputPriceEditLable.setText(jsonObject.getHint());

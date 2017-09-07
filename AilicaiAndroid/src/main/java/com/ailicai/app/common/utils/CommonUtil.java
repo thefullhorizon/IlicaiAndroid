@@ -453,7 +453,8 @@ public class CommonUtil {
             if(amt >=1 ){
                 return dqbDF2.format(amt);
             }else{
-                return amt+"";
+                DecimalFormat format = new DecimalFormat("##0.00");
+                return format.format(amt);
             }
         }
     }
