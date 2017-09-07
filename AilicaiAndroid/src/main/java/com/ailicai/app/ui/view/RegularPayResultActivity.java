@@ -377,7 +377,7 @@ public class RegularPayResultActivity extends BaseBindActivity {
                     params.put("title", response.getTitle());
                     params.put("action", "weixin");
                     EventLog.upEventLog("686", JSON.toJSONString(params));
-                    dismissTipsDialog();
+//                    dismissTipsDialog();
                     shareToByWeChat(RegularPayResultActivity.this, response);
                     //type;//业务类型：0-一般业务（app大首页banner，吉爱财banner，开屏弹窗） 1-分享弹窗业务 （微信分享）
                     //status;//0-banner点击统计pv/uv     2-弹出弹窗的次数 3-点击分享分享朋友圈 4-点击分享给好友
@@ -391,7 +391,7 @@ public class RegularPayResultActivity extends BaseBindActivity {
                     params.put("title", response.getTitle());
                     params.put("action", "friend");
                     EventLog.upEventLog("686", JSON.toJSONString(params));
-                    dismissTipsDialog();
+//                    dismissTipsDialog();
                     shareToByWeChatCircle(RegularPayResultActivity.this, response);
                     //type;//业务类型：0-一般业务（app大首页banner，吉爱财banner，开屏弹窗） 1-分享弹窗业务 （微信分享）
                     //status;//0-banner点击统计pv/uv     2-弹出弹窗的次数 3-点击分享分享朋友圈 4-点击分享给好友
