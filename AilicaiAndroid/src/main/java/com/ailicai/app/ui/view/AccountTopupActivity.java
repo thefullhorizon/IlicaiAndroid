@@ -356,22 +356,22 @@ public class AccountTopupActivity extends BaseBindActivity {
             return false;
         } else if (Double.parseDouble(money) <= 0) {
             //mErrorTips.setText(infoResponse.getBuyMinLimitStr());
-            mErrorTips.setText("最低转入" + infoResponse.getFormatBuyMinLimitStr() + "元");
+            mErrorTips.setText("最低充值" + infoResponse.getFormatBuyMinLimitStr() + "元");
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;
         } else if (infoResponse.getDayRemain() >= 0 && Double.parseDouble(money) > x) {
             if (infoResponse.getBuyLimit() > infoResponse.getDayRemain()){
-                mErrorTips.setText("当前最多可转入" + CommonUtil.amountWithTwoAfterPoint(x) + "元");
+                mErrorTips.setText("当前最多可充值" + CommonUtil.amountWithTwoAfterPoint(x) + "元");
             }else{
-                mErrorTips.setText("单笔最多可转入" + CommonUtil.amountWithTwoAfterPoint(x) + "元");
+                mErrorTips.setText("单笔最多可充值" + CommonUtil.amountWithTwoAfterPoint(x) + "元");
             }
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;
         }else if (infoResponse.getBuyMinLimit() > 0 && Double.parseDouble(money) < infoResponse.getBuyMinLimit()) {
             //mErrorTips.setText(infoResponse.getBuyMinLimitStr());
-            mErrorTips.setText("最低转入" + infoResponse.getFormatBuyMinLimitStr() + "元");
+            mErrorTips.setText("最低充值" + infoResponse.getFormatBuyMinLimitStr() + "元");
             mErrorTips.setVisibility(View.VISIBLE);
             mRollInBalance.setVisibility(View.GONE);
             return false;

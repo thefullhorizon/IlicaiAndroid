@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.logCollect.EventLog;
+import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.eventbus.FinancePayEvent;
 import com.ailicai.app.model.bean.BuyHuoqibaoResponse;
@@ -101,7 +102,7 @@ public class CurrentRollInResultActivity extends BaseBindActivity {
                 mBannerLayout.setVisibility(View.GONE);
                 mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_succeed));
                 mImageIcon.setText(R.string.succeed);
-                mAmountTxt.setText(getResources().getString(R.string.roll_in_amount_text, response.getAmount()));
+                mAmountTxt.setText(getResources().getString(R.string.roll_in_amount_text, CommonUtil.amountWithTwoAfterPoint(response.getAmount())));
                 mCalculationDate.setText(response.getCalculationDate());
                 mGiveDate.setText(response.getGiveDate());
                 mConfirmRepay.setText("继续转入");

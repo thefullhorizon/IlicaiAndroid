@@ -730,14 +730,14 @@ public class BuyTransferPayActivity extends BaseBindActivity {
                 rlMyAccount.setVisibility(View.GONE);
                 return false;
             } else if (infoResponse.getBiddableAmount() >= 0 && Double.parseDouble(money) > infoResponse.getBiddableAmount()) {
-                String msg = "购买金额不能超过剩余额度" + MathUtil.saveTwoDecimalHalfUp(infoResponse.getBiddableAmount()) + "元";
+                String msg = "购买金额不能超过剩余额度" + CommonUtil.amountWithTwoAfterPoint(infoResponse.getBiddableAmount()) + "元";
                 mErrorTips.setText(msg);
                 mErrorTips.setVisibility(View.VISIBLE);
                 rlMyAccount.setVisibility(View.GONE);
                 return false;
             } else if (infoResponse.getBidUnit() > 0 && Double.parseDouble(money) % infoResponse.getBidUnit() != 0) {
                 //购买金额必须是bidUnit的整数倍
-                mErrorTips.setText("购买金额须为" + MathUtil.subZeroAndDot(String.valueOf(infoResponse.getBidUnit())) + "的整数倍");
+                mErrorTips.setText("购买金额须为" + CommonUtil.amountWithTwoAfterPoint(infoResponse.getBidUnit()) + "的整数倍");
                 mErrorTips.setVisibility(View.VISIBLE);
                 rlMyAccount.setVisibility(View.GONE);
                 return false;
@@ -750,7 +750,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             }else if (getRealPayDouble() > infoResponse.getAvailableBalance()) {// 本地计算的实际需要支付的值大于可用余额
 
                 BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(getRealPayDouble()) ,new BigDecimal(infoResponse.getAvailableBalance()));
-                mConfirmBtn.setText("账户余额不足，需支付" + offset + "元");
+                mConfirmBtn.setText("账户余额不足，需支付" + CommonUtil.amountWithTwoAfterPoint(offset.doubleValue()) + "元");
                 if((offset.compareTo(new BigDecimal(infoResponse.getBankLimit())) == 1)){
                     mMaxValueLayout.setVisibility(View.VISIBLE);
                     mMaxValue.setText(infoResponse.getBankLimitStr());
@@ -780,7 +780,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
         verifyProtocolListLogical(jsonObject.getProtocolList());
         mInputPriceEditLable.setText(jsonObject.getHint());
         tvLeaveAccount.setText("剩余本金 " + jsonObject.getBiddableAmountStr() + "元");
-        mRegularBalance.setText("可用余额 " + CommonUtil.numberFormat(jsonObject.getAvailableBalance()) + " 元");
+        mRegularBalance.setText("可用余额 " + CommonUtil.amountWithTwoAfterPoint(jsonObject.getAvailableBalance()) + " 元");
         //余额不足转入成功后刷新页面并重新校验输入的金额
         if (checkInputMoney() && mAgreementCheckbox.isChecked()) {
             mConfirmBtn.setEnabled(true);
@@ -807,7 +807,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             // 最后一笔余额不足直接显示需要转入
             if (getRealPayDouble() > infoResponse.getAvailableBalance()) {
                 double offset = getRealPayDouble() - infoResponse.getAvailableBalance();
-                mConfirmBtn.setText("账户余额不足，需支付" + MathUtil.saveTwoDecimalHalfUp(offset) + "元");
+                mConfirmBtn.setText("账户余额不足，需支付" + CommonUtil.amountWithTwoAfterPoint(offset) + "元");
             }
         } else {
             ManyiUtils.showKeyBoard(this, mInputPriceEdit);

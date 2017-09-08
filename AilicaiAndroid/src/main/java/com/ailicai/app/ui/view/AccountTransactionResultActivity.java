@@ -90,7 +90,7 @@ public class AccountTransactionResultActivity extends BaseBindActivity {
                     previousUIOfSuccess.setVisibility(View.VISIBLE);
                     mImageIcon.setTextColor(ContextCompat.getColor(this, R.color.color_succeed));
                     mImageIcon.setText(R.string.succeed);
-                    mResultStatus.setText(getResources().getString(R.string.topup_amount_text, CommonUtil.numberFormatWithTwoDigital(topUpResponse.getAmount())+""));
+                    mResultStatus.setText(getResources().getString(R.string.topup_amount_text, CommonUtil.amountWithTwoAfterPoint(topUpResponse.getAmount())));
                     mResultStatusDetail.setVisibility(View.GONE);
                     mConfirmLeft.setText("完成");
                     mConfirmRight.setText("继续充值");

@@ -27,7 +27,6 @@ import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.share.ShareUtil;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.DeviceUtil;
-import com.ailicai.app.common.utils.MathUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.SpannableUtil;
@@ -222,19 +221,17 @@ public class RegularPayResultActivity extends BaseBindActivity {
 
         llResultSuccess.setVisibility(View.VISIBLE);
         flResultNotSuccess.setVisibility(View.GONE);
-        if (isLast) {
-            //最后一笔
-            SpannableUtil spanUtil = new SpannableUtil(this);
-            SpannableStringBuilder builder = spanUtil.getSpannableString("账户余额中", MathUtil.subZeroAndDot(CommonUtil.formatMoneyForFinance(response.getAmount())), "元已变成申购款",
+        SpannableUtil spanUtil = new SpannableUtil(this);
+        String amount = CommonUtil.amountWithTwoAfterPoint(response.getAmount());
+        if (isLast) { //最后一笔
+            SpannableStringBuilder builder = spanUtil.getSpannableString("账户余额中", amount, "元已变成申购款",
                     R.style.text_13_757575, R.style.text_13_e84a01, R.style.text_13_757575);
             tvRegularLabel.setText(builder);
             tvProfitLabel.setVisibility(View.INVISIBLE);
             tvRegularProcess.setText("募集完成，等待审核");
             tvRegularProcessLabel.setText("募集成功后，将于" + response.getInterestDateStr() + "起息");
-        } else {
-            //非最后一笔
-            SpannableUtil spanUtil = new SpannableUtil(this);
-            SpannableStringBuilder builder1 = spanUtil.getSpannableString("账户余额中", MathUtil.subZeroAndDot(CommonUtil.formatMoneyForFinance(response.getAmount())), "元已变成申购款",
+        } else { //非最后一笔
+            SpannableStringBuilder builder1 = spanUtil.getSpannableString("账户余额中", amount, "元已变成申购款",
                     R.style.text_13_757575, R.style.text_13_e84a01, R.style.text_13_757575);
             tvRegularLabel.setText(builder1);
             //tvProfitLabel.setVisibility(View.VISIBLE);
@@ -273,7 +270,7 @@ public class RegularPayResultActivity extends BaseBindActivity {
         llActivityMsg.setVisibility(View.GONE);
         mPayDetailLayout.setVisibility(View.VISIBLE);
         mProductTxt.setText(response.getProductName());
-        mMoneyTxt.setText(CommonUtil.formatMoneyDou(response.getAmount()) + "元");
+        mMoneyTxt.setText(CommonUtil.amountWithTwoAfterPoint(response.getAmount()) + "元");
         mPeriodTxt.setText(response.getHorizon());
         mRateTxt.setText(response.getYearInterestRate());
         EventLog.upEventLog("201610282", "show", "ptfcb_underway");

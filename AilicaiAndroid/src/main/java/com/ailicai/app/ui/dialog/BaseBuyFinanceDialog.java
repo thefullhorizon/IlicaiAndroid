@@ -364,7 +364,7 @@ public class BaseBuyFinanceDialog implements View.OnClickListener, GridPasswordV
         if (buyDialogShowInfo.getAmount() == 0) {
             moneyTextView.setVisibility(View.GONE);
         } else {
-            moneyTextView.setText(CommonUtil.formatMoneyDou(buyDialogShowInfo.getAmount()) + "元");
+            moneyTextView.setText(CommonUtil.amountWithTwoAfterPoint(buyDialogShowInfo.getAmount()) + "元");
         }
         if (TextUtils.isEmpty(buyDialogShowInfo.getPayTypFrom())) {
             dialogLayout.findViewById(R.id.change_pay_type_view).setVisibility(View.GONE);
