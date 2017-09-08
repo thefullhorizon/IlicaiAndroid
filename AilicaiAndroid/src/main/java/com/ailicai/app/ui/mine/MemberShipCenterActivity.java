@@ -235,10 +235,10 @@ public class MemberShipCenterActivity extends BaseBindActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    SpannableString spanableInfo = new SpannableString(reward.getMemo() + " " +"查看信息");
+                    SpannableString spanableInfo = new SpannableString(reward.getMemo() + " " +"查看详情");
                     String desc = reward.getMemo();
                     int start = +desc.length();
-                    desc = desc + " " +"查看信息";
+                    desc = desc + " " +"查看详情";
                     int end = desc.length();
                     spanableInfo.setSpan(new Clickable(url), start, end,
                             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

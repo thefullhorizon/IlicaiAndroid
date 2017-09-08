@@ -85,8 +85,8 @@ android {
             minifyEnabled false
             proguardFiles 'proguard-rules.pro'
             signingConfig signingConfigs.debug
-            buildConfigField "String", "BUILDVERSION", appendQuotes("DEBUG")
-            buildConfigField "String", "BUILDNUMBER", appendQuotes("DEBUG" + Integer.parseInt(project.RCVersion))
+            buildConfigField "String", "BUILDVERSION", appendQuotes("SIT")
+            buildConfigField "String", "BUILDNUMBER", appendQuotes("SIT" + Integer.parseInt(project.RCVersion))
         }
     }
 
@@ -196,6 +196,18 @@ dependencies {
 }
 
 afterEvaluate {
+
+    // 需要安装CURL 打包前用 CURL 获得 iwjwh5url.rest 中URL，给URL有默认值，防止出现空URL
+    getH5url()
+    // 最后打包时候check URL拉取的正确性
+    tasks.matching {
+        it.name.startsWith('package')
+    }.each { task ->
+        task.doFirst {
+            checkIwjwH5UrlValid()
+        }
+    }
+
     tasks.matching {
         it.name.startsWith('dex')
     }.each { dx ->
@@ -204,5 +216,53 @@ afterEvaluate {
         }
         //enable multidex
         dx.additionalParameters += '--multi-dex'
+    }
+}
+
+//需要安装CURL 打包前用 CURL 获得 iwjwh5url.rest 中URL，给URL有默认值，防止出现空URL
+def getH5url() {
+    def iwjw_h5url_txt = "$rootDir/AilicaiAndroid/src/main/assets/iwjw_h5_url.txt"
+    def cmdline = 'curl -o ' + iwjw_h5url_txt + ' http://fin.iwlicai.com/About/iwjwh5url.rest'
+
+    // 如果存在iwjw_h5_url.txt 先删除
+    def urlTxtFile = file(iwjw_h5url_txt)
+    if (urlTxtFile.exists()) {
+        urlTxtFile.delete()
+    }
+
+    if(gradle.startParameter.taskNames != null && gradle.startParameter.taskNames.size() > 0) {
+        if(gradle.startParameter.taskNames.get(0).contains("assembleDebug") || gradle.startParameter.taskNames.get(0).contains("aD")) {
+            cmdline = 'curl -o ' + iwjw_h5url_txt + ' http://192.168.1.44:1319/About/iwjwh5url.rest'
+        }else if(gradle.startParameter.taskNames.get(0).contains("assembleBeta")|| gradle.startParameter.taskNames.get(0).contains("aB")) {
+            cmdline = 'curl -o ' + iwjw_h5url_txt + ' http://poros.iwlicaibeta.com:80/About/iwjwh5url.rest'
+        } else  if(gradle.startParameter.taskNames.get(0).contains("assembleRelease") || gradle.startParameter.taskNames.get(0).contains("aR")) {
+            cmdline = 'curl -o '+ iwjw_h5url_txt + ' http://fin.iwlicai.com/About/iwjwh5url.rest'
+        } else {
+            cmdline = 'curl -o ' + iwjw_h5url_txt + ' http://192.168.1.44:1319/About/iwjwh5url.rest'
+        }
+    }
+
+    exec {
+        commandLine 'cmd', '/c',  cmdline
+    }
+}
+
+def checkIwjwH5UrlValid() {
+    def urlTxtFile = file( "$rootDir/AilicaiAndroid/src/main/assets/iwjw_h5_url.txt")
+    if (!urlTxtFile.exists()) {
+        throw new GradleException("iwjwH5Url打包时拉取失败，请确定网络正常，并且确定你安装了CURL http://curl.haxx.se/，然后重新打包")
+    } else {
+        def isContainsCardUrl = false
+        List<String> readLines = urlTxtFile.readLines()
+        for(String line:readLines) {
+            if(line.contains("cardUrl")) {
+                isContainsCardUrl = true
+            }
+        }
+
+        // 如果文件中不包含"cardUrl"这个键说明内容有问题
+        if(!isContainsCardUrl) {
+            throw new GradleException("iwjwH5Url打包时拉取失败，请确定网络正常，并且请确定你安装了CURL http://curl.haxx.se/，然后重新打包")
+        }
     }
 }

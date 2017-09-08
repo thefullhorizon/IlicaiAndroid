@@ -1,8 +1,10 @@
 package com.ailicai.app.ui.html5;
 
-import com.ailicai.app.common.constants.AILICAIBuildConfig;
+import android.text.TextUtils;
+
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.model.response.Iwjwh5UrlResponse;
+import com.ailicai.app.setting.ServerIPManger;
 import com.huoqiu.framework.util.ConvertUtil;
 
 /**
@@ -20,16 +22,13 @@ public class SupportUrl {
     public static Iwjwh5UrlResponse getSupportUrlsResponse() {
         Iwjwh5UrlResponse response = MyPreference.getInstance().read(Iwjwh5UrlResponse.class);
         if(response == null) {
-            if(AILICAIBuildConfig.isProduction()) {
-                response = generateDefaultUrlResponse();
-            } else {
-                response = new Iwjwh5UrlResponse();
-            }
+            response = generateDefaultUrlResponse();
         }
         return response;
     }
 
     public static Iwjwh5UrlResponse generateDefaultUrlResponse() {
+        setDefaultH5UrlResponseStr();
         Iwjwh5UrlResponse response = null;
         try {
             response = ConvertUtil.json2Obj(defaultH5UrlResponse,Iwjwh5UrlResponse.class);
@@ -38,5 +37,12 @@ public class SupportUrl {
             response = new Iwjwh5UrlResponse();
         }
         return response;
+    }
+
+    public static void setDefaultH5UrlResponseStr() {
+        String  strFromTxt = ServerIPManger.getFromAssets("iwjw_h5_url.txt");
+        if(!TextUtils.isEmpty(strFromTxt)) {
+            defaultH5UrlResponse = strFromTxt;
+        }
     }
 }
