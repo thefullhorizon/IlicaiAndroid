@@ -447,7 +447,7 @@ public class CapitalActivity extends BaseBindActivity implements
             total = assetInfo.getTimeDepositBalance();
         }
         mCapitalTotal.setText(total);
-        preProfit.setText(CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(assetInfo.getPreProfit())));
+        preProfit.setText(assetInfo.getPreProfit());
         mIncome.setText(CommonUtil.formatMoneyForFinance(assetInfo.getTotalIncome()));
 
         updateRegularSection(assetInfo.getApplyNum(), assetInfo.getHoldNum(), assetInfo.getOverdueNum());

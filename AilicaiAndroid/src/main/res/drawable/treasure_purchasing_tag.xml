@@ -5,8 +5,8 @@
         android:width="0.5px"
         android:color="#ffffff" />
     <corners
-        android:topLeftRadius="5dp"
-        android:bottomLeftRadius="5dp"/>
+        android:topLeftRadius="50dp"
+        android:bottomLeftRadius="50dp"/>
     <gradient
         android:type="linear"
         android:angle="90"

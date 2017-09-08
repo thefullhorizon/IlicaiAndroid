@@ -6,8 +6,8 @@
         android:color="#ffffff" />
 
     <corners
-        android:topLeftRadius="5dp"
-        android:bottomLeftRadius="5dp"/>
+        android:topLeftRadius="50dp"
+        android:bottomLeftRadius="50dp"/>
 
     <solid android:color="#f75a14" />
 

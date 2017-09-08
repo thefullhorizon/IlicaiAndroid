@@ -200,7 +200,7 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
                 viewHolder.mTVYearInterestDivider.setVisibility(View.GONE);
                 viewHolder.mTVYearInterest.setVisibility(View.GONE);
                 product = reserves.get(position);
-                viewHolder.productIcon.setText(mContext.getResources().getString(R.string.reservation_fill));
+                viewHolder.productIcon.setText(mContext.getResources().getString(R.string.reservation_soild));
                 viewHolder.productIcon.setTextColor(mContext.getResources().getColor(R.color.color_005ebd));
                 viewHolder.productIcon.setTextSize(16);
                 viewHolder.labelLeft.setText("预约金额(元)");
