@@ -94,6 +94,8 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
     List<InviteRecord> inviteRecordListCallBack = ObjectUtil.newArrayList();
     List<RewardRecord> rewardRecordList = ObjectUtil.newArrayList();
     List<RewardRecord> rewardRecordListCallBack = ObjectUtil.newArrayList();
+    //返回代码 0-正常 其他参考对应的errorCode定义，2104表示查询数据超过90天
+    private int rewardRecordErrorCode = 0;
     private int offSet = 0;//数据偏移量(请求记录数之和)
     private int pageSize = 10;//每页记录数
 
@@ -340,6 +342,7 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
             @Override
             public void onJsonSuccess(RewardRecordResponse jsonObject) {
                 //showContentView();
+                rewardRecordErrorCode = jsonObject.getErrorCode();
                 rewardRecordListCallBack = (jsonObject.getRewardRecordList() != null) ? jsonObject.getRewardRecordList() : ObjectUtil.<RewardRecord>newArrayList();
                 setRewardRecordData(rewardRecordListCallBack);
             }
@@ -371,7 +374,12 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
 
         if (rewardRecordListTemp.size() < pageSize && rewardRecordListAdapter.getCount() != 0) {
             rewardRecordListView.onAllLoaded();
-            rewardRecordListView.setPromptText("仅展示最近90天奖励记录");
+            if (rewardRecordErrorCode == 2014) {
+                rewardRecordListView.setPromptText("仅展示最近90天奖励记录");
+            } else {
+                rewardRecordListView.setPromptText("没有更多数据");
+            }
+
             if (rewardRecordListAdapter.getCount() == 1) {
                 rewardRecordListView.setPromptText("");
             }
@@ -434,7 +442,11 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
             case R.id.reward_record_rb:
                 if (rewardRecordListCallBack.size() < pageSize) {
                     rewardRecordListView.onAllLoaded();
-                    rewardRecordListView.setPromptText("仅展示最近90天奖励记录");
+                    if (rewardRecordErrorCode == 2014) {
+                        rewardRecordListView.setPromptText("仅展示最近90天奖励记录");
+                    } else {
+                        rewardRecordListView.setPromptText("没有更多数据");
+                    }
                     if (rewardRecordListAdapter.getCount() == 1) {
                         rewardRecordListView.setPromptText("");
                     }
