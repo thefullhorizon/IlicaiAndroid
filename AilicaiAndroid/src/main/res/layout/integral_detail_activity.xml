@@ -41,8 +41,6 @@
         style="@style/cell_divider_hor"
         android:layout_marginBottom="8dp" />
 
-    <View style="@style/cell_divider_hor" />
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"
