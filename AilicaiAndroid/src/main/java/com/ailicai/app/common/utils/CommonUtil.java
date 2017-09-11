@@ -459,8 +459,16 @@ public class CommonUtil {
         }
     }
 
+    /**
+     * 千分位展示+小数点两位+截断方式取值
+      * @param amt
+     * @param mode
+     * @return
+     */
     public static String amountWithTwoAfterPoint(double amt,RoundingMode mode ) {
         DecimalFormat dqbDF2 = new DecimalFormat("#,###.00");
+        dqbDF2.setMaximumFractionDigits(2);
+        dqbDF2.setGroupingSize(0);
         dqbDF2.setRoundingMode(mode);
         if (amt == 0) {
             return "0.00";
