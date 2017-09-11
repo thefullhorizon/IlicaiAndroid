@@ -610,12 +610,25 @@ public class RegularPayActivity extends BaseBindActivity {
             public void onPayFailInfo(String msgInfo, String errorCode, AdvanceDepositAndApplyAppResponse object) {
                 LogUtil.e("lyn", "onPayFailInfo");
                 //购买失败
-                if (object.getBizCode() == 2) {
+
+                //保持跟IOS一致
+                if(object.getErrorCode() == 0 ){
+                    goToPayResultActivity(switchResponse(object));
+                }else if (object.getBizCode() == 2) { // 2 表示加息券的相关报错信息
                     showMyToast(object.getMessage());
                     initBaseInfo();
-                } else {
+                }else {
                     goToPayResultActivity(switchResponse(object));
                 }
+
+                //以前Android的逻辑
+//                if (object.getBizCode() == 2) {
+//                    showMyToast(object.getMessage());
+//                    initBaseInfo();
+//                } else {
+//                    goToPayResultActivity(switchResponse(object));
+//                }
+
             }
 
             @Override
