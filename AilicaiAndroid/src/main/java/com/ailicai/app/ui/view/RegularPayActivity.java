@@ -549,7 +549,7 @@ public class RegularPayActivity extends BaseBindActivity {
         if (money > infoResponse.getAvailableBalance()) {
             //购买金额大于钱包余额
             //走转入流程
-            BigDecimal offset = (new BigDecimal(money+"")).subtract(new BigDecimal(infoResponse.getAvailableBalance()));
+            BigDecimal offset = (new BigDecimal(money+"")).subtract(new BigDecimal(infoResponse.getAvailableBalance()+""));
             double reChangeMoney = offset.doubleValue();
             if (infoResponse.getBankLimit() != 0 && reChangeMoney > infoResponse.getBankLimit()) {
                 //转入金额大于安全卡限额

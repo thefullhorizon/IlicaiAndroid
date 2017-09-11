@@ -749,7 +749,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
                 return false;
             }else if (getRealPayDouble() > infoResponse.getAvailableBalance()) {// 本地计算的实际需要支付的值大于可用余额
 
-                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(getRealPayDouble()) ,new BigDecimal(infoResponse.getAvailableBalance()));
+                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(getRealPayDouble()+"") ,new BigDecimal(infoResponse.getAvailableBalance()+""));
                 mConfirmBtn.setText("账户余额不足，需支付" + CommonUtil.amountWithTwoAfterPoint(offset.doubleValue()) + "元");
                 if((offset.compareTo(new BigDecimal(infoResponse.getBankLimit())) == 1)){
                     mMaxValueLayout.setVisibility(View.VISIBLE);
@@ -760,7 +760,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
                     return true;
                 }
             }else if (getRealPayDouble() <= infoResponse.getAvailableBalance()) {
-                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(getRealPayDouble()) ,new BigDecimal(infoResponse.getAvailableBalance()));
+                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(getRealPayDouble()+"") ,new BigDecimal(infoResponse.getAvailableBalance()+""));
                 if((offset.compareTo(new BigDecimal(infoResponse.getBankLimit())) == 1)){
                     mMaxValueLayout.setVisibility(View.VISIBLE);
                     mMaxValue.setText(infoResponse.getBankLimitStr());

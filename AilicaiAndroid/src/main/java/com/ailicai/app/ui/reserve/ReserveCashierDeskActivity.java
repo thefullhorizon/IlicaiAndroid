@@ -276,7 +276,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
         } else {
             if (amount > reserveResponse.getAvailableBalance()) {
                 isEnough = false;
-                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(amount) ,new BigDecimal(reserveResponse.getAvailableBalance()));
+                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(amount+"") ,new BigDecimal(reserveResponse.getAvailableBalance()+""));
                 rechargeAmountSum = offset.doubleValue();
                 if((offset.compareTo(new BigDecimal(reserveResponse.getBankLimit())) == 1)){
                     mMaxValueLayout.setVisibility(View.VISIBLE);
