@@ -97,6 +97,7 @@
 
     <!--转出、转入图标颜色-->
     <color name="color_succeed">#41974d</color>
+    <color name="color_succeed_new">#3AA78F</color>
     <color name="color_failed">#9d9d9d</color>
     <color name="color_waiting">#e84a01</color>
 
