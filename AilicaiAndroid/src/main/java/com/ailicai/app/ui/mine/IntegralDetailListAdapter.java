@@ -85,12 +85,12 @@ public class IntegralDetailListAdapter extends BaseAdapter {
                 case 1:
                     integralText.setTextColor(ContextCompat.getColor(mContext, R.color.color_212121));
                     integralTitle.setText("续期消耗");
-                    integralText.setText(model.getIncrement());
+                    integralText.setText("" + model.getIncrement());
                     break;
                 case 2:
                     integralText.setTextColor(ContextCompat.getColor(mContext, R.color.color_212121));
                     integralTitle.setText("升级消耗");
-                    integralText.setText(model.getIncrement());
+                    integralText.setText("" + model.getIncrement());
                     break;
                 case 3:
                     integralText.setTextColor(ContextCompat.getColor(mContext, R.color.main_red_color));
