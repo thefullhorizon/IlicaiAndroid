@@ -80,23 +80,22 @@ public class IntegralDetailListAdapter extends BaseAdapter {
 
         public void bindData(ScoreDetailResponse model, int position) {
             integralTime.setText(model.getChangeDate());
-            integralText.setText(model.getIncrement());
             // 积分变动缘由(1:续期消耗, 2:升级消耗,3:投资获得)
             switch (model.getReason()) {
                 case 1:
                     integralText.setTextColor(ContextCompat.getColor(mContext, R.color.color_212121));
                     integralTitle.setText("续期消耗");
-                    //integralText.setText("-" + model.getIncrement());
+                    integralText.setText(model.getIncrement());
                     break;
                 case 2:
                     integralText.setTextColor(ContextCompat.getColor(mContext, R.color.color_212121));
                     integralTitle.setText("升级消耗");
-                    //integralText.setText("-" + model.getIncrement());
+                    integralText.setText(model.getIncrement());
                     break;
                 case 3:
                     integralText.setTextColor(ContextCompat.getColor(mContext, R.color.main_red_color));
                     integralTitle.setText("投资获得");
-                    //integralText.setText("+" + model.getIncrement());
+                    integralText.setText("+" + model.getIncrement());
                     break;
             }
 
