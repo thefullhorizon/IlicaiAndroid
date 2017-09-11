@@ -458,6 +458,21 @@ public class CommonUtil {
             }
         }
     }
+
+    public static String amountWithTwoAfterPoint(double amt,RoundingMode mode ) {
+        DecimalFormat dqbDF2 = new DecimalFormat("#,###.00");
+        dqbDF2.setRoundingMode(mode);
+        if (amt == 0) {
+            return "0.00";
+        } else {
+            if(amt >=1 ){
+                return dqbDF2.format(amt);
+            }else{
+                DecimalFormat format = new DecimalFormat("##0.00");
+                return format.format(amt);
+            }
+        }
+    }
     /**
      * double数字格式化：千分位格式，最多保留两位小数，去做小数点后末尾的零,不四舍五入
      *

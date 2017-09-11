@@ -286,7 +286,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
                     mMaxValueLayout.setVisibility(View.GONE);
                     doesMeetBankLimit = true;
                 }
-                btConfirm.setText("余额不足，需支付" + rechargeAmountSum + "元");
+                btConfirm.setText("余额不足，需支付" + CommonUtil.amountWithTwoAfterPoint(rechargeAmountSum) + "元");
             }else{
                 mMaxValueLayout.setVisibility(View.GONE);
                 doesMeetBankLimit = true;

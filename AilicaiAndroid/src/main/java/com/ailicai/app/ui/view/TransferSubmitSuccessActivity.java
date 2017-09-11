@@ -2,6 +2,7 @@ package com.ailicai.app.ui.view;
 
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.ailicai.app.R;
@@ -44,7 +45,8 @@ public class TransferSubmitSuccessActivity extends BaseBindActivity {
         if (null != response) {
             tvProduct.setText("转让产品 " + response.getProductName() + "号");
             SpannableUtil spanUtil = new SpannableUtil(this);
-            SpannableStringBuilder builder1 = spanUtil.getSpannableString("转让价格 ", CommonUtil.formatMoneyForFinance(Double.valueOf(response.getProductPrice())), "元",
+            String transfetPrice = CommonUtil.amountWithTwoAfterPoint(Double.valueOf(TextUtils.isEmpty(response.getProductPrice()) ? "0.00":response.getProductPrice()));
+            SpannableStringBuilder builder1 = spanUtil.getSpannableString("转让价格 ", transfetPrice, "元",
                     R.style.text_13_757575, R.style.text_13_e84a01, R.style.text_13_757575);
             tvPrice.setText(builder1);
             SpannableStringBuilder builder2 = spanUtil.getSpannableString("转让申请提交后，如在", response.getEndDate(), "前未能转让成功，您将继续持有剩余的本金。",

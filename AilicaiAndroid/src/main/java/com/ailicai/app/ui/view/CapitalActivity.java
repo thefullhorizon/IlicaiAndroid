@@ -89,8 +89,8 @@ public class CapitalActivity extends BaseBindActivity implements
     View mRegularLayout;
 
     TextViewDinFont mCapitalTotal;
-    TextViewDinFont mIncome;//累计收益
     TextViewDinFont preProfit;//待收收益
+    TextViewDinFont mIncome;//累计收益
 
     View mIncomeLayout,preProfitLayout;
     HouseTreasureAdapter mAdapter;
@@ -442,13 +442,11 @@ public class CapitalActivity extends BaseBindActivity implements
     public void deployPageElements(AssetInfoResponse assetInfo) {
         principalTitle = assetInfo.getPrincipalTitle();
         principalDes = assetInfo.getPrincipalDes();
-        String total = "0.00";
-        if (!TextUtils.isEmpty(assetInfo.getTimeDepositBalance())) {
-            total = assetInfo.getTimeDepositBalance();
-        }
+        String total = TextUtils.isEmpty(assetInfo.getTimeDepositBalance()) ? "0.00" : assetInfo.getTimeDepositBalance();
         mCapitalTotal.setText(total);
-        preProfit.setText(assetInfo.getPreProfit());
-        mIncome.setText(CommonUtil.formatMoneyForFinance(assetInfo.getTotalIncome()));
+        String preProfitStr = TextUtils.isEmpty(assetInfo.getPreProfit()) ? "0.00" : assetInfo.getPreProfit();
+        preProfit.setText(CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(preProfitStr)));
+        mIncome.setText(CommonUtil.amountWithTwoAfterPoint(assetInfo.getTotalIncome()));
 
         updateRegularSection(assetInfo.getApplyNum(), assetInfo.getHoldNum(), assetInfo.getOverdueNum());
     }

@@ -64,6 +64,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 
@@ -382,7 +383,7 @@ public class RegularPayActivity extends BaseBindActivity {
                             }
                             SpannableUtil spannableUtil = new SpannableUtil(this);
                             SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
-                                    CommonUtil.amountWithTwoAfterPoint(normalProfit),
+                                    CommonUtil.amountWithTwoAfterPoint(normalProfit, RoundingMode.FLOOR),
                                     " 元 ", "+ 加息收益 ", MathUtil.saveTwoDecimal(voucherProfit), " 元",
                                     R.style.text_12_757575,
                                     R.style.text_12_e84a01,
@@ -405,7 +406,7 @@ public class RegularPayActivity extends BaseBindActivity {
                         if (!TextUtils.isEmpty(voucherValue)) {
                             SpannableUtil spannableUtil = new SpannableUtil(this);
                             SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
-                                    CommonUtil.amountWithTwoAfterPoint(normalProfit),
+                                    CommonUtil.amountWithTwoAfterPoint(normalProfit, RoundingMode.FLOOR),
                                     " 元 ", "+ 返金金额 ", voucherValue, " 元",
                                     R.style.text_12_757575,
                                     R.style.text_12_e84a01,
@@ -549,7 +550,7 @@ public class RegularPayActivity extends BaseBindActivity {
         if (money > infoResponse.getAvailableBalance()) {
             //购买金额大于钱包余额
             //走转入流程
-            BigDecimal offset = (new BigDecimal(money)).subtract(new BigDecimal(infoResponse.getAvailableBalance()));
+            BigDecimal offset = (new BigDecimal(money+"")).subtract(new BigDecimal(infoResponse.getAvailableBalance()));
             double reChangeMoney = offset.doubleValue();
             if (infoResponse.getBankLimit() != 0 && reChangeMoney > infoResponse.getBankLimit()) {
                 //转入金额大于安全卡限额

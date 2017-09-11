@@ -55,6 +55,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 
@@ -325,7 +326,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
                 double normalProfit = moneyCount * infoResponse.getOriLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
                 //无加息券
                 SpannableUtil spannableUtil = new SpannableUtil(this);
-                String profitForDisplay = CommonUtil.amountWithTwoAfterPoint(normalProfit);
+                String profitForDisplay = CommonUtil.amountWithTwoAfterPoint(normalProfit, RoundingMode.FLOOR);
                 SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", profitForDisplay, " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
                 tvProfitText.setText(builder);
             }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.ailicai.app.R;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
+import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MathUtil;
 import com.ailicai.app.common.utils.SpannableUtil;
 import com.ailicai.app.eventbus.OpenAccountFinishEvent;
@@ -25,6 +26,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -98,7 +100,7 @@ public class BuyTiYanBaoActivity extends BaseBindActivity {
         tvTiYanMoney.setText(couponTitle);
         //体验金*期限*年化利率/360保留2位小数
         double profit = couponAmount * response.getHorizon() * response.getYearInterestRate() / 360;
-        String profitText = MathUtil.saveTwoDecimal(profit);
+        String profitText = CommonUtil.amountWithTwoAfterPoint(profit, RoundingMode.FLOOR);
         SpannableUtil spanUtil = new SpannableUtil(this);
         SpannableStringBuilder builder;
         if (response.getIsOpen() == 0 && response.getExpiredDays() > 0) {

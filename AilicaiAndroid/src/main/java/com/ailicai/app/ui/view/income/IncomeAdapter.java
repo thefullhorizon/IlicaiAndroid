@@ -67,7 +67,7 @@ public class IncomeAdapter extends BaseAdapter {
         IncomeDetail detail = (IncomeDetail) getItem(position);
 
         viewHolder.date.setText(detail.getTime());
-        viewHolder.money.setText("+" + CommonUtil.formatMoneyForFinance(detail.getIncome()));
+        viewHolder.money.setText("+" + CommonUtil.amountWithTwoAfterPoint(detail.getIncome()));
         viewHolder.category.setText(detail.getIncomeTypeMemo());
 
         return convertView;

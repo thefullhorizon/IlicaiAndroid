@@ -140,7 +140,7 @@ public class IncomeDetailWalletFragment extends BaseBindFragment implements Swip
 
         if (response.getTotal() > 0) {
             mHeader.setVisibility(View.VISIBLE);
-            if (refresh) mTotalIncome.setText("+" + CommonUtil.formatMoneyForFinance(response.getTotalIncome()));
+            if (refresh) mTotalIncome.setText("+" + CommonUtil.amountWithTwoAfterPoint(response.getTotalIncome()));
         } else {
             mHeader.setVisibility(View.GONE);
             View noDataView = View.inflate(getActivity(), R.layout.list_nodataview_layout, null);
