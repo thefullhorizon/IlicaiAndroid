@@ -806,8 +806,8 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             isLast = true;
             // 最后一笔余额不足直接显示需要转入
             if (getRealPayDouble() > infoResponse.getAvailableBalance()) {
-                double offset = getRealPayDouble() - infoResponse.getAvailableBalance();
-                mConfirmBtn.setText("账户余额不足，需支付" + CommonUtil.amountWithTwoAfterPoint(offset) + "元");
+                BigDecimal offset = MathUtil.offetSetBetweenTwoBD(new BigDecimal(getRealPayDouble()+"") ,new BigDecimal(infoResponse.getAvailableBalance()+""));
+                mConfirmBtn.setText("账户余额不足，需支付" + CommonUtil.amountWithTwoAfterPoint(offset.doubleValue()) + "元");
             }
         } else {
             ManyiUtils.showKeyBoard(this, mInputPriceEdit);
