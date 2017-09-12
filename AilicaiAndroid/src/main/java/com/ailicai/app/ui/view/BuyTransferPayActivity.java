@@ -395,11 +395,11 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             tvRealPay.setVisibility(View.VISIBLE);
             //1000.20＝19000+19000x9%x30/360
             String rateString = MathUtil.subZeroAndDot(String.valueOf(infoResponse.getYearInterestRate()));
-            tvRealPay.setText(CommonUtil.amountWithTwoAfterPoint(getRealPayDouble()) + "=" + input + "+" + input + "x" + rateString + "%" + "x" + infoResponse.getTimeDiff() + "/360");
+            tvRealPay.setText(CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(getRealPayDouble()))) + "=" + input + "+" + input + "x" + rateString + "%" + "x" + infoResponse.getTimeDiff() + "/360");
             tvProfit.setVisibility(View.VISIBLE);
             // 251.89＝19000x9%x120/360 MathUtil.saveTwoDecimal
             double normalProfit = Double.parseDouble(input) * infoResponse.getOriLoanTerm() * infoResponse.getYearInterestRate() / 100 / 360;
-            tvProfit.setText(CommonUtil.amountWithTwoAfterPoint(normalProfit) + "=" + input + "x" + rateString + "%" + "x" + infoResponse.getOriLoanTerm() + "/360");
+            tvProfit.setText(CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit))) + "=" + input + "x" + rateString + "%" + "x" + infoResponse.getOriLoanTerm() + "/360");
         }
         DialogBuilder.getAlertDialog(this).setView(view).setTitle("说明").setPositiveButton("我知道了", null).show();
 //        DialogBuilder.showSimpleDialog(this, "说明", infoResponse.getActualPayTipsString(), null, null, "我知道了", null);
