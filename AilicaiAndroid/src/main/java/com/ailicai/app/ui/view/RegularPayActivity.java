@@ -383,7 +383,7 @@ public class RegularPayActivity extends BaseBindActivity {
                             SpannableUtil spannableUtil = new SpannableUtil(this);
                             SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
                                     CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit))),
-                                    " 元 ", "+ 加息收益 ", MathUtil.saveTwoDecimal(voucherProfit), " 元",
+                                    " 元 ", "+ 加息收益 ", CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(voucherProfit))), " 元",
                                     R.style.text_12_757575,
                                     R.style.text_12_e84a01,
                                     R.style.text_12_757575,
