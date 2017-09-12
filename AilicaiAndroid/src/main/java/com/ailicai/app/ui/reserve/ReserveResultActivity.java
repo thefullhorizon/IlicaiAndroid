@@ -8,9 +8,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.ailicai.app.R;
-import com.ailicai.app.common.utils.MathUtil;
+import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.eventbus.ReserveAvtivityFinishEvent;
 import com.ailicai.app.model.bean.Product;
 import com.ailicai.app.model.response.ReserveDetailResponse;
@@ -76,7 +75,7 @@ public class ReserveResultActivity extends BaseBindActivity {
             //预约进行
             llSuccess.setVisibility(View.GONE);
             llProcessing.setVisibility(View.VISIBLE);
-            tvReservePrice.setText(MathUtil.saveTwoDecimal(Double.parseDouble(amount)) + "元");
+            tvReservePrice.setText(CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(amount)) + "元");
             tvReserveProduct.setText(product.getProductName());
             tvLcqx.setText(term + "天内");
             tvNhll.setText(product.getYearInterestRateStr());

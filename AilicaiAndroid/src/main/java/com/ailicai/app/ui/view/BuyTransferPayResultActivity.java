@@ -20,8 +20,8 @@ import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.share.ShareUtil;
+import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.DeviceUtil;
-import com.ailicai.app.common.utils.MathUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.UIUtils;
@@ -222,7 +222,7 @@ public class BuyTransferPayResultActivity extends BaseBindActivity {
         ll_result_success.setVisibility(View.GONE);
         fl_result_not_success.setVisibility(View.GONE);
         tvProductName.setText(response.getProductName());
-        tvMoneyCount.setText(MathUtil.saveTwoDecimalHalfUp(response.getAmount()) + "元");
+        tvMoneyCount.setText(CommonUtil.amountWithTwoAfterPoint(response.getAmount()) + "元");
         tvPrice.setText(response.getTransferPrice() + "元");
         tvRestPeriod.setText(response.getHorizon());
         tvInterestAmount.setText(response.getYearInterestRate());
