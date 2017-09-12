@@ -46,6 +46,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.math.RoundingMode;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -238,8 +239,8 @@ public class TransferPayActivity extends BaseBindActivity {
                 }
                 String transferPriceStr = MathUtil.saveTwoDecimal(transferPrice);
                 String transferFeeStr = MathUtil.saveTwoDecimal(transferFee);
-                tvTicketText.setText(CommonUtil.amountWithTwoAfterPoint(Double.valueOf(transferPrice)) + "元");
-                tvFeeText.setText(CommonUtil.amountWithTwoAfterPoint(Double.valueOf(transferFee)) + "元");
+                tvTicketText.setText(CommonUtil.amountWithTwoAfterPoint(Double.valueOf(transferPrice), RoundingMode.FLOOR) + "元");
+                tvFeeText.setText(CommonUtil.amountWithTwoAfterPoint(Double.valueOf(transferFee),RoundingMode.FLOOR) + "元");
                 SpannableUtil spannableUtil = new SpannableUtil(this);
                 String inAccount = MathUtil.saveTwoDecimal(Double.valueOf(transferPriceStr) - Double.valueOf(transferFeeStr));
                 SpannableStringBuilder builder = spannableUtil.getSpannableString("预计到账金额: ", CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(inAccount)), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
@@ -466,8 +467,7 @@ public class TransferPayActivity extends BaseBindActivity {
         rlMyAccount.setVisibility(View.VISIBLE);
         if (null != infoResponse) {
             double profit = moneyCount * infoResponse.getYearInterestRate() * infoResponse.getHoldDays() / 360;
-            mRegularBalance.setText("已产生利息 " + CommonUtil.amountWithTwoAfterPoint(profit) + " 元");
-            mTvAllBuy.setVisibility(View.GONE);
+            mRegularBalance.setText("已产生利息 " + CommonUtil.amountWithTwoAfterPoint(profit,RoundingMode.FLOOR) + " 元");
         }
     }
 

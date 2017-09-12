@@ -375,7 +375,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
             ToastUtil.show("请输入正确的金额");
             return false;
         } else if (!accountCheckBox.isChecked() && infoResponse.getWithdrawBalance() > 0 && Double.parseDouble(money) > infoResponse.getWithdrawBalance()) {
-            ToastUtil.show("您最多可转出可用余额 " + CommonUtil.formatMoneyForFinance(infoResponse.getWithdrawBalance()) + " 元");
+            ToastUtil.show("您最多可转出可用余额 " + CommonUtil.amountWithTwoAfterPoint(infoResponse.getWithdrawBalance()) + " 元");
             return false;
         }
         return true;

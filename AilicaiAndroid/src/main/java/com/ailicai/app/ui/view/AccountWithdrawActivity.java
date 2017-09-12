@@ -320,7 +320,7 @@ public class AccountWithdrawActivity extends BaseBindActivity {
             ToastUtil.show("请输入正确的金额");
             return false;
         } else if (infoResponse.getWithdrawBalance() > 0 && Double.parseDouble(money) > infoResponse.getWithdrawBalance()) {
-            ToastUtil.show("您最多可转出账户可用" + CommonUtil.formatMoneyForFinance(infoResponse.getWithdrawBalance()) + "元");
+            ToastUtil.show("您最多可转出账户可用" + CommonUtil.amountWithTwoAfterPoint(infoResponse.getWithdrawBalance()) + "元");
             return false;
         }
         return true;

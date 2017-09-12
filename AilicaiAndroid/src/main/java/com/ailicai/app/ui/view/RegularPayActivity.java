@@ -64,6 +64,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 
@@ -382,7 +383,7 @@ public class RegularPayActivity extends BaseBindActivity {
                             }
                             SpannableUtil spannableUtil = new SpannableUtil(this);
                             SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
-                                    CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit))),
+                                    CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit)), RoundingMode.FLOOR),
                                     " 元 ", "+ 加息收益 ", MathUtil.saveTwoDecimal(voucherProfit), " 元",
                                     R.style.text_12_757575,
                                     R.style.text_12_e84a01,
@@ -394,7 +395,7 @@ public class RegularPayActivity extends BaseBindActivity {
                         } else {
                             //无加息券
                             SpannableUtil spannableUtil = new SpannableUtil(this);
-                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit))), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit)), RoundingMode.FLOOR), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
                             tvProfitText.setText(builder);
                         }
                     }
@@ -405,7 +406,7 @@ public class RegularPayActivity extends BaseBindActivity {
                         if (!TextUtils.isEmpty(voucherValue)) {
                             SpannableUtil spannableUtil = new SpannableUtil(this);
                             SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ",
-                                    CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit))),
+                                    CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit)), RoundingMode.FLOOR),
                                     " 元 ", "+ 返金金额 ", voucherValue, " 元",
                                     R.style.text_12_757575,
                                     R.style.text_12_e84a01,
@@ -417,7 +418,7 @@ public class RegularPayActivity extends BaseBindActivity {
                         } else {
                             //无返金券
                             SpannableUtil spannableUtil = new SpannableUtil(this);
-                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit))), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                            SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit)), RoundingMode.FLOOR), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
                             tvProfitText.setText(builder);
                         }
                     }
@@ -425,7 +426,7 @@ public class RegularPayActivity extends BaseBindActivity {
 
                 default://默认根据用户的输入计算收益
                     SpannableUtil spannableUtil = new SpannableUtil(this);
-                    SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit))), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
+                    SpannableStringBuilder builder = spannableUtil.getSpannableString("预计收益 ", CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(normalProfit)), RoundingMode.FLOOR), " 元", R.style.text_12_757575, R.style.text_12_e84a01, R.style.text_12_757575);
                     tvProfitText.setText(builder);
                     break;
             }
