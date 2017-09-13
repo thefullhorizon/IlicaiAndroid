@@ -38,6 +38,7 @@ import com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListView;
 import com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListViewCallbacks;
 import com.ailicai.app.widget.bottomrefreshlistview.BottomRefreshListViewScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
+import com.huoqiu.framework.exception.RestException;
 
 import java.util.List;
 import java.util.Map;
@@ -372,14 +373,9 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
             rewardRecordListView.setAdapter(rewardRecordListAdapter);
         }
 
-        if (rewardRecordListTemp.size() < pageSize && rewardRecordListAdapter.getCount() != 0) {
+        if (rewardRecordErrorCode == RestException.REWAR_DRECORD_ERROR_CODE && rewardRecordListAdapter.getCount() != 0) {
             rewardRecordListView.onAllLoaded();
-            if (rewardRecordErrorCode == 2014) {
-                rewardRecordListView.setPromptText("仅展示最近90天奖励记录");
-            } else {
-                rewardRecordListView.setPromptText("");
-            }
-
+            rewardRecordListView.setPromptText("仅展示最近90天奖励记录");
             if (rewardRecordListAdapter.getCount() == 1) {
                 rewardRecordListView.setPromptText("");
             }
@@ -440,13 +436,9 @@ public class InviteRewardsActivity extends BaseBindActivity implements BottomRef
                 }
                 break;
             case R.id.reward_record_rb:
-                if (rewardRecordListCallBack.size() < pageSize) {
+                if (rewardRecordErrorCode == RestException.REWAR_DRECORD_ERROR_CODE) {
                     rewardRecordListView.onAllLoaded();
-                    if (rewardRecordErrorCode == 2014) {
-                        rewardRecordListView.setPromptText("仅展示最近90天奖励记录");
-                    } else {
-                        rewardRecordListView.setPromptText("");
-                    }
+                    rewardRecordListView.setPromptText("仅展示最近90天奖励记录");
                     if (rewardRecordListAdapter.getCount() == 1) {
                         rewardRecordListView.setPromptText("");
                     }

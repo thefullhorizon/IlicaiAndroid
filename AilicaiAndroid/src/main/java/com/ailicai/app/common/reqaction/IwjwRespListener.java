@@ -146,6 +146,7 @@ public abstract class IwjwRespListener<T> extends JsonHttpResponseListener<T> im
                 case RestException.LOGIN_RECOMMEND_AGENT_YOURS:
                 case RestException.LOGIN_RECOMMEND_AGENT_NOREGISTER:
                 case RestException.LOGIN_RECOMMEND_AGENT_SINGLE:
+                case RestException.REWAR_DRECORD_ERROR_CODE:
                     LogUtil.d("IwjwRespListener", "请求接口" + mUrl);
                     return true;
                 case RestException.VERSION_UPDATE_STRONG:

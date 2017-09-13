@@ -34,6 +34,8 @@ public class RestException extends RuntimeException {
     public static final int LOGIN_RECOMMEND_AGENT_YOURS = 200050;
     public static final int LOGIN_RECOMMEND_AGENT_NOREGISTER = 200051;
     public static final int LOGIN_RECOMMEND_AGENT_SINGLE = 200052;
+    //奖励记录
+    public static final int REWAR_DRECORD_ERROR_CODE = 2104;
     //强制更新
     public static final int VERSION_UPDATE_STRONG = 999999;
     //系统维护
