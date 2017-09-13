@@ -20,7 +20,7 @@
 
     <include
         android:id="@+id/openaccountStepContainer"
-        layout="@layout/layout_open_account_step01"
+        layout="@layout/layout_open_account_step_for_native"
         android:visibility="gone" />
 
     <LinearLayout

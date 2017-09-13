@@ -62,7 +62,7 @@
                         android:id="@+id/tvCurrentLevel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginLeft="6dp"
                         android:background="@drawable/solid_4f5869_radius_360dp"
                         android:gravity="center_vertical"
                         android:paddingBottom="1dp"

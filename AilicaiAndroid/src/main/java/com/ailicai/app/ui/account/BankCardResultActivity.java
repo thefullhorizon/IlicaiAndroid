@@ -67,6 +67,8 @@ public class BankCardResultActivity extends BaseBindActivity {
      **/
     @Bind(R.id.openaccountStepContainer)
     View openaccountStepContainer;
+    @Bind(R.id.llOpenAccountBonusContainer)
+    LinearLayout llOpenAccountBonusContainer;
     @Bind(R.id.tfStep01)
     TextViewTF tfStep01;
     @Bind(R.id.tfStep02)
@@ -233,17 +235,18 @@ public class BankCardResultActivity extends BaseBindActivity {
 
         lineStep01Whith02.setBackgroundColor(Color.parseColor("#f75a14"));
 
-        tfStep02.setTextAppearance(this, R.style.textview_openaccount_current_step_center);
-        tfStep02.setText(getResources().getString(R.string.open_account_step02));
+        tfStep02.setTextAppearance(this, R.style.textview_openaccount_current_step_center_for_native);
+        tfStep02.setText(getResources().getString(R.string.open_account_step_for_native));
         tfStep03.setTextAppearance(this, R.style.textview_openaccount_not_reach_step_right);
         int processNameLength = AccountInfo.getOpenAccountLastProcessName().length();
         tfStep03.setPadding(0, 0, UIUtils.dipToPx(this, (processNameLength * 14 / 2) - 4), 0);
 
         lineStep02Whith03.setBackgroundColor(Color.parseColor("#e6e6e6"));
         if (!TextUtils.isEmpty(AccountInfo.getOpenAccountActivityMemo())) {
-            tvOpenAccountBonus.setText("获得" + AccountInfo.getOpenAccountActivityMemo());
+            llOpenAccountBonusContainer.setVisibility(View.VISIBLE);
+            tvOpenAccountBonus.setText(AccountInfo.getOpenAccountLastProcessName()+"，即可获得" + AccountInfo.getOpenAccountActivityMemo());
         } else {
-            tvOpenAccountBonus.setText(AccountInfo.getOpenAccountActivityMemo());
+            llOpenAccountBonusContainer.setVisibility(View.GONE);
         }
         textViewStep01.setTextColor(Color.parseColor("#757575"));
         textViewStep02.setTextColor(Color.parseColor("#f75a14"));

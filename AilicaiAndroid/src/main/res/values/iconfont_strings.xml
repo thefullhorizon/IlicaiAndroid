@@ -215,6 +215,7 @@
     <string name="open_account_step01">&#xe9f5;</string>
     <string name="open_account_step02">&#xe9f6;</string>
     <string name="open_account_step_not_current">&#xe9f8;</string>
+    <string name="open_account_step_for_native">&#xea41;</string>
 
     <!--我的页面相关-->
     <string name="asset_bankcard">&#xe9fd;</string>
