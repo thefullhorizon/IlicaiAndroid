@@ -99,6 +99,7 @@ public class BuyTiYanBaoActivity extends BaseBindActivity {
         tvTiYanMoney.setText(couponTitle);
         //体验金*期限*年化利率/360保留2位小数
         double profit = couponAmount * response.getHorizon() * response.getYearInterestRate() / 360;
+        //amountWithTwoAfterPoint() 用来加千分位，saveTwoDecimal()用来截串
         String profitText = CommonUtil.amountWithTwoAfterPoint(Double.parseDouble(MathUtil.saveTwoDecimal(profit)));
         SpannableUtil spanUtil = new SpannableUtil(this);
         SpannableStringBuilder builder;

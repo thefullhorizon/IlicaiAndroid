@@ -129,7 +129,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
     private void initView() {
         if (!TextUtils.isEmpty(reservePwd)) tvKl.setVisibility(View.VISIBLE);
         tvParamsHint.setText(product.getProductName() + "  " + yearRateZone + "  " + term + "天内");
-        tvBalance.setText("可用余额 " + CommonUtil.formatMoneyForFinance(reserveResponse.getAvailableBalance()) + " 元");//账户可用余额
+        tvBalance.setText("可用余额 " + CommonUtil.amountWithTwoAfterPoint(reserveResponse.getAvailableBalance()) + " 元");//账户可用余额
         tvMoneyLable.setText(reserveResponse.getReserveAmtMemo());
         etMoney.setInputType(InputType.TYPE_CLASS_NUMBER);
         etMoney.addTextChangedListener(mTextWatcher);

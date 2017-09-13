@@ -8,7 +8,7 @@
         android:type="linear"
         android:angle="0"
         android:startColor="#25af35"
-        android:endColor="#00b38b"/>
+        android:endColor="#00b375"/>
 
     <stroke
         android:width="0.5dp"

@@ -445,8 +445,7 @@ public class CommonUtil {
      * @return
      */
     public static String amountWithTwoAfterPoint(double amt) {
-        DecimalFormat dqbDF2 = new DecimalFormat("#,###.00");
-        dqbDF2.setRoundingMode(RoundingMode.DOWN);
+        DecimalFormat dqbDF2 = new DecimalFormat("#,##0.00");
         if (amt == 0) {
             return "0.00";
         } else {
@@ -459,16 +458,8 @@ public class CommonUtil {
         }
     }
 
-    /**
-     * 千分位展示+小数点两位+截断方式取值
-      * @param amt
-     * @param mode
-     * @return
-     */
-    public static String amountWithTwoAfterPoint(double amt,RoundingMode mode ) {
-        DecimalFormat dqbDF2 = new DecimalFormat("#,###.00");
-        dqbDF2.setMaximumFractionDigits(2);
-        dqbDF2.setGroupingSize(0);
+    public static String amountWithTwoAfterPoint(double amt,RoundingMode mode) {
+        DecimalFormat dqbDF2 = new DecimalFormat("#,##0.00");
         dqbDF2.setRoundingMode(mode);
         if (amt == 0) {
             return "0.00";
@@ -481,6 +472,7 @@ public class CommonUtil {
             }
         }
     }
+
     /**
      * double数字格式化：千分位格式，最多保留两位小数，去做小数点后末尾的零,不四舍五入
      *

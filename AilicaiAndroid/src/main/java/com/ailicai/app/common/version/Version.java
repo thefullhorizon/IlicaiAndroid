@@ -199,6 +199,7 @@ public class Version implements DownloadListener {
                 alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
+                        alertDialog = null;
                         //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
                         MyApplication.getAppPresenter().setUpDialog(false);
                     }
@@ -230,6 +231,7 @@ public class Version implements DownloadListener {
                 alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
+                        alertDialog = null;
                         //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
                         MyApplication.getAppPresenter().setUpDialog(false);
                     }
