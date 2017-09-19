@@ -135,5 +135,16 @@ public class MinePresenter {
         }
     }
 
+    /**
+     * 我的贷款-贷总管
+     */
+    public void goMyLoan(Context context) {
+        if (!CheckDoubleClick.isFastDoubleClick()) {
+            if (null != context) {
+                MyIntent.startActivity(context, LoanWebViewActivity.class, null);
+            }
+        }
+    }
+
 
 }

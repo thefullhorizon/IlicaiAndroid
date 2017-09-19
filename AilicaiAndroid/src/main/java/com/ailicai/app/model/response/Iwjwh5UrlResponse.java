@@ -8,6 +8,16 @@ import com.huoqiu.framework.rest.Response;
 
 public class Iwjwh5UrlResponse extends Response {
 
+    private String bankCardUrl; //银行卡
+    private String cardDescribeUrl = ""; //卡券使用说明
+    private String rebateUrl = ""; // 返利券详情url
+
+    private String brandShareUrl = ""; //分享链接，由客户端判断是否使用，为空时表示分享无活动
+    private String h5AccountUrl = ""; // 开户h5地址
+    private String commerceRevealUrl = ""; //平台工商信息披露Url
+    private String operationReportUrl = ""; //运营信息披露Url
+    private String dzgEntryUrl = ""; //贷总管入口Url
+
     private String helpCenterUrl = ""; // 帮助中心URL
     private String loanHelpUrl = ""; // 贷款帮助URL
     private String safecardExplainUrl = ""; // 安全卡说明页URL
@@ -37,6 +47,70 @@ public class Iwjwh5UrlResponse extends Response {
     private String safeBankSupport = "";//安全卡限额列表地址
     private String autoBidNoteH5Url          = ""; // 自动投标说明Url
     private String memberLevleH5Url       = ""; // 会员等级说明url
+
+    public String getBankCardUrl() {
+        return bankCardUrl;
+    }
+
+    public void setBankCardUrl(String bankCardUrl) {
+        this.bankCardUrl = bankCardUrl;
+    }
+
+    public String getCardDescribeUrl() {
+        return cardDescribeUrl;
+    }
+
+    public void setCardDescribeUrl(String cardDescribeUrl) {
+        this.cardDescribeUrl = cardDescribeUrl;
+    }
+
+    public String getRebateUrl() {
+        return rebateUrl;
+    }
+
+    public void setRebateUrl(String rebateUrl) {
+        this.rebateUrl = rebateUrl;
+    }
+
+    public String getBrandShareUrl() {
+        return brandShareUrl;
+    }
+
+    public void setBrandShareUrl(String brandShareUrl) {
+        this.brandShareUrl = brandShareUrl;
+    }
+
+    public String getH5AccountUrl() {
+        return h5AccountUrl;
+    }
+
+    public void setH5AccountUrl(String h5AccountUrl) {
+        this.h5AccountUrl = h5AccountUrl;
+    }
+
+    public String getCommerceRevealUrl() {
+        return commerceRevealUrl;
+    }
+
+    public void setCommerceRevealUrl(String commerceRevealUrl) {
+        this.commerceRevealUrl = commerceRevealUrl;
+    }
+
+    public String getOperationReportUrl() {
+        return operationReportUrl;
+    }
+
+    public void setOperationReportUrl(String operationReportUrl) {
+        this.operationReportUrl = operationReportUrl;
+    }
+
+    public String getDzgEntryUrl() {
+        return dzgEntryUrl;
+    }
+
+    public void setDzgEntryUrl(String dzgEntryUrl) {
+        this.dzgEntryUrl = dzgEntryUrl;
+    }
 
     public String getHelpCenterUrl() {
         return helpCenterUrl;

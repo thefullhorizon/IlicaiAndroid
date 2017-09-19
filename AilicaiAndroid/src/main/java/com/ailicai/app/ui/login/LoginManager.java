@@ -552,6 +552,11 @@ public class LoginManager {
          */
         ACTION_INDEX_HUOQIBAO_CLICK(6),
 
+        /**
+         * 我的贷款
+         */
+        ACTION_INDEX_MY_LOAN(7),
+
 
         ACTION_INDEX_NORMAL(-1);
 

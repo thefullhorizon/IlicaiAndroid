@@ -295,6 +295,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_HUOQIBAO_CLICK.getActionIndex())) {
             //活期宝
             mPresenter.goHQB(getWRActivity());
+        } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_MY_LOAN.getActionIndex())) {
+            //我的贷款-贷总管
+            mPresenter.goMyLoan(getWRActivity());
         } else if (action.isActionIndex(LoginManager.LoginAction.ACTION_INDEX_AUTO_TPUZI_CLICK.getActionIndex())) {
             //自动投资
             mPresenter.goAutoTz(getWRActivity(), assetInfoNewResponse);
@@ -501,6 +504,16 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     @OnClick(R.id.about_us)
     void goAboutUs() {
         MyIntent.startActivity(getWRActivity(), AboutUsActivity.class, null);
+    }
+
+    @OnClick(R.id.my_loan)
+    void goMyLoan() {
+        if (UserInfo.getInstance().getLoginState() == UserInfo.NOT_LOGIN) {
+            loginAction = LoginManager.LoginAction.ACTION_INDEX_MY_LOAN;
+            LoginManager.goLogin(getActivity(), LoginManager.LOGIN_FROM_MINE);
+        } else {
+            jumpToMenuTarget(LoginManager.LoginAction.ACTION_INDEX_MY_LOAN);
+        }
     }
 
     @OnClick(R.id.userphoto_layout)

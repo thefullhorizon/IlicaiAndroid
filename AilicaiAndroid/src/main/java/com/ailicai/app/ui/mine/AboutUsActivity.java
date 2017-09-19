@@ -126,7 +126,7 @@ public class AboutUsActivity extends BaseBindActivity implements VersionInterfac
         Map<String, String> dataMap = ObjectUtil.newHashMap();
         //dataMap.put(WebViewActivity.TITLE,  "");
         //dataMap.put(WebViewActivity.NEED_REFRESH, "0");
-        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getAboutAiLiCaiUrl());
+        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getOperationReportUrl());
         dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
         dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
         MyIntent.startActivity(mContext, WebViewActivity.class, dataMap);
@@ -138,7 +138,7 @@ public class AboutUsActivity extends BaseBindActivity implements VersionInterfac
         Map<String, String> dataMap = ObjectUtil.newHashMap();
         //dataMap.put(WebViewActivity.TITLE,  "");
         //dataMap.put(WebViewActivity.NEED_REFRESH, "0");
-        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getAboutAiLiCaiUrl());
+        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getCommerceRevealUrl());
         dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
         dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
         MyIntent.startActivity(mContext, WebViewActivity.class, dataMap);
