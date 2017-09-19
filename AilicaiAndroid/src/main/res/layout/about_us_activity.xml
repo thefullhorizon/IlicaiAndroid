@@ -74,6 +74,69 @@
             android:layout_marginLeft="16dp" />
 
         <RelativeLayout
+            android:id="@+id/platform_introduction"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+
+            <TextView
+                style="@style/text_16_212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="平台介绍" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/operation_report"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/white_to_pressed_selector"
+            android:clickable="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+
+            <TextView
+                style="@style/text_16_212121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="运营报告" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/account_arrow_selector" />
+
+        </RelativeLayout>
+        <View
+            style="@style/cell_divider_hor"
+            android:layout_marginLeft="16dp" />
+
+        <RelativeLayout
             android:id="@+id/contact_us"
             android:layout_width="match_parent"
             android:layout_height="45dip"

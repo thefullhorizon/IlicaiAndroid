@@ -120,6 +120,30 @@ public class AboutUsActivity extends BaseBindActivity implements VersionInterfac
         MyIntent.startActivity(mContext, ContactUsActivity.class, null);
     }
 
+    @OnClick(R.id.operation_report)
+    void onClickOperationReport() {
+        //TODO:运营报告
+        Map<String, String> dataMap = ObjectUtil.newHashMap();
+        //dataMap.put(WebViewActivity.TITLE,  "");
+        //dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getAboutAiLiCaiUrl());
+        dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+        dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
+        MyIntent.startActivity(mContext, WebViewActivity.class, dataMap);
+    }
+
+    @OnClick(R.id.platform_introduction)
+    void onClickPlatformIntroduction() {
+        //TODO:平台介绍
+        Map<String, String> dataMap = ObjectUtil.newHashMap();
+        //dataMap.put(WebViewActivity.TITLE,  "");
+        //dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+        dataMap.put(BaseWebViewActivity.URL, SupportUrl.getSupportUrlsResponse().getAboutAiLiCaiUrl());
+        dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+        dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
+        MyIntent.startActivity(mContext, WebViewActivity.class, dataMap);
+    }
+
     @OnClick(R.id.understand_ailicai)
     void goUnderstandPage() {
         Map<String, String> dataMap = ObjectUtil.newHashMap();
