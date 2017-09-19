@@ -166,8 +166,9 @@ public class ExpiredTiyanbaoListActivity extends BaseBindActivity implements
             map.put("name","ljsy");
             map.put("action","click");
             EventLog.upEventLog("806", JSON.toJSONString(map));
-            Intent intent = new Intent(this, IncomeDetailActivity.class);
-            intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.TRY);
+            Intent intent = new Intent(this, IncomeRecordsActivity.class);
+            intent.putExtra(IncomeRecordsActivity.TYPE_INCOME_LEVEL_ONE, IncomeRecordsActivity.NETLOAN);
+            intent.putExtra(IncomeRecordsActivity.TYPE_INCOME_LEVEL_TWO, IncomeRecordsActivity.NETLOAN_EXPERIENCE);
             startActivity(intent);
         }
 

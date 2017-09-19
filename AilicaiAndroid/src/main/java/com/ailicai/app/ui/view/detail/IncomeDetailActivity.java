@@ -30,9 +30,9 @@ import butterknife.OnClick;
 public class IncomeDetailActivity extends BaseBindActivity implements CustomPopWindowInterface, IWTopTitleView.TopTitleOnClickListener {
 
     public static final String TYPE = "type";
-    public static final int WALLET = 0;
-    public static final int REGULAR = 1;
-    public static final int TRY = 2;
+    public static final int WALLET = 0;//活期宝
+    public static final int REGULAR = 1;//网贷资产
+    public static final int TRY = 2;//体验宝
 
     @Bind(R.id.llTitle)
     LinearLayout llTitle;
@@ -103,7 +103,7 @@ public class IncomeDetailActivity extends BaseBindActivity implements CustomPopW
                 case TRY:
                     fragment = new IncomeDetailParentFragment();
                     Bundle bundle2 = new Bundle();
-                    bundle2.putString(IncomeDetailParentFragment.TAG_TYPE, typeValue == REGULAR ? IncomeDetailParentFragment.TAG_REGULAR : IncomeDetailParentFragment.TAG_TRY);
+//                    bundle2.putString(IncomeDetailParentFragment.TAG_TYPE, typeValue == REGULAR ? IncomeDetailParentFragment.TAG_REGULAR : IncomeDetailParentFragment.TAG_TRY);
                     fragment.setArguments(bundle2);
                     break;
                 default:

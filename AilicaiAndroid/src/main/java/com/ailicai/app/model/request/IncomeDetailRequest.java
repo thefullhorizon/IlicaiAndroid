@@ -9,7 +9,7 @@ import com.ailicai.app.common.reqaction.RequestPath;
 @RequestPath("/ailicai/incomeDetail.rest")
 public class IncomeDetailRequest extends Request {
     private long userId; //用户Id,通过请求Header里的uticket获取
-    private int depositType = 1; // 存款类型 1：钱包 2：房产宝 3：体验宝
+    private int depositType = 1; // 0：全部(网贷+活期宝) 1：活期宝 2：定期宝 3体验宝
     private int pageSize = 20; // 每次加载20条数据
     private int offSet = 0; // 数据偏移量
 

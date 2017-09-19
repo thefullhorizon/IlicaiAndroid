@@ -24,7 +24,7 @@ import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.paypassword.PayPwdManageActivity;
-import com.ailicai.app.ui.view.detail.IncomeDetailActivity;
+import com.ailicai.app.ui.view.detail.IncomeRecordsActivity;
 import com.ailicai.app.ui.view.reserveredrecord.ReserveRecordListActivity;
 import com.ailicai.app.ui.view.transaction.TransactionListActivity;
 import com.ailicai.app.widget.CustomScrollView;
@@ -221,8 +221,8 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
 
     @OnClick(R.id.wallet_frozen_layout)
     void walletFrozenRecoard() {
-        Intent intent = new Intent(this, IncomeDetailActivity.class);
-        intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.WALLET);
+        Intent intent = new Intent(this, IncomeRecordsActivity.class);
+        intent.putExtra(IncomeRecordsActivity.TYPE_INCOME_LEVEL_ONE, IncomeRecordsActivity.WALLET);
         startActivity(intent);
     }
 
@@ -243,8 +243,8 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
                     break;
                 }
                 case REQUEST_FOR_PROCESS_INCOME_YESTER: {
-                    Intent intent = new Intent(this, IncomeDetailActivity.class);
-                    intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.WALLET);
+                    Intent intent = new Intent(this, IncomeRecordsActivity.class);
+                    intent.putExtra(IncomeRecordsActivity.TYPE_INCOME_LEVEL_ONE, IncomeRecordsActivity.WALLET);
                     startActivity(intent);
                     break;
                 }

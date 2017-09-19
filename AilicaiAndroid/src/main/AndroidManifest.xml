@@ -503,6 +503,12 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
+            android:name=".ui.view.detail.IncomeRecordsActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
             android:name=".ui.asset.CapitalListProductDetailActivity"
             android:configChanges="orientation|keyboardHidden|locale"
             android:screenOrientation="portrait"

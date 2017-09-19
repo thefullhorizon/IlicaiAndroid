@@ -49,7 +49,7 @@ import com.ailicai.app.ui.view.AccountTopupActivity;
 import com.ailicai.app.ui.view.AccountWithdrawActivity;
 import com.ailicai.app.ui.view.AssetInViewOfBirdActivity;
 import com.ailicai.app.ui.view.CapitalActivity;
-import com.ailicai.app.ui.view.detail.IncomeDetailActivity;
+import com.ailicai.app.ui.view.detail.IncomeRecordsActivity;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -730,12 +730,14 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     //累计收益
     @OnClick(R.id.total_money)
     void goIncomeDetailByTotal() {
+
         if (!NoSetSafeCardHint.isOpenAccount()) {
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else {
-            Intent intent = new Intent(getWRActivity(), IncomeDetailActivity.class);
-            intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.REGULAR);
+            Intent intent = new Intent(getWRActivity(), IncomeRecordsActivity.class);
+            intent.putExtra(IncomeRecordsActivity.TYPE_INCOME_LEVEL_ONE, IncomeRecordsActivity.NETLOAN);
+            intent.putExtra(IncomeRecordsActivity.TYPE_INCOME_LEVEL_TWO, IncomeRecordsActivity.NETLOAN_REGULAR);
             startActivity(intent);
         }
     }
@@ -747,8 +749,9 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else {
-            Intent intent = new Intent(getWRActivity(), IncomeDetailActivity.class);
-            intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.REGULAR);
+            Intent intent = new Intent(getWRActivity(), IncomeRecordsActivity.class);
+            intent.putExtra(IncomeRecordsActivity.TYPE_INCOME_LEVEL_ONE, IncomeRecordsActivity.NETLOAN);
+            intent.putExtra(IncomeRecordsActivity.TYPE_INCOME_LEVEL_TWO, IncomeRecordsActivity.NETLOAN_REGULAR);
             startActivity(intent);
         }
     }

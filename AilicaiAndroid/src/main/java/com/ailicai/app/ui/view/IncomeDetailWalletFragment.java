@@ -25,7 +25,6 @@ import butterknife.Bind;
  */
 public class IncomeDetailWalletFragment extends BaseBindFragment implements SwipeRefreshLayout.OnRefreshListener, BottomRefreshListView.OnLoadMoreListener{
 
-
     @Bind(R.id.income_list)
     BottomRefreshListView mListView;
 
@@ -38,6 +37,12 @@ public class IncomeDetailWalletFragment extends BaseBindFragment implements Swip
 
     IncomeAdapter mAdapter;
 
+    public static final String INCOME_TYPE = "income_type";
+    public static final int INCOME_ALL = 0;
+    public static final int INCOME_CURRENT_TREASURE = 2;
+
+    // 这里的数字是相对于网络请求接口，不要跟UI的上的位置搞混
+    private int position = 0;
 
     /**
      * 请求偏移量.
@@ -79,7 +84,12 @@ public class IncomeDetailWalletFragment extends BaseBindFragment implements Swip
         mAdapter = new IncomeAdapter(getActivity());
         mListView.setAdapter(mAdapter);
 
-
+        //0：全部(网贷+活期宝) 1：活期宝 2：定期宝 3体验宝
+        if (getArguments().getInt(INCOME_TYPE) == INCOME_ALL) {
+            position = 0;
+        } else if (getArguments().getInt(INCOME_TYPE) == INCOME_CURRENT_TREASURE) {
+            position = 1;
+        }
         onRefresh();
     }
 
@@ -118,7 +128,7 @@ public class IncomeDetailWalletFragment extends BaseBindFragment implements Swip
         final long time = session;
 
         IncomeDetailRequest request = new IncomeDetailRequest();
-        request.setDepositType(1);
+        request.setDepositType(position);
         request.setOffSet(offset);
         request.setPageSize(20);
         ServiceSender.exec(this, request, new IncomeCallback(firstLoad, refresh, time));

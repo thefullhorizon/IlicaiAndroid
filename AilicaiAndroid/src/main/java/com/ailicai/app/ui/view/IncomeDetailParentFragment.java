@@ -24,8 +24,12 @@ import butterknife.Bind;
 public class IncomeDetailParentFragment extends BaseBindFragment {
 
     public static final String TAG_TYPE = "tag_type";
-    public static final String TAG_REGULAR = "tag_regular";
-    public static final String TAG_TRY = "tag_try";
+
+//    public static final String TAG_REGULAR = "tag_regular";
+//    public static final String TAG_TRY = "tag_try";
+
+    public static final int TAG_NET_LOAN_REGULAR = 10;
+    public static final int TAG_NET_LOAN_TRY = 11;
 
     @Bind(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTabLayout;
@@ -44,13 +48,13 @@ public class IncomeDetailParentFragment extends BaseBindFragment {
         super.init(savedInstanceState);
 
         inittabView();
-        mViewPager.setCurrentItem(getArguments().getString(TAG_TYPE).equals(TAG_REGULAR) ? 0 : 1);
+        mViewPager.setCurrentItem(getArguments().getInt(TAG_TYPE,TAG_NET_LOAN_REGULAR) == TAG_NET_LOAN_REGULAR ? 0 : 1);
     }
 
     public void inittabView() {
         mSlidingTabLayout.setCustomTabView(R.layout.tab_indicator2, android.R.id.text1);
         Resources res = getResources();
-        mSlidingTabLayout.setSelectedIndicatorColors(res.getColor(R.color.main_red_color));// 设置下面的线颜色
+        mSlidingTabLayout.setSelectedIndicatorColors(res.getColor(R.color.white));// 设置下面的线颜色
         mSlidingTabLayout.setDistributeEvenly(true);
         iniTab();
     }
