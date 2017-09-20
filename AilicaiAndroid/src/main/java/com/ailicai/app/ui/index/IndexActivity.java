@@ -23,6 +23,7 @@ import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MyPreference;
+import com.ailicai.app.common.utils.OpenScreenPopUtils;
 import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.common.utils.UIUtils;
@@ -30,6 +31,7 @@ import com.ailicai.app.common.version.VersionInterface;
 import com.ailicai.app.common.version.VersionUtil;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.MineShowRedPointEvent;
+import com.ailicai.app.eventbus.ShowScreenPopEvent;
 import com.ailicai.app.model.request.HtmlUrlRequest;
 import com.ailicai.app.model.response.Iwjwh5UrlResponse;
 import com.ailicai.app.receiver.ScreenStatusReceiver;
@@ -252,11 +254,26 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
     @Override
     public void checkFailed(String message) {
         //检查没通过
+
+        //如果没有弹出更新框 则通知首页弹框
+        getPopScreenData();
     }
 
     @Override
     public void checkLatest(String version) {
         //检查通过并没有更新
+
+        //如果没有弹出更新框 则通知首页弹框
+        getPopScreenData();
+    }
+
+    @Override
+    public void popFailed(){
+        getPopScreenData();
+    }
+
+    private void getPopScreenData(){
+        OpenScreenPopUtils.getOpenScreenSupport(this);
     }
 
     @Override

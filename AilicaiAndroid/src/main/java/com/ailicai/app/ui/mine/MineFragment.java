@@ -33,12 +33,15 @@ import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.MineShowRedPointEvent;
 import com.ailicai.app.eventbus.NewNotifMsgEvent;
 import com.ailicai.app.eventbus.RefreshPushEvent;
+import com.ailicai.app.eventbus.ShowScreenPopEvent;
+import com.ailicai.app.model.bean.OpenScreenPopModel;
 import com.ailicai.app.model.request.AssetInfoNewRequest;
 import com.ailicai.app.model.response.AssetInfoNewResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
 import com.ailicai.app.ui.buy.ProcessActivity;
+import com.ailicai.app.ui.dialog.OpenScreenFragmentDialog;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.login.UserInfoBase;
@@ -245,6 +248,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
         super.onHiddenChanged(hidden);
         if (!hidden) {
             refreshMyDataFromServer();
+            OpenScreenFragmentDialog.showByPosition(getActivity(), OpenScreenPopModel.POS_MINE);
         }
     }
 

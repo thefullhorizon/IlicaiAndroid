@@ -382,4 +382,9 @@ public abstract class IwjwRespListener<T> extends JsonHttpResponseListener<T> im
     public boolean ignorePop() {
         return false;
     }
+
+    @Override
+    public void popFailed(){
+
+    }
 }

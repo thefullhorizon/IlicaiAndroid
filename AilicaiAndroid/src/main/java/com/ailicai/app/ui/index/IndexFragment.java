@@ -10,14 +10,18 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.utils.CommonUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.ObjectUtil;
+import com.ailicai.app.common.utils.OpenScreenPopUtils;
 import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.OpenAccountFinishEvent;
+import com.ailicai.app.eventbus.ShowScreenPopEvent;
+import com.ailicai.app.model.bean.OpenScreenPopModel;
 import com.ailicai.app.ui.asset.CapitalListProductDetailActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
 import com.ailicai.app.ui.base.webview.WebMethodCallAction;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
+import com.ailicai.app.ui.dialog.OpenScreenFragmentDialog;
 import com.ailicai.app.ui.html5.SupportUrl;
 import com.ailicai.app.ui.reserve.ReserveActivity;
 import com.ailicai.app.ui.view.MyWalletActivity;
@@ -213,5 +217,14 @@ public class IndexFragment extends BaseWebViewFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleLoginEvent(LoginEvent loginEvent) {
         callJsRefresh();
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void handleShowScreenPopEvent(ShowScreenPopEvent event) {
+        //首页弹窗
+        if(isVisible()) {
+            OpenScreenFragmentDialog.showByPosition(getActivity(), OpenScreenPopModel.POS_OPEN_SCREEN);
+        }
     }
 }

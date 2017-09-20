@@ -41,6 +41,9 @@ public class VersionUtil {
         public boolean ignorePop() {
             return true;
         }
+
+        @Override
+        public void popFailed(){}
     };
 
 

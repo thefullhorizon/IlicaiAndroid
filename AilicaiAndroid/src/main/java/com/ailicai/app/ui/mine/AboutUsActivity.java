@@ -184,4 +184,9 @@ public class AboutUsActivity extends BaseBindActivity implements VersionInterfac
     public boolean ignorePop() {
         return true;
     }
+
+    @Override
+    public void popFailed() {
+
+    }
 }

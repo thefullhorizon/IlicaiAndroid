@@ -38,4 +38,9 @@ public interface VersionInterface {
      */
     boolean ignorePop();
 
+    /***
+     * 弹窗失败
+     */
+    void popFailed();
+
 }

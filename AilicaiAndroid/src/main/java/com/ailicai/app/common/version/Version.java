@@ -104,7 +104,9 @@ public class Version implements DownloadListener {
                 int responseCode = response.getErrorCode();
                 if (responseCode == 0 || responseCode == RestException.VERSION_UPDATE_STRONG) {
                     AppInfo.getInstance().setAppInfo(response);
-                    executeUpdateResult();
+                    if(!executeUpdateResult()){
+                        version.popFailed();
+                    }
                 } else {
                     version.checkFailed(response.getMessage());
                 }
@@ -125,7 +127,7 @@ public class Version implements DownloadListener {
 
     }
 
-    private void executeUpdateResult() {
+    private boolean executeUpdateResult() {
 //        if (AppInfo.getInstance().isForceUpdate()) {
 //            if (MyPreference.getInstance().read(HASCHECKNEWVERSION, false)) {
 //                return;
@@ -150,13 +152,13 @@ public class Version implements DownloadListener {
         String newVersionUrl = AppInfo.getInstance().getmUpdateURL();
 
         boolean pop = needPop == 1;
-        if (reference.get() == null) return;
+        if (reference.get() == null) return false;
         if (reference.get().ignorePop()) pop = true;
 
-        if (!pop) return;
+        if (!pop) return false;
         if (TextUtils.isEmpty(newVersionUrl)) {
             ToastUtil.showInCenter("下载路径为空");
-            return;
+            return false;
         }
 
         if (StringUtil.isBigThan(serverVersion, appVersion)) {
@@ -164,7 +166,7 @@ public class Version implements DownloadListener {
             //有版本更新时我的Tab显示红点提示
             reference.get().remindPoint();
 
-            if (getActivity() == null) return;
+            if (getActivity() == null) return false;
             Resources res = getActivity().getResources();
             StringBuilder sb = new StringBuilder();
             sb.append("版本：" + serverVersion);
@@ -237,10 +239,12 @@ public class Version implements DownloadListener {
                     }
                 });
             }
+            return true;
         } else {
             //MyPreference.getInstance().write(HASCHECKNEWVERSION, false);
             String version = TextUtils.isEmpty(appVersion) ? "" : "V" + appVersion;
             reference.get().checkLatest(version);
+            return false;
         }
     }
 

@@ -10,9 +10,10 @@ import android.support.v4.view.ViewPager;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.utils.CommonUtil;
+import com.ailicai.app.model.bean.OpenScreenPopModel;
 import com.ailicai.app.ui.base.BaseBindFragment;
 import com.ailicai.app.ui.base.webview.BaseWebViewFragment;
-import com.ailicai.app.ui.html5.SupportUrl;
+import com.ailicai.app.ui.dialog.OpenScreenFragmentDialog;
 
 import java.util.ArrayList;
 
@@ -48,6 +49,15 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
             if (((IndexActivity) getWRActivity()).getCurrentItem() == 1) {
                 setAutoRefreshStateStart();
             }
+
+        }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            OpenScreenFragmentDialog.showByPosition(getActivity(), OpenScreenPopModel.POS_INVEST);
         }
     }
 
