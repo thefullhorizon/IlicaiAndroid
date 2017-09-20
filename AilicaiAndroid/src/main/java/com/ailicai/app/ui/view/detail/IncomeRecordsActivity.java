@@ -10,6 +10,7 @@ import com.ailicai.app.R;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.view.IncomeDetailParentFragment;
 import com.ailicai.app.ui.view.IncomeDetailWalletFragment;
+import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.NoScrollViewPager;
 import com.ailicai.app.widget.slidingtab.SlidingTabLayout;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 
 // 此页面用于取代了IncomeDetailActivity
-public class IncomeRecordsActivity extends BaseBindActivity {
+public class IncomeRecordsActivity extends BaseBindActivity implements IWTopTitleView.TopTitleOnClickListener {
 
     @Bind(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTabLayout;
@@ -115,6 +116,17 @@ public class IncomeRecordsActivity extends BaseBindActivity {
         public CharSequence getPageTitle(int position) {
             return labStrs.get(position);
         }
+    }
+
+    @Override
+    public boolean onBackClick() {
+        finish();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
 }
