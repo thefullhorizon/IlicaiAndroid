@@ -54,9 +54,9 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(!hidden){
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
             OpenScreenFragmentDialog.showByPosition(getActivity(), OpenScreenPopModel.POS_INVEST);
         }
     }

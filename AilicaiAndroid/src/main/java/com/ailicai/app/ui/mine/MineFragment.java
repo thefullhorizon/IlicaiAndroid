@@ -244,11 +244,18 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            OpenScreenFragmentDialog.showByPosition(getActivity(), OpenScreenPopModel.POS_MINE);
+        }
+    }
+
+    @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
             refreshMyDataFromServer();
-            OpenScreenFragmentDialog.showByPosition(getActivity(), OpenScreenPopModel.POS_MINE);
         }
     }
 
