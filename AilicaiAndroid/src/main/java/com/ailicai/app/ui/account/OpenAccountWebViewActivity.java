@@ -15,7 +15,6 @@ import com.ailicai.app.common.utils.HashMapUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.eventbus.OpenAccountFinishEvent;
-import com.ailicai.app.ui.bankcard.BankCardListActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.BaseWebViewLayout;
 import com.ailicai.app.ui.base.webview.WebJumpUiAction;
@@ -164,7 +163,6 @@ public class OpenAccountWebViewActivity extends BaseWebViewActivity {
         addMethodCallAction(new WebMethodCallAction("openaccountfinish") {
             @Override
             public Boolean call(HashMap params) {
-                BankCardListActivity.NEED_MANUAL_REFRESH_LIST = true;
                 isNeedCustomAnimation = true;
                 EventBus.getDefault().post(new OpenAccountFinishEvent());
                 LoginManager.updateUserInfoData();

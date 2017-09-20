@@ -26,7 +26,7 @@ import com.huoqiu.framework.rest.Response;
 
 /**
  * Created by Jer on 2016/1/7.
- * 安全卡购买钱包
+ * 银行卡购买钱包
  */
 public class BuyCurrentPay extends BaseBuyFinancePay {
 
@@ -343,7 +343,7 @@ public class BuyCurrentPay extends BaseBuyFinancePay {
             iconString = mActivity.getString(R.string.account_bankcard);
         } else if ("101".equals(currentPayInfo.getAccountType())) {
             title = "转入活期宝";
-            //支付到的账户类型 1-安全卡；2-账户余额
+            //支付到的账户类型 1-银行卡；2-账户余额
             if ("1".equals(currentPayInfo.getPayMethod())) {
                 tips = "使用" + accountResponse.getBankName() + "(" + accountResponse.getBankcardTailNo() + ")支付";
                 iconString = mActivity.getString(R.string.account_bankcard);
@@ -379,7 +379,7 @@ public class BuyCurrentPay extends BaseBuyFinancePay {
         private long configId; //业务id
         private int relationId; //活动关联表id
         private String accountType; //转入类型：101-存钱罐；106-用户账户
-        private String payMethod; //支付方式 1-安全卡；2-账户余额
+        private String payMethod; //支付方式 1-银行卡；2-账户余额
 
         public long getRuleId() {
             return ruleId;

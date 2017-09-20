@@ -20,7 +20,7 @@ public class Iwjwh5UrlResponse extends Response {
 
     private String helpCenterUrl = ""; // 帮助中心URL
     private String loanHelpUrl = ""; // 贷款帮助URL
-    private String safecardExplainUrl = ""; // 安全卡说明页URL
+    private String safecardExplainUrl = ""; // 银行卡说明页URL
     private String supportcardsByAllUrl = ""; // 显示所支持银行卡(银行卡和信用卡)URL
     private String supportcardsByBankUrl = ""; // 显示所支持银行卡页URL
     private String supportcardsByCreditUrl = ""; // 显示所支持信用卡页URL
@@ -42,9 +42,9 @@ public class Iwjwh5UrlResponse extends Response {
     private String aboutAiLiCaiUrl;// "我的"里面 关于吉爱财
     private String inviteUrl;
     private String openAccountUrl;// 开户
-    private String bindNewOpenAccountUrl; // 重新绑定安全卡
+    private String bindNewOpenAccountUrl; // 重新绑定银行卡
 
-    private String safeBankSupport = "";//安全卡限额列表地址
+    private String safeBankSupport = "";//银行卡限额列表地址
     private String autoBidNoteH5Url          = ""; // 自动投标说明Url
     private String memberLevleH5Url       = ""; // 会员等级说明url
 

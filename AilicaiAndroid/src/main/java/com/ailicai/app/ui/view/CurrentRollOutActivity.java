@@ -95,7 +95,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
     private ProtocolHelper protocolHelper;
     private int toType;
     private static final String ACCOUNT = "2";//存管账户（这里的1，2由服务器定义）
-    private static final String SECURITYCARD = "1";//安全卡
+    private static final String SECURITYCARD = "1";//银行卡
     private String mTransactionOutType = "1";
 
     private boolean isBeforeFifteen ;
@@ -545,7 +545,7 @@ public class CurrentRollOutActivity extends BaseBindActivity implements View.OnC
         currentPayInfo.setAmount(Double.valueOf(mInputPriceEdit.getText().toString()));
         //收银台类型：101-活期宝；106-用户账户
         currentPayInfo.setAccountType("101");
-        //支付到的账户类型 1-安全卡；2-账户余额 说明：活期宝收银台需指定
+        //支付到的账户类型 1-银行卡；2-账户余额 说明：活期宝收银台需指定
         if (accountCheckBox.isChecked()) {
             currentPayInfo.setPayMethod("2");
             toType = 2;

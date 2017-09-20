@@ -3,6 +3,7 @@ package com.huoqiu.framework.imageloader.core;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.huoqiu.framework.imageloader.core.listener.CustomImageLoadingListener;
 import com.huoqiu.framework.imageloader.core.listener.ImageLoadingListener;
 
 
@@ -23,4 +24,14 @@ public interface ImageDisplayer {
      * true :蜂窝数据下设置无图模式
      */
     void setNoImage(boolean isNoImage);
+
+    /**
+     * 根据图片URL查找是否本地存储中有缓存
+     */
+    boolean imgHasDiskCached(Context context,String imgUrl);
+
+    /**
+     * 根据图片URL加载url
+     */
+    void loadImage(String url, CustomImageLoadingListener listener);
 }

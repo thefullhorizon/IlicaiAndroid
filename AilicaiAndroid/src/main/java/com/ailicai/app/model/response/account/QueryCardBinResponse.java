@@ -10,7 +10,7 @@ import com.huoqiu.framework.rest.Response;
 public class QueryCardBinResponse extends Response {
     private String bankCode; // 银行编号
     private String bankName; // 银行名称
-    private int valid = 1; // 银行卡是否可用 0：不可用，1可用，开户绑安全卡用
+    private int valid = 1; // 银行卡是否可用 0：不可用，1可用，开户绑银行卡用
     private int normalValid = 1; // 银行卡是否可用 0：不可用，1可用，绑普通卡用
     private int cardType; //卡类型【1：储蓄卡 、2：信用卡 、3：存折 、4：其它 】0则卡bin失败
 

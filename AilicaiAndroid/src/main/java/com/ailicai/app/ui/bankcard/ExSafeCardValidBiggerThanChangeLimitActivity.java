@@ -21,7 +21,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * description: 安全卡可用并且资产余额大于服务器下发金额<BR>
+ * description: 银行卡可用并且资产余额大于服务器下发金额<BR>
  * create date: 16/2/17
  *
  * @author: iwjw zhouxuan
@@ -78,7 +78,7 @@ public class ExSafeCardValidBiggerThanChangeLimitActivity extends BaseBindActivi
 
     private void setData() {
         textViewProperty.setText(getPropertyShowTxt());
-        tvDescTitle.setText("您的资产余额超过"+changeLimit+"元，为保证您的账户安全，请完成以下操作后再次更换安全卡：");
+        tvDescTitle.setText("您的资产余额超过"+changeLimit+"元，为保证您的账户安全，请完成以下操作后再次更换银行卡：");
         tvDesc03.setText("3.将账户余额提现至低于"+changeLimit+"元");
     }
 

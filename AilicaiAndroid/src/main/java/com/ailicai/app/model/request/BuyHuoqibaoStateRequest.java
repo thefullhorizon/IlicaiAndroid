@@ -11,7 +11,7 @@ public class BuyHuoqibaoStateRequest extends Request {
     private String outTradeNo;//外部订单号
     private long activityDealId; //活动推进id
     private String accountType; //收银台类型：101-活期宝；106-用户账户
-    private String payMethod; //支付到的账户类型 1-安全卡；2-账户余额 说明：活期宝收银台需指定
+    private String payMethod; //支付到的账户类型 1-银行卡；2-账户余额 说明：活期宝收银台需指定
 
     public String getOutTradeNo() {
         return outTradeNo;

@@ -2,9 +2,9 @@
 <resources>
 
     <string name="roll_out_time_text"><![CDATA[<font color="#8a000000">预计</font><font color="#e84a01"> %1$s </font><font color="#8a000000">到账</font>]]></string>
-    <string name="roll_out_tips_text"><![CDATA[<font color="#8a000000">%1$s元预计在%2$s到账安全卡</font>]]></string>
+    <string name="roll_out_tips_text"><![CDATA[<font color="#8a000000">%1$s元预计在%2$s到账银行卡</font>]]></string>
     <string name="account_result_tips_text"><![CDATA[<font color="#8a000000">%1$s元预计在%2$s到账</font>]]></string>
-    <string name="withdraw_tips_text"><![CDATA[<font color="#8a000000">%1$s元预计在%2$s到账安全卡</font>]]></string>
+    <string name="withdraw_tips_text"><![CDATA[<font color="#8a000000">%1$s元预计在%2$s到账银行卡</font>]]></string>
     <string name="roll_in_time_text"><![CDATA[<font color="#757575">钱包预计</font><font color="#e84a01"> %1$s </font><font color="#757575">起息，次日可查看收益</font>]]></string>
     <string name="roll_in_amount_text">成功转入%1$s元</string>
     <string name="topup_amount_text">成功充值%1$s元</string>
@@ -15,7 +15,7 @@
     <string name="roll_in_bank_card_text"><![CDATA[<font color="#8a000000">%1$s卡(尾号%2$s) 转入 钱包账户</font>]]></string>
 
 
-    <string name="rollin_fail_tips_txt"><![CDATA[<font color="#8a000000">如已扣款，资金将在%1$s个工作日内退回到<br>安全卡%2$s</font>]]></string>
+    <string name="rollin_fail_tips_txt"><![CDATA[<font color="#8a000000">如已扣款，资金将在%1$s个工作日内退回到<br>银行卡%2$s</font>]]></string>
 
     <string name="capital_regular_help_tips_title">历史平均收益率</string>
     <string name="capital_regular_help_tips_content">历史平均收益率 = 曾持有的所有产品收益率的加权平均,其中加权权重 = 单个产品持有本金 / 总投资额</string>

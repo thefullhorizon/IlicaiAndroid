@@ -24,7 +24,7 @@ import com.huoqiu.framework.rest.Response;
 
 /**
  * Created by Jer on 2016/1/7.
- * 安全卡购买钱包
+ * 银行卡购买钱包
  */
 public class RegularReChangePay extends BaseBuyFinancePay {
 
@@ -329,7 +329,7 @@ public class RegularReChangePay extends BaseBuyFinancePay {
         return new BuyDialogShowInfo.BankPayBuild()
                 .setAmount(currentPayInfo.amount)
                 .setMoneyOutStr(TextUtils.isEmpty(moneyOutStr)?"支付并购买房产宝":moneyOutStr)
-                .setPayTypFrom("使用账户余额+安全卡支付")
+                .setPayTypFrom("使用账户余额+银行卡支付")
                 .setPayTypFromIco(mActivity.getString(R.string.current_pay))
                 .create();
     }

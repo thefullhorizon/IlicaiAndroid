@@ -421,7 +421,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
     }
 
     /**
-     * 设置安全卡刷新余额
+     * 设置银行卡刷新余额
      *
      * @param event
      */
@@ -497,7 +497,7 @@ public class BuyTransferPayActivity extends BaseBindActivity {
             //购买金额大于钱包余额
             //走转入流程
             if (actualPay - infoResponse.getAvailableBalance() > infoResponse.getBankLimit()) {
-                //转入金额大于安全卡限额
+                //转入金额大于银行卡限额
                 showMyToast("单笔最多可转入" + infoResponse.getBankLimit() + "元");
                 return;
             }

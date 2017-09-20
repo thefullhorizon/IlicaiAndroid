@@ -146,7 +146,7 @@ public class UnbindPwdCheckDialog extends BaseBuyFinancePay {
      * 新浪支付：显示输入短信验证码的视图
      */
     private void showMsgCodeLayout(String mobileStr) {
-        changeViewToMsgView(mobileStr, "输入短信验证", "短信码已发送至" + mobileStr + "，验证后" + "\n将解绑此卡并前去设置新安全卡", new View.OnClickListener() {
+        changeViewToMsgView(mobileStr, "输入短信验证", "短信码已发送至" + mobileStr + "，验证后" + "\n将解绑此卡并前去设置新银行卡", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*

@@ -13,7 +13,7 @@ public class BankcardListResponse extends Response {
     private boolean showBkCd; // 银行卡支付时是否显示银行卡
     private boolean showWallet; // 是否显示钱包 true-显示 false-不显示
     private String cardLimitSolutionUrl; // 银行卡支付时卡限额表-解决方案URL
-    private int hasSafeCard = 0; // 是否已绑定安全卡  0:否，1:是
+    private int hasSafeCard = 0; // 是否已绑定银行卡  0:否，1:是
     private int isOpenAccount = 0; // 判断是否是否开户 0:否，1:已开户，2：开户中
     private int isSetPayPwd = 0; // 判断是否设置支付密码 0:否，1:是
     private int isRealNameVerify = 0; // 是否通过实名认证 0:否，1:是

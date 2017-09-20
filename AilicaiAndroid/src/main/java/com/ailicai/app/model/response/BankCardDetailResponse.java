@@ -16,14 +16,15 @@ public class BankCardDetailResponse extends Response {
     private String bankAccountId;//银行卡标识
     private String cardNo; //银行卡号
     private String bankName; //银行名称
+    private String bankCode; // 银行标识简称  ICBC
     private int cardType; //卡类型【1：储蓄卡 、2：信用卡 、3：存折 、4：其它 】
-    private int isSafeCard; // 是否安全卡 0-否 1-是
+    private int isSafeCard; // 是否银行卡 0-否 1-是
     private int singleLimit; //单笔限额
     private int dayLimit; //单日限额
     private int monthLimit; //单月限额
-    private double totalAsset; // 总资产(仅安全卡有值)
+    private double totalAsset; // 总资产(仅银行卡有值)
     private String mobile; // 银行预留手机号
-    private String changeSafeCardUrl; // 原安全卡不可用时更换安全卡的说明URL
+    private String changeSafeCardUrl; // 原银行卡不可用时更换银行卡的说明URL
     private int hasMobile; // 是否有银行预留手机号 0：无，1：有
     private int changeLimit;//换卡限额
     private String dayLimitStr; // 单日限额字符串
@@ -121,19 +122,27 @@ public class BankCardDetailResponse extends Response {
         return getEachPayMax() + "，" + getEachDayPayMax();
     }
 
+    public String getBankCode() {
+        return bankCode;
+    }
+
+    public void setBankCode(String bankCode) {
+        this.bankCode = bankCode;
+    }
+
     public String getEachPayMax() {
        if (singleLimit == 0 || TextUtils.isEmpty(singleLimitStr) || "0".equals(singleLimitStr)) {
-            return "单笔不限";
+            return "不限";
         } else {
-            return "单笔限额"+singleLimitStr;
+            return singleLimitStr;
         }
     }
 
     public String getEachDayPayMax() {
          if (dayLimit == 0 || TextUtils.isEmpty(dayLimitStr)|| "0".equals(dayLimitStr)) {
-            return "单日不限";
+            return "不限";
         } else {
-            return "单日"+dayLimitStr;
+            return dayLimitStr;
         }
     }
 
@@ -166,10 +175,10 @@ public class BankCardDetailResponse extends Response {
         String desc = "";
         switch (cardType) {
             case 1:
-                desc = "储蓄卡尾号";
+                desc = "储蓄卡";
                 break;
             case 2:
-                desc = "信用卡尾号";
+                desc = "信用卡";
                 break;
             case 3:
                 desc = "存折";

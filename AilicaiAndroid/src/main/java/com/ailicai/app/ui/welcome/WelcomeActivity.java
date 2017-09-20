@@ -6,47 +6,180 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.ailicai.app.ApplicationPresenter;
 import com.ailicai.app.MyApplication;
 import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
 import com.ailicai.app.common.constants.GlobleConstants;
+import com.ailicai.app.common.imageloader.ImageLoaderClient;
 import com.ailicai.app.common.push.constant.CommonTags;
+import com.ailicai.app.common.utils.LogUtil;
+import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
+import com.ailicai.app.common.utils.ObjectUtil;
+import com.ailicai.app.common.utils.TimerUtil;
 import com.ailicai.app.common.utils.ToastUtil;
+import com.ailicai.app.model.response.SplashScreenResponse;
+import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.guide.GuideActivity;
 import com.ailicai.app.ui.index.IndexActivity;
 import com.huoqiu.framework.analysis.ManyiAnalysis;
 import com.huoqiu.framework.backstack.BackOpFragmentActivity;
+import com.huoqiu.framework.imageloader.core.LoadParam;
+import com.huoqiu.framework.imageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WelcomeActivity extends BackOpFragmentActivity {
+import butterknife.Bind;
+import butterknife.OnClick;
+
+public class WelcomeActivity extends BaseBindActivity {
     private static final int SHOW_GUIDE_OR_HOME = 0x001;
     private static final int SHOW_GUIDE_VIEW = 0x002;
     private static final String ACCESS_FINE_LOCATION = "android.permission.ACCESS_FINE_LOCATION";
     private static final String READ_PHONE_STATE = "android.permission.READ_PHONE_STATE";
 
+    @Bind(R.id.llJumpOver)
+    LinearLayout llJumpOver;
+    @Bind(R.id.tvRestSeconds)
+    TextView tvRestSeconds;
+    @Bind(R.id.ivAdvertisement)
+    ImageView ivAdvertisement;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+    public int getLayout() {
+        return R.layout.activity_welcome;
+    }
+
+    @Override
+    public void init(Bundle savedInstanceState) {
+        super.init(savedInstanceState);
         ApplicationPresenter.syncTime(null);
         GlobleConstants.mLockAppTime = 0;
+        setWelcomeAdvertiseData();
+    }
+
+    private void setWelcomeAdvertiseData() {
+        final SplashScreenResponse response = MyPreference.getInstance().read(SplashScreenResponse.class);
+        if(response != null) {
+            if(isShouldShowAdvertise(response)) {
+                LoadParam param = new LoadParam();
+                param.setImgUri(response.getImgUrl());
+                ImageLoaderClient.display(this, ivAdvertisement, param, new ImageLoadingListener() {
+                    @Override
+                    public void onLoadingStarted() {
+
+                    }
+
+                    @Override
+                    public void onLoadingFailed() {
+
+                    }
+
+                    @Override
+                    public void onLoadingSuccess() {
+                        setJumpOverLogic(response);
+                    }
+
+                    @Override
+                    public void onLoadingCancelled() {
+
+                    }
+
+                    @Override
+                    public void onLoadingFinish() {
+
+                    }
+                });
+            }
+        }
+    }
+
+    // 是否应该显示广告位
+    private boolean isShouldShowAdvertise(SplashScreenResponse response) {
+        boolean isAdvertiseInValidDate = isAdvertiseInValidDate(response);
+        boolean isImageUrlValid = !TextUtils.isEmpty(response.getImgUrl());
+        boolean isImageHasCached = ImageLoaderClient.imgHasDiskCached(this,response.getImgUrl());
+        LogUtil.e("================>",isAdvertiseInValidDate+" " +isImageUrlValid + " "+isImageHasCached);
+        return isAdvertiseInValidDate && isImageUrlValid && isImageHasCached;
+    }
+
+    private boolean isAdvertiseInValidDate(SplashScreenResponse response) {
+        long currentMillis = System.currentTimeMillis();
+        long validMillis = response.getValidTill();
+        // 0代表永久有效
+        if(currentMillis < validMillis || validMillis == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    // 设置跳过按钮的相关逻辑
+    CountDownTimer countDownTimer;
+    private void setJumpOverLogic(SplashScreenResponse response) {
+        int showTime = response.getShowTime();
+        if(showTime > 0) {
+            llJumpOver.setVisibility(View.VISIBLE);
+            tvRestSeconds.setText(showTime+"");
+            mHandler.removeCallbacksAndMessages(null);
+            countDownTimer = new CountDownTimer(1000 * showTime, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    tvRestSeconds.setText((millisUntilFinished / 1000)+"");
+                }
+
+                @Override
+                public void onFinish() {
+                    tvRestSeconds.setText(0+"");
+                    choosePageToGo();
+                }
+            }.start();
+        }
+    }
+
+    @OnClick(R.id.llJumpOver)
+    void onJumpOverClick() {
+        removePageAllCallbacks();
+        choosePageToGo();
+        finish();
+    }
+
+    @OnClick(R.id.ivAdvertisement)
+    void onAdvertiseClick() {
+        removePageAllCallbacks();
+        goToAdvertiseDetail();
+        finish();
+    }
+
+    private void goToAdvertiseDetail() {
+        SplashScreenResponse response = MyPreference.getInstance().read(SplashScreenResponse.class);
+        Map<String, String> dataMap = ObjectUtil.newHashMap();
+        dataMap.put(WebViewActivity.URL,response.getJumpUrl());
+        dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+        dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
+        MyIntent.startActivity(this, WelcomeAdvertiseWebViewActivity.class, dataMap);
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mHandler.sendEmptyMessageDelayed(SHOW_GUIDE_OR_HOME, 300);
+        mHandler.sendEmptyMessageDelayed(SHOW_GUIDE_OR_HOME, 3000);
     }
 
     private Handler mHandler = new Handler(new Handler.Callback() {
@@ -54,17 +187,21 @@ public class WelcomeActivity extends BackOpFragmentActivity {
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case SHOW_GUIDE_OR_HOME:
-                    if(MyPreference.getInstance().read(CommonTag.IS_FIREST_START,true)){
-                        goGuidePage();
-                    }else{
-                        toHomePage();
-                    }
+                    choosePageToGo();
                     break;
                 case SHOW_GUIDE_VIEW:
             }
             return false;
         }
     });
+
+    private void choosePageToGo() {
+        if(MyPreference.getInstance().read(CommonTag.IS_FIREST_START,true)){
+            goGuidePage();
+        }else{
+            toHomePage();
+        }
+    }
 
     private void goGuidePage(){
         startActivity(getDescIntent(GuideActivity.class));
@@ -203,6 +340,19 @@ public class WelcomeActivity extends BackOpFragmentActivity {
                 requestRuntimePermission(READ_EXTERNAL_STORAGE, this);
                 break;
         }*/
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        removePageAllCallbacks();
+    }
+
+    private void removePageAllCallbacks() {
+        if(countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        mHandler.removeCallbacksAndMessages(null);
     }
 
     OnPermissionCallbackListener onPermissionListener = new OnPermissionCallbackListener() {

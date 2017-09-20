@@ -55,7 +55,7 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
 
     public static String ISFIFTEEN = "isFifiteen";//十五点的逻辑
     public static String KEY = "response";
-    public static String TOTYPE = "toType";// 1-安全卡；2-账户余额
+    public static String TOTYPE = "toType";// 1-银行卡；2-账户余额
 
     @Override
     public int getLayout() {
@@ -76,7 +76,7 @@ public class CurrentRollOutResultActivity extends BaseBindActivity {
         postEventBus(bizStatus);
         switch (bizStatus) {
             case "S":
-                if (toType == 1){//安全卡
+                if (toType == 1){//银行卡
                     currentUIOfSuccess();
                 }else{//存管账户
                     if (isFifteen){

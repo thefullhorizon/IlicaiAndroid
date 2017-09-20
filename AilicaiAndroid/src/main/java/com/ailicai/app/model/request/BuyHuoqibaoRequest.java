@@ -15,7 +15,7 @@ public class BuyHuoqibaoRequest extends Request {
 
     //7.2
     private String accountType; //转入类型：101-存钱罐；106-用户账户
-    private String payMethod; //支付方式 1-安全卡；2-账户余额
+    private String payMethod; //支付方式 1-银行卡；2-账户余额
 
     public String getPaypwd() {
         return paypwd;

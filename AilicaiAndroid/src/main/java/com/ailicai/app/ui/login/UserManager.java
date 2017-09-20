@@ -144,7 +144,7 @@ public class UserManager {
     }
 
     /**
-     * 是否已绑定安全卡  0:否，1:是
+     * 是否已绑定银行卡  0:否，1:是
      *
      * @return
      */

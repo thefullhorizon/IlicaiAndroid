@@ -24,7 +24,7 @@ import com.ailicai.app.common.utils.StringUtil;
 import com.ailicai.app.eventbus.EditUserInfoEvent;
 import com.ailicai.app.eventbus.ExitEvent;
 import com.ailicai.app.eventbus.UserInfoUpdateEvent;
-import com.ailicai.app.ui.bankcard.BankCardListActivity;
+import com.ailicai.app.ui.bankcard.BankCardDetailActivity;
 import com.ailicai.app.ui.base.BaseBindActivity;
 import com.ailicai.app.ui.buy.ProcessActivity;
 import com.ailicai.app.ui.gesture.GestureLockActivity;
@@ -178,7 +178,7 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
      */
     @OnClick(R.id.rl_bank_card)
     void onClickBankCard() {
-        MyIntent.startActivity(this, BankCardListActivity.class, "");
+        MyIntent.startActivity(this, BankCardDetailActivity.class, "");
     }
 
     /**
@@ -243,7 +243,7 @@ public class SettingsActivity extends BaseBindActivity implements ToggleButton.O
             mRealName.setText("未实名");
         }
 
-        // 是否已绑定安全卡  0:否，1:是
+        // 是否已绑定银行卡  0:否，1:是
         int hasSafeCard = MapUtil.getInt(dataMap, CommonTag.PERSONAL_HASSAFECARD);
         if (hasSafeCard > 0) {
             bankCardLayout.setVisibility(View.VISIBLE);

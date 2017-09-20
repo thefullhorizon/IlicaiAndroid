@@ -18,6 +18,7 @@ import com.ailicai.app.R;
 import com.ailicai.app.common.constants.CommonTag;
 import com.ailicai.app.common.download.DownloadNotificationManager;
 import com.ailicai.app.common.download.DownloadProgressDialogManger;
+import com.ailicai.app.common.imageloader.ImageLoaderClient;
 import com.ailicai.app.common.reqaction.IwjwHttp;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
@@ -33,7 +34,9 @@ import com.ailicai.app.eventbus.LoginEvent;
 import com.ailicai.app.eventbus.MineShowRedPointEvent;
 import com.ailicai.app.eventbus.ShowScreenPopEvent;
 import com.ailicai.app.model.request.HtmlUrlRequest;
+import com.ailicai.app.model.request.SplashScreenRequest;
 import com.ailicai.app.model.response.Iwjwh5UrlResponse;
+import com.ailicai.app.model.response.SplashScreenResponse;
 import com.ailicai.app.receiver.ScreenStatusReceiver;
 import com.ailicai.app.ui.asset.FinanceUpgradePresenter;
 import com.ailicai.app.ui.base.BaseBindActivity;
@@ -116,6 +119,7 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
         EventBus.getDefault().register(this);
         setViewPageData();
         htmlUrlUpdate();
+        getSplashAdvertiseImg();
         MyPreference.getInstance().write(CommonTag.IS_FIREST_START, false);
         //注册息屏广播
         if (mScreenStatusReceiver == null) {
@@ -230,6 +234,18 @@ public class IndexActivity extends BaseBindActivity implements VersionInterface 
                 // 请求是否弹框提醒升级协议(吉爱财接入协议)
                 FinanceUpgradePresenter presenter = new FinanceUpgradePresenter();
                 presenter.httpForProtocalUpgradeState(IndexActivity.this);
+            }
+        });
+    }
+
+    // 请求welcome启动页的广告图片
+    private void getSplashAdvertiseImg() {
+        SplashScreenRequest request = new SplashScreenRequest();
+        ServiceSender.exec(this, request, new IwjwRespListener<SplashScreenResponse>() {
+            @Override
+            public void onJsonSuccess(SplashScreenResponse response) {
+                MyPreference.getInstance().write(response);
+                ImageLoaderClient.loadImage(response.getImgUrl());
             }
         });
     }

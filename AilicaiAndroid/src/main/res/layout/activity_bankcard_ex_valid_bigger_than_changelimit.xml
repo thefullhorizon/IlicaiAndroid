@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         manyi:hasLeft="true"
-        manyi:titleview_title_text="更换安全卡须知" />
+        manyi:titleview_title_text="更换银行卡须知" />
 
     <View
         android:layout_marginTop="16dp"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tvDescTitle"
-                android:text="您的资产余额超过1000元，为保证您的账户安全，请完成以下操作后再次更换安全卡："
+                android:text="您的资产余额超过1000元，为保证您的账户安全，请完成以下操作后再次更换银行卡："
                 android:layout_marginTop="8dp"
                 android:textColor="#8C000000"
                 android:textSize="14sp"
@@ -71,7 +71,7 @@
 
             <TextView
                 android:id="@+id/tvDesc02"
-                android:text="2.将活期宝金额转出至账户余额或安全卡"
+                android:text="2.将活期宝金额转出至账户余额或银行卡"
                 android:textColor="#8C000000"
                 android:textSize="14sp"
                 android:layout_width="wrap_content"

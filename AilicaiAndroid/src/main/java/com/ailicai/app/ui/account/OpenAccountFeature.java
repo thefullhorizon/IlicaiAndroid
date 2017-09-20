@@ -10,7 +10,7 @@ public class OpenAccountFeature {
     public static boolean isOpeningAccount = false;
 
     /**
-     * 卡bin类型 0：安全卡，1：普通绑卡
+     * 卡bin类型 0：银行卡，1：普通绑卡
      */
     public int cardBinType;
     public boolean isDark = false;

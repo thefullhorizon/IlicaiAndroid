@@ -10,7 +10,7 @@ import com.ailicai.app.common.reqaction.RequestPath;
 public class UserTipsWhenTransactionOutRequest extends Request {
 
     private String accountType; // "101":活期宝，"106":存管账号
-    private String payMethod; // "1":存管账号，"2":安全卡
+    private String payMethod; // "1":存管账号，"2":银行卡
 
     public String getAccountType() {
         return accountType;

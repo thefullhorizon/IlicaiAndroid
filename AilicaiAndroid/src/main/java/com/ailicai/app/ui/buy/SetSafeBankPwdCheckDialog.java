@@ -82,7 +82,7 @@ public class SetSafeBankPwdCheckDialog extends BaseBuyFinancePay {
     @Override
     BuyDialogShowInfo getDispalyInfo() {
         return new BuyDialogShowInfo.BankPayBuild()
-                .setMoneyOutStr("以设置安全卡")
+                .setMoneyOutStr("以设置银行卡")
                 .create();
     }
 

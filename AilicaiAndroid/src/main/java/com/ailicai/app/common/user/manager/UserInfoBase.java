@@ -19,7 +19,7 @@ public class UserInfoBase implements Serializable {
     private String key1 = ""; // app端加密用公钥
     private String key2 = ""; // server端加密的对应解密私钥
     private int rsaClose = 0; // RSA加密是否关闭，1：关闭，0：打开
-    private int hasSafeCard = 0; // 是否已绑定安全卡  0:否，1:是
+    private int hasSafeCard = 0; // 是否已绑定银行卡  0:否，1:是
     private String imUserId = ""; // 环信用户Id
     private String imPasswd = ""; // 环信用户密码
     private String rName = ""; // 用户真实姓名

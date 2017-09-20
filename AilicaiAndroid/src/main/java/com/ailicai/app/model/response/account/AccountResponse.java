@@ -13,7 +13,7 @@ public class AccountResponse extends Response implements Serializable {
     private int isSetPayPwd = 0; // 判断是否设置支付密码 0:否，1:是
     private int isRealNameVerify = 0; // 是否通过实名认证 0:否，1:是
     private int isBinDebitCard = 0; // 是否已绑定借记卡 0:否，1:
-    private int hasSafeCard = 0; // 是否已绑定安全卡  0:否，1:是
+    private int hasSafeCard = 0; // 是否已绑定银行卡  0:否，1:是
     private String name; // 用户名
     private String idCardNo; // 身份证号码
     private String bankcardTailNo; //银行卡尾号

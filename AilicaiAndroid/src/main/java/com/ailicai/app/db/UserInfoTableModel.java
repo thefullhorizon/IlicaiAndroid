@@ -29,11 +29,11 @@ public class UserInfoTableModel {
     @DatabaseField()
     private int isBinDebitCard = 0; // 吉爱财是否已绑定借记卡 0:否，1:是
     @DatabaseField()
-    private int hasSafeCard = 0; // 是否已绑定安全卡  0:否，1:是
+    private int hasSafeCard = 0; // 是否已绑定银行卡  0:否，1:是
     @DatabaseField()
-    private String bankName; //安全卡银行名称
+    private String bankName; //银行卡银行名称
     @DatabaseField()
-    private String bankcardTailNo; //安全卡末尾4位
+    private String bankcardTailNo; //银行卡末尾4位
     @DatabaseField()
     private int isAilicaiAllowUser = 0; // 判断是否吉爱财白名单用户 0:否，1:是
     @DatabaseField()

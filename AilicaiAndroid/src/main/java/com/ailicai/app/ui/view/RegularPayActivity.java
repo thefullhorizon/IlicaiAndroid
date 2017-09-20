@@ -525,7 +525,7 @@ public class RegularPayActivity extends BaseBindActivity {
     }
 
     /**
-     * 设置安全卡刷新余额
+     * 设置银行卡刷新余额
      *
      * @param event
      */
@@ -552,7 +552,7 @@ public class RegularPayActivity extends BaseBindActivity {
             BigDecimal offset = (new BigDecimal(money+"")).subtract(new BigDecimal(infoResponse.getAvailableBalance()+""));
             double reChangeMoney = offset.doubleValue();
             if (infoResponse.getBankLimit() != 0 && reChangeMoney > infoResponse.getBankLimit()) {
-                //转入金额大于安全卡限额
+                //转入金额大于银行卡限额
 //                showMyToast("单笔最多可充值" + infoResponse.getBankLimit() + "元");
                 DialogBuilder.showSimpleDialogCenter( "单笔最多可充值" + infoResponse.getBankLimit() + "元", RegularPayActivity.this, new DialogInterface.OnClickListener() {
                     @Override

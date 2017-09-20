@@ -9,7 +9,7 @@ public class BuyDialogShowInfo {
     private String moneyOutStr = "";
     private String payTypFrom = "";
     private String payTypFromIco = "";
-    private String payMethod; //支付方式 1-安全卡；2-账户余额
+    private String payMethod; //支付方式 1-银行卡；2-账户余额
     String title;
 
     public String getPayTypFromIco() {
@@ -40,7 +40,7 @@ public class BuyDialogShowInfo {
         String moneyOutStr = "";
         String payTypFrom = "";
         String payTypFromIco = "";
-        String payMethod; //支付方式 1-安全卡；2-账户余额
+        String payMethod; //支付方式 1-银行卡；2-账户余额
         String title;
 
         public BankPayBuild setAmount(double amount) {

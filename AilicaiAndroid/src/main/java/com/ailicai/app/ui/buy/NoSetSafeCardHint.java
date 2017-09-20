@@ -39,7 +39,7 @@ public class NoSetSafeCardHint {
     }
 
     /**
-     * 是否已设置安全卡
+     * 是否已设置银行卡
      *
      * @return
      */
@@ -70,10 +70,10 @@ public class NoSetSafeCardHint {
     }
 
     /**
-     * 转入转出适合未设置安全卡，提示
+     * 转入转出适合未设置银行卡，提示
      */
     private static void showDeductionsCheckCardDialog(final BaseBindActivity activity) {
-        DialogBuilder.showSimpleDialog(activity, "未设置安全卡", null, "取消", null, "设置", new DialogInterface.OnClickListener() {
+        DialogBuilder.showSimpleDialog(activity, "未设置银行卡", null, "取消", null, "设置", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 showPayPwdCheckDialog(activity);

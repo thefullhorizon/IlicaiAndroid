@@ -4,14 +4,17 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.huoqiu.framework.imageloader.core.ImageDisplayer;
 import com.huoqiu.framework.imageloader.core.LoadParam;
+import com.huoqiu.framework.imageloader.core.listener.CustomImageLoadingListener;
 import com.huoqiu.framework.imageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 import java.io.File;
@@ -49,6 +52,39 @@ public class UniversalImageLoader implements ImageDisplayer {
         imageLoader.displayImage(loadParam.getImgUri(), targetImageView, options, new ImageLoaderNormalDisplayer(listener));
     }
 
+    @Override
+    public void loadImage(String url, final CustomImageLoadingListener listener) {
+        imageLoader.loadImage(url,getDefaultOptions(), new com.nostra13.universalimageloader.core.listener.ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String imageUri, View view) {
+                if(listener != null) {
+                    listener.onLoadingStarted(imageUri,view);
+                }
+            }
+
+            @Override
+            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                if(listener != null) {
+                    listener.onLoadingFailed(imageUri,view);
+                }
+            }
+
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                if(listener != null) {
+                    listener.onLoadingComplete(imageUri,view,loadedImage);
+                }
+            }
+
+            @Override
+            public void onLoadingCancelled(String imageUri, View view) {
+                if(listener != null) {
+                    listener.onLoadingCancelled(imageUri,view);
+                }
+            }
+        });
+    }
+
     private boolean isUploadImagePeriod() {
         double randomDouble = Math.random();
      //   LogUtil.e("randomDouble",randomDouble+"");
@@ -58,15 +94,13 @@ public class UniversalImageLoader implements ImageDisplayer {
         return false;
     }
 
-    public boolean imgHasCached(String imgUrl) {
-
+    public boolean imgHasDiskCached(Context context,String imgUrl) {
+        imageLoader = getConfigedImageLoader(context);
         if(!TextUtils.isEmpty(imgUrl)) {
             File cachedImageFile = imageLoader.getDiskCache().get(imgUrl);
             if(cachedImageFile != null && cachedImageFile.exists()) {
-//                LogUtil.e("imgHasCached",imgUrl+"=========true");
                 return true;
             }
-//            LogUtil.e("imgHasCached",imgUrl+"=========false");
         }
         return false;
     }
@@ -119,6 +153,13 @@ public class UniversalImageLoader implements ImageDisplayer {
                 .cacheInMemory(false).cacheOnDisk(true)
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .bitmapConfig(Bitmap.Config.RGB_565);
+        DisplayImageOptions options = builder.build();
+        return options;
+    }
+
+    private DisplayImageOptions getDefaultOptions() {
+        DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder().considerExifParams(true)
+                .cacheInMemory(false).cacheOnDisk(true);
         DisplayImageOptions options = builder.build();
         return options;
     }

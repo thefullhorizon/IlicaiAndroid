@@ -131,7 +131,7 @@ public class BankCardResultActivity extends BaseBindActivity {
 
         //setOpenAccountStepTo2();
 
-        // 绑安全卡并且未开户
+        // 绑银行卡并且未开户
         if(openAccountFeature.cardBinType == 0 && !AccountInfo.isOpenAccount()) {
             setOpenAccountStepTo2();
         } else {

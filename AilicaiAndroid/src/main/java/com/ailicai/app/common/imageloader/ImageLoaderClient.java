@@ -1,6 +1,7 @@
 package com.ailicai.app.common.imageloader;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.ailicai.app.common.imageloader.universalimageloader.UniversalImageLoader;
@@ -8,6 +9,8 @@ import com.huoqiu.framework.imageloader.core.ImageDisplayer;
 import com.huoqiu.framework.imageloader.core.LoadParam;
 import com.huoqiu.framework.imageloader.core.LoaderFactory;
 import com.huoqiu.framework.imageloader.core.listener.ImageLoadingListener;
+
+import java.io.File;
 
 
 /**
@@ -48,9 +51,19 @@ public class ImageLoaderClient {
         imageDisplayer.display(context, targetImageView, loadParam, imageLoadingListener);
     }
 
+    public static void loadImage(String url) {
+        getImageLoaderInstance();
+        imageDisplayer.loadImage(url,null);
+    }
+
     public static void setNoImage(boolean isNoImage) {
         getImageLoaderInstance();
         imageDisplayer.setNoImage(isNoImage);
+    }
+
+    public static boolean imgHasDiskCached(Context context,String imgUrl) {
+        getImageLoaderInstance();
+        return imageDisplayer.imgHasDiskCached(context,imgUrl);
     }
 
     public static ImageDisplayer getImageLoaderInstance() {

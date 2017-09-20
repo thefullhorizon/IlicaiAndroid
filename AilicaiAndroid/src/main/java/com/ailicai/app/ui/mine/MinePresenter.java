@@ -5,7 +5,6 @@ import android.content.Intent;
 
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.model.response.AssetInfoNewResponse;
-import com.ailicai.app.ui.bankcard.BankCardListActivity;
 import com.ailicai.app.ui.buy.AutomaticTenderActivity;
 import com.ailicai.app.ui.buy.NoSetSafeCardHint;
 import com.ailicai.app.ui.buy.ProcessActivity;
@@ -20,19 +19,6 @@ import com.huoqiu.framework.util.CheckDoubleClick;
  * Created by Administrator on 2015/6/18.
  */
 public class MinePresenter {
-
-    /**
-     * 银行卡
-     *
-     * @param context
-     */
-    public void gotoMyBankCrad(Context context) {
-        if (!CheckDoubleClick.isFastDoubleClick()) {
-            if (null != context) {
-                MyIntent.startActivity(context, BankCardListActivity.class, "");
-            }
-        }
-    }
 
     /**
      * 交易记录

@@ -276,7 +276,7 @@ public class TransferPayActivity extends BaseBindActivity {
     }
 
     /**
-     * 设置安全卡刷新余额
+     * 设置银行卡刷新余额
      *
      * @param event
      */

@@ -703,7 +703,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
-            //设置安全卡弹窗
+            //设置银行卡弹窗
         } else {
             Intent intent1 = new Intent(getWRActivity(), AccountWithdrawActivity.class);
             startActivity(intent1);
@@ -718,7 +718,7 @@ public class MineFragment extends BaseBindFragment implements ObservableScrollVi
             Intent intent = new Intent(getWRActivity(), ProcessActivity.class);
             startActivity(intent);
         } else if (!NoSetSafeCardHint.isHasSafeCard((BaseBindActivity) getWRActivity())) {
-            //设置安全卡弹窗
+            //设置银行卡弹窗
         } else {
             Intent intent1 = new Intent(getWRActivity(), AccountTopupActivity.class);
             startActivity(intent1);

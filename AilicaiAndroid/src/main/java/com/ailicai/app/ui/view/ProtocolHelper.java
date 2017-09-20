@@ -25,7 +25,7 @@ public class ProtocolHelper {
     public static final int TYPE_TRANSFER_PAY = 4;
     //预约房产宝收银台
     public static final int TYPE_RESERVE_PAY = 5;
-    //换卡时，添加新卡;已开户当前未设置安全卡，添加新卡;添加普通银行卡（小绑卡）时
+    //换卡时，添加新卡;已开户当前未设置银行卡，添加新卡;添加普通银行卡（小绑卡）时
     public static final int TYPE_ADD_NEW_BANK_CARD = 6;
     private BaseActivity activity;
     private int bizType;

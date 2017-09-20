@@ -179,7 +179,7 @@ public class OutCurrentPay extends BaseBuyFinancePay {
             copywriter2 = "使用账户余额支付";
         } else if ("101".equals(currentPayInfo.getAccountType())) {
             copywriter2 = "使用活期宝支付";
-            //支付到的账户类型 1-安全卡；2-账户余额
+            //支付到的账户类型 1-银行卡；2-账户余额
             if ("1".equals(currentPayInfo.getPayMethod())) {
                 copywriter1 = "转出至"+accountResponse.getBankName() + "(" + accountResponse.getBankcardTailNo() + ")";
             } else if ("2".equals(currentPayInfo.getPayMethod())) {
@@ -206,7 +206,7 @@ public class OutCurrentPay extends BaseBuyFinancePay {
     public static class CurrentPayInfo {
         private double amount;
         private String accountType; //收银台类型：101-活期宝；106-用户账户
-        private String payMethod; //支付到的账户类型 1-安全卡；2-账户余额 说明：活期宝收银台需指定
+        private String payMethod; //支付到的账户类型 1-银行卡；2-账户余额 说明：活期宝收银台需指定
 
         public double getAmount() {
             return amount;

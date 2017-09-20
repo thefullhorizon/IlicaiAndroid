@@ -11,7 +11,7 @@ public class BankcardModel {
     private String bankCode; // 银行编号
     private String bankName; //银行名称
     private int cardType; //卡类型【1：储蓄卡 、2：信用卡 、3：存折 、4：其它 】
-    private int isSafeCard; // 是否安全卡 0-否 1-是
+    private int isSafeCard; // 是否银行卡 0-否 1-是
     private String mobile; // 银行预留手机号
     private int hasMobile; // 是否有银行预留手机号 0：无，1：有
     private String cardLastNo; //银行卡尾号(卡号后四位)

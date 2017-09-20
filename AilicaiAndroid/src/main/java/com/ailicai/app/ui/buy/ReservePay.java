@@ -404,7 +404,7 @@ public class ReservePay extends BaseBuyFinancePay {
 
     @NonNull
     private String getShowText() {
-        return payInfo.isEnough() ? "使用账户余额支付" : "使用账户余额+安全卡支付";
+        return payInfo.isEnough() ? "使用账户余额支付" : "使用账户余额+银行卡支付";
     }
 
     @Override

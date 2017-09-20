@@ -19,9 +19,8 @@ import com.huoqiu.framework.imageloader.core.listener.ImageLoadingListener;
  *
  * @author: IWJW Zhou Xuan
  */
-public class GlideImageLoader implements ImageDisplayer {
+public class GlideImageLoader {
 
-    @Override
     public void display(final Context context, ImageView targetImageView, LoadParam loadParam, final ImageLoadingListener listener) {
         Glide.with(context).load(loadParam.getImgUri()).skipMemoryCache(true).into(new GlideDrawableImageViewTarget(targetImageView) {
 
@@ -69,7 +68,6 @@ public class GlideImageLoader implements ImageDisplayer {
         );
     }
 
-    @Override
     public void setNoImage(boolean isNoImage) {
         // TODO 未完善 如果有蜂窝数据不显示图片需求需要添加相关代码
     }
