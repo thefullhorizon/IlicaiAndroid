@@ -70,6 +70,7 @@
                 <View style="@style/cell_divider_hor" />
 
                 <TextView
+                    android:id="@+id/server_tel"
                     style="@style/text_14_212121"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
