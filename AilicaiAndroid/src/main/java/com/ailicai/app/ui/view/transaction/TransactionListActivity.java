@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -23,6 +21,7 @@ import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.model.bean.TransactionListModel;
 import com.ailicai.app.model.bean.TransactionTypeModel;
+import com.ailicai.app.model.bean.TransactionTypeModelByTime;
 import com.ailicai.app.model.request.TransactionListRequest;
 import com.ailicai.app.model.response.TransactionListResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
@@ -45,57 +44,74 @@ import butterknife.OnClick;
  * Created by wulianghuan on 2015/12/30.
  */
 public class TransactionListActivity extends BaseBindActivity implements View.OnClickListener {
+
     private static final int QUICK_TYPE_NORMAL = 0; // 普通查询
-    private static final int QUICK_TYPE_LAST_WEEK = 1; // 近一周查询
-    private static final int QUICK_TYPE_LAST_MONTH = 2; // 近一月查询
-    private static final int QUICK_TYPE_THREE_MONTH = 3; // 近三月查询
+    private static final int QUICK_TYPE_LATEST_A_WEEK = 1; // 近一周查询
+    private static final int QUICK_TYPE_LATEST_A_MONTH = 2; // 近一月查询
+    private static final int QUICK_TYPE_LATEST_THREE_MONTH = 3; // 近三月查询
+    private static final int QUICK_TYPE_LATEST_HALF_YEAR = 4; // 近半年
+    private static final int QUICK_TYPE_LATEST_A_YEAR = 5; // 近一年
 
     //*/
     private static final int REQUEST_TYPE_QUERY = 1001;
     private static final int REQUEST_TYPE_REFRESH = 1002;
     private static final int REQUEST_TYPE_LOADMORE = 1003;
     //*/
-    @Bind(R.id.layout_title)
-    FrameLayout mLayoutTitle;
-    @Bind(R.id.transaction_filter_layout)
-    LinearLayout mFilterLayout;
-    @Bind(R.id.transaction_type_title)
-    TextView mTextTypeTitle;
-    @Bind(R.id.text_filter_icon)
-    TextViewTF mTextFilterIcon;
-    @Bind(R.id.text_filter_start_date)
+    @Bind(R.id.layout_split)
+    LinearLayout mLayoutSplit;
+
     TextView mTextStartDate;
-    @Bind(R.id.text_filter_end_date)
     TextView mTextEndDate;
-    @Bind(R.id.check_filter_last_week)
-    CheckBox mCheckLastWeek;
-    @Bind(R.id.check_filter_last_month)
-    CheckBox mCheckLastMonth;
-    @Bind(R.id.check_filter_three_month)
-    CheckBox mCheckThreeMonth;
+
+//    @Bind(R.id.check_filter_last_week)
+//    CheckBox mCheckLastWeek;
+//    @Bind(R.id.check_filter_last_month)
+//    CheckBox mCheckLastMonth;
+//    @Bind(R.id.check_filter_three_month)
+//    CheckBox mCheckThreeMonth;
+
     @Bind(R.id.swipe_container)
     SwipeRefreshLayout mSwipeRefreshLayout;
     @Bind(R.id.list_view)
     BottomRefreshListView mListView;
     @Bind(R.id.layout_no_data)
     LinearLayout mLayoutNoData;
+
+    @Bind(R.id.ll_split_item_time)
+    View mFiltItemTime;
+    @Bind(R.id.ll_split_item_time_show)
+    TextView mSplitItemTimeShow;
+    @Bind(R.id.ll_split_item_time_arrow)
+    TextViewTF mSplitItemTimeArrow;
+
+    @Bind(R.id.ll_split_item_transaction_type)
+    View mFiltItemTransactionCatagory;
+    @Bind(R.id.transaction_catagory_show)
+    TextView mTransactionCatagoryShow;
+    @Bind(R.id.transaction_catagory_arrow)
+    TextViewTF mTextFilterIconByCatagory;
+
     @Bind(R.id.filter_shade_view)
     View mFilterShadeView;
 
-    @Bind(R.id.layout_top_info)
-    View layoutTopInfo;
-
     private LayoutInflater mLayoutInflater = null;
-    private PopupWindow mPopupWindow = null;
-    private List<TransactionTypeModel> mFilterDataList = new ArrayList<>();
-    private FilterAdapter mFilterAdapter = null;
-    private List<TransactionListModel> mDataList = new ArrayList<TransactionListModel>();
-    private TransactionListAdapter mListAdapter = null;
-    private TransactionEnum mChoosedEnum = null;
-    private int mChoosedQuickType = QUICK_TYPE_NORMAL; // 默认为普通查询
     private Date mChoosedStartDate = null;
     private Date mChoosedEndDate = null;
     private SimpleDateFormat mSimpleDateFormat;
+
+    private PopupWindow mPopupWindowByTime = null;
+    private List<TransactionTypeModelByTime> mFilterDataByTimeList = new ArrayList<>();
+    private FilterByTimeAdapter mFilterAdapterByTime = null;
+    private TransactionEnumByTime mChoosedEnumByTime = TransactionEnumByTime.LATEST_A_WEEK;//默认设置选中近一周
+//    private int mChoosedQuickType = QUICK_TYPE_NORMAL; // 默认为普通查询
+
+    private PopupWindow mPopupWindow = null;
+    private List<TransactionTypeModel>    mFilterDataList = new ArrayList<>();
+    private FilterAdapter mFilterAdapter = null;
+    private TransactionEnum mChoosedEnum = null;
+
+    private List<TransactionListModel> mDataList = new ArrayList<>();
+    private TransactionListAdapter mListAdapter = null;
 
     /**
      * 已获取多少条
@@ -124,24 +140,35 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        mLayoutInflater = LayoutInflater.from(this);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.main_red_color);
         initData();
         addListener();
     }
 
     private void initData() {
+
         mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        // 默认为全部交易
-        mChoosedEnum = TransactionEnum.ALL;
+
+        //Split by a certain period
+        mChoosedEnumByTime = TransactionEnumByTime.LATEST_A_WEEK;// A week as default
+        mFilterDataByTimeList.add(new TransactionTypeModelByTime(TransactionEnumByTime.LATEST_A_WEEK, true));
+        mFilterDataByTimeList.add(new TransactionTypeModelByTime(TransactionEnumByTime.LATEST_A_MONTH, false));
+        mFilterDataByTimeList.add(new TransactionTypeModelByTime(TransactionEnumByTime.LATEST_THREE_MONTH, false));
+        mFilterDataByTimeList.add(new TransactionTypeModelByTime(TransactionEnumByTime.LATEST_HALF_YEAR, false));
+        mFilterDataByTimeList.add(new TransactionTypeModelByTime(TransactionEnumByTime.LATEST_A_YEAR, false));
+        mFilterAdapter = new FilterAdapter();
+
+        //Split by transaction category
+        mChoosedEnum = TransactionEnum.ALL;// All as default
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.ALL, true));
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.TRANSFER_IN, false));
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.TTRANSFER_OUT, false));
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.BUY, false));
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.BACK_FUND, false));
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.BACK_ALL, false));
-//        mFilterDataList.add(new TransactionTypeModel(TransactionEnum.PAY, false));
         mFilterDataList.add(new TransactionTypeModel(TransactionEnum.TRANSFER, false));
-        mFilterAdapter = new FilterAdapter();
+        mFilterAdapterByTime = new FilterByTimeAdapter();
 
         mListAdapter = new TransactionListAdapter(TransactionListActivity.this);
         View view = new View(this);
@@ -151,8 +178,8 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
         mListView.setAdapter(mListAdapter);
         mListView.setEmptyView(mLayoutNoData);
         mListAdapter.setData(mDataList);
-        // 默认设置选中近一周
-        onclickLastWeek();
+
+        loadData(REQUEST_TYPE_QUERY);
     }
 
     private void addListener() {
@@ -162,11 +189,6 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
                 loadData(REQUEST_TYPE_REFRESH);
             }
         });
-        mTextStartDate.setOnClickListener(this);
-        mTextEndDate.setOnClickListener(this);
-        mCheckLastWeek.setOnClickListener(this);
-        mCheckLastMonth.setOnClickListener(this);
-        mCheckThreeMonth.setOnClickListener(this);
         mListView.setOnLoadMoreListener(onLoadMoreListener);
     }
 
@@ -201,14 +223,18 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
             case R.id.text_filter_end_date:
                 showDatePikcer(false, getEndDate());
                 break;
-            case R.id.check_filter_last_week:
-                onclickLastWeek();
-                break;
-            case R.id.check_filter_last_month:
-                onclickLastMonth();
-                break;
-            case R.id.check_filter_three_month:
-                onclickThreeMonth();
+            case R.id.text_query:
+                mChoosedEnumByTime = TransactionEnumByTime.LATEST_COMMON;
+                for (int i = 0; i < mFilterDataByTimeList.size(); i++) {
+                    mFilterDataByTimeList.get(i).setIsCurrent(false);
+                }
+                mFilterAdapterByTime.notifyDataSetChanged();
+                if (mPopupWindowByTime != null && mPopupWindowByTime.isShowing()) {
+                    mPopupWindowByTime.dismiss();
+                }
+                mSplitItemTimeShow.setText(mSimpleDateFormat.format(mChoosedStartDate) + " - " + mSimpleDateFormat.format(new Date()));
+                loadData(REQUEST_TYPE_QUERY);
+
                 break;
         }
     }
@@ -232,80 +258,27 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
         return mChoosedEndDate;
     }
 
-    private void onclickLastWeek() {
-        // 设置选择状态
-        mChoosedQuickType = QUICK_TYPE_LAST_WEEK;
-        mCheckLastWeek.setChecked(true);
-        mCheckLastMonth.setChecked(false);
-        mCheckThreeMonth.setChecked(false);
-        // 设置日期
-        Calendar startCalendar = Calendar.getInstance();
-        startCalendar.set(Calendar.DAY_OF_MONTH, startCalendar.get(Calendar.DAY_OF_MONTH) - 6);
-        mChoosedStartDate = startCalendar.getTime();
-        mTextStartDate.setText(mSimpleDateFormat.format(mChoosedStartDate));
-
-        Date date = new Date();
-        mChoosedEndDate = date;
-        mTextEndDate.setText(mSimpleDateFormat.format(date));
-        loadData(REQUEST_TYPE_QUERY);
-    }
-
-    private void onclickLastMonth() {
-        // 设置选择状态
-        mChoosedQuickType = QUICK_TYPE_LAST_MONTH;
-        mCheckLastWeek.setChecked(false);
-        mCheckLastMonth.setChecked(true);
-        mCheckThreeMonth.setChecked(false);
-        // 设置日期
-        Calendar startCalendar = Calendar.getInstance();
-        startCalendar.set(Calendar.MONTH, startCalendar.get(Calendar.MONTH) - 1);
-        mChoosedStartDate = startCalendar.getTime();
-        mTextStartDate.setText(mSimpleDateFormat.format(mChoosedStartDate));
-
-        Date date = new Date();
-        mChoosedEndDate = date;
-        mTextEndDate.setText(mSimpleDateFormat.format(date));
-        loadData(REQUEST_TYPE_QUERY);
-    }
-
-    private void onclickThreeMonth() {
-        // 设置选择状态
-        mChoosedQuickType = QUICK_TYPE_THREE_MONTH;
-        mCheckLastWeek.setChecked(false);
-        mCheckLastMonth.setChecked(false);
-        mCheckThreeMonth.setChecked(true);
-        // 设置日期
-        Calendar startCalendar = Calendar.getInstance();
-        startCalendar.set(Calendar.MONTH, startCalendar.get(Calendar.MONTH) - 3);
-        mChoosedStartDate = startCalendar.getTime();
-        mTextStartDate.setText(mSimpleDateFormat.format(mChoosedStartDate));
-
-        Date date = new Date();
-        mChoosedEndDate = date;
-        mTextEndDate.setText(mSimpleDateFormat.format(date));
-        loadData(REQUEST_TYPE_QUERY);
-    }
-
     @Override
     protected void setupInjectComponent() {
 
     }
 
-    @OnClick(R.id.text_query)
-    void doQuery() {
+    @OnClick(R.id.ll_split_item_time)
+    void clickSplitItemTime() {
         if (CheckDoubleClick.isFastDoubleClick(1000)) {
             return;
         }
-        loadData(REQUEST_TYPE_QUERY);
+        showFilterDialogByTime();
     }
 
-    @OnClick(R.id.transaction_filter_layout)
-    void showFilter() {
+    @OnClick(R.id.ll_split_item_transaction_type)
+    void clickSplitItemTransactionType() {
         if (CheckDoubleClick.isFastDoubleClick(1000)) {
             return;
         }
-        showFiterTypeDialog();
+        showFilterDialogByTransactionCategory();
     }
+
 
     @Override
     public void onPause() {
@@ -313,7 +286,107 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
         super.onPause();
     }
 
-    private void showFiterTypeDialog() {
+    private void showFilterDialogByTime(){
+
+        mPopupWindowByTime = new PopupWindow(mLayoutInflater.inflate(R.layout.transaction_list_filter_dialog_by_time, null),
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ListView listView = (ListView) mPopupWindowByTime.getContentView().findViewById(R.id.transaction_filter_type_list);
+        mTextStartDate = (TextView) mPopupWindowByTime.getContentView().findViewById(R.id.text_filter_start_date);
+        mTextEndDate = (TextView) mPopupWindowByTime.getContentView().findViewById(R.id.text_filter_end_date);
+        TextView queryByAssign = (TextView) mPopupWindowByTime.getContentView().findViewById(R.id.text_query);
+        mTextStartDate.setOnClickListener(this);
+        mTextEndDate.setOnClickListener(this);
+        queryByAssign.setOnClickListener(this);
+
+        Calendar startCalendar = Calendar.getInstance();
+        switch (mChoosedEnumByTime){
+
+            case LATEST_COMMON:
+                mTextStartDate.setText(mSimpleDateFormat.format(mChoosedStartDate));
+                break;
+
+            case LATEST_A_WEEK:
+                startCalendar.set(Calendar.DAY_OF_MONTH, startCalendar.get(Calendar.DAY_OF_MONTH) - 6);
+                mChoosedStartDate = startCalendar.getTime();
+                mTextStartDate.setText(mSimpleDateFormat.format(mChoosedStartDate));
+                break;
+
+            case LATEST_A_MONTH:
+                startCalendar.set(Calendar.MONTH, startCalendar.get(Calendar.MONTH) - 1);
+                mChoosedStartDate = startCalendar.getTime();
+                mTextStartDate.setText(mSimpleDateFormat.format(mChoosedStartDate));
+                break;
+
+            case LATEST_THREE_MONTH:
+                startCalendar.set(Calendar.MONTH, startCalendar.get(Calendar.MONTH) - 3);
+                mChoosedStartDate = startCalendar.getTime();
+                mTextStartDate.setText(mSimpleDateFormat.format(mChoosedStartDate));
+                break;
+
+            case LATEST_HALF_YEAR:
+                startCalendar.set(Calendar.MONTH, startCalendar.get(Calendar.MONTH) - 6);
+                mChoosedStartDate = startCalendar.getTime();
+                mTextStartDate.setText(mSimpleDateFormat.format(mChoosedStartDate));
+                break;
+
+            case LATEST_A_YEAR:
+                startCalendar.set(Calendar.MONTH, startCalendar.get(Calendar.MONTH) - 12);
+                mChoosedStartDate = startCalendar.getTime();
+                mTextStartDate.setText(mSimpleDateFormat.format(mChoosedStartDate));
+                break;
+
+        }
+        Date date = new Date();
+        mChoosedEndDate = new Date();
+        mTextEndDate.setText(mSimpleDateFormat.format(date));
+
+        listView.setAdapter(mFilterAdapterByTime);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for (int i = 0; i < mFilterDataByTimeList.size(); i++) {
+                    if (i == position) {
+                        mFilterDataByTimeList.get(i).setIsCurrent(true);
+                        mChoosedEnumByTime = mFilterDataByTimeList.get(i).getTransactionEnumByTime();
+                    } else {
+                        mFilterDataByTimeList.get(i).setIsCurrent(false);
+                    }
+                }
+                mFilterAdapterByTime.notifyDataSetChanged();
+                if (mPopupWindowByTime != null && mPopupWindowByTime.isShowing()) {
+                    mPopupWindowByTime.dismiss();
+                }
+                mSplitItemTimeShow.setText(mFilterDataByTimeList.get(position).getTransactionEnumByTime().getTitle());
+                loadData(REQUEST_TYPE_QUERY);
+            }
+        });
+        mPopupWindowByTime.setFocusable(true);
+        mPopupWindowByTime.setOutsideTouchable(true);
+        mPopupWindowByTime.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                mFilterShadeView.setVisibility(View.GONE);
+                mSplitItemTimeArrow.setText(getResources().getString(R.string.chevous_down));
+                mSplitItemTimeArrow.setTextColor(Color.parseColor("#212121"));
+                mSplitItemTimeShow.setTextColor(Color.parseColor("#212121"));
+
+            }
+        });
+//      contentView.setFocusableInTouchMode(true);
+        // 实例化一个ColorDrawable颜色为透明
+        ColorDrawable dw = new ColorDrawable(0x80000000);
+        // 设置SelectPicPopupWindow弹出窗体的背景
+        mPopupWindowByTime.setBackgroundDrawable(dw);
+        mPopupWindowByTime.showAsDropDown(mLayoutSplit);
+        mPopupWindowByTime.update();
+        mSplitItemTimeArrow.setText(getResources().getString(R.string.chevous_up));
+        mSplitItemTimeArrow.setTextColor(Color.parseColor("#e84a01"));
+        mSplitItemTimeShow.setTextColor(Color.parseColor("#e84a01"));
+        mFilterShadeView.setVisibility(View.VISIBLE);
+
+    }
+
+    private void showFilterDialogByTransactionCategory() {
         mPopupWindow = new PopupWindow(mLayoutInflater.inflate(R.layout.transaction_list_filter_dialog, null),
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ListView listView = (ListView) mPopupWindow.getContentView().findViewById(R.id.transaction_filter_type_list);
@@ -333,7 +406,7 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
                     mFilterAdapter.notifyDataSetChanged();
                     dismissPopUpWindow();
                 }
-                mTextTypeTitle.setText(mFilterDataList.get(position).getTransactionEnum().getTitle());
+                mTransactionCatagoryShow.setText(mFilterDataList.get(position).getTransactionEnum().getTitle());
                 loadData(REQUEST_TYPE_QUERY);
             }
         });
@@ -343,7 +416,9 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
             @Override
             public void onDismiss() {
                 mFilterShadeView.setVisibility(View.GONE);
-                mTextFilterIcon.setText(getResources().getString(R.string.chevous_down));
+                mTextFilterIconByCatagory.setText(getResources().getString(R.string.chevous_down));
+                mTextFilterIconByCatagory.setTextColor(Color.parseColor("#212121"));
+                mTransactionCatagoryShow.setTextColor(Color.parseColor("#212121"));
             }
         });
 //      contentView.setFocusableInTouchMode(true);
@@ -351,9 +426,11 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
         ColorDrawable dw = new ColorDrawable(0x80000000);
         // 设置SelectPicPopupWindow弹出窗体的背景
         mPopupWindow.setBackgroundDrawable(dw);
-        mPopupWindow.showAsDropDown(mLayoutTitle);
+        mPopupWindow.showAsDropDown(mLayoutSplit);
         mPopupWindow.update();
-        mTextFilterIcon.setText(getResources().getString(R.string.chevous_up));
+        mTextFilterIconByCatagory.setText(getResources().getString(R.string.chevous_up));
+        mTextFilterIconByCatagory.setTextColor(Color.parseColor("#e84a01"));
+        mTransactionCatagoryShow.setTextColor(Color.parseColor("#e84a01"));
         mFilterShadeView.setVisibility(View.VISIBLE);
     }
 
@@ -363,8 +440,56 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
         }
     }
 
-    private class FilterAdapter extends BaseAdapter {
+    private class FilterByTimeAdapter extends BaseAdapter {
 
+        @Override
+        public int getCount() {
+            return mFilterDataByTimeList.size();
+        }
+
+        @Override
+        public TransactionTypeModelByTime getItem(int position) {
+            return mFilterDataByTimeList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup viewGroup) {
+            View view;
+            ViewHolder viewHolder;
+            if (null != convertView) {
+                view = convertView;
+                viewHolder = (ViewHolder) convertView.getTag();
+            } else {
+                view = mLayoutInflater.inflate(R.layout.item_transaction_filter_type, null);
+                viewHolder = new ViewHolder();
+                viewHolder.textTypeName = (TextView) view.findViewById(R.id.text_type_name);
+                viewHolder.textTypeSelected = (TextViewTF) view.findViewById(R.id.text_type_selected);
+                view.setTag(viewHolder);
+            }
+            TransactionTypeModelByTime model = getItem(position);
+            if (model.isCurrent() == true) {
+                // 当前项选中设置红色
+                viewHolder.textTypeName.setTextColor(getResources().getColor(R.color.main_red_color));
+            } else {
+                viewHolder.textTypeName.setTextColor(getResources().getColor(R.color.radiobutton_text_color_normal));
+            }
+            viewHolder.textTypeName.setText(model.getTransactionEnumByTime().getItem());
+            viewHolder.textTypeSelected.setVisibility(model.isCurrent() ? View.VISIBLE : View.GONE);
+            return view;
+        }
+
+        private class ViewHolder {
+            public TextView textTypeName;
+            public TextViewTF textTypeSelected;
+        }
+    }
+
+    private class FilterAdapter extends BaseAdapter {
         @Override
         public int getCount() {
             return mFilterDataList.size();
@@ -411,6 +536,7 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
             public TextViewTF textTypeSelected;
         }
     }
+
 
     /**
      * 请求数据
@@ -470,7 +596,7 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
         }
         TransactionListRequest request = new TransactionListRequest();
         request.setTradeType(mChoosedEnum.getCode());
-        request.setQuickType(mChoosedQuickType);
+        request.setQuickType(mChoosedEnumByTime.getCode());
         request.setStartDate(mSimpleDateFormat.format(getStartDate()));
         request.setEndDate(mSimpleDateFormat.format(getEndDate()));
         request.setPageSize(mPageSize);
@@ -522,10 +648,7 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
                     mTextEndDate.setText(mSimpleDateFormat.format(mChoosedEndDate));
                 }
                 //*/ 改变时间段选择框的状态
-                mChoosedQuickType = QUICK_TYPE_NORMAL;
-                mCheckLastWeek.setChecked(false);
-                mCheckLastMonth.setChecked(false);
-                mCheckThreeMonth.setChecked(false);
+                mChoosedEnumByTime = TransactionEnumByTime.LATEST_COMMON;
                 //*/
             }
         }, year, month, day);
@@ -533,4 +656,5 @@ public class TransactionListActivity extends BaseBindActivity implements View.On
         datePickerDialog.setYearRange(2015, 2037);
         datePickerDialog.show(getFragmentManager(), "filterDatePicker");
     }
+
 }

@@ -13,7 +13,7 @@ public class TransactionListRequest extends Request {
     private int tradeType; // 交易类型 0：全部，1：转入，2：转出，3：购买，4：回款, 5:支付, 6: 转让
     private String startDate; // 开始日期 yyyy-MM-dd
     private String endDate; // 结束日期 yyyy-MM-dd
-    private int quickType; // 快捷类型 0：普通查询 1：近一周查询 2：近一月查询 3：近三月查询
+    private int quickType; // 快捷类型 0：普通查询 1：近一周查询 2：近一月查询 3：近三月查询 4：近半年 5：近一年
     private int pageSize = 20; // 每次加载20条数据
     private int offSet = 0; // 数据偏移量
 

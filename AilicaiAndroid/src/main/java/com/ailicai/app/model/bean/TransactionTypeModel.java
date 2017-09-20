@@ -5,7 +5,7 @@ import com.ailicai.app.ui.view.transaction.TransactionEnum;
 /**
  * Created by wulianghuan on 2016/1/4.
  */
-public class TransactionTypeModel {
+public class TransactionTypeModel extends CommonTransactionTypeModel{
 
     private TransactionEnum transactionEnum;
     private boolean isCurrent;
