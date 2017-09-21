@@ -76,7 +76,7 @@ public class BuyTiYanBaoActivity extends BaseBindActivity {
      * 初始化数据
      */
     public void initData() {
-        tvTiYanTitle.setText("体验宝 (年化" + response.getYearInterestRateStr() + " " + response.getHorizonStr() + ")");
+        tvTiYanTitle.setText("年化" + response.getYearInterestRateStr() + " " + response.getHorizonStr());
         if (response.getHasCoupon() == 1) {
             currentCouponId = response.getCouponId();
             couponAmount = response.getCouponAmount();

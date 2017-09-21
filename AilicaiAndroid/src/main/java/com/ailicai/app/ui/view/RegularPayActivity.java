@@ -82,6 +82,10 @@ public class RegularPayActivity extends BaseBindActivity {
     public static final String PRODUCT_ID_KEY = "PRODUCT_ID";
     public static final String IS_FROM_SMALL_COIN = "FROM_SMALL_COIN";
     public static final int REQUEST_CODE_SELECT_VOUCHER = 1000;
+
+    @Bind(R.id.tv_ti_yan_title)
+    TextView tvTiYanTitle;
+
     @Bind(R.id.regular_balance)
     TextView mRegularBalance;
     @Bind(R.id.input_error_tips)
@@ -914,6 +918,7 @@ public class RegularPayActivity extends BaseBindActivity {
 
     public void bindViewData(RegularPayBaseInfoResponse jsonObject) {
         this.infoResponse = jsonObject;
+        tvTiYanTitle.setText("年化" + jsonObject.getYearInterestRate() + "% " + jsonObject.getLoanTerm()+"天");
         verifyProtocolListLogical(jsonObject.getProtocolList());
         mInputPriceEditLable.setText(jsonObject.getHint());
         mRegularBalance.setText("可用余额 " + CommonUtil.amountWithTwoAfterPoint(jsonObject.getAvailableBalance()) + " 元");

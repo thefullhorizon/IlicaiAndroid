@@ -25,6 +25,18 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_ti_yan_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_8"
+                android:paddingLeft="@dimen/_16"
+                android:paddingRight="@dimen/_16"
+                android:paddingTop="@dimen/_8"
+                android:text="体验宝(年化12.88% 5天)"
+                android:textColor="#757575"
+                android:textSize="12sp" />
+
+            <TextView
                 android:id="@+id/tv_last_money_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,7 +80,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8"
                 android:background="#FFFFFF">
 
                 <View

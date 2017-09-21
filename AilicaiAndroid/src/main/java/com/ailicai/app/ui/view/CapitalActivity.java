@@ -29,7 +29,7 @@ import com.ailicai.app.ui.login.AccountInfo;
 import com.ailicai.app.ui.login.LoginManager;
 import com.ailicai.app.ui.login.UserInfo;
 import com.ailicai.app.ui.view.detail.ExpiredTiyanbaoListActivity;
-import com.ailicai.app.ui.view.detail.IncomeDetailActivity;
+import com.ailicai.app.ui.view.detail.IncomeRecordsActivity;
 import com.ailicai.app.ui.view.detail.SmallCoinSackActivity;
 import com.ailicai.app.widget.BottomRefreshListView;
 import com.ailicai.app.widget.DialogBuilder;
@@ -261,8 +261,9 @@ public class CapitalActivity extends BaseBindActivity implements
     private void toRegularIncome() {
         if (AccountInfo.isOpenAccount()) {
             EventLog.upEventLog("800","ljsy");
-            Intent intent = new Intent(this, IncomeDetailActivity.class);
-            intent.putExtra(IncomeDetailActivity.TYPE, IncomeDetailActivity.REGULAR);
+            Intent intent = new Intent(this, IncomeRecordsActivity.class);
+            intent.putExtra(IncomeRecordsActivity.TYPE_INCOME_LEVEL_ONE, IncomeRecordsActivity.NETLOAN);
+            intent.putExtra(IncomeRecordsActivity.TYPE_INCOME_LEVEL_TWO, IncomeRecordsActivity.NETLOAN_REGULAR);
             startActivity(intent);
         }
 

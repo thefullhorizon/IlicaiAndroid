@@ -80,7 +80,7 @@
             android:layout_weight="3.0"
             android:background="@drawable/button_transaction_filter_selector"
             android:gravity="center"
-            android:text="查询"
+            android:text="确认"
             android:textColor="#212121"
             android:textSize="12sp" />
     </LinearLayout>
