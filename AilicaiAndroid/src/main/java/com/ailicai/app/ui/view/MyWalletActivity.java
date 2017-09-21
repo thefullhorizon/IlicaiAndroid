@@ -173,11 +173,8 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
 
         if (!NoSetSafeCardHint.isShowHintDialog(this)) {
 //            EventLog.upEventLog("350", "into", 4);
-            DialogBuilder.showSimpleDialog("根据《网络借贷信息中介机构业务活动管理暂行办法》，暂停活期宝转入服务。已购买活期宝的用户可正常转出", this, null);
-            //暂时关闭转入入口
-//            Intent intent = new Intent(this, ProcessActivity.class);
-//            startActivityForResult(intent, REQUEST_FOR_PROCESS_IN);
-
+            Intent intent = new Intent(this, ProcessActivity.class);
+            startActivityForResult(intent, REQUEST_FOR_PROCESS_IN);
         }
     }
 
@@ -237,8 +234,10 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
 
             switch (requestCode) {
                 case REQUEST_FOR_PROCESS_IN: {
-                    Intent intent = new Intent(this, CurrentRollInActivity.class);
-                    startActivity(intent);
+
+                    DialogBuilder.showSimpleDialog("根据《网络借贷信息中介机构业务活动管理暂行办法》，暂停活期宝转入服务。已购买活期宝的用户可正常转出", this, null);
+//                    Intent intent = new Intent(this, CurrentRollInActivity.class);
+//                    startActivity(intent);
                     break;
                 }
                 case REQUEST_FOR_PROCESS_OUT: {
