@@ -613,7 +613,7 @@
                 android:paddingBottom="16dip"
                 android:paddingTop="16dip"
                 android:text="转入"
-                android:textColor="@color/main_red_color"
+                android:textColor="@color/color_BDBDBD"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

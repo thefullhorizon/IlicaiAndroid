@@ -28,6 +28,7 @@ import com.ailicai.app.ui.view.detail.IncomeRecordsActivity;
 import com.ailicai.app.ui.view.reserveredrecord.ReserveRecordListActivity;
 import com.ailicai.app.ui.view.transaction.TransactionListActivity;
 import com.ailicai.app.widget.CustomScrollView;
+import com.ailicai.app.widget.DialogBuilder;
 import com.ailicai.app.widget.IWTopTitleView;
 import com.ailicai.app.widget.mpchart.charts.LineChart;
 import com.huoqiu.framework.util.CheckDoubleClick;
@@ -172,8 +173,11 @@ public class MyWalletActivity extends BaseBindActivity implements SwipeRefreshLa
 
         if (!NoSetSafeCardHint.isShowHintDialog(this)) {
 //            EventLog.upEventLog("350", "into", 4);
-            Intent intent = new Intent(this, ProcessActivity.class);
-            startActivityForResult(intent, REQUEST_FOR_PROCESS_IN);
+            DialogBuilder.showSimpleDialog("根据《网络借贷信息中介机构业务活动管理暂行办法》，暂停活期宝转入服务。已购买活期宝的用户可正常转出", this, null);
+            //暂时关闭转入入口
+//            Intent intent = new Intent(this, ProcessActivity.class);
+//            startActivityForResult(intent, REQUEST_FOR_PROCESS_IN);
+
         }
     }
 
