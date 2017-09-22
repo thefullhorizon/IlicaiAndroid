@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.utils.CommonUtil;
+import com.ailicai.app.common.utils.DecimalDigitsInputFilter;
 import com.ailicai.app.common.utils.MathUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.ObjectUtil;
@@ -127,6 +129,7 @@ public class ReserveCashierDeskActivity extends BaseBindActivity implements IWTo
     }
 
     private void initView() {
+        etMoney.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(8, 2)});
         if (!TextUtils.isEmpty(reservePwd)) tvKl.setVisibility(View.VISIBLE);
         tvParamsHint.setText(product.getProductName() + "  " + yearRateZone + "  " + term + "天内");
         tvBalance.setText("可用余额 " + CommonUtil.amountWithTwoAfterPoint(reserveResponse.getAvailableBalance()) + " 元");//账户可用余额

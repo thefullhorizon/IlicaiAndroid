@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -30,6 +31,7 @@ import com.ailicai.app.common.logCollect.EventLog;
 import com.ailicai.app.common.reqaction.IwjwRespListener;
 import com.ailicai.app.common.reqaction.ServiceSender;
 import com.ailicai.app.common.utils.CommonUtil;
+import com.ailicai.app.common.utils.DecimalDigitsInputFilter;
 import com.ailicai.app.common.utils.DeviceUtil;
 import com.ailicai.app.common.utils.HandlerUtil;
 import com.ailicai.app.common.utils.LogUtil;
@@ -181,6 +183,8 @@ public class RegularPayActivity extends BaseBindActivity {
 //        tintManager.setStatusBarTintEnabled(true);
 //        tintManager.setStatusBarTintResource(R.color.main_top_deep_color);
         mConfirmBtn.setEnabled(false);
+        //对输入的位数进行限制
+        mInputPriceEdit.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(8, 2)});
         initBaseInfo();
         addListener();
         SpannableUtil spannableUtil = new SpannableUtil(this);
@@ -308,6 +312,10 @@ public class RegularPayActivity extends BaseBindActivity {
             input = input.substring(1, input.length());
             mInputPriceEdit.setText(input);
             mInputPriceEdit.setSelection(input.length());
+            return;
+        }
+
+        if(input.contains(".") && input.length() > 11){
             return;
         }
         if (infoResponse == null) {
