@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 
 import com.ailicai.app.MyApplication;
+import com.ailicai.app.R;
 import com.ailicai.app.common.constants.GlobleConstants;
 import com.ailicai.app.ui.gesture.GestureLockActivity;
 import com.ailicai.app.ui.login.UserInfo;
@@ -51,8 +52,12 @@ public class GestureLockTools {
         Intent intent = getGestureLockIntent(context,type);
         if(intent != null){
             context.startActivity(intent);
+            if(context instanceof Activity) {
+                ((Activity)context).overridePendingTransition(R.anim.activity_lollipop_open_enter,R.anim.activity_lollipop_close_exit);
+            }
         }
     }
+
     public static void goGestureLockView(Context context){
         goGestureLockView(context,GestureLockActivity.TYPE_AUTO);
     }

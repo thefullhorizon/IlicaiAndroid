@@ -29,7 +29,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
     ViewPager mViewPager;
 
     private OurViewPagerAdapter mViewPagerAdapter;
-    private String[] pageTitles = new String[]{"推荐", "网贷", "货基", "转让"};
+    private String[] pageTitles = new String[]{"推荐", "网贷", "转让"};
 
     @Override
     public int getLayout() {
@@ -83,14 +83,11 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
         Bundle bundleWD = new Bundle();
         mViewPagerAdapter.addNvgItem(pageTitles[1], InvestmentNetLoanFragment.class, bundleWD);
 
-        Bundle bundleHJ = new Bundle();
-        mViewPagerAdapter.addNvgItem(pageTitles[2], InvestmentMoneyFundFragment.class, bundleHJ);
-
         Bundle bundleZR = new Bundle();
-        mViewPagerAdapter.addNvgItem(pageTitles[3], InvestmentTransferFragment.class, bundleZR);
+        mViewPagerAdapter.addNvgItem(pageTitles[2], InvestmentTransferFragment.class, bundleZR);
 
         mViewPager.setAdapter(mViewPagerAdapter);
-        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setCurrentItem(0);
         mTabLayout.setupWithViewPager(mViewPager);
 
@@ -174,7 +171,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
             BaseWebViewFragment selectedFragment = (BaseWebViewFragment) mViewPagerAdapter.getItem(selectedPosition);
             selectedFragment.startOrStopAutoRefresh(true);
 
-            for (int i = 0; i <= 3; i++) {
+            for (int i = 0; i <= 2; i++) {
                 if (i != selectedPosition) {
                     BaseWebViewFragment unSelectedFragment = (BaseWebViewFragment) mViewPagerAdapter.getItem(i);
                     unSelectedFragment.startOrStopAutoRefresh(false);
@@ -185,7 +182,7 @@ public class InvestmentMainFragment extends BaseBindFragment implements TabLayou
 
     public void setAllRefreshStateStop() {
         if (mViewPagerAdapter != null) {
-            for (int i = 0; i <= 3; i++) {
+            for (int i = 0; i <= 2; i++) {
                 BaseWebViewFragment unSelectedFragment = (BaseWebViewFragment) mViewPagerAdapter.getItem(i);
                 unSelectedFragment.startOrStopAutoRefresh(false);
             }

@@ -105,7 +105,7 @@ public class BankCardDetailActivity extends BaseBindActivity {
         tvSingleLimit.setText(response.getEachPayMax());
         tvSingleDayLimit.setText(response.getEachDayPayMax());
 
-        String desc = "为了您的账户安全，仅支持绑定一张银行卡，如需帮助，请联系客服";
+        String desc = "为了您的账户安全，仅支持绑定一张银行卡\n如需帮助，请联系客服";
         SpannableString spanableInfo = new SpannableString(desc + " " +"400-700-6622");
         int start = +desc.length();
         desc = desc + " " +"400-700-6622";

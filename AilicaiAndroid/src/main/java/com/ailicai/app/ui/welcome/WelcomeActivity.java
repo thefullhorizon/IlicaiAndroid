@@ -71,6 +71,8 @@ public class WelcomeActivity extends BaseBindActivity {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         ApplicationPresenter.syncTime(null);
+        setNavigationbarHide();
+        disablePatternLock();
         GlobleConstants.mLockAppTime = 0;
         setWelcomeAdvertiseData();
     }
@@ -138,16 +140,22 @@ public class WelcomeActivity extends BaseBindActivity {
             llJumpOver.setVisibility(View.VISIBLE);
             tvRestSeconds.setText(showTime+"");
             mHandler.removeCallbacksAndMessages(null);
-            countDownTimer = new CountDownTimer(1000 * showTime, 1000) {
+            countDownTimer = new CountDownTimer(1000 * (showTime+2), 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    tvRestSeconds.setText((millisUntilFinished / 1000)+"");
+                    int showTime = ((int)millisUntilFinished) / 1000-1;
+                    if(showTime >= 0) {
+                        tvRestSeconds.setText(showTime+"");
+                    }
+                    if(showTime == 0) {
+                        choosePageToGo();
+                    }
                 }
 
                 @Override
                 public void onFinish() {
-                    tvRestSeconds.setText(0+"");
-                    choosePageToGo();
+                    // finish会比tick慢，不知道为啥
+//                    tvRestSeconds.setText(0+"");
                 }
             }.start();
         }

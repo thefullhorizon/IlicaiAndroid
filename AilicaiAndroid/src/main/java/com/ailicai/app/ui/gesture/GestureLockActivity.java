@@ -293,5 +293,6 @@ public class GestureLockActivity extends BaseBindActivity implements GestureLock
     public void finish() {
         setResult(RESULT_OK);
         super.finish();
+        overridePendingTransition(R.anim.none, R.anim.activity_lollipop_close_exit);
     }
 }

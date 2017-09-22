@@ -74,6 +74,11 @@ public class BaseActivity extends BackOpFragmentActivity {
         this.showSystemBarTint = showSystemBarTint;
     }
 
+    public void setNavigationbarHide() {
+        final View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
