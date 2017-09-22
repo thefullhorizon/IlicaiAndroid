@@ -405,7 +405,7 @@ public class ApplicationPresenter {
     private void initUmeng() {
         ShareUtil.initWXConfig();//初始化微信相关ID
         /**初始化友盟账号，BETA环境与生产环境分开统计，测试账号jervisshe@superjia.com*/
-        SocializeConstants.APPKEY = AILICAIBuildConfig.isProduction() ? "5968a0394544cb6d3b001d73" : "5968a0394544cb6d3b001d73";
+        SocializeConstants.APPKEY = AILICAIBuildConfig.isProduction() ? "5968a0394544cb6d3b001d73" : "59c4a8a682b6356edd00001d";
         ManyiAnalysis.getInstance().initSelf(myApplication, SocializeConstants.APPKEY, getChannelNo());
         MobclickAgent.setDebugMode(AILICAIBuildConfig.isDebug());
     }
