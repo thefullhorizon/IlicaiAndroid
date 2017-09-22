@@ -21,16 +21,9 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="54dp"
-            android:layout_height="54dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@mipmap/ic_launcher" />
-
-        <TextView
-            style="@style/text_18_212121"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="吉爱财" />
     </LinearLayout>
 
     <LinearLayout
