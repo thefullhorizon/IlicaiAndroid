@@ -166,6 +166,7 @@
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:visibility="gone"
                 android:src="@drawable/bank_card" />
 
             <CheckBox
@@ -181,7 +182,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_toLeftOf="@+id/bank_check_box"
                 android:layout_toRightOf="@+id/bank_icon_img"
@@ -219,6 +219,7 @@
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:visibility="gone"
                 android:src="@drawable/account_money" />
 
             <CheckBox
@@ -234,7 +235,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_toLeftOf="@+id/account_check_box"
                 android:layout_toRightOf="@+id/account_icon_img"
