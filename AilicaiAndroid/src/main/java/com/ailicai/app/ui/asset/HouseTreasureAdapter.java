@@ -1,7 +1,13 @@
 package com.ailicai.app.ui.asset;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ImageSpan;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +20,13 @@ import android.widget.TextView;
 
 import com.ailicai.app.R;
 import com.ailicai.app.common.logCollect.EventLog;
+import com.ailicai.app.common.utils.MyIntent;
+import com.ailicai.app.common.utils.ObjectUtil;
+import com.ailicai.app.common.utils.UIUtils;
 import com.ailicai.app.model.bean.Product;
 import com.ailicai.app.ui.asset.treasure.EmptyValue;
 import com.ailicai.app.ui.asset.treasure.ProductCategory;
+import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.widget.TextViewDinFont;
 import com.ailicai.app.widget.TextViewTF;
 import com.alibaba.fastjson.JSON;
@@ -25,6 +35,7 @@ import com.huoqiu.framework.util.CheckDoubleClick;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -188,7 +199,7 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
         }
 
 
-        Product product;
+        final Product product;
 
         viewHolder.productIcon.setText(mContext.getResources().getString(R.string.fang_soild_border));
         viewHolder.productIcon.setTextColor(mContext.getResources().getColor(R.color.main_red_color));
@@ -282,9 +293,30 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
         String text = "";
         if (product.getIsAddRate() > 0 ){
             viewHolder.addRateLayout.setVisibility(View.VISIBLE);
-            String textAddRate = TextUtils.isEmpty(product.getAddRateInfo()) ? "" : product.getAddRateInfo();
+            String textAddRate = TextUtils.isEmpty(product.getAddRateInfo()) ? "" : product.getAddRateInfo()+" ";
 //            String textCoucher = TextUtils.isEmpty(product.getCashBackVoucherCopywriter()) ? "" : product.getCashBackVoucherCopywriter();
-            viewHolder.addRateContent.setText(textAddRate);
+            SpannableStringBuilder ssbAddRate = new SpannableStringBuilder(textAddRate + " ");
+            if (!product.isHelpRaiseFlag()){
+                Drawable d = mContext.getResources().getDrawable(R.drawable.btn_jiaxi);
+                d.setBounds(0, 0, UIUtils.dipToPx(mContext,50), UIUtils.dipToPx(mContext,18));
+                ssbAddRate.setSpan(new ImageSpan(d), ssbAddRate.length()-1, ssbAddRate.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                ssbAddRate.setSpan(new ClickableSpan() {
+                    @Override
+                    public void onClick(View widget) {
+                        if (!TextUtils.isEmpty(product.getHelpRaiseUrl())){
+                            Map<String, String> dataMap = ObjectUtil.newHashMap();
+                            dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+                            dataMap.put(WebViewActivity.URL, product.getHelpRaiseUrl());
+                            MyIntent.startActivity(mContext, WebViewActivity.class, dataMap);
+                        }
+                    }
+                }, ssbAddRate.length() - 1, ssbAddRate.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                viewHolder.addRateContent.setMovementMethod(LinkMovementMethod.getInstance());
+                viewHolder.addRateContent.setText(ssbAddRate);
+            }else{
+                viewHolder.addRateContent.setText(textAddRate);
+            }
+
         }else {
             viewHolder.addRateLayout.setVisibility(View.GONE);
         }

@@ -1,10 +1,19 @@
 package com.ailicai.app.ui.asset;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +26,7 @@ import com.ailicai.app.common.utils.ObjectUtil;
 import com.ailicai.app.common.utils.SpannableUtil;
 import com.ailicai.app.common.utils.SystemUtil;
 import com.ailicai.app.common.utils.ToastUtil;
+import com.ailicai.app.common.utils.UIUtils;
 import com.ailicai.app.eventbus.CapitalApplyRefreshEvent;
 import com.ailicai.app.eventbus.CapitalProductTypeChangeEvent;
 import com.ailicai.app.model.request.CheckTransferStatusRequest;
@@ -285,7 +295,7 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
     /**
      * 处理申购，持有，到期的产品状态
      */
-    public void disposeProductInfo(ProductSimpleInfoResponse response) {
+    public void disposeProductInfo(final ProductSimpleInfoResponse response) {
         boolean change = false;
         if (response.getType() != type) {
             change = true;
@@ -411,10 +421,35 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
             mTimeLine.updateState(titles, values, response.getInterestTotal(), response.getFullDay(), response.getTotalDay(), response.getPassDay());
         }
 
+        //预计收益
         String yearInterestRateStr = TextUtils.isEmpty(response.getYearInterestRateAddStr()) ? "": response.getYearInterestRateAddStr();
         String addRateStr = TextUtils.isEmpty(response.getAddRateStr()) ? "": response.getAddRateStr();
         String yearInterestRateBoostStr = TextUtils.isEmpty(response.getYearInterestRateBoostStr()) ? "": response.getYearInterestRateBoostStr();
-        mExpectYearRate.setText(getSpannableString(response.getYearInterestRateStr(), yearInterestRateStr + addRateStr + yearInterestRateBoostStr));
+
+        SpannableStringBuilder predictProfit = mSpannableUtil.getSpannableString(response.getYearInterestRateStr()+" ",
+                yearInterestRateStr + addRateStr + yearInterestRateBoostStr+" ",
+                R.style.text_14_757575, R.style.text_14_e84a01);
+
+        if (response.isHelpRaiseFlag()){
+
+            Drawable d = getResources().getDrawable(R.drawable.btn_jiaxi);
+            d.setBounds(0, 0, UIUtils.dipToPx(this,50), UIUtils.dipToPx(this,18));
+            predictProfit.setSpan(new ImageSpan(d), predictProfit.length()-1, predictProfit.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+//            predictProfit.setSpan(new CenteredImageSpan(CapitalListProductDetailActivity.this, ImageSpan.ALIGN_BASELINE), predictProfit.length()-1, predictProfit.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+            predictProfit.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(View widget) {
+                    if (!TextUtils.isEmpty(response.getHelpRaiseUrl())){
+                        Map<String, String> dataMap = ObjectUtil.newHashMap();
+                        dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+                        dataMap.put(WebViewActivity.URL, response.getHelpRaiseUrl());
+                        MyIntent.startActivity(CapitalListProductDetailActivity.this, WebViewActivity.class, dataMap);
+                    }
+                }
+            }, predictProfit.length() - 1, predictProfit.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+            mExpectYearRate.setMovementMethod(LinkMovementMethod.getInstance());
+        }
+        mExpectYearRate.setText(predictProfit);
 
         String profitAddStr = TextUtils.isEmpty(response.getProfitAddStr()) ? "": response.getProfitAddStr();
         String profitBoostStr = TextUtils.isEmpty(response.getProfitBoostStr()) ? "": response.getProfitBoostStr();
@@ -428,6 +463,31 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
 
 
     }
+
+    public class CenteredImageSpan extends ImageSpan {
+
+        public CenteredImageSpan(Context context, final int drawableRes) {
+            super(context, drawableRes);
+        }
+
+        @Override
+        public void draw(@NonNull Canvas canvas, CharSequence text,
+                         int start, int end, float x,
+                         int top, int y, int bottom, @NonNull Paint paint) {
+            // image to draw
+            Drawable b = getDrawable();
+            // font metrics of text to be replaced
+            Paint.FontMetricsInt fm = paint.getFontMetricsInt();
+            int transY = (y + fm.descent + y + fm.ascent) / 2
+                    - b.getBounds().bottom / 2;
+
+            canvas.save();
+            canvas.translate(x, transY);
+            b.draw(canvas);
+            canvas.restore();
+        }
+    }
+
 
     public void productTypeChanged(boolean changed) {
         if (changed) {

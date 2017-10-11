@@ -62,6 +62,8 @@ public class ProductSimpleInfoResponse extends Response {
     private String yearInterestRateBoostStr = ""; // 助力加息年化收益率（拼接字符串，以+开头）
     private String profitBoostStr = ""; //助力加息收益（拼接字符串，以+开头）
 
+    private boolean helpRaiseFlag ; // 是否显示助理加息标志
+    private String helpRaiseUrl = ""; // 助理加息页面
 
     public String getMatchStatus() {
         return matchStatus;
@@ -397,5 +399,21 @@ public class ProductSimpleInfoResponse extends Response {
 
     public void setProfitBoostStr(String profitBoostStr) {
         this.profitBoostStr = profitBoostStr;
+    }
+
+    public boolean isHelpRaiseFlag() {
+        return helpRaiseFlag;
+    }
+
+    public void setHelpRaiseFlag(boolean helpRaiseFlag) {
+        this.helpRaiseFlag = helpRaiseFlag;
+    }
+
+    public String getHelpRaiseUrl() {
+        return helpRaiseUrl;
+    }
+
+    public void setHelpRaiseUrl(String helpRaiseUrl) {
+        this.helpRaiseUrl = helpRaiseUrl;
     }
 }

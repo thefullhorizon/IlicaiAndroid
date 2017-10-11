@@ -68,6 +68,9 @@ public class Product implements Serializable {
     //V6.7新增
     private String type;// V6.7增加小钱袋混排，加字段区分产品类型  FIXED_REDEEM  房产宝 赎楼, FIXED_TAIL  房产宝 尾款 ,FIXED_DISPLACE  房产宝 置换, NEW_OTHER  房产宝 其他, CONSUME_PURSE 小钱袋
 
+    private boolean helpRaiseFlag ; // 助理加息标志
+    private String helpRaiseUrl = ""; // 助理加息页面
+
     public String getType() {
         return type;
     }
@@ -492,5 +495,21 @@ public class Product implements Serializable {
 
     public void setCashBackVoucherCopywriter(String cashBackVoucherCopywriter) {
         this.cashBackVoucherCopywriter = cashBackVoucherCopywriter;
+    }
+
+    public boolean isHelpRaiseFlag() {
+        return helpRaiseFlag;
+    }
+
+    public void setHelpRaiseFlag(boolean helpRaiseFlag) {
+        this.helpRaiseFlag = helpRaiseFlag;
+    }
+
+    public String getHelpRaiseUrl() {
+        return helpRaiseUrl;
+    }
+
+    public void setHelpRaiseUrl(String helpRaiseUrl) {
+        this.helpRaiseUrl = helpRaiseUrl;
     }
 }
