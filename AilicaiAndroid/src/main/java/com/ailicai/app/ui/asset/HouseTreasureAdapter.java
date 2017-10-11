@@ -296,7 +296,7 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
             String textAddRate = TextUtils.isEmpty(product.getAddRateInfo()) ? "" : product.getAddRateInfo()+" ";
 //            String textCoucher = TextUtils.isEmpty(product.getCashBackVoucherCopywriter()) ? "" : product.getCashBackVoucherCopywriter();
             SpannableStringBuilder ssbAddRate = new SpannableStringBuilder(textAddRate + " ");
-            if (!product.isHelpRaiseFlag()){
+            if (product.isHelpRaiseFlag()){
                 Drawable d = mContext.getResources().getDrawable(R.drawable.btn_jiaxi);
                 d.setBounds(0, 0, UIUtils.dipToPx(mContext,50), UIUtils.dipToPx(mContext,18));
                 ssbAddRate.setSpan(new ImageSpan(d), ssbAddRate.length()-1, ssbAddRate.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
