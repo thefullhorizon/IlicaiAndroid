@@ -37,6 +37,7 @@ import com.ailicai.app.model.response.ProductSimpleInfoResponse;
 import com.ailicai.app.model.response.ReserveSimpleInfoResponse;
 import com.ailicai.app.model.response.TiyanbaoSimpleInfoResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
+import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.buy.AutomaticTenderPay;
 import com.ailicai.app.ui.buy.IwPwdPayResultListener;
@@ -443,6 +444,8 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
                         Map<String, String> dataMap = ObjectUtil.newHashMap();
                         dataMap.put(WebViewActivity.NEED_REFRESH, "0");
                         dataMap.put(WebViewActivity.URL, response.getHelpRaiseUrl());
+                        dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+                        dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
                         MyIntent.startActivity(CapitalListProductDetailActivity.this, WebViewActivity.class, dataMap);
                     }
                 }

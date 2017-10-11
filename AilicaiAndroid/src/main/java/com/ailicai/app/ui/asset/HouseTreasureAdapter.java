@@ -26,6 +26,7 @@ import com.ailicai.app.common.utils.UIUtils;
 import com.ailicai.app.model.bean.Product;
 import com.ailicai.app.ui.asset.treasure.EmptyValue;
 import com.ailicai.app.ui.asset.treasure.ProductCategory;
+import com.ailicai.app.ui.base.webview.BaseWebViewActivity;
 import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.widget.TextViewDinFont;
 import com.ailicai.app.widget.TextViewTF;
@@ -291,7 +292,7 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
         }
         //加息券逻辑+返金券显示
         String text = "";
-        if (product.getIsAddRate() > 0 ){
+        if (product.getIsAddRate() > 0 || product.isHelpRaiseFlag()){
             viewHolder.addRateLayout.setVisibility(View.VISIBLE);
             String textAddRate = TextUtils.isEmpty(product.getAddRateInfo()) ? "" : product.getAddRateInfo()+" ";
 //            String textCoucher = TextUtils.isEmpty(product.getCashBackVoucherCopywriter()) ? "" : product.getCashBackVoucherCopywriter();
@@ -307,6 +308,8 @@ public class HouseTreasureAdapter extends BaseAdapter implements View.OnClickLis
                             Map<String, String> dataMap = ObjectUtil.newHashMap();
                             dataMap.put(WebViewActivity.NEED_REFRESH, "0");
                             dataMap.put(WebViewActivity.URL, product.getHelpRaiseUrl());
+                            dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+                            dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
                             MyIntent.startActivity(mContext, WebViewActivity.class, dataMap);
                         }
                     }
