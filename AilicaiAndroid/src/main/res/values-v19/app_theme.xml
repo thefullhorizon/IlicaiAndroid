@@ -18,6 +18,10 @@
         <item name="android:clipToPadding">true</item>
     </style>
 
+    <style name="AppAppCompatTheme.IndexMain" parent="@style/AppAppCompatTheme.TranslucentNavigation">
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+
     <style name="AppAppCompatTheme.WelcomeTheme">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/welcome</item>
