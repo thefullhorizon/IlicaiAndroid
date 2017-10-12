@@ -419,9 +419,9 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
         }
 
         //预计收益
-        String yearInterestRateStr = TextUtils.isEmpty(response.getYearInterestRateAddStr()) ? "": response.getYearInterestRateAddStr();
-        String addRateStr = TextUtils.isEmpty(response.getAddRateStr()) ? "": response.getAddRateStr();
-        String yearInterestRateBoostStr = TextUtils.isEmpty(response.getYearInterestRateBoostStr()) ? "": response.getYearInterestRateBoostStr()+"  ";
+        String yearInterestRateStr = TextUtils.isEmpty(response.getYearInterestRateAddStr()) ? " ": response.getYearInterestRateAddStr()+" ";
+        String addRateStr = TextUtils.isEmpty(response.getAddRateStr()) ? " ": response.getAddRateStr()+" ";
+        String yearInterestRateBoostStr = TextUtils.isEmpty(response.getYearInterestRateBoostStr()) ? " ": response.getYearInterestRateBoostStr()+" ";
 
         SpannableStringBuilder predictProfit = mSpannableUtil.getSpannableString(response.getYearInterestRateStr()+" ",
                 yearInterestRateStr  + addRateStr  + yearInterestRateBoostStr,
