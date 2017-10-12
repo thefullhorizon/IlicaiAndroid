@@ -1,13 +1,9 @@
 package com.ailicai.app.ui.asset;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -440,19 +436,20 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
             predictProfit.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(View widget) {
-                    if (!TextUtils.isEmpty(response.getHelpRaiseUrl())){
-                        Map<String, String> dataMap = ObjectUtil.newHashMap();
-                        dataMap.put(WebViewActivity.NEED_REFRESH, "0");
-                        dataMap.put(WebViewActivity.URL, response.getHelpRaiseUrl());
-                        dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
-                        dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
-                        MyIntent.startActivity(CapitalListProductDetailActivity.this, WebViewActivity.class, dataMap);
-                    }
+                    handleINeedRaiseInterest(response);
                 }
             }, predictProfit.length() - 1, predictProfit.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
             mExpectYearRate.setMovementMethod(LinkMovementMethod.getInstance());
         }
         mExpectYearRate.setText(predictProfit);
+        //expanse the response area of clicking
+        mExpectYearRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CheckDoubleClick.isFastDoubleClick()) return;
+                handleINeedRaiseInterest(response);
+            }
+        });
 
         String profitAddStr = TextUtils.isEmpty(response.getProfitAddStr()) ? "": response.getProfitAddStr();
         String profitBoostStr = TextUtils.isEmpty(response.getProfitBoostStr()) ? "": response.getProfitBoostStr();
@@ -463,34 +460,18 @@ public class CapitalListProductDetailActivity extends BaseBindActivity implement
             hasTransferCapital.setText(response.getHasTransferAmount());
             transferingCapital.setText(response.getTransferingAmount());
         }
-
-
     }
 
-    public class CenteredImageSpan extends ImageSpan {
-
-        public CenteredImageSpan(Context context, final int drawableRes) {
-            super(context, drawableRes);
-        }
-
-        @Override
-        public void draw(@NonNull Canvas canvas, CharSequence text,
-                         int start, int end, float x,
-                         int top, int y, int bottom, @NonNull Paint paint) {
-            // image to draw
-            Drawable b = getDrawable();
-            // font metrics of text to be replaced
-            Paint.FontMetricsInt fm = paint.getFontMetricsInt();
-            int transY = (y + fm.descent + y + fm.ascent) / 2
-                    - b.getBounds().bottom / 2;
-
-            canvas.save();
-            canvas.translate(x, transY);
-            b.draw(canvas);
-            canvas.restore();
+    private void handleINeedRaiseInterest(ProductSimpleInfoResponse response){
+        if (!TextUtils.isEmpty(response.getHelpRaiseUrl())){
+            Map<String, String> dataMap = ObjectUtil.newHashMap();
+            dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+            dataMap.put(WebViewActivity.URL, response.getHelpRaiseUrl());
+            dataMap.put(BaseWebViewActivity.USEWEBTITLE, "true");
+            dataMap.put(BaseWebViewActivity.TOPVIEWTHEME, "false");
+            MyIntent.startActivity(CapitalListProductDetailActivity.this, WebViewActivity.class, dataMap);
         }
     }
-
 
     public void productTypeChanged(boolean changed) {
         if (changed) {
