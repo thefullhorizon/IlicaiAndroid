@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +27,6 @@ import com.ailicai.app.common.utils.LogUtil;
 import com.ailicai.app.common.utils.MyIntent;
 import com.ailicai.app.common.utils.MyPreference;
 import com.ailicai.app.common.utils.ObjectUtil;
-import com.ailicai.app.common.utils.TimerUtil;
 import com.ailicai.app.common.utils.ToastUtil;
 import com.ailicai.app.model.response.SplashScreenResponse;
 import com.ailicai.app.ui.base.BaseBindActivity;
@@ -37,7 +34,6 @@ import com.ailicai.app.ui.base.webview.WebViewActivity;
 import com.ailicai.app.ui.guide.GuideActivity;
 import com.ailicai.app.ui.index.IndexActivity;
 import com.huoqiu.framework.analysis.ManyiAnalysis;
-import com.huoqiu.framework.backstack.BackOpFragmentActivity;
 import com.huoqiu.framework.imageloader.core.LoadParam;
 import com.huoqiu.framework.imageloader.core.listener.ImageLoadingListener;
 
@@ -170,18 +166,26 @@ public class WelcomeActivity extends BaseBindActivity {
 
     @OnClick(R.id.ivAdvertisement)
     void onAdvertiseClick() {
-        removePageAllCallbacks();
-        goToAdvertiseDetail();
-        finish();
+        LogUtil.e("==========>","preOnClick");
+        goToAdvertiseDetailAndRemoveCallBackAndFinishThis();
     }
 
-    private void goToAdvertiseDetail() {
+
+    private void goToAdvertiseDetailAndRemoveCallBackAndFinishThis() {
+        LogUtil.e("==========>","onClick");
         SplashScreenResponse response = MyPreference.getInstance().read(SplashScreenResponse.class);
-        Map<String, String> dataMap = ObjectUtil.newHashMap();
-        dataMap.put(WebViewActivity.URL,response.getJumpUrl());
-        dataMap.put(WebViewActivity.NEED_REFRESH, "0");
-        dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
-        MyIntent.startActivity(this, WelcomeAdvertiseWebViewActivity.class, dataMap);
+        if(response !=null && isShouldShowAdvertise(response)) {
+            LogUtil.e("==========>","onClick JumpUrl not empty");
+            removePageAllCallbacks();
+
+            Map<String, String> dataMap = ObjectUtil.newHashMap();
+            dataMap.put(WebViewActivity.URL,response.getJumpUrl());
+            dataMap.put(WebViewActivity.NEED_REFRESH, "0");
+            dataMap.put(WebViewActivity.TOPVIEWTHEME, "false");
+            MyIntent.startActivity(this, WelcomeAdvertiseWebViewActivity.class, dataMap);
+
+            finish();
+        }
     }
 
     @Override

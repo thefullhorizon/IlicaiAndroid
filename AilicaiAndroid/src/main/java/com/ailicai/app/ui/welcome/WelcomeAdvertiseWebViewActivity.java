@@ -32,6 +32,7 @@ public class WelcomeAdvertiseWebViewActivity extends WebViewActivity {
 
     public void toHomePage() {
         startActivity(new Intent(this,IndexActivity.class));
+        finish();
     }
 
     private void setTopBackListener() {
